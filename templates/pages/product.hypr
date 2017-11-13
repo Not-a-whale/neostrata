@@ -4,11 +4,11 @@
 {% block body-content %}
 {% preload_json model "product" %}
 <div class="product-wrapper">
-    {% block breadcrumbs %}
-    {% if themeSettings.showBreadcrumbs %}
-    {% include "modules/breadcrumbs" %}
-    {% endif %}
-    {% endblock breadcrumbs %}
+	{% block breadcrumbs %}
+		{% if themeSettings.showBreadcrumbs %}
+			{% include "modules/breadcrumbs" %}
+	    {% endif %}
+	{% endblock breadcrumbs %}    
     <div class="clearfix"></div>
     {% include "modules/product/product-details" %}
 </div>

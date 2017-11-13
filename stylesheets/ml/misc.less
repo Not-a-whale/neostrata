@@ -24,7 +24,7 @@
     border-bottom: 0;
     ul {
         margin: 0 auto;
-        padding: 0 @defaultGutter;        
+        padding: 0 @defaultGutter/2;        
         display: table;
         li {
             float: left;
@@ -60,6 +60,9 @@
                 }
             }
         }
+    }
+    .mz-morecolor-container{
+        clear: left;
     }
 }
 //Site-wide rules
@@ -235,9 +238,6 @@
         -moz-transition: visibility 0s ease-out 0s;
         -ms-transition: visibility 0s ease-out 0s;
         -o-transition: visibility 0s ease-out 0s;
-        /*Fix for Scroll bar on navigation*/
-        max-height: 300px;
-        overflow: auto;
     }
     .mz-sitenav-item {
         float: none;
@@ -402,12 +402,26 @@
             top: -9px;
         }   
     }
-    .ml-header-links-wrapper{
-        top: 20px!important;
-        left: auto!important;
-        right: -10px!important;
+    .mz-pagetitle-note{
+        float: left;
+        margin-top: 10px;
+        color: #000;
+        cursor: pointer;
+        text-decoration: none;
+        clear: left;
     }
-
+    #checkout-form{
+        padding-left: 0px;
+    }
+    #page-content{
+        padding:25px @defaultGutter/2 ;
+    }
+    .mz-formstep-header.mz-checkoutform-header{
+        margin-bottom: 10px;
+    }
+    .mz-ordersummary{
+        padding-bottom: 15px;
+    }
 } 
 
 //Cart Page
@@ -698,8 +712,7 @@
 .mz-checkout{
     .mz-l-pagewrapper {
         #global-header-wrapper,
-        .mz-utilitynav-list,
-        .ml-header-links-wrapper{
+        .mz-utilitynav-list,{
             display: none !important;
         }
     }
@@ -1296,7 +1309,7 @@ ul.tabs {
       .tab_container{
         border: 1px solid #c8c8c8;
         border-top: none;
-        height: 358px;
+        height: 485px;
         overflow-y: auto;
         ul{
           li{
@@ -1405,7 +1418,7 @@ ul.tabs {
             }
           }
           .mz-productdetail-conversion{
-            margin-bottom: 20px;
+            //margin-bottom: 20px;
             .mz-productdetail-conversion-controls {
               margin-top: 10px;
               .qty-block{
@@ -1448,18 +1461,12 @@ ul.tabs {
                   margin-left: 8px;
                 }
                 .mz-pricestack-price-lower {
-                    &::after {
-                        position: absolute;
-                        top: -1px;
-                        padding-left: 6px;
-                        font-size: 14px;
-                    }
-                  margin: 0 10px 0 0;
+                  margin: 0 15px 0 0;
                 }
                 .mz-pricestack-price-upper {
                   &::before {
-                    top: 6px;
-                    left: -18px;
+                        top: 2px;
+                        left: -22px;
                   }
                 }
               }
@@ -1536,9 +1543,9 @@ ul.tabs {
     position: absolute;
     left: 20px;
     content: ' ';
-    height: 27px;
+    height: 14px;
     width: 1.5px;
-    background-color: #e1e1e1;
+    background-color: @colorLightGray;
   }
   &:before {
     transform: rotate(45deg);
@@ -1636,6 +1643,12 @@ ul.tabs {
             color: #000;
         }
     }
+    .mz-pricestack-price-upper{
+        padding-left: 6px;
+    }
+    .is-disabled{
+        opacity: 0.4;
+    }
 }
 // Product Directory
 .mz-productlist {
@@ -1727,7 +1740,7 @@ ul.tabs {
                     vertical-align: top;
                 }
                 .mz-pricestack-price-lower {
-                    margin: 0 10px 0 0;
+                    margin: 0 15px 0 0;
                 }
                 .mz-pricestack-price-upper {
                     &::before {
@@ -2121,7 +2134,7 @@ ul.tabs {
                 background: @colorWhite;
                 border: 1px solid @colorLightGray;
                 color: @colorMediumGray;
-                padding: @gutter - 5 @gutter;
+                padding: @gutter - 15 @gutter;
                 display: block;
                 min-width: 100px;
                 height: 39px;
@@ -2226,6 +2239,7 @@ ul.tabs {
         vertical-align: top;
     }
     .mz-pricestack-price-upper {
+        margin-left: 20px;
         &::before {
             top: 19px;
             left: -17px;
@@ -2382,5 +2396,12 @@ ul.tabs {
         .mz-pagingcontrols-pagesort-dropdown{
             font-weight: normal;
         }
+    }
+}
+#SelectValidOption{
+    .button_promotional{
+        display: block;
+        margin: auto;
+        margin-top: 10px;
     }
 }
