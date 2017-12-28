@@ -510,7 +510,12 @@
     "shippingTo" : "Items shipping to",
     "shippingDestinationEditAddress": "Edit Address",
     "backToTop": "Back to Top",
-    "productOutOfStockError": "The following item has limited quantity or is out of stock.",
+    "upcInStock":"In Stock",
+    "productOutOfStock": "* This item is out of stock.",
+    "itemOutOfStock": "This item is no longer in stock.",
+    "productOutOfStockError": "The following items have limited quantity or are out of stock.",
+    "productwithoutSku" : "Product without Sku",
+    "sku": "Sku",
     "viewVideo": "View Video",
     "ShopNow": "Shop Now",
     "TrendTitle": "What's Trending Now",
@@ -523,5 +528,13 @@
     "addressBookInfo": "View, edit or delete addresses in your personal address book",
     "logOutInfo": "Sign out of your account",
     "wishLists" : "Wish Lists",
-    "productwithoutSku" : "Product without Sku"
+    "productwithoutSku" : "Product without Sku",
+    "marketingEnabledForCatalogRequest":"From time to time we will send you information about special offers and exclusive sales. If you do not wish to receive these offers, please click to remove the check mark.",
+    "requestCatalog":"Request a Catalog",
+    "continueShopping": "Continue Shopping",
+    "requestCatalogSuccess":"Thank you for your Request.<br/> Your catalog will be included in our next mailing",
+    "dayTimePhone":"Daytime Phone Number",
+    "cellPhone":"Cell Phone Number",
+    "emailLogin": "Email*",
+    "middleName": "Middle Name Initials"
 }
