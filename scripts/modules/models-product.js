@@ -65,9 +65,12 @@ define(["modules/jquery-mozu", "underscore", "modules/backbone-mozu", "hyprlive"
             this._hasPriceRange = json && !!json.priceRange;
         },
         initialize: function(conf) {
+            window.familyArray = [];            
+            window.checkInventory = false;
             var slug = this.get('content').get('seoFriendlyUrl');
-            _.bindAll(this, 'calculateHasPriceRange', 'onOptionChange');
+            _.bindAll(this, 'calculateHasPriceRange', 'onOptionChange', 'getFamilyMembers');
             this.listenTo(this.get("options"), "optionchange", this.onOptionChange);
+            this.get("family").bind( 'familyReady', this.getFamilyMembers);
             this._hasVolumePricing = false;
             this._minQty = 0;
             if (this.get('volumePriceBands') && this.get('volumePriceBands').length > 0) {
@@ -85,6 +88,30 @@ define(["modules/jquery-mozu", "underscore", "modules/backbone-mozu", "hyprlive"
             this.lastConfiguration = [];
             this.calculateHasPriceRange(conf);
             this.on('sync', this.calculateHasPriceRange);
+        },
+        getFamilyMembers: function(e){
+            //console.log(e);
+            var checkInArray = false;            
+            if(window.familyArray.length){
+                if($.inArray(e.get('productCode'), window.familyArray) === -1){
+                    window.familyArray.push(e.get('productCode'));
+                    //check if out of stock
+                    if(typeof e.get('inventoryInfo').onlineStockAvailable !== 'undefined' && e.get('inventoryInfo').onlineStockAvailable !== 0)
+                        window.checkInventory = true;
+                }
+            }else{
+                window.familyArray.push(e.get('productCode'));
+                //check if out of stock
+                if(typeof e.get('inventoryInfo').onlineStockAvailable !== 'undefined' && e.get('inventoryInfo').onlineStockAvailable !== 0)
+                    window.checkInventory = true;
+            }
+            //if all elements added in familyArray, check for inventory status
+            if(window.familyLength === window.familyArray.length){
+                if(!window.checkInventory){
+                    window.outOfStockFamily = true;
+                }
+            }
+            return;
         },
         mainImage: function() {
             var productImages = this.get('content.productImages');

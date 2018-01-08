@@ -54,15 +54,26 @@ define([
 	                		my.set(newProduct);
 	                		my.trigger('ready');
 	                    	my.set("isReady",true);
-	                    	my.set('quantityNull', 0);
+	                    	my.trigger('familyReady', my);
+	                    	if(my.get('inventoryInfo').outOfStockBehavior !== "AllowBackOrder" && typeof my.get('inventoryInfo').onlineStockAvailable !== 'undefined' && my.get('inventoryInfo').onlineStockAvailable === 0){
+		                    	my.set('quantityNull', 0);
+		                    }
+	                    	my.set('itemCode', Hypr.getLabel('item')+'# '+my.get('productCode'));
 	                    	my.messages.reset([Hypr.getLabel('productOutOfStock')]);
 	                    	return;
 	                	});     
 	                	return;
 	                }
 	                if(err.message.indexOf("Item not found: "+me.id+" product code "+me.id+" not found") !== -1){
+	                	--window.familyLength;
+	                	if(window.familyLength === window.familyArray.length){
+	                		if(!window.checkInventory){
+			                    window.outOfStockFamily = true;
+			                    $("[data-mz-action='addToCart']").addClass('button_disabled').attr("disabled", "disabled");
+			                }
+	                	}
 	                	return;
-	                }                	
+	                }
 	                me.trigger('error', err);
 	            });
 	            this.on('change', function() {
@@ -122,7 +133,7 @@ define([
 	            options: Backbone.Collection.extend({
 	                model: ProductOption
 	            })
-	        },	        
+	        },
 	        hasPriceRange: function() {
 	            return this._hasPriceRange;
 	        },
@@ -137,7 +148,6 @@ define([
 	            setTimeout(function(){
 	                me.apiGet().then(function(){
 	                    var slug = me.get('content').get('seoFriendlyUrl');
-
 	                    _.bindAll(me, 'calculateHasPriceRange', 'onOptionChange');
 	                    me.listenTo(me.get("options"), "optionchange", me.onOptionChange);
 	                    me._hasVolumePricing = false;
@@ -158,10 +168,11 @@ define([
 	                    me.calculateHasPriceRange(conf);
 	                    me.on('sync', me.calculateHasPriceRange);
 	                    me.set('itemCode', Hypr.getLabel('item')+'# '+me.get('productCode'));
-	                    if(typeof me.get('inventoryInfo').onlineStockAvailable !== 'undefined' && me.get('inventoryInfo').onlineStockAvailable === 0){
+	                    if(me.get('inventoryInfo').outOfStockBehavior !== "AllowBackOrder" && typeof me.get('inventoryInfo').onlineStockAvailable !== 'undefined' && me.get('inventoryInfo').onlineStockAvailable === 0){
 	                    	me.set('quantityNull', 0);
-	                    } 
+	                    }
 	                    me.trigger('ready');
+	                    me.trigger('familyReady', me);
 	                    me.set("isReady",true);
 	                });
 	            },400);
@@ -283,6 +294,10 @@ define([
 	                    var fulfillMethod = me.get('fulfillmentMethod');
 	                    if (!fulfillMethod) {
 	                        fulfillMethod = (me.get('goodsType') === 'Physical') ? FamilyItem.Constants.FulfillmentMethods.SHIP : FamilyItem.Constants.FulfillmentMethods.DIGITAL;
+	                    }
+	                    if(typeof me.get('inventoryInfo') === 'undefined'){
+	                    	dfd.reject(Hypr.getLabel('selectValidOption')); 
+	                    	return;
 	                    }
 	                    //reject products to proceed which are out of stock(under 'DisplayMessage' and 'HideMessage') and allow to proceed which are under 'AllowBackOrder'
 	                    if(me.get('quantityNull') === 0){
