@@ -73,6 +73,11 @@
                     "xtype": "mz-input-checkbox",
                     "name": "listVolumePricing",
                     "fieldLabel": "Show volume pricing bands in product lists"
+                },
+                {
+                    "xtype": "mz-input-text",
+                    "name": "productInfoTabs",
+                    "fieldLabel": "Product Info Tabs"
                 }
             ]
         },
@@ -686,6 +691,23 @@
                     "xtype": "mz-input-textarea",
                     "name": "giftCardsInfo",
                     "fieldLabel": " Gift Card Description"
+                }
+            ]
+        },
+        {
+            "xtype": "panel",
+            "title": "Product Attributes",
+            "collapsed": false,
+            "items": [
+                {
+                    "xtype": "mz-input-text",
+                    "name": "oneSizeAttributeName",
+                    "fieldLabel": "One Size Attribute Name"
+                },
+                {
+                    "xtype": "mz-input-text",
+                    "name": "oneSizeProductType",
+                    "fieldLabel": "One Size Product Type"
                 }
             ]
         }
