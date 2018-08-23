@@ -1,12 +1,12 @@
-﻿<nav class="mz-sitenav collapse" id="ml-nav">
+<nav class="mz-sitenav collapse" id="ml-nav">
     <div class="container">
-      <ul class="mz-sitenav-list" 
+      <ul class="mz-sitenav-list"
           data-mz-contextify='.mz-sitenav-link[href="{{ navigation.currentNode.url }}"]'
           data-mz-contextify-attr='class'
           data-mz-contextify-val='is-current'>
-          {% partial_cache %} 
+          {% partial_cache %}
           {% for link in navigation.tree %}
-            {% if not link.isHidden and not link.isEmpty and forloop.counter0 < themeSettings.maxTopLevelNavItems and link.url != "/home" and link.nodeType!="page" %}
+            {% if not link.isHidden and forloop.counter0 < themeSettings.maxTopLevelNavItems and link.url != "/home" %}
             <li class="mz-sitenav-item">
               <div class="mz-sitenav-item-inner">
                 <a class="mz-sitenav-link" {% if link.openInNewWindow %}target='_blank'{% endif %} href="{{link.url}}">{{link.name|truncatechars(themeSettings.maxTopLevelNavLabelLength)|safe}}</a>
@@ -19,63 +19,52 @@
                             {% include_entities "modules/category-attributes" listFQN=themeSettings.categoryEntityName filter=filter %}
                         {% endwith %}
                         <div class="sub-level-col col-sm-3">
-                        {% for subsublink in link.items %}
-                            {% if not subsublink.isHidden and not subsublink.isEmpty %}
-                                {% with "id eq {0}"|string_format(subsublink.originalId) as filter %}
+                        {% for sublink in link.items %}
+                            {% if not sublink.isHidden %}
+                                {% with "id eq {0}"|string_format(sublink.originalId) as filter %}
                                     {% include_entities "modules/category-header-attribute" listFQN=themeSettings.categoryEntityName filter=filter %}
                                 {% endwith %}
                                 <div class="mz-sitenav-item sub-level-li">
-                                    <a class="mz-sitenav-link" {% if link.openInNewWindow %}target='_blank'{% endif %} href="{{subsublink.url}}">{{ subsublink.name|safe }}</a>
+                                    <a class="mz-sitenav-link" {% if link.openInNewWindow %}target='_blank'{% endif %} href="{{sublink.url}}">{{ sublink.name|safe }}</a>
                                 </div>
+                                {% for lookup in themeSettings.megaMenu.categoryLookups %}
+                                  {% if lookup.url == sublink.url %}
+                                    {{ lookup.url }} - {{lookup.linkedCategoryCode}}<br/>
+                                    {% with navigation.tree|findwhere('categoryCode', lookup.linkedCategoryCode) as linkedCategory %}
+                                      {% for subsublink in linkedCategory.items %}
+                                        {% if not subsublink.isHidden %}
+                                          <div class="mz-sitenav-item sub-sub-level-li">
+                                            <a class="mz-sitenav-link" {% if link.openInNewWindow %}target='_blank'{% endif %} href="{{subsublink.url}}"> * {{ subsublink.name|safe }}</a>
+                                          </div>
+                                        {% endif %}
+                                      {% endfor %}
+                                    {% endwith %}
+                                  {% endif %}
+                                {% endfor %}
+                                {% for subsublink in sublink.items %}
+                                    {% if not subsublink.isHidden %}
+                                        <div class="mz-sitenav-item sub-sub-level-li">
+                                            <a class="mz-sitenav-link" {% if link.openInNewWindow %}target='_blank'{% endif %} href="{{subsublink.url}}">{{ subsublink.name|safe }}</a>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
                             {% endif %}
                         {% endfor %}
-                        </div> 
+                        </div>
                     </div>
                 {% endif %}
                 </div>
-
-
                 {% endif %}
               </div>
             </li>
             <li class="ml-navbar-separator"></li>
             {% endif %}
           {% endfor %}
-          {% if navigation.tree.length > themeSettings.maxTopLevelNavItems %}
-          <li class="mz-sitenav-item mz-sitenav-item-more">
-              <div class="mz-sitenav-item-inner">
-                  <a class="mz-sitenav-link" href="javascript:;">{{ labels.navMore }}</a>
-                  <!-- <div class="arrow-up"></div> -->
-                  <div class="mz-sitenav-sub-container">
-                    <ul class="mz-sitenav-sub">
-                        {% for sublink in navigation.tree %}
-                        {% if sublink.index >= themeSettings.maxTopLevelNavItems and not sublink.isHidden and not sublink.isEmpty %}
-                            <li data-mz-role="sitemenu-item" class="mz-sitenav-item">
-                                    <a class="mz-sitenav-link" {% if link.openInNewWindow %}target='_blank'{% endif %} href="{{sublink.url}}">{{sublink.name|safe}}</a>
-                                  {% if sublink.items %}
-                            {% comment %}
-                            <!-- uncomment out  this block to get 3rd laver of nav -->
-                                           <ul class="mz-sitenav-sub-sub clearfix">
-                                                {% for subsublink in sublink.items %}
-                                {% if not subsublink.isHidden and not subsublink.isEmpty %}
-                                                    <li class="mz-sitenav-item">
-                                                        <a class="mz-sitenav-link" {% if link.openInNewWindow %}target='_blank'{% endif %} href="{{subsublink.url}}">{{subsublink.name|safe}}</a>
-                                                    </li>
-                                {% endif %}
-                                                {% endfor %}
-                                            </ul>
-                            {% endcomment %}
-                                  {% endif %}
-                                </li>
-                            {% endif %}
-                        {% endfor %}
-                    </ul>
-                  </div>
-              </div>
-          </li>
-          {% endif %}
           {% endpartial_cache %}
           {% require_script "modules/contextify" %}
+
       </ul>
     </div>
 </nav>
+{% preload_json navigation.tree "navtree" %}
+{% require_script "modules/debug" %}

@@ -1089,7 +1089,16 @@
     "visaCheckoutSdkUrl": "https://sandbox-assets.secure.checkout.visa.com/checkout-widget/resources/js/integration/v1/sdk.js",
     "returnsInfo": "Return Item",
     "paymentsMethodInfo": "Payment Methods",
-    "giftCardsInfo": "Gift Card"
+    "giftCardsInfo": "Gift Card",
+    "megaMenu": {
+      "categoryLookups":   [
+        { "url": "/skin-type", "linkedCategoryCode": "18" },
+        { "url": "/skin-concern", "linkedCategoryCode": "21" },
+        { "url": "/skin-care-systems", "linkedCategoryCode": "9" },
+        { "url": "/product-types", "linkedCategoryCode": "16" },
+        { "url": "/ingredients", "linkedCategoryCode": "17" }
+      ]
+    }
   },
   "layoutWidgets": [
     {
