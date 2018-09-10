@@ -89,10 +89,9 @@
         {% block head-tag-scripts %}
         <script src="{% make_url "cdn" "/scripts/vendor/modernizr.min.js" %}"></script>
 
-        {% include "modules/web-fonts-loader" %}
+        {% comment %}{% include "modules/web-fonts-loader" %}{% endcomment %}
         {% endblock head-tag-scripts %}
         {% cms_resources %}
-
 
         {%header_content%}
 
