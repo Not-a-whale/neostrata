@@ -1,5 +1,5 @@
 ﻿<div class="mz-pagefooter ml-global-footer">
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row">
 			<div class="col-xs-12">
 				{% dropzone "footer" scope="site" %}
@@ -8,7 +8,7 @@
 	</div>
 </div>
 <footer>
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row ">
 			<div class="col-xs-12 col-sm-4 pull-right">
 				<div>
@@ -23,19 +23,12 @@
 					    	<input type="email" class="form-control" id="exampleInputEmail3" placeholder="Your Email Address" maxlength="{{themeSettings.emailLength}}">
 					    </div>
 					  </div>
-						<div id="footerStoreLocator">
-							{% include "modules/location/store-locator-footer" %}
-						</div>
-					</form>					
+					</form>
 				</div>
 				<div class="social-links">
-					<div class="ml-footer-social-connect">Connect with us:</div>
 					<div>
-						<a title="Facebook" href="#" class="ml-icon ml-social-icon ml-icon-facebook">&nbsp;</a>
-						<a title="Twitter" href="#" class="ml-icon ml-social-icon ml-icon-twitter">&nbsp;</a>
-						<a title="Pintrest" href="#" class="ml-icon ml-social-icon ml-icon-pintrest">&nbsp;</a>
-						<a title="Google" href="#" class="ml-icon ml-social-icon ml-icon-google">&nbsp;</a>
 						<a title="Instagram" href="#" class="ml-icon ml-social-icon ml-icon-instagram">&nbsp;</a>
+						<a title="Facebook" href="#" class="ml-icon ml-social-icon ml-icon-facebook">&nbsp;</a>
 						<a title="YouTube" href="#" class="ml-icon ml-social-icon ml-icon-youtube">&nbsp;</a>
 					</div>
 				</div>
@@ -54,7 +47,7 @@
 								{% dropzone "footer-cat-links-col2" scope="site" %}
 							</div>
 						</div>
-					</div>	
+					</div>
 					<div class="col-xs-12 col-sm-6">
 						<div class="row">
 							<div class="col-xs-6 top-pad">
@@ -64,10 +57,10 @@
 								{% dropzone "footer-cat-links-col4" scope="site" %}
 							</div>
 						</div>
-					</div>								
+					</div>
 				</div>
 
-			</div>		
+			</div>
 		</div>
 		<div class="row">
 			<div class="col-xs-12 {% if themeSettings.footerEnableMini %}mini-footer-on{% else %}mini-footer-off{% endif %}">
@@ -76,7 +69,7 @@
 						{% dropzone "mini-footer-cat-links" scope="site" %}
 					</div>
 				</div>
-			</div>			
+			</div>
 		</div>
 	</div>
 </footer>

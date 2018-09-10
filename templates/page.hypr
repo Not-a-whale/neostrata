@@ -80,9 +80,9 @@
         {% endif %}
 
         {% block stylesheets %}
-        <link rel="stylesheet" href="{% make_url "stylesheet" "/stylesheets/vendor/bootstrap-3.3.7/css/bootstrap.min.css" %}" title="default" /> 
-        <link rel="stylesheet" href="{% make_url "stylesheet" "/stylesheets/storefront.less" %}" title="default" />          
-        <link rel="stylesheet" type="text/css" href="{% make_url "stylesheet" "/stylesheets/vendor/font-awesome/css/font-awesome.min.css" %}" media="all">     
+        <link rel="stylesheet" href="{% make_url "stylesheet" "/stylesheets/vendor/bootstrap-3.3.7/css/bootstrap.min.css" %}" title="default" />
+        <link rel="stylesheet" href="{% make_url "stylesheet" "/stylesheets/storefront.less" %}" title="default" />
+        <link rel="stylesheet" type="text/css" href="{% make_url "stylesheet" "/stylesheets/vendor/font-awesome/css/font-awesome.min.css" %}" media="all">
         {% endblock stylesheets %}
 
         {% block head-tag-scripts %}
@@ -102,7 +102,7 @@
     {% block body-tag %}
 
     {% block open-body-tag %}
-    <body class="{% block body-tag-classes %}{% endblock body-tag-classes %}">
+    <body class="{% block body-tag-classes %} neostrata-theme {% endblock body-tag-classes %}">
     {% endblock open-body-tag %}
         <div id="page-wrapper" class="mz-l-pagewrapper">
             {% block utility-bar %}
@@ -115,18 +115,18 @@
 				{% include "modules/site-nav" %}
             {% endblock site-nav %}
             <div role="main" id="page-content" class="mz-l-pagecontent">
-                <div class="container">
+                <div class="container-fluid">
                 <div class="row">
                    <!--  {% block breadcrumbs %}
                     {% if themeSettings.showBreadcrumbs %}
                     {% include "modules/breadcrumbs" %}
                     {% endif %}
                     {% endblock breadcrumbs %} -->
-                    
+
                     {% block body-content %}
                     {% dropzone "body" scope="page" %}
                     {% endblock body-content %}
-                    
+
                     {% block body-below-content %}
                     {% dropzone "body-bottom" scope="template" %}
                     {% endblock body-below-content %}
@@ -142,17 +142,17 @@
             {% endblock page-footer %}
 
             {% block copyright-footer %}
-                <div class="container">
+                <div class="container-fluid">
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="mz-pagefooter-copyright" id="copyright">
                                 <span class="mz-pagefooter-copyrighttext">
-                                    &copy; {% now Y %} 
+                                    &copy; {% now Y %}
                                 </span>
                                 {{ siteContext.generalSettings.websiteName }}. {% dropzone "copyright" scope="site" %}
                             </div>
                         </div>
-                    </div>                
+                    </div>
                 </div>
             {% endblock copyright-footer%}
 
