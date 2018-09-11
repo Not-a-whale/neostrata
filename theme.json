@@ -1,5 +1,4 @@
 {
-
   "about": {
     "author": "ankur garha",
     "defaultLanguage": "en-US",
@@ -11,15 +10,14 @@
     "allowProduction": true,
     "baseTheme": "https://github.com/mozu/core-theme.git",
     "baseThemeVersion": {
-      "commit": "8bf2cc5e8af8d863516815ae660df0f5dfa7196e",
-      "version": "9.4.1"
-
+      "commit": "4c0e4c7eeeb30abd0de6e52ce72cbbe193aa4f0e"
     },
     "baseThemeChannel": "stable"
   },
-  "editors": [{
-        "id": "rti-rec-editor",
-        "path": "rti-rec-editor.js"
+  "editors": [
+    {
+      "id": "rti-rec-editor",
+      "path": "rti-rec-editor.js"
     },
     {
       "id": "layout",
@@ -264,12 +262,12 @@
       "userCreatable": true
     },
     {
-        "documentType": "web_page",
-        "entityType": "webpage",
-        "id": "catalog-request",
-        "template": "catalog-request",
-        "title": "Catalog Request",
-        "userCreatable": true
+      "documentType": "web_page",
+      "entityType": "webpage",
+      "id": "catalog-request",
+      "template": "catalog-request",
+      "title": "Catalog Request",
+      "userCreatable": true
     },
     {
       "documentType": "web_page",
@@ -280,13 +278,13 @@
       "userCreatable": true
     },
     {
-        "id": "print-order",
-        "title": "Print Order",
-        "entityType": "webpage",
-        "documentType": "web_page",
-        "template": "pages/print-order",
-        "customEditor": "back-office@mozu",
-        "userCreatable": true
+      "id": "print-order",
+      "title": "Print Order",
+      "entityType": "webpage",
+      "documentType": "web_page",
+      "template": "pages/print-order",
+      "customEditor": "back-office@mozu",
+      "userCreatable": true
     },
     {
       "entityType": "category",
@@ -362,13 +360,13 @@
       "userCreatable": false
     },
     {
-        "entityType": "checkout",
-        "id": "checkoutv2",
-        "template": "checkoutv2",
-        "title": "Checkout V2",
-        "userCreatable": false
+      "entityType": "checkout",
+      "id": "checkoutv2",
+      "template": "checkoutv2",
+      "title": "Checkout V2",
+      "userCreatable": false
     },
-    {    
+    {
       "entityType": "customer",
       "id": "my_account",
       "template": "my-account",
@@ -411,12 +409,12 @@
       "userCreatable": false
     },
     {
-        "entityType": "orderStatus",
-        "id": "orderStatus",
-        "template": "order-status",
-        "title": "Order Status",
-        "userCreatable": false
-    },    
+      "entityType": "orderStatus",
+      "id": "orderStatus",
+      "template": "order-status",
+      "title": "Order Status",
+      "userCreatable": false
+    },
     {
       "documentType": "web_page",
       "entityType": "webpage",
@@ -443,28 +441,278 @@
     }
   ],
   "settings": {
+    "commerceEnabled": true,
     "oneSizeAttributeName": "tenant~ONESIZE",
     "oneSizeProductType": "Single Variant",
     "maxRecentlyViewedItems": 5,
     "allProductsCategoryId": 0,
-    "pdpMainImageNameSwatch":"{0}_{1}_v{2}.jpg", 
-    "pdpMainImageNameAlt":"{0}_{1}_v{2}.jpg",
-    "pdpMainImageMaxWidth":"320",
-    "pdpAltImageName":"{0}_{1}_v{2}.jpg",
-    "pdpAltImageMaxWidth":"90",
-    "pdpSwatchImageName":"{1}.gif",
-    "pdpSwatchImageMaxWidth":"30",
-    "colorSwatchesChangeMain":true,
-    "familyProductType":"Family Products",
-    "familyProductAttribute":"tenant~family-members",
-    "colorSwatchesChangeAlternate":false,
+    "pdpMainImageNameSwatch": "{0}_{1}_v{2}.jpg",
+    "pdpMainImageNameAlt": "{0}_{1}_v{2}.jpg",
+    "pdpMainImageMaxWidth": "320",
+    "pdpAltImageName": "{0}_{1}_v{2}.jpg",
+    "pdpAltImageMaxWidth": "90",
+    "pdpSwatchImageName": "{1}.gif",
+    "pdpSwatchImageMaxWidth": "30",
+    "colorSwatchesChangeMain": true,
+    "familyProductType": "Family Products",
+    "familyProductAttribute": "tenant~family-members",
+    "colorSwatchesChangeAlternate": false,
     "customCountries": [
-          {
-              "value": "US",
-              "key": "United States"
-          }
+      {
+        "value": "US",
+        "key": "United States"
+      }
     ],
-    "customStates": [{ "key": "AL", "value": "Alabama" }, { "key": "AK", "value": "Alaska" }, { "key": "AS", "value": "American Samoa" }, { "key": "AZ", "value": "Arizona" }, { "key": "AR", "value": "Arkansas" }, { "key": "AA", "value": "Armed Forces Americas" }, { "key": "AE", "value": "Armed Forces Europe" }, { "key": "AP", "value": "Armed Forces Pacific" }, { "key": "CA", "value": "California" }, { "key": "CO", "value": "Colorado" }, { "key": "CT", "value": "Connecticut" }, { "key": "DE", "value": "Delaware" }, { "key": "DC", "value": "District Of Columbia" }, { "key": "FM", "value": "Federated States Of Micronesia" }, { "key": "FL", "value": "Florida" }, { "key": "GA", "value": "Georgia" }, { "key": "GU", "value": "Guam" }, { "key": "HI", "value": "Hawaii" }, { "key": "ID", "value": "Idaho" }, { "key": "IL", "value": "Illinois" }, { "key": "IN", "value": "Indiana" }, { "key": "IA", "value": "Iowa" }, { "key": "KS", "value": "Kansas" }, { "key": "KY", "value": "Kentucky" }, { "key": "LA", "value": "Louisiana" }, { "key": "ME", "value": "Maine" }, { "key": "MH", "value": "Marshall Islands" }, { "key": "MD", "value": "Maryland" }, { "key": "MA", "value": "Massachusetts" }, { "key": "MI", "value": "Michigan" }, { "key": "MN", "value": "Minnesota" }, { "key": "MS", "value": "Mississippi" }, { "key": "MO", "value": "Missouri" }, { "key": "MT", "value": "Montana" }, { "key": "NE", "value": "Nebraska" }, { "key": "NV", "value": "Nevada" }, { "key": "NH", "value": "New Hampshire" }, { "key": "NJ", "value": "New Jersey" }, { "key": "NM", "value": "New Mexico" }, { "key": "NY", "value": "New York" }, { "key": "NC", "value": "North Carolina" }, { "key": "ND", "value": "North Dakota" }, { "key": "MP", "value": "Northern Mariana Islands" }, { "key": "OH", "value": "Ohio" }, { "key": "OK", "value": "Oklahoma" }, { "key": "OR", "value": "Oregon" }, { "key": "PW", "value": "Palau" }, { "key": "PA", "value": "Pennsylvania" }, { "key": "PR", "value": "Puerto Rico" }, { "key": "RI", "value": "Rhode Island" }, { "key": "SC", "value": "South Carolina" }, { "key": "SD", "value": "South Dakota" }, { "key": "TN", "value": "Tennessee" }, { "key": "TX", "value": "Texas" }, { "key": "UT", "value": "Utah" }, { "key": "VT", "value": "Vermont" }, { "key": "VI", "value": "Virgin Islands" }, { "key": "VA", "value": "Virginia" }, { "key": "WA", "value": "Washington" }, { "key": "WV", "value": "West Virginia" }, { "key": "WI", "value": "Wisconsin" }, { "key": "WY", "value": "Wyoming" }],
+    "customStates": [
+      {
+        "key": "AL",
+        "value": "Alabama"
+      },
+      {
+        "key": "AK",
+        "value": "Alaska"
+      },
+      {
+        "key": "AS",
+        "value": "American Samoa"
+      },
+      {
+        "key": "AZ",
+        "value": "Arizona"
+      },
+      {
+        "key": "AR",
+        "value": "Arkansas"
+      },
+      {
+        "key": "AA",
+        "value": "Armed Forces Americas"
+      },
+      {
+        "key": "AE",
+        "value": "Armed Forces Europe"
+      },
+      {
+        "key": "AP",
+        "value": "Armed Forces Pacific"
+      },
+      {
+        "key": "CA",
+        "value": "California"
+      },
+      {
+        "key": "CO",
+        "value": "Colorado"
+      },
+      {
+        "key": "CT",
+        "value": "Connecticut"
+      },
+      {
+        "key": "DE",
+        "value": "Delaware"
+      },
+      {
+        "key": "DC",
+        "value": "District Of Columbia"
+      },
+      {
+        "key": "FM",
+        "value": "Federated States Of Micronesia"
+      },
+      {
+        "key": "FL",
+        "value": "Florida"
+      },
+      {
+        "key": "GA",
+        "value": "Georgia"
+      },
+      {
+        "key": "GU",
+        "value": "Guam"
+      },
+      {
+        "key": "HI",
+        "value": "Hawaii"
+      },
+      {
+        "key": "ID",
+        "value": "Idaho"
+      },
+      {
+        "key": "IL",
+        "value": "Illinois"
+      },
+      {
+        "key": "IN",
+        "value": "Indiana"
+      },
+      {
+        "key": "IA",
+        "value": "Iowa"
+      },
+      {
+        "key": "KS",
+        "value": "Kansas"
+      },
+      {
+        "key": "KY",
+        "value": "Kentucky"
+      },
+      {
+        "key": "LA",
+        "value": "Louisiana"
+      },
+      {
+        "key": "ME",
+        "value": "Maine"
+      },
+      {
+        "key": "MH",
+        "value": "Marshall Islands"
+      },
+      {
+        "key": "MD",
+        "value": "Maryland"
+      },
+      {
+        "key": "MA",
+        "value": "Massachusetts"
+      },
+      {
+        "key": "MI",
+        "value": "Michigan"
+      },
+      {
+        "key": "MN",
+        "value": "Minnesota"
+      },
+      {
+        "key": "MS",
+        "value": "Mississippi"
+      },
+      {
+        "key": "MO",
+        "value": "Missouri"
+      },
+      {
+        "key": "MT",
+        "value": "Montana"
+      },
+      {
+        "key": "NE",
+        "value": "Nebraska"
+      },
+      {
+        "key": "NV",
+        "value": "Nevada"
+      },
+      {
+        "key": "NH",
+        "value": "New Hampshire"
+      },
+      {
+        "key": "NJ",
+        "value": "New Jersey"
+      },
+      {
+        "key": "NM",
+        "value": "New Mexico"
+      },
+      {
+        "key": "NY",
+        "value": "New York"
+      },
+      {
+        "key": "NC",
+        "value": "North Carolina"
+      },
+      {
+        "key": "ND",
+        "value": "North Dakota"
+      },
+      {
+        "key": "MP",
+        "value": "Northern Mariana Islands"
+      },
+      {
+        "key": "OH",
+        "value": "Ohio"
+      },
+      {
+        "key": "OK",
+        "value": "Oklahoma"
+      },
+      {
+        "key": "OR",
+        "value": "Oregon"
+      },
+      {
+        "key": "PW",
+        "value": "Palau"
+      },
+      {
+        "key": "PA",
+        "value": "Pennsylvania"
+      },
+      {
+        "key": "PR",
+        "value": "Puerto Rico"
+      },
+      {
+        "key": "RI",
+        "value": "Rhode Island"
+      },
+      {
+        "key": "SC",
+        "value": "South Carolina"
+      },
+      {
+        "key": "SD",
+        "value": "South Dakota"
+      },
+      {
+        "key": "TN",
+        "value": "Tennessee"
+      },
+      {
+        "key": "TX",
+        "value": "Texas"
+      },
+      {
+        "key": "UT",
+        "value": "Utah"
+      },
+      {
+        "key": "VT",
+        "value": "Vermont"
+      },
+      {
+        "key": "VI",
+        "value": "Virgin Islands"
+      },
+      {
+        "key": "VA",
+        "value": "Virginia"
+      },
+      {
+        "key": "WA",
+        "value": "Washington"
+      },
+      {
+        "key": "WV",
+        "value": "West Virginia"
+      },
+      {
+        "key": "WI",
+        "value": "Wisconsin"
+      },
+      {
+        "key": "WY",
+        "value": "Wyoming"
+      }
+    ],
     "fullNameLength": 80,
     "firstNameLength": 40,
     "middleNameInitialsLength": 1,
@@ -492,16 +740,16 @@
     "productThumbImageMaxWidth": 84,
     "productZoomImageMaxWidth": 700,
     "productCarouselImageWidth": 84,
-    "globalCartEmptyBasketFooter":"", 
-    "globalCartEmptyBasketKickerLink":"",
-    "globalCartRelatedProducts":"true",
-    "globalCartRelatedProductsSize":5,
-    "globalCartMaxItemCount":3,
-    "globalCartEnableSaveCart":"true",
+    "globalCartEmptyBasketFooter": "",
+    "globalCartEmptyBasketKickerLink": "",
+    "globalCartRelatedProducts": "true",
+    "globalCartRelatedProductsSize": 5,
+    "globalCartMaxItemCount": 3,
+    "globalCartEnableSaveCart": "true",
     "globalCartHidePopover": "",
-    "globalCartShowSubtotal": false,    
-    "globalCartItemImageMaxWidth": 105,    
-    "footerEnableMini":false,
+    "globalCartShowSubtotal": false,
+    "globalCartItemImageMaxWidth": 105,
+    "footerEnableMini": false,
     "backofficeDateTimeFormat": "m/d/Y H:i:s O",
     "extendedPropertiesEnabled": false,
     "extendedPropertyParameters": "",
@@ -513,7 +761,7 @@
     "bannerImageEnabled": false,
     "bannerImageRepeat": "repeat-x",
     "bodyBackgroundColor": "#FFFFFF",
-    "minimumQuantityForInStockQuantityMessage":5,
+    "minimumQuantityForInStockQuantityMessage": 5,
     "cmsTextStyles": [
       {
         "className": "mz-style-1",
@@ -534,10 +782,6 @@
     "productInfinitySize": 54,
     "defaultSort": "createDate asc",
     "enablePartialCaching": true,
-    "loadGoogleFonts": [
-      "Source Sans Pro"
-    ],
-    "primaryFont": "Source Sans Pro",
     "fontSize": "14px",
     "gutterWidth": "25px",
     "internal-themeAddons": [],
@@ -564,7 +808,7 @@
     "googleMapLongitude": -70.288112,
     "googleMapZoom": 8,
     "storesPageSize": 5,
-    "facebookShareLink":"https://www.facebook.com/MozuCommerce",
+    "facebookShareLink": "https://www.facebook.com/MozuCommerce",
     "googleMapPinIcon": "",
     "searchStorePlaceHolder": "Enter City, State or ZIP",
     "googleMapMaxNearbyDistance": 10000000,
@@ -589,7 +833,7 @@
     "showProductDetailShortDesc": true,
     "showProductDetailUPC": true,
     "textColor": "#444444",
-    "companyLogo":"/resources/images/logo-sm.png",
+    "companyLogo": "/resources/images/logo-sm.png",
     "facetMoreColorCount": 3,
     "enableQuickView": true,
     "categoryEntityName": "categoryAttributes@ng",
@@ -841,7 +1085,16 @@
     "visaCheckoutSdkUrl": "https://sandbox-assets.secure.checkout.visa.com/checkout-widget/resources/js/integration/v1/sdk.js",
     "returnsInfo": "Return Item",
     "paymentsMethodInfo": "Payment Methods",
-    "giftCardsInfo": "Gift Card"
+    "giftCardsInfo": "Gift Card",
+    "megaMenu": {
+      "categoryLookups":   [
+        { "url": "/skin-type", "linkedCategoryCode": "18" },
+        { "url": "/skin-concern", "linkedCategoryCode": "21" },
+        { "url": "/skin-care-systems", "linkedCategoryCode": "9" },
+        { "url": "/product-types", "linkedCategoryCode": "16" },
+        { "url": "/ingredients", "linkedCategoryCode": "17" }
+      ]
+    }
   },
   "layoutWidgets": [
     {
@@ -949,40 +1202,43 @@
       ]
     }
   ],
-  "widgets": [{
-        "displayName": "RTI Recommended Products",
-        "displayTemplate": "RTI/rti-rec-template",
-        "customEditor": "rti-rec-editor",
-        "icon": "/resources/admin/widgets/rti-recommend.png",
-        "id": "rti-rec-display",
-        "validPageTypes": [
-            "*"
-        ]
-    }, {
-        "displayName": "RTI Observation Tag",
-        "displayTemplate": "RTI/rti-observation.hypr",
-        "icon": "/resources/admin/widgets/rti-observation.png",
-        "id": "rti-observation-tag",
-        "validPageTypes": ["*"]
-    }, {
-      "defaultConfig": {
-      },
+  "widgets": [
+    {
+      "displayName": "RTI Recommended Products",
+      "displayTemplate": "RTI/rti-rec-template",
+      "customEditor": "rti-rec-editor",
+      "icon": "/resources/admin/widgets/rti-recommend.png",
+      "id": "rti-rec-display",
+      "validPageTypes": [
+        "*"
+      ]
+    },
+    {
+      "displayName": "RTI Observation Tag",
+      "displayTemplate": "RTI/rti-observation.hypr",
+      "icon": "/resources/admin/widgets/rti-observation.png",
+      "id": "rti-observation-tag",
+      "validPageTypes": [
+        "*"
+      ]
+    },
+    {
+      "defaultConfig": {},
       "displayName": "Product carousel",
       "displayTemplate": "misc/product-carousel",
       "editViewFields": [
         {
-          
           "fieldLabel": "Select Products",
           "name": "products",
           "xtype": "mz-input-productmulti"
-        }    
+        }
       ],
       "icon": "/resources/admin/widgets/city-carousel-icon.png",
       "id": "product-carousel-widget",
       "validPageTypes": [
         "*"
       ]
-    },             
+    },
     {
       "defaultConfig": {
         "template": "modules/product/product-list"
@@ -1084,7 +1340,6 @@
           "xtype": "mz-input-number"
         },
         {
-
           "anchor": "100%",
           "fieldLabel": "Hide Empty Child Nodes",
           "name": "hideEmptyChildNodes",
@@ -1313,45 +1568,48 @@
       ]
     },
     {
-        "defaultConfig": {
-            "template": "modules/product/recent-product-list-gorsuch",
-            "title": "Recently Viewed Items"
+      "defaultConfig": {
+        "template": "modules/product/recent-product-list-gorsuch",
+        "title": "Recently Viewed Items"
+      },
+      "displayName": "Recently Viewed Items",
+      "displayTemplate": "catalog/recently-viewed-products",
+      "editViewFields": [
+        {
+          "anchor": "100%",
+          "fieldLabel": "Title",
+          "name": "title",
+          "xtype": "mz-input-text"
         },
-        "displayName": "Recently Viewed Items",
-        "displayTemplate": "catalog/recently-viewed-products",
-        "editViewFields": [{
-            "anchor": "100%",
-            "fieldLabel": "Title",
-            "name": "title",
-            "xtype": "mz-input-text"
-        }, {
-            "anchor": "100%",
-            "fieldLabel": "Template",
-            "name": "template",
-            "store": [
-                [
-                    "modules/product/product-list-tiled",
-                    "tiled"
-                ],
-                [
-                    "modules/product/product-list",
-                    "list"
-                ],
-                [
-                    "modules/product/recent-product-list-gorsuch",
-                    "carousel"
-                ]
+        {
+          "anchor": "100%",
+          "fieldLabel": "Template",
+          "name": "template",
+          "store": [
+            [
+              "modules/product/product-list-tiled",
+              "tiled"
             ],
-            "xtype": "mz-input-dropdown"
-        }],
-        "icon": "/resources/admin/widgets/26_related_products.png",
-        "id": "recentlyViewedProducts",
-        "validPageTypes": [
-            "product",
-            "cart"
-        ]
-    }, {
-
+            [
+              "modules/product/product-list",
+              "list"
+            ],
+            [
+              "modules/product/recent-product-list-gorsuch",
+              "carousel"
+            ]
+          ],
+          "xtype": "mz-input-dropdown"
+        }
+      ],
+      "icon": "/resources/admin/widgets/26_related_products.png",
+      "id": "recentlyViewedProducts",
+      "validPageTypes": [
+        "product",
+        "cart"
+      ]
+    },
+    {
       "defaultConfig": {
         "body": "<h2>Insert Markup</h2>"
       },

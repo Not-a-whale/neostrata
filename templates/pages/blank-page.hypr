@@ -2,4 +2,4 @@
 
 {% block title-tag-content %}{% firstof pageContext.metaTitle model.name %}  - {% parent %}{% endblock title-tag-content %}
 
-{% block body-tag-classes %} mz-blankpage {% endblock body-tag-classes %}
+{% block body-tag-classes %} mz-blankpage neostrata-theme {% endblock body-tag-classes %}

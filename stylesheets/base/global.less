@@ -1,4 +1,4 @@
-﻿html {
+html {
     height: 100%;
 }
 
@@ -6,13 +6,51 @@ body {
     margin: 0 auto;
     height: 100%;
     background-color: @bodyBackgroundColor;
-	font-family: @fontFamily;
-    font-size: @fontSize;
-	color: @textColor;
+    font-family: "Gotham A", "Gotham B", sans-serif;
+    font-size: 16px;
+    color: #4E5458;
 }
+
 h1, h2, h3, h4, h5, h6 {
     color: @textColor;
 }
+
+h1, .h1 {
+  font-size: 4.5em;
+  line-height: 5.625rem;
+  font-weight: bold;
+}
+
+h2, .h2 {
+  font-size: 3.43em;
+  line-height: 4.68rem;
+  font-weight: medium;
+}
+
+h3, .h3 {
+  font-size: 2.81em;
+  line-height: 3.75rem;
+  font-weight: medium;
+}
+
+h4, .h4 {
+  font-size: 2.125;
+  line-height: 3rem;
+  font-weight: bold;
+}
+
+h5, .h5 {
+  font-size: 1.5em;
+  line-height: 1.875rem;
+  font-weight: bold;
+}
+
+h6, .h6 {
+  font-size: 1.25em;
+  line-height: auto;
+  font-weight: medium;
+}
+
 a {
     color: @linkColor;
     &:visited {
@@ -27,7 +65,42 @@ p {
     margin: @gutter/2 0;
 }
 
-// preventing FOUT since web fonts are loading asynchronously    
+.p1 {
+  font-size: 2.18em;
+  line-height: 1.37rem;
+  font-weight: bold;
+}
+
+.p2 {
+  font-size: 1.875em;
+  line-height: 1.5rem;
+  font-weight: bold;
+}
+
+.p3 {
+  font-size: 1.625em;
+  line-height: 1.46rem;
+  font-weight: bold;
+}
+
+.p4 {
+  font-size: 1.31em;
+  line-height: 1.43rem;
+  font-weight: bold;
+}
+
+.p5 {
+  font-size: 1.125em;
+  line-height: 1.5rem;
+  font-weight: bold;
+}
+
+.neostrata-theme .mz-cms-row {
+  max-width: 100%;
+}
+
+
+// preventing FOUT since web fonts are loading asynchronously
 html.js.fontface.wf-loading body {
     visibility: hidden;
 }
