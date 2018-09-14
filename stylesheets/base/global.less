@@ -19,37 +19,37 @@ h1, h2, h3, h4, h5, h6 {
 h1, .h1 {
   font-size: 4.5em;
   line-height: 1.25em;
-  font-weight: bold;
+  font-weight: @fontWeightBold;
 }
 
 h2, .h2 {
   font-size: 3.43em;
   line-height: 1.36em;
-  font-weight: medium;
+  font-weight: @fontWeightMedium;
 }
 
 h3, .h3 {
   font-size: 2.81em;
   line-height: 1.33em;
-  font-weight: medium;
+  font-weight: @fontWeightMedium;
 }
 
 h4, .h4 {
   font-size: 2.125em;
   line-height: 1.41em;
-  font-weight: bold;
+  font-weight: @fontWeightBold;
 }
 
 h5, .h5 {
   font-size: 1.5em;
   line-height: 1.25em;
-  font-weight: bold;
+  font-weight: @fontWeightBold;
 }
 
 h6, .h6 {
   font-size: 1.25em;
   line-height: auto;
-  font-weight: medium;
+  font-weight: @fontWeightMedium;
 }
 
 // Specialty Headings mixin
@@ -57,7 +57,7 @@ h6, .h6 {
 .specialitHeading() {
 
   font-size: 2.25em;
-  font-weight: bold;
+  font-weight: @fontWeightBold;
   font-style: italic;
   text-transform: uppercase;
 }
@@ -90,34 +90,34 @@ p {
 }
 
 // TO DO - FIX font waight - to book
+
+.p1, .p2, .p3, .p4, .p5 {
+  font-weight: @fontWeightBook;
+}
+
 .p1 {
   font-size: 2.18em;
   line-height: 1.37em;
-  font-weight: bold;
 }
 
 .p2 {
   font-size: 1.875em;
   line-height: 1.5em;
-  font-weight: bold;
 }
 
 .p3 {
   font-size: 1.625em;
   line-height: 1.46em;
-  font-weight: bold;
 }
 
 .p4 {
   font-size: 1.31em;
   line-height: 1.43em;
-  font-weight: bold;
 }
 
 .p5 {
   font-size: 1.125em;
   line-height: 1.5em;
-  font-weight: bold;
 }
 
 .neostrata-theme .mz-cms-row {
