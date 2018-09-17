@@ -50,7 +50,11 @@
     -webkit-animation: loadingthrob 1s linear 0s alternate infinite;
 }
 
+.primary-btn(@color: @charcoal) {
+    .button-prop(@color);
+    .button-focus(@color);
+}
+
 .primary-btn {
-    .button-prop();
-    .button-focus();
+    .primary-btn();
 }

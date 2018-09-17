@@ -326,10 +326,11 @@
 	}
 }
 
-.button-prop(@color: @charcoal) {
+.button-prop(@color) {
 	font-family: @fontFamily;
     font-weight: @fontWeightBook;
     font-size: 1.5em;
+	color: @charcoal;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     background: none;
@@ -345,22 +346,33 @@
 	}
 }
 
-.button-prop(@color: @charcoal) when (@color = @charcoal) {
+.button-prop(@color) when (@color = @charcoal) {
 	&:hover {
 		color: @white;
 	}
 }
 
-.button-focus(@color: @charcoal) {
+.button-prop(@color) when (@color = @white) {
+	color: @white;
+
+	&:hover {
+		color: @charcoal;
+	}
+}
+
+.button-focus(@color) {
 	&:focus{
         box-shadow: none;
         outline: none;
         color: @charcoal;
+		background: @color;
         text-decoration: none;
     }
 }
-.button-focus(@color: @charcoal) when (@color = @charcoal) {
-	&:hover {
+
+.button-focus(@color) when (@color = @charcoal) {
+	&:focus {
 		color: @white;
+		background: @color;
 	}
 }
