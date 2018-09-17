@@ -325,32 +325,42 @@
 		line-height: @height;
 	}
 }
-// TODO - DIF COLOR BUTTONS
-.button-prop() {
+
+.button-prop(@color: @charcoal) {
 	font-family: @fontFamily;
     font-weight: @fontWeightBook;
-    color: @charcoal;
     font-size: 1.5em;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     background: none;
 	text-decoration: none;
-    border: 0.1875em solid @charcoal;
+    border: 0.1875em solid @color;
     height: 6rem;
     line-height: 5.625rem;
 	padding: 0 5rem;
 
 	&:hover {
-		color: @white;
-		background: @charcoal;
-    }
+		color: @charcoal;
+		background: @color;
+	}
 }
 
-.button-focus() {
+.button-prop(@color: @charcoal) when (@color = @charcoal) {
+	&:hover {
+		color: @white;
+	}
+}
+
+.button-focus(@color: @charcoal) {
 	&:focus{
         box-shadow: none;
         outline: none;
         color: @charcoal;
         text-decoration: none;
     }
+}
+.button-focus(@color: @charcoal) when (@color = @charcoal) {
+	&:hover {
+		color: @white;
+	}
 }
