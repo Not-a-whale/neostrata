@@ -236,6 +236,62 @@ button {
     font-family: @fontFamily;
 }
 
+//TODO Form elements
+
+.form-row {
+  padding: 30px;
+
+  .form-element{  
+    position: relative;
+    padding-left: 2rem;
+    padding-top: 0.2rem;
+    cursor: pointer;
+    margin: 0;
+  }
+
+  input[type="checkbox"]:not(:checked),
+  input[type="checkbox"]:checked,
+  input[type="radio"]:not(:checked),
+  input[type="radio"]:checked {
+    position: absolute;
+    opacity: 0;
+    left: -9999rem;
+  }
+
+  input[type="checkbox"]:not(:checked) + label:before,
+  input[type="checkbox"]:checked + label:before,
+  input[type="radio"]:not(:checked) + label:before,
+  input[type="radio"]:checked + label:before {
+    position: absolute;
+    top: 0;
+    left:0;
+    height: 1.5rem;
+    width: 1.5rem;
+    color: @charcoal;
+    text-align: center;
+    border: 0.1875rem solid @inputBorder;
+  }
+
+  /* if "not checked" */
+  input[type="checkbox"]:not(:checked) + label:before,
+  input[type="radio"]:not(:checked) + label:before {
+    content: '';
+  }
+  /* If "checked" */
+  input[type="checkbox"]:checked + label:before,
+  input[type="radio"]:checked + label:before {
+    background: @mutedBlue;
+  }
+
+  input[type="radio"]:not(:checked) + label:before,
+  input[type="radio"]:checked + label:before {
+    border: 0.1875rem solid @inputBorder;
+    border-radius: 50%;
+    font-size: 0.60em;
+    padding-top: 0.25rem;
+  }
+}
+
 // TODO: JBZ: file these
 
 .mz-placeholder {
