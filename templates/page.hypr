@@ -160,25 +160,32 @@
             <form>
                 <div class="form-row">
                     <input type="checkbox" id="check01">
-                    <label class="fa fa-check form-element" for="check01">Checkbox</label>
+                    <label class="icon-check form-element" for="check01">Checkbox</label>
                 </div>
                 <div class="form-row">
                     <input type="checkbox" id="check02" checked>
-                    <label class="fa fa-check form-element" for="check02">Checkbox</label>
+                    <label class="icon-check form-element" for="check02">Checkbox</label>
                 </div>
                 <div class="form-row">
                     <input type="radio"  name="radio1" id="radio1" checked>
-                    <label class="fa fa-circle form-element" for="radio1">Radio</label>
+                    <label class="icon-dot form-element" for="radio1">Radio</label>
                 </div>
                 <div class="form-row">
                     <input type="radio"  name="radio1" id="radio2" checked>
-                    <label class="fa fa-circle form-element" for="radio2">Radio</label>
+                    <label class="icon-dot form-element" for="radio2">Radio</label>
                 </div>
-                
-                <span class="form-input"><input type="text" value="Test"></span>
-                <span class="form-input"><input type="text" class="actionable" placeholder="test"></span>
-                <span class="form-input"><input type="text" class="error" placeholder="test"></span>
-                <span class="form-input"><input type="text" class="accept" placeholder="test"></span>
+                <div class="form-row">
+                    <span class="form-input"><input type="text" value="Test"></span>
+                </div>
+                <div class="form-row actionable">
+                    <span class="form-input"><input type="text" placeholder="test"></span>
+                </div>
+                <div class="form-row error">
+                    <span class="form-input icon-close"><input type="text" placeholder="test"></span>
+                </div>
+                <div class="form-row accepted">
+                    <span class="form-input icon-check"><input type="text" placeholder="test"></span>
+                </div>
             </form>
             <!-- TO REMOVE -->
         </div>
