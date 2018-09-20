@@ -44,6 +44,9 @@
             <div>
             [[IDEALFOR:Normal,Dry,SensitiveSkin]]
             </div>
+            <div>
+              <button>Find A Retailer</button>
+            </div>
             <div class="row product-ingredients">
               <h3>[[Key Ingredients]]</h3>
               <h4>4% MaltobionicAcid(PHA),4% NeoGlucosamineTM</h4>
@@ -82,6 +85,11 @@
         </div>
     </div>
 {% endif %}
+
+    <div class="clearfix"></div>
+    <div class="product-info-tabs-container">
+      {% include "modules/product/product-info-tabs" %}
+    </div>
     <div class="clearfix"></div>
     <div class="mz-middle-breakpoint hidden-xs">
         {% dropzone "product-middle-breakpoint" scope="template" %}
