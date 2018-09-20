@@ -67,4 +67,3 @@
     </div>
 </nav>
 {% preload_json navigation.tree "navtree" %}
-{% require_script "modules/debug" %}
