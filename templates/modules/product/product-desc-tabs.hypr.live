@@ -1,21 +1,4 @@
 <div class="panel-group" id="details-accordion" role="tablist" aria-multiselectable="true">
-  {% if model.content.productFullDescription %}
-    <div class="mz-collaspable-container product-detail-collapsable-div panel">
-        <div id="headingDesc" class="panel-heading" role="tab">
-          <h4 class="panel-title">
-            <a role="button" data-toggle="collapse" data-parent="#details-accordion" href="#collapseDesc" aria-expanded="true" aria-controls="collapseDesc">
-              <i class="more-less glyphicon glyphicon-plus"></i>
-                {{ labels.fullDesc }}
-            </a>
-          </h4>
-        </div>
-      <div id="collapseDesc" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingDesc">
-        <div class="panel-body">
-          {{ model.content.productFullDescription|safe }}
-        </div>
-    </div>
-  </div>
-  {% endif %}
   {% if productTabs %}
     {% for productTab in productTabs %}
       {% if model|get_product_attribute_value(productTab.key) %}
