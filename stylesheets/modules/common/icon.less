@@ -10,3 +10,76 @@
 	width: 16px;
 	height: 16px;
 }
+
+// Neostrata icons
+
+/* 
+HOW TO USE
+
+Use mixin .icon(before/aftrer, @icon-variable);
+
+example: 
+
+#main {
+	...
+	.icon(before, @icon-close);
+	...
+}
+Icon close (X) will be added to main block on before position;
+
+*/
+
+@font-face {
+	font-family: 'icomoon';
+	src:  url('../resources/fonts/icomoon.eot?c2mtep');
+	src:  url('../resources/fonts/icomoon.eot?c2mtep#iefix') format('embedded-opentype'),
+		url('../resources/fonts/icomoon.ttf?c2mtep') format('truetype'),
+		url('../resources/fonts/icomoon.woff?c2mtep') format('woff'),
+		url('../resources/fonts/icomoon.svg?c2mtep#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+  
+
+.icon-prop {
+	/* use !important to prevent issues with browser extensions that change fonts */
+	font-family: 'icomoon' !important;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon (@position, @icon) when (@position = before) {
+	&:before {
+		content: @icon;
+	}
+	.icon-prop();
+}
+.icon (@position, @icon) when (@position = after) {
+	&:after {
+		content: @icon;
+	}
+	.icon-prop();
+}
+
+@icon-location: "\e900";
+@icon-facebook: "\e901";
+@icon-instagram: "\e902";
+@icon-youtube: "\e903";
+@icon-search: "\e904";
+@icon-dot-single: "\e905";
+@icon-keyboard_arrow_up: "\e906";
+@icon-keyboard_arrow_right: "\e907";
+@icon-keyboard_arrow_left: "\e908";
+@icon-keyboard_arrow_down: "\e909";
+@icon-arrow_drop_up: "\e90a";
+@icon-arrow_drop_down: "\e90b";
+@icon-close: "\e90c";
+@icon-check: "\e90d";

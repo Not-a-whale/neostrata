@@ -325,23 +325,64 @@
 		line-height: @height;
 	}
 }
-.button-prop() {
-	height: auto;
-	min-width: 80px;
-	color: @colorGray;
-	line-height: normal;
-	text-align: center;
-	box-sizing: border-box;
-	padding: 8px 12px;
-	font-size: @fontSize;
+
+// Buttons mixins
+.button-prop(@color) {
+	font-family: @fontFamily;
+    font-weight: @fontWeightBook;
+    font-size: 1.5em;
+	color: @charcoal;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background: none;
 	text-decoration: none;
-	font-weight: normal;
+    border: 0.1875rem solid @color;
+    height: 6rem;
+    line-height: 5.625rem;
+	padding: 0 5rem;
+
+	&:hover {
+		color: @charcoal;
+		background: @color;
+	}
 }
-.button-focus() {
+
+.button-prop(@color) when (@color = @charcoal) {
+	&:hover {
+		color: @white;
+	}
+}
+
+.button-prop(@color) when (@color = @white) {
+	color: @white;
+
+	&:hover {
+		color: @charcoal;
+	}
+}
+
+.button-focus(@color) {
 	&:focus{
         box-shadow: none;
-        outline: thin dotted;
-        color: @colorGray;
+        outline: none;
+        color: @charcoal;
+		background: @color;
         text-decoration: none;
     }
+}
+
+.button-focus(@color) when (@color = @charcoal) {
+	&:focus {
+		color: @white;
+		background: @color;
+	}
+}
+
+// Mixin for input text placeholders
+
+.placeholder-text {
+    color: @charcoal;
+	text-transform: uppercase;
+    font-size: 1.14em;
+	letter-spacing: 0.14em;
 }

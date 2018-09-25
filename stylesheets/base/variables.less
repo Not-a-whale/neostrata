@@ -1,14 +1,41 @@
-﻿@fontFamily:            "Gotham A", "Gotham B", sans-serif;
-@fontSize:              {{ themeSettings.fontSize }};
-@fontSizeSmall:         @fontSize - 2px;
-@fontSizeLarger:        @fontSize + 2px;
-@fontSizeLarge:         @fontSize + 6px;
-@storeBrandingFontSize: 36px;
+﻿
+@fontFamily:            "Gotham A", "Gotham B", sans-serif;
+@fontSize:              1em;
+@fontSizeSmall:         @fontSize - 0.125em;
+@fontSizeLarger:        @fontSize + 0.125em;
+@fontSizeLarge:         @fontSize + 0.375em;
+@bodyFontSize:          16px;
+@storeBrandingFontSize: 2.25em;
 
-@textColor:             {{ themeSettings.textColor }};
-@linkColor:             #4F4F4F;
-@linkHoverColor:        #666;
-@linkVisitedColor:      #3F3F3F;
+@fontWeightBook: 400;
+@fontWeightMedium: 500;
+@fontWeightBold: 700;
+
+
+// NeoStrata colors
+
+@charcoal: #4E5458;
+@mutedBlue: #8FABCC;
+@lightGray: #EFEFEF;
+@midGray: #C2C2C2;
+
+@teal: #B2E0E5;
+@lightBlue: #C6E9F7;
+@purple: #D4C0DC;
+@yellowOrange: #FFE0B2;
+@darkBlue: #B5CCED;
+@redOrange: #FFD2B2;
+
+// form colors
+@inputAccepted: #DCF5D7;
+@inputError: #F5D7D7;
+
+// form colors end
+
+@textColor:             @charcoal;
+@linkColor:             @charcoal;
+@linkHoverColor:        @mutedBlue;
+@linkVisitedColor:      @midGray;
 @errorText:             #b94a48;
 @errorBackground:       #f2dede;
 @warningText:           @textColor;
@@ -29,7 +56,7 @@
 @errorIcon:				"../resources/images/error-exclamation.png";
 @columnWidth-2col:		435px;
 @gutter:				{{themeSettings.gutterWidth}};
-@inputBorder:			#a7a7a7;
+@inputBorder:			@charcoal;
 
 @defaultTileHeight:            250px;
 @defaultTileWidth:             250px;
