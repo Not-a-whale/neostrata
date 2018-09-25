@@ -1,12 +1,12 @@
-{% with model|get_product_attribute("tenant~before-and-after") as results %}
-{% with model|get_product_attribute("tenant~ingedients") as details %}
+{% with model|get_product_attribute("tenant~results") as results %}
+{% with model|get_product_attribute("tenant~features-benefits") as details %}
 {% with model|get_product_attribute("tenant~how-to-apply") as howToApply %}
 
 {% if pageContext.isDesktop or pageContext.isTablet %}
 
 <ul class="nav nav-tabs">
     {% if results %}
-        <li><a data-toggle="tab" href="#tab1">Results</a></li>
+        <li class="active"><a data-toggle="tab" href="#tab1">Results</a></li>
     {% endif %}
     {% if details %}
         <li><a data-toggle="tab" href="#tab2">Details</a></li>
@@ -14,15 +14,18 @@
     {% if howToApply %}
         <li><a data-toggle="tab" href="#tab3">How To Apply</a></li>
     {% endif %}
+
+        <li><a data-toggle="tab" href="#tab4">Product Dump</a></li>
+
 </ul>
 
 <div class="tab-content">
     {% if results %}
-        <div id="tab1" class="tab-pane fade">
+        <div id="tab1" class="tab-pane fade active in">
             {% for v in results.values %}
                 <div class="tab-content-1">
-                    {% if v.value %}
-                            {{ v.value|safe }}
+                    {% if v.stringValue %}
+                            {{ v.stringValue|safe }}
                     {% endif %}
                 </div>
             {% endfor %}
@@ -32,8 +35,8 @@
         <div id="tab2" class="tab-pane fade">
             {% for v in details.values %}
                 <div class="tab-content-2">
-                    {% if v.value %}
-                            {{ v.value|safe }}
+                    {% if v.stringValue %}
+                            {{ v.stringValue|safe }}
                     {% endif %}
                 </div>
             {% endfor %}
@@ -43,13 +46,17 @@
         <div id="tab3" class="tab-pane fade">
             {% for v in howToApply.values %}
                 <div class="tab-content-3">
-                    {% if v.value %}
-                            {{ v.value|safe }}
+                    {% if v.stringValue %}
+                            {{ v.stringValue|safe }}
                     {% endif %}
                 </div>
             {% endfor %}
         </div>
     {% endif %}
+        <div id="tab4" class="tab-pane fade">
+        {% dump model %}
+        </div>
+
 </div>
 
 {% else %}
@@ -232,10 +239,6 @@
     {% endif %}
 
 </div>
-
-
-
-
 {% endif %}
 {% endwith %}
 {% endwith %}

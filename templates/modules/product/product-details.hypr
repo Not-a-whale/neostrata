@@ -48,11 +48,18 @@
               <button>Find A Retailer</button>
             </div>
             <div class="row product-ingredients">
-              <h3>[[Key Ingredients]]</h3>
-              <h4>4% MaltobionicAcid(PHA),4% NeoGlucosamineTM</h4>
-                Work together to exfoliate and hydrate the skin,leaving a firm erskin tone.(CB)
-              <h4>0 .5 % A m in o F ilTM</h4>
-                Restoresvolumetosmoothvisibleexpressionlinesandprovidesafirmerappearance.
+              <h3>Key Ingredients</h3>
+              <div>
+                {% with model|get_product_attribute("tenant~ingredient-highlights") as highlights %}
+                {% for v in highlights.values %}
+                    <div class="tab-content-1">
+                        {% if v.stringValue %}
+                                {{ v.stringValue|safe }}
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                {% endwith %}
+              </div>
             </div>
             <div class="mz-productdetail-wrap">
                 {% if model.productType != themeSettings.familyProductType %}
