@@ -6,32 +6,8 @@
         .ml-header-content {
             height: 91px;
             .ml-header-logo-wrapper {
-                position: absolute;
                 top: 23px;
-                right: auto;
                 bottom: auto;
-                left: 0;
-                .logo {
-                    width: 363px;
-                    height: 66px;
-                    background-image: url('../resources/images/neostrata-logo-sm.png');
-                    background-repeat: no-repeat;
-                }
-            }
-            .ml-header-search-wrapper {
-                width: 345px;
-                position: absolute;
-                top: 38px;
-                right: auto;
-                bottom: auto;
-                left: 35%;
-            }
-            .ml-header-links-wrapper {
-                position: absolute;
-                top: 10px;
-                right: -19px;
-                bottom: auto;
-                left: auto;
             }
             .ml-header-global-cart-wrapper {
                 position: absolute;
@@ -48,36 +24,125 @@
                     padding-bottom: 5px;
 	            }
             }
+
+            .ml-header-links-wrapper {
+                .mz-utilitynav-item{
+                    padding: 0 0px 0 15px;
+                    &.site-msg{
+                        display:inherit;
+                    }
+                    &.navbar-collapse-control{
+                        display: none;
+                    }
+                    &:nth-child(2){ //store locator
+                        position: absolute;
+                        right: 3%;
+                        top: 1.8rem;
+                    }
+                    .popover{
+                        top: -10px;
+                        .popover-content{
+                            .my-account-details{
+                                a{
+                                    p{display: block; }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .ml-header-lang-wrapper {
+                right: -2%;
+                select{
+                    width: 4rem;
+                }
+            }
+
         }
     }
     //Navigation
     .mz-sitenav {
+        position: absolute;
+        top: 30px;
+        height: 34px!important;
+        background: transparent;
+        border-bottom: none;
         display: block;
-        .mz-sitenav-link {
-            font-size: 14px;
-        }
-        .ml-navbar-separator {
-            &:after {
-                margin: 8px 15px;
-            }
-        }
         .mz-sitenav-sub-container{
+            display: block;
             .sub-level-image, .sub-level-col {
-                width: 230px;
-                min-width: 225px;
-                img {
-                    max-width: 100%;
-                }
+                width: 175px;
+                min-width: 175px;
                 h2{
                     font-size: 18px;
-                    padding-top: 0px;
+                    margin-top: 0px;
                 }
                 a{
                     font-weight: normal;
                 }
             }
+            .mz-sitenav-link {
+                padding: 2px 0;
+            }
+        }
+        .mz-sitenav-item {
+            float: left;
+            white-space: nowrap;
+            display: inline-block;
+            padding: 0;
+            border-bottom: 0;
+            &.mz-sitenav-item-more{
+                display:block;
+            }
+            &:hover{
+                .arrow-up {
+                    display:block;
+                }
+            }
+            .mz-sitenav-item {
+                width: 100%;
+                >.mz-sitenav-link{
+                    text-transform: uppercase;
+                }
+            }
+        }
+        .mz-sitenav-link {
+            float: none;
+            font-size: 13px;
+            padding: 8px 0;
+            color: #363636;
+            font-weight: bold;
+            &:visited {
+                color: #363636;
+            }
+            &.is-current {
+                background-color: inherit;
+            }
+        }
+
+        .mz-sitenav-list {
+            >.mz-sitenav-item {
+                text-align: center;
+                width: 13%;
+                .mz-sitenav-item {
+                    text-transform: uppercase;
+                }
+                &:nth-of-type(1) {
+                    margin-left: 5%;
+                }
+                &:nth-of-type(3) {
+                    margin-right: 33%;
+                }
+                &:nth-of-type(5) {
+
+                }
+                &:nth-of-type(7) {
+
+                }
+            }
         }
     }
+
     // Common to both List and Grid View
         .mz-productlisting-image {
             position: relative;

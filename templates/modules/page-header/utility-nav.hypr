@@ -97,8 +97,8 @@
             </li>
           {% endif %}
         {% endif %}
-        <li class="mz-utilitynav-item">
-            <a href="/store-locator" data-mz-action="stores" data-placement="bottom" class="mz-utilitynav-link"><img src="/resources/images/store-locator.png" alt="{{ labels.localStores }}"></a>
+        <li class="mz-utilitynav-item store-locator">
+            <a href="/store-locator" data-mz-action="stores" data-placement="bottom" class="mz-utilitynav-link"><i alt="{{ labels.localStores }}"></i></a>
         </li>
         <li class="mz-utilitynav-item site-msg">
             {% dropzone "site-message" scope="site" %}
