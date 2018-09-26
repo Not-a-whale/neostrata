@@ -81,17 +81,16 @@
 //Site-wide rules
 //Page header
 .mz-pageheader {
-    height: 128px;
+    height: 6.5rem;
     padding: 0;
+    background: #fff;
     #mz-drop-zone-products-collapsible-label{
         display: inline-block;
         .mz-cms-block{
             min-width: auto;
         }
         &+ span.glyphicon{
-            margin-left: 5px;
-            float: right;
-            top: 3px;
+            font-size: 30px;
         }
 
     }
@@ -102,21 +101,30 @@
         }
     }
     .ml-header-content {
-        height: 128px;
+        height: 7rem;
         position: relative;
         width: 100%;
         .ml-header-logo-wrapper {
             position: absolute;
-            top: 7px;
             right: auto;
             bottom: auto;
-            left: 0;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
             .logo {
                 display: block;
-                width: 200px;
-                height: 50px;
-                background-image: url('../resources/images/logo-xs.png');
+                width: 16rem;
+                height: 3.5rem;
+                background-image: url('../resources/images/neostrata_logo.svg');
                 background-repeat: no-repeat;
+                background-size: contain;
+                &:after{
+                    content: url(../resources/images/neostrata_tagline.svg);
+                    position: absolute;
+                    bottom: 0.5rem;
+                    width: 100%;
+                }
             }
             .customLogo {
                 width: auto;
@@ -124,12 +132,48 @@
             }
         }
         .ml-header-search-wrapper {
-            width: 100%;
             position: absolute;
-            top: auto;
+            top: 1.7rem;
             right: auto;
-            bottom: 0px;
-            left: 0;
+            font-size: 2.6rem;
+            .icon(before, @icon-search);
+            #searchbox {
+                &.form-row.actionable{
+                    padding: 0;
+                    float: left;
+                    margin-left: 2rem;
+                    .form-input:before{
+                        z-index: 2;
+                    }
+                }
+                >.form-input{
+                    z-index: 10;
+                }
+                input{
+                    text-transform: uppercase;
+                    color: @charcoal;
+                    margin: 0;
+                    padding: 0 4.44rem 0 2.875rem;
+                    border: 0.1875rem solid @inputBorder;
+                    font-weight: @fontWeightBook;
+                    height: 3.5rem;
+                    line-height: 3.33em;
+                    font-size: 1.31em;
+                }
+                &.hidden-search {
+                    &.form-row.actionable{
+                        .form-input:before{
+                            display: none;
+                        }
+                    }
+                    input {
+                        width: 0;
+                        padding: 0;
+                        border: 0;
+                    }
+                }
+            }
+
             .mz-searchbox-field {
                 width: 100%;
                 .twitter-typeahead {
@@ -148,16 +192,16 @@
             }
         }
         .ml-header-links-wrapper {
-            position: absolute;
-            top: 60px;
-            right: auto;
-            bottom: auto;
-            left: 0;
             .mz-utilitynav {
                 font-size: 13px;
             }
             .mz-utilitynav-item {
                 padding: 0 15px 0 0;
+                &.navbar-collapse-control{ //hamburguer icon
+                    position: absolute;
+                    top: 1.7rem;
+                    left: -1rem;
+                }
                 &.site-msg {
                     display: none;
                     color: #444444;
@@ -185,6 +229,16 @@
                     }
                 }
                 .mz-logged-in-notice{padding-bottom: 10px;}
+
+                &.store-locator{
+                    position: absolute;
+                    right: -1rem;
+                    top: 1.6rem;
+                    i{
+                        font-size: 3.2rem;
+                        .icon(before, @icon-location);
+                    }
+                }
             }
         }
         .ml-header-global-cart-wrapper {
@@ -231,6 +285,9 @@
             .mz-item-discountamt{
                 display: block;
             }
+        }
+        .ml-header-lang-wrapper{
+            display: none;
         }
     }
 }

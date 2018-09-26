@@ -16,6 +16,11 @@
                     {% include "modules/page-header/utility-nav" %}
                 {% endblock utility-nav %}
             </div>
+            <div class="ml-header-lang-wrapper">
+                {% block lang-selector %}
+                    {% include "modules/page-header/lang-selector" %}
+                {% endblock lang-selector %}
+            </div>
             {% if themeSettings.commerceEnabled %}
               <div class="ml-header-global-cart-wrapper" style="display:none;">
                   {% block global-cart-container %}

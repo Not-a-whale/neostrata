@@ -14,12 +14,17 @@
 			    top: 23px;
 			    right: auto;
 			    bottom: auto;
-			    left: 0;
+			    left: 50%;
+				transform: translateX(-50%);
+				z-index: 1;
 				.logo {
-					width:363px;
-					height:66px;
-		    		background-image: url('../resources/images/neostrata-logo-sm.png');
+					width:22.5rem;
 				    background-repeat: no-repeat;
+					background-size: contain;
+					height: 4rem;
+					&:after{
+						bottom: -0.2rem;
+					}
 				}
 				.customLogo {
                     width: auto;
@@ -27,40 +32,18 @@
                 }
 			}
 			.ml-header-search-wrapper {
-			    width: 220px;
-			    position: absolute;
-			    top: auto;
-			    right: 100px;
-			    bottom: 15px;
-			    left: auto;
-			}
-			.ml-header-links-wrapper {
-			    position: absolute;
-			    top: 10px;
-			    right: -19px;
-			    bottom: auto;
-			    left: auto;
-	            .mz-utilitynav-item{
-	            	padding: 0 0px 0 15px;
-			        &.navbar-collapse-control{
-			        	display:none;
-			        }
-			        &.site-msg{
-                    	display:inherit;
-                	}
-                	.popover{
-	                    top: -10px;
-	                    .popover-content{
-		                    .my-account-details{
-		                    	a{
-			                        p{display: block; }
-			                    }
-    		                }
-    		            }
-	                }
-	            }
+			    width: auto;
+				position: absolute;
+				right: 5%;
+				left: auto;
+				top: 1.875rem;
+				&:before{
+					position: absolute;
+					left: -3rem;
 
+				}
 			}
+
 			.ml-header-global-cart-wrapper {
 			    position: absolute;
 			    top: auto;
@@ -73,6 +56,27 @@
 			    &:hover{
 			    	#global-cart{display: block;}
 			    }
+			}
+
+			.ml-header-links-wrapper {
+				.mz-utilitynav-item{
+					&:nth-child(2){ //store locator
+						position: absolute;
+						right: 3%;
+					}
+				}
+			}
+
+			.ml-header-lang-wrapper{
+				display: block;
+				position: absolute;
+				right: -4%;
+				z-index: 20;
+				select{
+					width: 4.5rem;
+					background: transparent;
+					border: 0;
+				}
 			}
 		}
 		.media-list{
@@ -105,75 +109,10 @@
 
 	}
 
-	//Navigation
-    .mz-sitenav {
-    	height: 100% !important;
-    	display:block !important;
-	    border-bottom: 1px solid #e7e7e7;
-	    background: #f8f8f8;
-	    .container{
-	        padding:0 15px;
-	    }
-	    .mz-sitenav-sub-container{
-	    	display: block;
-	    	.sub-level-image, .sub-level-col {
-                width: 175px;
-                min-width: 175px;
-                h2{
-                	font-size: 18px;
-                	margin-top: 0px;
-                }
-                a{
-                	font-weight: normal;
-                }
-            }
-            .mz-sitenav-link {
-	    		padding: 2px 0;
-	    	}
-	    }
-	    .mz-sitenav-item {
-	        float: left;
-		    white-space: nowrap;
-		    display: inline-block;
-	        padding: 0;
-        	border-bottom: 0;
-        	&.mz-sitenav-item-more{
-            	display:block;
-        	}
-        	&:hover{
-        		.arrow-up {
-        			display:block;
-        		}
-        	}
-			.mz-sitenav-item {
-				width: 100%;
-			}
-	    }
-	    .mz-sitenav-link {
-	    	float: none;
-	        font-size: 13px;
-	        padding: 8px 0;
-	        color: #363636;
-	        font-weight: bold;
-	        &:visited {
-	            color: #363636;
-	        }
-	        &.is-current {
-	            background-color: inherit;
-	        }
-	    }
-	    .ml-navbar-separator {
-	        display: block;
-	        &:after {
-	            content: " ";
-	            height: 20px;
-	            width: 1px;
-	            float: left;
-	            background-color: #ccc;
-	            margin: 8px 5px;
-	        }
-	    }
-    }
+	.mz-sitenav{
+		height: auto;
+	}
+
     //Secondary navigation
     .ml-navbar-secondary {
     	display:none;
