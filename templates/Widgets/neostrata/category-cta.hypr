@@ -1,5 +1,5 @@
-<div class='category-cta'>
-  <h2>{{model.config.title}}</h2>
+<div class="category-cta">
+  <h3><span class="slashHeading">{{model.config.title}}</span></h3>
   <div>IMG</div>
   <div>{{model.config.description}}</div>
   <div><a href="{{model.config.linkPath}}">{{model.config.linkTitle}}</a></div>
