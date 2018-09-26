@@ -1213,6 +1213,21 @@
   "widgets": [
     {
         "category" : "catalog",
+        "id":"category-cta",
+        "displayName":"Category CTA",
+        "displayTemplate":"neostrata/category-cta",
+        "editViewFields":[
+          {"name":"title", "fieldLabel":"Title"},
+          {"name":"image", "fieldLabel":"Image Path"},
+          {"name":"description", "fieldLabel":"Description"},
+          {"name":"linkPath", "fieldLabel":"Link Path"},
+          {"name":"linkTitle", "fieldLabel":"Link Title"}
+        ],
+        "icon":"/resources/admin/widgets/BV_Conversations.png",
+        "validPageTypes":["*"]
+    },
+    {
+        "category" : "catalog",
         "id":"bv-conversations-ratings",
         "displayName":"BazaarVoice Conversations Ratings",
         "displayTemplate":"BVConversations/bv-conversations-ratings",
