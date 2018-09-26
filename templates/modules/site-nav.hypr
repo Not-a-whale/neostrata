@@ -1,5 +1,5 @@
 <nav class="mz-sitenav collapse" id="ml-nav">
-    <div class="container">
+    <div class="">
       <ul class="mz-sitenav-list"
           data-mz-contextify='.mz-sitenav-link[href="{{ navigation.currentNode.url }}"]'
           data-mz-contextify-attr='class'

@@ -1,5 +1,6 @@
 html {
     height: 100%;
+    font-size: @bodyFontSize;
 }
 
 body {
@@ -11,6 +12,19 @@ body {
     letter-spacing: 0.025em;
     color: @charcoal;
 }
+
+@media (min-width: 768px) and (max-width: 1400px){
+    html, body{
+        font-size: 12px;
+    }
+}
+@media (min-width: 1401px){
+    html, body{
+        font-size: 16px;
+    }
+}
+
+
 
 h1, h2, h3, h4, h5, h6 {
     color: @textColor;
