@@ -44,8 +44,8 @@
             <div>
             [[IDEALFOR:Normal,Dry,SensitiveSkin]]
             </div>
-            <div>
-              <button>Find A Retailer</button>
+            <div class="form-row actionable">
+              <span class="form-input"><a href="/store-locator">Find A Retailer</a></span>
             </div>
             <div class="row product-ingredients">
               <h3>Key Ingredients</h3>
