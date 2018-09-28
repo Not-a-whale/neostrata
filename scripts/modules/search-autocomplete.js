@@ -165,6 +165,18 @@
                 }
             }
         });
+
+		$(window).scroll(function() {
+			var $navbar = $('.mz-pageheader');
+			var $sitenav = $('.mz-sitenav');
+			if ( window.pageYOffset > 0 ) {
+				$navbar.addClass( "sticky-nav" );
+                $sitenav.addClass( "sticky-nav" );
+			} else {
+				$navbar.removeClass( "sticky-nav" );
+                $sitenav.removeClass( "sticky-nav" );
+			}
+		});
     });
 
     return AutocompleteManager;
