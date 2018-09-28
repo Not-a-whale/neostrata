@@ -121,6 +121,44 @@
                 e.preventDefault();
             }
         });
+        $('#searchbox .search-button').click(function(){
+            console.log('click searchbox');
+            var $parent = $($(this).parent());
+            var window_width = window.outerWidth;
+			if($parent.hasClass('hidden-search')){
+                $('#searchbox input').css('border-color', '#4e5458');
+                $('#searchbox input').animate( {width:'100%', padding: '0 4.44rem 0 2.875rem'}, 400, 'linear');
+                $('#searchbox').animate( {width:'100%'}, {duration:400, easing: 'linear', done: function(){ $parent.removeClass('hidden-search'); } } );
+                if ( window_width >= 768 ) {
+                    $('.ml-header-search-wrapper').css('z-index', '5');
+                    if ( window_width >= 992 ) {
+                        $('#searchbox .search-button').animate( {width:'98%'}, 400, 'linear');
+                    }
+                    else {
+                        $( '#searchbox .search-button' ).animate( { width: '101%' }, 400, 'linear' );
+                    }
+                }
+            }
+            else{
+                $('#searchbox input').animate( {width:'0', padding: '0'}, 400, 'linear');
+                $('#searchbox').animate( {width:'0'}, {duration:400, easing: 'linear', done: function(){
+                    $('#searchbox input').css('border-color', 'transparent');
+                    $parent.addClass('hidden-search');
+					$('.ml-header-search-wrapper').css('z-index', '1');
+                }});
+                if ( window_width >= 768 ) {
+                    $('#searchbox .search-button').animate( {width:'0%'}, 400, 'linear');
+                }
+            }
+        });
+
+        $(document).click(function(event) {
+            if(!$(event.target).closest('#searchbox').length) {
+                if(!$('#searchbox').hasClass('hidden-search')) {
+                    $('#searchbox').addClass('hidden-search');
+                }
+            }
+        });
     });
 
     return AutocompleteManager;

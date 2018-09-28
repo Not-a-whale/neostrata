@@ -2,13 +2,24 @@
     //Start
     //Header
     .mz-pageheader {
-        height: 91px;
         .ml-header-content {
-            height: 91px;
-            .ml-header-logo-wrapper {
-                top: 23px;
-                bottom: auto;
+            .ml-header-search-wrapper {
+                font-size: 2.5rem;
+                right: 8%;
+                width: 26%;
+                #searchbox{
+                    input{
+                        &.tt-hint{
+                            border: 0;
+                        }
+                    }
+                    .search-button{
+                        width: 0;
+                        top: 0.8rem;
+                    }
+                }
             }
+
             .ml-header-global-cart-wrapper {
                 position: absolute;
                 top: auto;
@@ -44,6 +55,12 @@
                             }
                         }
                     }
+                    &.store-locator{
+                        top: 3rem;
+                        i{
+                            font-size: 3.3rem;
+                        }
+                    }
                 }
             }
             .ml-header-lang-wrapper {
@@ -58,7 +75,7 @@
     //Navigation
     .mz-sitenav {
         position: absolute;
-        top: 30px;
+        top: 3.5rem;
         height: 34px!important;
         background: transparent;
         border-bottom: none;
@@ -289,4 +306,11 @@
             }
         }
     }
+}
+
+
+@media (min-width: 1400px) {
+
+
+
 }
