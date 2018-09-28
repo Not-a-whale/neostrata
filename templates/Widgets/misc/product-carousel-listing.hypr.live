@@ -6,7 +6,8 @@
       {% for prod in model.items %}
         <div class="swiper-slide">
             <a href="{% make_url "product" prod %}" >
-      		<img src="{% make_url "image" prod.mainImage with max=600 %}" {% if prod.mainImage.altText %}alt="{{ prod.mainImage.altText }}"{% endif %} style="margin:0 auto"/>
+      		<img src="//cdn-sb.mozu.com/25876-m2/cms/files/prodsample1.jpg" {% if prod.mainImage.altText %}alt="{{ prod.mainImage.altText }}"{% endif %} style="margin:0 auto"/>
+      		<!--img src="{% make_url "image" prod.mainImage with max=600 %}" {% if prod.mainImage.altText %}alt="{{ prod.mainImage.altText }}"{% endif %} style="margin:0 auto"/-->
       			<div class="carousel-caption">
       				{{prod.content.productName}}
       				</div>
