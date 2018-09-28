@@ -109,7 +109,7 @@
             $('#searchbox').animate( {width:'0'}, {duration:400, easing: 'linear', done: function(){
                 $('#searchbox input').css('border-color', 'transparent');
                 $('#searchbox').addClass('hidden-search');
-                $('.ml-header-search-wrapper').css('z-index', '1');
+                $('.ml-header-search-wrapper').css('z-index', '2');
             }});
             if ( window_width >= 768 ) {
                 $('#searchbox .search-button').animate( {width:'0%'}, 400, 'linear');
