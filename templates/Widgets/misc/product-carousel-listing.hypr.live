@@ -16,7 +16,8 @@
           {% endfor %}
        </div>
       <!-- Add Pagination -->
-      <div class="swiper-pagination"></div>
+      <div class="swiper-button-next" id="swiper_meta_name_next"></div>
+      <div class="swiper-button-prev" id="swiper_meta_name_prev"></div>
     </div>
     </div>
     {% require_script "modules/product/product-carousel-swiper" %}
