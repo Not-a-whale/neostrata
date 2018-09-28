@@ -828,96 +828,131 @@
     color: #fff;
     padding: 10px 0;
     background: #494a49;
-    &.ml-global-footer{
-        display:none;
+    h2 {
+        font-size: 2.906rem;
+        color: #fff;
+        text-align: center;
+        margin-top: 3.75rem;
+        margin-bottom: 0;
+        font-weight: normal;
+    }
+    .form-row {
+        padding: 3.4rem;
+        input[type="text"] {
+            width: 100%;
+        }
     }
 }
 
 footer {
     padding: 10px 0;
-    .email-container {
-        margin-right: 83px;
-    }
-    #footerStoreLocator {
-        input {
-            border-radius: 4px;
+    background: url('../resources/images/footer_wave_1360x300.svg') repeat-x #ebebeb;
+    height: 100%;
+    background-position: 0 100%;
+    background-size: 160vw auto;
+
+    .container-fluid {
+        margin-left: 3.75rem;
+        margin-right: 3.75rem;
+        .dl-sitemap {
+            padding-left: 1rem;
+            margin-top: 0.9rem;
+            li {
+                text-transform: uppercase;
+                display: inline-block;
+                a, span {
+                    font-style: italic;
+                    text-decoration: none;
+                    font-size: 1.5rem;
+                    padding: 0 0.4rem;
+                }
+            }
         }
-        #btnFindStore {
-            margin-left: 3px;
+        .dl-signature {
+            max-width: 50%;
+            font-size: 0.8rem;
+            text-align: center;
+            margin-top: 0.5rem;
+            line-height: 1.6em;
         }
-    }
-    .top-pad {
-        padding-top: 10px;
-    }
-    .ml-footer-email-signup-button {
-        float: right;
-        text-transform: uppercase;
-    }
-    .ml-footer-phone-number{margin: 12px 0;}
-    .social-links {
-        .ml-icon.ml-icon-pintrest {
-            width: 28px;
-            height: 28px;
-            background-position: -239px -2px;
+        .dl-accessibility {
+            background: url(../resources/images/accessibility-icon.png) no-repeat 0 0;
+            width: 67px;
+            display: block;
+            height: 31px;
         }
-        .ml-icon.ml-icon-twitter {
-            width: 28px;
-            height: 28px;
-            background-position: -209px -2px;
+        .email-container {
+            margin-right: 83px;
         }
-        .ml-icon.ml-icon-facebook {
-            width: 28px;
-            height: 28px;
-            background-position: -179px -2px;
+        #footerStoreLocator {
+            input {
+                border-radius: 4px;
+            }
+            #btnFindStore {
+                margin-left: 3px;
+            }
         }
-        .ml-icon.ml-icon-google {
-            width: 28px;
-            height: 28px;
-            background-position: -269px -2px;
+        .top-pad {
+            padding-top: 10px;
         }
-        .ml-icon.ml-icon-instagram {
-            width: 28px;
-            height: 28px;
-            background-position: -299px -2px;
+        .ml-footer-email-signup-button {
+            float: right;
+            text-transform: uppercase;
         }
-        .ml-icon.ml-icon-youtube {
-            width: 28px;
-            height: 28px;
-            background-position: -329px -2px;
+        .ml-footer-phone-number{margin: 12px 0;}
+        .social-links {
+            text-align: center;
+            margin-top: 4.5rem;
+            margin-bottom: 3.75rem;
+            a {
+                font-size: 5.5rem;
+                text-decoration: none;
+                margin-left: 0.4rem;     
+            }
+        
+            .icon-facebook {
+                .icon(before, @icon-facebook);
+            }
+            .icon-instagram {
+                .icon(before, @icon-instagram);
+            }
+            .icon-youtube {
+                .icon(before, @icon-youtube);
+            }
+            .ml-footer-social-connect{font-weight: 700;}
         }
-        .ml-icon {
-            background: url('../resources/images/sprites.png');
-            display: inline-block;
+        a, h2, span {
+            color: #4e5458;
+            text-decoration: none;
         }
-        .ml-footer-social-connect{font-weight: 700;}
-    }
-    a {
-        color: #333;
-        font-size: 12px;
-    }
-    a:hover {text-decoration: none; }
-    .mini-footer-off{ display:none; }
-    .mini-footer-on{ display:block; }
-    .regular-footer{
-        &.mini-footer-on{
-            display:none;
+        a:hover {text-decoration: none; }
+        .mini-footer-off{ display:none; }
+        .mini-footer-on{ display:block; }
+        .regular-footer{
+            &.mini-footer-on{
+                display:none;
+            }
+            &.mini-footer-off{
+                display:block;
+            }
         }
-        &.mini-footer-off{
-            display:block;
-        }
-    }
-    .ml-footer-phone-number{
-        a{
-            color: #363636;
-            font-size: 19px;
-            font-weight: bold;
+        .ml-footer-phone-number{
+            a{
+                color: #363636;
+                font-size: 19px;
+                font-weight: bold;
+            }
         }
     }
 }
 .mz-pagefooter-copyright {
-    font-size: 13px;
-    float: left;
-    margin-top: 30px;
+	font-size: 1.5rem;
+    text-transform: uppercase;
+    text-align: right;
+    letter-spacing: 0.06rem;
+    margin-top: -7.2rem;
+    margin-right: 0;
+    max-width: 33%;
 }
 #mz-drop-zone-copyright{float: right;}
 

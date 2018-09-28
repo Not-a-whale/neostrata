@@ -202,10 +202,48 @@
     //Footer
 	.mz-pagefooter {
 	    &.ml-global-footer{
-	        display:block;
+			display:block;
+			h2 {
+				font-size: 3.125rem;
+				margin-top: 3.75rem;
+				line-height: 1.2em;
+				font-weight: normal;
+				margin-bottom: 3.75rem;
+			}
+			.form-row  {
+				margin-top: 1.35rem;
+				input[type="text"] {
+					width: 100%;
+				}
+			}
 	    }
 	}
-    footer{
+    footer {
+		background-size: 100% auto;
+	
+		.social-links {
+			text-align: right;
+		}
+		.footer-column { 
+			h2 {
+				margin-top: 3.7rem;
+				font-size: 1.6rem;
+				margin-bottom: 1.7rem;
+				font-weight: 400;
+				font-style: italic;
+			}
+			ul li {
+				
+				a {
+					font-size: 1.56rem;
+					line-height: 1.15em;
+					text-decoration: none;
+				}
+			}
+		}
+		.col2 {
+			padding-left: 1.25rem;			
+		}
 		.top-pad{
 	    	padding-top:0;
     	}
@@ -222,6 +260,16 @@
 		}
 		.ml-footer-phone-number{
 			display:none;
+		}
+		.pagefooter-logo {
+			background: url('../resources/images/neostrata-logo-sm.png') no-repeat;
+			display: block;
+			height: 2rem;
+			width: 100%;
+			background-size: 15rem auto;
+			margin-bottom: 0.5rem;
+			background-position: right 0;
+			margin-top: 0.5rem;
 		}
     }
 	.mz-pagefooter-copyright {
