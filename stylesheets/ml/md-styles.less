@@ -1,6 +1,42 @@
 @media (min-width: 992px) {
     //Start
     //Header
+    #nav-header-container{
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1;
+        &.sticky-nav {
+            .mz-pageheader {
+                height: 5.8rem;
+                .ml-header-content {
+                    height: 5.8rem;
+                    .ml-header-logo-wrapper {
+                        .logo {
+                            height: 2.3rem;
+                            width: 20rem;
+                            &:after {
+                                content: '';
+                            }
+                        }
+                    }
+                    .ml-header-search-wrapper {
+                        top: 1rem;
+                    }
+                    .ml-header-links-wrapper {
+                        .mz-utilitynav-item {
+                            &.store-locator {
+                                top: 1.5rem;
+                            }
+                        }
+                    }
+                }
+            }
+            .mz-sitenav {
+                top: 2rem;
+            }
+        }
+    }
     .mz-pageheader {
         .ml-header-content {
             .ml-header-search-wrapper {
@@ -74,7 +110,7 @@
     }
     //Navigation
     .mz-sitenav {
-        position: absolute;
+        position: fixed;
         top: 3.5rem;
         height: 34px!important;
         background: transparent;
@@ -149,7 +185,7 @@
 
                 }
                 &:nth-of-type(7) {
-
+                    width: 10%;
                 }
             }
         }

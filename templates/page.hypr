@@ -104,12 +104,14 @@
             {% block utility-bar %}
                 {% include "modules/utility-bar/header" %}
             {% endblock utility-bar %}
+            <div id="nav-header-container">
             {% block page-header %}
 				{% include "modules/page-header" %}
 			{% endblock page-header %}
             {% block site-nav %}
 				{% include "modules/site-nav" %}
             {% endblock site-nav %}
+            </div>
             <div role="main" id="page-content" class="mz-l-pagecontent">
                 <div class="container-fluid">
                 <div class="row">
