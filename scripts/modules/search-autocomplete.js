@@ -167,14 +167,14 @@
         });
 
 		$(window).scroll(function() {
-			var $navbar = $('.mz-pageheader');
-			var $sitenav = $('.mz-sitenav');
+			var $nav_header_container = $('#nav-header-container');
+			var $page_content = $('#page-content');
 			if ( window.pageYOffset > 0 ) {
-				$navbar.addClass( "sticky-nav" );
-                $sitenav.addClass( "sticky-nav" );
+				$nav_header_container.addClass( "sticky-nav" );
+                $page_content.addClass( "sticky-nav-present" );
 			} else {
-				$navbar.removeClass( "sticky-nav" );
-                $sitenav.removeClass( "sticky-nav" );
+				$nav_header_container.removeClass( "sticky-nav" );
+                $page_content.removeClass( "sticky-nav-present" );
 			}
 		});
     });

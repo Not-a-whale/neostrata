@@ -147,6 +147,7 @@
                     right: -3.2rem;
                     top: 0.3rem;
                     z-index: 2;
+                    cursor: pointer;
                 }
                 .searchbox-button{
                     .icon(before, @icon-keyboard_arrow_right);
@@ -491,6 +492,14 @@
             content: "\2212";
         }
     }
+}
+
+#page-content{
+    margin-top: 9rem;
+    &.sticky-nav-present{
+        margin-top: 5.8rem;
+    }
+
 }
 .mz-checkout {
     .ml-header-search-wrapper, .mz-utilitynav-item, .ml-header-global-cart-wrapper, #global-header-wrapper{

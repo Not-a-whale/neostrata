@@ -1,38 +1,43 @@
 @media (min-width: 992px) {
     //Start
     //Header
-    .mz-pageheader {
+    #nav-header-container{
         position: fixed;
         width: 100%;
         top: 0;
         z-index: 1;
-
-        &.sticky-nav{
-            height: 5.8rem;
-            .ml-header-content {
+        &.sticky-nav {
+            .mz-pageheader {
                 height: 5.8rem;
-                .ml-header-logo-wrapper {
-                    .logo {
-                        height: 2.3rem;
-                        width: 20rem;
-                        &:after{
-                            content:'';
+                .ml-header-content {
+                    height: 5.8rem;
+                    .ml-header-logo-wrapper {
+                        .logo {
+                            height: 2.3rem;
+                            width: 20rem;
+                            &:after {
+                                content: '';
+                            }
                         }
                     }
-                }
-                .ml-header-search-wrapper{
-                    top: 1rem;
-                }
-                .ml-header-links-wrapper {
-                    .mz-utilitynav-item{
-                        &.store-locator{
-                            top: 1.5rem;
+                    .ml-header-search-wrapper {
+                        top: 1rem;
+                    }
+                    .ml-header-links-wrapper {
+                        .mz-utilitynav-item {
+                            &.store-locator {
+                                top: 1.5rem;
+                            }
                         }
                     }
                 }
             }
+            .mz-sitenav {
+                top: 2rem;
+            }
         }
-
+    }
+    .mz-pageheader {
         .ml-header-content {
             .ml-header-search-wrapper {
                 font-size: 2.5rem;
@@ -106,15 +111,11 @@
     //Navigation
     .mz-sitenav {
         position: fixed;
-        z-index: 1;
         top: 3.5rem;
         height: 34px!important;
         background: transparent;
         border-bottom: none;
         display: block;
-        &.sticky-nav{
-            top: 2rem;
-        }
         .mz-sitenav-sub-container{
             display: block;
             .sub-level-image, .sub-level-col {
