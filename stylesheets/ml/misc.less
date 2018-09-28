@@ -81,7 +81,7 @@
 //Site-wide rules
 //Page header
 .mz-pageheader {
-    height: 6.5rem;
+    height: 9rem;
     padding: 0;
     background: #fff;
     #mz-drop-zone-products-collapsible-label{
@@ -101,7 +101,7 @@
         }
     }
     .ml-header-content {
-        height: 7rem;
+        height: 9rem;
         position: relative;
         width: 100%;
         .ml-header-logo-wrapper {
@@ -114,15 +114,15 @@
             z-index: 1;
             .logo {
                 display: block;
-                width: 16rem;
-                height: 3.5rem;
+                width: 22rem;
+                height: 4rem;
                 background-image: url('../resources/images/neostrata_logo.svg');
                 background-repeat: no-repeat;
                 background-size: contain;
                 &:after{
                     content: url(../resources/images/neostrata_tagline.svg);
                     position: absolute;
-                    bottom: 0.5rem;
+                    bottom: 0;
                     width: 100%;
                 }
             }
@@ -133,21 +133,44 @@
         }
         .ml-header-search-wrapper {
             position: absolute;
-            top: 1.7rem;
+            top: 2.5rem;
+            left: 3rem;
             right: auto;
-            font-size: 2.6rem;
-            .icon(before, @icon-search);
+            font-size: 3rem;
+            z-index: 10;
+            width: 71%;
+
             #searchbox {
-                &.form-row.actionable{
-                    padding: 0;
-                    float: left;
-                    margin-left: 2rem;
-                    .form-input:before{
-                        z-index: 2;
+                .search-button{
+                    .icon(before, @icon-search);
+                    position: absolute;
+                    right: -3.2rem;
+                    top: 0.3rem;
+                    z-index: 1;
+                }
+                .searchbox-button{
+                    .icon(before, @icon-keyboard_arrow_right);
+                    background: transparent;
+                    border: none;
+                    height: 4rem;
+                    position: absolute;
+                    right: 0;
+                    &:before{
+                        font-size: 3rem;
+                    }
+                    &:hover{
+                        &:before{
+                            color: @lightBlue;
+                        }
                     }
                 }
                 >.form-input{
                     z-index: 10;
+                    float: left;
+                    width: 100%;
+                    >.twitter-typeahead{
+                        width: 100%;
+                    }
                 }
                 input{
                     text-transform: uppercase;
@@ -156,20 +179,23 @@
                     padding: 0 4.44rem 0 2.875rem;
                     border: 0.1875rem solid @inputBorder;
                     font-weight: @fontWeightBook;
-                    height: 3.5rem;
-                    line-height: 3.33em;
-                    font-size: 1.31em;
+                    height: 3.9rem;
+                    line-height: 3.33rem;
+                    font-size: 1.31rem;
+                    width: 100%;
+                    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+                    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+                    box-sizing: border-box;
                 }
                 &.hidden-search {
-                    &.form-row.actionable{
-                        .form-input:before{
-                            display: none;
-                        }
+                    width: 0;
+                    .searchbox-button{
+                        display: none;
                     }
                     input {
                         width: 0;
                         padding: 0;
-                        border: 0;
+                        border-color: transparent;
                     }
                 }
             }
@@ -199,8 +225,8 @@
                 padding: 0 15px 0 0;
                 &.navbar-collapse-control{ //hamburguer icon
                     position: absolute;
-                    top: 1.7rem;
-                    left: -1rem;
+                    top: 2.5rem;
+                    left: -1.4rem;
                 }
                 &.site-msg {
                     display: none;
@@ -233,9 +259,9 @@
                 &.store-locator{
                     position: absolute;
                     right: -1rem;
-                    top: 1.6rem;
+                    top: 2.2rem;
                     i{
-                        font-size: 3.2rem;
+                        font-size: 4rem;
                         .icon(before, @icon-location);
                     }
                 }
@@ -3030,4 +3056,7 @@ ul.tabs {
     & ~ .mz-cart-total-main-container{
         padding-left: 0px;
     }
+}
+.custom-swiper{
+    height: 200px;
 }

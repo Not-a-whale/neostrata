@@ -54,11 +54,85 @@
     .button-prop(@color);
     .button-focus(@color);
 }
+ 
+.primary-btn-dark(@color: @white) {
+    .button-prop(@color);
+    .button-focus(@color);
+}
 
 .primary-btn {
     .primary-btn();
+}
+
+.dark .primary-btn {
+    .primary-btn-dark();
+    a {
+        color: @charcoal;
+    }
 }
 a.primary-btn{
     display: inline-block;
     white-space: nowrap;
 }
+
+// Collection-specific button colors
+.primary-btn-correct(@color: @purple) {
+    .button-prop(@color);
+    .button-focus(@color);
+}
+ 
+.correct .primary-btn{
+    .primary-btn-correct();
+}
+
+.primary-btn-resurface(@color: @darkBlue) {
+    .button-prop(@color);
+    .button-focus(@color);
+}
+ 
+.resurface .primary-btn{
+    .primary-btn-resurface();
+}
+
+.primary-btn-enlighten(@color: @yellowOrange) {
+    .button-prop(@color);
+    .button-focus(@color);
+}
+ 
+.enlighten .primary-btn{
+    .primary-btn-enlighten();
+}
+.primary-btn-skinActive(@color: @mutedBlue) {
+    .button-prop(@color);
+    .button-focus(@color);
+}
+ 
+.skinActive .primary-btn{
+    .primary-btn-skinActive();
+}
+
+.primary-btn-clarify(@color: @lightBlue) {
+    .button-prop(@color);
+    .button-focus(@color);
+}
+ 
+.clarify .primary-btn{
+    .primary-btn-clarify();
+}
+.primary-btn-restore(@color: @teal) {
+    .button-prop(@color);
+    .button-focus(@color);
+}
+ 
+.restore .primary-btn{
+    .primary-btn-restore();
+}
+.primary-btn-defend(@color: @redOrange) {
+    .button-prop(@color);
+    .button-focus(@color);
+}
+ 
+.defend .primary-btn{
+    .primary-btn-defend();
+}
+

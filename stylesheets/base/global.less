@@ -13,12 +13,12 @@ body {
     color: @charcoal;
 }
 
-@media (min-width: 768px) and (max-width: 1400px){
+@media (min-width: 768px) and (max-width: 1399px){
     html, body{
         font-size: 12px;
     }
 }
-@media (min-width: 1401px){
+@media (min-width: 1400px){
     html, body{
         font-size: 16px;
     }
@@ -66,6 +66,11 @@ h6, .h6 {
   font-weight: @fontWeightMedium;
 }
 
+.dark {
+  h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .p1, .p2, .p3, .p4, .p5 {
+    color: @white;
+  }
+}
 // Specialty Headings mixin
 // TO DO - FINISH THIS MIXIN
 .specialitHeading() {
@@ -465,5 +470,30 @@ ul {
   .slashHeading(@darkBlue);
 }
 .redOrangeSlashHeading {
+  .slashHeading(@redOrange);
+}
+
+
+// NeoStrata colors collection names
+
+.skinActive .slashHeading {
+  .slashHeading(@mutedBlue);
+}
+.restore .slashHeading {
+  .slashHeading(@teal);
+}
+.clarify .slashHeading {
+  .slashHeading(@lightBlue);
+}
+.correct .slashHeading {
+  .slashHeading(@purple);
+}
+.enlighten .slashHeading {
+  .slashHeading(@yellowOrange);
+}
+.resurface .slashHeading {
+  .slashHeading(@darkBlue);
+}
+.defend .slashHeading {
   .slashHeading(@redOrange);
 }

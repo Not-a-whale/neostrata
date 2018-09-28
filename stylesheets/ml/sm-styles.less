@@ -6,17 +6,9 @@
 	}
 	//Header
 	.mz-pageheader{
-		height:91px;
 		.ml-header-content {
-			height:91px;
 			.ml-header-logo-wrapper{
-				position: absolute;
-			    top: 23px;
-			    right: auto;
-			    bottom: auto;
-			    left: 50%;
-				transform: translateX(-50%);
-				z-index: 1;
+				z-index: 3;
 				.logo {
 					width:22.5rem;
 				    background-repeat: no-repeat;
@@ -32,16 +24,26 @@
                 }
 			}
 			.ml-header-search-wrapper {
-			    width: auto;
+			    width: 57%;
 				position: absolute;
-				right: 5%;
+				right: 11%;
 				left: auto;
-				top: 1.875rem;
+				top: 2.5rem;
+				z-index: 1;
 				&:before{
 					position: absolute;
 					left: -3rem;
-
 				}
+                #searchbox{
+					float: right;
+                    .search-button{
+                        right: 3rem;
+						width: 0;
+                    }
+					>.form-input{
+
+					}
+                }
 			}
 
 			.ml-header-global-cart-wrapper {
@@ -60,15 +62,20 @@
 
 			.ml-header-links-wrapper {
 				.mz-utilitynav-item{
+                    &.navbar-collapse-control{
+                        left: 0;
+						top: 3rem;
+                    }
 					&:nth-child(2){ //store locator
 						position: absolute;
-						right: 3%;
+						right: 3.5%;
+                        top: 2.3rem;
 					}
 				}
 			}
 
 			.ml-header-lang-wrapper{
-				display: block;
+				/*display: block; not implemented yet*/
 				position: absolute;
 				right: -4%;
 				z-index: 20;
