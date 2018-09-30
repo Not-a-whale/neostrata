@@ -1,0 +1,14 @@
+{% if navigation.breadcrumbs.length != 0 %}
+{% with navigation.breadcrumbs | slice(":-1") as breadcrumbs %}
+<div class="mz-breadcrumbs">
+   {% for crumb in breadcrumbs %}
+    {% if not crumb.isHidden %}
+      <a href="{{crumb.url}}" class="mz-breadcrumb-link{% if forloop.first %} is-first{% endif %}">{{crumb.name|safe}}</a>
+      {% if not forloop.last %}
+        <span class="mz-breadcrumb-separator">></span>
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+</div>
+{% endwith %}
+{% endif %}

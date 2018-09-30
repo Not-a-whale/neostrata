@@ -1,13 +1,19 @@
-{% require_script "modules/bootstrap-select" %}
-
 {% if themeSettings.enableProductCarousel%}
   {% require_script "modules/product/product-carousel" %}
 {% endif %}
 {% require_script "pages/product" %}
-<div itemscope itemtype="http://schema.org/Product" class="mz-l-container">
+{% with model|get_product_attribute_value("tenant~skin-care-system") as skinCareSystem %}
+<div itemscope itemtype="http://schema.org/Product" class="mz-l-container {{skinCareSystem|lower}}">
     {% if (PageContext.isTablet or PageContext.isDesktop) and themeSettings.enableProductCarousel %}
     {% include "modules/product/product-top-carousel" %}
     {% endif %}
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        {% include "modules/product-breadcrumbs" %}
+      </div>
+    </div>
     <div class="row">
         <div class="col-xs-12 col-sm-6">
             <div data-mz-productimages class="mz-productimages mz-product-left-container margin-top-15">
@@ -15,6 +21,9 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-6">
+              <div >
+                <h2 class="slashHeading"/>{{ skinCareSystem }}</h2>
+              </div>
             <div class="mz-product-top-content">
                 <h1 class="mz-pagetitle" itemprop="name">{{ model.content.productName|replace("'","&rsquo;")|safe }}</h1>
                 <h2 class="mz-pagesubtitle" >
@@ -41,26 +50,49 @@
             <div class="product-full-description">
             {{ model.content.productFullDescription|safe }}
             </div>
-            <div>
-            [[IDEALFOR:Normal,Dry,SensitiveSkin]]
-            </div>
+            {% with model|get_product_attribute("tenant~skin-type") as skinType %}
+              {% if skinType %}
+                <div class="ideal-for">
+                  <span class="ideal-for-label">Ideal For:</span>
+                  {% for v in skinType.values %}
+                    {% if v.stringValue %}
+                      {{ v.stringValue|safe }}{% if not forloop.last %}, {% endif %}
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              {% endif %}
+            {% endwith %}
             <div class="form-row actionable">
               <a class="primary-btn" href="/store-locator">Find A Retailer</a>
             </div>
-            <div class="row product-ingredients">
-              <h3>Key Ingredients</h3>
-              <div>
-                {% with model|get_product_attribute("tenant~ingredient-highlights") as highlights %}
-                {% for v in highlights.values %}
-                    <div class="tab-content-1">
-                        {% if v.stringValue %}
-                                {{ v.stringValue|safe }}
-                        {% endif %}
-                    </div>
-                {% endfor %}
-                {% endwith %}
-              </div>
-            </div>
+            {% with model|get_product_attribute("tenant~features-benefits") as featuresBenefits %}
+              {% if featuresBenefits and featuresBenefits.values.length > 0 %}
+                <div class="row product-features-benefits">
+                  <h3>Features and Benefits</h3>
+                  <div>
+                    {% for v in featuresBenefits.values %}
+                      {% if v.stringValue %}
+                        {{ v.stringValue|safe }}
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endif %}
+            {% endwith %}
+            {% with model|get_product_attribute("tenant~ingredient-highlights") as highlights %}
+              {% if highlights and highlights.values.length > 0 %}
+                <div class="row product-ingredients">
+                  <h3>Key Ingredients</h3>
+                  <div>
+                    {% for v in highlights.values %}
+                      {% if v.stringValue %}
+                        {{ v.stringValue|safe }}
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endif %}
+            {% endwith %}
             <div class="mz-productdetail-wrap">
                 {% if model.productType != themeSettings.familyProductType %}
                     {% include "modules/common/message-bar" %}
@@ -102,3 +134,4 @@
         {% dropzone "product-middle-breakpoint" scope="template" %}
     </div>
 </div>
+{% endwith %}
