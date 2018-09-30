@@ -240,10 +240,6 @@
 		}
 	}
 	//Product detail page
-    .mz-product-top-content {
-        .mz-pagetitle{
-        }
-    }
     .mz-productdetail-wrap {
 		#product-detail{
 			.mz-l-stack-section{
@@ -315,12 +311,6 @@
  .mz-productlist {
  	.grid-view {
         .mz-productlist-item {
-            &:nth-child(2n+1) {
-                clear: none;
-            }
-            &:nth-child(3n+1) {
-                clear: left;
-            }
             .mz-productlisting-info {
                 padding: 0 5px;
             }
@@ -351,13 +341,6 @@
 	        }
 		}
 		.title-sortby-wrappper{
-			.mz-pagetitle{
-				font-size: 24px;
-				float: left;
-				line-height: 2.5;
-				display: inline-block;
-				width: auto;
-			}
 			.mz-paging-sorttitle {
 	             font-size: @fontSize + 3px;
 	            .fontsMedium();
@@ -370,20 +353,71 @@
  	#collapseIcon,{
  		display: none;
  	}
-    #filterOptions{
-    	display: block;
-	    .filter-icon, .mz-facetingform-facet.active{
-	        display: block;
-	    }
-	    .mz-facetingform-facet{
-	        display: block;
-	    }
-	}
 	#filterOptions{
+		padding: 0;
+		margin-top: -7px;
+		.filter-icon {
+			display: block;
+		}
 		.filter-icon{
 			display: none;
 		}
- 	}
+		.btn-transparent{
+			color: #000000;
+			font-size: 10px;
+			margin-top: 4px;
+			i{
+				font-size: 13px;
+				margin-left: 5px;
+			}
+		}
+		.dropdown-menu{
+			padding: 5px 0 0;
+			li{
+				margin-top: 5px;
+				margin-bottom: 5px;
+			}
+		}
+		.mz-facetingform-valuelabel{
+			margin-bottom: 0;
+		}
+		.mz-facetingform{
+			.mz-facetingform-valuelabel{
+				margin-bottom: 0;
+			}
+		}
+		.dresscode-filter{
+			ul{
+				padding-top: 6px;
+				li{
+					margin: 6px 0 0;
+					a{
+						text-transform: capitalize;
+					}
+				}
+			}
+		}
+	}
+    .filter{
+        padding-bottom: 5px;
+        .faceting-header{
+            margin-top: 12px;
+            padding-bottom: 7px;
+            font-size: @fontSizeLarger;
+            .btn-transparent{
+                color: #000000;
+                font-size: 10px;
+                margin-top: 4px;
+                i{
+                    font-size: 13px;
+                    margin-left: 5px;
+                }
+            }
+        }
+        #filterOptionList{
+            margin: 0;
+        }
+    }
 	.mz-location-parent{
 	    #map {
 	      .mz-locationlisting{

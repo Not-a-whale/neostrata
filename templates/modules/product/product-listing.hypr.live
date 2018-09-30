@@ -1,3 +1,4 @@
+<div class="product-listing-container">
 <div class="mz-productlisting {% block module-classes %}{% endblock module-classes %}" data-mz-product="{{ model.productCode }}">
     
     <div class="mz-productlisting-image">
@@ -12,7 +13,7 @@
         {% endblock product-image %}
     </div>
     <div class="mz-productlisting-info">
-        <a class="mz-productlisting-title" href="{{model.url}}">{{model.content.productName}}</a>
+        <a class="mz-productlisting-title pdp2" href="{{model.url}}">{{model.content.productName}}</a>
         {% if model.content.productShortDescription and themeSettings.listProductShortDesc %}
         <p class="mz-productlisting-shortdesc">{{ model.content.productShortDescription|striptags|truncatewords(themeSettings.maxProductSummaryWords) }}</p>
         {% endif %}
@@ -21,8 +22,6 @@
         <div class="mz-productlisting-productcode">{{model.productCode}}</div>
         {% endif %}
         {% endblock product-code %}
-        {% include "modules/product/price-stack" %}
-         <div id="BVRRInlineRating-{{model.productCode}}" class="bvr-inline-rating" data-mz-product-code="{{ model.productCode }}" data-mz-product-url="{{ model.url }}"></div>
 
         {% block product-extrainfo %}
         {% if dealOfTheDay %}
@@ -39,5 +38,9 @@
         {% endif %}
         {% endblock product-extrainfo %}
     </div>
-   
+</div>
+    <div class="bottom-details">
+    {% include "modules/product/price-stack" %}
+     <div id="BVRRInlineRating-{{model.productCode}}" class="pdp5 bvr-inline-rating" data-mz-product-code="{{ model.productCode }}" data-mz-product-url="{{ model.url }}"></div>
+     </div>
 </div>
