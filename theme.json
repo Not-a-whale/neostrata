@@ -449,7 +449,7 @@
     }
   ],
   "settings": {
-    "commerceEnabled": true,
+    "commerceEnabled": false,
     "oneSizeAttributeName": "tenant~ONESIZE",
     "oneSizeProductType": "Single Variant",
     "maxRecentlyViewedItems": 5,
