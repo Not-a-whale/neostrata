@@ -1882,44 +1882,21 @@ ul.tabs {
         opacity: 0.4;
     }
 }
-// Product Directory
-.mz-productlist {
-    #product-list-ul{
-        display: flex;
-        flex-wrap: wrap;
-        margin: 0 -.5rem;
-    }
-    .mz-productlist-item {
-        padding: .5rem;
-        .product-listing-container {
-            border: 1px solid #b3b3b3;
-            padding: .5rem;
-            float: left;
-            width: 100%;
-            height: 100%;
-            .mz-productlisting {
-                padding-bottom: 1.5rem;
-                .mz-productlisting-info {
-                    text-align: left;
-                }
-            }
-            .bottom-details {
-                position: absolute;
-                bottom: .5rem;
-                right: 1rem;
-                .mz-pricestack {
 
-                }
-                .bvr-inline-rating {
-                    float: left;
-                }
+.product-item {
+    padding: .5rem;
+    .product-listing-container {
+        border: 1px solid #b3b3b3;
+        padding: .2rem;
+        float: left;
+        width: 100%;
+        height: 100%;
+        .mz-productlisting {
+            padding-bottom: 1.5rem;
+            .mz-productlisting-info {
+                text-align: left;
+                overflow-wrap: break-word;
             }
-        }
-    }
-    // Grid View
-    .grid-view {
-        .mz-productlist-item {
-            text-align: center;
             .mz-productlisting-image {
                 img,
                 .mz-productlisting-imageplaceholder {
@@ -1933,9 +1910,33 @@ ul.tabs {
                     display: inline-block;
                 }
             }
-            .mz-productlisting-info {
-                padding: 0;
+        }
+        .bottom-details {
+            position: absolute;
+            bottom: .5rem;
+            right: 1rem;
+            .mz-pricestack {
+
             }
+            .bvr-inline-rating {
+                float: left;
+            }
+        }
+    }
+}
+
+// Product Directory
+.mz-productlist {
+    #product-list-ul{
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -.5rem;
+    }
+    // Grid View
+    .grid-view {
+        .mz-productlist-item {
+            text-align: center;
+
         }
     }
     //List View
@@ -1992,13 +1993,8 @@ ul.tabs {
     }
     // Common to both List and Grid View
     .mz-productlist-list {
-        .mz-productlisting-shortdesc,
         .mz-productlisting-productcode {
             display: none;
-        }
-        .mz-productlisting-title {
-            font-size: @font-size + 2;
-            line-height: 22px;
         }
         .mz-productlisting-info {
             .mz-pricestack {
