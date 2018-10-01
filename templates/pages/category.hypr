@@ -8,7 +8,7 @@
 
 {% require_script "pages/category" %}
 
-<div data-mz-category="{{model.categoryId}}" class="mz-l-container">
+<div data-mz-category="{{model.categoryId}}" class="mz-l-container container">
     {% include "pages/category-interior" %}
 </div>
 <div class="quickviewSlider">
