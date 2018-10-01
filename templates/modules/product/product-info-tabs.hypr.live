@@ -54,7 +54,10 @@
         </div>
     {% endif %}
         <div id="tab4" class="tab-pane fade">
-        {% dump model %}
+        <script>
+        var productModel = {% dump model %};
+        console.log(productModel);
+        </script>
         </div>
 
 </div>
