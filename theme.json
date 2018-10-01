@@ -742,7 +742,7 @@
     "orderNumberLength": 80,
     "orderVerificationCodeLength": 80,
     "productQuantityLength": 5,
-    "productImagePdpMaxWidth": 350,
+    "productImagePdpMaxWidth": 800,
     "familyProductImageMaxWidth": 160,
     "productImageDirectoryMaxWidth": 265,
     "productThumbImageMaxWidth": 84,

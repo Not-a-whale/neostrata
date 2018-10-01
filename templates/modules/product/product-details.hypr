@@ -3,7 +3,7 @@
 {% endif %}
 {% require_script "pages/product" %}
 {% with model|get_product_attribute_value("tenant~skin-care-system") as skinCareSystem %}
-<div itemscope itemtype="http://schema.org/Product" class="mz-l-container {{skinCareSystem|lower}}">
+<div itemscope itemtype="http://schema.org/Product" class="mz-l-container container {{skinCareSystem|lower}}">
     {% if (PageContext.isTablet or PageContext.isDesktop) and themeSettings.enableProductCarousel %}
     {% include "modules/product/product-top-carousel" %}
     {% endif %}
@@ -47,9 +47,19 @@
                 </div>
             </div>
             <div class="clearfix"></div>
-            <div class="product-full-description">
-            {{ model.content.productFullDescription|safe }}
-            </div>
+
+            {% with model|get_product_attribute("tenant~results") as results %}
+              {% if results %}
+                <div class="product-results">
+                  {% for v in results.values %}
+                    {% if v.stringValue %}
+                      {{ v.stringValue|safe }}{% if not forloop.last %}, {% endif %}
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              {% endif %}
+            {% endwith %}
+
             {% with model|get_product_attribute("tenant~skin-type") as skinType %}
               {% if skinType %}
                 <div class="ideal-for">
@@ -68,7 +78,7 @@
             {% with model|get_product_attribute("tenant~ingredient-highlights") as highlights %}
             {% with model|get_product_attribute("tenant~features-benefits") as featuresBenefits %}
               {% if highlights and highlights.values.length > 0 or featuresBenefits and featuresBenefits.values.length > 0 %}
-                <div class="row product-features">
+                <div class="product-features">
                   <h3>Key Ingredients</h3>
                   {% if highlights and highlights.values.length > 0 %}
                     <div class="product-highlights">

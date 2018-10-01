@@ -1,5 +1,5 @@
-{% with model|get_product_attribute("tenant~results") as results %}
-{% with model|get_product_attribute("tenant~features-benefits") as details %}
+{% with model|get_product_attribute("tenant~before-and-after") as results %}
+{% with model.content.productFullDescription as details %}
 {% with model|get_product_attribute("tenant~how-to-apply") as howToApply %}
 
 {% if pageContext.isDesktop or pageContext.isTablet %}
@@ -32,34 +32,26 @@
         </div>
     {% endif %}
     {% if details %}
-        <div id="tab2" class="tab-pane fade">
-            {% for v in details.values %}
-                <div class="tab-content-2">
-                    {% if v.stringValue %}
-                            {{ v.stringValue|safe }}
-                    {% endif %}
-                </div>
-            {% endfor %}
+      <div id="tab2" class="tab-pane fade">
+        <div class="tab-content-2">
+          {{ details }}
         </div>
+      </div>
     {% endif %}
     {% if howToApply %}
-        <div id="tab3" class="tab-pane fade">
-            {% for v in howToApply.values %}
-                <div class="tab-content-3">
-                    {% if v.stringValue %}
-                            {{ v.stringValue|safe }}
-                    {% endif %}
-                </div>
-            {% endfor %}
-        </div>
+      <div id="tab3" class="tab-pane fade">
+        {% for v in howToApply.values %}
+            <div class="tab-content-3">
+              {% if v.stringValue %}
+                {{ v.stringValue|safe }}
+              {% endif %}
+          </div>
+        {% endfor %}
+      </div>
     {% endif %}
-        <div id="tab4" class="tab-pane fade">
-        <script>
-        var productModel = {% dump model %};
-        console.log(productModel);
-        </script>
-        </div>
-
+    <div id="tab4" class="tab-pane fade">
+      {% dump model %};
+    </div>
 </div>
 
 {% else %}
