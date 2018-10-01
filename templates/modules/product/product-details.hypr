@@ -65,33 +65,33 @@
             <div class="form-row actionable">
               <a class="primary-btn" href="/store-locator">Find A Retailer</a>
             </div>
+            {% with model|get_product_attribute("tenant~ingredient-highlights") as highlights %}
             {% with model|get_product_attribute("tenant~features-benefits") as featuresBenefits %}
-              {% if featuresBenefits and featuresBenefits.values.length > 0 %}
-                <div class="row product-features-benefits">
-                  <h3>Features and Benefits</h3>
-                  <div>
-                    {% for v in featuresBenefits.values %}
-                      {% if v.stringValue %}
-                        {{ v.stringValue|safe }}
-                      {% endif %}
-                    {% endfor %}
-                  </div>
+              {% if highlights and highlights.values.length > 0 or featuresBenefits and featuresBenefits.values.length > 0 %}
+                <div class="row product-features">
+                  <h3>Key Ingredients</h3>
+                  {% if highlights and highlights.values.length > 0 %}
+                    <div class="product-highlights">
+                      {% for v in highlights.values %}
+                        {% if v.stringValue %}
+                          {{ v.stringValue|safe }}
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+                  <hr/>
+                  {% if featuresBenefits and featuresBenefits.values.length > 0 %}
+                    <div lass="product-features-benefits">
+                      {% for v in featuresBenefits.values %}
+                        {% if v.stringValue %}
+                          {{ v.stringValue|safe }}
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                  {% endif %}
                 </div>
               {% endif %}
             {% endwith %}
-            {% with model|get_product_attribute("tenant~ingredient-highlights") as highlights %}
-              {% if highlights and highlights.values.length > 0 %}
-                <div class="row product-ingredients">
-                  <h3>Key Ingredients</h3>
-                  <div>
-                    {% for v in highlights.values %}
-                      {% if v.stringValue %}
-                        {{ v.stringValue|safe }}
-                      {% endif %}
-                    {% endfor %}
-                  </div>
-                </div>
-              {% endif %}
             {% endwith %}
             <div class="mz-productdetail-wrap">
                 {% if model.productType != themeSettings.familyProductType %}
