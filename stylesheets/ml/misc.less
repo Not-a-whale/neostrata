@@ -133,7 +133,8 @@
         }
         .ml-header-search-wrapper {
             position: absolute;
-            top: 2.5rem;
+            top: 53%;
+            transform: translateY(-50%);
             left: 3rem;
             right: auto;
             font-size: 3rem;
@@ -228,7 +229,8 @@
                 padding: 0 15px 0 0;
                 &.navbar-collapse-control{ //hamburguer icon
                     position: absolute;
-                    top: 2.5rem;
+                    top: 50%;
+                    transform: translateY(-50%);
                     left: -1.4rem;
                 }
                 &.site-msg {
@@ -262,7 +264,9 @@
                 &.store-locator{
                     position: absolute;
                     right: -1rem;
-                    top: 2.2rem;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    z-index: 2020;
                     i{
                         font-size: 4rem;
                         .icon(before, @icon-location);
