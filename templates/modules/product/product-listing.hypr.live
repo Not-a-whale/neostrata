@@ -5,7 +5,8 @@
         {% block product-image %}
         {% if model.mainImage.imageUrl %}
         <a href="{{model.url}}">
-            <img src="{{model.mainImage.imageUrl}}?max={% block thumbnail-size %}{{ themeSettings.listProductThumbSize }}{% endblock thumbnail-size %}" />
+            <img src="{{model.mainImage.imageUrl}}?max={% block thumbnail-size %}{{ themeSettings.listProductThumbSize }}{% endblock thumbnail-size %}"
+            data-zoom-image="{{model.mainImage.imageUrl}}?max={% block thumbnail-size %}{{ themeSettings.productZoomImageMaxWidth }}{% endblock thumbnail-size %}"/>
         </a>
         {% else %}
             <span class="mz-productlisting-imageplaceholder"><span class="mz-productlisting-imageplaceholdertext">{{ labels.productImagePlaceholder }}</span></span>

@@ -97,7 +97,7 @@
                                 <button type="button" class="btn primary-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     {{ facet.label }} <span class="caret"></span>
                                   </button>
-                                <ul class="dropdown-menu" id="filterList{{ forloop.index0 }}">
+                                <ul class="dropdown-menu filter-dropdown" id="filterList{{ forloop.index0 }}">
                                     <li class="hide" aria-hidden="true">For Blank</li>
                                     {% if facet.values and facet.field == "tenant~COLOR" %}
                                         {% include "modules/facets/facet-color" with allfacets=facet.values and isDirectory="true" %}
