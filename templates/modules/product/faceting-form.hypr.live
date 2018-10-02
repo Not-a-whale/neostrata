@@ -92,7 +92,7 @@
                         {% endif %}
                     {% else %}
                         {% if facet.values and facet.facetType != "Hierarchy" %}
-                            <div class="mz-l-sidebaritem col-md-4">
+                            <div class="mz-l-sidebaritem">
                                 <div id="filter-{{facet.field |lower|replace('~','-')}}" class="faceting-header correct" data-mz-filter-collapse="{{ forloop.index0 }}">
                                 <button type="button" class="btn primary-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     {{ facet.label }} <span class="caret"></span>
