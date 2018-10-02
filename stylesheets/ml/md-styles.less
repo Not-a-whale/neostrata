@@ -208,9 +208,75 @@
         }
     }
 
+    .facets-block{
+        >.facet-headers{
+            float: right;
+            width: 18rem;
+            margin: 4rem 0 0;
+            padding-left: 1rem;
+            ul{
+                .first-tab{
+                    display: none;
+                }
+                li.second-tab{
+
+                    &.active{
+
+
+                    }
+                }
+            }
+        }
+        .tab-content{
+            margin-right: 19rem;
+            padding-right: 1rem;
+            position: relative;
+            .mz-l-paginatedlist-header{
+                position: absolute;
+                right: -19rem;
+                width: 18rem;
+                top:5.5rem;
+                z-index: 99;
+                .title-sortby-wrappper{
+                    margin: 0;
+                }
+            }
+            .mz-filter-mobile{
+                opacity: 1;
+                background: none;
+            }
+            #mz-drop-zone-sidebar-above-facets{
+                display: none;
+            }
+            .pagesort-list{
+                position: static;
+                margin-top: 0;
+                background: rgba(255, 255, 255, 0.95);
+                padding: 1.1rem 0 1rem;
+                box-shadow: 0 2px 8px @gray-light;
+                ul li{
+                    border: none;
+                    height: auto;
+                    line-height: normal;
+                    text-transform: capitalize;
+                    padding: 0.5rem 1.3rem;
+                    font-size: @fontSize;
+                }
+            }
+        }
+        .facet-content{
+            display: block !important;
+        }
+    }
+    .filter{
+        height: 2.7rem;
+    }
     .filer-options{
+        margin: 0 1rem 0.5rem 0;
+        padding: 1.5rem 0 0 0;
+        float: left;
         li{
-            font-size: 1.2rem;
+            font-size: 0.8rem;
             color: #303030;
             margin-bottom: 5px;
             padding: 5px 8px 2px 10px;
@@ -227,6 +293,7 @@
             }
         }
     }
+
     .selected-filter{
         float: left;
         width: 100%;
@@ -235,6 +302,9 @@
         .btn-transparent{
             margin: 16px 0 5px 0;
             color: #303030;
+            i{
+                display: none;
+            }
         }
     }
 
@@ -267,19 +337,7 @@
         }
     // Product Directory
     .mz-productlist {
-        // Grid View
-        .grid-view {
-            .mz-productlist-item {
-                .mz-productlisting-image {
-                    .mz-productlisting-imageplaceholder, img {
-                        max-height: 265px;
-                        >.mz-productlisting-imageplaceholdertext {
-                            line-height: 265px;
-                        }
-                    }
-                }
-            }
-        }
+
         //List View
         .list-view{
             .product-image-swatch-wrapper {

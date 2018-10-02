@@ -28,42 +28,45 @@
         {% include "modules/breadcrumbs" %}
         {% endif %}
     {% endblock breadcrumbs %}
-        <!--div class="mz-l-paginatedlist-header">
-            <div class="title-sortby-wrappper">
-               <div class="mz-pagetitle h3">{{ pageContext.title|safe }}</divf>
-                <div data-mz-pagesort class="mz-sortby">
-                    {% include "modules/common/page-sort" %}
-                </div>
-            </div>
-        </div-->
     </div>
 </div>
 {% if pageContext.search.facets %}
     <ul id="filterOptionList" class="filer-options options-pos display-sm"></ul>
 {% endif %}
-<div class="visible-xs facet-headers">
-    <ul class="nav nav-tabs responsive col-sm-12" id="sort-facet-tab">
+<div class="facets-block">
+    <div class="facet-headers">
+    <ul class="nav nav-tabs responsive col-sm-12 correct" id="sort-facet-tab">
         {% if model.facets %}
-        <li class="first-tab col-sm-6 text-center" rel="filter-tab" href="#filter-tab" id="filter-tab-li">FILTER<i class="fa fa-angle-up"></i><i class="fa fa-angle-down"></i></li>
+            <li class="first-tab col-sm-6 text-center btn primary-btn" rel="filter-tab" href="#filter-tab" id="filter-tab-li">FILTER<i class="fa fa-angle-up"></i><i class="fa fa-angle-down"></i></li>
         {% endif %}
-        <li class="second-tab col-sm-6 text-center{% if not model.facets %} sort-width{% endif %}" rel="sort-tab" href="#sort-tab" id="sort-tab-li">SORT<i class="fa fa-angle-up"></i><i class="fa fa-angle-down"></i></li>
+            <li class="second-tab col-sm-6 col-md-12 btn primary-btn{% if not model.facets %} sort-width{% endif %}" rel="sort-tab" href="#sort-tab" id="sort-tab-li">SORT<i class="fa fa-angle-up"></i><i class="fa fa-angle-down"></i></li>
     </ul>                                                                                                   
 </div>
+
 <div class="tab-content">
-{% if model.facets %}
-    <div data-mz-facets class="mz-l-sidebar col-xs-12">
-        {% dropzone "sidebar-above-facets" scope="template" %}
-        {% include "modules/product/faceting-form" %}
-        {% dropzone "sidebar-below-facets" scope="template" %}
+    {% if model.facets %}
+            <div data-mz-facets class="tab-pane mz-l-sidebar col-xs-12 facet-content" id="filter-tab">
+                {% dropzone "sidebar-above-facets" scope="template" %}
+                <div class="mz-facets-relative" id="facet-parent">
+                    {% include "modules/product/faceting-form" %}
+                </div>
+                {% dropzone "sidebar-below-facets" scope="template" %}
+            </div>
+    {% endif %}
+    {% if pageContext.search.facets %}
+        <div class="mz-facets-relative mobile-clear-all">
+            <div class="mz-clear-btn-mobile visible-xs visible-sm">
+                <button class="btn-transparent text-uppercase mz-facetingform-clearall" data-mz-action="clearFacets" data-mz-url="{% make_url "facet" "clear"  %}">{{ labels.clearAllFilters }} <i data-mz-action="clearFacets" data-mz-url="{% make_url "facet" "clear"  %}" class="far fa-times-circle" aria-hidden="true"></i></button>
+            </div>
+        </div>
+    {% endif %}
+    <div class="mz-l-paginatedlist-header tab-pane" id="sort-tab">
+        <div class="title-sortby-wrappper">
+            <div data-mz-pagesort class="mz-sortby width-sort-by" >
+                {% include "modules/common/page-sort" %}
+            </div>
+        </div>
     </div>
-{% endif %}
-{% if pageContext.search.facets %}
-<div class="mz-facets-relative">
-    <div class="mz-clear-btn-mobile visible-xs">
-        <button class="btn-transparent text-uppercase mz-facetingform-clearall pull-right" data-mz-action="clearFacets" data-mz-url="{% make_url "facet" "clear"  %}">{{ labels.clearAllFilters }} <i data-mz-action="clearFacets" data-mz-url="{% make_url "facet" "clear"  %}" class="far fa-times-circle" aria-hidden="true"></i></button>
-    </div>
-</div>
-{% endif %}
 </div>
 <div class="product-list mz-l-paginatedlist pull-right col-12">
     <div class="mz-l-paginatedlist-header hidden">
