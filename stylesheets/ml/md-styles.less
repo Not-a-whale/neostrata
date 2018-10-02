@@ -211,15 +211,14 @@
     .facets-block{
         >.facet-headers{
             float: right;
-            width: 18rem;
-            margin: 4rem 0 0;
-            padding-left: 1rem;
+            margin: 2.7rem 0 0;
+            padding: 0 .5rem;
             ul{
                 .first-tab{
                     display: none;
                 }
                 li.second-tab{
-
+                    width: 100%;
                     &.active{
 
 
@@ -228,8 +227,7 @@
             }
         }
         .tab-content{
-            margin-right: 19rem;
-            padding-right: 1rem;
+            width:100%;
             position: relative;
             .mz-l-paginatedlist-header{
                 position: absolute;
@@ -266,6 +264,17 @@
         }
         .facet-content{
             display: block !important;
+            padding: 0;
+        }
+    }
+    #filterOptions {
+        margin-top: 0;
+        .mz-l-sidebaritem {
+            margin: 0;
+            padding: 0 .5rem;
+            button{
+                width: 100%;
+            }
         }
     }
     .filter{

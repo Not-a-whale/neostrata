@@ -34,7 +34,7 @@
     <ul id="filterOptionList" class="filer-options options-pos display-sm"></ul>
 {% endif %}
 <div class="facets-block">
-    <div class="facet-headers">
+    <div class="facet-headers col-md-3">
     <ul class="nav nav-tabs responsive col-sm-12 correct" id="sort-facet-tab">
         {% if model.facets %}
             <li class="first-tab col-sm-6 text-center btn primary-btn" rel="filter-tab" href="#filter-tab" id="filter-tab-li">FILTER<i class="fa fa-angle-up"></i><i class="fa fa-angle-down"></i></li>
@@ -45,7 +45,7 @@
 
 <div class="tab-content">
     {% if model.facets %}
-            <div data-mz-facets class="tab-pane mz-l-sidebar col-xs-12 facet-content" id="filter-tab">
+            <div data-mz-facets class="tab-pane mz-l-sidebar col-xs-12 col-md-9 facet-content" id="filter-tab">
                 {% dropzone "sidebar-above-facets" scope="template" %}
                 <div class="mz-facets-relative" id="facet-parent">
                     {% include "modules/product/faceting-form" %}
