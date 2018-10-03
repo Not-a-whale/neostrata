@@ -1,6 +1,5 @@
 <div class="product-listing-container">
 <div class="mz-productlisting {% block module-classes %}{% endblock module-classes %}" data-mz-product="{{ model.productCode }}">
-    
     <div class="mz-productlisting-image">
         {% block product-image %}
         {% if model.mainImage.imageUrl %}
@@ -14,6 +13,9 @@
         {% endblock product-image %}
     </div>
     <div class="mz-productlisting-info">
+        {% with model|get_product_attribute_value("tenant~skin-care-system") as skinCareSystem %}
+        <div class="pdp1">{{ skinCareSystem }}</div>
+        {% endwith %}
         <a class="mz-productlisting-title pdp2" href="{{model.url}}">{{model.content.productName}}</a>
         {% if model.content.productShortDescription and themeSettings.listProductShortDesc %}
         <div class="mz-productlisting-shortdesc pdp3">{{ model.content.productShortDescription|striptags|truncatewords(themeSettings.maxProductSummaryWords) }}</div>

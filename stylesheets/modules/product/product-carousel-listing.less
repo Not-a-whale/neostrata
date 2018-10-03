@@ -3,5 +3,34 @@
     padding: 0 1.5625rem;
     .swiper-container{
         height: 100%;
+        .product-item {
+            .product-listing-container{
+                float: none;
+                margin: 0 auto;
+                width: 32rem;
+                position: relative;
+                border: none;
+            }
+        }
     }
+    .swiper-button-next, .swiper-button-prev{
+        .icon(before, @icon-arrow_drop_up);
+        background-image: none;
+        font-size: 10rem;
+    }
+    .swiper-button-next{
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+    .swiper-button-prev{
+        -webkit-transform: rotate(270deg);
+        -moz-transform: rotate(270deg);
+        -ms-transform: rotate(270deg);
+        -o-transform: rotate(270deg);
+        transform: rotate(270deg);
+    }
+
 }
