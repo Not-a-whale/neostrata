@@ -214,15 +214,11 @@
             margin: 2.7rem 0 0;
             padding: 0 .5rem;
             ul{
+                li{
+                    width: auto;
+                }
                 .first-tab{
                     display: none;
-                }
-                li.second-tab{
-                    width: 100%;
-                    &.active{
-
-
-                    }
                 }
             }
         }
@@ -231,7 +227,7 @@
             position: relative;
             .mz-l-paginatedlist-header{
                 position: absolute;
-                right: -19rem;
+                right: 2rem;
                 width: 18rem;
                 top:5.5rem;
                 z-index: 99;
@@ -279,6 +275,9 @@
     }
     .filter{
         height: 2.7rem;
+        .faceting-header{
+            display: block;
+        }
     }
     .filer-options{
         margin: 0 1rem 0.5rem 0;

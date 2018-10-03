@@ -1,8 +1,8 @@
-﻿<label class="mz-pagingcontrols-pagesort-label">
+﻿<div class="mz-pagingcontrols-pagesort-label">
   <span class="mz-paging-sorttitle hidden">{{ labels.sortBy }}:</span>
 <div class="mz-facets-relative">
   <div class="pagesort-list">
-    <ul data-mz-value="sortBy" class="filter-dropdown">
+    <ul data-mz-value="sortBy" class="filter-dropdown dropdown-select-list">
        <li data-mz-url="{% make_url "sorting" model with sortBy='createDate asc' %}&startIndex=0" data-value="createDate asc" class="dp-sort-item {% if model.currentSort == 'createDate asc' %} selected {% endif %}">{{ labels.sortByOurPicks }}</li>
       <li data-mz-url="{% make_url "sorting" model with sortBy='createDate desc' %}&startIndex=0" data-value="createDate desc" class="dp-sort-item {% if model.currentSort == 'createDate desc' %} selected {% endif %}">{{ labels.sortByNewArrivals }}</li>
       <li data-mz-url="{% make_url "sorting" model with sortBy='tenant~BestSelling desc' %}&startIndex=0" data-value="tenant~BestSelling desc" class="dp-sort-item {% if model.currentSort == 'tenant~BestSelling desc' %} selected {% endif %}">{{ labels.sortByBestSelling }}</li>
@@ -25,4 +25,4 @@
         <option data-mz-url="{% make_url "sorting" model with sortBy='productName desc' %}&startIndex=0" data-value="productName desc" class="dp-sort-item" {% if model.currentSort == 'productName desc' %} selected {% endif %}>{{ labels.sortByproductNameDesc }}</option>
     </select>
   </span>
-</label>
+</div>

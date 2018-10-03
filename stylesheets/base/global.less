@@ -555,3 +555,62 @@ ul {
 .defend .slashHeading {
   .slashHeading(@redOrange);
 }
+
+.dropdown-select {
+  font-family: @fontFamily;
+  font-weight: @fontWeightBook;
+  font-size: 1.5rem;
+  color: @charcoal;
+  letter-spacing: 0.14rem;
+  text-transform: uppercase;
+  background: none;
+  text-decoration: none;
+  border: 0.1875rem solid @charcoal;
+  height: 6rem;
+  line-height: 5.625rem;
+  padding: 0 3.125rem;
+
+  &:hover {
+    color: @charcoal;
+    background: @mutedBlue;
+    text-decoration: none;
+    span{
+      color: @charcoal;
+    }
+  }
+  i {
+    .icon(before, @icon-keyboard_arrow_down);
+    margin: 0 3.125rem 0 2.5rem;
+    &:before {
+      font-size: 3rem;
+      top: 50%;
+      transform: translateY(-50%);
+      position: absolute;
+    }
+  }
+}
+.dropdown-select-list{
+  width: 100%;
+  padding: 0;
+  margin-top: -1px;
+  li {
+    font-family: @fontFamily;
+    font-weight: @fontWeightBook;
+    font-size: 1.5rem;
+    letter-spacing: 0.14rem;
+    text-transform: uppercase;
+    border-bottom: 0.125rem solid @midGray;
+    margin: 0!important;
+    text-align: center;
+    padding: 1rem 0;
+    label{
+      font-weight: @fontWeightBook;
+      font-size: 1.5rem;
+      letter-spacing: 0.14rem;
+      text-transform: uppercase;
+    }
+    &:hover {
+      background-color: @mutedBlue;
+    }
+  }
+}
