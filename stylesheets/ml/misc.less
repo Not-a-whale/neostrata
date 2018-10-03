@@ -1836,6 +1836,7 @@ ul.tabs {
   .mz-l-paginatedlist{
     overflow: inherit;
     position: static;
+      margin-bottom: 3rem;
   }
   .title-sortby-wrappper{
       text-align: center;
@@ -2129,6 +2130,7 @@ ul.tabs {
         }
     }
     .tab-content{
+        margin-bottom: 3rem;
         .tab-pane{
             float: none;
             padding: 0;
@@ -2152,9 +2154,9 @@ ul.tabs {
 //Filter
 
 .filer-options{
-    padding: 3px 0;
+    padding: 0;
     overflow: hidden;
-    margin-bottom: 6px;
+    margin: 0;
     li{
         font-size: @fontSizeLarger;
         color: @colorMediumGray;
@@ -2199,7 +2201,6 @@ ul.tabs {
     text-align: center;
     .mz-facetingform-clearall{
         padding: 1rem 0;
-        margin-bottom: 2rem;
         color: @colorGray;
         i{
             color: @colorMediumGray;
@@ -2209,8 +2210,18 @@ ul.tabs {
 
 #filterOptions{
     .mz-l-sidebaritem{
-        margin: 0.2rem;
-        display: inline-block;
+        margin: 0.2rem 0.2rem -0.4rem 0;
+        display: block;
+        .dropdown-select{
+            width: 100%;
+            position: relative;
+            .dropdown-icon{
+                float: right;
+            }
+        }
+        .dropdown-select-list{
+            position: relative;
+        }
     }
     .faceting-header{
         position: relative;
@@ -2581,6 +2592,7 @@ ul.tabs {
 
   .tab-content {
     margin-top: 2rem;
+    min-height: 6rem;
   }
 }
 //Product size options

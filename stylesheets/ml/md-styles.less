@@ -262,25 +262,35 @@
         .mz-l-sidebaritem {
             margin: 0;
             padding: 0 .5rem;
+            display: inline-block;
             &:first-child{
                 padding-left: 0;
             }
-            button{
-                width: 100%;
+            .dropdown-select{
+                .dropdown-icon{
+                    float: none;
+                }
+            }
+            .dropdown-select-list{
+                position: absolute;
             }
         }
     }
+    .options-pos{
+        background-color: transparent;
+    }
     .filter{
         padding: 0;
+        height: 0;
     }
     .filer-options{
         margin: 0 1rem 0.5rem 0;
         float: left;
         li{
-            padding: 0.5rem 0 0.2rem 1rem;
+            padding: 0.5rem 1rem 0.2rem;
             background: @colorLightGray;
             min-width: 75px;
-            margin-right: 10px;
+            margin-right: 1rem;
             i{
                 font-size: 1.5rem;
                 margin-left: 1rem;

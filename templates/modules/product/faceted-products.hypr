@@ -32,7 +32,7 @@
 </div>
 {% if pageContext.search.facets %}
     <ul id="filterOptionList" class="filer-options options-pos display-sm"></ul>
-    <div class="mz-clear-btn-mobile hidden-xs hidden-sm visible-md visible-lg">
+    <div class="mz-clear-btn-mobile">
         <button class="btn-transparent text-uppercase mz-facetingform-clearall" data-mz-action="clearFacets" data-mz-url="{% make_url "facet" "clear"  %}">{{ labels.clearAllFilters }} <i data-mz-action="clearFacets" data-mz-url="{% make_url "facet" "clear"  %}" class="fa fa-times-circle" aria-hidden="true"></i></button>
     </div>
 {% endif %}
