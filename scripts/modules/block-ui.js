@@ -5,7 +5,7 @@ define([
     var blockUiLoader = {
         globalLoader: function() {
             $.blockUI({
-                baseZ: 1100,
+                baseZ: 2150,
                 message: '<i class="fa fa-spinner fa-spin"></i>',
                 css: {
                     border: 'none',
@@ -21,7 +21,7 @@ define([
         },
         productValidationMessage: function() {
             $.blockUI({
-                baseZ: 1050,
+                baseZ: 2130,
                 message: $('#SelectValidOption'),
                 css: {
                     border: 'none',

@@ -116,6 +116,10 @@
                 display: block;
                 width: 22rem;
                 height: 4rem;
+                @media (max-width: 380px) {
+                    width: 15rem;
+                    height: 3rem;
+                }
                 background-image: url('../resources/images/neostrata_logo.svg');
                 background-repeat: no-repeat;
                 background-size: contain;
@@ -1922,8 +1926,12 @@ ul.tabs {
             position: absolute;
             bottom: .5rem;
             right: 1rem;
+            left: 1rem;
             .mz-pricestack {
-
+                float: right;
+                .price-msrp{
+                    display: none;
+                }
             }
             .bvr-inline-rating {
                 float: left;
@@ -2116,6 +2124,7 @@ ul.tabs {
         ul{
             li.second-tab{
                 margin-left: -0.1875rem;
+                cursor: pointer;
             }
         }
     }
