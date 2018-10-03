@@ -7,14 +7,14 @@
     }
     .mz-productimages-thumbs {
         display: block;
-         width: 100%;
+        width: 45rem;
+        margin: auto;
     }
     .mz-productimages-thumb {
         display: inline-block;
-        margin: @gutter/2 @gutter/2 0 0;
-        border: 1px solid #999;
+        border: 1px solid @midGray;
         &:hover {
-            border-color: #ccc;
+            border-color: @mutedBlue;
         }
     }
 }
@@ -41,11 +41,10 @@
     }
     .mz-productimages-main {
         width: auto;
-        height: auto;
-        max-width: 620px;
+        height: 56.25rem;
+        width: 45rem;
         margin-left: auto;
         margin-top: 20px;
-        max-height: 746px;
         text-align: center;
         margin-right: auto;
         @media (min-width: 320px) and (max-width: 767px) {
@@ -54,9 +53,9 @@
         .mz-productimages-mainimage {
             width: auto;
             height: auto;
-            max-width: 100%;
+            max-width: 45rem;
             vertical-align: middle;
-            max-height: 540px;
+            max-height: 56.25rem;
             @media (min-width: 320px) and (max-width: 767px) {
                 max-height: 290px;
             }
@@ -67,7 +66,7 @@
         height: auto;
         margin: 0 auto;
         max-width: 100%;
-        vertical-align: middle; 
+        vertical-align: middle;
         max-height: 540px;
         @media (max-width: 767px) {
             max-height: 290px;
@@ -79,7 +78,7 @@
     .owl-theme .owl-dots .owl-dot span {
         margin: 10px;
         width: 15.6px;
-        height: 15.6px; 
+        height: 15.6px;
         background: @white;
         @media (min-width: 768px) and (max-width: 1024px) {
             margin: 5px;
