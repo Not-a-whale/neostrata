@@ -20,7 +20,7 @@
 {% endif %}
 
 
-<div class="mz-l-paginatedlist pull-right  col-12">
+<div class="mz-l-paginatedlist col-12">
     <div class="mz-l-paginatedlist pull-right main-directory-container">
     <div class="title-sort-breadcrumb-wrapper">
     {% block breadcrumbs %}
@@ -32,6 +32,9 @@
 </div>
 {% if pageContext.search.facets %}
     <ul id="filterOptionList" class="filer-options options-pos display-sm"></ul>
+    <div class="mz-clear-btn-mobile hidden-xs hidden-sm visible-md visible-lg">
+        <button class="btn-transparent text-uppercase mz-facetingform-clearall" data-mz-action="clearFacets" data-mz-url="{% make_url "facet" "clear"  %}">{{ labels.clearAllFilters }} <i data-mz-action="clearFacets" data-mz-url="{% make_url "facet" "clear"  %}" class="fa fa-times-circle" aria-hidden="true"></i></button>
+    </div>
 {% endif %}
 <div class="facets-block">
     <div class="facet-headers">
@@ -55,7 +58,7 @@
     {% endif %}
     {% if pageContext.search.facets %}
         <div class="mz-facets-relative mobile-clear-all">
-            <div class="mz-clear-btn-mobile visible-xs visible-sm">
+            <div class="mz-clear-btn-mobile visible-xs visible-sm hidden-xs hidden-sm">
                 <button class="btn-transparent text-uppercase mz-facetingform-clearall" data-mz-action="clearFacets" data-mz-url="{% make_url "facet" "clear"  %}">{{ labels.clearAllFilters }} <i data-mz-action="clearFacets" data-mz-url="{% make_url "facet" "clear"  %}" class="fa fa-times-circle" aria-hidden="true"></i></button>
             </div>
         </div>
@@ -68,7 +71,7 @@
         </div>
     </div>
 </div>
-<div class="product-list mz-l-paginatedlist pull-right col-12">
+<div class="product-list mz-l-paginatedlist col-12">
     <div class="mz-l-paginatedlist-header hidden">
          <div data-mz-pageview class="mz-pageview">
             {% include "modules/common/page-view" %}
