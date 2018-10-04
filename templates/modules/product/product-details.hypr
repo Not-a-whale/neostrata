@@ -7,12 +7,10 @@
     {% if (PageContext.isTablet or PageContext.isDesktop) and themeSettings.enableProductCarousel %}
     {% include "modules/product/product-top-carousel" %}
     {% endif %}
-    <div class="row">
-      <div class="mz-product-top-content">
-        {% include "modules/product-breadcrumbs" %}
-      </div>
+    <div class="mz-product-top-content">
+      {% include "modules/product-breadcrumbs" %}
     </div>
-    <div class="row">
+    <div>
         <div>
           <div class="mz-product-top-content">
             <h2 class="slashHeading"/>{{ skinCareSystem }}</h2>
@@ -59,7 +57,7 @@
                 </div>
               {% endif %}
             {% endwith %}
-            <div class="form-row actionable">
+            <div class="form-row actionable find-a-retailer">
               <a class="primary-btn" href="/store-locator">Find A Retailer</a>
             </div>
             {% with model|get_product_attribute("tenant~ingredient-highlights") as highlights %}
@@ -101,10 +99,8 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="social-sharing col-md-9 col-xs-12 mz-reset-padding-left{% if model.content.productImages.length <=1 %} mz-share-with-container-other{% endif %}">
-            {% dropzone "social-sharing" scope="template" %}
-        </div>
+    <div class="social-sharing col-md-9 col-xs-12 mz-reset-padding-left{% if model.content.productImages.length <=1 %} mz-share-with-container-other{% endif %}">
+        {% dropzone "social-sharing" scope="template" %}
     </div>
 
 {% if model.productType == themeSettings.familyProductType %}
