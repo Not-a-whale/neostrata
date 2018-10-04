@@ -1,13 +1,13 @@
 ﻿.product-carousel-listing {
-    height: 50rem;
-    padding: 0 1.5625rem;
+    min-height: 50rem;
+    padding: 0 7rem;
     .swiper-container{
         height: 100%;
         .product-item {
             .product-listing-container{
                 float: none;
                 margin: 0 auto;
-                width: 32rem;
+                min-width: 32rem;
                 position: relative;
                 border: none;
             }
@@ -17,13 +17,20 @@
         .icon(before, @icon-arrow_drop_up);
         background-image: none;
         font-size: 10rem;
+        &:focus{
+            &:before{
+                border: none;
+            }
+        }
     }
     .swiper-button-next{
         -webkit-transform: rotate(90deg);
         -moz-transform: rotate(90deg);
         -ms-transform: rotate(90deg);
         -o-transform: rotate(90deg);
+        right: 1rem;
         transform: rotate(90deg);
+        top: 22.2rem;
     }
     .swiper-button-prev{
         -webkit-transform: rotate(270deg);
@@ -31,6 +38,7 @@
         -ms-transform: rotate(270deg);
         -o-transform: rotate(270deg);
         transform: rotate(270deg);
+        left: 1rem;
+        top: 30rem;
     }
-
 }

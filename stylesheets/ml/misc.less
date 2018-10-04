@@ -1891,6 +1891,7 @@ ul.tabs {
 .product-item {
     padding: 0 1rem 4rem 0.5rem;
     .product-listing-container {
+        position: relative;
         border: .15rem solid #b3b3b3;
         padding: .5rem;
         float: left;
@@ -1912,13 +1913,11 @@ ul.tabs {
                 .zoom-container-listing{
                     position: relative;
                     overflow: hidden;
-
                     &:hover img{
                         -moz-transform: scale(1.2);
                         -webkit-transform: scale(1.2);
                         transform: scale(1.2);
                     }
-
                     img,
                     .mz-productlisting-imageplaceholder {
                         width: 100%;
@@ -1939,9 +1938,9 @@ ul.tabs {
         }
         .bottom-details {
             position: absolute;
-            bottom: 4.5rem;
-            right: 1.5rem;
-            left: 1.5rem;
+            bottom: .5rem;
+            right: .5rem;
+            left: .5rem;
             .mz-pricestack {
                 float: right;
                 .price-msrp{
