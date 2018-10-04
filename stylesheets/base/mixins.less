@@ -341,7 +341,7 @@
     line-height: 5.625rem;
 	padding: 0 5rem;
 
-	&:hover {
+	&:hover, &.selected{
 		color: @charcoal;
 		background: @color;
 		text-decoration: none;
@@ -355,7 +355,7 @@
 
 
 .button-prop(@color) when (@color = @charcoal) {
-	&:hover {
+	&:hover, &.selected{
 		color: @white;
 	}
 }
