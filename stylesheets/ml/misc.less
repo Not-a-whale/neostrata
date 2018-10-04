@@ -137,22 +137,24 @@
         }
         .ml-header-search-wrapper {
             position: absolute;
-            top: 53%;
+            top: 50%;
             transform: translateY(-50%);
-            left: 3rem;
+            left: 2rem;
             right: auto;
             font-size: 3rem;
             z-index: 2100;
-            width: 71%;
+            width: 75%;
 
             #searchbox {
+                height: 4rem;
                 .search-button{
                     .icon(before, @icon-search);
                     position: absolute;
                     right: -3.2rem;
-                    top: 0.3rem;
                     z-index: 2020;
                     cursor: pointer;
+                    top: 40%;
+                    transform: translateY(-50%);
                 }
                 .searchbox-button{
                     .icon(before, @icon-keyboard_arrow_right);
@@ -268,9 +270,10 @@
                 &.store-locator{
                     position: absolute;
                     right: -1rem;
-                    top: 50%;
+                    top: 46%;
                     transform: translateY(-50%);
                     z-index: 2020;
+                    line-height: 0;
                     i{
                         font-size: 4rem;
                         .icon(before, @icon-location);
@@ -1837,6 +1840,9 @@ ul.tabs {
     overflow: inherit;
     position: static;
       margin-bottom: 3rem;
+      >.mz-l-paginatedlist.main-directory-container{
+          margin-bottom: 0;
+      }
   }
   .title-sortby-wrappper{
       text-align: center;
@@ -1856,13 +1862,7 @@ ul.tabs {
         display: none;
         .btn-group {
             .btn {
-                color: #000;
-                border: 1px solid #ccc;
                 height: 33px;
-                font-size: 13px;
-                line-height: 14px;
-                padding: 8px 10px;
-                letter-spacing: 1px;
                 &.selected {
                     background-color: #e1e1e1;
                     cursor: default;
@@ -1878,12 +1878,6 @@ ul.tabs {
                     box-shadow: none;
                 }
             }
-        }
-    }
-    .pagination{
-        margin: 0;
-        a,span{
-            color: #000;
         }
     }
     .mz-pricestack-price-upper{
@@ -1915,17 +1909,31 @@ ul.tabs {
                 }
             }
             .mz-productlisting-image {
-                img,
-                .mz-productlisting-imageplaceholder {
-                    width: 100%;
-                    max-width: 100%;
-                    min-height: 40rem;
-                    >.mz-productlisting-imageplaceholdertext {
-                        line-height: 40rem;
+                .zoom-container-listing{
+                    position: relative;
+                    overflow: hidden;
+
+                    &:hover img{
+                        -moz-transform: scale(1.2);
+                        -webkit-transform: scale(1.2);
+                        transform: scale(1.2);
                     }
-                }
-                .img-responsive{
-                    display: inline-block;
+
+                    img,
+                    .mz-productlisting-imageplaceholder {
+                        width: 100%;
+                        max-width: 100%;
+                        min-height: 40rem;
+                        -moz-transition: all 0.5s;
+                        -webkit-transition: all 0.5s;
+                        transition: all 0.5s;
+                        >.mz-productlisting-imageplaceholdertext {
+                            line-height: 40rem;
+                        }
+                    }
+                    .img-responsive{
+                        display: inline-block;
+                    }
                 }
             }
         }
@@ -2129,6 +2137,9 @@ ul.tabs {
     padding: 0;
     >.facet-headers{
         ul{
+            .first-tab.active{
+                background-color: @lightGray;
+            }
             li.second-tab{
                 margin-left: -0.1875rem;
                 cursor: pointer;
@@ -2160,7 +2171,7 @@ ul.tabs {
 //Filter
 
 .filer-options{
-    padding: 0;
+    padding: 0 1px 0 0;
     overflow: hidden;
     margin: 0;
     li{
@@ -3293,4 +3304,25 @@ ul.tabs {
 }
 .custom-swiper{
     height: 200px;
+}
+
+.pagination-container{
+    display: inline-block;
+    margin-top: 0;
+    margin-left: -0.1875rem;
+    padding-left: 0;
+    >li{
+        display: inline;
+        >span{
+            position: relative;
+            float: left;
+            padding-right: 1rem;
+            padding-left: 1rem;
+            &.mz-pagenumbers-number{
+                text-decoration: none;
+                line-height: 6rem;
+                font-size: 1.875rem;
+            }
+        }
+    }
 }
