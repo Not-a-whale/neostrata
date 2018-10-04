@@ -2363,9 +2363,11 @@ ul.tabs {
 
     .mz-pagetitle{
       .h3;
+      margin: 0;
     }
     .mz-pagesubtitle{
       .p3;
+      margin: 0;
     }
 
     .prize-mobile-view {
@@ -2386,6 +2388,10 @@ ul.tabs {
       .p4;
     }
 
+    .mz-productdetail-price {
+      display: inline-block;
+    }
+
     .price-msrp {
       text-transform: uppercase;
       font-size: .75rem;
@@ -2402,6 +2408,10 @@ ul.tabs {
     }
 
     .mz-all-review-container{
+
+      border-right: 0.0625em solid @charcoal;
+      margin-right: 2.5em;
+      display: inline-block;
 
         .mz-reviews-pdp-stars{
             color: @colorGreen;
@@ -2423,7 +2433,18 @@ ul.tabs {
       float: none;
       clear: both;
       width: 100%;
-      text-align: center;
+
+      .center-mobile {
+        text-align: center;
+      }
+  }
+}
+
+.mz-productimages {
+  @media (max-width: 767px) {
+      float: none;
+      clear: both;
+      width: 100%;
   }
 }
 

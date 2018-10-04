@@ -8,7 +8,7 @@
     {% include "modules/product/product-top-carousel" %}
     {% endif %}
     <div class="row">
-      <div class="col-xs-12 col-sm-6">
+      <div class="mz-product-top-content">
         {% include "modules/product-breadcrumbs" %}
       </div>
     </div>
@@ -16,23 +16,19 @@
         <div>
           <div class="mz-product-top-content">
             <h2 class="slashHeading"/>{{ skinCareSystem }}</h2>
-            <h1 class="mz-pagetitle" itemprop="name">{{ model.content.productName|replace("'","&rsquo;")|safe }}</h1>
-            <h2 class="mz-pagesubtitle" >
+            <h1 class="mz-pagetitle center-mobile" itemprop="name">{{ model.content.productName|replace("'","&rsquo;")|safe }}</h1>
+            <h2 class="mz-pagesubtitle center-mobile" >
               <span itemscope="description" itemprop="description">{{ model.content.productShortDescription|safe }}</span>
             </h2>
-            <div >
-                <div >
-                  <div class="mz-all-review-container">
-                      <span class="mz-reviews-pdp-stars">
-                        {% dropzone "reviews-pdp-stars" scope="template" %}
-                      </span>
-                  </div>
-                </div>
-                <div >
-                    <div itemprop="offers" itemscope itemtype="http://schema.org/Offer" class="mz-productdetail-price mz-l-stack-section">
-                    {% include "modules/product/price-stack" %}
-                    </div>
-                </div>
+            <div class="center-mobile">
+              <div class="mz-all-review-container">
+                <span class="mz-reviews-pdp-stars">
+                  {% dropzone "reviews-pdp-stars" scope="template" %}
+                </span>
+              </div>
+              <div itemprop="offers" itemscope itemtype="http://schema.org/Offer" class="mz-productdetail-price mz-l-stack-section">
+              {% include "modules/product/price-stack" %}
+              </div>
             </div>
           </div>
           <div data-mz-productimages class="mz-productimages mz-product-left-container margin-top-15">
