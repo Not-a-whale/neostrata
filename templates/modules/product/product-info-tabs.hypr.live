@@ -34,7 +34,7 @@
     {% if details %}
       <div id="tab2" class="tab-pane fade">
         <div class="tab-content-2">
-          {{ details }}
+          {{ details|safe }}
         </div>
       </div>
     {% endif %}
