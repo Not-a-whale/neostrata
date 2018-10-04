@@ -2,9 +2,6 @@
     <div class="mz-l-sidebaritem">
         <div class="filter">
             <div class="faceting-header text-uppercase">
-                <span data-mz-filters-collapse class="filter-collapse pull-right" id="collapseIcon"><i class="fa fa-plus" aria-hidden="true"></i>
-                    <span class="hide">Refine Button</span>
-                </span>
                 {% if pageContext.search.facets %}
                 <button class="btn-transparent text-uppercase mz-facetingform-clearall pull-right" data-mz-action="clearFacets" data-mz-url="{% make_url "facet" "clear"  %}">{{ labels.clearAllFilters }} <i data-mz-action="clearFacets" data-mz-url="{% make_url "facet" "clear"  %}" class="fa fa-times-circle" aria-hidden="true"></i></button>
                 {% endif %}
@@ -93,11 +90,11 @@
                     {% else %}
                         {% if facet.values and facet.facetType != "Hierarchy" %}
                             <div class="mz-l-sidebaritem">
-                                <div id="filter-{{facet.field |lower|replace('~','-')}}" class="faceting-header correct" data-mz-filter-collapse="{{ forloop.index0 }}">
-                                <button type="button" class="btn primary-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    {{ facet.label }} <span class="caret"></span>
-                                  </button>
-                                <ul class="dropdown-menu filter-dropdown" id="filterList{{ forloop.index0 }}">
+                                <div id="filter-{{facet.field |lower|replace('~','-')}}" class="faceting-header" data-mz-filter-collapse="{{ forloop.index0 }}">
+                                <button type="button" class="dropdown-select dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{ facet.label }}<i class="dropdown-icon"></i>
+                                </button>
+                                <ul class="dropdown-menu filter-dropdown dropdown-select-list" id="filterList{{ forloop.index0 }}">
                                     <li class="hide" aria-hidden="true">For Blank</li>
                                     {% if facet.values and facet.field == "tenant~COLOR" %}
                                         {% include "modules/facets/facet-color" with allfacets=facet.values and isDirectory="true" %}

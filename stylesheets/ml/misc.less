@@ -116,6 +116,10 @@
                 display: block;
                 width: 22rem;
                 height: 4rem;
+                @media (max-width: 380px) {
+                    width: 15rem;
+                    height: 3rem;
+                }
                 background-image: url('../resources/images/neostrata_logo.svg');
                 background-repeat: no-repeat;
                 background-size: contain;
@@ -1832,6 +1836,7 @@ ul.tabs {
   .mz-l-paginatedlist{
     overflow: inherit;
     position: static;
+      margin-bottom: 3rem;
   }
   .title-sortby-wrappper{
       text-align: center;
@@ -1841,13 +1846,6 @@ ul.tabs {
   .mz-l-paginatedlist-header{
          width: 100%;
         float: left;
-        .title-sortby-wrappper{
-            .mz-sortby{
-                line-height: 4.5;
-                display: block;
-                float: left ;
-            }
-        }
   }
   .main-directory-container{
         width: 100%;
@@ -1929,8 +1927,12 @@ ul.tabs {
             position: absolute;
             bottom: .5rem;
             right: 1rem;
+            left: 1rem;
             .mz-pricestack {
-
+                float: right;
+                .price-msrp{
+                    display: none;
+                }
             }
             .bvr-inline-rating {
                 float: left;
@@ -2109,53 +2111,37 @@ ul.tabs {
     ul{
         padding-right: 0;
         border-bottom: none;
+        z-index: 10;
+        margin: 0;
         li{
-            height: 55px;
-            border: 1px solid @inputBorder;
+            padding: 0 1rem;
             width: 50%;
-            line-height: 55px;
-            border-left: none;
-            font-size: 16px;
-            i{
-                padding-left: 10px;
-            }
-            .fa-plus, .fa-minus{
-                display: none;
-            }
-            &.active{
-                border-bottom: none;
-            }
-            &.sort-width{
-                border: 1px solid @inputBorder;
-            }
-            &.border-tabs{
-                border-bottom: 1px solid @inputBorder;
-            }
-        }
-        li.first-tab,li.second-tab{
-            .fa-angle-down{
-                display: inline;
-            }
-            .fa-angle-up{
-                display: none;
-            }
-            &.active{
-                .fa-angle-down{
-                    display: none;
-                }
-                .fa-angle-up{
-                    display: inline;
-                }
-            }
         }
     }
 }
 .facets-block{
     padding: 0;
+    >.facet-headers{
+        ul{
+            li.second-tab{
+                margin-left: -0.1875rem;
+                cursor: pointer;
+            }
+        }
+    }
+    .tab-content{
+        margin-bottom: 3rem;
+        .tab-pane{
+            float: none;
+            padding: 0;
+        }
+        .mz-facetingform{
+            .mz-l-sidebaritem{
+                margin: 0;
+            }
+        }
+    }
     .filter-dropdown{
-        margin: 2px 0 0;
-        padding:@defaultGutter;
-        opacity: 0.9;
         .mz-facetingform-value{
             margin: 1rem;
             input{
@@ -2168,9 +2154,9 @@ ul.tabs {
 //Filter
 
 .filer-options{
-    padding: 3px 0;
+    padding: 0;
     overflow: hidden;
-    margin-bottom: 6px;
+    margin: 0;
     li{
         font-size: @fontSizeLarger;
         color: @colorMediumGray;
@@ -2191,6 +2177,9 @@ ul.tabs {
     background-color: @colorLightGray;
 }
 .filter{
+    .faceting-header{
+        display: none;
+    }
     .filter-collapse{
         font-size: 18px;
         color: #333;
@@ -2206,13 +2195,9 @@ ul.tabs {
     position: relative;
 }
 .mz-clear-btn-mobile{
-    background: #fff;
-    opacity: 0.95;
     z-index: 10;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 1px;
+    position: relative;
+    margin: 1rem 0;
     text-align: center;
     .mz-facetingform-clearall{
         padding: 1rem 0;
@@ -2225,11 +2210,24 @@ ul.tabs {
 
 #filterOptions{
     .mz-l-sidebaritem{
-        margin: 0.2rem;
-        display: inline-block;
+        margin: 0.2rem 0.2rem -0.4rem 0;
+        display: block;
+        .dropdown-select{
+            width: 100%;
+            position: relative;
+            .dropdown-icon{
+                float: right;
+            }
+        }
+        .dropdown-select-list{
+            position: relative;
+        }
     }
     .faceting-header{
         position: relative;
+        .filter-dropdown li{
+            padding: 1rem 0;
+        }
         .btn-transparent{
             color: #000000;
         }
@@ -2600,6 +2598,7 @@ ul.tabs {
 
   .tab-content {
     margin-top: 2rem;
+    min-height: 6rem;
   }
 }
 //Product size options
