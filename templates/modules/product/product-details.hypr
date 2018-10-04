@@ -9,43 +9,36 @@
     {% endif %}
     <div class="row">
       <div class="col-xs-12 col-sm-6">
-      </div>
-      <div class="col-xs-12 col-sm-6">
         {% include "modules/product-breadcrumbs" %}
       </div>
     </div>
     <div class="row">
-        <div class="col-xs-12 col-sm-6">
-            <div data-mz-productimages class="mz-productimages mz-product-left-container margin-top-15">
-                {% include "modules/product/product-images" %}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-6">
-              <div >
-                <h2 class="slashHeading"/>{{ skinCareSystem }}</h2>
-              </div>
-            <div class="mz-product-top-content">
-                <h1 class="mz-pagetitle" itemprop="name">{{ model.content.productName|replace("'","&rsquo;")|safe }}</h1>
-                <h2 class="mz-pagesubtitle" >
-                  <span itemscope="description" itemprop="description">{{ model.content.productShortDescription|safe }}</span>
-                </h2>
-                <div class="row">
-                    <div class="col-xs-5">
-                      <div class="mz-all-review-container">
-                          <span class="mz-reviews-pdp-stars">
-                            {% dropzone "reviews-pdp-stars" scope="template" %}
-                          </span>
-                      </div>
-                    </div>
-                    <div class="col-xs-7">
-                        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer" class="mz-productdetail-price mz-l-stack-section">
-                        {% include "modules/product/price-stack" %}
-                        </div>
+        <div>
+          <div class="mz-product-top-content">
+            <h2 class="slashHeading"/>{{ skinCareSystem }}</h2>
+            <h1 class="mz-pagetitle" itemprop="name">{{ model.content.productName|replace("'","&rsquo;")|safe }}</h1>
+            <h2 class="mz-pagesubtitle" >
+              <span itemscope="description" itemprop="description">{{ model.content.productShortDescription|safe }}</span>
+            </h2>
+            <div >
+                <div >
+                  <div class="mz-all-review-container">
+                      <span class="mz-reviews-pdp-stars">
+                        {% dropzone "reviews-pdp-stars" scope="template" %}
+                      </span>
+                  </div>
+                </div>
+                <div >
+                    <div itemprop="offers" itemscope itemtype="http://schema.org/Offer" class="mz-productdetail-price mz-l-stack-section">
+                    {% include "modules/product/price-stack" %}
                     </div>
                 </div>
             </div>
-            <div class="clearfix"></div>
-
+          </div>
+          <div data-mz-productimages class="mz-productimages mz-product-left-container margin-top-15">
+            {% include "modules/product/product-images" %}
+          </div>
+          <div class="mz-product-top-content">
             {% with model|get_product_attribute("tenant~results") as results %}
               {% if results %}
                 <div class="product-results">
@@ -138,7 +131,7 @@
       {% include "modules/product/product-info-tabs" %}
     </div>
     <div class="clearfix"></div>
-    <div class="mz-middle-breakpoint hidden-xs">
+    <div class="mz-middle-breakpoint">
         {% dropzone "product-middle-breakpoint" scope="template" %}
     </div>
 </div>
