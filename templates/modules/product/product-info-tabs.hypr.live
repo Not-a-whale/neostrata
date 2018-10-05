@@ -5,7 +5,7 @@
 {% if pageContext.isDesktop or pageContext.isTablet %}
 
 <ul class="nav nav-tabs">
-    {% if results %}
+    {% if beforeAndAfter %}
         <li class="active"><a data-toggle="tab" href="#tab1"><span>Results</span></a></li>
     {% endif %}
     {% if details %}
