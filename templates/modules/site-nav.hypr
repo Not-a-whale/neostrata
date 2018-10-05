@@ -1,4 +1,7 @@
 <nav class="mz-sitenav collapse" id="ml-nav">
+    <div class="close-menu" >
+        <a data-target="#ml-nav" data-toggle="collapse"></a>
+    </div>
     <div class="">
       <ul class="mz-sitenav-list"
           data-mz-contextify='.mz-sitenav-link[href="{{ navigation.currentNode.url }}"]'
@@ -9,16 +12,16 @@
             {% if not link.isHidden and forloop.counter0 < themeSettings.maxTopLevelNavItems and link.url != "/home" %}
             <li class="mz-sitenav-item">
               <div class="mz-sitenav-item-inner">
-                <a class="mz-sitenav-link" {% if link.openInNewWindow %}target='_blank'{% endif %} href="{{link.url}}">{{link.name|truncatechars(themeSettings.maxTopLevelNavLabelLength)|safe}}</a>
+                <a class="mz-sitenav-link" {% if link.openInNewWindow %}target='_blank'{% endif %}>{{link.name|truncatechars(themeSettings.maxTopLevelNavLabelLength)|safe}}</a>
                 {% if link.items %}
                 <!--div class="arrow-up"></div-->
                 <div class="mz-sitenav-sub-container">
                   {% if link.items %}
-                    <div class="row">
+                    <div class="row container-mega-menu">
                         {% with "id eq {0}"|string_format(link.originalId) as filter %}
                             {% include_entities "modules/category-attributes" listFQN=themeSettings.categoryEntityName filter=filter %}
                         {% endwith %}
-                        <div class="sub-level-col col-sm-3">
+                        <div class="sub-level-col">
                         {% for sublink in link.items %}
                             {% if not sublink.isHidden %}
                                 {% with "id eq {0}"|string_format(sublink.originalId) as filter %}
@@ -26,15 +29,13 @@
                                 {% endwith %}
                                 <div class="mz-sitenav-item sub-level-li">
                                     <a class="mz-sitenav-link" {% if link.openInNewWindow %}target='_blank'{% endif %} href="{{sublink.url}}">{{ sublink.name|safe }}</a>
-                                </div>
                                 {% for lookup in themeSettings.megaMenu.categoryLookups %}
                                   {% if lookup.url == sublink.url %}
-                                    {{ lookup.url }} - {{lookup.linkedCategoryCode}}<br/>
                                     {% with navigation.tree|findwhere('categoryCode', lookup.linkedCategoryCode) as linkedCategory %}
                                       {% for subsublink in linkedCategory.items %}
                                         {% if not subsublink.isHidden %}
                                           <div class="mz-sitenav-item sub-sub-level-li">
-                                            <a class="mz-sitenav-link" {% if link.openInNewWindow %}target='_blank'{% endif %} href="{{subsublink.url}}"> * {{ subsublink.name|safe }}</a>
+                                            <a class="mz-sitenav-link" {% if link.openInNewWindow %}target='_blank'{% endif %} href="{{subsublink.url}}">{{ subsublink.name|safe }}</a>
                                           </div>
                                         {% endif %}
                                       {% endfor %}
@@ -48,6 +49,7 @@
                                         </div>
                                     {% endif %}
                                 {% endfor %}
+                                </div>
                             {% endif %}
                         {% endfor %}
                         </div>
