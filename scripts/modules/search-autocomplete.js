@@ -109,7 +109,7 @@
             $('#searchbox').animate( {width:'0'}, {duration:400, easing: 'linear', done: function(){
                 $('#searchbox input').css('border-color', 'transparent');
                 $('#searchbox').addClass('hidden-search');
-                $('.ml-header-search-wrapper').css('z-index', '2020');
+                $('.ml-header-search-wrapper').css('z-index', '2018');
             }});
             if ( window_width >= 768 ) {
                 $('#searchbox .search-button').animate( {width:'0%'}, 400, 'linear');
@@ -144,7 +144,7 @@
                 $('#searchbox input').animate( {width:'100%', padding: '0 4.44rem 0 2.875rem'}, 400, 'linear');
                 $('#searchbox').animate( {width:'100%'}, {duration:400, easing: 'linear', done: function(){ $parent.removeClass('hidden-search'); } } );
                 if ( window_width >= 768 ) {
-                    $('.ml-header-search-wrapper').css('z-index', '5');
+                    $('.ml-header-search-wrapper').css('z-index', '2050');
                     if ( window_width >= 992 ) {
                         $('#searchbox .search-button').animate( {width:'98%'}, 400, 'linear');
                     }

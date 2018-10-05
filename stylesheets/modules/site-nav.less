@@ -44,16 +44,11 @@
         top: @navHeight - 1;
         position: absolute;
         z-index: 1;
-        visibility: hidden;
-        .transition(visibility 0s ease-out 0s);
 
         > .mz-sitenav-item {
 
 
             .mz-sitenav-link {
-                .transition-property(~"height, padding, opacity");
-                .transition-duration(~"0s, 0s, .08s");
-                .transition-delay(~"0s, 0s, 0s");
                 height: 0px;
                 opacity: 0;
                 padding: 0;
@@ -113,7 +108,8 @@
         -webkit-box-shadow: 0 6px 12px rgba(0,0,0,0.175);
         box-shadow: 0 6px 12px rgba(0,0,0,0.175);
         top: 5rem;
-        left: -12px;
+        left: 0;
+        right: 0;
         padding: 0 15px 15px 15px;
         border: 1px solid rgba(0,0,0,0.15);
         background: white;
@@ -237,7 +233,7 @@
 }
 
 .sticky-nav{
-    .mz-sitenav {
+    .mz-sitenav.collapse:not(.in) {
         .mz-sitenav-list{
             .mz-sitenav-item{
                 >.mz-sitenav-item-inner>.mz-sitenav-link{
@@ -254,9 +250,15 @@
 
 @media (max-width: 991px) {
     .mz-sitenav {
+        &.collapsing{
+            -webkit-transition: none;
+            transition: none;
+            display: none;
+        }
+        height: auto;
         z-index: 2150;
         position: absolute;
-        top: 0;
+        top: 2rem;
         width: 90%;
         border: 1px solid @charcoal;
         .close-menu{
@@ -265,6 +267,55 @@
             a{
                 .icon(before, @icon-close);
                 text-decoration: none;
+            }
+        }
+        .mz-sitenav-list{
+            >.mz-sitenav-item{
+                border-bottom: @midGray;
+                padding: 0;
+                >.mz-sitenav-item-inner{
+                    >.mz-sitenav-link{
+                        padding-left: 4.375rem;
+                    }
+                    .mz-sitenav-link{
+                        line-height: 2.5rem;
+                    }
+                    .mz-sitenav-sub-container{
+                        position: relative;
+                        display: block;
+                        max-height: 0;
+                        padding: 0;
+                        overflow: hidden;
+                        //transition: max-height 0.5s ease-in;
+                        top: 0;
+                        left: 0!important;
+                        box-shadow: none;
+                        border: none;
+                        &.expand-mobile-menu{
+                            max-height: 1000px;
+                        }
+                        .container-mega-menu{
+                            margin: 0;
+                        }
+                        .mz-sitenav-link{
+                            padding: 0;
+                        }
+                        .sub-level-li{
+                            padding-left: 7.5rem;
+                            .sub-level-li-children{
+                                max-height: 0;
+                                overflow: hidden;
+                                &.expand-mobile-menu{
+                                    max-height: 1000px;
+                                }
+                            }
+                            .sub-sub-level-li{
+                                border-bottom: none;
+                                padding-left: 3.125rem;
+                            }
+                        }
+                    }
+                }
             }
         }
     }
