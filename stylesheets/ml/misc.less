@@ -2596,7 +2596,9 @@ ul.tabs {
 
   .product-info-tabs-container {
     margin-top: 2rem;
-
+    margin-bottom: 5rem;
+    min-height: 20rem;
+    
     ul.nav-tabs {
       font-size: 1.5rem;
       letter-spacing: .05em;
@@ -2645,6 +2647,41 @@ ul.tabs {
   .tab-content {
     margin-top: 2rem;
     min-height: 6rem;
+  }
+
+  .beforeAndAfter {
+    width: 50%;
+    position: relative;
+
+    .before {
+      width:49%;
+      display: inline-block;
+    }
+    .after {
+      width: 49%;
+      display: inline-block;
+    }
+    .beforeLabel {
+      .p3;
+      position: absolute;
+      transform: rotate(270deg);
+      top: 40%;
+      left: 0;
+      text-transform: uppercase;
+    }
+    .afterLabel {
+      .p3;
+      position: absolute;
+      transform: rotate(90deg);
+      top: 40%;
+      right: 0;
+      text-transform: uppercase;
+    }
+
+    .description {
+      .p4;
+    }
+
   }
 }
 //Product size options
@@ -2757,7 +2794,7 @@ ul.tabs {
     top: 45px;
 }
 .mz-pricestack-price-upper {
-    &::before {
+    &:before {
         color: @textColor;
     }
 }
