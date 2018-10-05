@@ -78,15 +78,10 @@
     }
 
     .mz-sitenav-link {
-        color: #eeeeee;
         text-decoration: none;
         display: inline-block;
-        padding: 10px @gutter*.75;//@gutter*.325;
         font-size: @fontSize;
         position: relative;
-        &:visited {
-            color: #eeeeee;
-        }
     }
 
     @media only screen {
@@ -196,11 +191,10 @@
     }
     .mz-sitenav-link {
         font-size: 13px;
-        padding: 8px 0;
-        color: #363636;
+        color: @charcoal;
         font-weight: bold;
         &:visited {
-            color: #363636;
+            color: @charcoal;
         }
         &.is-current {
             background-color: inherit;
@@ -264,7 +258,7 @@
         position: absolute;
         top: 0;
         width: 90%;
-        border: .15rem solid;
+        border: 1px solid @charcoal;
         .close-menu{
             display: block;
             font-size: 3rem;
@@ -371,6 +365,7 @@
             >.mz-sitenav-item {
                 >.mz-sitenav-item-inner>.mz-sitenav-link{
                     height: 6rem;
+                    cursor: pointer;
                 }
                 text-align: center;
                 width: 13%;
