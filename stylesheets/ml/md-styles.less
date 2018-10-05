@@ -1,38 +1,51 @@
 @media (min-width: 992px) {
     //Start
     //Header
-    .mz-pageheader {
-        height: 91px;
-        .ml-header-content {
-            height: 91px;
-            .ml-header-logo-wrapper {
-                position: absolute;
-                top: 23px;
-                right: auto;
-                bottom: auto;
-                left: 0;
-                .logo {
-                    width: 363px;
-                    height: 66px;
-                    background-image: url('../resources/images/neostrata-logo-sm.png');
-                    background-repeat: no-repeat;
+    #nav-header-container{
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 2010;
+        &.sticky-nav {
+            .mz-pageheader {
+                height: 5.8rem;
+                .ml-header-content {
+                    height: 5.8rem;
+                    .ml-header-logo-wrapper {
+                        .logo {
+                            height: 2.3rem;
+                            width: 20rem;
+                            &:after {
+                                content: '';
+                            }
+                        }
+                    }
                 }
             }
+            .mz-sitenav {
+                top: 2rem;
+            }
+        }
+    }
+    .mz-pageheader {
+        .ml-header-content {
             .ml-header-search-wrapper {
-                width: 345px;
-                position: absolute;
-                top: 38px;
-                right: auto;
-                bottom: auto;
-                left: 35%;
+                font-size: 2.5rem;
+                right: 8%;
+                width: 26%;
+                top: 50%;
+                #searchbox{
+                    input{
+                        &.tt-hint{
+                            border: 0;
+                        }
+                    }
+                    .search-button{
+                        width: 0;
+                    }
+                }
             }
-            .ml-header-links-wrapper {
-                position: absolute;
-                top: 10px;
-                right: -19px;
-                bottom: auto;
-                left: auto;
-            }
+
             .ml-header-global-cart-wrapper {
                 position: absolute;
                 top: auto;
@@ -48,36 +61,189 @@
                     padding-bottom: 5px;
 	            }
             }
+
+            .ml-header-links-wrapper {
+                .mz-utilitynav-item{
+                    padding: 0 0px 0 15px;
+                    &.site-msg{
+                        display:inherit;
+                    }
+                    &.navbar-collapse-control{
+                        display: none;
+                    }
+                    .popover{
+                        top: -10px;
+                        .popover-content{
+                            .my-account-details{
+                                a{
+                                    p{display: block; }
+                                }
+                            }
+                        }
+                    }
+                    &.store-locator{
+                        i{
+                            font-size: 3.3rem;
+                        }
+                    }
+                }
+            }
+            .ml-header-lang-wrapper {
+                right: -2%;
+                select{
+                    width: 4rem;
+                }
+            }
+
         }
     }
-    //Navigation
-    .mz-sitenav {
+    #page-content{
+        margin-top: 9rem;
+        &.sticky-nav-present{
+            margin-top: 5.8rem;
+        }
+
+    }
+
+    //Footer
+    .mz-pagefooter {
+	    &.ml-global-footer{
+	        .container-fluid {
+                margin-left: 8.7%;
+                margin-right: 5.8%;
+            }
+	    }
+    }
+    footer {
+        .container-fluid {
+            margin-left: 9.3rem;
+            margin-right: 3.75rem;
+        }
+        .mz-pagefooter-copyright {
+            margin-right: 4rem;
+        }
+    }
+
+    .facets-block{
+        clear: both;
+        >.facet-headers{
+            float: right;
+            ul{
+                li{
+                    width: auto;
+                }
+                .first-tab{
+                    display: none;
+                }
+            }
+        }
+        .filter-dropdown{
+            li {
+
+            }
+        }
+        .tab-content{
+            width:100%;
+            position: relative;
+            .mz-l-paginatedlist-header{
+                position: absolute;
+                right: 0;
+                width: 17rem;
+                top: 6.1rem;
+                z-index: 99;
+                .title-sortby-wrappper{
+                    margin: 0;
+                }
+            }
+            .mz-filter-mobile{
+                opacity: 1;
+                background: none;
+            }
+            #mz-drop-zone-sidebar-above-facets{
+                display: none;
+            }
+            .pagesort-list{
+                position: static;
+                background: rgba(255, 255, 255, 0.95);
+                box-shadow: 0 2px 8px @gray-light;
+            }
+        }
+        .facet-content{
+            display: block !important;
+            padding: 0;
+        }
+    }
+    #filterOptions {
+        margin-top: 0;
+        .mz-l-sidebaritem {
+            margin: 0;
+            padding: 0 .5rem;
+            display: inline-block;
+            &:first-child{
+                padding-left: 0;
+            }
+            .dropdown-select{
+                .dropdown-icon{
+                    float: none;
+                }
+            }
+            .dropdown-select-list{
+                position: absolute;
+            }
+        }
+    }
+    .options-pos{
+        background-color: transparent;
+    }
+    .filter{
+        padding: 0;
+        height: 0;
+    }
+    .filer-options{
+        margin: 0 1rem 0.5rem 0;
+        float: left;
+        li{
+            padding: 0.5rem 1rem 0.2rem;
+            background: @colorLightGray;
+            min-width: 75px;
+            margin-right: 1rem;
+            i{
+                font-size: 1.5rem;
+                margin-left: 1rem;
+                cursor: pointer;
+                float: right;
+            }
+        }
+    }
+    .mz-clear-btn-mobile{
+        float: left;
+        margin: 0;
+        .mz-facetingform-clearall{
+            margin-bottom: 0;
+            padding: 0.6rem 0;
+            i{
+                font-size: 1.5rem;
+            }
+        }
+    }
+    .option-pos{
+        background-color: transparent;
+    }
+
+    .selected-filter{
+        float: left;
+        width: 100%;
         display: block;
-        .mz-sitenav-link {
-            font-size: 14px;
-        }
-        .ml-navbar-separator {
-            &:after {
-                margin: 8px 15px;
-            }
-        }
-        .mz-sitenav-sub-container{
-            .sub-level-image, .sub-level-col {
-                width: 230px;
-                min-width: 225px;
-                img {
-                    max-width: 100%;
-                }
-                h2{
-                    font-size: 18px;
-                    padding-top: 0px;
-                }
-                a{
-                    font-weight: normal;
-                }
+
+        .btn-transparent{
+            margin: 16px 0 5px 0;
+            color: #303030;
+            i{
+                display: none;
             }
         }
     }
+
     // Common to both List and Grid View
         .mz-productlisting-image {
             position: relative;
@@ -107,22 +273,7 @@
         }
     // Product Directory
     .mz-productlist {
-        // Grid View
-        .grid-view {
-            .mz-productlist-item {
-                .mz-productlisting-info {
-                    padding: 0 10px;
-                }
-                .mz-productlisting-image {
-                    .mz-productlisting-imageplaceholder, img {
-                        max-height: 265px;
-                        >.mz-productlisting-imageplaceholdertext {
-                            line-height: 265px;
-                        }
-                    }
-                }
-            }
-        }
+
         //List View
         .list-view{
             .product-image-swatch-wrapper {
@@ -218,6 +369,9 @@
         }
      }
      .mz-category{
+         .mz-pagingcontrols{
+             display: block;
+         }
      }
      .mz-l-carousel {
         .bx-wrapper {

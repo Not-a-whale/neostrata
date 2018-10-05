@@ -1,10 +1,6 @@
 ﻿.mz-l-paginatedlist {
     overflow: auto;
     position: relative;
-    .mz-sortby {
-        float: left;
-        margin-right: 0;
-    }
     .mz-pagingcontrols {
         float: right;
         margin-left: auto;
@@ -21,12 +17,14 @@
     }
     .mz-l-paginatedlist-header {
         .clearfix();
-        margin-bottom: @gutter/2;
         padding-top: 1px;
         position: relative;
     }
     .mz-l-paginatedlist-footer {
         .clearfix();
+        .back-to-top{
+            float: left;
+        }
         .mz-pagenumbers {
             margin-top: 0;
         }

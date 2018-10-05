@@ -7,13 +7,14 @@
 {% block body-content %}
 
 {% require_script "pages/category" %}
+{% require_script "widgets/bazaarvoice" %}
 
-<div data-mz-category="{{model.categoryId}}" class="mz-l-container">
+<div data-mz-category="{{model.categoryId}}" class="mz-l-container container">
     {% include "pages/category-interior" %}
 </div>
 <div class="quickviewSlider">
 {% block quickview-slider %}
-    {% include "modules/product/product-quick-view" %}            
+    {% include "modules/product/product-quick-view" %}
 {% endblock quickview-slider %}
 </div>
 {% require_script "modules/quickview" %}

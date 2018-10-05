@@ -5,8 +5,6 @@
 
 .mz-pageheader {
     position: relative;
-    height: 154px;
-    background: #e5e6e7;
     &.mz-pageheader-hasbanner {
         background: #eee url('{{themeSettings.bannerImage}}') {{ themeSettings.bannerImageRepeat }};
     }
@@ -33,9 +31,8 @@
     @media only screen {
         @media (max-width: 768px) {
             height: auto;
-            .mz-storebranding, .mz-searchbox, .mz-utilitynav {
+            .mz-storebranding, .mz-searchbox {
                 position: relative;
-                margin-bottom: 10px;
                 clear: both;
                 top: 0;
                 left: 0;

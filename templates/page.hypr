@@ -2,29 +2,23 @@
 {% block doctype %}
 <!doctype html>
 {% endblock doctype %}
-
 {% comment %}
     The comment tag lets you write comments that will be visible when editing the template file, but don't appear in the rendered HTML. It's essentially just an "ignore this" tag.
-{% endcomment %}
-
-{% comment %}
+{% endcomment %}{% comment %}
     The conditional statements below detect if visitor is on a particular
     version of IE and adds the appropriate classes to the HTML element. You can then target
     these browsers in your CSS without hacks, like:
-
         .thing {
         padding: 10px;
         }
         .ie6 .thing {
         padding: 12px;
         }
-
     no-js:
     The Modernizr library we're using will replace the class "no-js" with "js" if javascript
     available. Again you can use this as a way to make sensible fallbacks if javascript
     is not available.
 {% endcomment %}
-
 {% block open-html-tag %}
 <!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
@@ -37,11 +31,11 @@
 
     {% block head-tag %}
     <head>
+        <meta charset="utf-8">
 
         {% include "modules/json-required-for-hyprlive" %}
 
         {% block meta-tags %}
-        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0, user-scalable=no">
         <meta name="description" content="{{ PageContext.MetaDescription }}">
         <meta name="keywords" content="{{ PageContext.MetaKeywords }}">
@@ -81,6 +75,7 @@
 
         {% block stylesheets %}
         <link rel="stylesheet" href="{% make_url "stylesheet" "/stylesheets/vendor/bootstrap-3.3.7/css/bootstrap.min.css" %}" title="default" />
+        <link rel="stylesheet" href="{% make_url "stylesheet" "/stylesheets/vendor/swiper/swiper.min.css" %}" title="default" />
         <link rel="stylesheet" href="{% make_url "stylesheet" "/stylesheets/storefront.less" %}" title="default" />
         <link rel="stylesheet" type="text/css" href="{% make_url "stylesheet" "/stylesheets/vendor/font-awesome/css/font-awesome.min.css" %}" media="all">
         <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/7074216/7036592/css/fonts.css" />
@@ -109,12 +104,14 @@
             {% block utility-bar %}
                 {% include "modules/utility-bar/header" %}
             {% endblock utility-bar %}
+            <div id="nav-header-container">
             {% block page-header %}
 				{% include "modules/page-header" %}
 			{% endblock page-header %}
             {% block site-nav %}
 				{% include "modules/site-nav" %}
             {% endblock site-nav %}
+            </div>
             <div role="main" id="page-content" class="mz-l-pagecontent">
                 <div class="container-fluid">
                 <div class="row">
@@ -142,21 +139,7 @@
             {% include "modules/page-footer" %}
             {% endblock page-footer %}
 
-            {% block copyright-footer %}
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="mz-pagefooter-copyright" id="copyright">
-                                <span class="mz-pagefooter-copyrighttext">
-                                    &copy; {% now Y %}
-                                </span>
-                                {{ siteContext.generalSettings.websiteName }}. {% dropzone "copyright" scope="site" %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endblock copyright-footer%}
-
+            
         </div>
 
         {% block trailing-scripts %}

@@ -1,0 +1,6 @@
+<div class="form-row">
+<select class="lang-selector">
+    <option>FR</option>
+    <option>EN</option>
+</select>
+</div>

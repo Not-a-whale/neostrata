@@ -1,6 +1,3 @@
-<div class="mz-productdetail-shortdesc mz-l-stack-section">
-  <span itemscope="description" itemprop="description">{{ model.content.productShortDescription|safe }}</span>
-</div>
 {% if model.stockInfo %}
 <div class="stock-info">{{ labels.upcInStock }}
   <span class="stock-price">{{ model.stockInfo }}</span>

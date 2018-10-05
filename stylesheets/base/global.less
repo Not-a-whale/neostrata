@@ -1,58 +1,120 @@
 html {
     height: 100%;
+    font-size: @bodyFontSize;
 }
 
 body {
     margin: 0 auto;
     height: 100%;
     background-color: @bodyBackgroundColor;
-    font-family: "Gotham A", "Gotham B", sans-serif;
-    font-size: 16px;
-    color: #4E5458;
+    font-family: @fontFamily;
+    font-size: @bodyFontSize;
+    letter-spacing: 0.025em;
+    color: @charcoal;
 }
+
+/* Replace with recommended base font size/container widths below
+
+@media (min-width: 768px) and (max-width: 1399px){
+    html, body{
+        font-size: 12px;
+    }
+}
+@media (min-width: 1400px){
+    html, body{
+        font-size: 16px;
+    }
+}
+*/
+
+/* Recommended base font sizes/container widths begin */
+@media (min-width: 1901px) {
+    html, body {font-size: 16px;}
+    .container {width: 90%;}
+}
+@media (max-width: 1900px) {
+    html, body {font-size: 13px;}
+    .container {width: 90%;}
+}
+@media (max-width: 1700px) {
+    html, body {font-size: 12px;}
+    .container {width: 95%;}
+}
+@media (max-width: 1450px) {
+    html, body {font-size: 11px;}
+}
+@media (max-width: 1250px) {
+    html, body {font-size: 9px;}
+}
+@media (max-width: 992px) {
+    html, body {font-size: 10px;}
+}
+@media (max-width: 768px) and (min-width: 500px) {
+    html, body {font-size: 12px;}
+}
+/* Recommended base font sizes/container widths end */
+
 
 h1, h2, h3, h4, h5, h6 {
     color: @textColor;
 }
 
 h1, .h1 {
-  font-size: 4.5em;
-  line-height: 5.625rem;
-  font-weight: bold;
+  font-size: 4.5rem;
+  line-height: 1.25em;
+  font-weight: @fontWeightBold;
 }
 
 h2, .h2 {
-  font-size: 3.43em;
-  line-height: 4.68rem;
-  font-weight: medium;
+  font-size: 3.43rem;
+  line-height: 1.36em;
+  font-weight: @fontWeightMedium;
 }
 
 h3, .h3 {
-  font-size: 2.81em;
-  line-height: 3.75rem;
-  font-weight: medium;
+  font-size: 2.81rem;
+  line-height: 1.33em;
+  font-weight: @fontWeightMedium;
 }
 
 h4, .h4 {
-  font-size: 2.125;
-  line-height: 3rem;
-  font-weight: bold;
+  font-size: 2.125rem;
+  line-height: 1.41em;
+  font-weight: @fontWeightBold;
 }
 
 h5, .h5 {
-  font-size: 1.5em;
-  line-height: 1.875rem;
-  font-weight: bold;
+  font-size: 1.5rem;
+  line-height: 1.25em;
+  font-weight: @fontWeightBold;
 }
 
 h6, .h6 {
-  font-size: 1.25em;
+  font-size: 1.25rem;
   line-height: auto;
-  font-weight: medium;
+  font-weight: @fontWeightMedium;
 }
+
+.dark {
+  h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .p1, .p2, .p3, .p4, .p5 {
+    color: @white;
+  }
+}
+// Specialty Headings mixin
+// TO DO - FINISH THIS MIXIN
+.specialitHeading() {
+
+  font-size: 2.25em;
+  font-weight: @fontWeightBold;
+  font-style: italic;
+  text-transform: uppercase;
+}
+// End Specialty Headings mixin
 
 a {
     color: @linkColor;
+    text-decoration: underline;
+
     &:visited {
         color: @linkVisitedColor;
     }
@@ -61,41 +123,78 @@ a {
     }
 }
 
+.dark a{
+  color: @white;
+  &:visited {
+    color: @linkVisitedColor;
+  }
+  &:hover {
+      color: @linkHoverColor;
+  }
+}
+
 p {
     margin: @gutter/2 0;
 }
 
+// TO DO - FIX font waight - to book
+
+.p1, .p2, .p3, .p4, .p5 {
+  font-weight: @fontWeightBook;
+}
+
 .p1 {
-  font-size: 2.18em;
-  line-height: 1.37rem;
-  font-weight: bold;
+  font-size: 2.18rem;
+  line-height: 1.37em;
 }
 
 .p2 {
-  font-size: 1.875em;
-  line-height: 1.5rem;
-  font-weight: bold;
+  font-size: 1.875rem;
+  line-height: 1.5em;
 }
 
 .p3 {
-  font-size: 1.625em;
-  line-height: 1.46rem;
-  font-weight: bold;
+  font-size: 1.625rem;
+  line-height: 1.46em;
 }
 
 .p4 {
-  font-size: 1.31em;
-  line-height: 1.43rem;
-  font-weight: bold;
+  font-size: 1.31rem;
+  line-height: 1.43em;
 }
 
 .p5 {
-  font-size: 1.125em;
-  line-height: 1.5rem;
-  font-weight: bold;
+  font-size: 1.125rem;
+  line-height: 1.5em;
 }
 
-.neostrata-theme .mz-cms-row {
+.pdp1{
+  font-weight: normal;
+  font-style: italic;
+  font-size: 1.375rem;
+}
+
+.pdp2{
+  font-weight: bold;
+  font-size: 1.875rem;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.pdp3{
+  font-weight: 400;
+  font-size: 1.31rem;
+}
+.pdp4{
+  font-weight: normal;
+  font-size: 1.375rem;
+}
+.pdp5{
+  font-weight: bold;
+  font-size: 1.125rem;
+}
+
+.neostrata-theme .mz-cms-row,
+.row .mz-cms-row {
   max-width: 100%;
 }
 
@@ -211,6 +310,149 @@ button {
     font-family: @fontFamily;
 }
 
+//TODO Form elements
+
+.form-row {
+  padding: 30px;
+
+  .form-element{
+    position: relative;
+    padding-left: 2rem;
+    padding-top: 0.2rem;
+    cursor: pointer;
+    margin: 0;
+  }
+
+  input[type="checkbox"],
+  input[type="radio"], {
+    position: absolute;
+    opacity: 0;
+    left: -9999rem;
+
+  }
+  input[type="checkbox"] + label {
+    .icon (before, @icon-check);
+  }
+
+  input[type="checkbox"] + label:before,
+  input[type="radio"] + label:before {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    color: @charcoal;
+    font-weight: bold;
+    font-size: 1.1em;
+    z-index: 1;
+  }
+
+  input[type="checkbox"] + label:after,
+  input[type="radio"] + label:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left:0;
+    height: 1.5rem;
+    width: 1.5rem;
+    border: 0.1875rem solid @inputBorder;
+  }
+
+
+  input[type="radio"] + label {
+    .icon (before, @icon-dot-single);
+  }
+
+  input[type="radio"] + label:before {
+    font-size: 1.80em;
+    top: -1px;
+    left: -2px;
+  }
+
+  input[type="radio"] + label:after {
+    border-radius: 50%;
+  }
+
+
+  /* if "not checked" */
+  input[type="checkbox"]:not(:checked) + label:before,
+  input[type="radio"]:not(:checked) + label:before {
+    content: '';
+  }
+  /* If "checked" */
+  input[type="checkbox"]:checked + label:after,
+  input[type="radio"]:checked + label:after {
+    background: @mutedBlue;
+  }
+
+
+  input[type="text"] {
+    color: @charcoal;
+    margin: 0;
+    padding: 0 4.44rem 0 2.875rem;
+    border: 0.1875rem solid @inputBorder;
+    font-weight: @fontWeightBook;
+    height: 5.375rem;
+    line-height: 3.33em;
+    font-size: 1.31em;
+
+    &::-webkit-input-placeholder {
+      .placeholder-text();
+    }
+    &::-moz-placeholder { /* Firefox 19+ */
+      .placeholder-text();
+    }
+    &:-moz-placeholder { /* Firefox 18- */
+      .placeholder-text();
+    }
+    &:-ms-input-placeholder {
+      .placeholder-text();
+    }
+  }
+
+  .form-input {
+    position: relative;
+
+    &:before {
+      position: absolute;
+      right: 2.875rem;
+      font-size: 1.5em;
+      top: -0.25rem;
+    }
+  }
+  &.actionable {
+    .form-input {
+
+      .icon(before, @icon-keyboard_arrow_right);
+
+      &:before{
+        font-size: 2em;
+        top: -0.5rem;
+        right: 2.5rem;
+      }
+      &:hover{
+        &:before{
+          color: @lightBlue;
+        }
+      }
+    }
+  }
+  &.accepted {
+    .form-input {
+      .icon(before, @icon-check);
+      input {
+        background: @inputAccepted;
+      }
+    }
+  }
+  &.error {
+    .form-input {
+      .icon(before, @icon-close);
+      input {
+        background: @inputError;
+      }
+    }
+  }
+}
+
 // TODO: JBZ: file these
 
 .mz-placeholder {
@@ -238,4 +480,137 @@ button {
 }
 ul {
     list-style: none;
+}
+
+.slashHeading( @slashColor ) {
+  display: inline-block;
+  background-color: #efefef;
+  min-width: 40%;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-style: italic;
+  padding-left: .5em;
+
+  &:after {
+    content: "\00a0\00a0\00a0\00a0\00a0\00a0";
+    background-image: linear-gradient(60deg, #efefef 35%, #ffffff 35%, #ffffff 50%, @slashColor 50%, @slashColor 65%, #ffffff 65%, #ffffff 100%);
+    float: right;
+  }
+}
+
+// NeoStrata colors
+.charcoalSlashHeading {
+  .slashHeading(@charcoal);
+}
+.mutedBlueSlashHeading {
+  .slashHeading(@mutedBlue);
+}
+.lightGraySlashHeading {
+  .slashHeading(@lightGray);
+}
+.midGraySlashHeading {
+  .slashHeading(@midGray);
+}
+.tealSlashHeading {
+  .slashHeading(@teal);
+}
+.lightBlueSlashHeading {
+  .slashHeading(@lightBlue);
+}
+.purpleSlashHeading {
+  .slashHeading(@purple);
+}
+.yellowOrangeSlashHeading {
+  .slashHeading(@yellowOrange);
+}
+.darkBlueSlashHeading {
+  .slashHeading(@darkBlue);
+}
+.redOrangeSlashHeading {
+  .slashHeading(@redOrange);
+}
+
+
+// NeoStrata colors collection names
+
+.skinActive .slashHeading {
+  .slashHeading(@mutedBlue);
+}
+.restore .slashHeading {
+  .slashHeading(@teal);
+}
+.clarify .slashHeading {
+  .slashHeading(@lightBlue);
+}
+.correct .slashHeading {
+  .slashHeading(@purple);
+}
+.enlighten .slashHeading {
+  .slashHeading(@yellowOrange);
+}
+.resurface .slashHeading {
+  .slashHeading(@darkBlue);
+}
+.defend .slashHeading {
+  .slashHeading(@redOrange);
+}
+
+.dropdown-select {
+  font-family: @fontFamily;
+  font-weight: @fontWeightBook;
+  font-size: 1.5rem;
+  color: @charcoal;
+  letter-spacing: 0.14rem;
+  text-transform: uppercase;
+  background: none;
+  text-decoration: none;
+  border: 0.1875rem solid @charcoal;
+  height: 6rem;
+  line-height: 5.625rem;
+  padding: 0 3.125rem;
+
+  &:hover {
+    color: @charcoal;
+    background: @lightGray;
+    text-decoration: none;
+    span{
+      color: @charcoal;
+    }
+  }
+  i {
+    .icon(before, @icon-keyboard_arrow_down);
+    margin: 0 3.125rem 0 2.5rem;
+    &:before {
+      font-size: 3rem;
+      top: 50%;
+      transform: translateY(-50%);
+      position: absolute;
+    }
+  }
+}
+.dropdown-select-list{
+  width: 100%;
+  padding: 0;
+  margin-top: -1px;
+  li {
+    font-family: @fontFamily;
+    font-weight: @fontWeightBook;
+    font-size: 1.5rem;
+    letter-spacing: 0.14rem;
+    text-transform: uppercase;
+    border-bottom: 0.125rem solid @midGray;
+    margin: 0!important;
+    text-align: center;
+    padding: 1rem 0.5rem;
+    line-height: 2rem;
+    label{
+      font-weight: @fontWeightBook;
+      font-size: 1.5rem;
+      letter-spacing: 0.14rem;
+      text-transform: uppercase;
+    }
+    &:hover {
+      background-color: @mutedBlue;
+    }
+  }
 }

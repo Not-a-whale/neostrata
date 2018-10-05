@@ -184,6 +184,14 @@
     {
       "documentType": "web_page",
       "entityType": "webpage",
+      "id": "bvContainer",
+      "template": "bazaarvoice",
+      "title": "BazaarVoice Container Page",
+      "userCreatable": true
+    },
+    {
+      "documentType": "web_page",
+      "entityType": "webpage",
       "id": "about-us",
       "template": "about-us",
       "customEditor": "about-us",
@@ -441,7 +449,7 @@
     }
   ],
   "settings": {
-    "commerceEnabled": true,
+    "commerceEnabled": false,
     "oneSizeAttributeName": "tenant~ONESIZE",
     "oneSizeProductType": "Single Variant",
     "maxRecentlyViewedItems": 5,
@@ -734,7 +742,7 @@
     "orderNumberLength": 80,
     "orderVerificationCodeLength": 80,
     "productQuantityLength": 5,
-    "productImagePdpMaxWidth": 350,
+    "productImagePdpMaxWidth": 800,
     "familyProductImageMaxWidth": 160,
     "productImageDirectoryMaxWidth": 265,
     "productThumbImageMaxWidth": 84,
@@ -782,7 +790,7 @@
     "productInfinitySize": 54,
     "defaultSort": "createDate asc",
     "enablePartialCaching": true,
-    "fontSize": "14px",
+    "fontSize": "16px",
     "gutterWidth": "25px",
     "internal-themeAddons": [],
     "itemListingThumbSize": 80,
@@ -832,7 +840,7 @@
     "showProductDetailProperties": false,
     "showProductDetailShortDesc": true,
     "showProductDetailUPC": true,
-    "textColor": "#444444",
+    "textColor": "#4E5458",
     "companyLogo": "/resources/images/logo-sm.png",
     "facetMoreColorCount": 3,
     "enableQuickView": true,
@@ -1203,6 +1211,41 @@
     }
   ],
   "widgets": [
+    {
+        "category" : "catalog",
+        "id":"category-cta",
+        "displayName":"Category CTA",
+        "displayTemplate":"neostrata/category-cta",
+        "editViewFields":[
+          {"name":"title", "fieldLabel":"Title"},
+          {"name":"system", "fieldLabel":"System"},
+          {"name":"imagePath", "fieldLabel":"Image Path"},
+          {"name":"description", "fieldLabel":"Description"},
+          {"name":"linkPath", "fieldLabel":"Link Path"},
+          {"name":"linkTitle", "fieldLabel":"Link Title"}
+        ],
+        "icon":"/resources/admin/widgets/BV_Conversations.png",
+        "validPageTypes":["*"]
+    },
+    {
+        "category" : "catalog",
+        "id":"bv-conversations-ratings",
+        "displayName":"BazaarVoice Conversations Ratings",
+        "displayTemplate":"BVConversations/bv-conversations-ratings",
+        "editViewFields":[
+            {"name":"widgetType", "fieldLabel":"Widget Type", "xtype":"combo", "store":[[ "summary","Summary"],["customerReviews","Customer Reviews"], ["qanda","Q & A"],["seo","SEO"]]},
+            {"name":"tabCode", "fieldLabel":"Tab Code"}
+            ],
+        "icon":"/resources/admin/widgets/BV_Conversations.png",
+        "validPageTypes":["product"]
+    },
+    {
+        "id":"bv-conversations-roibeacon",
+        "displayName":"BazaarVoice Conversations ROI Beacon",
+        "displayTemplate":"BVConversations/bv-conversations-roi",
+        "icon":"/resources/admin/widgets/BV_ROI_Beacon.png",
+        "validPageTypes":["order"]
+    },
     {
       "displayName": "RTI Recommended Products",
       "displayTemplate": "RTI/rti-rec-template",
