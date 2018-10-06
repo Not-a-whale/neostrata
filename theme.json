@@ -1095,6 +1095,10 @@
     "paymentsMethodInfo": "Payment Methods",
     "giftCardsInfo": "Gift Card",
     "megaMenu": {
+      "firstLevel": [
+        { "url": "/skin-care-needs", "image": "/resources/images/neostrata_logo.svg"} ,
+        { "url": "/product", "image": "/resources/images/neostrata_logo.svg" }
+      ],
       "categoryLookups":   [
         { "url": "/skin-type", "linkedCategoryCode": "18" },
         { "url": "/skin-concern", "linkedCategoryCode": "21" },
