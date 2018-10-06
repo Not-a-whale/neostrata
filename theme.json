@@ -1218,7 +1218,8 @@
         "displayTemplate":"neostrata/category-cta",
         "editViewFields":[
           {"name":"title", "fieldLabel":"Title"},
-          {"name":"image", "fieldLabel":"Image Path"},
+          {"name":"system", "fieldLabel":"System"},
+          {"name":"imagePath", "fieldLabel":"Image Path"},
           {"name":"description", "fieldLabel":"Description"},
           {"name":"linkPath", "fieldLabel":"Link Path"},
           {"name":"linkTitle", "fieldLabel":"Link Title"}
