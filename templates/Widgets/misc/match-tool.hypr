@@ -1,0 +1,149 @@
+<div id="match-tool" class="match-tool-widget" data-widget="match-tool">
+  <div class="match-header">
+    <img class="image desktop" src="/resources/images/match-tool/matchtoolheader-d.jpg" />
+  </div>
+  <div class="match-section">
+    <div class="match-content">
+      <h2 class="match-intro">
+        NeoStrata's getting a facelift.
+      </h2>
+      <p>
+        Don't worry. They're getting even more effective.
+      </p>
+    </div>
+  </div>
+  <div class="match-divider"></div>
+  <div class="match-section">
+    <div class="match-content">
+      <p>
+        Now there are even more reasons to love the products you love.
+        We’ve reimagined and reformulated all your favourite products and added new, specialized skincare treatments.
+        Our entire catalog has been organized into seven collections that target universal skin concerns with powerhouse
+        performance and a brand new look.
+      </p>
+      <p>
+        Select your current favourites from the list below<br />to see what’s new and what to look for.
+      </p>
+      <div class="selector" data-view="selector">
+        <div class="inline anchor left-align">
+          <div class="height-fixed border-strong uppercase select-toggle pointer icon-right" data-control="toggle">
+            <div class="chevron-down"></div>
+            Select a Product
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div data-view="match"></div>
+  <div class="match-no-favorite dark">
+    <div>
+      <div class="copy">
+        Don't have a current favorite?<br />
+        Let's fix that, shall we?
+      </div>
+
+      <a class="primary-btn" href="/products/c/66">See all products</a>
+    </div>
+  </div>
+</div>
+
+<script type="text/template" id="match-select-template">
+  <div class="inline anchor left-align" data-role="wrapper">
+    <div class="height-fixed border-strong uppercase pointer icon-right" data-control="toggle">
+      <div class="chevron-down"></div>
+      <%= selected ? selected.before.name : 'Select a Product' %>
+    </div>
+    <% if ( open ) { %>
+      <div class="pos-under layer-top background-white">
+        <% _.each( options, function( option ) { %>
+          <div class="height-fixed uppercase pointer border-top-between" data-option="<%= option.value %>">
+            <%= option.label %>
+          </div>
+        <% }) %>
+      </div>
+    <% } %>
+  </div>
+</script>
+
+<script type="text/template" id="match-match-template">
+  <div class="match-divider"></div>
+  <div class="match-section">
+    <div class="match-content">
+      <div class="text-large">
+        This product has been
+      </div>
+      <div class="text-larger text-upper text-italic">
+        <span class="match-status-color"><%= status %></span>.
+      </div>
+      <div class="text-upper text-italic text-bold">
+        <%= header %>
+      </div>
+    </div>
+  </div>
+  <div data-view="side-by-side">
+    <div class="bar">
+      <div class="bar-left"></div>
+      <div class="bar-right"></div>
+    </div>
+    <div class="products">
+      <div class="match-left">
+        <div class="product-image" style="background-image: url(<%= before.image %>)"></div>
+        <div class="align-center text-base text-bold content-padding">
+          <%= before.name %>
+        </div>
+      </div>
+      <div class="match-right">
+        <div class="product-image" style="background-image: url(<%= images.front %>)"></div>
+        <div class="align-center text-base text-bold content-padding">
+          <%= skin_care_system %><br />
+          <%= name %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="match-section">
+
+  </div>
+  <div class="match-detail" data-view="detail">
+    <div class="match-section">
+      <div class="match-pitch flex-column">
+        <div class="flex-column-middle">
+          <div class="flex-fixed text-base align-center narrow">
+            If you previously liked the <%= benefits %> benefits of:
+          </div>
+          <div class="name flex-fixed align-center narrow">
+            <%= before.name %>
+          </div>
+          <div class="try_out flex-fixed text-small">
+            TRY OUR <%= try_our %>
+          </div>
+        </div>
+      </div>
+      <div class="match-hero" style="background-image: url(<%= images.hero %>)"></div>
+      <div class="match-spec flex-column">
+        <div class="match-type-header flex-fixed" style="background-image: url(/resources/images/match-tool/type-tag.png)">
+          <%= skin_care_system %>
+        </div>
+        <div class="name flex-fixed">
+          <%= name %>
+        </div>
+        <div class="ingredients flex-fixed">
+          <% _.each( ingredients, function( ingredient ) { %>
+            <div>
+              <%= ingredient %>
+            </div>
+          <% }) %>
+        </div>
+        <div class="description flex-fill">
+          <%= description %>
+        </div>
+          [Star Count Average + Review Count]
+        <div class="footer flex-fixed">
+          <a href="/p/<%= code %>" class="primary-btn">View Product</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>
+
+{% require_script "modules/match-tool/index" %}
