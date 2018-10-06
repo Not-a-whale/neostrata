@@ -1,3 +1,86 @@
-<div id="match-tool">
-	<h2>Match Tool</h2>
+<div id="match-tool" class="match-tool-widget" data-widget="match-tool">
+  <div class="match-section">
+    <div>
+      <h2 class="match-intro">
+        NeoStrata's getting a facelift.
+      </h2>
+      <p>
+        Don't worry. They're getting even more effective.
+      </p>
+    </div>
+  </div>
+  <div class="match-section">
+    Now there are even more reasons to love the products you love.
+    We’ve reimagined and reformulated all your favourite products and added new, specialized skincare treatments.
+    Our entire catalog has been organized into seven collections that target universal skin concerns with powerhouse
+    performance and a brand new look.
+    Select your current favourites from the list below to see what’s new and what to look for.
+  </div>
+  <div class="match-content selector" data-view="selector">
+    <select data-control="selector"></select>
+  </div>
+  <div data-view="side-by-side">
+    <div class="bar">
+      <div class="bar-left"></div>
+      <div class="bar-right"></div>
+    </div>
+  </div>
+  <div class="match-detail" data-view="detail"></div>
 </div>
+
+<script type="text/template" id="match-select-placeholder-template">
+  <option value="">
+    Select an option
+  </option>
+</script>
+
+<script type="text/template" id="match-select-option-template">
+  <option value="<%= match.code %>">
+    <%= match.before.name %>
+  </option>
+</script>
+
+<script type="text/template" id="match-side-by-side-template">
+  <div class="match-left">
+    <div class="product-image" style="background-image: url(<%= before.image %>)"></div>
+  </div>
+  <div class="match-right">
+    <div class="product-image" style="background-image: url(<%= images.front %>)"></div>
+  </div>
+</script>
+
+<script type="text/template" id="match-detail-template">
+  <div class="match-section">
+    <div class="match-pitch">
+      <div>
+        If you previously liked the <%= benefit %> benefits of: <%= before.name %> <br />
+        TRY OUR <%= name %>
+      </div>
+    </div>
+    <div class="match-hero" style="background-image: url(<%= images.hero %>)"></div>
+    <div class="match-spec">
+      <div class="match-type-header" style="background-image: url(/resources/images/match-tool/type-tag.png)">
+        <%= product_type %>
+      </div>
+      <div class="name">
+        <%= name %>
+      </div>
+      <div class="ingredients">
+        <% _.each( ingredients, function( ingredient ) { %>
+          <div>
+            <%= ingredient %>
+          </div>
+        <% }) %>
+      </div>
+      <div class="description">
+        <%= description %>
+      </div>
+        [Star Count Average + Review Count]
+      <div class="footer">
+        <a href="" class="primary-btn">View Product</a>
+      </div>
+    </div>
+  </div>
+</script>
+
+{% require_script "modules/match-tool/index" %}

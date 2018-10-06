@@ -1,0 +1,120 @@
+.match-tool-widget {
+  .match-content {
+    margin: 0 15px;
+  }
+
+  .match-section {
+    display: flex;
+    flex-direction: row;
+
+    max-width: 1920px;
+    margin: 0 auto;
+  }
+
+  .selector {
+    text-align: center;
+  }
+
+  .match-detail {
+    padding: 82px 15px;
+    background-color: #f4f4f4;
+
+    .match-pitch {
+      flex: 1 1 751px;
+
+      padding: 0 100px;
+    }
+
+    .match-hero {
+      flex: 0 1 489px;
+      height: 610px;
+
+      background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    .match-spec {
+      flex: 1 1 680px;
+
+      padding: 0 150px 0 74px;
+
+      .name {
+        font-size: 34pt;
+        font-weight: 500;
+        line-height: 1;
+        margin: .5em 0;
+      }
+
+      .ingredients {
+        font-size: 21pt;
+        font-weight: 500;
+        line-height: 1;
+        margin-bottom: 1em;
+      }
+    }
+
+    .match-type-header {
+      background-repeat: no-repeat;
+      background-position: left top;
+      height: 39px;
+
+      font-size: 20.22pt;
+      line-height: 39px;
+      color: #FFF;
+      font-style: italic;
+      font-weight: bold;
+      padding: 0 30px;
+      text-transform: uppercase;
+    }
+  }
+}
+
+[data-view="side-by-side"] {
+  position: relative;
+  overflow: hidden;
+
+  .bar {
+    display: flex;
+    flex-direction: row;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    width: 100%;
+    height: 306px;
+
+    .bar-left, .bar-right {
+      flex: 1 1 50%;
+    }
+
+    .bar-left {
+      background-color: #EFEFEF;
+    }
+
+    .bar-right {
+      background-color: #8EABCC;
+    }
+  }
+
+  .products {
+    display: flex;
+    flex-direction: row;
+
+    position: relative;
+    max-width: 1920px;
+    margin: 0 auto;
+
+    .match-left, .match-right {
+      flex: 1 1 50%;
+    }
+
+    .product-image {
+      height: 600px;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: contain;
+    }
+  }
+}
