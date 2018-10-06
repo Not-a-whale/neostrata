@@ -90,7 +90,8 @@ define([
                 'click [data-mz-action="clearFacets"]',
                 'change input[data-mz-facet-value]',
                 'change [data-mz-value="pageSize"]',
-                'change [data-mz-value="sortBy"]'
+                'change [data-mz-value="sortBy"]',
+                'click .dp-sort-item'
             ],
             intentToUrl
         );

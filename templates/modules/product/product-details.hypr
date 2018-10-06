@@ -7,45 +7,32 @@
     {% if (PageContext.isTablet or PageContext.isDesktop) and themeSettings.enableProductCarousel %}
     {% include "modules/product/product-top-carousel" %}
     {% endif %}
-    <div class="row">
-      <div class="col-xs-12 col-sm-6">
-      </div>
-      <div class="col-xs-12 col-sm-6">
-        {% include "modules/product-breadcrumbs" %}
-      </div>
+    <div class="mz-product-top-content">
+      {% include "modules/product-breadcrumbs" %}
     </div>
-    <div class="row">
-        <div class="col-xs-12 col-sm-6">
-            <div data-mz-productimages class="mz-productimages mz-product-left-container margin-top-15">
-                {% include "modules/product/product-images" %}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-6">
-              <div >
-                <h2 class="slashHeading"/>{{ skinCareSystem }}</h2>
+    <div>
+        <div>
+          <div class="mz-product-top-content">
+            <h2 class="slashHeading"/>{{ skinCareSystem }}</h2>
+            <h1 class="mz-pagetitle center-mobile" itemprop="name">{{ model.content.productName|replace("'","&rsquo;")|safe }}</h1>
+            <h2 class="mz-pagesubtitle center-mobile" >
+              <span itemscope="description" itemprop="description">{{ model.content.productShortDescription|safe }}</span>
+            </h2>
+            <div class="center-mobile">
+              <div class="mz-all-review-container">
+                <span class="mz-reviews-pdp-stars">
+                  {% dropzone "reviews-pdp-stars" scope="template" %}
+                </span>
               </div>
-            <div class="mz-product-top-content">
-                <h1 class="mz-pagetitle" itemprop="name">{{ model.content.productName|replace("'","&rsquo;")|safe }}</h1>
-                <h2 class="mz-pagesubtitle" >
-                  <span itemscope="description" itemprop="description">{{ model.content.productShortDescription|safe }}</span>
-                </h2>
-                <div class="row">
-                    <div class="col-xs-5">
-                      <div class="mz-all-review-container">
-                          <span class="mz-reviews-pdp-stars">
-                            {% dropzone "reviews-pdp-stars" scope="template" %}
-                          </span>
-                      </div>
-                    </div>
-                    <div class="col-xs-7">
-                        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer" class="mz-productdetail-price mz-l-stack-section">
-                        {% include "modules/product/price-stack" %}
-                        </div>
-                    </div>
-                </div>
+              <div itemprop="offers" itemscope itemtype="http://schema.org/Offer" class="mz-productdetail-price mz-l-stack-section">
+              {% include "modules/product/price-stack" %}
+              </div>
             </div>
-            <div class="clearfix"></div>
-
+          </div>
+          <div data-mz-productimages class="mz-productimages mz-product-left-container margin-top-15">
+            {% include "modules/product/product-images" %}
+          </div>
+          <div class="mz-product-top-content">
             {% with model|get_product_attribute("tenant~results") as results %}
               {% if results %}
                 <div class="product-results">
@@ -70,14 +57,14 @@
                 </div>
               {% endif %}
             {% endwith %}
-            <div class="form-row actionable">
+            <div class="form-row actionable find-a-retailer">
               <a class="primary-btn" href="/store-locator">Find A Retailer</a>
             </div>
             {% with model|get_product_attribute("tenant~ingredient-highlights") as highlights %}
             {% with model|get_product_attribute("tenant~features-benefits") as featuresBenefits %}
               {% if highlights and highlights.values.length > 0 or featuresBenefits and featuresBenefits.values.length > 0 %}
-                <div class="product-features">
-                  <h3>Key Ingredients</h3>
+                <div class="product-features center-mobile">
+                  <h3 class="feature-title">Key Ingredients</h3>
                   {% if highlights and highlights.values.length > 0 %}
                     <div class="product-highlights">
                       {% for v in highlights.values %}
@@ -112,10 +99,8 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="social-sharing col-md-9 col-xs-12 mz-reset-padding-left{% if model.content.productImages.length <=1 %} mz-share-with-container-other{% endif %}">
-            {% dropzone "social-sharing" scope="template" %}
-        </div>
+    <div class="social-sharing col-md-9 col-xs-12 mz-reset-padding-left{% if model.content.productImages.length <=1 %} mz-share-with-container-other{% endif %}">
+        {% dropzone "social-sharing" scope="template" %}
     </div>
 
 {% if model.productType == themeSettings.familyProductType %}
@@ -138,7 +123,7 @@
       {% include "modules/product/product-info-tabs" %}
     </div>
     <div class="clearfix"></div>
-    <div class="mz-middle-breakpoint hidden-xs">
+    <div class="mz-middle-breakpoint">
         {% dropzone "product-middle-breakpoint" scope="template" %}
     </div>
 </div>

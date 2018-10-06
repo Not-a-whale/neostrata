@@ -24,6 +24,7 @@
         {% if productImageWidth %}
             width="{{productImageWidth}}"
         {% endif %}
+        {% comment %}
         {% if isThumb %}
             {% if productMaxWidth %}
             data-orig-src="{% make_url "image" productImage with maxWidth=productMaxWidth as_parameter %}"
@@ -36,6 +37,7 @@
             data-orig-zoom="{% make_url "image" productImage with maxWidth=themeSettings.productZoomImageMaxWidth %}"
             {% endif %}
         {% endif %}
+        {% endcomment %}
          onerror="this.setAttribute('src','{% make_url "image" productImage with maxWidth=productMaxWidth %}')">
 {% else %}
     <span class="mz-productlisting-imageplaceholder img-responsive">

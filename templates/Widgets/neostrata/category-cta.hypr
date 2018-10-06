@@ -1,6 +1,10 @@
-<div class="category-cta">
-  <h3><span class="slashHeading">{{model.config.title}}</span></h3>
-  <div>IMG</div>
-  <div>{{model.config.description}}</div>
-  <div><a href="{{model.config.linkPath}}">{{model.config.linkTitle}}</a></div>
+<div class="category-cta {{model.config.system}}">
+  <h4 class="slashHeading">{{model.config.title}}</h4>
+  <div>
+    <img class="heroImage" src="{{model.config.imagePath}}"/>
+    <div class="body">
+      <div class="description">{{model.config.description}}
+      <div class="cta"><a class="primary-btn" href="{{model.config.linkPath}}">{{model.config.linkTitle}}</a></div>
+    </div>
+  </div>
 </div>
