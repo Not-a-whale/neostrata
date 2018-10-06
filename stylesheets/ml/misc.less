@@ -372,9 +372,11 @@
 }
 
 #page-content{
-    .container-fluid{
-        background: linear-gradient(#e0e0e0, #e0e0e0 0.1%, #f3f3f3 0.1%, #ffffff 3%);
-    }
+  border-top: 1px solid #e0e0e0;
+
+  .container-fluid{
+      background: linear-gradient(#f3f3f3, #ffffff 3%);
+  }
 }
 
 .mz-checkout {
@@ -2272,11 +2274,11 @@ ul.tabs {
 
     .mz-pagetitle{
       .h3;
-      margin: 0;
+      margin: 1em 0 0;
     }
     .mz-pagesubtitle{
       .p3;
-      margin: 0;
+      margin: 0 0 1em;
     }
 
     .prize-mobile-view {
@@ -2883,10 +2885,14 @@ ul.tabs {
 }
 
 .mz-breadcrumbs{
-    .mz-breadcrumb-current{
-        color: #666;
-        font-weight: normal;
-    }
+  margin: 3em 0 1em;
+  text-transform: uppercase;
+  font-style: italic;
+
+  .mz-breadcrumb-current{
+      color: #666;
+      font-weight: normal;
+  }
 }
 
 
