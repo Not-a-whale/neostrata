@@ -62,39 +62,67 @@ define([
   });
 
   var SelectorView = Backbone.View.extend({
-    template: _.template( $( '#match-select-option-template' ).html() ),
-    placeholder: _.template( $( '#match-select-placeholder-template' ).html() ),
+    template: _.template( $( '#match-select-template' ).html() ),
+
+    events: {
+      'click [data-role="wrapper"]': function( ev ) {
+        ev.stopPropagation();
+
+        this.toggle( !this.toggled );
+      },
+
+      'click [data-option]': function( ev ) {
+        this.select( $( ev.target ).attr( 'data-option' ) );
+      }
+    },
 
     initialize: function() {
-      this.$input = this.$( 'select' );
+      this.toggled = false;
+      this.selected = undefined;
+
+      this.options = _.map( __MATCHES, function( match ) {
+        return {
+          value: match.code,
+          label: match.before.name
+        };
+      });
+
+      document.addEventListener( 'click', this.clear.bind( this ) );
     },
 
     render: function() {
       var self = this;
 
-      this.$input.html( [self.placeholder()]
-          .concat( _.map( __MATCHES, function( match ) {
-            return self.template({ match: match });
-      })));
+      this.$el.html( this.template({ open: this.toggled, selected: this.selected, options: this.options }) );
 
       return this;
+    },
+
+    toggle: function( value ) {
+      this.toggled = value;
+      this.render();
+    },
+
+    select: function( value ) {
+      var selection = _.find( __MATCHES, function( match ) {
+        return match.code === value;
+      });
+
+      if ( selection !== this.selected ) {
+        this.trigger( 'change', selection );
+      }
+      this.selected = selection;
+
+      this.render();
+    },
+
+    clear: function() {
+      this.toggle( false );
     }
   });
 
-  var SideBySideView = Backbone.View.extend({
-    template: _.template( $( '#match-side-by-side-template' ).html() ),
-
-    className: 'products',
-
-    render: function() {
-      this.$el.html( this.template( this.model ) );
-
-      return this;
-    }
-  });
-
-  var DetailView = Backbone.View.extend({
-    template: _.template( $( '#match-detail-template' ).html() ),
+  var MatchView = Backbone.View.extend({
+    template: _.template( $( '#match-match-template' ).html() ),
 
     initialize: function() {
       var self = this;
@@ -111,30 +139,27 @@ define([
 
   var App = Backbone.View.extend({
     events: {
-      'change [data-control="selector"]':  function( ev ) {
-        var value = _.find( __MATCHES, function( item ) { return item.code === ev.target.value; });
+      'change':  function( ev ) {
+        console.log( 'CHANGE:', ev );
 
-        this.model.set({ current: value });
-        console.log( 'Selected:', value );
 
-        this.$sidebyside.append( new SideBySideView({ model: value }).render().el );
       }
     },
 
     initialize: function() {
+      var self = this;
+
       this.model = new State();
 
       this.selector = new SelectorView({ el: this.$( '[data-view="selector"]' ) }).render();
-      this.detail = new DetailView({
-        el: this.$( '[data-view="detail"]' ),
+      this.match = new MatchView({
+        el: this.$( '[data-view="match"]' ),
         model: this.model
       });
 
-      this.$sidebyside = this.$( '[data-view="side-by-side"]' );
-    },
-
-    render: function() {
-
+      this.selector.on( 'change', function( selection ) {
+        self.model.set({ current: selection });
+      });
     }
   });
 

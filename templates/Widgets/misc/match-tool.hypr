@@ -1,6 +1,9 @@
 <div id="match-tool" class="match-tool-widget" data-widget="match-tool">
+  <div class="match-header">
+    <img class="image desktop" src="/resources/images/match-tool/matchtoolheader-d.jpg" />
+  </div>
   <div class="match-section">
-    <div>
+    <div class="match-content">
       <h2 class="match-intro">
         NeoStrata's getting a facelift.
       </h2>
@@ -9,75 +12,108 @@
       </p>
     </div>
   </div>
+  <div class="match-divider"></div>
   <div class="match-section">
-    Now there are even more reasons to love the products you love.
-    We’ve reimagined and reformulated all your favourite products and added new, specialized skincare treatments.
-    Our entire catalog has been organized into seven collections that target universal skin concerns with powerhouse
-    performance and a brand new look.
-    Select your current favourites from the list below to see what’s new and what to look for.
+    <div class="match-content">
+      <p>
+        Now there are even more reasons to love the products you love.
+        We’ve reimagined and reformulated all your favourite products and added new, specialized skincare treatments.
+        Our entire catalog has been organized into seven collections that target universal skin concerns with powerhouse
+        performance and a brand new look.
+      </p>
+      <p>
+        Select your current favourites from the list below<br />to see what’s new and what to look for.
+      </p>
+      <div class="selector" data-view="selector">
+        <div class="inline anchor left-align">
+          <div class="height-fixed border-strong uppercase select-toggle pointer icon-right" data-control="toggle">
+            <div class="chevron-down"></div>
+            Select a Product
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="match-content selector" data-view="selector">
-    <select data-control="selector"></select>
+  <div data-view="match"></div>
+  <div class="match-no-favorite dark">
+    <div>
+      <div class="copy">
+        Don't have a current favorite?<br />
+        Let's fix that, shall we?
+      </div>
+
+      <a class="primary-btn" href="">See all products</a>
+    </div>
   </div>
+</div>
+
+<script type="text/template" id="match-select-template">
+  <div class="inline anchor left-align" data-role="wrapper">
+    <div class="height-fixed border-strong uppercase pointer icon-right" data-control="toggle">
+      <div class="chevron-down"></div>
+      <%= selected ? selected.before.name : 'Select a Product' %>
+    </div>
+    <% if ( open ) { %>
+      <div class="pos-under layer-top background-white">
+        <% _.each( options, function( option ) { %>
+          <div class="height-fixed uppercase pointer border-top-between" data-option="<%= option.value %>">
+            <%= option.label %>
+          </div>
+        <% }) %>
+        <div class="height-fixed uppercase pointer border-top-between">
+          YOUTH FACTOR GF TOTAL REGENERATING SERUM
+        </div>
+      </div>
+    <% } %>
+  </div>
+</script>
+
+<script type="text/template" id="match-match-template">
+  <div class="match-divider"></div>
   <div data-view="side-by-side">
     <div class="bar">
       <div class="bar-left"></div>
       <div class="bar-right"></div>
     </div>
-  </div>
-  <div class="match-detail" data-view="detail"></div>
-</div>
-
-<script type="text/template" id="match-select-placeholder-template">
-  <option value="">
-    Select an option
-  </option>
-</script>
-
-<script type="text/template" id="match-select-option-template">
-  <option value="<%= match.code %>">
-    <%= match.before.name %>
-  </option>
-</script>
-
-<script type="text/template" id="match-side-by-side-template">
-  <div class="match-left">
-    <div class="product-image" style="background-image: url(<%= before.image %>)"></div>
-  </div>
-  <div class="match-right">
-    <div class="product-image" style="background-image: url(<%= images.front %>)"></div>
-  </div>
-</script>
-
-<script type="text/template" id="match-detail-template">
-  <div class="match-section">
-    <div class="match-pitch">
-      <div>
-        If you previously liked the <%= benefit %> benefits of: <%= before.name %> <br />
-        TRY OUR <%= name %>
+    <div class="products">
+      <div class="match-left">
+        <div class="product-image" style="background-image: url(<%= before.image %>)"></div>
+      </div>
+      <div class="match-right">
+        <div class="product-image" style="background-image: url(<%= images.front %>)"></div>
       </div>
     </div>
-    <div class="match-hero" style="background-image: url(<%= images.hero %>)"></div>
-    <div class="match-spec">
-      <div class="match-type-header" style="background-image: url(/resources/images/match-tool/type-tag.png)">
-        <%= product_type %>
+  </div>
+  <div class="match-detail" data-view="detail">
+    <div class="match-section">
+      <div class="match-pitch">
+        <div>
+          If you previously liked the <%= benefit %> benefits of: <%= before.name %> <br />
+          TRY OUR <%= name %>
+        </div>
       </div>
-      <div class="name">
-        <%= name %>
-      </div>
-      <div class="ingredients">
-        <% _.each( ingredients, function( ingredient ) { %>
-          <div>
-            <%= ingredient %>
-          </div>
-        <% }) %>
-      </div>
-      <div class="description">
-        <%= description %>
-      </div>
-        [Star Count Average + Review Count]
-      <div class="footer">
-        <a href="" class="primary-btn">View Product</a>
+      <div class="match-hero" style="background-image: url(<%= images.hero %>)"></div>
+      <div class="match-spec">
+        <div class="match-type-header" style="background-image: url(/resources/images/match-tool/type-tag.png)">
+          <%= product_type %>
+        </div>
+        <div class="name">
+          <%= name %>
+        </div>
+        <div class="ingredients">
+          <% _.each( ingredients, function( ingredient ) { %>
+            <div>
+              <%= ingredient %>
+            </div>
+          <% }) %>
+        </div>
+        <div class="description">
+          <%= description %>
+        </div>
+          [Star Count Average + Review Count]
+        <div class="footer">
+          <a href="" class="primary-btn">View Product</a>
+        </div>
       </div>
     </div>
   </div>

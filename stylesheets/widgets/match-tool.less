@@ -1,6 +1,31 @@
 .match-tool-widget {
+  .match-header {
+    background-color: #F4F4F4;
+    text-align: center;
+
+    .image {
+      width: 100%;
+      max-width: 1920px;
+    }
+  }
+
+  .match-intro {
+    font-size: 4rem;
+  }
+
   .match-content {
-    margin: 0 15px;
+    flex: 1 1 auto;
+
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 100px 15px;
+
+    font-size: 1.9rem;
+    text-align: center;
+
+    p {
+      margin-bottom: 60px;
+    }
   }
 
   .match-section {
@@ -11,8 +36,97 @@
     margin: 0 auto;
   }
 
+  .match-divider {
+    border-top: 2px solid #C2C2C2;
+    max-width: 1270px;
+    margin: 0 auto;
+  }
+
   .selector {
     text-align: center;
+  }
+
+  .left-align {
+    text-align: left;
+  }
+
+  .inline {
+    display: inline-block;
+  }
+
+  .anchor {
+    position: relative;
+  }
+
+  .height-fixed {
+    height: 6rem;
+    padding: 0 60px;
+  }
+
+  .icon-right {
+    padding-right: 150px;
+  }
+
+  .border-strong {
+    color: #4e5458;
+    border: 0.1875rem solid #4e5458;
+    border-radius: 0;
+  }
+
+  .uppercase {
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 5.625rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .border-top-between {
+    border-top: 1px solid #EBEBEB;
+  }
+
+  .border-top-between:first-child {
+    border-top: 0 none;
+  }
+
+  .pos-under {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 1000px;
+    margin-left: -500px;
+
+    max-height: 420px;
+    overflow-y: auto;
+
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  }
+
+  .layer-top {
+    z-index: 1000;
+  }
+
+  .background-white {
+    background-color: #FFFFFF;
+  }
+
+  .pointer {
+    cursor: pointer;
+  }
+
+  .chevron-down {
+    height: 30px;
+    width: 30px;
+
+    background-image: url(../resources/images/match-tool/chevron.png);
+    background-position: 0 -30px;
+
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto 30px;
   }
 
   .match-detail {
@@ -66,6 +180,20 @@
       font-weight: bold;
       padding: 0 30px;
       text-transform: uppercase;
+    }
+  }
+
+  .match-no-favorite {
+    background-color: #4e5458;
+    text-align: center;
+
+    padding: 100px 0;
+
+    .copy {
+      color: #FFFFFF;
+      font-size: 34pt;
+      line-height: 1.2;
+      margin-bottom: 84px;
     }
   }
 }
