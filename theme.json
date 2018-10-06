@@ -1098,7 +1098,7 @@
       "categoryLookups":   [
         { "url": "/skin-type", "linkedCategoryCode": "18" },
         { "url": "/skin-concern", "linkedCategoryCode": "21" },
-        { "url": "/skin-care-systems", "linkedCategoryCode": "9" },
+        { "url": "/collections", "linkedCategoryCode": "9" },
         { "url": "/product-types", "linkedCategoryCode": "16" },
         { "url": "/ingredients", "linkedCategoryCode": "17" }
       ]

@@ -9,6 +9,8 @@
 {% require_script "pages/category" %}
 {% require_script "widgets/bazaarvoice" %}
 
+{% dropzone "category-page-banner" scope="page" %}
+
 <div data-mz-category="{{model.categoryId}}" class="mz-l-container container">
     {% include "pages/category-interior" %}
 </div>
