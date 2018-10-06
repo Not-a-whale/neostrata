@@ -266,11 +266,6 @@
             "collapsed": false,
             "items": [
                 {
-                    "fieldLabel": "Mega Menu Config",
-                    "xtype": "mz-input-code",
-                    "name": "megaMenu"
-                },
-                {
                     "fieldLabel": "Maximum Items In Main Nav",
                     "xtype": "mz-input-number",
                     "name": "maxTopLevelNavItems",
