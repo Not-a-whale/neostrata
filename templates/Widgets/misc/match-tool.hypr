@@ -42,7 +42,7 @@
         Let's fix that, shall we?
       </div>
 
-      <a class="primary-btn" href="">See all products</a>
+      <a class="primary-btn" href="/products/c/66">See all products</a>
     </div>
   </div>
 </div>
@@ -60,9 +60,6 @@
             <%= option.label %>
           </div>
         <% }) %>
-        <div class="height-fixed uppercase pointer border-top-between">
-          YOUTH FACTOR GF TOTAL REGENERATING SERUM
-        </div>
       </div>
     <% } %>
   </div>
@@ -70,6 +67,19 @@
 
 <script type="text/template" id="match-match-template">
   <div class="match-divider"></div>
+  <div class="match-section">
+    <div class="match-content">
+      <div class="text-large">
+        This product has been
+      </div>
+      <div class="text-larger text-upper text-italic">
+        <span class="match-status-color"><%= status %></span>.
+      </div>
+      <div class="text-upper text-italic text-bold">
+        <%= header %>
+      </div>
+    </div>
+  </div>
   <div data-view="side-by-side">
     <div class="bar">
       <div class="bar-left"></div>
@@ -78,41 +88,58 @@
     <div class="products">
       <div class="match-left">
         <div class="product-image" style="background-image: url(<%= before.image %>)"></div>
+        <div class="align-center text-base text-bold content-padding">
+          <%= before.name %>
+        </div>
       </div>
       <div class="match-right">
         <div class="product-image" style="background-image: url(<%= images.front %>)"></div>
+        <div class="align-center text-base text-bold content-padding">
+          <%= skin_care_system %><br />
+          <%= name %>
+        </div>
       </div>
     </div>
   </div>
+  <div class="match-section">
+
+  </div>
   <div class="match-detail" data-view="detail">
     <div class="match-section">
-      <div class="match-pitch">
-        <div>
-          If you previously liked the <%= benefit %> benefits of: <%= before.name %> <br />
-          TRY OUR <%= name %>
+      <div class="match-pitch flex-column">
+        <div class="flex-column-middle">
+          <div class="flex-fixed text-base align-center narrow">
+            If you previously liked the <%= benefits %> benefits of:
+          </div>
+          <div class="name flex-fixed align-center narrow">
+            <%= before.name %>
+          </div>
+          <div class="try_out flex-fixed text-small">
+            TRY OUR <%= try_our %>
+          </div>
         </div>
       </div>
       <div class="match-hero" style="background-image: url(<%= images.hero %>)"></div>
-      <div class="match-spec">
-        <div class="match-type-header" style="background-image: url(/resources/images/match-tool/type-tag.png)">
-          <%= product_type %>
+      <div class="match-spec flex-column">
+        <div class="match-type-header flex-fixed" style="background-image: url(/resources/images/match-tool/type-tag.png)">
+          <%= skin_care_system %>
         </div>
-        <div class="name">
+        <div class="name flex-fixed">
           <%= name %>
         </div>
-        <div class="ingredients">
+        <div class="ingredients flex-fixed">
           <% _.each( ingredients, function( ingredient ) { %>
             <div>
               <%= ingredient %>
             </div>
           <% }) %>
         </div>
-        <div class="description">
+        <div class="description flex-fill">
           <%= description %>
         </div>
           [Star Count Average + Review Count]
-        <div class="footer">
-          <a href="" class="primary-btn">View Product</a>
+        <div class="footer flex-fixed">
+          <a href="/p/<%= code %>" class="primary-btn">View Product</a>
         </div>
       </div>
     </div>

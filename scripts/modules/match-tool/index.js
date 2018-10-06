@@ -11,9 +11,11 @@ define([
     {
       code: 'F30097D',
       name: 'Vitamin C Concentrate',
-      benefit: 'Stuff',
-      skin_care_system: 'Enlighted',
+      skin_care_system: 'Enlighten',
       product_type: 'Serum',
+      benefits: 'radiance',
+      header: 'New look. Advanced formula.',
+      try_our: 'concentrated serum containing Vitamin C antioxidant targeting improvement in skin\'s radiance and overall skin clarity.',
       description: 'This concentrated serum, containing pure 10% Vitamin C antioxidant, is packaged in protective single-dose capsules to enhance product freshness. This powerful antioxidant is an effective daily treatment to protect against drying environmental stressors.',
       ingredients: [
         '10% L-Ascorbic Acid (Vitamin C)'
@@ -24,7 +26,7 @@ define([
       },
       status: 'Matched',
       before: {
-        name: 'VITAMIN C CONCENTRATE',
+        name: 'Vitamin C Concentrate',
         image: '/resources/images/match-tool/before/F30097D-en.png'
       }
     },
