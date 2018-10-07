@@ -137,13 +137,31 @@
             h4 {
                 margin: 0 0 @gutter/4;
                 .fontsMedium();
-                font-size: @fontSizeLarger + 2px;
+
                 color: @colorGray;
+            }
+
+            .mz-locationlisting-locationdetails-icon{
+                width: 10%;
+
+                i{
+                    margin-top: 9px;
+                    font-size: 3em;
+                }
+            }
+            .mz-locationlisting-locationdetails-item{
+                width: 90%;
+
+                .store-hours-heading{
+                    font-size: 1.20rem;
+                    text-transform: capitalize;
+                }
             }
         }
         .mz-addresssummary{
             margin: 10px 0;
-            font-size: @fontSize - 1px;
+            //font-size: @fontSize - 1px;
+            font-size: 12px;
             .store-hours-heading{
                 margin: 0;
             }

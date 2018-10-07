@@ -1,12 +1,12 @@
 require([
-    'modules/jquery-mozu',
-    'hyprlive',
-    'modules/backbone-mozu',
-    'modules/models-location',
-    'modules/models-product'
-],
+        'modules/jquery-mozu',
+        'hyprlive',
+        'modules/backbone-mozu',
+        'modules/models-location',
+        'modules/models-product'
+    ],
     function ($, Hypr, Backbone, LocationModels, ProductModels) {
-
+        
         var defaults = {
             googleMapAPIKey: Hypr.getThemeSetting('googleMapAPIKey'),
             googleMapLatitude: Hypr.getThemeSetting('googleMapLatitude'),
@@ -14,9 +14,12 @@ require([
             googleMapZoom: Hypr.getThemeSetting('googleMapZoom'),
             googleMapPinIcon: Hypr.getThemeSetting('googleMapPinIcon'),
             storesPageSize: Hypr.getThemeSetting('storesPageSize'),
-            googleMapMaxNearbyDistance: Hypr.getThemeSetting('googleMapMaxNearbyDistance')
+            googleMapMaxNearbyDistance: Hypr.getThemeSetting('googleMapMaxNearbyDistance'),
+            googleGeolocationTimeout: Hypr.getThemeSetting('googleGeolocationTimeout'),
+            googleGeolocationMaximumAge: Hypr.getThemeSetting('googleGeolocationMaximumAge'),
+            storeDetailDisplaySocialWidget: Hypr.getThemeSetting('storeDetailDisplaySocialWidget')
         };
-
+        
         var InfoSummaryView = Backbone.MozuView.extend({
             templateName: 'modules/location/location-infosummary',
             initialize: function() {
@@ -28,13 +31,13 @@ require([
                 return this;
             }
         });
-
-        var Model = Backbone.MozuModel.extend(); 
-
+        
+        var Model = Backbone.MozuModel.extend();
+        
         try {
             defaults.googleMapZoom = parseInt(defaults.googleMapZoom, 10);
         } catch (e) { }
-
+        
         var map,
             google = window.google || {},
             infowindow,
@@ -42,25 +45,25 @@ require([
             marker,
             currentMarker,
             socialShareWidgetTemplate = Hypr.getTemplate('modules/location/social-share-widget');
-
+        
         function getQueryStrings() {
             var assoc = {};
             var decode = function (s) { return decodeURIComponent(s.replace(/\+/g, " ")); };
             var queryString = location.search.substring(1);
             var keyValues = queryString.split('&');
-
+            
             for (var i in keyValues) {
                 var key = keyValues[i].split('=');
                 if (key.length > 1) {
                     assoc[decode(key[0])] = decode(key[1]);
                 }
             }
-
+            
             return assoc;
         }
-
+        
         var positionErrorLabel = Hypr.getLabel('positionError'),
-
+            
             LocationsView = Backbone.MozuView.extend({
                 templateName: 'modules/location/locations',
                 initialize: function () {
@@ -77,7 +80,6 @@ require([
                         var qs = getQueryStrings();
                         var isZipcode = qs.zipcode;
                         var isStoreId = qs.code;
-
                         if (isZipcode) {
                             $("#searchTermView").val(isZipcode);
                             $(".empty-store-container").removeClass("active");
@@ -112,6 +114,13 @@ require([
                                 $("#searchTermView").val("");
                             }
                         }
+                        if(isZipcode === undefined && isStoreId === undefined && window.lv.model.apiModel.data.items.length > 0){
+                            $(".empty-store-container").addClass("hidden");
+                            $(".empty-store-container").removeClass("active");
+                            $(".search-view-container").addClass("active");
+                            self.drawMap(window.lv.model.apiModel.data.items);
+                        }
+                        
                         //hide loading
                         $(".store-locator-overlay").removeClass("active");
                     };
@@ -119,7 +128,14 @@ require([
                         this.model.apiGetByLatLong({ location: location }).then(show);
                     } else {
                         if (window.location.pathname.indexOf("store-details") > -1) {
-                            this.model.apiGet().then(show);
+                            var qs = getQueryStrings();
+                            var isStoreId = qs.code;
+                            if( isStoreId ){
+                                this.model.apiGet({ pageSize: defaults.storesPageSize, filter: "code eq " + isStoreId, startIndex: 0, includeAttributeDefinition: true, sortBy: 'code asc' }).then(show);
+                            }
+                            else{
+                                this.model.apiGet().then(show);
+                            }
                         } else {
                             this.model.apiGet({ pageSize: defaults.storesPageSize }).then(show);
                         }
@@ -131,33 +147,39 @@ require([
                     return c;
                 },
                 drawMap: function (locations) {
-                    var center;
-
+                    var center, zoom = defaults.googleMapZoom;
                     //if no item found draw empty map
                     if (locations.length === 0) {
                         center = new google.maps.LatLng(defaults.googleMapLatitude, defaults.googleMapLongitude);
                     } else {
                         center = new google.maps.LatLng(locations[0].geo.lat, locations[0].geo.lng);
                     }
-
+                    if(locations.length === 1){
+                        zoom = 16;
+                    }
                     //google map api
                     map = new google.maps.Map(document.getElementById('map'), {
-                        zoom: defaults.googleMapZoom,
+                        zoom:  zoom,
                         center: center,
                         mapTypeId: google.maps.MapTypeId.ROADMAP
                     });
-
+                    
                     infowindow = new google.maps.InfoWindow();
                     bounds = new google.maps.LatLngBounds();
                     google.maps.event.addListener(map, 'click', function () {
                         infowindow.close();
                     });
-
+                    
                     for (var i = 0; i < locations.length; i++) {
                         this.createMarker(locations[i], i);
                         this.bindMarkers(locations[i], currentMarker);
                     }
-                    this.bindShowDetailPage();
+                    
+                    //Remove link to Store Detail Page from store name
+                    //this.bindShowDetailPage();
+                    if(locations.length > 1){
+                        map.fitBounds(bounds);
+                    }
                     //hide loading
                     $(".store-locator-overlay").removeClass("active");
                 },
@@ -171,8 +193,11 @@ require([
                     bounds.extend(marker.position);
                     //for marker event binding to DOM
                     currentMarker = marker;
-                    var storeSearched = ($("#success-shops").text().length > 0) ? "hidden" : "";
-
+                    
+                    // Display search address on store locator page, so the logic below has been commented out
+                    //var storeSearched = ($("#success-shops").text().length > 0) ? "hidden" : "";
+                    var storeSearched = "";
+                    
                     google.maps.event.addListener(marker, 'click', (function (marker, i) {
                         return function () {
                             var dirQueryString = [
@@ -186,28 +211,26 @@ require([
                             ];
                             location.storeSearched = storeSearched;
                             location.dirQueryString = dirQueryString.join(" ");
-                            var saddr = (window.location.pathname.indexOf("store-details") > -1) ? '<p class="start-address-label">Start address:</p> <input type="text" name="saddr">' : '';
+                            var saddr = '<input type="text" name="saddr" placeholder="Start address">';
                             location.saddr = saddr;
                             location.regularHours = false;
-
+                            
                             //Info window content DOM
                             var view = new InfoSummaryView({ model: new Model(location) });
                             var infoWindowDOM = view.render().el;
-
+                            
                             //Info window content DOM END
                             map.setCenter(marker.getPosition());
                             infowindow.setContent(infoWindowDOM);
-                            infowindow.open(map, marker);                            
+                            infowindow.open(map, marker);
                         };
                     })(marker, i));
-
-                    map.fitBounds(bounds);
                 },
                 bindMarkers: function (location, marker) {
                     var DOM = $("[data-marker-id='marker_" + location.code + "']");
                     DOM.on("click", function() {
                         $('html,body').animate({
-                          scrollTop: $('#mz-store-locator-map').offset().top
+                            scrollTop: $('#mz-store-locator-map').offset().top
                         }, 600);
                         google.maps.event.trigger(marker, 'click');
                     });
@@ -238,37 +261,37 @@ require([
                     //show loading
                     $(".store-locator-overlay").addClass("active");
                     this.model.apiGet({ pageSize: pageSize, startIndex: startIndex, filter: 'geo near(' + lat + ',' + lng + ',' + defaults.googleMapMaxNearbyDistance + ')' })
-                        .then(function (data) {
-                            if (data.length > 0) {
-                                //draw map if there is any data available                               
-                                if ($(".pagination-wrapper").hasClass("hidden"))
-                                    $(".pagination-wrapper").removeClass("hidden");
-                                if ($("#showLessStores").attr("data-start-index") === "0")
-                                    $("#showLessStores").addClass("hidden");
-                                if ($(".error-success-message-container").hasClass("hidden"))
-                                    $(".error-success-message-container").removeClass("hidden");
-                                if ($("#location-list").hasClass("hidden"))
-                                    $("#location-list").removeClass("hidden");
-                                //hide loading
-                                $(".store-locator-overlay").removeClass("active");
-                                $("#success-shops").show();
-                                if (data.length < pageSize) {
-                                    $(".pagination-wrapper").addClass("hidden");
-                                }
-                            } else {
+                    .then(function (data) {
+                        if (data.length > 0) {
+                            //draw map if there is any data available
+                            if ($(".pagination-wrapper").hasClass("hidden"))
+                                $(".pagination-wrapper").removeClass("hidden");
+                            if ($("#showLessStores").attr("data-start-index") === "0")
+                                $("#showLessStores").addClass("hidden");
+                            if ($(".error-success-message-container").hasClass("hidden"))
+                                $(".error-success-message-container").removeClass("hidden");
+                            if ($("#location-list").hasClass("hidden"))
+                                $("#location-list").removeClass("hidden");
+                            //hide loading
+                            $(".store-locator-overlay").removeClass("active");
+                            $("#success-shops").show();
+                            if (data.length < pageSize) {
                                 $(".pagination-wrapper").addClass("hidden");
-                                if ($(".error-success-message-container").hasClass("hidden"))
-                                    $(".error-success-message-container").removeClass("hidden");
-                                if ($("#location-list").hasClass("hidden"))
-                                    $("#location-list").removeClass("hidden");
-                                //hide loading
-                                $(".store-locator-overlay").removeClass("active");
-                                $("#success-shops").hide();
-                                $(".invalid-location").addClass("hidden");
-                                $("#noNearbyStores").removeClass("hidden");
                             }
-                            callback();
-                        });
+                        } else {
+                            $(".pagination-wrapper").addClass("hidden");
+                            if ($(".error-success-message-container").hasClass("hidden"))
+                                $(".error-success-message-container").removeClass("hidden");
+                            if ($("#location-list").hasClass("hidden"))
+                                $("#location-list").removeClass("hidden");
+                            //hide loading
+                            $(".store-locator-overlay").removeClass("active");
+                            $("#success-shops").hide();
+                            $(".invalid-location").addClass("hidden");
+                            $("#noNearbyStores").removeClass("hidden");
+                        }
+                        callback();
+                    });
                 },
                 bindShowDetailPage: function () {
                     var _self = this;
@@ -280,27 +303,82 @@ require([
                         window.location.href = window.location.origin + "/store-details?code=" + $(this).attr("data-store-id");
                     });
                 },
-                loadStoreDetailPage: function (pageSize, lat, lng) {                    
+                loadStoreDetailPage: function (pageSize, lat, lng) {
                     var _self = this;
                     //get and render nearby stores
                     _self.getNearbyShops(pageSize, lat, lng, 0, function () {
                         _self.drawMap(window.lv.model.apiModel.data.items);
-                        document.title =  window.lv.model.apiModel.data.items[0].name + " - " + Hypr.getLabel("storeTitle");                  
-                        $(".dir-btn-container").removeClass("hidden");
-                        $("#success-shops").text("Store Details");
+                        document.title =  window.lv.model.apiModel.data.items[0].name + " - " + Hypr.getLabel("storeTitle");
+                        $(".search-address-form").removeClass("hidden");
+                        $("#success-shops").text("");
                         $("#searchTermView").val("");
-                        $(".store-details").after(socialShareWidgetTemplate.render({
-                            model: [encodeURIComponent(window.location.href)]
-                        }));
+                        if(defaults.storeDetailDisplaySocialWidget) {
+                            $(".store-details").after(socialShareWidgetTemplate.render({
+                                model: [encodeURIComponent(window.location.href)]
+                            }));
+                        }
                         $(".mz-locationlisting-locationdetails,.show-store-detail,div[data-marker-id]")
-                            .off("click");
+                        .off("click");
                         $("#location-list").removeClass("mz-locationlist");
                         $(".mz-locationlist").addClass("store-detail");
                         $(".search-address-container").removeClass("hidden");
+                        $(".dl-marker-store-image-container").removeClass("hidden");
+                        $(".dl-store-additionalcontent-container").removeClass("hidden");
+                        $(".dl-store-additionalcontent-container").removeClass("hidden");
+                        $(".dl-store-hours-container").removeClass("hidden");
+                        $(".dl-store-detail-name").removeClass("hidden");
+                        //$(".store-search-container").addClass("hidden");
+                        var location =  window.lv.model.apiModel.data.items[0];
+                        var dirQueryString = [
+                            location.address.address1,
+                            location.address.address2,
+                            location.address.address2,
+                            location.address.cityOrTown,
+                            location.address.stateOrProvince,
+                            location.address.postalOrZipCode,
+                            location.address.countryCode
+                        ];
+                        _self.$el.find('input[name=daddr]').val(dirQueryString.join(" "));
+                        //_self.model.set("dirQueryString",dirQueryString);
                     });
+                    
+                },
+                geocodeW3CMyLocation: function(){
+                    var _self = this;
+                    
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(function (position) {
+                            if($(".store-search-container").hasClass("has-error"))
+                                $(".store-search-container").removeClass("has-error");
+                            
+                            $(".geolocationError").html("");
+                            _self.getNearbyShops(defaults.storesPageSize, position.coords.latitude, position.coords.longitude, 0, function () {
+                                _self.drawMap(window.lv.model.apiModel.data.items);
+                                $(".pagination-wrapper").show();
+                            });
+                        },function (error) {
+                            if (window.console) {
+                                console.log('navigator.geolocation.getCurrentPosition failure!');
+                                console.log(error);
+                            }
+                            _self.geocodeNoSupportMyLocation(error.message);
+                        }, {maximumAge: defaults.googleGeolocationMaximumAge, timeout: defaults.googleGeolocationTimeout});
+                    } else {
+                        _self.geocodeNoSupportMyLocation("User denied the request for Geolocation");
+                    }
+                },
+                geocodeNoSupportMyLocation: function(error){
+                    $(".store-search-container").addClass("has-error");
+                    $("#geolocationError").html(error);
+                    if($("#geolocationError").hasClass("hidden")){
+                        $("#geolocationError").removeClass("hidden");
+                    }
+                    if($(".error-success-message-container").hasClass("hidden")){
+                        $(".error-success-message-container").removeClass("hidden");
+                    }
                 }
             }),
-
+            
             LocationsSearchView = LocationsView.extend({
                 templateName: 'modules/location/location-search',
                 populate: function (location) {
@@ -332,7 +410,7 @@ require([
                     });
                 }
             });
-
+        
         $(document).ready(function () {
             //DOM used for binding events
             var btnFindStores = $(".btn-find-stores"),
@@ -345,12 +423,13 @@ require([
                 showLessStores = $("#showLessStores"),
                 showStoreDetail = $(".show-store-detail"),
                 emptySearch = $(".empty-search"),
-                storeSearchContainer = $(".store-search-container");
-
+                storeSearchContainer = $(".store-search-container"),
+                btnMyLocation = $('#eslMyLocationSearch');
+            
             //Get URL Param for auto search
             var qs = getQueryStrings();
             var isZipcode = qs.zipcode;
-
+            
             if (isZipcode) {
                 //show loading
                 $(".store-locator-overlay").addClass("active");
@@ -358,19 +437,19 @@ require([
             } else {
                 emptyStoreContainer.addClass("active");
             }
-
-
+            
+            
             var $locationSearch = $('#location-list'),
                 product = ProductModels.Product.fromCurrent(),
                 productPresent = !!product.get('productCode'),
                 locationsCollection = new LocationModels.LocationCollection();
-
+            
             var ViewClass = productPresent ? LocationsSearchView : LocationsView,
                 view = new ViewClass({
                     model: locationsCollection,
                     el: $locationSearch
                 });
-
+            
             if (productPresent) {
                 view.setProduct(product);
             } else {
@@ -378,8 +457,12 @@ require([
                 $(".store-locator-overlay").removeClass("active");
             }
             window.lv = view;
-
+            
             btnFindStoresEmpty.on("click", function () {
+                if(!$(".store-description-container").hasClass("hidden")){
+                    $(".store-description-container").addClass("hidden");
+                }
+                
                 var zipcode = $.trim(searchTermEmpty.val());
                 if (zipcode.length > 0) {
                     searchTermView.val(zipcode);
@@ -390,8 +473,12 @@ require([
                     storeSearchContainer.addClass("has-error");
                 }
             });
-
+            
             btnFindStores.on("click", function () {
+                if(!$(".store-description-container").hasClass("hidden")){
+                    $(".store-description-container").addClass("hidden");
+                }
+                
                 var zipcode = $.trim(searchTermView.val());
                 if (zipcode.length > 0) {
                     if (window.location.pathname.indexOf("store-details") > -1) {
@@ -402,10 +489,10 @@ require([
                     $(".store-locator-overlay").addClass("active");
                     emptyStoreContainer.removeClass("active");
                     searchViewContainer.addClass("active");
-
+                    
                     showMoreStores.attr("data-start-index", defaults.storesPageSize);
                     showLessStores.attr("data-start-index", 0);
-
+                    
                     if ($("#map").length > 0) {
                         view.getGeoCode(zipcode, function (data) {
                             var lat = data[0].geometry.location.lat(),
@@ -423,12 +510,12 @@ require([
                     storeSearchContainer.addClass("has-error");
                 }
             });
-
+            
             showMoreStores.on("click", function (e) {
                 e.preventDefault();
                 var startIndex = parseInt($(this).attr("data-start-index"), 10),
                     zipcode = $.trim(searchTermView.val());
-
+                
                 if ((startIndex + defaults.storesPageSize) > window.lv.model.attributes.totalCount) {
                     startIndex = (window.lv.model.attributes.totalCount - defaults.storesPageSize);
                     $(this).addClass("hidden");
@@ -451,7 +538,7 @@ require([
                     }
                 }
             });
-
+            
             showLessStores.on("click", function (e) {
                 e.preventDefault();
                 var startIndex = parseInt($(this).attr("data-start-index"), 10),
@@ -506,6 +593,9 @@ require([
                     emptySearch.addClass("hidden");
                     storeSearchContainer.removeClass("has-error");
                 }
+            });
+            btnMyLocation.on("click",function(){
+                view.geocodeW3CMyLocation();
             });
         });
     }
