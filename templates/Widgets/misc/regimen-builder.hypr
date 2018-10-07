@@ -1,0 +1,9 @@
+<div class="regimen-builder-widget" data-widget="regimen-builder">
+
+</div>
+
+<script type="text/template" id="regimen-template">
+  
+</script>
+
+{% require_script "modules/regimen-builder/main" %}

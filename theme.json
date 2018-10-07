@@ -1236,6 +1236,21 @@
     	]
     },
     {
+    	"defaultConfig": {
+
+    	},
+    	"displayName": "Regimen Builder",
+    	"displayTemplate": "misc/regimen-builder",
+      "editViewFields": [
+
+      ],
+    	"icon": "/resources/admin/widgets/26_related_products.png",
+    	"id": "regimen-builder",
+    	"validPageTypes": [
+    		"*"
+    	]
+    },
+    {
         "category" : "catalog",
         "id":"category-cta",
         "displayName":"Category CTA",
