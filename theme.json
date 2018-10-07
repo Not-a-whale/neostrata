@@ -1217,12 +1217,17 @@
   "widgets": [
     {
     	"defaultConfig": {
-
+        "catalog": "[]"
     	},
     	"displayName": "Match Tool",
     	"displayTemplate": "misc/match-tool",
-    	"editViewFields": [
-
+      "editViewFields": [
+      {
+        "anchor": "100%",
+        "fieldLabel": "Catalog",
+        "name": "catalog",
+        "xtype": "mz-input-code"
+      }
       ],
     	"icon": "/resources/admin/widgets/26_related_products.png",
     	"id": "match-tool",

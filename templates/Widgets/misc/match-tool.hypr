@@ -157,4 +157,8 @@
   </div>
 </script>
 
+<script type="text/json" id="match-tool-catalog">
+{{ model.config.catalog|safe }}
+</script>
+
 {% require_script "modules/match-tool/index" %}

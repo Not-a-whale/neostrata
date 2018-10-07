@@ -7,52 +7,48 @@ define([
   _,
   Backbone
 ) {
-  var __MATCHES = [
-    {
-      code: 'F30097D',
-      name: 'Vitamin C Concentrate',
-      skin_care_system: 'Enlighten',
-      product_type: 'Serum',
-      benefits: 'radiance',
-      header: 'New look. Advanced formula.',
-      try_our: 'concentrated serum containing Vitamin C antioxidant targeting improvement in skin\'s radiance and overall skin clarity.',
-      description: 'This concentrated serum, containing pure 10% Vitamin C antioxidant, is packaged in protective single-dose capsules to enhance product freshness. This powerful antioxidant is an effective daily treatment to protect against drying environmental stressors.',
-      ingredients: [
-        '10% L-Ascorbic Acid (Vitamin C)'
-      ],
-      images: {
-        front: '/resources/images/match-tool/F30097D.png',
-        hero: '/cms/files/ENLIGHTEN_VITAMIN_C_CONCENTRATE_V1.jpg'
-      },
-      status: 'Matched',
-      before: {
-        name: 'Vitamin C Concentrate',
-        image: '/resources/images/match-tool/before/F30097D-en.png'
-      }
-    },
-    {
-      code: 'F30119D',
-      name: '',
-      before: {
-        name: 'SECUREWHITE® ANTI DARK CIRCLE COMPLEX',
-        image: '/resources/images/match-tool/before/secure-white-anti-dark.png'
-      },
-      status: 'MATCHED'
-    },
-    {
-      code: 'A',
-      before: {
-        name: 'A'
-      },
-      status: 'MATCHED'
-    },
-    {
-      code: 'B',
-      before: {
-        name: 'B'
-      },
-      status: 'MATCHED'
-    }
+  var __MATCHES = [];
+
+  try {
+    __MATCHES = JSON.parse( $( '#match-tool-catalog' ).html() );
+  }
+  catch ( err ) {
+    console.error( 'Error parsing catalog data.', err );
+  }
+
+  var __DROPDOWN = [
+    // Tuples of [LABEL, CODE]
+    ['ANTIAGING SERUM', 'F30165D'],
+    ['YOUTH FACTOR GF TOTAL REGENERATING SERUM', 'F30138X'],
+    ['GLYCOLIC RENEWAL™ BODY SMOOTHING LOTION', 'F30140D'],
+    ['SECUREWHITE® BRIGHTENING SERUM', 'F30160D'],
+    ['SECUREWHITE® ANTI DARK CIRCLE COMPLEX', 'F30119D'],
+    ['BRIGHTENING PEEL SOLUTION DUO', ''],
+    ['SKIN RENEWAL PEEL SOLUTION', 'F30113D'],
+    ['SKIN RESURFACTING DUO', 'F30101D'],
+    ['OIL FREE GEL CLEANSER', 'F30098D'],
+    ['AQUAYOUTH® FILLING ANTI-WRINKLE CREAM', 'F30107D'],
+    ['ACNE CLEAR™ CLARIFYING GEL CLEANSER', 'F30142D'],
+    ['OIL FREE MATIFYING FLUID', 'F30143D'],
+    ['Wrinkle Repair Moisturizing Cream SPF 30', 'F30149D'],
+    ['Antiaging Cream SPF 15 with Peptide Stem Cells', ''],
+    ['PURIFYING SOLUTION', 'F30145D'],
+    ['Protective Lotion Mineral Sunscreen SPF 45', 'F30164D'],
+    ['ACNE CLEAR™ BLEMISH SPOT GEL', 'F30144D'],
+    ['YOUTH FACTOR TOTAL REGENERATING CREAM', 'F30136D'],
+    ['ACNE CLEAR™ CLARIFYING SOLUTION', 'F30110D'],
+    ['ALL-IN-ONE NIGHT SERUM', 'F30102D'],
+    ['ALL-IN-ONE EYE SERUM', 'F30104D'],
+    ['ANTIAGING PEEL SOLUTION', 'F30112D'],
+    ['BRIGHTENING PEEL SOLUTION', 'F30111D'],
+    ['FIRMALIFT® FIRMING ANTI-WRINKLE CREAM', 'F30114D'],
+    ['GLYCOLIC RENEWAL™ ANTIOXIDANT SMOOTHING SERUM', 'F30105D'],
+    ['GLYCOLIC RENEWAL™ SMOOTHING CREAM', 'F30132D'],
+    ['GLYCOLIC RENEWAL™ 10% SMOOTHING LOTION', 'F30133D'],
+    ['SKIN BRIGHTENER SERUM', 'F30161D'],
+    ['NIGHT REPAIR CREAM', 'F30106D'],
+    ['VITAMIN C CONCENTRATE', 'F30097D'],
+    ['DON’T SEE YOUR FAVOURITE PRODUCT?', '']
   ];
 
   var State = Backbone.Model.extend({
@@ -82,10 +78,10 @@ define([
       this.toggled = false;
       this.selected = undefined;
 
-      this.options = _.map( __MATCHES, function( match ) {
+      this.options = _.map( __DROPDOWN, function( item ) {
         return {
-          value: match.code,
-          label: match.before.name
+          value: item[1],
+          label: item[0]
         };
       });
 
