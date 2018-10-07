@@ -5,7 +5,63 @@
 
     .image {
       width: 100%;
+    }
+
+    .image.desktop {
       max-width: 1920px;
+    }
+  }
+
+  .match-divider {
+    border-top: 2px solid #C2C2C2;
+    max-width: 1270px;
+    margin: 0 auto;
+  }
+
+  .match-content {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 75px 15px;
+
+    font-size: 1.9rem;
+
+    p {
+      margin-bottom: 60px;
+    }
+  }
+
+  .flex-swing {
+    @media (min-width: 992px) {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+  @media (max-width: 991px) {
+    .desktop {
+      display: none;
+    }
+
+    .mobile {
+      display: block;
+    }
+
+    .match-divider {
+      max-width: 75%;
+    }
+
+    .match-content {
+      max-width: 80%;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .desktop {
+      display: block;
+    }
+
+    .mobile {
+      display: none;
     }
   }
 
@@ -18,36 +74,7 @@
   }
 
   .text-small {
-    font-size: 1.4rem;
-  }
-
-  .match-content {
-    flex: 1 1 auto;
-
-    max-width: 1300px;
-    margin: 0 auto;
-    padding: 100px 15px;
-
-    font-size: 1.9rem;
-    text-align: center;
-
-    p {
-      margin-bottom: 60px;
-    }
-  }
-
-  .match-section {
-    display: flex;
-    flex-direction: row;
-
-    max-width: 1920px;
-    margin: 0 auto;
-  }
-
-  .match-divider {
-    border-top: 2px solid #C2C2C2;
-    max-width: 1270px;
-    margin: 0 auto;
+    font-size: 1.6rem;
   }
 
   .selector {
@@ -154,16 +181,34 @@
   }
 
   .pos-under {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    width: 1000px;
-    margin-left: -500px;
-
     max-height: 420px;
     overflow-y: auto;
 
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    @media (max-width: 991px) {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    @media (min-width: 992px) {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      width: 1000px;
+      margin-left: -500px;
+
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+  }
+
+  .backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.7);
   }
 
   .layer-top {
@@ -193,13 +238,10 @@
   }
 
   .match-detail {
-    padding: 82px 15px;
     background-color: #f4f4f4;
 
     .match-pitch {
       flex: 1 1 751px;
-
-      padding: 0 100px;
 
       .narrow {
         max-width: 400px;
@@ -213,24 +255,45 @@
         margin-top: 1rem;
       }
 
-      .try_out {
+      .try_our {
         padding-top: 34px;
+      }
+
+      @media (max-width: 991px) {
+        margin: 0 auto;
+        padding: 75px 0;
+        max-width: 80%;
+
+        .try_our {
+          text-align: center;
+        }
+      }
+
+      @media (min-width: 992px) {
+        padding: 75px;
       }
     }
 
     .match-hero {
       flex: 0 1 489px;
-      height: 610px;
 
       background-position: center center;
       background-size: cover;
       background-repeat: no-repeat;
+
+      @media (max-width: 991px) {
+        margin: 0 auto;
+        max-width: 80%;
+        height: 610px;
+      }
+
+      @media (min-width: 992px) {
+        margin: 75px 0;
+      }
     }
 
     .match-spec {
       flex: 1 1 680px;
-
-      padding: 0 150px 0 74px;
 
       .name {
         font-size: 34pt;
@@ -246,8 +309,27 @@
         margin-bottom: 1em;
       }
 
+      .description {
+        padding-bottom: 75px;
+      }
+
       .footer {
         padding: 5px;
+      }
+
+      @media (max-width: 991px) {
+        margin: 0 auto;
+        padding: 75px 0;
+        max-width: 80%;
+        text-align: center;
+
+        .match-type-header {
+          text-align: left;
+        }
+      }
+
+      @media (min-width: 992px) {
+        padding: 75px;
       }
     }
 
@@ -282,7 +364,7 @@
   }
 }
 
-[data-view="side-by-side"] {
+.side-by-side {
   position: relative;
   overflow: hidden;
 
@@ -293,7 +375,7 @@
     position: absolute;
     top: 0;
     bottom: 0;
-    margin: 160px 0 auto;;
+    margin: auto 0;
     width: 100%;
     height: 306px;
 
@@ -313,7 +395,7 @@
     .bar-right::before {
       content: "";
       position: absolute;
-      left: 0;
+      left: -1px;
       top: 108px;
 
       border-width: 45px 40px;
@@ -330,8 +412,13 @@
     max-width: 1920px;
     margin: 0 auto;
 
+    img {
+      width: 100%;
+    }
+
     .match-left, .match-right {
-      flex: 0 1 600px;
+      flex: 0 1 720px;
+      padding: 0 60px;
     }
 
     .match-left {
@@ -343,7 +430,6 @@
     }
 
     .product-image {
-      height: 600px;
       background-repeat: no-repeat;
       background-position: center center;
       background-size: contain;

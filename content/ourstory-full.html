@@ -698,7 +698,7 @@
     }
 
     .story-module-content {
-      padding: 18rem 16rem 8rem 16rem;
+      padding: 22rem 16rem 8rem 16rem;
       text-align: center;
     }
 
@@ -728,12 +728,14 @@
       display: inline-block;
       width: 30%;
       margin-right: 4%;
+      vertical-align: top;
     }
     .icon-image-slot.last {
       margin-right: 0;
     }
 
     .constant-img {
+      width: 100%;
     }
 
     .story-ingredient-content {
@@ -766,16 +768,16 @@
     .timeline {
       position: relative;
       z-index: 0;
-      border-top: 0.125em solid #cfcfcf;
-      border-bottom: 0.125em  solid #cfcfcf;
-      margin: 3em;
+      border-top: 0.125rem solid #cfcfcf;
+      border-bottom: 0.125rem  solid #cfcfcf;
+      margin: 3rem;
     }
 
     .timeline:before {
     	background-color: #cfcfcf;
     	content: "";
     	display: block;
-    	width: .1250em;
+    	width: .1250rem;
     	height: 100%;
     	position: absolute;
     	z-index: -1;
@@ -786,19 +788,15 @@
     .timeline-item {
       width: 50%;
       position: relative;
-      margin: -1em 0;
+      margin: -1rem 0;
     }
 
     .timeline-item.first {
-      width: 50%;
-      position: relative;
-      margin: 3em 0 0 0;
+      margin: 3rem 0 0 0;
     }
 
     .timeline-item.last {
-      width: 50%;
-      position: relative;
-      margin: 0 0 3em 0;
+      margin: 0 0 3rem 0;
     }
 
     .timeline-item span {
@@ -818,13 +816,13 @@
     .timeline-item.left {
       text-align: right;
       margin-right: 50%;
-      padding-right: 6em;
+      padding-right: 6rem;
     }
 
     .timeline-item.left:after {
       content: "⃝-----";
       position: absolute;
-      top: 3em;
+      top: 3rem;
       right: 0;
       font-size: 1rem;
       color: #cfcfcf;
@@ -832,14 +830,14 @@
 
     .timeline-item.right {
       text-align: left;
-      padding-left: 6em;
+      padding-left: 6rem;
       margin-left: 50%;
     }
 
     .timeline-item.right:after {
       content: "-----⃝";
       position: absolute;
-      top: 3em;
+      top: 3rem;
       left: 0;
       font-size: 1rem;
       color: #cfcfcf;
@@ -850,8 +848,8 @@
       background: #b3b3b3;
       color: white;
       font-size: .8em;
-      padding: 0 1em;
-      margin: 0 1em;
+      padding: 0 1rem;
+      margin: 0 1rem;
       transform: skew(-20deg);
     }
 
@@ -869,14 +867,10 @@
       margin: 3em;
     }
 
-    @media only screen and (min-width:769px) {
-        .story-module .story-main-content.right {
-            padding-right: 1.5625rem;
-        }
-    }
-
-    @media only screen and (max-width:1200px) {
-
+    @media screen and (max-width:1400px) {
+      .story-module-content {
+        padding: 22rem 8rem 8rem 8rem;
+      }
     }
 
     @media only screen and (max-width:960px) {
@@ -886,27 +880,72 @@
         }
     }
 
-    @media only screen and (max-width:768px) {
-        .story-module h1 {
-        }
-        .story-module .p1 {
-        }
-        .icon-images-container {
-        }
-        .icon-image-slot {
-
-        }
-        .specialItalic {
-            width:60vw;
-            text-align:left;
-            padding-left: 2rem;
-            height:auto;
-            display:flex;
-            align-items:center;
-        }
-        .constant-img {
-
-        }
+    @media only screen and (max-width:767px) {
+      .story-module-content {
+        padding: 12rem 4rem 4rem 4rem;
+      }
+      .story-module .new-layers {
+        width: 100%;
+      }
+      .icon-image-slot {
+        display: inline-block;
+        width: 100%;
+        margin-right: 0;
+        vertical-align: top;
+      }
+      .constant-img {
+        width: 20%;
+        float: left;
+      }
+      .story-ingredient-content {
+        padding: 4rem 6rem 4rem 6rem;
+      }
+      .story-discovery-content {
+        margin: 4rem 6rem 4rem 6rem;
+      }
+      .story-timeline-content {
+        margin: 4rem 6rem 4rem 6rem;
+      }
+      .timeline {
+        margin: 3rem 0;
+      }
+      .timeline:before {
+        content: none;
+      }
+      .timeline-item {
+        width: 100%;
+        margin: 4rem 0;
+      }
+      .timeline-item.left {
+        margin-right: 0;
+        padding-right: 0;
+      }
+      .timeline-item.right {
+        margin-left: 0;
+        padding-left: 0;
+      }
+      .timeline-item.right:after {
+        content: none;
+      }
+      .timeline-item.left:after {
+        content: none;
+      }
+      .timeline-item:before {
+        background-color: #cfcfcf;
+        content: "";
+        font-size: .5em;
+        display: block;
+        width: .1250rem;
+        height: 3rem;
+        position: absolute;
+        z-index: -1;
+        top: -3rem;
+        left: calc(50% - 1px);
+      }
+      .timeline-item.first:before {
+        height: 3rem;
+        top: -3rem;
+      }
     }
 
 </style>

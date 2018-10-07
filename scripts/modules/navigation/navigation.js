@@ -52,22 +52,21 @@ define([
 	}
     function initialize_mobile_menu(){
         $('.mz-sitenav').on('hidden.bs.collapse', function() {
-            console.log('navbar collapse');
             closeElement($('.mz-sitenav .mz-sitenav-list >.mz-sitenav-item >.mz-sitenav-item-inner >.mz-sitenav-link.selected'));
             closeSecondLevel($('.mz-sitenav .sub-level-li>.mz-sitenav-link.selected'));
         });
 
-        var $top_level = $('.mz-sitenav .mz-sitenav-list >.mz-sitenav-item >.mz-sitenav-item-inner >.mz-sitenav-link');
-        var $second_level = $('.mz-sitenav .sub-level-li>.mz-sitenav-link');
+        var $top_level = $('.mz-sitenav .mz-sitenav-list >.mz-sitenav-item >.mz-sitenav-item-inner >.mz-sitenav-link i');
+        var $second_level = $('.mz-sitenav .sub-level-li>.mz-sitenav-link i');
         $top_level.off('click').click(function(){
-            var $self = $( this );
-            if($( this ).hasClass('selected')) {
-				closeElement(this);
+            var $self = $($( this ).parent());
+            if($self.hasClass('selected')) {
+				closeElement($self);
             }
             else{
                 var height = ($self.siblings( '.mz-sitenav-sub-container' ).get(0).scrollHeight)+'px';
                 $self.addClass( 'selected' );
-                $( this ).siblings( '.mz-sitenav-sub-container' ).animate( { height: height, 'max-height': height }, {
+                $self.siblings( '.mz-sitenav-sub-container' ).animate( { height: height, 'max-height': height }, {
                     duration: 300,
                     easing: 'linear',
                     done: function () {
@@ -76,26 +75,26 @@ define([
                         $(this).css('max-height', '2000px');
                     }
                 } );
-                closeElement($( '.mz-sitenav .mz-sitenav-list .expand-mobile-menu' ).siblings('.mz-sitenav-link'));
+                closeElement($($( '.mz-sitenav .mz-sitenav-list .expand-mobile-menu' ).siblings('.mz-sitenav-link')));
             }
             return false;
         });
         $second_level.off('click').click(function(){
-            var $self = $( this );
-            if($( this ).hasClass('selected')) {
-                closeSecondLevel(this);
+            var $self = $($( this ).parent());
+            if($self.hasClass('selected')) {
+                closeSecondLevel($self);
             }
             else{
                 var height = ($self.siblings( '.sub-level-li-children' ).get(0).scrollHeight)+'px';
                 $self.addClass( 'selected' );
-                $( this ).siblings( '.sub-level-li-children' ).animate( { height: height, 'max-height': height }, {
+                $self.siblings( '.sub-level-li-children' ).animate( { height: height, 'max-height': height }, {
                     duration: 300,
                     easing: 'linear',
                     done: function () {
                         $self.siblings( '.sub-level-li-children' ).addClass( 'expand-mobile-menu' );
                     }
                 } );
-                closeSecondLevel($( '.sub-level-li-children.expand-mobile-menu' ).siblings('.mz-sitenav-link'));
+                closeSecondLevel($($( '.sub-level-li-children.expand-mobile-menu' ).siblings('.mz-sitenav-link')));
             }
             return false;
         });
