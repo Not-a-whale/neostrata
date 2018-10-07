@@ -1099,7 +1099,7 @@
         { "url": "/skin-type", "linkedCategoryCode": "18" },
         { "url": "/skin-concern", "linkedCategoryCode": "21" },
         { "url": "/collections", "linkedCategoryCode": "9" },
-        { "url": "/product-types", "linkedCategoryCode": "16" },
+        { "url": "/skincare-product-types", "linkedCategoryCode": "16" },
         { "url": "/ingredients", "linkedCategoryCode": "17" }
       ]
     }
