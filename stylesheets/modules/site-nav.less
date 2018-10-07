@@ -45,15 +45,11 @@
         position: absolute;
         z-index: 1;
         visibility: hidden;
-        .transition(visibility 0s ease-out 0s);
 
         > .mz-sitenav-item {
 
 
             .mz-sitenav-link {
-                .transition-property(~"height, padding, opacity");
-                .transition-duration(~"0s, 0s, .08s");
-                .transition-delay(~"0s, 0s, 0s");
                 height: 0px;
                 opacity: 0;
                 padding: 0;
@@ -113,7 +109,8 @@
         -webkit-box-shadow: 0 6px 12px rgba(0,0,0,0.175);
         box-shadow: 0 6px 12px rgba(0,0,0,0.175);
         top: 5rem;
-        left: -12px;
+        left: 0;
+        right: 0;
         padding: 0 15px 15px 15px;
         border: 1px solid rgba(0,0,0,0.15);
         background: white;
@@ -133,8 +130,6 @@
     .mz-sitenav-item {
         float: none;
         display: block;
-        padding: 3px 17px;
-        border-bottom: 1px solid #ccc;
         .mz-sitenav-link{
             text-transform: uppercase;
         }
@@ -148,7 +143,7 @@
             .mz-sitenav-sub {
                 .mz-sitenav-link {
                     height: auto;
-                    padding: 0px;
+                    padding: 0;
                 }
             }
             .arrow-up {
@@ -237,7 +232,7 @@
 }
 
 .sticky-nav{
-    .mz-sitenav {
+    .mz-sitenav.collapse:not(.in) {
         .mz-sitenav-list{
             .mz-sitenav-item{
                 >.mz-sitenav-item-inner>.mz-sitenav-link{
@@ -254,17 +249,97 @@
 
 @media (max-width: 991px) {
     .mz-sitenav {
+        &.collapsing{
+            -webkit-transition: none;
+            transition: none;
+            display: none;
+        }
+        height: auto;
         z-index: 2150;
         position: absolute;
-        top: 0;
+        top: 2rem;
         width: 90%;
         border: 1px solid @charcoal;
         .close-menu{
             display: block;
             font-size: 3rem;
+            line-height: 3rem;
             a{
                 .icon(before, @icon-close);
                 text-decoration: none;
+                padding-left: 0.5rem;
+            }
+        }
+        .mz-sitenav-list{
+            >.mz-sitenav-item{
+                border-top: 1px solid @midGray;
+                border-bottom: none;
+                padding: 0;
+                >.mz-sitenav-item-inner{
+                    >.mz-sitenav-link{
+                        padding-left: 4.375rem;
+                        font-weight: @fontWeightBook;
+                    }
+                    .mz-sitenav-link{
+                        line-height: 3.5rem;
+                        width: 100%;
+                        letter-spacing: .14rem;
+                        &.selected{
+                            background-color: @lightGray;
+                        }
+                        i{
+                            .icon(before, @icon-keyboard_arrow_down);
+                            position: absolute;
+                            right: 4.375rem;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            font-size: 2.5rem;
+                        }
+                    }
+                    .expand-mobile-menu{
+                        max-height: 1000px;
+                        visibility: visible;
+                    }
+                    .mz-sitenav-sub-container{
+                        position: relative;
+                        display: block;
+                        max-height: 0;
+                        padding: 0;
+                        overflow: hidden;
+                        //transition: max-height 0.5s ease-in;
+                        top: 0;
+                        left: 0!important;
+                        box-shadow: none;
+                        border: none;
+                        .container-mega-menu{
+                            margin: 0;
+                        }
+                        .mz-sitenav-link{
+                            padding: 0;
+                            text-decoration: underline;
+                            text-decoration-color: @lightGray;
+                        }
+                        .sub-level-li{
+                            >.mz-sitenav-link{
+                                padding-left: 7.5rem;
+                            }
+                            border-bottom: 0;
+                            .sub-level-li-children{
+                                max-height: 0;
+                                overflow: hidden;
+                            }
+                            .sub-sub-level-li{
+                                border-bottom: none;
+                                >.mz-sitenav-link{
+                                    padding-left: 10.625rem;
+                                    &:focus, &:hover{
+                                        background-color: @mutedBlue;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }

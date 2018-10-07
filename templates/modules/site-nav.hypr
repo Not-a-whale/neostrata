@@ -12,7 +12,7 @@
             {% if not link.isHidden and forloop.counter0 < themeSettings.maxTopLevelNavItems and link.url != "/home" %}
             <li class="mz-sitenav-item">
               <div class="mz-sitenav-item-inner">
-                <a class="mz-sitenav-link" {% if link.openInNewWindow %}target='_blank'{% endif %}>{{link.name|truncatechars(themeSettings.maxTopLevelNavLabelLength)|safe}}</a>
+                <a class="mz-sitenav-link" {% if link.openInNewWindow %}target='_blank'{% endif %} href="{{link.url}}">{{link.name|truncatechars(themeSettings.maxTopLevelNavLabelLength)|safe}}{% if link.items %}<i></i>{% endif %}</a>
                 {% if link.items %}
                 <!--div class="arrow-up"></div-->
                 <div class="mz-sitenav-sub-container">
@@ -28,7 +28,8 @@
                                     {% include_entities "modules/category-header-attribute" listFQN=themeSettings.categoryEntityName filter=filter %}
                                 {% endwith %}
                                 <div class="mz-sitenav-item sub-level-li">
-                                    <a class="mz-sitenav-link" {% if link.openInNewWindow %}target='_blank'{% endif %} href="{{sublink.url}}">{{ sublink.name|safe }}</a>
+                                    <a class="mz-sitenav-link" {% if link.openInNewWindow %}target='_blank'{% endif %} href="{{sublink.url}}">{{ sublink.name|safe }}<i></i></a>
+                                    <div class="sub-level-li-children">
                                 {% for lookup in themeSettings.megaMenu.categoryLookups %}
                                   {% if lookup.url == sublink.url %}
                                     {% with navigation.tree|findwhere('categoryCode', lookup.linkedCategoryCode) as linkedCategory %}
@@ -49,6 +50,7 @@
                                         </div>
                                     {% endif %}
                                 {% endfor %}
+                                </div>
                                 </div>
                             {% endif %}
                         {% endfor %}
