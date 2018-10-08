@@ -460,5 +460,6 @@
     "selectValidOptionProduct": "Wählen Sie gültige Option (en) für {0}",
     "productaddToCartError": "Die folgenden Artikel werden nicht zum Warenkorb hinzugefügt",
 
-    "storeMyLocation": "Locate Me"
+    "storeMyLocation": "Locate Me",
+    "kmsAway"            : "{0} km"
 }

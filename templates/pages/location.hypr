@@ -85,7 +85,7 @@
                             {%if themeSettings.googleMapAPIKey %}
                                 <div class="clearfix"></div>
                                 <div id="map"></div>
-                                <script src="//maps.googleapis.com/maps/api/js?key={{themeSettings.googleMapAPIKey}}&libraries=places"></script>
+                                <script src="//maps.googleapis.com/maps/api/js?key={{themeSettings.googleMapAPIKey}}&libraries=places,geometry"></script>
                             {%endif%}
                         </div> 
                     </div>

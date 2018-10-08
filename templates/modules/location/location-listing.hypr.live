@@ -7,6 +7,12 @@
             <h5  data-marker-id="marker_{{ model.code }}" class="mz-locationlisting-name show-store-detail" data-store-id="{{ model.code }}">{{ model.name }}</h5>
             <div class="mz-addresssummary" data-marker-id="marker_{{ model.code }}">
                 {% include "modules/common/address-summary" %}
+
+                {% if model.distance %}
+                    <div class="mz-locationlisting-distance pull-right">
+                        {{ labels.kmsAway|string_format(model.distance) }}
+                    </div>
+                {% endif %}
             </div>
             <div class="store-details" data-marker-id="marker_{{ model.code }}">
                    <span>{{labels.storeDetails}}</span>
@@ -18,9 +24,5 @@
             </div>
         </div>
     </div>
-    {% if location.distance %}
-    <div class="mz-locationlisting-distance">
-        {{ labels.milesAway|string_format(location.distance) }}
-    </div>
-    {% endif %}    
+
 </div>

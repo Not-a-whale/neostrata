@@ -818,7 +818,7 @@
     "storesPageSize": 5,
     "facebookShareLink": "https://www.facebook.com/Neostrata",
     "googleMapPinIcon": "",
-    "searchStorePlaceHolder": "Enter City, State or ZIP",
+    "searchStorePlaceHolder": "Address, City or Postal Code",
     "googleMapMaxNearbyDistance": 10000000,
     "googleGeolocationTimeout": 1000000,
     "googleGeolocationMaximumAge": "Infinity",

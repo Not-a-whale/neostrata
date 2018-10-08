@@ -1,11 +1,12 @@
 require([
         'modules/jquery-mozu',
+        'underscore',
         'hyprlive',
         'modules/backbone-mozu',
         'modules/models-location',
         'modules/models-product'
     ],
-    function ($, Hypr, Backbone, LocationModels, ProductModels) {
+    function ($, _, Hypr, Backbone, LocationModels, ProductModels) {
         
         var defaults = {
             googleMapAPIKey: Hypr.getThemeSetting('googleMapAPIKey'),
@@ -72,6 +73,7 @@ require([
                 },
                 populate: function (location) {
                     var self = this;
+
                     var show = function () {
                         self.render();
                         $('.mz-locationsearch-pleasewait').fadeOut();
@@ -258,8 +260,10 @@ require([
                     });
                 },
                 getNearbyShops: function (pageSize, lat, lng, startIndex, callback) {
+                    var self = this;
                     //show loading
                     $(".store-locator-overlay").addClass("active");
+                    this.model.set( 'searchLanLng', { lat: lat, lng: lng } );
                     this.model.apiGet({ pageSize: pageSize, startIndex: startIndex, filter: 'geo near(' + lat + ',' + lng + ',' + defaults.googleMapMaxNearbyDistance + ')' })
                     .then(function (data) {
                         if (data.length > 0) {
@@ -277,6 +281,28 @@ require([
                             $("#success-shops").show();
                             if (data.length < pageSize) {
                                 $(".pagination-wrapper").addClass("hidden");
+                            }
+                            
+                            // set distance from searchPoint
+                            var searchPoint = self.model.get( 'searchLanLng' );
+                            try{
+                                if( searchPoint && searchPoint.lat && searchPoint.lng){
+                                    searchPoint = new google.maps.LatLng( searchPoint.lat, searchPoint.lng );
+                                    _.each( self.model.get( 'items').models, function( loc ){
+                                        var storeGeo = loc.get( 'geo' );
+                                        if( storeGeo && storeGeo.lat && storeGeo.lng ){
+                                            var distanceInMts = google.maps.geometry.spherical.computeDistanceBetween( searchPoint, new google.maps.LatLng( storeGeo.lat, storeGeo.lng ) );
+                                            if( distanceInMts ){
+                                                loc.set( 'distance', ( distanceInMts / 1000 ).toFixed(1) );
+                                            }
+                                        }
+                                    });
+                                    self.render();
+                                }
+                            }
+                            catch( e ){
+                                // ignore distance calc errors
+                                console.log( e );
                             }
                         } else {
                             $(".pagination-wrapper").addClass("hidden");
