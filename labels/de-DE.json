@@ -458,5 +458,8 @@
     "billingAddressRequired": "Rechnungsadresse ist erforderlichrderlich",
     "selectValidOption": "Wählen Sie gültige Option (en)",
     "selectValidOptionProduct": "Wählen Sie gültige Option (en) für {0}",
-    "productaddToCartError": "Die folgenden Artikel werden nicht zum Warenkorb hinzugefügt"
+    "productaddToCartError": "Die folgenden Artikel werden nicht zum Warenkorb hinzugefügt",
+
+    "storeMyLocation": "Locate Me",
+    "kmsAway"            : "{0} km"
 }
