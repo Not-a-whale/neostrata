@@ -65,18 +65,20 @@
     <div class="flex-fill flex-column">
       <div class="flex-center-column align-center">
         <div class="flex-fixed">
-          <a href="" class="primary-btn align-center">Find a Retailer</a>
+          <a href="/store-locator" class="primary-btn align-center">Find a Retailer</a>
         </div>
       </div>
     </div>
   </div>
   <div class="divider"></div>
-  <div class="flex-swing">
-    <div class="flex-fill">
-      <a href="" class="primary-btn align-center">View All <%= current[1] %> Products</a>
-    </div>
-    <div class="flex-fill">
-      <a href="" class="primary-btn align-center">View All NEOSTRATA® Products</a>
+  <div class="flex-swing container block">
+    <% if ( current[3] ) { %>
+      <div class="flex-fill align-center-mobile">
+        <a href="<%= current[3] %>" class="align-center-mobile">View All <%= current[1] %> Products</a>
+      </div>
+    <% }%>
+    <div class="flex-fill align-right align-center-mobile">
+      <a href="/products/c/66" class="align-center-mobile">View All NEOSTRATA® Products</a>
     </div>
   </div>
 </script>

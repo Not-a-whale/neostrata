@@ -73,7 +73,7 @@ require([
                 },
                 populate: function (location) {
                     var self = this;
-
+                    
                     var show = function () {
                         self.render();
                         $('.mz-locationsearch-pleasewait').fadeOut();

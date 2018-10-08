@@ -32,7 +32,7 @@
             border-radius: 4px;
             background-color: rgba(0,0,0,.5);
             -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
-        }        
+        }
     }
     .empty-store-container{
         display: none;
@@ -43,7 +43,7 @@
             font-size: @fontSize - 1;
         }
         .error-success-message-container{
-            p{    
+            p{
                 color: @colorGray;
                 font-size: 12px;
                 &.invalid-location{
@@ -163,12 +163,12 @@
                 border: 1px solid @inputBorder;
                 border-radius: 0;
                 box-shadow: none;
-            }        
+            }
         }
         .dir-btn-container{
-            padding: 5px 0;            
+            padding: 5px 0;
         }
-    }    
+    }
     .mz-locationlisting {
         margin: 0;
         display: table;
@@ -182,13 +182,31 @@
             h4 {
                 margin: 0 0 @gutter/4;
                 .fontsMedium();
-                font-size: @fontSizeLarger + 2px;
+
                 color: @colorGray;
+            }
+
+            .mz-locationlisting-locationdetails-icon{
+                width: 10%;
+
+                i{
+                    margin-top: 9px;
+                    font-size: 3em;
+                }
+            }
+            .mz-locationlisting-locationdetails-item{
+                width: 90%;
+
+                .store-hours-heading{
+                    font-size: 1.20rem;
+                    text-transform: capitalize;
+                }
             }
         }
         .mz-addresssummary{
             margin: 10px 0;
-            font-size: @fontSize - 1px;
+            //font-size: @fontSize - 1px;
+            font-size: 12px;
             .store-hours-heading{
                 margin: 0;
             }
@@ -200,7 +218,7 @@
         .social-share-container{
             font-size: @fontSize - 1px;
             margin: @defaultGutter 0;
-            cursor: text;            
+            cursor: text;
             .social-icons-wrapper {
                 margin: 5px 0 0 0;
                 .fb-like-icon {

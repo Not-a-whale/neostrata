@@ -11,8 +11,13 @@
     {% endif %}
     <div>{{ model.address.cityOrTown }} {{ model.address.stateOrProvince }} {{ model.address.postalOrZipCode }}</div>
     <div>{{ model.address.countryCode }}</div>
+
     {% if model.phoneNumbers.home %}
         <span>{{ model.phoneNumbers.home }}</span>
+    {% else %}
+        {% if model.locationTypes && model.phone %}
+                <span itemprop="telephone"><a href="tel:+ {{ model.phone }}">{{ model.phone }}</a></span>
+        {% endif %}
     {% endif %}
    
     {% if model.regularHours %}

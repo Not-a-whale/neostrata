@@ -22,7 +22,7 @@
                         <p class="label-nearby-stores">{{ labels.locateStore }}</p>
                         <div class="store-search-container">
                             <div class="input-group stylish-input-group">
-                                <input id="searchTermView" type="text" class="form-control"  placeholder="{{ themeSettings.searchStorePlaceHolder }}">
+                                <input id="searchTermView" type="text" class="form-control"  placeholder="{{ labels.searchStorePlaceHolder }}">
                                 <div class="input-group-addon dl-storelocator-button-search-container">
                                     <span class="ml-storelocator-ui-button-image-container">
                                         <button type="button" name="eslMyLocationSearch" id="eslMyLocationSearch" alt="search with my location" class="eslMyLocationSearch ml-secondary-button ml-storelocator-locate-btn">
