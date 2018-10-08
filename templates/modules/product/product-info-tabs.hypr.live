@@ -15,8 +15,6 @@
         <li><a data-toggle="tab" href="#tab3"><span>How To Apply</span></a></li>
     {% endif %}
 
-        <li><a data-toggle="tab" href="#tab4"><span>Product Dump</span></a></li>
-
 </ul>
 
 <div class="tab-content">
@@ -55,9 +53,7 @@
         {% endfor %}
       </div>
     {% endif %}
-    <div id="tab4" class="tab-pane fade">
-      {% dump model %}
-    </div>
+
 </div>
 
 {% else %}
