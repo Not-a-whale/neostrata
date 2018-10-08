@@ -19,12 +19,78 @@
     }
   }
 
+  font-size: 1.9rem;
+
+  label {
+    margin: 0;
+    font-weight: inherit;
+  }
+
+  .container {
+    padding: 0 30px;
+    margin: 0 auto;
+    max-width: 1920px;
+  }
+
+  .divider {
+    border-top: 0.15rem solid #B3B3B3;
+    margin: 15px;
+  }
+
+  .block {
+    margin: 75px 0;
+  }
+
   .inline {
     display: inline-block;
   }
 
   .anchor {
     position: relative;
+  }
+
+  .flex-row {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .flex-column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .flex-center-row {
+    flex: 0 1 auto;
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+  }
+
+  .flex-center-column {
+    flex: 0 1 auto;
+    display: flex;
+    flex-direction: column;
+    margin: auto 0;
+  }
+
+  .flex-fixed {
+    flex: 0 1 auto;
+  }
+
+  .flex-fill {
+    flex: 1 1 auto;
+  }
+
+  .text-bold {
+    font-style: 500;
+  }
+
+  .text-giant {
+    font-size: 4rem;
+  }
+
+  .text-tiny {
+    font-size: 1rem;
   }
 
   .height-fixed {
@@ -50,10 +116,46 @@
     margin: auto 30px;
   }
 
+  .primary-btn {
+    @media (max-width: 991px) {
+      width: 100%;
+    }
+  }
+
+  .margin-medium {
+    margin: 30px;
+  }
+
+  .margin-small {
+    margin: 10px 0;
+  }
+
+  .pad-content {
+    padding: 10px;
+  }
+
+  .pad-sides-standard {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
   .border-strong {
     color: #4e5458;
     border: 0.1875rem solid #4e5458;
     border-radius: 0;
+  }
+
+  .border-gray {
+    border: 0.15rem solid #B3B3B3;
+  }
+
+  .border-right-light {
+    border-right: 1px solid #B3B3B3;
+  }
+
+  .background-gray {
+    background-color: #B3B3B3;
+    color: #FFFFFF;
   }
 
   .border-top-between {
@@ -107,6 +209,10 @@
     }
   }
 
+  .background-white {
+    background-color: #FFFFFF;
+  }
+
   .backdrop {
     position: fixed;
     top: 0;
@@ -118,5 +224,11 @@
 
   .regimen-view {
     min-height: 400px;
+  }
+}
+
+.regimen-product {
+  img {
+    max-width: 100%;
   }
 }

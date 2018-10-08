@@ -1250,12 +1250,37 @@
             {
               "xtype": "mz-input-product",
               "name": "normalStep1",
-              "fieldLabel": "Step One"
+              "fieldLabel": "Step One: Cleanser"
             },
             {
               "xtype": "mz-input-product",
               "name": "normalStep2",
-              "fieldLabel": "Step Two"
+              "fieldLabel": "Step Two: Toner"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "normalStep3",
+              "fieldLabel": "Step Three: Serum"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "normalStep4",
+              "fieldLabel": "Step Four: Day"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "normalStep5",
+              "fieldLabel": "Step Five: Night"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "normalStep6",
+              "fieldLabel": "Step Six: Eye"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "normalStep7",
+              "fieldLabel": "Step Seven: Regimen Boosters"
             }
           ]
         },
@@ -1266,13 +1291,122 @@
         	"items": [
             {
               "xtype": "mz-input-product",
-              "name": "dry-step1",
-              "fieldLabel": "Step One"
+              "name": "dryStep1",
+              "fieldLabel": "Step One: Cleanser"
             },
             {
               "xtype": "mz-input-product",
-              "name": "dry-step2",
-              "fieldLabel": "Step Two"
+              "name": "dryStep2",
+              "fieldLabel": "Step Two: Toner"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "dryStep3",
+              "fieldLabel": "Step Three: Serum"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "dryStep4",
+              "fieldLabel": "Step Four: Day"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "dryStep5",
+              "fieldLabel": "Step Five: Night"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "dryStep6",
+              "fieldLabel": "Step Six: Eye"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "dryStep7",
+              "fieldLabel": "Step Seven: Regimen Boosters"
+            }
+          ]
+        },
+        {
+          "xtype": "panel",
+        	"title": "Oily Skin Regimen",
+        	"collapsed": false,
+        	"items": [
+            {
+              "xtype": "mz-input-product",
+              "name": "oilyStep1",
+              "fieldLabel": "Step One: Cleanser"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "oilyStep2",
+              "fieldLabel": "Step Two: Toner"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "oilyStep3",
+              "fieldLabel": "Step Three: Serum"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "oilyStep4",
+              "fieldLabel": "Step Four: Day"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "oilyStep5",
+              "fieldLabel": "Step Five: Night"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "oilyStep6",
+              "fieldLabel": "Step Six: Eye"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "oilyStep7",
+              "fieldLabel": "Step Seven: Regimen Boosters"
+            }
+          ]
+        },
+        {
+          "xtype": "panel",
+        	"title": "Sensitive Skin Regimen",
+        	"collapsed": false,
+        	"items": [
+            {
+              "xtype": "mz-input-product",
+              "name": "sensitiveStep1",
+              "fieldLabel": "Step One: Cleanser"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "sensitiveStep2",
+              "fieldLabel": "Step Two: Toner"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "sensitiveStep3",
+              "fieldLabel": "Step Three: Serum"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "sensitiveStep4",
+              "fieldLabel": "Step Four: Day"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "sensitiveStep5",
+              "fieldLabel": "Step Five: Night"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "sensitiveStep6",
+              "fieldLabel": "Step Six: Eye"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "sensitiveStep7",
+              "fieldLabel": "Step Seven: Regimen Boosters"
             }
           ]
         }
