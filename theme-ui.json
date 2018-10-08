@@ -620,6 +620,11 @@
                     "fieldLabel": "Swatch Image Max Width"
                 },
                 {
+                    "xtype": "mz-input-text",
+                    "name": "listProductThumbSize",
+                    "fieldLabel": "Product Thumb Size"
+                },
+                {
                     "xtype": "mz-input-checkbox",
                     "name": "colorSwatchesChangeMain",
                     "fieldLabel": "Enable Image change on Hover on Swatch"
