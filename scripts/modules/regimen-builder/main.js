@@ -205,6 +205,11 @@ require([
     }
   });
 
+  var PRODUCT_DEFAULTS = {
+    content: {},
+    mainImage: {}
+  };
+
   var StepView = Backbone.View.extend({
     template: _.template( $( '#regimen-step-template' ).html() ),
 
@@ -212,7 +217,7 @@ require([
 
     render: function( step ) {
       this.$el.html( this.template( _.extend({}, step, {
-        product: PRODUCT_TILE( step.product )
+        product: PRODUCT_TILE( _.extend({}, PRODUCT_DEFAULTS, step.product ) )
       })));
 
       return this;
