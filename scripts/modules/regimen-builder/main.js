@@ -195,7 +195,7 @@ require([
 
         return acc;
       }, {});
-      
+
       $BV.ui( 'rr', 'inline_ratings', {
         productIds: productIds,
         containerPrefix: 'BVRRInlineRating'
@@ -208,7 +208,7 @@ require([
   var StepView = Backbone.View.extend({
     template: _.template( $( '#regimen-step-template' ).html() ),
 
-    className: 'block',
+    className: 'block flex-swing',
 
     render: function( step ) {
       this.$el.html( this.template( _.extend({}, step, {

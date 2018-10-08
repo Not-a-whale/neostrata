@@ -59,11 +59,28 @@
     flex-direction: column;
   }
 
+  .flex-swing {
+    @media (min-width: 992px) {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
   .flex-center-row {
     flex: 0 1 auto;
     display: flex;
     flex-direction: row;
     margin: 0 auto;
+  }
+
+  .flex-center-row-mobile {
+    flex: 0 1 auto;
+    display: flex;
+    flex-direction: row;
+
+    @media (max-width: 991px) {
+      margin: 0 auto;
+    }
   }
 
   .flex-center-column {
@@ -74,7 +91,7 @@
   }
 
   .flex-fixed {
-    flex: 0 1 auto;
+    flex: 0 0 auto;
   }
 
   .flex-fill {
@@ -139,6 +156,19 @@
     padding-right: 15px;
   }
 
+  .pad-inners-standard {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .pad-inners-standard:first-child {
+    padding-left: 0;
+  }
+
+  .pad-inners-standard:last-child {
+    padding-right: 0;
+  }
+
   .border-strong {
     color: #4e5458;
     border: 0.1875rem solid #4e5458;
@@ -183,6 +213,12 @@
     text-align: center;
   }
 
+  .align-center-mobile {
+    @media (max-width: 991px) {
+      text-align: center;
+    }
+  }
+
   .cursor-pointer {
     cursor: pointer;
   }
@@ -224,6 +260,22 @@
 
   .regimen-view {
     min-height: 400px;
+  }
+
+  .regimen-step-description {
+    order: 1;
+
+    @media (min-width: 992px) {
+      padding-left: 60px;
+    }
+  }
+
+  .regimen-step-product {
+    order: 0;
+
+    @media (min-width: 992px) {
+      flex-basis: 420px;
+    }
   }
 }
 

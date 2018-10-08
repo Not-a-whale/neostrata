@@ -43,54 +43,64 @@
 
 <script type="text/template" id="regimen-template">
   <div data-view="steps"></div>
-  <div class="block">
-    <div class="align-center h2">
-      Your Routine
-    </div>
-    <div class="flex-row">
-      <div class="flex-fill align-center h3">
-        <%= selection.count %> Products
+  <div class="flex-swing block">
+    <div class="flex-fill block">
+      <div class="align-center h2">
+        Your Routine
       </div>
-      <div class="flex-fill align-center">
-        <div class="text-bold text-giant">
-          $<%= selection.cost %>.00
+      <div class="flex-row">
+        <div class="flex-fill align-center h3">
+          <%= selection.count %> Products
         </div>
-        <div class="text-tiny">
-          Suggested retail price
+        <div class="flex-fill align-center">
+          <div class="text-bold text-giant">
+            $<%= selection.cost %>.00
+          </div>
+          <div class="text-tiny">
+            Suggested retail price
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div>
-    <a href="" class="primary-btn align-center">Find a Retailer</a>
+    <div class="flex-fill flex-column">
+      <div class="flex-center-column align-center">
+        <div class="flex-fixed">
+          <a href="" class="primary-btn align-center">Find a Retailer</a>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="divider"></div>
-  <div>
-    <a href="" class="primary-btn align-center">View All <%= current[1] %> Products</a>
-  </div>
-  <div>
-    <a href="" class="primary-btn align-center">View All NEOSTRATA® Products</a>
+  <div class="flex-swing">
+    <div class="flex-fill">
+      <a href="" class="primary-btn align-center">View All <%= current[1] %> Products</a>
+    </div>
+    <div class="flex-fill">
+      <a href="" class="primary-btn align-center">View All NEOSTRATA® Products</a>
+    </div>
   </div>
 </script>
 
 <script type="text/template" id="regimen-step-template">
-  <h3 class="flex-row">
-    <div class="flex-center-row">
-      <div class="flex-fixed pad-sides-standard border-right-light">
-        STEP <%= number %>
+  <div class="regimen-step-description flex-fill">
+    <h3 class="flex-row">
+      <div class="flex-center-row-mobile">
+        <div class="flex-fixed pad-inners-standard border-right-light">
+          STEP <%= number %>
+        </div>
+        <div class="flex-fixed pad-inners-standard">
+          <%= type %>
+        </div>
       </div>
-      <div class="flex-fixed pad-sides-standard">
-        <%= type %>
-      </div>
+    </h3>
+    <div class="align-center-mobile">
+      <%= sub %>
     </div>
-  </h3>
-  <div class="align-center">
-    <%= sub %>
+    <div class="align-center-mobile margin-small">
+      <%= description %>
+    </div>
   </div>
-  <div class="align-center margin-small">
-    <%= description %>
-  </div>
-  <div class="border-gray">
+  <div class="border-gray regimen-step-product flex-fixed">
     <div class="pad-content">
       <%= product %>
     </div>
