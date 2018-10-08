@@ -1,9 +1,87 @@
 <div class="regimen-builder-widget" data-widget="regimen-builder">
+  <h2>Regimen Builder</h2>
+  <div data-view="selector" class="align-center">
+    <div class="inline anchor align-left cursor-pointer" data-role="wrapper">
+      <div class="height-fixed border-strong uppercase pointer icon-right" data-control="toggle">
+        <div class="chevron-down"></div>
+        Select Skin Type
+      </div>
+    </div>
+  </div>
+  <div data-view="regimen" class="regimen-view">
 
+  </div>
 </div>
 
+<script type="text/template" id="regimen-select-template">
+  <div class="inline anchor align-left cursor-pointer" data-role="wrapper">
+    <div class="height-fixed border-strong uppercase pointer icon-right" data-control="toggle">
+      <div class="chevron-down"></div>
+      <%= selected ? selected[1] : 'Select Skin Type' %>
+    </div>
+    <% if ( open ) { %>
+      <div class="mobile backdrop"></div>
+      <div class="dropdown layer-top background-white">
+        <% _.each( options, function( option ) { %>
+          <div class="height-fixed uppercase cursor-pointer border-top-between" data-option="<%= option.value %>">
+            <%= option.label %>
+          </div>
+        <% }) %>
+      </div>
+    <% } %>
+  </div>
+</script>
+
 <script type="text/template" id="regimen-template">
-  
+
+</script>
+
+<script type="text/json" id="regimen-builder-config">
+{{ model.config|safe }}
+</script>
+
+<script type="text/json" id="regimen-builder-product-normal-1" data-role="regimen-product">
+{% include_products "modules/product/json-products" with productCodes=model.config.normalStep1 %}
+</script>
+<script type="text/json" id="regimen-builder-product-normal-2" data-role="regimen-product">
+{% include_products "modules/product/json-products" with productCodes=model.config.normalStep2 %}
+</script>
+<script type="text/json" id="regimen-builder-product-normal-3" data-role="regimen-product">
+{% include_products "modules/product/json-products" with productCodes=model.config.normalStep3 %}
+</script>
+<script type="text/json" data-role="regimen-product">
+{% include_products "modules/product/json-products" with productCodes=model.config.normalStep4 %}
+</script>
+<script type="text/json" data-role="regimen-product">
+{% include_products "modules/product/json-products" with productCodes=model.config.normalStep5 %}
+</script>
+<script type="text/json" data-role="regimen-product">
+{% include_products "modules/product/json-products" with productCodes=model.config.normalStep6 %}
+</script>
+<script type="text/json" data-role="regimen-product">
+{% include_products "modules/product/json-products" with productCodes=model.config.normalStep7 %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+{% include_products "modules/product/json-products" with productCodes=model.config.dryStep1 %}
+</script>
+<script type="text/json" data-role="regimen-product">
+{% include_products "modules/product/json-products" with productCodes=model.config.dryStep2 %}
+</script>
+<script type="text/json" data-role="regimen-product">
+{% include_products "modules/product/json-products" with productCodes=model.config.dryStep3 %}
+</script>
+<script type="text/json" data-role="regimen-product">
+{% include_products "modules/product/json-products" with productCodes=model.config.dryStep4 %}
+</script>
+<script type="text/json" data-role="regimen-product">
+{% include_products "modules/product/json-products" with productCodes=model.config.dryStep5 %}
+</script>
+<script type="text/json" data-role="regimen-product">
+{% include_products "modules/product/json-products" with productCodes=model.config.dryStep6 %}
+</script>
+<script type="text/json" data-role="regimen-product">
+{% include_products "modules/product/json-products" with productCodes=model.config.dryStep7 %}
 </script>
 
 {% require_script "modules/regimen-builder/main" %}

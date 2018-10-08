@@ -1222,12 +1222,12 @@
     	"displayName": "Match Tool",
     	"displayTemplate": "misc/match-tool",
       "editViewFields": [
-      {
-        "anchor": "100%",
-        "fieldLabel": "Catalog",
-        "name": "catalog",
-        "xtype": "mz-input-code"
-      }
+        {
+          "anchor": "100%",
+          "fieldLabel": "Catalog",
+          "name": "catalog",
+          "xtype": "mz-input-code"
+        }
       ],
     	"icon": "/resources/admin/widgets/26_related_products.png",
     	"id": "match-tool",
@@ -1242,7 +1242,40 @@
     	"displayName": "Regimen Builder",
     	"displayTemplate": "misc/regimen-builder",
       "editViewFields": [
-
+        {
+          "xtype": "panel",
+        	"title": "Normal Skin Regimen",
+        	"collapsed": false,
+        	"items": [
+            {
+              "xtype": "mz-input-product",
+              "name": "normalStep1",
+              "fieldLabel": "Step One"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "normalStep2",
+              "fieldLabel": "Step Two"
+            }
+          ]
+        },
+        {
+          "xtype": "panel",
+        	"title": "Dry Skin Regimen",
+        	"collapsed": false,
+        	"items": [
+            {
+              "xtype": "mz-input-product",
+              "name": "dry-step1",
+              "fieldLabel": "Step One"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "dry-step2",
+              "fieldLabel": "Step Two"
+            }
+          ]
+        }
       ],
     	"icon": "/resources/admin/widgets/26_related_products.png",
     	"id": "regimen-builder",
