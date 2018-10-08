@@ -1283,6 +1283,11 @@
               "xtype": "mz-input-product",
               "name": "normalStep7",
               "fieldLabel": "Step Seven: Regimen Boosters"
+            },
+            {
+              "xtype": "mz-input-text",
+              "name": "normalCategoryPath",
+              "fieldLabel": "Skin-Type Page Path"
             }
           ]
         },
@@ -1325,6 +1330,11 @@
               "xtype": "mz-input-product",
               "name": "dryStep7",
               "fieldLabel": "Step Seven: Regimen Boosters"
+            },
+            {
+              "xtype": "mz-input-text",
+              "name": "dryCategoryPath",
+              "fieldLabel": "Skin-Type Page Path"
             }
           ]
         },
@@ -1367,6 +1377,11 @@
               "xtype": "mz-input-product",
               "name": "oilyStep7",
               "fieldLabel": "Step Seven: Regimen Boosters"
+            },
+            {
+              "xtype": "mz-input-text",
+              "name": "oilyCategoryPath",
+              "fieldLabel": "Skin-Type Page Path"
             }
           ]
         },
@@ -1409,6 +1424,11 @@
               "xtype": "mz-input-product",
               "name": "sensitiveStep7",
               "fieldLabel": "Step Seven: Regimen Boosters"
+            },
+            {
+              "xtype": "mz-input-text",
+              "name": "sensitiveCategoryPath",
+              "fieldLabel": "Skin-Type Page Path"
             }
           ]
         }
