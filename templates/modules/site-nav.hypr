@@ -10,6 +10,12 @@
           {% partial_cache %}
           {% for link in navigation.tree %}
             {% if not link.isHidden and forloop.counter0 < themeSettings.maxTopLevelNavItems and link.url != "/home" %}
+                {% set_var childrenGoToThis=false %}
+                {% for item in themeSettings.megaMenu.firstLevel %}
+                  {% if item.url == link.url %}
+                    {% set_var childrenGoToThis=item.childrenGoToThis %}
+                  {% endif %}
+                {% endfor %}
             <li class="mz-sitenav-item">
               <div class="mz-sitenav-item-inner">
                 <a class="mz-sitenav-link" {% if link.openInNewWindow %}target='_blank'{% endif %} href="{{link.url}}">{{link.name|truncatechars(themeSettings.maxTopLevelNavLabelLength)|safe}}{% if link.items %}<i></i>{% endif %}</a>
@@ -28,7 +34,7 @@
                                     {% include_entities "modules/category-header-attribute" listFQN=themeSettings.categoryEntityName filter=filter %}
                                 {% endwith %}
                                 <div class="mz-sitenav-item sub-level-li">
-                                    <a class="mz-sitenav-link" {% if link.openInNewWindow %}target='_blank'{% endif %} href="{{link.url}}">{{ sublink.name|safe }}<i></i></a>
+                                    <a class="mz-sitenav-link" {% if link.openInNewWindow %}target='_blank'{% endif %} href="{% if childrenGoToThis %}{{link.url}}{% else %}{{sublink.url}}{% endif %}">{{ sublink.name|safe }}<i></i></a>
                                     <div class="sub-level-li-children">
                                 {% for lookup in themeSettings.megaMenu.categoryLookups %}
                                   {% if lookup.url == sublink.url %}
