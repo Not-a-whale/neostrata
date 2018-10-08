@@ -6,7 +6,12 @@
 {% block body-content %}
     {% require_script "pages/location" %}
     {% preload_json model "product" %}
-    <div class="mz-l-container mz-location-parent">
+    <div class="mz-l-container container mz-location-parent">
+        <div class="row">
+             <div class="col-xs-12">
+                 {% dropzone "store-top" scope="page" %}
+             </div>
+         </div>
         <h1 class="mz-pagetitle">{{ labels.localStores }}</h1>
         <div class="mz-l-stack">
             <p class="mz-locationsearch-pleasewait hidden">
@@ -18,7 +23,7 @@
                         <p class="label-nearby-stores">{{ labels.locateStore }}</p>
                         <div class="store-search-container">
                             <div class="input-group stylish-input-group">
-                                <input id="searchTermEmpty" type="text" class="form-control" placeholder="{{themeSettings.searchStorePlaceHolder}}">
+                                <input id="searchTermEmpty" type="text" class="form-control" placeholder="{{ labels.searchStorePlaceHolder }}">
                                 <span class="input-group-addon">
                                     <button class="btn-find-stores-empty" type="submit">
                                         <span class="glyphicon glyphicon-search"></span>
@@ -42,11 +47,11 @@
              </div>
              <div class="search-view-container">
                 <div class="row">
-                    <div class="col-md-3 col-sm-5">
+                    <div class="col-lg-3 col-md-5 col-sm-5">
                         <p class="label-nearby-stores">{{ labels.locateStore }}</p>
                         <div class="store-search-container"> 
                             <div class="input-group stylish-input-group">
-                                <input id="searchTermView" type="text" class="form-control"  placeholder="{{ themeSettings.searchStorePlaceHolder }}">
+                                <input id="searchTermView" type="text" class="form-control"  placeholder="{{ labels.searchStorePlaceHolder }}">
                                 <div class="input-group-addon dl-storelocator-button-search-container">
                                     <span class="ml-storelocator-ui-button-image-container">
                                         <button type="button" name="eslMyLocationSearch" id="eslMyLocationSearch" alt="search with my location" class="eslMyLocationSearch ml-secondary-button ml-storelocator-locate-btn">
@@ -75,9 +80,9 @@
                             <a id="showMoreStores" class="pull-right" href="#" data-start-index="{{themeSettings.storesPageSize}}">see more</a>
                         </div>
                     </div>
-                    <div class="col-md-9 col-sm-7" id="mz-store-locator-map">
+                    <div class="col-lg-9 col-md-7 col-sm-7" id="mz-store-locator-map">
                         <div class="map-container">
-                            {%if themeSettings.googleMapAPIKey%}
+                            {%if themeSettings.googleMapAPIKey %}
                                 <div class="clearfix"></div>
                                 <div id="map"></div>
                                 <script src="//maps.googleapis.com/maps/api/js?key={{themeSettings.googleMapAPIKey}}&libraries=places,geometry"></script>
@@ -86,6 +91,7 @@
                     </div>
                 </div>
              </div>
+             {% dropzone "store-footer" scope="page" %}
         </div>
         <div class="store-locator-overlay">
             <div class="store-locator-spinner">
