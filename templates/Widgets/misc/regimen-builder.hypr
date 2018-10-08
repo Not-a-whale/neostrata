@@ -72,9 +72,11 @@
   </div>
   <div class="divider"></div>
   <div class="flex-swing container block">
-    <div class="flex-fill align-center-mobile">
-      <a href="" class="align-center-mobile">View All <%= current[1] %> Products</a>
-    </div>
+    <% if ( current[3] ) { %>
+      <div class="flex-fill align-center-mobile">
+        <a href="<%= current[3] %>" class="align-center-mobile">View All <%= current[1] %> Products</a>
+      </div>
+    <% }%>
     <div class="flex-fill align-right align-center-mobile">
       <a href="/products/c/66" class="align-center-mobile">View All NEOSTRATA® Products</a>
     </div>

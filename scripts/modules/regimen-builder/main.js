@@ -89,7 +89,8 @@ require([
     ['sensitive', 'Sensitive Skin']
   ], function( regimen ) {
     return regimen.concat([
-      buildSteps( regimen[0] )
+      buildSteps( regimen[0] ),
+      CONFIG[regimen[0] + 'CategoryPath']
     ]);
   });
 
