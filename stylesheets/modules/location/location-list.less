@@ -44,10 +44,14 @@
         }
         .error-success-message-container{
             p{    
-                color: @errorText;
+                color: @colorGray;
+                font-size: 12px;
+                &.invalid-location{
+                    color: @errorText;
+                }
             }
         }
-    }    
+    }
     .search-view-container{
         display: none;
         &.active{
@@ -65,6 +69,11 @@
             border-bottom: 1px solid @colorLighterGray;
             p{
                 margin: 0;
+                color: @colorGray;
+                font-size: 14px;
+                &.invalid-location{
+                    color: @errorText;
+                }
             }
         }
         .empty-search{
@@ -72,9 +81,45 @@
         }
     }
     .store-search-container{
-        border: 1px solid @colorLightGray;
+        border: none;
+        clear: both;
         &.has-error{
             border-color: @errorText;
+        }
+        .dl-storelocator-button-search-container{
+            font-size: 16px;
+            color: @colorGray;
+            width: 100%;
+            display: inline-block;
+            i{
+                margin-right: 2px;
+            }
+            span{
+                button {
+                    margin: 5px;
+                    border: 0;
+                    background: transparent;
+                    font-size: 16px;
+                    position: relative;
+                    top: 3px;
+                    right: 3px;
+                    color: @colorGray;
+                    width: 40%;
+                    min-height: 40px;
+                    display: none;
+
+                    &.btn-find-stores{
+                        display: inline-block;
+                        background-color: @colorGray;
+                        color: #FFF;
+                        text-transform: uppercase;
+                    }
+                    &.ml-storelocator-locate-btn{
+                        display: inline-block;
+                    }
+
+                }
+            }
         }
     }
     .store-image-container{
@@ -213,6 +258,9 @@
     }
     //Store Locator Search bar css
     .stylish-input-group{
+        margin-bottom: 5px;
+        width: 100%;
+        display: inline;
         .input-group-addon{
             padding: 0;
             background: transparent;
@@ -220,11 +268,12 @@
             z-index: 0;
         }
         .form-control{
-            border: none;
+            border: 1px solid @colorLightGray;
             box-shadow: 0 0 0;
             z-index: 0;
             padding: 0 15px;
             color: @colorGray;
+            margin-bottom: 15px;
         }
         button{
             border: 0;
