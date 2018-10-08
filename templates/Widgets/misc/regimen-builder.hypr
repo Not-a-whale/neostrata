@@ -48,9 +48,9 @@
       <div class="align-center h2">
         Your Routine
       </div>
-      <div class="flex-row">
+      <div class="flex-swing-small">
         <div class="flex-fill align-center h3">
-          <%= selection.count %> Products
+          <%= selection.count %> <%= selection.count == 1 ? 'Product' : 'Products' %>
         </div>
         <div class="flex-fill align-center">
           <div class="text-bold text-giant">
@@ -71,13 +71,13 @@
     </div>
   </div>
   <div class="divider"></div>
-  <div class="flex-swing container block">
+  <div class="flex-swing container">
     <% if ( current[3] ) { %>
-      <div class="flex-fill align-center-mobile">
+      <div class="flex-fill align-center-mobile block">
         <a href="<%= current[3] %>" class="align-center-mobile">View All <%= current[1] %> Products</a>
       </div>
     <% }%>
-    <div class="flex-fill align-right align-center-mobile">
+    <div class="flex-fill align-right align-center-mobile block">
       <a href="/products/c/66" class="align-center-mobile">View All NEOSTRATA® Products</a>
     </div>
   </div>
@@ -116,6 +116,7 @@
 </script>
 
 <script type="text/template" id="regimen-product-template">
+  <!-- TODO: Link to product page or launch quick-view modal. -->
   <div class="pad-inset align-center regimen-product">
     <img src="<%= ( mainImage || {}).src %>" />
     <h3><%= content.productName %></h3>
