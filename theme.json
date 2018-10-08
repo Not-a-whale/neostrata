@@ -818,7 +818,7 @@
     "storesPageSize": 5,
     "facebookShareLink": "https://www.facebook.com/MozuCommerce",
     "googleMapPinIcon": "",
-    "searchStorePlaceHolder": "Enter City, State or ZIP",
+    "searchStorePlaceHolder": "Address, City or Postal Code",
     "googleMapMaxNearbyDistance": 10000000,
     "preselectCountryCode": "US",
     "productImagesContainerWidth": 350,

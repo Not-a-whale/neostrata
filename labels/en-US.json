@@ -454,6 +454,7 @@
   "noNearbyLocations"    : "No nearby locations could be found.",
   "noNearbyLocationsProd": "No nearby locations could be found for this product.",
   "milesAway"            : "{0} miles away",
+  "kmsAway"            : "{0} km",
   "positionError"        : "Your position could not be determined. Displaying stores out of order.",
 
   "notifyWidgetHeader"   : "Notify me when this product is back in stock.",
@@ -540,5 +541,8 @@
     "middleName": "Middle Name Initials",
     "successfullyAddedItems": "The following item(s) have successfully added to your cart",
     "billingAddressRequired": "Billing Address is required",
-    "productaddToCartError": "The following item(s) are not added to cart"
+    "productaddToCartError": "The following item(s) are not added to cart",
+
+
+    "storeMyLocation": "Locate Me"
 }
