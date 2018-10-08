@@ -234,8 +234,6 @@ require([
         var step = $el.attr( 'data-value' );
         var checked = $el.prop( 'checked' );
 
-        console.log( 'Changed:', step, checked );
-
         regimen[2][step-1].included = checked;
 
         this.state.set({
