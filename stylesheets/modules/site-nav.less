@@ -261,26 +261,29 @@
         height: auto;
         z-index: 2150;
         position: absolute;
-        top: 2rem;
+        top: 0;
+        padding-top: 2rem;
+        padding-bottom: 3rem;
         width: 90%;
         border: 1px solid @charcoal;
         .close-menu{
             display: block;
             font-size: 3rem;
-            line-height: 3rem;
+            line-height: 5rem;
             a{
                 .icon(before, @icon-close);
                 text-decoration: none;
-                padding-left: 0.5rem;
+                padding-left: 1rem;
             }
         }
         .mz-sitenav-list{
             >.mz-sitenav-item{
-                border-top: 1px solid @midGray;
+                border-top: 1px solid @lightGray;
                 border-bottom: none;
                 padding: 0;
                 >.mz-sitenav-item-inner{
                     >.mz-sitenav-link{
+                        font-size: 1rem;
                         padding-left: 4.375rem;
                         font-weight: @fontWeightBook;
                     }
@@ -291,18 +294,16 @@
                         &.selected{
                             background-color: @lightGray;
                         }
-                        i.expand-options{
-                            .icon(before, @icon-keyboard_arrow_down);
-                        }
-                        i.go-to-action{
-                            .icon(before, @icon-keyboard_arrow_right);
-                        }
                         i{
+                            .icon(before, @icon-keyboard_arrow_down);
                             position: absolute;
                             right: 4.375rem;
                             top: 50%;
                             transform: translateY(-50%);
                             font-size: 2.5rem;
+                        }
+                        i.go-to-action{
+                            .icon(before, @icon-keyboard_arrow_right);
                         }
                     }
                     .expand-mobile-menu{
@@ -349,13 +350,25 @@
                         }
                     }
                 }
+                &:nth-of-type(1), &:nth-of-type(11){
+                    border-top:none;
+                }
+                &:nth-of-type(9){
+                    padding-bottom: 3rem;
+                }
+                &:nth-of-type(1), &:nth-of-type(3), &:nth-of-type(5), &:nth-of-type(7), &:nth-of-type(9) {
+                    >.mz-sitenav-item-inner{
+                        >.mz-sitenav-link {
+                            font-size: 1.5rem;
+                        }
+                    }
+                }
             }
         }
     }
 }
 @media (min-width: 768px) {
     .mz-sitenav{
-        height: auto;
     }
 }
 
