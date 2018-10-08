@@ -67,6 +67,13 @@
     }
   }
 
+  .flex-swing-small {
+    @media (min-width: 768px) {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
   .flex-center-row {
     flex: 0 1 auto;
     display: flex;
@@ -114,10 +121,20 @@
   .height-fixed {
     height: 6rem;
     padding: 0 60px;
+
+    white-space: nowrap;
+
+    @media (max-width: 991px) {
+      padding: 0 30px;
+    }
   }
 
   .icon-right {
     padding-right: 150px;
+
+    @media (max-width: 991px) {
+      padding-right: 90px;
+    }
   }
 
   .chevron-down {
@@ -137,11 +154,17 @@
   .primary-btn {
     @media (max-width: 991px) {
       width: 100%;
+      padding: 0 15px;
+      font-size: 1.0em;
     }
   }
 
   .margin-medium {
     margin: 30px;
+
+    @media (max-width: 991px) {
+      margin: 30px 15px;
+    }
   }
 
   .margin-small {
