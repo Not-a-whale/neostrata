@@ -16,9 +16,9 @@
 			<div class="col-xs-12 col-sm-12 col-md-5 col-lg-4 pull-right">
 				<div class="social-links">
 					<div>
-						<a title="Instagram" href="#" class="icon-instagram">&nbsp;</a>
-						<a title="Facebook" href="#" class="icon-facebook">&nbsp;</a>
-						<a title="YouTube" href="#" class="icon-youtube">&nbsp;</a>
+						<a title="Instagram" href="https://www.instagram.com/neostratacanada/" class="icon-instagram">&nbsp;</a>
+						<a title="Facebook" href="https://www.facebook.com/neostrata.canada/" class="icon-facebook">&nbsp;</a>
+						<a title="YouTube" href="https://www.youtube.com/channel/UCgS37O70kh1dRgBfmMjTBvw" class="icon-youtube">&nbsp;</a>
 					</div>
 				</div>
 				<div class="ml-footer-phone-number">
@@ -66,7 +66,7 @@
 					<div class="mz-pagefooter-copyright">
 						<div class="pagefooter-logo"></div>
 						<span class="mz-pagefooter-copyrighttext">
-							COPYRIGHT &copy; {% now Y %} 
+							COPYRIGHT &copy; {% now Y %}
 							NEOSTRATA
 						</span>
 					</div>
