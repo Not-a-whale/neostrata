@@ -1098,15 +1098,15 @@
     "giftCardsInfo": "Gift Card",
     "megaMenu": {
       "firstLevel": [
-        { "url": "/which-skincare-product-is-right-for-you", "image": "/resources/images/neostrata_logo.svg", "childrenGoToThis": true} ,
+        { "url": "/which-skincare-product-is-right-for-you", "image": "/resources/images/neostrata_logo.svg", "childrenGoToThis": true},
         { "url": "/product", "image": "/resources/images/neostrata_logo.svg", "childrenGoToThis": false }
       ],
       "categoryLookups":   [
-        { "url": "/skin-type", "linkedCategoryCode": "18" },
-        { "url": "/skin-concern", "linkedCategoryCode": "21" },
-        { "url": "/collections", "linkedCategoryCode": "9" },
-        { "url": "/skincare-product-types", "linkedCategoryCode": "16" },
-        { "url": "/ingredients", "linkedCategoryCode": "17" }
+        { "url": "/skin-type", "linkedCategoryCode": "18", "includeInSecondaryNav": true },
+        { "url": "/skin-concern", "linkedCategoryCode": "21", "includeInSecondaryNav": true },
+        { "url": "/collections", "linkedCategoryCode": "9", "includeInSecondaryNav": true },
+        { "url": "/ingredients", "linkedCategoryCode": "17", "includeInSecondaryNav": true },
+        { "url": "/skincare-product-types", "linkedCategoryCode": "16", "includeInSecondaryNav": true }
       ]
     }
   },
