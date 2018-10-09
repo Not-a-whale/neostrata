@@ -454,7 +454,7 @@
   "noNearbyLocations"    : "[fr-CA]No nearby locations could be found.[fr-CA]",
   "noNearbyLocationsProd": "[fr-CA]No nearby locations could be found for this product.[fr-CA]",
   "milesAway"            : "[fr-CA]{0} miles away[fr-CA]",
-  "kmsAway"            : "[fr-CA]{0} km[fr-CA]",
+  "kmsAway"              : "[fr-CA]{0} km[fr-CA]",
   "positionError"        : "[fr-CA]Your position could not be determined. Displaying stores out of order.[fr-CA]",
 
   "notifyWidgetHeader"   : "[fr-CA]Notify me when this product is back in stock.[fr-CA]",
@@ -543,5 +543,6 @@
     "billingAddressRequired": "[fr-CA]Billing Address is required[fr-CA]",
     "productaddToCartError": "[fr-CA]The following item(s) are not added to cart[fr-CA]",
 
-    "storeMyLocation": "[fr-CA]Locate Me[fr-CA]"
+    "storeMyLocation": "[fr-CA]Locate Me[fr-CA]",
+  "searchStorePlaceHolder": "Address, City or Postal Code"
 }

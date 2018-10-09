@@ -291,8 +291,13 @@
                         &.selected{
                             background-color: @lightGray;
                         }
-                        i{
+                        i.expand-options{
                             .icon(before, @icon-keyboard_arrow_down);
+                        }
+                        i.go-to-action{
+                            .icon(before, @icon-keyboard_arrow_right);
+                        }
+                        i{
                             position: absolute;
                             right: 4.375rem;
                             top: 50%;
@@ -451,6 +456,7 @@
 
         .mz-sitenav-list {
             >.mz-sitenav-item {
+                display: none;
                 >.mz-sitenav-item-inner>.mz-sitenav-link{
                     height: 6rem;
                     cursor: pointer;
@@ -462,15 +468,18 @@
                 }
                 &:nth-of-type(1) {
                     margin-left: 5%;
+                    display: inline-block;
                 }
                 &:nth-of-type(3) {
                     margin-right: 33%;
+                    display: inline-block;
                 }
                 &:nth-of-type(5) {
-
+                    display: inline-block;
                 }
                 &:nth-of-type(7) {
                     width: 10%;
+                    display: inline-block;
                 }
             }
         }

@@ -461,5 +461,6 @@
     "productaddToCartError": "Die folgenden Artikel werden nicht zum Warenkorb hinzugefügt",
 
     "storeMyLocation": "Locate Me",
-    "kmsAway"            : "{0} km"
+    "kmsAway"            : "{0} km",
+    "searchStorePlaceHolder": "Address, City or Postal Code"
 }
