@@ -43,7 +43,8 @@
             <li class="first-tab col-sm-6 text-center dropdown-select" rel="filter-tab" href="#filter-tab" id="filter-tab-li">FILTER<i class="dropdown-icon"></i></li>
         {% endif %}
             <li class="second-tab col-sm-6 text-center dropdown-select{% if not model.facets %} sort-width{% endif %}" rel="sort-tab" href="#sort-tab" id="sort-tab-li">SORT<i class="dropdown-icon"></i></li>
-    </ul>                                                                                                   
+    </ul>
+    </div>
 </div>
 
 <div class="tab-content">
