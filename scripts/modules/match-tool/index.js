@@ -23,7 +23,8 @@ define([
     ['GLYCOLIC RENEWAL™ BODY SMOOTHING LOTION', 'F30140D'],
     ['SECUREWHITE® BRIGHTENING SERUM', 'F30160D'],
     ['SECUREWHITE® ANTI DARK CIRCLE COMPLEX', 'F30119D'],
-    ['BRIGHTENING PEEL SOLUTION DUO', ''],
+    // NOTE: Disabled pending receipt of missing data.
+    //['BRIGHTENING PEEL SOLUTION DUO', ''],
     ['SKIN RENEWAL PEEL SOLUTION', 'F30113D'],
     ['SKIN RESURFACTING DUO', 'F30101D'],
     ['OIL FREE GEL CLEANSER', 'F30098D'],
@@ -31,7 +32,8 @@ define([
     ['ACNE CLEAR™ CLARIFYING GEL CLEANSER', 'F30142D'],
     ['OIL FREE MATIFYING FLUID', 'F30143D'],
     ['Wrinkle Repair Moisturizing Cream SPF 30', 'F30149D'],
-    ['Antiaging Cream SPF 15 with Peptide Stem Cells', ''],
+    // NOTE: Disabled pending receipt of missing data.
+    //['Antiaging Cream SPF 15 with Peptide Stem Cells', ''],
     ['PURIFYING SOLUTION', 'F30145D'],
     ['Protective Lotion Mineral Sunscreen SPF 45', 'F30164D'],
     ['ACNE CLEAR™ BLEMISH SPOT GEL', 'F30144D'],
@@ -131,7 +133,9 @@ define([
     },
 
     render: function() {
-      this.$el.html( this.template( this.model.get( 'current' ) ) );
+      var current = this.model.get( 'current' );
+
+      this.$el.html( current ? this.template( current ) : '' );
     }
   });
 
