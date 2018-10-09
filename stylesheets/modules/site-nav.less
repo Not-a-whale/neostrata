@@ -157,8 +157,8 @@
                 top: 16px;
                 left: 50%;
                 margin-left: -20px;
-                width: 0px;
-                height: 0px;
+                width: 0;
+                height: 0;
                 border-color: transparent;
                 border-style: solid;
                 border-width: 10px;
@@ -189,7 +189,7 @@
         }
     }
     .mz-sitenav-link {
-        font-size: 13px;
+        font-size: 1.5rem;
         color: @charcoal;
         font-weight: bold;
         &:visited {
@@ -252,20 +252,12 @@
 
 
 @media (max-width: 991px) {
-    .mz-sitenav {
+    .mz-sitenav, .ml-navbar-secondary {
         &.collapsing{
             -webkit-transition: none;
             transition: none;
             display: none;
         }
-        height: auto;
-        z-index: 2150;
-        position: absolute;
-        top: 0;
-        padding-top: 2rem;
-        padding-bottom: 3rem;
-        width: 90%;
-        border: 1px solid @charcoal;
         .close-menu{
             display: block;
             font-size: 3rem;
@@ -361,6 +353,55 @@
                         >.mz-sitenav-link {
                             font-size: 1.5rem;
                         }
+                    }
+                }
+            }
+        }
+    }
+    .mz-sitenav{
+        height: auto;
+        z-index: 2150;
+        position: absolute;
+        top: 0;
+        padding-top: 2rem;
+        padding-bottom: 3rem;
+        width: 90%;
+        border: 1px solid @charcoal;
+    }
+    .ml-navbar-secondary {
+        position: relative;
+        background-color: @white;
+        .secondary-title{
+            font-size: 2rem;
+            font-weight: 600;
+            border-bottom: 1px solid #efefef;
+            padding: 1rem 3rem;
+        }
+
+        .mz-sitenav-link{
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            &:visited, &:hover{
+                color: @charcoal;
+            }
+        }
+
+        .mz-sitenav-list {
+            > .mz-sitenav-item {
+                > .mz-sitenav-item-inner {
+                    > .mz-sitenav-link {
+                        padding-left: 3rem;
+                    }
+                }
+                &:nth-of-type(9){
+                    padding-bottom: 0;
+                }
+                .sub-level-li {
+                    > .mz-sitenav-link {
+                        padding-left: 6rem!important;
                     }
                 }
             }
