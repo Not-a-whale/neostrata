@@ -56,7 +56,7 @@ define([
             closeSecondLevel($('.mz-sitenav .sub-level-li>.mz-sitenav-link.selected'));
         });
 
-        var $top_level = $('.mz-sitenav .mz-sitenav-list >.mz-sitenav-item >.mz-sitenav-item-inner >.mz-sitenav-link i');
+        var $top_level = $('.mz-sitenav .mz-sitenav-list >.mz-sitenav-item >.mz-sitenav-item-inner >.mz-sitenav-link i, .ml-navbar-secondary .mz-sitenav-list >.mz-sitenav-item >.mz-sitenav-item-inner >.mz-sitenav-link i');
         var $second_level = $('.mz-sitenav .sub-level-li>.mz-sitenav-link i');
         $top_level.off('click').click(function(){
             var $self = $($( this ).parent());
