@@ -1,15 +1,15 @@
 {% if themeSettings.globalPageHeaderLogoSM or themeSettings.globalPageHeaderLogoXS %}
-	<a class="{% if not themeSettings.globalPageHeaderLogoSM %}logo {% endif %}hidden-xs" href="/" title="{{ siteContext.generalSettings.websiteName }}">
+	<a class="{% if not themeSettings.globalPageHeaderLogoSM %}logo {% endif %}hidden-xs" href="/" title="{{ siteContext.generalSettings.websiteName }}" alt="{{ siteContext.generalSettings.websiteName }}">
 	{% if themeSettings.globalPageHeaderLogoSM %}
-		<img class="customLogo" src="{{ themeSettings.globalPageHeaderLogoSM.imageUrl }}" />
+		<img class="customLogo" src="{{ themeSettings.globalPageHeaderLogoSM.imageUrl }}" alt="{{ siteContext.generalSettings.websiteName }}" />
 	{% endif %}
 	</a>
 	<a class="{% if not themeSettings.globalPageHeaderLogoXS %}logo {% endif %}hidden-sm hidden-md hidden-lg" href="/" title="{{ siteContext.generalSettings.websiteName }}">
 	{% if themeSettings.globalPageHeaderLogoXS %}
-		<img class="customLogo" src="{{ themeSettings.globalPageHeaderLogoXS.imageUrl }}" />
+		<img class="customLogo" src="{{ themeSettings.globalPageHeaderLogoXS.imageUrl }}" alt="{{ siteContext.generalSettings.websiteName }}" />
 	{% endif %}
 	</a>
 {% else %}
-	<a class="logo" href="/" title="{{ siteContext.generalSettings.websiteName }}">
+	<a class="logo" href="/" title="{{ siteContext.generalSettings.websiteName }}" alt="{{ siteContext.generalSettings.websiteName }}" >
 	</a>
 {% endif %}
