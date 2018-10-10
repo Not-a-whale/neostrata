@@ -2,17 +2,15 @@
 {% with model.content.productFullDescription as details %}
 {% with model|get_product_attribute("tenant~how-to-apply") as howToApply %}
 
-{% if pageContext.isDesktop or pageContext.isTablet %}
-
 <ul class="nav nav-tabs">
     {% if beforeAndAfter %}
         <li class="active"><a data-toggle="tab" href="#tab1"><span>Results</span></a></li>
     {% endif %}
     {% if details %}
-        <li><a data-toggle="tab" href="#tab2"><span>Details</span></a></li>
+        <li{% if not beforeAndAfter %} class="active"{% endif %}><a data-toggle="tab" href="#tab2"><span>Details</span></a></li>
     {% endif %}
     {% if howToApply %}
-        <li><a data-toggle="tab" href="#tab3"><span>How To Apply</span></a></li>
+        <li{% if not beforeAndAfter and not details %} class="active"{% endif %}><a data-toggle="tab" href="#tab3"><span>How To Apply</span></a></li>
     {% endif %}
 
 </ul>
@@ -36,14 +34,14 @@
       </div>
     {% endif %}
     {% if details %}
-      <div id="tab2" class="tab-pane fade">
+      <div id="tab2" class="tab-pane fade{% if not beforeAndAfter %} active in{% endif %}">
         <div class="tab-content-2">
           {{ details|safe }}
         </div>
       </div>
     {% endif %}
     {% if howToApply %}
-      <div id="tab3" class="tab-pane fade">
+      <div id="tab3" class="tab-pane fade{% if not beforeAndAfter and not details %} active in{% endif %}">
         {% for v in howToApply.values %}
             <div class="tab-content-3">
               {% if v.stringValue %}
@@ -56,187 +54,7 @@
 
 </div>
 
-{% else %}
 
-<div class="tabs-mobile">
-
-    {% if model.content.productFullDescription %}
-    <h4 data-toggle="collapse" href="#tab1">{{ labels.productDescriptionTitle }}</h4>
-    <div id="tab1" class="panel-collapse collapse">
-        <div class="tab-content-1">
-            <h2 class="amx-descriptiontitle" itemprop="name">{{ model.content.productName }}</h1>
-            {{ model.content.productFullDescription|safe }}
-        </div>
-    </div>
-    {% endif %}
-
-    {% if model.properties %}
-    <h4 data-toggle="collapse" href="#tab2">{{ labels.productSpecsTitle }}</h4>
-    <div id="tab2" class="panel-collapse collapse">
-
-            <!-- PRODUCT SPECS MOBILE BEGIN -->
-            <div class="tab-content-2">
-
-                <div class="tab-content-container">
-                        <div class="tab-content-row">
-                            {% for property in model.properties %}
-                                {% if property.values and not property.isHidden and property.attributeDetail.name != "Product Cross-Sells" and property.attributeDetail.name != "Product Upsells" and property.attributeFQN != "tenant~infotab3" and property.attributeFQN != "tenant~infotab1" and property.attributeFQN != "tenant~infotab2" and property.attributeFQN != "tenant~infotab3" and property.attributeFQN != "tenant~titleInfoTab3" and property.attributeFQN != "tenant~titleInfotab1" and property.attributeFQN != "tenant~titleInfotab2" and property.attributeFQN != "tenant~titleInfotab3" and property.attributeFQN != "tenant~publictab2" and property.attributeFQN != "tenant~publictab3" and property.attributeFQN != "tenant~mapProperty" and property.attributeFQN != "tenant~industry" %}
-                               <div class="tab-content-col-left col">{{ property.attributeDetail.name }}</div>
-                               <div class="tab-content-col-right col">
-                                   {% for v in property.values %}
-                                       <span class="tab-content-property-value{% if property.values.length > 1%}-multiple{% endif %}">{% if v.stringValue %}{{v.stringValue|safe}}{% else %}{{v.value}}{% endif %}</span>
-                                   {% endfor %}
-                               </div>
-                                {% endif %}
-                            {% endfor %}
-
-                <!-- Product Numbers-->
-                               <div class="tab-content-col-left col">{{ labels.productCode }}</div>
-                               <div class="tab-content-col-right col">
-                                       <span class="tab-content-property-value">{{ model.variationProductCode|default(model.productCode) }}</span>
-                               </div>
-                {% if themeSettings.showProductDetailMfgPartNumber and model.mfgPartNumber.length == 1 %}
-                               <div class="tab-content-col-left col">{{ labels.mfgPartNumber }}</div>
-                               <div class="tab-content-col-right col">
-                                       <span class="tab-content-property-value">{{ model.mfgPartNumber|first }}</span>
-                               </div>
-                {% endif %}
-                {% if themeSettings.showProductDetailUPC and model.upc.length == 1 %}
-                               <div class="tab-content-col-left col">{{ labels.upc }}</div>
-                               <div class="tab-content-col-right col">
-                                       <span class="tab-content-property-value">{{ model.upc|first }}</span>
-                               </div>
-                {% endif %}
-
-                <!-- Measurements-->
-                               <div class="tab-content-col-left col">{{ labels.weight }}</div>
-                               <div class="tab-content-col-right col">
-                                    <span class="tab-content-property-value">
-                                        <span itemprop="value">{{ model.measurements.packageWeight.value }}</span> <span itemprop="unitCode">{{ model.measurements.packageWeight.unit }}</span>
-                                    </span>
-                               </div>
-
-                               <div class="tab-content-col-left col">{{ labels.lengthLabel }}</div>
-                               <div class="tab-content-col-right col">
-                                    <span class="tab-content-property-value">
-                                       <span itemprop="value">{{ model.measurements.packageLength.value }}</span> <span itemprop="unitCode">{{ model.measurements.packageLength.unit }}</span>
-                                   </span>
-                               </div>
-
-                               <div class="tab-content-col-left col">{{ labels.width }}</div>
-                               <div class="tab-content-col-right col">
-                                    <span class="tab-content-property-value">
-                                       <span itemprop="value">{{ model.measurements.packageWidth.value }}</span> <span itemprop="unitCode">{{ model.measurements.packageWidth.unit }}</span>
-                                   </span>
-                               </div>
-
-                               <div class="tab-content-col-left col">{{ labels.height }}</div>
-                               <div class="tab-content-col-right col">
-                                    <span class="tab-content-property-value">
-                                       <span itemprop="value">{{ model.measurements.packageHeight.value }}</span> <span itemprop="unitCode">{{ model.measurements.packageHeight.unit }}</span>
-                                   </span>
-                               </div>
-                        </div>
-                    </div>
-            </div>
-            <!-- PRODUCT SPECS MOBILE END -->
-        </div>
-    {% endif %}
-
-    {% if tab3 %}
-    <h4 data-toggle="collapse" href="#tab3">{{ titleInfoTab3 }}</h4>
-    <div id="tab3" class="panel-collapse collapse">
-            {% for v in tab3.values %}
-                <div class="tab-content-3">
-                    {% if v.stringValue %}
-                            {{ v.stringValue|safe }}
-                    {% endif %}
-                </div>
-            {% endfor %}
-    </div>
-    {% endif %}
-
-    {% if tab1 %}
-    <h4 data-toggle="collapse" href="#tab1">{{ titleInfotab1 }}</h4>
-    <div id="tab1" class="panel-collapse collapse">
-            {% for v in tab1.values %}
-                <div class="tab-content-1">
-                    {% if v.stringValue %}
-                            {{ v.stringValue|safe }}
-                    {% endif %}
-                </div>
-            {% endfor %}
-    </div>
-    {% endif %}
-
-    {% if tab2 %}
-        {% if publictab2.values|first|prop("value") %}
-            <h4 data-toggle="collapse" href="#tab2">{{ titleInfotab2 }}</h4>
-        {% else %}
-            {% if pageContext.isEditMode or ( user and not user.isAnonymous ) %}
-                <h4 data-toggle="collapse" href="#tab2">{{ titleInfotab2 }}</h4>
-            {% endif %}
-        {% endif %}
-    {% endif %}
-    {% if tab2 %}
-        <div id="tab2" class="panel-collapse collapse">
-            {% if publictab2.values|first|prop("value") %}
-                {% for v in tab2.values %}
-                    <div class="tab-content-2">
-                        {% if v.stringValue %}
-                                {{ v.stringValue|safe }}
-                        {% endif %}
-                    </div>
-                {% endfor %}
-            {% else %}
-                {% if pageContext.isEditMode or ( user and not user.isAnonymous ) %}
-                    {% for v in tab2.values %}
-                        <div class="tab-content-2">
-                            {% if v.stringValue %}
-                                    {{ v.stringValue|safe }}
-                            {% endif %}
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            {% endif %}
-        </div>
-    {% endif %}
-
-    {% if tab3 %}
-        {% if publictab3.values|first|prop("value") %}
-            <h4 data-toggle="collapse" href="#tab3">{{ titleInfotab3 }}</h4>
-        {% else %}
-            {% if pageContext.isEditMode or ( user and not user.isAnonymous ) %}
-                <h4 data-toggle="collapse" href="#tab2">{{ titleInfotab3 }}</h4>
-            {% endif %}
-        {% endif %}
-    {% endif %}
-    {% if tab3 %}
-        <div id="tab3" class="panel-collapse collapse">
-            {% if publictab3.values|first|prop("value") %}
-                {% for v in tab3.values %}
-                    <div class="tab-content-3">
-                        {% if v.stringValue %}
-                                {{ v.stringValue|safe }}
-                        {% endif %}
-                    </div>
-                {% endfor %}
-            {% else %}
-                {% if pageContext.isEditMode or ( user and not user.isAnonymous ) %}
-                    {% for v in tab3.values %}
-                        <div class="tab-content-3">
-                            {% if v.stringValue %}
-                                    {{ v.stringValue|safe }}
-                            {% endif %}
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            {% endif %}
-        </div>
-    {% endif %}
-
-</div>
-{% endif %}
 {% endwith %}
 {% endwith %}
 {% endwith %}

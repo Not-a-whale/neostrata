@@ -97,6 +97,7 @@
                 </div>
                 {% include "modules/product/product-desc-tabs" %}
             </div>
+          </div>
         </div>
     </div>
     <div class="social-sharing col-md-9 col-xs-12 mz-reset-padding-left{% if model.content.productImages.length <=1 %} mz-share-with-container-other{% endif %}">

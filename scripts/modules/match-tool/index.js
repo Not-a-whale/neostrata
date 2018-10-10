@@ -1,12 +1,32 @@
+/* global $BV */
 define([
   'modules/jquery-mozu',
   'underscore',
-  'modules/backbone-mozu'
+  'modules/backbone-mozu',
+  'modules/api'
 ], function(
   $,
   _,
-  Backbone
+  Backbone,
+  API
 ) {
+  API.get( 'entityList', {
+      listName: 'bvsettings@mzint',
+      id: API.context.site
+  }).then( function( res ) {
+    var data = res.data.items[0];
+    var staging = data.environment != 'Staging' ? '' : '-stg';
+    var locale = API.context.locale.replace( "-", "_" );
+    var script = "//display" + staging + ".ugc.bazaarvoice.com/static/" + data.clientName + "/"+ data.deploymentZone +"/" + locale + "/bvapi.js";
+
+    $.getScript( script )
+      .done( function() {
+        $( '[data-widget="match-tool"]' ).each( function( i, $el ) {
+          new App({ el: $el });
+        });
+      });
+  });
+
   var __MATCHES = [];
 
   try {
@@ -136,18 +156,23 @@ define([
       var current = this.model.get( 'current' );
 
       this.$el.html( current ? this.template( current ) : '' );
+
+      if ( current ) {
+        var productIds = {};
+        productIds[current.code] = {
+          url: '/p/' + current.code,
+          containerId: 'BVRRInlineRating-' + current.code
+        };
+
+        $BV.ui( 'rr', 'inline_ratings', {
+          productIds: productIds,
+          containerPrefix: 'BVRRInlineRating'
+        });
+      }
     }
   });
 
   var App = Backbone.View.extend({
-    events: {
-      'change':  function( ev ) {
-        console.log( 'CHANGE:', ev );
-
-
-      }
-    },
-
     initialize: function() {
       var self = this;
 
@@ -163,10 +188,6 @@ define([
         self.model.set({ current: selection });
       });
     }
-  });
-
-  $( '[data-widget="match-tool"]' ).each( function( i, $el ) {
-    new App({ el: $el });
   });
 
   return App;

@@ -21,7 +21,6 @@
 
 
 <div class="mz-l-paginatedlist col-12">
-    <div class="mz-l-paginatedlist pull-right main-directory-container">
     <div class="title-sort-breadcrumb-wrapper">
     {% block breadcrumbs %}
         {% if themeSettings.showBreadcrumbs %}
@@ -45,7 +44,7 @@
             <li class="second-tab col-sm-6 text-center dropdown-select{% if not model.facets %} sort-width{% endif %}" rel="sort-tab" href="#sort-tab" id="sort-tab-li">SORT<i class="dropdown-icon"></i></li>
     </ul>
     </div>
-</div>
+
 
 <div class="tab-content">
     {% if model.facets %}
@@ -72,6 +71,7 @@
         </div>
     </div>
 </div>
+</div>
 <div class="product-list mz-l-paginatedlist col-12">
     <div class="mz-l-paginatedlist-header hidden">
          <div data-mz-pageview class="mz-pageview">
@@ -90,12 +90,6 @@
     <div class="mz-l-paginatedlist-footer">
         <div class="back-to-top">
             <button class="primary-btn">{{ labels.backToTop }}</button>
-        </div>
-        <div data-mz-pagenumbers class="mz-pagenumbers">
-            {% include "modules/common/page-numbers" %}
-        </div>
-        <div data-mz-pagingcontrols class="mz-pagingcontrols">
-            {% include "modules/common/paging-controls" %}
         </div>
     </div>
 </div>

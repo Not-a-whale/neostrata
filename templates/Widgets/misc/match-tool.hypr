@@ -150,7 +150,7 @@
         <div class="description text-base flex-fill">
           <%= description %>
         </div>
-          [Star Count Average + Review Count]
+        <div class="flex-fixed" id="BVRRInlineRating-<%= code %>"></div>
         <div class="footer flex-fixed">
           <a href="/p/<%= code %>" class="primary-btn">View Product</a>
         </div>

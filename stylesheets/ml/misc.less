@@ -796,8 +796,8 @@
 //Footer
 .mz-pagefooter {
     color: #fff;
-    padding: 10px 0;
     background: #494a49;
+    padding: 0;
     h2 {
         font-size: 2.906rem;
         color: #fff;
@@ -811,6 +811,9 @@
         input[type="text"] {
             width: 100%;
         }
+    }
+    .col-xs-12{
+        min-height:0;
     }
 }
 
@@ -2058,6 +2061,11 @@ ul.tabs {
             .mz-l-sidebaritem{
                 margin: 0;
             }
+        }
+        .pagesort-list{
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 8px @gray-light;
+            margin: 0.5rem;
         }
     }
     .filter-dropdown{
