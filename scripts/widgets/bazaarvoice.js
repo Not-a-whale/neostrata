@@ -23,8 +23,7 @@ require([
                 if (data.environment != "Staging") {
                     staging = "";
                 }
-
-                var isWidget = $("#bvProductDetail").val() == 1;
+                var isWidget = $(".bvProductDetail").length > 0;
                 var isROIWidget = $("#bvROIWidget").val() == 1;
                 var isContainerPage = $("#containerPage").val() == 1;
                 var deploymentZone = data.deploymentZone;
