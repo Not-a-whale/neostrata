@@ -1,0 +1,314 @@
+.regimen-builder-widget {
+  @media (max-width: 991px) {
+    .desktop {
+      display: none;
+    }
+
+    .mobile {
+      display: block;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .desktop {
+      display: block;
+    }
+
+    .mobile {
+      display: none;
+    }
+  }
+
+  font-size: 1.9rem;
+
+  label {
+    margin: 0;
+    font-weight: inherit;
+  }
+
+  .container {
+    padding: 0 30px;
+    margin: 0 auto;
+    max-width: 1920px;
+    width: auto;
+  }
+
+  .divider {
+    border-top: 0.15rem solid #B3B3B3;
+    margin: 15px;
+  }
+
+  .block {
+    margin: 75px 0;
+  }
+
+  .inline {
+    display: inline-block;
+  }
+
+  .anchor {
+    position: relative;
+  }
+
+  .flex-row {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .flex-column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .flex-swing {
+    @media (min-width: 992px) {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+  .flex-swing-small {
+    @media (min-width: 768px) {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+  .flex-center-row {
+    flex: 0 1 auto;
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+  }
+
+  .flex-center-row-mobile {
+    flex: 0 1 auto;
+    display: flex;
+    flex-direction: row;
+
+    @media (max-width: 991px) {
+      margin: 0 auto;
+    }
+  }
+
+  .flex-center-column {
+    flex: 0 1 auto;
+    display: flex;
+    flex-direction: column;
+    margin: auto 0;
+  }
+
+  .flex-fixed {
+    flex: 0 0 auto;
+  }
+
+  .flex-fill {
+    flex: 1 1 auto;
+  }
+
+  .text-bold {
+    font-style: 500;
+  }
+
+  .text-giant {
+    font-size: 4rem;
+  }
+
+  .text-tiny {
+    font-size: 1rem;
+  }
+
+  .height-fixed {
+    height: 6rem;
+    padding: 0 60px;
+
+    white-space: nowrap;
+
+    @media (max-width: 991px) {
+      padding: 0 30px;
+    }
+  }
+
+  .icon-right {
+    padding-right: 150px;
+
+    @media (max-width: 991px) {
+      padding-right: 90px;
+    }
+  }
+
+  .chevron-down {
+    height: 30px;
+    width: 30px;
+
+    background-image: url(../resources/images/match-tool/chevron.png);
+    background-position: 0 -30px;
+
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto 30px;
+  }
+
+  .primary-btn {
+    @media (max-width: 991px) {
+      width: 100%;
+      padding: 0 15px;
+      font-size: 1.0em;
+    }
+  }
+
+  .margin-medium {
+    margin: 30px;
+
+    @media (max-width: 991px) {
+      margin: 30px 15px;
+    }
+  }
+
+  .margin-small {
+    margin: 10px 0;
+  }
+
+  .pad-content {
+    padding: 10px;
+  }
+
+  .pad-sides-standard {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .pad-inners-standard {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .pad-inners-standard:first-child {
+    padding-left: 0;
+  }
+
+  .pad-inners-standard:last-child {
+    padding-right: 0;
+  }
+
+  .border-strong {
+    color: #4e5458;
+    border: 0.1875rem solid #4e5458;
+    border-radius: 0;
+  }
+
+  .border-gray {
+    border: 0.15rem solid #B3B3B3;
+  }
+
+  .border-right-light {
+    border-right: 1px solid #B3B3B3;
+  }
+
+  .background-gray {
+    background-color: #B3B3B3;
+    color: #FFFFFF;
+  }
+
+  .border-top-between {
+    border-top: 1px solid #EBEBEB;
+  }
+
+  .border-top-between:first-child {
+    border-top: 0 none;
+  }
+
+  .uppercase {
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 5.625rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .align-left {
+    text-align: left;
+  }
+
+  .align-center {
+    text-align: center;
+  }
+
+  .align-right {
+    text-align: right;
+  }
+
+  .align-center-mobile {
+    @media (max-width: 991px) {
+      text-align: center;
+    }
+  }
+
+  .cursor-pointer {
+    cursor: pointer;
+  }
+
+  .dropdown {
+    max-height: 420px;
+    overflow-y: auto;
+
+    @media (max-width: 991px) {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    @media (min-width: 992px) {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      width: 1000px;
+      margin-left: -500px;
+
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+  }
+
+  .background-white {
+    background-color: #FFFFFF;
+  }
+
+  .backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.7);
+  }
+
+  .regimen-view {
+    min-height: 400px;
+  }
+
+  .regimen-step-description {
+    order: 1;
+
+    @media (min-width: 992px) {
+      padding-left: 60px;
+    }
+  }
+
+  .regimen-step-product {
+    order: 0;
+
+    @media (min-width: 992px) {
+      flex-basis: 420px;
+    }
+  }
+}
+
+.regimen-product {
+  img {
+    max-width: 100%;
+  }
+}

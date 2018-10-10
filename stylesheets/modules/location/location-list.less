@@ -32,7 +32,7 @@
             border-radius: 4px;
             background-color: rgba(0,0,0,.5);
             -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
-        }        
+        }
     }
     .empty-store-container{
         display: none;
@@ -43,11 +43,15 @@
             font-size: @fontSize - 1;
         }
         .error-success-message-container{
-            p{    
-                color: @errorText;
+            p{
+                color: @colorGray;
+                font-size: 12px;
+                &.invalid-location{
+                    color: @errorText;
+                }
             }
         }
-    }    
+    }
     .search-view-container{
         display: none;
         &.active{
@@ -65,6 +69,11 @@
             border-bottom: 1px solid @colorLighterGray;
             p{
                 margin: 0;
+                color: @colorGray;
+                font-size: 14px;
+                &.invalid-location{
+                    color: @errorText;
+                }
             }
         }
         .empty-search{
@@ -72,9 +81,45 @@
         }
     }
     .store-search-container{
-        border: 1px solid @colorLightGray;
+        border: none;
+        clear: both;
         &.has-error{
             border-color: @errorText;
+        }
+        .dl-storelocator-button-search-container{
+            font-size: 16px;
+            color: @colorGray;
+            width: 100%;
+            display: inline-block;
+            i{
+                margin-right: 2px;
+            }
+            span{
+                button {
+                    margin: 5px;
+                    border: 0;
+                    background: transparent;
+                    font-size: 16px;
+                    position: relative;
+                    top: 3px;
+                    right: 3px;
+                    color: @colorGray;
+                    width: 40%;
+                    min-height: 40px;
+                    display: none;
+
+                    &.btn-find-stores{
+                        display: inline-block;
+                        background-color: @colorGray;
+                        color: #FFF;
+                        text-transform: uppercase;
+                    }
+                    &.ml-storelocator-locate-btn{
+                        display: inline-block;
+                    }
+
+                }
+            }
         }
     }
     .store-image-container{
@@ -118,12 +163,12 @@
                 border: 1px solid @inputBorder;
                 border-radius: 0;
                 box-shadow: none;
-            }        
+            }
         }
         .dir-btn-container{
-            padding: 5px 0;            
+            padding: 5px 0;
         }
-    }    
+    }
     .mz-locationlisting {
         margin: 0;
         display: table;
@@ -137,13 +182,31 @@
             h4 {
                 margin: 0 0 @gutter/4;
                 .fontsMedium();
-                font-size: @fontSizeLarger + 2px;
+
                 color: @colorGray;
+            }
+
+            .mz-locationlisting-locationdetails-icon{
+                width: 10%;
+
+                i{
+                    margin-top: 9px;
+                    font-size: 3em;
+                }
+            }
+            .mz-locationlisting-locationdetails-item{
+                width: 90%;
+
+                .store-hours-heading{
+                    font-size: 1.20rem;
+                    text-transform: capitalize;
+                }
             }
         }
         .mz-addresssummary{
             margin: 10px 0;
-            font-size: @fontSize - 1px;
+            //font-size: @fontSize - 1px;
+            font-size: 12px;
             .store-hours-heading{
                 margin: 0;
             }
@@ -155,7 +218,7 @@
         .social-share-container{
             font-size: @fontSize - 1px;
             margin: @defaultGutter 0;
-            cursor: text;            
+            cursor: text;
             .social-icons-wrapper {
                 margin: 5px 0 0 0;
                 .fb-like-icon {
@@ -175,11 +238,14 @@
             color: @colorGreen;
             font-weight: 700;
         }
-        .mz-locationlisting-inventory, .mz-locationlisting-distance, .mz-locationlisting-actions {
+        .mz-locationlisting-inventory, .mz-locationlisting-actions {
             vertical-align: middle;
             display: table-cell;
             padding: @gutter/2 @gutter;
             text-align: right;
+        }
+        .mz-locationlisting-distance{
+            margin-top: -15px;
         }
         .mz-locationlisting-inventorystatus {
             font-weight: bold;
@@ -195,6 +261,9 @@
     }
     //Store Locator Search bar css
     .stylish-input-group{
+        margin-bottom: 5px;
+        width: 100%;
+        display: inline;
         .input-group-addon{
             padding: 0;
             background: transparent;
@@ -202,11 +271,12 @@
             z-index: 0;
         }
         .form-control{
-            border: none;
+            border: 1px solid @colorLightGray;
             box-shadow: 0 0 0;
             z-index: 0;
             padding: 0 15px;
             color: @colorGray;
+            margin-bottom: 15px;
         }
         button{
             border: 0;

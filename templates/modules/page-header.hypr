@@ -6,7 +6,7 @@
                     {% include "modules/page-header/store-branding" %}
                 {% endblock store-branding %}
             </div>
-            <div class="ml-header-search-wrapper">
+            <div class="ml-header-search-wrapper" style="width:0">
                 {% block search-box %}
                     {% include "modules/page-header/search-box" %}
                 {% endblock search-box %}

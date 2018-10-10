@@ -31,68 +31,70 @@ define([
         }).removeClass("calculating-position").addClass("calculated-position");
     }
     function closeElement(element){
+        $( element ).removeClass( 'selected' );
 		$( element ).siblings( '.mz-sitenav-sub-container' ).animate( { 'height': 0 }, {
-			duration: 400,
+			duration: 300,
 			easing: 'linear',
 			done: function () {
                 $( element ).siblings( '.mz-sitenav-sub-container' ).removeClass( 'expand-mobile-menu' );
-                $( element ).removeClass( 'selected' );
 			}
 		} );
 	}
     function closeSecondLevel(element){
+        $( element ).removeClass( 'selected' );
 		$( element ).siblings( '.sub-level-li-children' ).animate( { 'height': 0 }, {
-			duration: 400,
+			duration: 300,
 			easing: 'linear',
 			done: function () {
                 $( element ).siblings( '.sub-level-li-children' ).removeClass( 'expand-mobile-menu' );
-                $( element ).removeClass( 'selected' );
 			}
 		} );
 	}
     function initialize_mobile_menu(){
-        var $top_level = $('.mz-sitenav .mz-sitenav-list >.mz-sitenav-item >.mz-sitenav-item-inner >.mz-sitenav-link');
-        var $second_level = $('.mz-sitenav .sub-level-li>.mz-sitenav-link');
+        $('.mz-sitenav').on('hidden.bs.collapse', function() {
+            closeElement($('.mz-sitenav .mz-sitenav-list >.mz-sitenav-item >.mz-sitenav-item-inner >.mz-sitenav-link.selected'));
+            closeSecondLevel($('.mz-sitenav .sub-level-li>.mz-sitenav-link.selected'));
+        });
+
+        var $top_level = $('.mz-sitenav .mz-sitenav-list >.mz-sitenav-item >.mz-sitenav-item-inner >.mz-sitenav-link i, .ml-navbar-secondary .mz-sitenav-list >.mz-sitenav-item >.mz-sitenav-item-inner >.mz-sitenav-link i');
+        var $second_level = $('.mz-sitenav .sub-level-li>.mz-sitenav-link i');
         $top_level.off('click').click(function(){
-            console.log('top level click');
-            var $self = $( this );
-            if($( this ).hasClass('selected')) {
-				closeElement(this);
+            var $self = $($( this ).parent());
+            if($self.hasClass('selected')) {
+				closeElement($self);
             }
             else{
                 var height = ($self.siblings( '.mz-sitenav-sub-container' ).get(0).scrollHeight)+'px';
-                $( this ).siblings( '.mz-sitenav-sub-container' ).animate( { height: height, 'max-height': height }, {
-                    duration: 400,
+                $self.addClass( 'selected' );
+                $self.siblings( '.mz-sitenav-sub-container' ).animate( { height: height, 'max-height': height }, {
+                    duration: 300,
                     easing: 'linear',
                     done: function () {
                         $self.siblings( '.mz-sitenav-sub-container' ).addClass( 'expand-mobile-menu' );
-                        $self.addClass( 'selected' );
                         $(this).css('height', 'auto');
                         $(this).css('max-height', '2000px');
                     }
                 } );
-                closeElement($( '.mz-sitenav .mz-sitenav-list .expand-mobile-menu' ).siblings('.mz-sitenav-link'));
+                closeElement($($( '.mz-sitenav .mz-sitenav-list .expand-mobile-menu' ).siblings('.mz-sitenav-link')));
             }
             return false;
         });
         $second_level.off('click').click(function(){
-            console.log('Click second level',$( this ).hasClass('selected'));
-            var $self = $( this );
-            if($( this ).hasClass('selected')) {
-                closeSecondLevel(this);
+            var $self = $($( this ).parent());
+            if($self.hasClass('selected')) {
+                closeSecondLevel($self);
             }
             else{
                 var height = ($self.siblings( '.sub-level-li-children' ).get(0).scrollHeight)+'px';
-                console.log('secondlevel', height);
-                $( this ).siblings( '.sub-level-li-children' ).animate( { height: height, 'max-height': height }, {
-                    duration: 400,
+                $self.addClass( 'selected' );
+                $self.siblings( '.sub-level-li-children' ).animate( { height: height, 'max-height': height }, {
+                    duration: 300,
                     easing: 'linear',
                     done: function () {
                         $self.siblings( '.sub-level-li-children' ).addClass( 'expand-mobile-menu' );
-                        $self.addClass( 'selected' );
                     }
                 } );
-                closeSecondLevel($( '.sub-level-li-children.expand-mobile-menu' ).siblings('.mz-sitenav-link'));
+                closeSecondLevel($($( '.sub-level-li-children.expand-mobile-menu' ).siblings('.mz-sitenav-link')));
             }
             return false;
         });

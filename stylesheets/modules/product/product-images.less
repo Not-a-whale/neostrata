@@ -2,6 +2,12 @@
     .mz-productimages-main {
         display: block;
         position: relative;
+        overflow: hidden;
+        &:hover .mz-productimages-mainimage{
+            -moz-transform: scale(1.2);
+            -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+        }
         &:before{
           content: "";
           display: block;
@@ -13,6 +19,9 @@
           left: 0;
           bottom: 0;
           right: 0;
+            -moz-transition: all 0.5s;
+            -webkit-transition: all 0.5s;
+            transition: all 0.5s;
         }
     }
     .mz-productimages-thumbs {

@@ -458,7 +458,7 @@
     "pdpMainImageNameAlt": "{0}_{1}_v{2}.jpg",
     "pdpMainImageMaxWidth": "320",
     "pdpAltImageName": "{0}_{1}_v{2}.jpg",
-    "pdpAltImageMaxWidth": "90",
+    "pdpAltImageMaxWidth": "800",
     "pdpSwatchImageName": "{1}.gif",
     "pdpSwatchImageMaxWidth": "30",
     "colorSwatchesChangeMain": true,
@@ -744,7 +744,7 @@
     "productQuantityLength": 5,
     "productImagePdpMaxWidth": 800,
     "familyProductImageMaxWidth": 160,
-    "productImageDirectoryMaxWidth": 265,
+    "productImageDirectoryMaxWidth": 800,
     "productThumbImageMaxWidth": 84,
     "productZoomImageMaxWidth": 700,
     "productCarouselImageWidth": 84,
@@ -796,30 +796,31 @@
     "itemListingThumbSize": 80,
     "listProductCode": true,
     "listProductShortDesc": true,
-    "listProductThumbSize": 265,
-    "maxProductImageThumbnailSize": 90,
+    "listProductThumbSize": 800,
+    "maxProductImageThumbnailSize": 800,
     "maxProductSummaryWords": 40,
     "maxTopLevelNavItems": 8,
     "maxTopLevelNavLabelLength": 20,
     "productCarouselSize": 8,
     "pageSizeOptions": [
-      36,
-      72
+      100
     ],
     "productInfoTabs": "",
-    "viewAllPageSize": 54,
+    "viewAllPageSize": 100,
     "viewAllPageSizeOrderHistory": 10,
     "defaultPageSizeOrderHistory": 5,
     "filterConfiguration": "[{\"name\": \"Color\",\"enable\": true,\"key\": \"tenant~COLOR\",\"showCount\": false,\"definition\": {\"showMoreCount\": 0,\"type\": \"swatch\"}},{\"name\": \"Size\",\"enable\": true,\"key\": \"tenant~SIZE\",\"showCount\": false,\"definition\": {\"showMoreCount\": 0,\"type\": \"Text\"}},{\"name\": \"Styles\",\"enable\": true,\"key\": \"tenant~STYLES\",\"showCount\": false,\"definition\": {\"showMoreCount\": 0,\"type\": \"Text\"}},{\"name\": \"ProductType\",\"enable\": false,\"key\": \"tenant~PRODUCTTYPE\",\"showCount\": false,\"definition\": {\"showMoreCount\": 3,\"type\": \"text\"}},{\"name\": \"Materials\",\"enable\": true,\"key\": \"tenant~MATERIALS\",\"showCount\": false,\"definition\": {\"showMoreCount\": 0,\"type\": \"Text\"}},{\"name\": \"Ratings\",\"enable\": true,\"key\": \"tenant~RATINGS\",\"showCount\": true,\"definition\": {\"showMoreCount\": 0,\"type\": \"Stars\"},\"values\": [5,4,3,2,1]},{\"name\": \"Price\",\"enable\": true,\"key\": \"price\",\"showCount\": true,\"definition\": {\"showMoreCount\": 0,\"type\": \"PriceBreak\"},\"values\": [{\"lo\": 0,\"hi\": 29.99,\"Format\": \"$HI and under\"},{\"lo\": 30,\"hi\": 49.99,\"Format\": \"$LO - $HI\"},{\"lo\": 50,\"hi\": 99.99,\"Format\": \"$LO - $HI\"},{\"lo\": 100,\"hi\": 199.99,\"Format\": \"$LO - $HI\"},{\"lo\": 200,\"hi\": 999999.99,\"Format\": \"$LO +\"}]}]",
     "googleMapAPIKey": "",
-    "googleMapLatitude": 41.652491,
-    "googleMapLongitude": -70.288112,
+    "googleMapLatitude": 45.4994924,
+    "googleMapLongitude": -73.5731634,
     "googleMapZoom": 8,
     "storesPageSize": 5,
-    "facebookShareLink": "https://www.facebook.com/MozuCommerce",
+    "facebookShareLink": "https://www.facebook.com/Neostrata",
     "googleMapPinIcon": "",
-    "searchStorePlaceHolder": "Enter City, State or ZIP",
+    "searchStorePlaceHolder": "Address, City or Postal Code",
     "googleMapMaxNearbyDistance": 10000000,
+    "googleGeolocationTimeout": 1000000,
+    "googleGeolocationMaximumAge": "Infinity",
     "preselectCountryCode": "US",
     "productImagesContainerWidth": 350,
     "requireCheckoutAgreeToTerms": true,
@@ -1095,12 +1096,16 @@
     "paymentsMethodInfo": "Payment Methods",
     "giftCardsInfo": "Gift Card",
     "megaMenu": {
+      "firstLevel": [
+        { "url": "/which-skincare-product-is-right-for-you", "image": "/resources/images/neostrata_logo.svg", "childrenGoToThis": true},
+        { "url": "/product", "image": "/resources/images/neostrata_logo.svg", "childrenGoToThis": false }
+      ],
       "categoryLookups":   [
-        { "url": "/skin-type", "linkedCategoryCode": "18" },
-        { "url": "/skin-concern", "linkedCategoryCode": "21" },
-        { "url": "/collections", "linkedCategoryCode": "9" },
-        { "url": "/product-types", "linkedCategoryCode": "16" },
-        { "url": "/ingredients", "linkedCategoryCode": "17" }
+        { "url": "/skin-type", "linkedCategoryCode": "18", "includeInSecondaryNav": true },
+        { "url": "/skin-concern", "linkedCategoryCode": "21", "includeInSecondaryNav": true },
+        { "url": "/collections", "linkedCategoryCode": "9", "includeInSecondaryNav": true },
+        { "url": "/ingredients", "linkedCategoryCode": "17", "includeInSecondaryNav": true },
+        { "url": "/skincare-product-types", "linkedCategoryCode": "16", "includeInSecondaryNav": true }
       ]
     }
   },
@@ -1218,15 +1223,217 @@
     	"displayName": "Match Tool",
     	"displayTemplate": "misc/match-tool",
       "editViewFields": [
-      {
-        "anchor": "100%",
-        "fieldLabel": "Catalog",
-        "name": "catalog",
-        "xtype": "mz-input-code"
-      }
+        {
+          "anchor": "100%",
+          "fieldLabel": "Catalog",
+          "name": "catalog",
+          "xtype": "mz-input-code"
+        }
       ],
     	"icon": "/resources/admin/widgets/26_related_products.png",
     	"id": "match-tool",
+    	"validPageTypes": [
+    		"*"
+    	]
+    },
+    {
+    	"defaultConfig": {
+
+    	},
+    	"displayName": "Regimen Builder",
+    	"displayTemplate": "misc/regimen-builder",
+      "editViewFields": [
+        {
+          "xtype": "panel",
+        	"title": "Normal Skin Regimen",
+        	"collapsed": false,
+        	"items": [
+            {
+              "xtype": "mz-input-product",
+              "name": "normalStep1",
+              "fieldLabel": "Step One: Cleanser"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "normalStep2",
+              "fieldLabel": "Step Two: Toner"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "normalStep3",
+              "fieldLabel": "Step Three: Serum"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "normalStep4",
+              "fieldLabel": "Step Four: Day"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "normalStep5",
+              "fieldLabel": "Step Five: Night"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "normalStep6",
+              "fieldLabel": "Step Six: Eye"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "normalStep7",
+              "fieldLabel": "Step Seven: Regimen Boosters"
+            },
+            {
+              "xtype": "mz-input-text",
+              "name": "normalCategoryPath",
+              "fieldLabel": "Skin-Type Page Path"
+            }
+          ]
+        },
+        {
+          "xtype": "panel",
+        	"title": "Dry Skin Regimen",
+        	"collapsed": false,
+        	"items": [
+            {
+              "xtype": "mz-input-product",
+              "name": "dryStep1",
+              "fieldLabel": "Step One: Cleanser"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "dryStep2",
+              "fieldLabel": "Step Two: Toner"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "dryStep3",
+              "fieldLabel": "Step Three: Serum"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "dryStep4",
+              "fieldLabel": "Step Four: Day"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "dryStep5",
+              "fieldLabel": "Step Five: Night"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "dryStep6",
+              "fieldLabel": "Step Six: Eye"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "dryStep7",
+              "fieldLabel": "Step Seven: Regimen Boosters"
+            },
+            {
+              "xtype": "mz-input-text",
+              "name": "dryCategoryPath",
+              "fieldLabel": "Skin-Type Page Path"
+            }
+          ]
+        },
+        {
+          "xtype": "panel",
+        	"title": "Oily Skin Regimen",
+        	"collapsed": false,
+        	"items": [
+            {
+              "xtype": "mz-input-product",
+              "name": "oilyStep1",
+              "fieldLabel": "Step One: Cleanser"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "oilyStep2",
+              "fieldLabel": "Step Two: Toner"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "oilyStep3",
+              "fieldLabel": "Step Three: Serum"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "oilyStep4",
+              "fieldLabel": "Step Four: Day"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "oilyStep5",
+              "fieldLabel": "Step Five: Night"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "oilyStep6",
+              "fieldLabel": "Step Six: Eye"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "oilyStep7",
+              "fieldLabel": "Step Seven: Regimen Boosters"
+            },
+            {
+              "xtype": "mz-input-text",
+              "name": "oilyCategoryPath",
+              "fieldLabel": "Skin-Type Page Path"
+            }
+          ]
+        },
+        {
+          "xtype": "panel",
+        	"title": "Sensitive Skin Regimen",
+        	"collapsed": false,
+        	"items": [
+            {
+              "xtype": "mz-input-product",
+              "name": "sensitiveStep1",
+              "fieldLabel": "Step One: Cleanser"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "sensitiveStep2",
+              "fieldLabel": "Step Two: Toner"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "sensitiveStep3",
+              "fieldLabel": "Step Three: Serum"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "sensitiveStep4",
+              "fieldLabel": "Step Four: Day"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "sensitiveStep5",
+              "fieldLabel": "Step Five: Night"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "sensitiveStep6",
+              "fieldLabel": "Step Six: Eye"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "sensitiveStep7",
+              "fieldLabel": "Step Seven: Regimen Boosters"
+            },
+            {
+              "xtype": "mz-input-text",
+              "name": "sensitiveCategoryPath",
+              "fieldLabel": "Skin-Type Page Path"
+            }
+          ]
+        }
+      ],
+    	"icon": "/resources/admin/widgets/26_related_products.png",
+    	"id": "regimen-builder",
     	"validPageTypes": [
     		"*"
     	]

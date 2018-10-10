@@ -1,0 +1,196 @@
+<div class="regimen-builder-widget container" data-widget="regimen-builder">
+  <div class="block">
+    <h2 class="align-center">
+      BUILD YOUR UNIQUE REGIMEN FOR CUSTOMIZED RESULTS
+    </h2>
+    <div class="text-base align-center">
+      Discover the ideal combination of products created to deliver noticeable results that only get better over time. Potent formulations backed by our heritage of breakthrough dermatological research reveal your best skin.
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="text-base align-center block">
+    Select your skin type for a perfectly tailored routine.
+  </div>
+  <div data-view="selector" class="align-center">
+    <div class="inline anchor align-left cursor-pointer" data-role="wrapper">
+      <div class="height-fixed border-strong uppercase pointer icon-right" data-control="toggle">
+        <div class="chevron-down"></div>
+        Select Skin Type
+      </div>
+    </div>
+  </div>
+  <div data-view="regimen" class="regimen-view block"></div>
+</div>
+
+<script type="text/template" id="regimen-select-template">
+  <div class="inline anchor align-left cursor-pointer" data-role="wrapper">
+    <div class="height-fixed border-strong uppercase pointer icon-right" data-control="toggle">
+      <div class="chevron-down"></div>
+      <%= selected ? selected[1] : 'Select Skin Type' %>
+    </div>
+    <% if ( open ) { %>
+      <div class="mobile backdrop"></div>
+      <div class="dropdown layer-top background-white">
+        <% _.each( options, function( option ) { %>
+          <div class="height-fixed uppercase cursor-pointer border-top-between" data-option="<%= option.value %>">
+            <%= option.label %>
+          </div>
+        <% }) %>
+      </div>
+    <% } %>
+  </div>
+</script>
+
+<script type="text/template" id="regimen-template">
+  <div data-view="steps"></div>
+  <div class="flex-swing block">
+    <div class="flex-fill block">
+      <div class="align-center h2">
+        Your Routine
+      </div>
+      <div class="flex-swing-small">
+        <div class="flex-fill align-center h3">
+          <%= selection.count %> <%= selection.count == 1 ? 'Product' : 'Products' %>
+        </div>
+        <div class="flex-fill align-center">
+          <div class="text-bold text-giant">
+            $<%= selection.cost %>.00
+          </div>
+          <div class="text-tiny">
+            Suggested retail price
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex-fill flex-column">
+      <div class="flex-center-column align-center">
+        <div class="flex-fixed">
+          <a href="/store-locator" class="primary-btn align-center">Find a Retailer</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="flex-swing container">
+    <% if ( current[3] ) { %>
+      <div class="flex-fill align-center-mobile block">
+        <a href="<%= current[3] %>" class="align-center-mobile">View All <%= current[1] %> Products</a>
+      </div>
+    <% }%>
+    <div class="flex-fill align-right align-center-mobile block">
+      <a href="/products/c/66" class="align-center-mobile">View All NEOSTRATA® Products</a>
+    </div>
+  </div>
+</script>
+
+<script type="text/template" id="regimen-step-template">
+  <div class="regimen-step-description flex-fill">
+    <h3 class="flex-row">
+      <div class="flex-center-row-mobile">
+        <div class="flex-fixed pad-inners-standard border-right-light">
+          STEP <%= number %>
+        </div>
+        <div class="flex-fixed pad-inners-standard">
+          <%= type %>
+        </div>
+      </div>
+    </h3>
+    <div class="align-center-mobile">
+      <%= sub %>
+    </div>
+    <div class="align-center-mobile margin-small">
+      <%= description %>
+    </div>
+  </div>
+  <div class="border-gray regimen-step-product flex-fixed">
+    <div class="pad-content">
+      <%= product %>
+    </div>
+    <div class="background-gray pad-content align-center">
+      <label>
+        <input type="checkbox" data-control="include" data-value="<%= number %>" <%= included ? 'checked' : '' %> />
+        <span> INCLUDE IN REGIMEN</span>
+      </label>
+    </div>
+  </div>
+</script>
+
+<script type="text/template" id="regimen-product-template">
+  <!-- TODO: Link to product page or launch quick-view modal. -->
+  <div class="pad-inset align-center regimen-product">
+    <img src="<%= ( mainImage || {}).src %>" />
+    <h3><%= content.productName %></h3>
+    <div class="margin-medium">
+      <%= content.productShortDescription %>
+    </div>
+    <div class="flex-row margin-medium">
+      <div class="flex-row flex-fill">
+        <div class="flex-center-row">
+          <div class="flex-fill flex-column align-center">
+            <div class="flex-center-column">
+              <div class="flex-fixed" id="BVRRInlineRating-<%= productCode %>"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex-fill">
+        <div class="text-bold text-giant align-center">
+          $<%= price.price %>.00
+        </div>
+        <div class="text-tiny align-center">
+          Suggested retail price
+        </div>
+      </div>
+    </div>
+  </div>
+</script>
+
+<script type="text/json" id="regimen-builder-config">
+{{ model.config|safe }}
+</script>
+
+<script type="text/json" id="regimen-builder-product-normal-1" data-role="regimen-product">
+{% include_products "modules/product/json-products" with productCodes=model.config.normalStep1 %}
+</script>
+<script type="text/json" id="regimen-builder-product-normal-2" data-role="regimen-product">
+{% include_products "modules/product/json-products" with productCodes=model.config.normalStep2 %}
+</script>
+<script type="text/json" id="regimen-builder-product-normal-3" data-role="regimen-product">
+{% include_products "modules/product/json-products" with productCodes=model.config.normalStep3 %}
+</script>
+<script type="text/json" data-role="regimen-product">
+{% include_products "modules/product/json-products" with productCodes=model.config.normalStep4 %}
+</script>
+<script type="text/json" data-role="regimen-product">
+{% include_products "modules/product/json-products" with productCodes=model.config.normalStep5 %}
+</script>
+<script type="text/json" data-role="regimen-product">
+{% include_products "modules/product/json-products" with productCodes=model.config.normalStep6 %}
+</script>
+<script type="text/json" data-role="regimen-product">
+{% include_products "modules/product/json-products" with productCodes=model.config.normalStep7 %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+{% include_products "modules/product/json-products" with productCodes=model.config.dryStep1 %}
+</script>
+<script type="text/json" data-role="regimen-product">
+{% include_products "modules/product/json-products" with productCodes=model.config.dryStep2 %}
+</script>
+<script type="text/json" data-role="regimen-product">
+{% include_products "modules/product/json-products" with productCodes=model.config.dryStep3 %}
+</script>
+<script type="text/json" data-role="regimen-product">
+{% include_products "modules/product/json-products" with productCodes=model.config.dryStep4 %}
+</script>
+<script type="text/json" data-role="regimen-product">
+{% include_products "modules/product/json-products" with productCodes=model.config.dryStep5 %}
+</script>
+<script type="text/json" data-role="regimen-product">
+{% include_products "modules/product/json-products" with productCodes=model.config.dryStep6 %}
+</script>
+<script type="text/json" data-role="regimen-product">
+{% include_products "modules/product/json-products" with productCodes=model.config.dryStep7 %}
+</script>
+
+{% require_script "modules/regimen-builder/main" %}
