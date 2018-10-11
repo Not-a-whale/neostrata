@@ -2,7 +2,7 @@
     <i class="search-button"></i>
     <input type="hidden" name="categoryId" value="{{themeSettings.allProductsCategoryId}}" />
     <span class="form-input">
-        <input placeholder="{{ labels.search }}" id="search-field" type="search" autocomplete="off" name="query" data-mz-role="searchquery" />
+        <input placeholder="{{ labels.search }}" title="Search" id="search-field" type="search" autocomplete="off" name="query" data-mz-role="searchquery" />
     </span>
     <button class="searchbox-button" type="submit"></button>
     {% require_script "modules/contextify" %}
@@ -10,5 +10,3 @@
         {% require_script "modules/search-autocomplete" %}
     {% endif %}
 </form>
-
-
