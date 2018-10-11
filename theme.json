@@ -1097,8 +1097,8 @@
     "giftCardsInfo": "Gift Card",
     "megaMenu": {
       "firstLevel": [
-        { "url": "/which-skincare-product-is-right-for-you", "image": "/resources/images/neostrata_logo.svg", "childrenGoToThis": true},
-        { "url": "/product", "image": "/resources/images/neostrata_logo.svg", "childrenGoToThis": false }
+        { "url": "/which-skincare-product-is-right-for-you", "image": "", "childrenGoToThis": true},
+        { "url": "/product", "image": "", "childrenGoToThis": false }
       ],
       "categoryLookups":   [
         { "url": "/skin-type", "linkedCategoryCode": "18", "includeInSecondaryNav": true },
