@@ -1,7 +1,7 @@
 ﻿define(['shim!vendor/typeahead.js/typeahead.bundle[modules/jquery-mozu=jQuery]>jQuery', 'swiper'], function($, Swiper) {
     var swiper = new Swiper('.swiper-container', {
         slidesPerView: 3,
-        spaceBetween: 10,
+        spaceBetween: 0,
         loop: true,
 		navigation: {
 			nextEl: '.swiper-button-next',
@@ -25,4 +25,19 @@
             }
         }
     });
+    function window_resize(){
+        var maxHeight = Math.max.apply(null, $(".product-listing-container").map(function ()
+        {
+            return $(this).height() + parseFloat($(this).css("padding-top")) + parseFloat($(this).css("padding-bottom"));
+        }).get());
+        $('.product-listing-container').css('height', maxHeight);
+    }
+    $(document).ready(function() {
+        window_resize();
+    });
+    $(window).resize(function() {
+        window_resize();
+    });
+
+
 });

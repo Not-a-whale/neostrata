@@ -15,18 +15,13 @@
         </div>
     </div>
     <div class="mz-productlisting-info">
-        {% with model|get_product_attribute_value("tenant~skin-care-system") as skinCareSystem %}
-        <div class="pdp1">{{ skinCareSystem }}</div>
+        {% with model|get_product_attribute_value("tenant~product-type") as skinCareSystem %}
+            <div class="pdp1">{{ skinCareSystem }}</div>
         {% endwith %}
         <a class="mz-productlisting-title pdp2" href="{{model.url}}">{{model.content.productName}}</a>
         {% if model.content.productShortDescription and themeSettings.listProductShortDesc %}
         <div class="mz-productlisting-shortdesc pdp3">{{ model.content.productShortDescription|striptags|truncatewords(themeSettings.maxProductSummaryWords) }}</div>
         {% endif %}
-        {% block product-code %}
-        {% if themeSettings.listProductCode %}
-        <div class="mz-productlisting-productcode">{{model.productCode}}</div>
-        {% endif %}
-        {% endblock product-code %}
 
         {% block product-extrainfo %}
         {% if dealOfTheDay %}
