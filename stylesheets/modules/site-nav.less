@@ -384,8 +384,11 @@
             text-decoration: none;
             display: inline-block;
             position: relative;
-            &:visited, &:hover{
+            &:visited {
                 color: @charcoal;
+            }
+            &:hover {
+                color: @mutedBlue;
             }
         }
 
@@ -434,6 +437,9 @@
             }
             .mz-sitenav-link {
                 padding: 2px 0;
+                &:hover {
+                    color: @mutedBlue!important;
+                }
             }
             .mega-menu-image{
                 width: 38%;
@@ -514,6 +520,13 @@
                 >.mz-sitenav-item-inner>.mz-sitenav-link{
                     height: 6rem;
                     cursor: pointer;
+                    &:hover::before{
+                        content: " ";
+                        border-bottom: 2px solid @charcoal;
+                        width: 100%;
+                        height: 1rem;
+                        position: absolute;
+                    }
                 }
                 text-align: center;
                 width: 13%;
