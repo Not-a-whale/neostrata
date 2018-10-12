@@ -62,7 +62,7 @@
                         {% endfor %}
                         <div class="mega-menu-image">
                             {% for item in themeSettings.megaMenu.firstLevel %}
-                              {% if item.url == link.url %}
+                              {% if item.url == link.url and item.image %}
                                 <img src="{{item.image}}" />
                               {% endif %}
                             {% endfor %}

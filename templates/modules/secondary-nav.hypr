@@ -1,45 +1,36 @@
 <nav class="ml-navbar-secondary">
-    <div class="secondary-title">Shop By</div>
-    <ul class="mz-sitenav-list">
-        {% partial_cache %}
-          {% for lookup in themeSettings.megaMenu.categoryLookups %}
-            {% if lookup.includeInSecondaryNav %}
-                <li class="mz-sitenav-item">
-                  <div class="mz-sitenav-item-inner">
-
-
-                  {% with navigation.tree|findwhere('categoryCode', lookup.linkedCategoryCode) as linkedCategory %}
-
-
-
-                    <a class="mz-sitenav-link" href="{{lookup.url}}">{{linkedCategory.name|safe}}<i class="{% if linkedCategory.items %}expand-options{% else %}go-to-action{% endif %}"></i></a>
-                    {% if linkedCategory.items %}
-                    <div class="mz-sitenav-sub-container">
-                      {% if linkedCategory.items %}
-                        <div class="row container-mega-menu">
-                            <div class="sub-level-col">
-                            {% for sublink in linkedCategory.items %}
-                                {% if not sublink.isHidden %}
-                                    <div class="mz-sitenav-item sub-level-li">
-                                        <a class="mz-sitenav-link" href="{{sublink.url}}">{{ sublink.name|safe }}</a>
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
-                            </div>
+  <div class="secondary-title">Shop By</div>
+  <ul class="mz-sitenav-list">
+    {% partial_cache %}
+      {% for lookup in themeSettings.megaMenu.categoryLookups %}
+        {% if lookup.includeInSecondaryNav %}
+            <li class="mz-sitenav-item">
+              <div class="mz-sitenav-item-inner">
+              {% with navigation.tree|findwhere('categoryCode', lookup.linkedCategoryCode) as linkedCategory %}
+                <a class="mz-sitenav-link" href="{{lookup.url}}">{{linkedCategory.name|safe}}<i class="{% if linkedCategory.items %}expand-options{% else %}go-to-action{% endif %}"></i></a>
+                {% if linkedCategory.items %}
+                <div class="mz-sitenav-sub-container">
+                  {% if linkedCategory.items %}
+                    <div class="row container-mega-menu">
+                        <div class="sub-level-col">
+                        {% for sublink in linkedCategory.items %}
+                            {% if not sublink.isHidden %}
+                                <div class="mz-sitenav-item sub-level-li">
+                                    <a class="mz-sitenav-link" href="{{sublink.url}}">{{ sublink.name|safe }}</a>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
                         </div>
-                    {% endif %}
                     </div>
-                    {% endif %}
-                  </div>
-                </li>
-                <li class="ml-navbar-separator"></li>
-                {% endwith %}
-
-
-
-
-            {% endif %}
-          {% endfor %}
-        {% endpartial_cache %}
-      <ul>
+                {% endif %}
+                </div>
+                {% endif %}
+              </div>
+            </li>
+            <li class="ml-navbar-separator"></li>
+            {% endwith %}
+        {% endif %}
+      {% endfor %}
+    {% endpartial_cache %}
+  <ul>
 </nav>

@@ -74,9 +74,8 @@
                       {% endfor %}
                     </div>
                   {% endif %}
-                  <hr/>
                   {% if featuresBenefits and featuresBenefits.values.length > 0 %}
-                    <div lass="product-features-benefits">
+                    <div class="product-features-benefits">
                       {% for v in featuresBenefits.values %}
                         {% if v.stringValue %}
                           {{ v.stringValue|safe }}
