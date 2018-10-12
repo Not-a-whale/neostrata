@@ -2379,6 +2379,33 @@ ul.tabs {
     .feature-title {
       text-transform: uppercase;
     }
+      ul{
+          padding: 0;
+          letter-spacing: 0.1rem;
+          li{
+              font-size: 1.2rem;
+              &.header{
+                  font-weight: @fontWeightMedium;
+                  padding-top: 1.5rem;
+                  border-top: 2px solid @midGray;
+                  margin-top: 1rem;
+                  font-size: 1.5rem;
+              }
+          }
+      }
+      .product-highlights{
+          ul{
+              &:first-child{
+                  li.header{
+                      border-top: none;
+                      padding-top: 0;
+                  }
+              }
+          }
+      }
+      .product-features-benefits{
+
+      }
   }
 
   @media (max-width: 767px) {
