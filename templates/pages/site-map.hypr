@@ -9,7 +9,7 @@
 {% block body-content %}
     {% block breadcrumbs %}{% endblock breadcrumbs %}
 
-    <div class="mz-l-container mz-site-map">
+    <div class="mz-l-container mz-site-map container">
         <h1 class="mz-pagetitle">Site Map</h1>
         {% for link in navigation.tree %}
             <div class="row">
@@ -17,7 +17,7 @@
                     <h3><a href="{{link.url}}">{{link.name|safe}}</a></h3>
                 </div>
                 {% for sublink in link.items %}
-                    <div class="col-xs-6 col-sm-4 single-sitemap-item-wrapper">
+                    <div class="col-xs-6 col-sm-4 col-md-3 single-sitemap-item-wrapper">
                         <h4><a href="{{sublink.url}}">{{sublink.name|safe}}</a></h4>
                         {% for subsublink in sublink.items %}
                             <div><a href="{{subsublink.url}}">{{subsublink.name|safe}}</a></div>
