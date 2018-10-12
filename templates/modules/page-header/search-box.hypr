@@ -4,7 +4,7 @@
     <span class="form-input">
         <input placeholder="{{ labels.search }}" title="Search" id="search-field" type="search" autocomplete="off" name="query" data-mz-role="searchquery" />
     </span>
-    <button class="searchbox-button" type="submit"></button>
+    <button class="searchbox-button" type="submit" title="Search"></button>
     {% require_script "modules/contextify" %}
     {% if themeSettings.useSearchAutocomplete %}
         {% require_script "modules/search-autocomplete" %}
