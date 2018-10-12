@@ -1,5 +1,5 @@
 {% if themeSettings.globalPageHeaderLogoSM or themeSettings.globalPageHeaderLogoXS %}
-	<a class="{% if not themeSettings.globalPageHeaderLogoSM %}logo {% endif %}hidden-xs" href="/" title="{{ siteContext.generalSettings.websiteName }}" alt="{{ siteContext.generalSettings.websiteName }}">
+	<a class="{% if not themeSettings.globalPageHeaderLogoSM %}logo {% endif %}hidden-xs" href="/" title="{{ siteContext.generalSettings.websiteName }}" >
 	{% if themeSettings.globalPageHeaderLogoSM %}
 		<img class="customLogo" src="{{ themeSettings.globalPageHeaderLogoSM.imageUrl }}" alt="{{ siteContext.generalSettings.websiteName }}" />
 	{% endif %}
@@ -10,6 +10,6 @@
 	{% endif %}
 	</a>
 {% else %}
-	<a class="logo" href="/" title="{{ siteContext.generalSettings.websiteName }}" alt="{{ siteContext.generalSettings.websiteName }}" >
+	<a class="logo" href="/" title="{{ siteContext.generalSettings.websiteName }}">
 	</a>
 {% endif %}
