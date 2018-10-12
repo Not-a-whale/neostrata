@@ -1,4 +1,8 @@
 {% with model|get_product_attribute("tenant~before-and-after") as beforeAndAfter %}
+{% with model|get_product_attribute("tenant~derm-quote") as dermQuote %}
+{% with model|get_product_attribute("tenant~clinical-study") as clinicalStudy %}
+{% with model|get_product_attribute("tenant~size") as size %}
+{% with model|get_product_attribute("tenant~ingredients") as ingredients %}
 {% with model.content.productFullDescription as details %}
 {% with model|get_product_attribute("tenant~how-to-apply") as howToApply %}
 
@@ -20,6 +24,14 @@
       <div id="tab1" class="tab-pane fade active in">
         <div class="beforeAndAfter">
           <div>
+            {% if dermQuote %}
+                {% for v in dermQuote.values %}
+                  {% if v.stringValue %}
+                    {{ v.stringValue|safe }}
+                  {% endif %}
+                {% endfor %}
+                <hr>
+            {% endif %}
             {% for v in beforeAndAfter.values %}
               <div class="tab-content-1">
                   {% if v.stringValue %}
@@ -27,9 +39,17 @@
                   {% endif %}
               </div>
             {% endfor %}
+            <span class="beforeLabel">Before</span>
+            <span class="afterLabel">After</span>
+            {% if clinicalStudy %}
+                <hr>
+                {% for v in clinicalStudy.values %}
+                  {% if v.stringValue %}
+                    {{ v.stringValue|safe }}
+                  {% endif %}
+                {% endfor %}
+            {% endif %}
           </div>
-          <span class="beforeLabel">Before</span>
-          <span class="afterLabel">After</span>
         </div>
       </div>
     {% endif %}
@@ -37,6 +57,22 @@
       <div id="tab2" class="tab-pane fade{% if not beforeAndAfter %} active in{% endif %}">
         <div class="tab-content-2">
           {{ details|safe }}
+          {% if size %}
+            <hr>
+              {% for v in size.values %}
+                {% if v.stringValue %}
+                  {{ v.stringValue|safe }}
+                {% endif %}
+              {% endfor %}
+          {% endif %}
+          {% if ingredients %}
+              <hr>
+              {% for v in ingredients.values %}
+                {% if v.stringValue %}
+                  {{ v.stringValue|safe }}
+                    {% endif %}
+              {% endfor %}
+          {% endif %}
         </div>
       </div>
     {% endif %}
@@ -55,6 +91,10 @@
 </div>
 
 
+{% endwith %}
+{% endwith %}
+{% endwith %}
+{% endwith %}
 {% endwith %}
 {% endwith %}
 {% endwith %}
