@@ -1,5 +1,6 @@
 {% extends "page" %}
 {% block title-tag-content %}{% firstof pageContext.metaTitle|replace("'","&rsquo;")|replace('"',"”")|safe model.content.productName|replace("'","&rsquo;")|replace('"',"”")|safe %}  - {% parent %}{% endblock title-tag-content %}
+{% block html-tag-classes %}mz-product{% endblock html-tag-classes %}
 {% block body-tag-classes %}mz-product{% endblock body-tag-classes %}
 {% block body-content %}
 {% preload_json model "product" %}
@@ -8,7 +9,7 @@
 		{% if themeSettings.showBreadcrumbs %}
 			{% include "modules/breadcrumbs" %}
 	    {% endif %}
-	{% endblock breadcrumbs %}    
+	{% endblock breadcrumbs %}
     <div class="clearfix"></div>
     {% include "modules/product/product-details" %}
 </div>

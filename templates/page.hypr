@@ -25,7 +25,7 @@
 <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
 <!--[if IE 9]>    <html class="no-js ie9" lang="en"> <![endif]-->
 <!--[if (gt IE 9)|(!IE) ]><!-->
-<html class="no-js" lang="en">
+<html class="no-js {% block html-tag-classes %}{% endblock html-tag-classes %}" lang="en"  >
 <!--<![endif]-->
 {%endblock open-html-tag %}
 
@@ -145,7 +145,7 @@
             {% include "modules/page-footer" %}
             {% endblock page-footer %}
 
-            
+
         </div>
 
         {% block trailing-scripts %}
