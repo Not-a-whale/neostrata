@@ -95,35 +95,14 @@
         </div>
       </div>
     </h3>
-    <div class="align-center-mobile">
+    <div class="product-name"><%= productContent.productName %></div>
+    <div class="align-center-mobile product-sub">
       <%= sub %>
     </div>
     <div class="align-center-mobile margin-small">
       <%= description %>
     </div>
-  </div>
-  <div class="border-gray regimen-step-product flex-fixed">
-    <div class="pad-content">
-      <%= product %>
-    </div>
-    <div class="background-gray pad-content align-center">
-      <label>
-        <input type="checkbox" data-control="include" data-value="<%= number %>" <%= included ? 'checked' : '' %> />
-        <span> INCLUDE IN REGIMEN</span>
-      </label>
-    </div>
-  </div>
-</script>
-
-<script type="text/template" id="regimen-product-template">
-  <!-- TODO: Link to product page or launch quick-view modal. -->
-  <div class="pad-inset align-center regimen-product">
-    <img src="<%= ( mainImage || {}).src %>" />
-    <h3><%= content.productName %></h3>
-    <div class="margin-medium">
-      <%= content.productShortDescription %>
-    </div>
-    <div class="flex-row margin-medium">
+    <div class="flex-row margin-medium price-container">
       <div class="flex-row flex-fill">
         <div class="flex-center-row">
           <div class="flex-fill flex-column align-center">
@@ -142,6 +121,23 @@
         </div>
       </div>
     </div>
+    <div class="background-gray pad-content align-center">
+      <label>
+        <input type="checkbox" data-control="include" data-value="<%= number %>" <%= included ? 'checked' : '' %> />
+        <span> INCLUDE IN REGIMEN</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="regimen-step-product flex-fixed">
+      <%= product %>
+  </div>
+</script>
+
+<script type="text/template" id="regimen-product-template">
+  <!-- TODO: Link to product page or launch quick-view modal. -->
+  <div class="pad-inset align-center regimen-product">
+    <img src="<%= ( mainImage || {}).src %>" />
   </div>
 </script>
 

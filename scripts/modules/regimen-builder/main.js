@@ -267,6 +267,9 @@ require([
 
         return _.extend({}, step, {
           product: code && PRODUCTS[code],
+          productContent: code && PRODUCTS[code] && PRODUCTS[code].content,
+          productCode: code,
+          price: PRODUCTS[code] && PRODUCTS[code].price,
           included: true
         });
       })

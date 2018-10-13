@@ -187,10 +187,12 @@
 
   .pad-inners-standard:first-child {
     padding-left: 0;
+    line-height: 2.81rem;
   }
 
   .pad-inners-standard:last-child {
     padding-right: 0;
+    line-height: 2.81rem;
   }
 
   .border-strong {
@@ -204,7 +206,7 @@
   }
 
   .border-right-light {
-    border-right: 1px solid #B3B3B3;
+    border-right: 2px solid @charcoal;
   }
 
   .background-gray {
@@ -296,6 +298,10 @@
     @media (min-width: 992px) {
       padding-left: 60px;
     }
+
+    >h3{
+      margin-top: 0;
+    }
   }
 
   .regimen-step-product {
@@ -304,6 +310,13 @@
     @media (min-width: 992px) {
       flex-basis: 420px;
     }
+  }
+
+  .product-name{
+    font-weight: @fontWeightMedium;
+  }
+  .product-sub{
+    font-weight: @fontWeightMedium;
   }
 }
 
