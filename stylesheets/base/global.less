@@ -490,14 +490,14 @@ ul {
   font-weight: bold;
   font-style: italic;
   padding-left: 0;
-  line-height: 1.75;
+  line-height: 2.25;
   position: relative;
 
   span {
     order: 1;
     background: @lightGray;
     padding-left: 2rem;
-    min-width: 40%;    
+    min-width: 30%;    
   }
 
   &:before {
@@ -510,7 +510,7 @@ ul {
     align-self: flex-end;    
   }
   &:after {
-    content: "\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0";
+    content: "\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0";
     background-image: linear-gradient(50deg,@lightGray 40%,#fff 40%,#fff 50%,@slashColor 50%,@slashColor 70%,#fff 70%,#fff 100%);
     height: 100%;
     position: relative;
@@ -551,7 +551,43 @@ ul {
   .slashHeading(@redOrange);
 }
 
+// Slash headings all Mid gray
 
+.slashHeading.allMidGraySlashHeading {
+  display: flex;
+  background-color: transparent;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-style: italic;
+  padding-left: 0;
+  line-height: 2.25;
+  position: relative;
+
+  span {
+    order: 1;
+    background: @midGray;
+    padding-left: 2rem;
+    min-width: 30%;    
+  }
+
+  &:before {
+    content: ' ';
+    background: @midGray;
+    flex: 1;
+    order: 3;
+    height: 1px;
+    -webkit-align-self: flex-end;
+    align-self: flex-end;    
+  }
+  &:after {
+    content: "\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0";
+    background-image: linear-gradient(50deg,@midGray 40%,#fff 40%,#fff 50%,@midGray 50%,@midGray 70%,#fff 70%,#fff 100%);
+    height: 100%;
+    position: relative;
+    flex: 0;
+    order: 2;
+  }
+}
 // NeoStrata colors collection names
 
 .skinActive .slashHeading {

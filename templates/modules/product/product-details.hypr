@@ -64,7 +64,7 @@
             {% with model|get_product_attribute("tenant~features-benefits") as featuresBenefits %}
               {% if highlights and highlights.values.length > 0 or featuresBenefits and featuresBenefits.values.length > 0 %}
                 <div class="product-features center-mobile">
-                  <h3 class="feature-title">Key Ingredients</h3>
+                  <h4 class="feature-title">Key Ingredients</h4>
                   {% if highlights and highlights.values.length > 0 %}
                     <div class="product-highlights">
                       {% for v in highlights.values %}
