@@ -817,6 +817,18 @@
     }
 }
 
+.search-results{
+    .facets-block{
+        height: 7rem;
+    }
+    #filter-tab-li{
+        visibility: hidden;
+    }
+    .mz-productlist #product-list-ul{
+        margin: 0;
+    }
+}
+
 footer {
     padding: 0 0 10px;
     background: url('../resources/images/footer_wave_1360x200.svg') repeat-x #ebebeb;
@@ -831,7 +843,7 @@ footer {
         a{
             font-size: 2rem;
             font-weight: @fontWeightMedium;
-            :visited{
+            &:visited{
                 color: @charcoal;
             }
         }
@@ -1063,23 +1075,41 @@ footer {
 .mz-l-pagecontent{
     //site map
     .mz-site-map{
-        color: #383333;
+        color: #4e5458;
         font-size: @font-size;
+        .mz-pagetitle{
+            font-size: 4.5rem;
+            line-height: 1.25em;
+            font-weight: 700;
+            text-align: center;
+            max-width: 60%;
+            margin: 4rem auto 1rem;
+        }
         a{
             text-decoration: underline;
         }
         h3 a{
-            color: #383333;
             text-decoration: none;
             font-size: @font-size + 6;
+            margin-top: 3.7rem;
+            font-size: 1.6rem;
+            margin-bottom: 1.7rem;
+            font-weight: 500;
+            font-style: italic;
         }
-        h4 a{
-            color: #383333;
-            text-decoration: none;
-            font-size: @font-size + 2;
-        }
+        h4{
+            padding-bottom: 1.2rem;
+            margin-top:0;
+            margin-bottom:0;
+            a{
+                font-weight: 400;
+                font-size: 1.56rem;
+                line-height: 1.15em;
+                text-decoration: none;
+            }
+        } 
         div a{
-            color: #383333;
+            color: #4e5458;
         }
     }
 }
@@ -2309,7 +2339,7 @@ ul.tabs {
     }
     .mz-pagesubtitle{
       .p3;
-      margin: 0 0 1em;
+      margin: 0 0 .5rem;
     }
 
     .prize-mobile-view {
@@ -2326,8 +2356,11 @@ ul.tabs {
         display:inline-block;
 
     }
+    .reviews-and-price{
+        margin-bottom: 1rem;
+    }
     .mz-price {
-      .p4;
+
     }
 
     .mz-productdetail-price {
@@ -2373,11 +2406,13 @@ ul.tabs {
 
   .find-a-retailer {
     text-align: center;
+      padding: 5rem 1rem;
   }
 
   .product-features {
     .feature-title {
       text-transform: uppercase;
+        margin-top: 0;
     }
       ul{
           padding: 0;
@@ -2541,7 +2576,7 @@ ul.tabs {
 
   .ideal-for{
     .p2;
-
+      margin-top: 2rem;
     .ideal-for-label {
       text-transform: uppercase;
       font-weight: bold;
@@ -3366,5 +3401,14 @@ ul.tabs {
     margin-top: 6px;
     &:before {
         content: none;
+    }
+}
+
+#BVRRContainer{
+    .bv-inline-histogram{
+        width: 50%!important;
+    }
+    .bv-secondary-rating-summary{
+        display: none!important;
     }
 }

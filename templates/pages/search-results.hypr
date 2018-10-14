@@ -8,7 +8,7 @@
 
 {% require_script "pages/search" %}
 
-<div {% if pageContext.categoryId %}data-mz-category="{{ pageContext.categoryId }}" {% endif %}data-mz-search="{{ pageContext.search.query }}" class="mz-l-container">
+<div {% if pageContext.categoryId %}data-mz-category="{{ pageContext.categoryId }}" {% endif %}data-mz-search="{{ pageContext.search.query }}" class="mz-l-container container search-results">
 	{% include "pages/search-interior" %}
 </div>
 

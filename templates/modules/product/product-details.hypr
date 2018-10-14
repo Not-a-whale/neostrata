@@ -18,7 +18,7 @@
             <h2 class="mz-pagesubtitle center-mobile" >
               <span itemscope="description" itemprop="description">{{ model.content.productShortDescription|safe }}</span>
             </h2>
-            <div class="center-mobile">
+            <div class="center-mobile reviews-and-price">
               <div class="mz-all-review-container">
                 <span class="mz-reviews-pdp-stars">
                   {% dropzone "reviews-pdp-stars" scope="template" %}
