@@ -66,13 +66,7 @@
 		<div class="row hidden-xs">
 				{% dropzone "footer-bottom-row" scope="site" %}
 				{% block copyright-footer %}
-					<div class="mz-pagefooter-copyright">
-						<div class="pagefooter-logo"></div>
-						<span class="mz-pagefooter-copyrighttext">
-							COPYRIGHT &copy; {% now Y %}
-							NEOSTRATA
-						</span>
-					</div>
+
 				{% endblock copyright-footer%}
 		</div>
 	</div>
