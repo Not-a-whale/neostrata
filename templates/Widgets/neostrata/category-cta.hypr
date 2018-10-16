@@ -1,5 +1,5 @@
 <div class="category-cta {{model.config.system}}">
-  <h4 class="slashHeading">{{model.config.title}}</h4>
+  <h4 class="slashHeading"><span>{{model.config.title}}</span></h4>
   <div>
     <img class="heroImage" src="{{model.config.imagePath}}"/>
     <div class="body">

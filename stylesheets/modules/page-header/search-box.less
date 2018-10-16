@@ -45,14 +45,13 @@
     .tt-dropdown-menu {
         box-sizing: border-box;
         border: 1px solid @inputBorder;
-        border-width: 1px;
         width: 100%;/*@expandedSearchWidth + 1;*/
         background: white;
     }
 
     .tt-suggestion {
             margin: 0;
-            padding: 0.4em 1em;
+            padding: 0.4rem;
             border-bottom: 1px solid #f4f4f4;
             &.tt-cursor {
                 background: #f4f4f4;
@@ -75,11 +74,24 @@
         .mz-itemlisting-thumb, .mz-itemlisting-details {
             float: none;
             display: table-cell;
-            padding: 0.5em;
+            padding: 0 0.5rem;
             vertical-align: top;
         }
     }
 
+    .tt-hint{
+        border: 0.1875rem solid transparent!important;
+    }
 
+    .mz-itemlisting-autocomplete{
+        .mz-itemlisting-thumb{
+        }
+        .mz-itemlisting-title{
+            font-size: 1.5rem;
+            vertical-align: top;
+            font-weight: @fontWeightMedium;
+            text-decoration: none;
+        }
+    }
 
 }

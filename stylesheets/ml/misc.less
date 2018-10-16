@@ -1107,7 +1107,7 @@ footer {
                 line-height: 1.15em;
                 text-decoration: none;
             }
-        } 
+        }
         div a{
             color: #4e5458;
         }
@@ -1800,6 +1800,8 @@ ul.tabs {
     }
 }
 
+
+
 .product-item {
     padding: 0 1rem 4rem 0.5rem;
     .product-listing-container {
@@ -1876,13 +1878,13 @@ ul.tabs {
     .h1;
     text-align: center;
     max-width: 60%;
-    margin: 4rem auto;
+    margin: 6rem auto;
   }
   p {
     .p2;
     text-align: center;
     max-width: 60%;
-    margin: 4rem auto;
+    margin: 6rem auto;
   }
 
   @media (max-width: 767px) {
@@ -2272,8 +2274,8 @@ ul.tabs {
             margin-right: 0;
         }
         &.active {
-            img {
-                border: 1px solid @colorLighterGray;
+            .mz-productimages-thumb {
+                border: 2px solid @mutedBlue;
             }
         }
     }
@@ -2334,7 +2336,7 @@ ul.tabs {
     width: 52%;
 
     .mz-pagetitle{
-      .h3;
+      .h2;
       margin: 1em 0 0;
     }
     .mz-pagesubtitle{
@@ -2384,7 +2386,7 @@ ul.tabs {
 
   .mz-all-review-container{
 
-    border-right: 0.0625em solid @charcoal;
+    border-right: 0.0625em solid @midGray;
     margin-right: 2.5em;
     display: inline-block;
 
@@ -2418,11 +2420,12 @@ ul.tabs {
           padding: 0;
           letter-spacing: 0.1rem;
           li{
-              font-size: 1.2rem;
+              font-size: 1.25rem;
+              line-height: 1.5;
               &.header{
                   font-weight: @fontWeightMedium;
                   padding-top: 1.5rem;
-                  border-top: 2px solid @midGray;
+                  border-top: .125rem solid @midGray;
                   margin-top: 1rem;
                   font-size: 1.5rem;
               }
@@ -2442,7 +2445,6 @@ ul.tabs {
 
       }
   }
-
   @media (max-width: 767px) {
       float: none;
       clear: both;
@@ -2453,6 +2455,10 @@ ul.tabs {
       }
   }
 }
+  .tab-content-2, .tab-content-3 {
+    font-size: 1.25rem;
+    line-height: 1.5;
+  }
 
 .mz-productimages {
   @media (max-width: 767px) {
@@ -2565,9 +2571,24 @@ ul.tabs {
         .fontRegular();
     }
 }
+
+@media (min-width: 1241px) {
+  html.mz-product {
+    font-size: 12px;
+  }
+}
+
+body.mz-product {
+  .product-wrapper {
+    .container {
+      max-width: 1100px;
+    }
+  }
+}
+
 .product-wrapper {
   .slashHeading {
-    font-size: 1.69rem;
+    font-size: 1.26375rem;
   }
 
   .product-results{
@@ -2575,13 +2596,20 @@ ul.tabs {
   }
 
   .ideal-for{
-    .p2;
+    .h6;
       margin-top: 2rem;
+      font-weight: @fontWeightBook;
     .ideal-for-label {
       text-transform: uppercase;
-      font-weight: bold;
+      font-weight: @fontWeightMedium;
     }
   }
+    .nav-tabs>li>a:hover {
+        border: 1px solid white;
+    }
+    .nav>li>a:focus, .nav>li>a:hover {
+        background-color: transparent;
+    }  
 
   .product-info-tabs-container {
     margin-top: 2rem;
@@ -2601,7 +2629,17 @@ ul.tabs {
           outline: none;
           padding: 0 2.5rem;
           border-radius: 0;
-          border-right: 0.0625em solid @charcoal;
+
+            &:after {
+                content: ' ';
+                width: 0.125rem;
+                height: 2rem;
+                background: @midGray;
+                display: inline-block;
+                right: 0;
+                position: absolute;
+                top: .265rem;
+            }
 
           span {
             height: 2em;
@@ -2613,11 +2651,11 @@ ul.tabs {
 
           a {
             border: none;
-            border-right: 0.0625em solid @charcoal;
             font-style: italic;
             font-weight: bold;
+
             span {
-              border-bottom: .1875em solid @mutedBlue;
+              border-bottom: .1875rem solid @mutedBlue;
             }
           }
         }
@@ -2626,7 +2664,9 @@ ul.tabs {
           padding-left: 0;
         }
         &:last-child a {
-          border-right: none;
+          &:after {
+            content: none;
+          }
         }
 
       }
@@ -3411,4 +3451,58 @@ ul.tabs {
     .bv-secondary-rating-summary{
         display: none!important;
     }
+}
+
+// Product Detail Page BV Bazaar Voice override styles
+
+#BVRRContainer .bv-cv2-cleanslate .bv-core-container-140 .bv-action-bar-header {
+    font-size: 3.43rem !important;
+    font-weight: 500!important;
+    text-align: center !important;
+    width: 100% !important;
+    display: block !important;
+    clear: both !important;
+}
+
+#BVRRContainer .bv-cv2-cleanslate .bv-core-container-140 .bv-submission .bv-fieldsets .bv-form-actions .bv-submission-button-submit,
+#BVRRContainer .bv-cv2-cleanslate .bv-core-container-140 button.bv-write-review {
+    margin: 4rem auto !important;
+    font-family: "Gotham A","Gotham B",sans-serif;
+    font-weight: 400 !important;
+    font-size: 1.5rem !important;
+    color: #4e5458 !important;
+    letter-spacing: 0.14em !important;
+    text-transform: uppercase !important;
+    background: none !important;
+    text-decoration: none !important;
+    border: 0.1875rem solid #4e5458 !important;
+    height: 6rem !important;
+    line-height: 5.625rem !important;
+    padding: 0 3.125rem !important;
+}
+#BVRRContainer .bv-cv2-cleanslate .bv-core-container-140 .bv-submission .bv-fieldsets .bv-form-actions .bv-submission-button-submit:hover,
+#BVRRContainer .bv-cv2-cleanslate .bv-core-container-140 button.bv-write-review:hover {
+    color: #fff !important;
+    background: #4e5458 !important;
+}
+
+#BVRRContainer .bv-cv2-cleanslate .bv-core-container-140 .bv-action-bar {
+    display: flex !important;
+    flex-direction: column;
+}
+#BVRRSearchContainer {
+    margin-top: 7.6rem
+}
+#BVRRContainer {
+    margin-top: 4rem
+}
+
+#BVRRContainer .bv-cv2-cleanslate .bv-core-container-140 .bv-section-summary .bv-content-title,
+#BVRRContainer .bv-cv2-cleanslate .bv-core-container-140 .bv-section-summary .bv-section-summary-inline .bv-inline-histogram-ratings .bv-histogram-filter-helper {
+    text-align: center !important;
+    display:block !important;
+}
+
+.bv-cv2-cleanslate .bv-core-container-140 .bv-inline-histogram-ratings table {
+    margin: 2rem auto !important;
 }
