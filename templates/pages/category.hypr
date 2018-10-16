@@ -7,7 +7,6 @@
 {% block body-content %}
 
 {% require_script "pages/category" %}
-{% require_script "widgets/bazaarvoice" %}
 
 {% dropzone "category-page-banner" scope="page" %}
 
