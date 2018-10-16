@@ -330,7 +330,7 @@ button {
   }
 
   input[type="checkbox"],
-  input[type="radio"], {
+  input[type="radio"] {
     position: absolute;
     opacity: 0;
     left: -9999rem;
@@ -338,6 +338,10 @@ button {
   }
   input[type="checkbox"] + label {
     .icon (before, @icon-check);
+      font-family: @fontFamily !important;
+    &:before, &:after{
+      font-family: 'icomoon' !important;
+    }
   }
 
   input[type="checkbox"] + label:before,

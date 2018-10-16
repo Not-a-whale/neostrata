@@ -43,42 +43,31 @@
 
 <script type="text/template" id="regimen-template">
   <div data-view="steps"></div>
-  <div class="flex-swing block">
-    <div class="flex-fill block">
-      <div class="align-center h2">
+  <div class="regimen-template">
+    <div class="your-routine">
+      <div class="h2">
         Your Routine
       </div>
-      <div class="flex-swing-small">
-        <div class="flex-fill align-center h3">
+      <div class="">
+        <div class="products h3">
           <%= selection.count %> <%= selection.count == 1 ? 'Product' : 'Products' %>
         </div>
-        <div class="flex-fill align-center">
-          <div class="text-bold text-giant">
+        <div class="">
+          <div class="selection-cost">
             $<%= selection.cost %>.00
           </div>
-          <div class="text-tiny">
+          <div class="suggested-price">
             Suggested retail price
           </div>
         </div>
       </div>
     </div>
-    <div class="flex-fill flex-column">
+    <div class="">
       <div class="flex-center-column align-center">
         <div class="flex-fixed">
           <a href="/store-locator" class="primary-btn align-center">Find a Retailer</a>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="divider"></div>
-  <div class="flex-swing container">
-    <% if ( current[3] ) { %>
-      <div class="flex-fill align-center-mobile block">
-        <a href="<%= current[3] %>" class="align-center-mobile">View All <%= current[1] %> Products</a>
-      </div>
-    <% }%>
-    <div class="flex-fill align-right align-center-mobile block">
-      <a href="/products/c/66" class="align-center-mobile">View All NEOSTRATA® Products</a>
     </div>
   </div>
 </script>
@@ -99,11 +88,15 @@
     <div class="align-center-mobile product-sub">
       <%= sub %>
     </div>
-    <div class="align-center-mobile margin-small">
+    <div class="align-center-mobile margin-small product-description">
       <%= description %>
     </div>
-    <div class="flex-row margin-medium price-container">
-      <div class="flex-row flex-fill">
+    <div class="regimen-step-product mobile-product mobile">
+          <%= product %>
+      </div>
+    <div class="bottom-details">
+    <div class="flex-row price-container">
+      <div class="flex-row rating-container">
         <div class="flex-center-row">
           <div class="flex-fill flex-column align-center">
             <div class="flex-center-column">
@@ -112,24 +105,25 @@
           </div>
         </div>
       </div>
-      <div class="flex-fill">
-        <div class="text-bold text-giant align-center">
+      <div class="">
+        <div class="product-price">
           $<%= price.price %>.00
         </div>
-        <div class="text-tiny align-center">
+        <div class="suggested-price">
           Suggested retail price
         </div>
       </div>
     </div>
-    <div class="background-gray pad-content align-center">
-      <label>
-        <input type="checkbox" data-control="include" data-value="<%= number %>" <%= included ? 'checked' : '' %> />
-        <span> INCLUDE IN REGIMEN</span>
-      </label>
+    <div class="include-in-regimen">
+      <div class="form-row">
+        <input id="checkbox_<%= productCode %>" type="checkbox" data-control="include" data-value="<%= number %>" <%= included ? 'checked' : '' %> />
+        <label class="icon-check form-element" for="checkbox_<%= productCode %>"> INCLUDE IN REGIMEN</label>
+      </div>
+    </div>
     </div>
   </div>
 
-  <div class="regimen-step-product flex-fixed">
+  <div class="regimen-step-product flex-fixed desktop">
       <%= product %>
   </div>
 </script>
