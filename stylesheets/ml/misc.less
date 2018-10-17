@@ -139,11 +139,14 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            left: 2.5rem;
+            left: 4.5rem;
             right: auto;
             font-size: 3rem;
             z-index: 2100;
             width: 75%;
+            @media (min-width: 500px) {
+                left: 2.5rem;
+            }
 
             #searchbox {
                 height: 4rem;
@@ -843,7 +846,7 @@ footer {
         a{
             font-size: 2rem;
             font-weight: @fontWeightMedium;
-            &:visited{
+            &:visited,&:hover{
                 color: @charcoal;
             }
         }

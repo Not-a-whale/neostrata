@@ -1,4 +1,7 @@
 .regimen-builder-widget {
+  @media (min-width: 992px) {
+    width: 72%;
+  }
   @media (max-width: 991px) {
     .desktop {
       display: none;
@@ -19,7 +22,7 @@
     }
   }
 
-  font-size: 1.9rem;
+  font-size: 1.625rem;
 
   label {
     margin: 0;
@@ -85,6 +88,7 @@
     flex: 0 1 auto;
     display: flex;
     flex-direction: row;
+    margin-bottom: 1rem;
 
     @media (max-width: 991px) {
       margin: 0 auto;
@@ -108,14 +112,6 @@
 
   .text-bold {
     font-style: 500;
-  }
-
-  .text-giant {
-    font-size: 4rem;
-  }
-
-  .text-tiny {
-    font-size: 1rem;
   }
 
   .height-fixed {
@@ -187,10 +183,14 @@
 
   .pad-inners-standard:first-child {
     padding-left: 0;
+    line-height: 2rem;
+    height: 2.1rem;
   }
 
   .pad-inners-standard:last-child {
     padding-right: 0;
+    line-height: 2rem;
+    height: 2.1rem;
   }
 
   .border-strong {
@@ -204,12 +204,7 @@
   }
 
   .border-right-light {
-    border-right: 1px solid #B3B3B3;
-  }
-
-  .background-gray {
-    background-color: #B3B3B3;
-    color: #FFFFFF;
+    border-right: 2px solid @charcoal;
   }
 
   .border-top-between {
@@ -254,6 +249,7 @@
   .dropdown {
     max-height: 420px;
     overflow-y: auto;
+    z-index: 1;
 
     @media (max-width: 991px) {
       position: fixed;
@@ -264,11 +260,8 @@
 
     @media (min-width: 992px) {
       position: absolute;
-      top: 100%;
-      left: 50%;
-      width: 1000px;
-      margin-left: -500px;
-
+      right: 0;
+      left: 0;
       box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     }
   }
@@ -291,10 +284,15 @@
   }
 
   .regimen-step-description {
+    position: relative;
     order: 1;
 
     @media (min-width: 992px) {
       padding-left: 60px;
+    }
+
+    >h3{
+      margin-top: 0;
     }
   }
 
@@ -302,7 +300,138 @@
     order: 0;
 
     @media (min-width: 992px) {
-      flex-basis: 420px;
+      flex-basis: 35%;
+    }
+  }
+  .mobile-product{
+    display: none;
+  }
+  .product-name{
+    font-weight: @fontWeightMedium;
+    font-size: 2.125rem;
+  }
+  .product-sub{
+    font-weight: @fontWeightMedium;
+    font-size: 1.625rem;
+  }
+  .product-description{
+    margin-top: 2rem;
+    padding-bottom: 12rem;
+  }
+  .price-container{
+    margin: 2rem 0;
+    .rating-container{
+      margin-right: 3rem;
+      padding-right: 2rem;
+      border-right: 1px solid @midGray;
+    }
+  }
+  .product-price{
+    font-weight: @fontWeightMedium;
+    font-size: 1.5rem;
+  }
+  .suggested-price{
+    text-transform: uppercase;
+    font-size: .75rem;
+    font-style: italic;
+  }
+  .include-in-regimen{
+    font-size: 1.625rem;
+    letter-spacing: .14rem;
+    border: 2px solid;
+    padding: 1rem 2.5rem 1rem 1.5rem;
+    display: inline-block;
+    input{
+      margin-right: 1rem;
+    }
+    .form-row{
+      padding: 0;
+      .icon-check{
+        padding-left: 4rem;
+        &:before{
+          top: 1px;
+          left: 2px;
+        }
+        &:after{
+          height: 2rem;
+          width: 2rem;
+        }
+      }
+    }
+  }
+  .bottom-details{
+    position: absolute;
+    bottom: 0;
+  }
+
+  .regimen-template{
+    .your-routine{
+      margin-bottom: 3rem;
+      >div:first-child{
+        display: inline-block;
+        width: 50%;
+        text-align: right;
+        padding-right: 2rem;
+        border-right: 1px solid @midGray;
+        font-weight: bold;
+        font-size: 5rem;
+      }
+      >div:last-child{
+        display: inline-block;
+        margin-left: 2rem;
+        .products{
+          color: @mutedBlue;
+          margin-bottom: 0;
+        }
+        >div:last-child{
+          >div{
+            display: inline-block;
+          }
+          .selection-cost{
+            font-size: 2rem;
+          }
+          .suggested-price{
+            font-size: 1.4375rem;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 991px) {
+    .product-name{
+      text-align: center;
+    }
+    .mobile-product{
+      display: block;
+    }
+    .product-description{
+      padding-bottom: 1rem;
+    }
+    .bottom-details{
+      position: relative;
+      text-align: center;
+    }
+    .price-container{
+      margin-left: 50%;
+      transform: translateX(-50%);
+    }
+    .product-price{
+      text-align: left;
+    }
+    .regimen-template .your-routine{
+      >div:first-child{
+        width: 100%;
+        font-size: 4rem;
+        border-right: 0;
+        text-align: center;
+        padding-right: 0;
+      }
+      >div:last-child{
+        margin-left: 0;
+        text-align: center;
+        width: 100%;
+      }
     }
   }
 }

@@ -1,3 +1,4 @@
+
 html {
     height: 100%;
     font-size: @bodyFontSize;
@@ -26,7 +27,6 @@ body {
     }
 }
 */
-
 /* Recommended base font sizes/container widths begin */
 @media (min-width: 1901px) {
     html, body {font-size: 16px;}
@@ -52,7 +52,11 @@ body {
 @media (max-width: 768px) and (min-width: 500px) {
     html, body {font-size: 12px;}
 }
+@media (max-width: 499px) {
+    html, body {font-size: 8px;}
+}
 /* Recommended base font sizes/container widths end */
+
 
 
 h1, h2, h3, h4, h5, h6 {
@@ -134,7 +138,7 @@ a {
 }
 .dark .primary-btn {
   &:visited {
-    color: @white;
+    color: @white !important;
   }
 }
 
@@ -330,7 +334,7 @@ button {
   }
 
   input[type="checkbox"],
-  input[type="radio"], {
+  input[type="radio"] {
     position: absolute;
     opacity: 0;
     left: -9999rem;
@@ -338,6 +342,10 @@ button {
   }
   input[type="checkbox"] + label {
     .icon (before, @icon-check);
+      font-family: @fontFamily !important;
+    &:before, &:after{
+      font-family: 'icomoon' !important;
+    }
   }
 
   input[type="checkbox"] + label:before,
@@ -516,7 +524,7 @@ ul {
   }
   &:after {
     content: "\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0";
-    background-image: linear-gradient(50deg,@lightGray 40%,#fff 40%,#fff 50%,@slashColor 50%,@slashColor 70%,#fff 70%,#fff 100%);
+    background-image: linear-gradient(50deg,@lightGray 40%,transparent 40%,transparent 50%,@slashColor 50%,@slashColor 70%,transparent 70%,transparent 100%);
     height: 100%;
     position: relative;
     flex: 0;
