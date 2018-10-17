@@ -57,13 +57,12 @@
       <div id="tab2" class="tab-pane fade{% if not beforeAndAfter %} active in{% endif %}">
         <div class="tab-content-2">
           {{ details|safe }}
+
           {% if size %}
             <hr>
-              {% for v in size.values %}
-                {% if v.stringValue %}
-                  {{ v.stringValue|safe }}
-                {% endif %}
-              {% endfor %}
+              {% with size.values|first|prop("value") as sizeValue %}
+                {{sizeValue}}
+              {% endwith %}
           {% endif %}
           {% if ingredients %}
               <hr>
