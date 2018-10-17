@@ -1,7 +1,6 @@
 require(["modules/jquery-mozu"], function($) {
 
 	$(document).ready(function() {
-		console.log('Footer ready');
 		if ($.cookie("cookies_notice_accepted") === "true") {
 			$("#cookies-notice").hide();
 		} else {
