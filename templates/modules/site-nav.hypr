@@ -79,7 +79,6 @@
           {% endfor %}
           {% endpartial_cache %}
           {% require_script "modules/contextify" %}
-
       </ul>
     </div>
 </nav>
