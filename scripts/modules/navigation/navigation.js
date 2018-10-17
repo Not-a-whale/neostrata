@@ -56,12 +56,13 @@ define([
             closeSecondLevel($('.mz-sitenav .sub-level-li>.mz-sitenav-link.selected'));
         });
 
-        var $top_level = $('.mz-sitenav .mz-sitenav-list >.mz-sitenav-item >.mz-sitenav-item-inner >.mz-sitenav-link i, .ml-navbar-secondary .mz-sitenav-list >.mz-sitenav-item >.mz-sitenav-item-inner >.mz-sitenav-link i');
-        var $second_level = $('.mz-sitenav .sub-level-li>.mz-sitenav-link i');
+        var $top_level = $('.mz-sitenav .mz-sitenav-list >.mz-sitenav-item >.mz-sitenav-item-inner >.mz-sitenav-link, .ml-navbar-secondary .mz-sitenav-list >.mz-sitenav-item >.mz-sitenav-item-inner >.mz-sitenav-link');
+        var $second_level = $('.mz-sitenav .sub-level-li>.mz-sitenav-link');
         $top_level.off('click').click(function(){
-            var $self = $($( this ).parent());
+            var $self = $( this );
             if($self.hasClass('selected')) {
-				closeElement($self);
+                return true; // it goes to the page in the href
+				//closeElement($self);
             }
             else{
                 var height = ($self.siblings( '.mz-sitenav-sub-container' ).get(0).scrollHeight)+'px';
@@ -80,9 +81,10 @@ define([
             return false;
         });
         $second_level.off('click').click(function(){
-            var $self = $($( this ).parent());
+            var $self = $( this );
             if($self.hasClass('selected')) {
-                closeSecondLevel($self);
+                return true; // it goes to the page in the href
+                //closeSecondLevel($self);
             }
             else{
                 var height = ($self.siblings( '.sub-level-li-children' ).get(0).scrollHeight)+'px';
