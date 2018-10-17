@@ -7,6 +7,16 @@
 		</div>
 	</div>
 </div>
+<div id="cookies-notice" style="display:none">
+    <span class="close"></span>
+    <div class="cookie-title">Cookie Notice</div>
+    <div class="cookie-text">
+        NEOSTRATA® of Canada uses cookies and other technologies on our site so that we, and our media agencies can understand how you use our site and provide you with ads tailored to your interests across the Internet. You may also visit the <a href="http://youradchoices.ca/choices/">AdChoices consumer opt-out page</a> to learn more about interest based advertising and manage your preferences for interest based advertising by any of the participating companies listed on the tool.
+    </div>
+    <div>
+        <a href="http://www.jnjcanada.com/ad-choices#ie-privacy-blk">About Interest-based Ads</a>
+    </div>
+</div>
 <footer>
     {% block secondary-nav %}
         {% include "modules/secondary-nav" %}
@@ -71,3 +81,4 @@
 		</div>
 	</div>
 </footer>
+{% require_script "modules/footer" %}
