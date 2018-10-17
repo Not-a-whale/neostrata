@@ -32,3 +32,4 @@
     </div>
 </header>
 {% require_script "modules/navigation/navigation" %}
+{% require_script "widgets/bazaarvoice" %}

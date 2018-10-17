@@ -3,7 +3,7 @@
 <script type="text/json" id="data-mz-preload-facetedproducts">
 {
 	"items" : {% json model.items %},
-    "facets": {% json model.facets %}, 
+    "facets": {% json model.facets %},
     "currentPage": {{ model.currentPage }},
     "firstIndex": {{ model.firstIndex }},
     "hasNextPage": {{ model.hasNextPage|lower }},
@@ -91,5 +91,6 @@
         <div class="back-to-top">
             <button class="primary-btn">{{ labels.backToTop }}</button>
         </div>
+        {% dropzone "faceted-nav-footer" scope="page" %}
     </div>
 </div>
