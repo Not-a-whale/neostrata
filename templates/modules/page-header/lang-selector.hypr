@@ -1,5 +1,5 @@
 <div class="form-row">
-<select class="lang-selector">
+<select title="Language Selector" class="lang-selector">
     <option>FR</option>
     <option>EN</option>
 </select>
