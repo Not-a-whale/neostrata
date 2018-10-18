@@ -50,6 +50,14 @@
     -webkit-animation: loadingthrob 1s linear 0s alternate infinite;
 }
 
+.button-wraps {
+    max-width: 100%;
+    white-space: normal;
+    display: inline-flex;
+    align-items: center;
+    line-height: unset;
+}
+
 .primary-btn(@color: @charcoal) {
     .button-prop(@color);
     .button-focus(@color);
@@ -109,6 +117,7 @@ a.primary-btn{
  
 .skinActive .primary-btn{
     .primary-btn-skinActive();
+    .button-wraps();
 }
 
 .primary-btn-clarify(@color: @lightBlue) {
