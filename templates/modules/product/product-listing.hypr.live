@@ -17,8 +17,14 @@
         </div>
     </div>
     <div class="mz-productlisting-info">
-        {% with model|get_product_attribute_value("tenant~product-type") as skinCareSystem %}
-            <div class="pdp1">{{ skinCareSystem }}</div>
+        {% with model|get_product_attribute("tenant~product-type") as productType %}
+            <div class="pdp1">
+                {% for v in productType.values %}
+                  {% if v.stringValue %}
+                      {{ v.stringValue|safe }}{% if not forloop.last %},{% endif %}
+                  {% endif %}
+                {% endfor %}
+            </div>
         {% endwith %}
         <a class="mz-productlisting-title pdp2" href="{{model.url}}">{{model.content.productName}}</a>
         {% if model.content.productShortDescription and themeSettings.listProductShortDesc %}
