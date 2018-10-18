@@ -116,7 +116,6 @@
             }
         }
 
-
         var $field = AutocompleteManager.$typeaheadField = $('[data-mz-role="searchquery"]');
         AutocompleteManager.typeaheadInstance = $field.typeahead({
             minLength: 1
@@ -136,7 +135,6 @@
             }
         });
         $('#searchbox .search-button').click(function(){
-            console.log('click searchbox');
             var $parent = $($(this).parent());
             var window_width = window.outerWidth;
 			if($parent.hasClass('hidden-search')){
