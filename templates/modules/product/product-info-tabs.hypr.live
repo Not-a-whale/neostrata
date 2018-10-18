@@ -7,10 +7,10 @@
 {% with model|get_product_attribute("tenant~how-to-apply") as howToApply %}
 
 <ul class="nav nav-tabs">
-    {% if beforeAndAfter %}
+    {% if beforeAndAfter or dermQuote or clinicalStudy %}
         <li class="active"><a data-toggle="tab" href="#tab1"><span>Results</span></a></li>
     {% endif %}
-    {% if details %}
+    {% if details or size or ingredients %}
         <li{% if not beforeAndAfter %} class="active"{% endif %}><a data-toggle="tab" href="#tab2"><span>Details</span></a></li>
     {% endif %}
     {% if howToApply %}
