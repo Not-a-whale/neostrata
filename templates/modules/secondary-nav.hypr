@@ -32,5 +32,5 @@
         {% endif %}
       {% endfor %}
     {% endpartial_cache %}
-  <ul>
+  </ul>
 </nav>

@@ -10,7 +10,7 @@
       {% for image in model.content.productImages %}
           <li{% if forloop.index==1 %} class="active"{% endif %} data-mz-productimage-thumb="{{ forloop.index }}" data-label="{{image.imageLabel}}">
               <a class="mz-productimages-thumb" data-slide-index="{{ forloop.index0 }}" href="javascript:void(0);">
-                  {% include "modules/product/product-image" with productImage=image productAltText=image.altText productMaxWidth=themeSettings.maxProductImageThumbnailSize productImageClass="mz-productimages-thumbimage" isThumb="true" as_parameter %}
+                  {% include "modules/product/product-image" with productImage=image productAltText=model.content.productName productMaxWidth=themeSettings.maxProductImageThumbnailSize productImageClass="mz-productimages-thumbimage" isThumb="true" as_parameter %}
               </a><br>
           </li>
       {% endfor %}
