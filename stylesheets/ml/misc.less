@@ -118,7 +118,7 @@
                 display: block;
                 width: 22rem;
                 height: 4rem;
-                @media (max-width: 380px) {
+                @media (max-width: 356px) {
                     width: 15rem;
                     height: 3rem;
                 }
@@ -141,13 +141,13 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            left: 4.5rem;
+            left: 5.5rem;
             right: auto;
-            font-size: 3rem;
+            font-size: 3.2rem;
             z-index: 2100;
-            width: 75%;
+            width: 70%;
             @media (min-width: 500px) {
-                left: 2.5rem;
+                left: 3.5rem;
             }
 
             #searchbox {
@@ -155,7 +155,7 @@
                 .search-button{
                     .icon(before, @icon-search);
                     position: absolute;
-                    right: -3.2rem;
+                    right: -3.4rem;
                     z-index: 2020;
                     cursor: pointer;
                     top: 50%;
@@ -242,7 +242,7 @@
                     position: absolute;
                     top: 50%;
                     transform: translateY(-50%);
-                    left: -1.4rem;
+                    left: -.4rem;
                 }
                 &.site-msg {
                     display: none;
@@ -275,7 +275,7 @@
                 &.store-locator{
                     position: absolute;
                     right: -1rem;
-                    top: 46%;
+                    top: 50%;
                     transform: translateY(-50%);
                     z-index: 2020;
                     line-height: 0;
@@ -3438,14 +3438,19 @@ body.mz-product {
 }
 
 .glyphicon-menu-hamburger{
-    width: 33px;
-    height: 30px;
+    width: 4rem;
+    height: 3.7rem;
     background: url('../resources/images/icons/hamb_icon.svg');
     background-repeat: no-repeat;
-    background-size: 33px;
+    background-size: 4rem;
     margin-top: 6px;
     &:before {
         content: none;
+    }
+    @media (min-width: 500px) and (max-width: 776px) {
+        width: 3.5rem;
+        background-size: 3rem;
+        height: 2.7rem;
     }
 }
 
