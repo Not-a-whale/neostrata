@@ -13,10 +13,13 @@
 <div data-mz-category="{{model.categoryId}}" class="mz-l-container container">
     {% include "pages/category-interior" %}
 </div>
+{% comment %}
+Disable QV until needed
 <div class="quickviewSlider">
 {% block quickview-slider %}
     {% include "modules/product/product-quick-view" %}
 {% endblock quickview-slider %}
 </div>
+{% endcomment %}
 {% require_script "modules/quickview" %}
 {% endblock body-content %}
