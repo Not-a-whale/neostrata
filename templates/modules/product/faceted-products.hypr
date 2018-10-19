@@ -73,7 +73,8 @@
 </div>
 </div>
 <div class="product-list mz-l-paginatedlist col-12">
-    <div class="mz-l-paginatedlist-header hidden">
+		{% comment %}
+    <div class="mz-l-paginatedlist-header">
          <div data-mz-pageview class="mz-pageview">
             {% include "modules/common/page-view" %}
         </div>
@@ -84,6 +85,7 @@
             {% include "modules/common/paging-controls" %}
         </div>
     </div>
+		{% endcomment %}
     <div data-mz-productlist class="mz-l-paginatedlist-list">
         {% include "modules/product/product-list-tiled" %}
     </div>
