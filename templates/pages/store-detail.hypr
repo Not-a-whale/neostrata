@@ -11,7 +11,7 @@
     {% preload_json model "product" %}
 
     <div class="mz-l-container container mz-location-parent">
-        <h1 class="mz-pagetitle">{{ labels.localStores }}</h1>
+        <h2 class="h1 mz-pagetitle">{{ labels.localStores }}</h2>
         <div class="mz-l-stack">
             <p class="mz-locationsearch-pleasewait hidden">
                 {{ labels.locationWait|safe }}
@@ -22,13 +22,13 @@
                         <p class="label-nearby-stores">{{ labels.locateStore }}</p>
                         <div class="store-search-container">
                             <div class="input-group stylish-input-group">
-                                <input id="searchTermView" type="text" class="form-control"  placeholder="{{ labels.searchStorePlaceHolder }}">
+                                <input id="searchTermView" type="text" class="form-control" title="{{ labels.searchStorePlaceHolder }}" placeholder="{{ labels.searchStorePlaceHolder }}">
                                 <div class="input-group-addon dl-storelocator-button-search-container">
                                     <span class="ml-storelocator-ui-button-image-container">
-                                        <button type="button" name="eslMyLocationSearch" id="eslMyLocationSearch" alt="search with my location" class="eslMyLocationSearch ml-secondary-button ml-storelocator-locate-btn">
+                                        <button title="Locate Me" type="button" name="eslMyLocationSearch" id="eslMyLocationSearch" alt="search with my location" class="eslMyLocationSearch ml-secondary-button ml-storelocator-locate-btn">
                                             <i class="fa fa-location-arrow"></i> {{ labels.storeMyLocation }}
-                                        <button/>
-                                        <button class="btn-find-stores" type="submit">
+                                        </button>
+                                        <button "Find locations" class="btn-find-stores" type="submit">
                                             {{ labels.search }}
                                         </button>
                                     </span>
