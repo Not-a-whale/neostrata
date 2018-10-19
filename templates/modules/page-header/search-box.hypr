@@ -1,12 +1,15 @@
 <form id="searchbox" class="mz-searchbox hidden-search" action="{% make_url "search" %}">
-    <i class="search-button"></i>
-    <input type="hidden" name="categoryId" value="{{themeSettings.allProductsCategoryId}}" />
-    <span class="form-input">
-        <input placeholder="{{ labels.search }}" title="Search" id="search-field" type="search" autocomplete="off" name="query" data-mz-role="searchquery" />
-    </span>
-    <button class="searchbox-button" type="submit" title="Search"></button>
-    {% require_script "modules/contextify" %}
-    {% if themeSettings.useSearchAutocomplete %}
-        {% require_script "modules/search-autocomplete" %}
-    {% endif %}
+    <div>
+        <button class="searchbox-button" type="submit" title="Search"></button>
+        <input type="hidden" name="categoryId" value="{{themeSettings.allProductsCategoryId}}" />
+        <span class="form-input">
+            <input placeholder="Search Our Site" title="Search Our Site" id="search-field" type="search" autocomplete="off" name="query" data-mz-role="searchquery" />
+        </span>
+        {% require_script "modules/contextify" %}
+        {% if themeSettings.useSearchAutocomplete %}
+            {% require_script "modules/search-autocomplete" %}
+        {% endif %}
+        <span class="close-search-button"></span>
+    </div>
 </form>
+<div class="search-background"></div>
