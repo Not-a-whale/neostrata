@@ -1,6 +1,6 @@
 <nav class="mz-sitenav collapse" id="ml-nav">
-    <div class="close-menu" >
-        <a data-target="#ml-nav" data-toggle="collapse"  href="#ml-nav"></a>
+    <div class="close-menu">
+        <a data-target="#ml-nav" data-toggle="collapse" href="#ml-nav"><span>Collapse Menu</span></a>
     </div>
     <div class="">
       <ul class="mz-sitenav-list"

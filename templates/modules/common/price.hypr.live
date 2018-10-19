@@ -13,7 +13,7 @@
 </span>
 {% else %}
 <span itemprop="price" class="mz-price">
-{{model.price|currency}}
+{{model.price|currency}}<span class="price-small-srp">SRP</span>
     {% if model.priceType == "MAP" %}
     <div>add to cart to see final price</div>
     {% endif %}

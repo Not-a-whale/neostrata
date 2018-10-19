@@ -11,16 +11,16 @@
         <li class="active"><a data-toggle="tab" href="#tab1"><span>Results</span></a></li>
     {% endif %}
     {% if details or size or ingredients %}
-        <li{% if not beforeAndAfter %} class="active"{% endif %}><a data-toggle="tab" href="#tab2"><span>Details</span></a></li>
+        <li{% if not beforeAndAfter and not dermQuote and not clinicalStudy) %} class="active"{% endif %}><a data-toggle="tab" href="#tab2"><span>Details</span></a></li>
     {% endif %}
     {% if howToApply %}
-        <li{% if not beforeAndAfter and not details %} class="active"{% endif %}><a data-toggle="tab" href="#tab3"><span>How To Apply</span></a></li>
+        <li{% if not beforeAndAfter and not dermQuote and not clinicalStudy and not details and not size and not ingredients) %} class="active"{% endif %}><a data-toggle="tab" href="#tab3"><span>How To Apply</span></a></li>
     {% endif %}
 
 </ul>
 
 <div class="tab-content">
-    {% if beforeAndAfter %}
+    {% if beforeAndAfter or dermQuote or clinicalStudy %}
       <div id="tab1" class="tab-pane fade active in">
         <div class="beforeAndAfter">
           <div>
@@ -53,8 +53,8 @@
         </div>
       </div>
     {% endif %}
-    {% if details %}
-      <div id="tab2" class="tab-pane fade{% if not beforeAndAfter %} active in{% endif %}">
+    {% if details or size or ingredients %}
+      <div id="tab2" class="tab-pane fade{% if not beforeAndAfter and not dermQuote and not clinicalStudy) %} active in{% endif %}">
         <div class="tab-content-2">
           {{ details|safe }}
 
@@ -76,7 +76,7 @@
       </div>
     {% endif %}
     {% if howToApply %}
-      <div id="tab3" class="tab-pane fade{% if not beforeAndAfter and not details %} active in{% endif %}">
+      <div id="tab3" class="tab-pane fade{% if not beforeAndAfter and not dermQuote and not clinicalStudy and not details and not size and not ingredients %} active in{% endif %}">
         {% for v in howToApply.values %}
             <div class="tab-content-3">
               {% if v.stringValue %}
