@@ -1,35 +1,41 @@
 <div id="match-tool" class="match-tool-widget" data-widget="match-tool">
-  <div class="match-header">
-    <img class="image desktop" src="/resources/images/match-tool/matchtoolheader-d.jpg" />
-    <img class="image mobile" src="/resources/images/match-tool/matchtoolheader-m.jpg" />
-  </div>
-  <div class="match-section">
-    <div class="match-content align-center">
-      <h2 class="match-intro">
-        THE ALL-NEW NEOSTRATA® HAS ARRIVED
-      </h2>
-      <p>
-        MEET THE NEW & SCIENTIFICALLY REFORMULATED NEOSTRATA®
-      </p>
+  <div class="match-hero">
+    <div class="match-header">
+      <img class="image desktop" src="/resources/images/match-tool/matchtoolheader-d.jpg" />
+      <img class="image mobile" src="/resources/images/match-tool/matchtoolheader-m.jpg" />
+    </div>
+    <div class="flex-swing match-block-1">
+      <div class="flex-fill match-col-1">
+        <div class="text-align-center match-content-1">
+          The all-new NEOSTRATA&reg; has arrived.
+        </div>
+        <div class="text-align-center match-content-2">
+          Meet the new &amp; scientifically reformulated NEOSTRATA&reg;
+        </div>
+      </div>
+      <div class="flex-column-middle match-col-2">
+        <div>
+          <div class="match-content-3">
+            Now there are even more reasons to love the products you love.
+          </div>
+          <div class="match-content-4">
+            We’ve reimagined and reformulated all your favourite products and added new, specialized skincare treatments.
+            Our entire catalog has been organized into seven collections that target universal skin concerns with powerhouse
+            performance and a brand new look.
+          </div>
+          <div class="match-content-5">
+            Select your current favourites from the list below to see what’s new and what to look for.
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="match-divider"></div>
-  <div class="match-section">
-    <div class="match-content align-center">
-      <p class="selector-intro">
-        Now there are even more reasons to love the products you love.
-      </p>
-      <p>
-        We’ve reimagined and reformulated all your favourite products and added new, specialized skincare treatments.
-        Our entire catalog has been organized into seven collections that target universal skin concerns with powerhouse
-        performance and a brand new look.
-      </p>
-      <p>
-        Select your current favourites from the list below<br />to see what’s new and what to look for.
-      </p>
+  <div class="match-product match-content">
+    <div class="align-center match-block-2">
       <div class="selector" data-view="selector">
         <div class="inline anchor left-align">
-          <div class="height-fixed border-strong uppercase select-toggle pointer icon-right" data-control="toggle">
+          <div class="height-fixed select-toggle pointer" data-control="toggle">
             <div class="chevron-down"></div>
             Select a Product
           </div>
@@ -38,21 +44,19 @@
     </div>
   </div>
   <div data-view="match"></div>
-  <div class="match-no-favorite dark">
-    <div>
-      <div class="copy">
-        Don't have a current favorite?<br />
-        Let's fix that, shall we?
-      </div>
-
-      <a class="primary-btn" href="/products/c/66">See all products</a>
+  <div class="match-block-3 dark">
+    <div class="match-content-6">
+      Don't have a current favourite?<br />
+      Let's fix that, shall we?
     </div>
+
+    <a class="primary-btn" href="/products/c/66">See all products</a>
   </div>
 </div>
 
 <script type="text/template" id="match-select-template">
   <div class="inline anchor left-align" data-role="wrapper">
-    <div class="height-fixed border-strong uppercase pointer icon-right" data-control="toggle">
+    <div class="height-fixed select-toggle pointer" data-control="toggle">
       <div class="chevron-down"></div>
       <%= selected ? selected.before.name : 'Select a Product' %>
     </div>
@@ -60,7 +64,7 @@
       <div class="mobile backdrop"></div>
       <div class="pos-under layer-top background-white">
         <% _.each( options, function( option ) { %>
-          <div class="height-fixed uppercase pointer border-top-between" data-option="<%= option.value %>">
+          <div class="select-option pointer border-top-between" data-option="<%= option.value %>">
             <%= option.label %>
           </div>
         <% }) %>
@@ -70,89 +74,63 @@
 </script>
 
 <script type="text/template" id="match-match-template">
-  <div class="match-divider desktop"></div>
-  <div class="match-section">
-    <div class="match-content align-center">
-      <div class="text-large">
-        This product has been
-      </div>
-      <div class="text-larger text-upper text-italic">
-        <span class="match-status-color"><%= status %></span>.
-      </div>
-      <div class="text-upper text-italic text-bold">
-        <%= header %>
-      </div>
-    </div>
+  <div class="match-content-7">
+    <%= header %>
   </div>
-  <div class="side-by-side">
-    <div class="bar">
-      <div class="bar-left"></div>
-      <div class="bar-right"></div>
-    </div>
-    <div class="products">
-      <div class="match-left">
-        <div class="product-image">
+  <div class="side-by-side flex-swing">
+    <div class="match-left flex-swing">
+      <div class="flex-fill flex-column-middle">
+        <div class="flex-fixed match-col-3">
+          <div class="match-content-8 text-align-center">
+            If you previously liked:
+          </div>
+          <div class="match-content-9 text-align-center">
+            <%= before.name %>
+          </div>
+        </div>
+      </div>
+      <div class="product-image flex-fixed flex-column-middle">
+        <div class="flex-fixed">
           <img src="<%= before.image %>" />
         </div>
       </div>
-      <div class="match-right">
-        <div class="product-image">
+    </div>
+    <div class="match-right flex-swing">
+      <div class="product-image flex-fixed flex-column-middle">
+        <div class="flex-fixed">
           <img src="<%= images.front %>" />
         </div>
       </div>
-    </div>
-  </div>
-  <div class="side-by-side">
-    <div class="products">
-      <div class="match-left">
-        <div class="align-center text-base text-bold content-padding">
-          <%= before.name %>
-        </div>
-      </div>
-      <div class="match-right">
-        <div class="align-center text-base text-bold content-padding">
-          <%= skin_care_system %><br />
-          <%= name %>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="match-detail" data-view="detail">
-    <div class="flex-swing">
-      <div class="match-pitch flex-column">
-        <div class="flex-column-middle">
-          <div class="flex-fixed text-base align-center narrow">
-            If you previously liked the <%= benefits %> benefits of:
+      <div class="flex-fill">
+        <div class="flex-fixed flex-column match-col-4">
+          <div class="flex-fixed match-content-10 text-align-center">
+            Try our new
           </div>
-          <div class="name flex-fixed align-center narrow">
-            <%= before.name %>
+          <div class="flex-fixed match-content-11 text-align-center">
+            <%= name %>
           </div>
-          <div class="try_our flex-fixed text-small">
-            TRY OUR <%= try_our %>
+          <div class="flex-fixed match-content-12">
+            <%= ingredients.join( ' | ' ) %>
           </div>
-        </div>
-      </div>
-      <div class="match-hero" style="background-image: url(<%= images.hero %>)"></div>
-      <div class="match-spec flex-column">
-        <div class="match-type-header flex-fixed" style="background-image: url(/resources/images/match-tool/type-tag.png)">
-          <%= skin_care_system %>
-        </div>
-        <div class="name flex-fixed">
-          <%= name %>
-        </div>
-        <div class="ingredients flex-fixed">
-          <% _.each( ingredients, function( ingredient ) { %>
-            <div>
-              <%= ingredient %>
+          <div class="flex-fill match-content-13">
+            Try our <%= try_our %>
+          </div>
+          <div class="flex-fixed flex-row match-block-4">
+            <div class="flex-fixed match-col-5 flex-column-middle">
+              <div class="flex-fixed" id="BVRRInlineRating-<%= code %>"></div>
             </div>
-          <% }) %>
-        </div>
-        <div class="description text-base flex-fill">
-          <%= description %>
-        </div>
-        <div class="flex-fixed" id="BVRRInlineRating-<%= code %>"></div>
-        <div class="footer flex-fixed">
-          <a href="/p/<%= code %>" class="primary-btn">View Product</a>
+            <div class="flex-fixed match-col-6">
+              <div class="match-content-14">
+                [PRICE]
+              </div>
+              <div class="match-content-15">
+                Suggested Retail Price
+              </div>
+            </div>
+          </div>
+          <div class="footer flex-fixed dark match-content-16">
+            <a href="/p/<%= code %>" class="primary-btn">View Product</a>
+          </div>
         </div>
       </div>
     </div>
