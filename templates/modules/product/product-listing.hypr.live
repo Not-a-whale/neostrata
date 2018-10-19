@@ -7,7 +7,7 @@
         <a href="{{model.url}}">
             <img src="{{model.mainImage.imageUrl}}?max={% block thumbnail-size %}{{ themeSettings.listProductThumbSize }}{% endblock thumbnail-size %}"
             data-zoom-image="{{model.mainImage.imageUrl}}?max={% block thumbnail-size %}{{ themeSettings.productZoomImageMaxWidth }}{% endblock thumbnail-size %}"
-            alt="{{model.productCode}}"
+            alt="{{ model.content.productShortDescription|striptags|truncatewords(themeSettings.maxProductSummaryWords) }}"
             />
         </a>
         {% else %}
