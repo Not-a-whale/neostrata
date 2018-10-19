@@ -2697,16 +2697,34 @@ body.mz-product {
   }
 
   .beforeAndAfter {
-    width: 40%;
     position: relative;
+    max-width: 58%;
+    width: fit-content;
+    @media screen and (max-width: 991px) {
+        max-width: 100%;
+    }
 
     .before {
-      width:49%;
-      display: inline-block;
+        max-width: 23rem;
+        max-height: 26rem;
+        display: inline-block;
+        width: auto;
+        height:auto;
+        @media screen and (max-width: 991px) {
+            max-width: 49%;
+            max-height: 50%;
+        }
     }
     .after {
-      width: 49%;
-      display: inline-block;
+        max-width: 23rem;
+        max-height: 26rem;
+        display: inline-block;
+        width: auto;
+        height:auto;
+        @media screen and (max-width: 991px) {
+            max-width: 49%;
+            max-height: 50%;
+        }
     }
     .beforeLabel {
       .p3;
