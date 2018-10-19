@@ -79,8 +79,8 @@
   </div>
   <div class="side-by-side flex-swing">
     <div class="match-left flex-swing">
-      <div class="flex-fill flex-column-middle">
-        <div class="flex-fixed match-col-3">
+      <div class="flex-fill match-col-3a flex-column-middle">
+        <div class="flex-fixed match-col-3b">
           <div class="match-content-8 text-align-center">
             If you previously liked:
           </div>
@@ -89,20 +89,20 @@
           </div>
         </div>
       </div>
-      <div class="product-image flex-fixed flex-column-middle">
+      <div class="product-image flex-column-middle">
         <div class="flex-fixed">
           <img src="<%= before.image %>" />
         </div>
       </div>
     </div>
     <div class="match-right flex-swing">
-      <div class="product-image flex-fixed flex-column-middle">
+      <div class="product-image flex-column-middle">
         <div class="flex-fixed">
           <img src="<%= images.front %>" />
         </div>
       </div>
-      <div class="flex-fill">
-        <div class="flex-fixed flex-column match-col-4">
+      <div class="flex-fill match-col-4a">
+        <div class="flex-fixed flex-column match-col-4b">
           <div class="flex-fixed match-content-10 text-align-center">
             Try our new
           </div>
