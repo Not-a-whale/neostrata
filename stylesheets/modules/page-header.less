@@ -24,14 +24,115 @@
 
     }
 
-    .mz-searchbox {
-
+    #searchbox {
+        position: absolute;
+        top: -9rem;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        height: 100%;
+        background-color: @white;
+        z-index: 5;
+        >div{
+            top: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            vertical-align: top;
+            width: 65%;
+            left: 50%;
+            >.form-input{
+                >.twitter-typeahead{
+                    width: 100%;
+                }
+            }
+        }
+        .searchbox-button{
+            .icon(before, @icon-search);
+            background: transparent;
+            border: none;
+            font-size: 3.7rem;
+            display: inline-block;
+            position: absolute;
+            left: -7rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .close-search-button{
+            .icon(before, @icon-close);
+            font-size: 4rem;
+            position: absolute;
+            right: -7rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-weight: @fontWeightBold;
+            cursor: pointer;
+        }
+        input{
+            color: @charcoal;
+            margin: 0;
+            padding: 0;
+            border: none;
+            border-bottom: 1px solid @lightGray;
+            font-weight: @fontWeightBook;
+            height: 4.1rem;
+            line-height: 3.33rem;
+            font-size: 2.5rem;
+            width: 100%;
+            -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+            -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+            box-sizing: border-box;
+        }
+        &.hidden-search {
+            height: 0;
+            .searchbox-button{
+                display: none;
+            }
+            input {
+                width: 0;
+                padding: 0;
+                border-color: transparent;
+            }
+        }
+        *::-webkit-input-placeholder {
+            color: @midGray;
+        }
+        *:-moz-placeholder {
+            /* FF 4-18 */
+            color: @midGray;
+        }
+        *::-moz-placeholder {
+            /* FF 19+ */
+            color: @midGray;
+        }
+        *:-ms-input-placeholder {
+            /* IE 10+ */
+            color: @midGray;
+        }
+        *::-ms-input-placeholder {
+            /* Microsoft Edge */
+            color: @midGray;
+        }
+        *::placeholder {
+            /* modern browser */
+            color: @midGray;
+        }
+    }
+    .search-background{
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0,0,0,0.3);
+        opacity: 0;
+        z-index: 1;
+        display: none;
     }
 
     @media only screen {
         @media (max-width: 768px) {
             height: auto;
-            .mz-storebranding, .mz-searchbox {
+            .mz-storebranding {
                 position: relative;
                 clear: both;
                 top: 0;

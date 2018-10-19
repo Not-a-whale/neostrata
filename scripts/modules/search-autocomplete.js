@@ -104,16 +104,12 @@
 
     $(document).ready(function() {
         function hideSearch(){
-            var window_width = window.outerWidth;
-            $('#searchbox input').animate( {width:'0', padding: '0'}, 400, 'linear');
-            $('#searchbox').animate( {width:'0'}, {duration:400, easing: 'linear', done: function(){
-                $('#searchbox input').css('border-color', 'transparent');
-                $('#searchbox').addClass('hidden-search');
-                $('#searchbox').parent().css('width','0');
+            $('.search-background').animate( {'opacity':'0'}, {duration:300, done: function(){
+                $('.search-background').hide();
             }});
-            if ( window_width >= 768 ) {
-                $('#searchbox .search-button').animate( {width:'0%'}, 400, 'linear');
-            }
+            $('#searchbox').animate( {top:'-9rem'}, {duration:300, easing: 'linear', done: function(){
+                $('#searchbox').addClass('hidden-search');
+            }});
         }
 
         var $field = AutocompleteManager.$typeaheadField = $('[data-mz-role="searchquery"]');
@@ -134,27 +130,20 @@
                 e.preventDefault();
             }
         });
-        $('#searchbox .search-button').click(function(){
-            var $parent = $($(this).parent());
-            var window_width = window.outerWidth;
-			if($parent.hasClass('hidden-search')){
-                $('#searchbox input').css('border-color', '#4e5458');
-                $('#searchbox input').animate( {width:'100%', padding: '0 4.44rem 0 2.875rem'}, 400, 'linear');
-                $('#searchbox').parent().css('width','');
-                $('#searchbox').animate( {width:'100%'}, {duration:400, easing: 'linear', done: function(){ $parent.removeClass('hidden-search'); } } );
-                if ( window_width >= 768 ) {
-                    $('.ml-header-search-wrapper').css('z-index', '2050');
-                    if ( window_width >= 992 ) {
-                        $('#searchbox .search-button').animate( {width:'98%'}, 400, 'linear');
-                    }
-                    else {
-                        $( '#searchbox .search-button' ).animate( { width: '101%' }, 400, 'linear' );
-                    }
-                }
+        $('.ml-header-search-wrapper .search-button').click(function(){
+			if($('#searchbox').hasClass('hidden-search')){
+                $('#searchbox').removeClass('hidden-search');
+                $('#searchbox').animate( {top:'0'}, 300 );
+                $('.search-background').show();
+                $('.search-background').animate( {'opacity':'1'}, 300 );
             }
             else{
 				hideSearch();
             }
+            return false;
+        });
+        $('#searchbox .close-search-button').click(function(){
+            hideSearch();
         });
 
         $(document).click(function(event) {

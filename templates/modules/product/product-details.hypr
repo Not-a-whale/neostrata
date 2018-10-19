@@ -13,10 +13,10 @@
     <div>
         <div>
           <div class="mz-product-top-content">
-            <h2 class="slashHeading"/><span>{{ skinCareSystem }}</span></h2>
+            <h2 class="slashHeading"><span>{{ skinCareSystem }}</span></h2>
             <h1 class="mz-pagetitle center-mobile" itemprop="name">{{ model.content.productName|replace("'","&rsquo;")|safe }}</h1>
             <h2 class="mz-pagesubtitle center-mobile" >
-              <span itemscope="description" itemprop="description">{{ model.content.productShortDescription|safe }}</span>
+              <span itemscope itemprop="description">{{ model.content.productShortDescription|safe }}</span>
             </h2>
             <div class="center-mobile reviews-and-price">
               <div class="mz-all-review-container">

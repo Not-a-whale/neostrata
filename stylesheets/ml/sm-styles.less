@@ -8,7 +8,6 @@
 	.mz-pageheader{
 		.ml-header-content {
 			.ml-header-logo-wrapper{
-				z-index: 2040;
 				top: 52%;
 				.logo {
 					width:22.5rem;
@@ -25,11 +24,10 @@
                 }
 			}
 			.ml-header-search-wrapper {
-			    width: 57%;
 				position: absolute;
-				right: 11%;
+				right: 16%;
 				left: auto;
-				z-index: 2020;
+                top: 46%;
 				&:before{
 					position: absolute;
 					left: -3rem;
@@ -112,6 +110,23 @@
 			padding-bottom: 10px;
 			margin: 0  0 10px 0;
 			border-bottom: 1px solid #D3D3D3;
+		}
+
+		#searchbox {
+			>div{
+				width: 58%;
+			}
+			.searchbox-button{
+				font-size: 2rem;
+			}
+			.close-search-button{
+				font-size: 2rem;
+			}
+			input{
+				height: 3rem;
+				line-height: 3rem;
+				font-size: 1.8rem;
+			}
 		}
 
 	}

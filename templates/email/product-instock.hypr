@@ -22,7 +22,7 @@
 			<td>
 				{% if model.content.productShortDescription and themeSettings.showProductDetailShortDesc %}
 				<div class="mz-productdetail-shortdesc mz-l-stack-section">
-				  <span itemscope="description">{{ model.content.productShortDescription|safe }}</span>
+				  <span itemscope itemprop="description">{{ model.content.productShortDescription|safe }}</span>
 				</div>
 				{% endif %}
 				{% if model.options %}
