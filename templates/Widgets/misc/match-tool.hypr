@@ -101,7 +101,7 @@
           <img src="<%= images.front %>" />
         </div>
       </div>
-      <div class="flex-fill match-col-4a">
+      <div class="flex-fill flex-column-middle match-col-4a">
         <div class="flex-fixed flex-column match-col-4b">
           <div class="flex-fixed match-content-10 text-align-center">
             Try our new
