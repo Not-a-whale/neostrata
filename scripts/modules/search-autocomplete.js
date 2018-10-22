@@ -136,6 +136,7 @@
                 $('#searchbox').animate( {top:'0'}, 300 );
                 $('.search-background').show();
                 $('.search-background').animate( {'opacity':'1'}, 300 );
+                $('#search-field').focus();
             }
             else{
 				hideSearch();
