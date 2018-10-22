@@ -1224,9 +1224,13 @@
     	"displayTemplate": "misc/match-tool",
       "editViewFields": [
         {
-          "anchor": "100%",
           "fieldLabel": "Catalog",
           "name": "catalog",
+          "xtype": "mz-input-code"
+        },
+        {
+          "fieldLabel": "Selector/Matches",
+          "name": "selector",
           "xtype": "mz-input-code"
         }
       ],

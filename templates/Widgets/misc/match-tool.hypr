@@ -137,6 +137,10 @@
   </div>
 </script>
 
+<script type="text/json" id="match-tool-selector">
+{{ model.config.selector|safe }}
+</script>
+
 <script type="text/json" id="match-tool-catalog">
 {{ model.config.catalog|safe }}
 </script>
