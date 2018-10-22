@@ -1439,6 +1439,25 @@
     	]
     },
     {
+    	"defaultConfig": {
+        "catalog": "[]"
+    	},
+    	"displayName": "Newsletter Sign-Up",
+    	"displayTemplate": "misc/newsletter-signup",
+      "editViewFields": [
+        {
+          "fieldLabel": "Form Id.",
+          "name": "ccFormId",
+          "xtype": "mz-input-text"
+        }
+      ],
+    	"icon": "/resources/admin/widgets/26_related_products.png",
+    	"id": "newsletter-signup",
+    	"validPageTypes": [
+    		"*"
+    	]
+    },
+    {
         "category" : "catalog",
         "id":"category-cta",
         "displayName":"Category CTA",
