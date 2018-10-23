@@ -197,12 +197,12 @@
     ],
     "price": "$32.00",
     "images": {
-      "front": "",
+      "front": "/resources/images/match-tool/F30110D.png",
       "hero": "/cms/files/CLARIFY_ACNE_CLARIFYING_CLEANSER_V4.jpg"
     },
     "status": "Matched",
     "before": {
-      "name": "Acne Clear™ Clarifying Solution",
+      "name": "Acne Clear Clarifying Solution",
       "image": "/resources/images/match-tool/F30110D-before.png"
     }
   },
@@ -432,7 +432,7 @@
     },
     "status": "Enhanced",
     "before": {
-      "name": "Glycolic Renewal™ Body Smoothing Lotion",
+      "name": "Glycolic Renewal Body Smoothing Lotion",
       "image": "/resources/images/match-tool/F30140D-before.png"
     }
   },
@@ -455,7 +455,7 @@
     },
     "status": "Enhanced",
     "before": {
-      "name": "Acne Clear™ Clarifying Gel Cleanser",
+      "name": "Acne Clear Clarifying Gel Cleanser",
       "image": "/resources/images/match-tool/F30142D-before.png"
     }
   },
@@ -496,12 +496,12 @@
     ],
     "price": "$26.00",
     "images": {
-      "front": "",
+      "front": "/resources/images/match-tool/F30144D.png",
       "hero": "/cms/files/CLARIFY_TARGETED_CLARIFYING_GEL_V2.jpg"
     },
     "status": "Enhanced",
     "before": {
-      "name": "Acne Clear™ Blemish Spot Gel",
+      "name": "Acne Clear Blemish Spot Gel",
       "image": "/resources/images/match-tool/F30144D-before.png"
     }
   },
