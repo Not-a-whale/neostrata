@@ -464,7 +464,7 @@
 
   .inline {
     display: inline-block;
-    max-width: 100%;
+    max-width: 50%;
   }
 
   .anchor {
@@ -526,8 +526,20 @@
   }
 
   .pos-under {
-    max-height: 360px;
+    max-height: 280px;
     overflow-y: auto;
+
+    @media (min-width: 1252px) {
+      max-height: 320px;
+    }
+
+    @media (min-width: 1700px) {
+      max-height: 360px;
+    }
+
+    @media (min-width: 1900px) {
+      max-height: 480px;
+    }
 
     @media (max-width: 991px) {
       position: fixed;
@@ -540,8 +552,8 @@
       position: absolute;
       top: 100%;
       left: 50%;
-      width: 750px;
-      margin-left: -375px;
+      width: 40vw;
+      margin-left: -20vw;
 
       box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     }
