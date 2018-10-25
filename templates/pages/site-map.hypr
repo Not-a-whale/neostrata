@@ -12,6 +12,7 @@
     <div class="mz-l-container mz-site-map container">
         <h1 class="mz-pagetitle">Site Map</h1>
         {% for link in navigation.tree %}
+          {% if not link.isHidden %}
             <div class="row">
                 <div class="col-xs-12">
                     <h3><a href="{{link.url}}">{{link.name|safe}}</a></h3>
@@ -19,12 +20,10 @@
                 {% for sublink in link.items %}
                     <div class="col-xs-6 col-sm-4 col-md-3 single-sitemap-item-wrapper">
                         <h4><a href="{{sublink.url}}">{{sublink.name|safe}}</a></h4>
-                        {% for subsublink in sublink.items %}
-                            <div><a href="{{subsublink.url}}">{{subsublink.name|safe}}</a></div>
-                        {% endfor %}    
                     </div>
                 {% endfor %}
             </div>
+          {% endif %}
         {% endfor %}
     </div>
 {% endblock body-content %}
