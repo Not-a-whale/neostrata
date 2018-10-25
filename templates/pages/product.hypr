@@ -1,5 +1,33 @@
 {% extends "page" %}
 {% block title-tag-content %}{% firstof pageContext.metaTitle|replace("'","&rsquo;")|replace('"',"”")|safe model.content.productName|replace("'","&rsquo;")|replace('"',"”")|safe %}  - {% parent %}{% endblock title-tag-content %}
+{% block meta-tags %}
+
+{% with model|get_product_attribute("tenant~open-graph-title") as ogTitle %}{% if ogTitle %}
+<meta property="og:title" content="{% for v in ogTitle.values %}{% if v.value %}{{ v.stringValue|safe }}{% endif %}{% endfor %}" />
+{% endif %}{% endwith %}
+
+{% with model|get_product_attribute("tenant~open-graph-description") as ogDescription %}{% if ogDescription %}
+<meta property="og:description" content="{% for v in ogDescription.values %}{% if v.value %}{{ v.stringValue|safe }}{% endif %}{% endfor %}" />
+{% endif %}{% endwith %}
+
+
+<meta
+    property="og:image"
+    content="{% make_url "image" model.mainImage with maxWidth=800 %}">
+
+<meta name="twitter:card" content="summary_large_image" />
+
+{% with model|get_product_attribute("tenant~twitter-card-title") as twitterTitle %}{% if twitterTitle %}
+<meta
+    name="twitter:title"
+    content="{% for v in twitterTitle.values %}{% if v.value %}{{ v.stringValue|safe }}{% endif %}{% endfor %}" />
+{% endif %}{% endwith %}
+{% with model|get_product_attribute("tenant~twitter-card-description") as twitterDescription %}{% if twitterDescription %}
+<meta
+		name="twitter:description"
+    content="{% for v in twitterDescription.values %}{% if v.value %}{{ v.stringValue|safe }}{% endif %}{% endfor %}" />
+{% endif %}{% endwith %}
+{% endblock meta-tags %}
 {% block html-tag-classes %}mz-product{% endblock html-tag-classes %}
 {% block body-tag-classes %}mz-product{% endblock body-tag-classes %}
 {% block body-content %}

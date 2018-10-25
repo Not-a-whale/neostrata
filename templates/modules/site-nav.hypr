@@ -1,3 +1,4 @@
+{% with navigation.tree|findwhere('categoryCode', themeSettings.megaMenu.parentCategoryCode) as lookupCategory %}
 <nav class="mz-sitenav collapse" id="ml-nav">
     <div class="close-menu">
         <a data-target="#ml-nav" data-toggle="collapse" href="#ml-nav"><span>Collapse Menu</span></a>
@@ -38,7 +39,7 @@
                                     <div class="sub-level-li-children">
                                 {% for lookup in themeSettings.megaMenu.categoryLookups %}
                                   {% if lookup.url == sublink.url %}
-                                    {% with navigation.tree|findwhere('categoryCode', lookup.linkedCategoryCode) as linkedCategory %}
+                                    {% with lookupCategory.items|findwhere('categoryCode', lookup.linkedCategoryCode) as linkedCategory %}
                                       {% for subsublink in linkedCategory.items %}
                                         {% if not subsublink.isHidden %}
                                           <div class="mz-sitenav-item sub-sub-level-li">
@@ -83,3 +84,4 @@
     </div>
 </nav>
 {% preload_json navigation.tree "navtree" %}
+{% endwith %}

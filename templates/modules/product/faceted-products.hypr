@@ -48,7 +48,7 @@
 
 <div class="tab-content">
     {% if model.facets %}
-            <div data-mz-facets class="tab-pane mz-l-sidebar col-xs-12 col-md-9 facet-content" id="filter-tab">
+            <div data-mz-facets class="tab-pane mz-l-sidebar col-xs-12 col-md-10 facet-content" id="filter-tab">
                 {% dropzone "sidebar-above-facets" scope="template" %}
                 <div class="mz-facets-relative" id="facet-parent">
                     {% include "modules/product/faceting-form" %}

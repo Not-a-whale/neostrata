@@ -1,3 +1,4 @@
+{% with navigation.tree|findwhere('categoryCode', themeSettings.megaMenu.parentCategoryCode) as lookupCategory %}
 <nav class="ml-navbar-secondary">
   <div class="secondary-title">Shop By</div>
   <ul class="mz-sitenav-list">
@@ -6,7 +7,7 @@
         {% if lookup.includeInSecondaryNav %}
             <li class="mz-sitenav-item">
               <div class="mz-sitenav-item-inner">
-              {% with navigation.tree|findwhere('categoryCode', lookup.linkedCategoryCode) as linkedCategory %}
+              {% with lookupCategory.items|findwhere('categoryCode', lookup.linkedCategoryCode) as linkedCategory %}
                 <a class="mz-sitenav-link" href="{{lookup.url}}">{{linkedCategory.name|safe}}<i class="{% if linkedCategory.items %}expand-options{% else %}go-to-action{% endif %}"></i></a>
                 {% if linkedCategory.items %}
                 <div class="mz-sitenav-sub-container">
@@ -34,3 +35,4 @@
     {% endpartial_cache %}
   </ul>
 </nav>
+{% endwith %}
