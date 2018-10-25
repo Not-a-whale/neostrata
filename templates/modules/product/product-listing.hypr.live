@@ -4,7 +4,7 @@
         <div class="zoom-container-listing">
         {% block product-image %}
         {% if model.mainImage.imageUrl %}
-        <a href="{{model.url}}">
+        <a href="{% make_url "product" model %}">
             <img src="{{model.mainImage.imageUrl}}?max={% block thumbnail-size %}{{ themeSettings.listProductThumbSize }}{% endblock thumbnail-size %}"
             data-zoom-image="{{model.mainImage.imageUrl}}?max={% block thumbnail-size %}{{ themeSettings.productZoomImageMaxWidth }}{% endblock thumbnail-size %}"
             alt="{{ model.content.productShortDescription|striptags|truncatewords(themeSettings.maxProductSummaryWords) }}"
@@ -26,7 +26,7 @@
                 {% endfor %}
             </div>
         {% endwith %}
-        <a class="mz-productlisting-title pdp2" href="{{model.url}}">{{model.content.productName}}</a>
+        <a class="mz-productlisting-title pdp2" href="{% make_url "product" model %}">{{model.content.productName}}</a>
         {% if model.content.productShortDescription and themeSettings.listProductShortDesc %}
         <div class="mz-productlisting-shortdesc pdp3">{{ model.content.productShortDescription|striptags|truncatewords(themeSettings.maxProductSummaryWords) }}</div>
         {% endif %}
