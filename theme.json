@@ -1096,6 +1096,7 @@
     "paymentsMethodInfo": "Payment Methods",
     "giftCardsInfo": "Gift Card",
     "megaMenu": {
+      "parentCategoryCode": "browse-product",
       "firstLevel": [
         { "url": "/which-skincare-product-is-right-for-you", "image": "", "childrenGoToThis": true},
         { "url": "/product", "image": "", "childrenGoToThis": false }
@@ -1103,9 +1104,9 @@
       "categoryLookups":   [
         { "url": "/skin-type", "linkedCategoryCode": "18", "includeInSecondaryNav": true },
         { "url": "/skin-concern", "linkedCategoryCode": "21", "includeInSecondaryNav": true },
-        { "url": "/collections", "linkedCategoryCode": "9", "includeInSecondaryNav": true },
-        { "url": "/ingredients", "linkedCategoryCode": "17", "includeInSecondaryNav": true },
-        { "url": "/skincare-product-types", "linkedCategoryCode": "16", "includeInSecondaryNav": true }
+        { "url": "/product/collections", "linkedCategoryCode": "9", "includeInSecondaryNav": true },
+        { "url": "/product/ingredients", "linkedCategoryCode": "17", "includeInSecondaryNav": true },
+        { "url": "/product/skincare-product-types", "linkedCategoryCode": "16", "includeInSecondaryNav": true }
       ]
     }
   },
