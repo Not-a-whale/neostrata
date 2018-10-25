@@ -1,0 +1,209 @@
+<style>
+    #skin-proof.home-main-content.left {left:24% }
+    #skin-proof.home-main-content.left h3 { width: 28vw; }
+
+    #middle-content-full {
+        margin:2.0625rem 0 0;
+        width:66%;
+        height:auto;
+    }
+
+    #module4-5modal.home-main-module .half-content .home-main-content.right {
+        top: 50%;
+    }
+    .three-column-wrapper {
+        display: block;
+        clear: both;
+    }
+
+    hr.thick {
+        clear: both;
+        margin: 1.5rem 0;
+    }
+
+    hr.thick {
+        width: 100%;
+        border-top: 0.1875rem solid #4e5458;
+    }
+    hr.thick.top     {
+        margin-top: 0
+    }
+    .three-column-wrapper .col-xs-4 {
+        padding:  0;
+    }
+
+    #skin-active h5 {
+        font-size: 1.2rem;
+        font-weight: 400;
+        margin-top: 5px;
+    }
+
+    .three-column-wrapper .percentage {
+        font-size: 4.69rem;
+        font-style: italic;
+    }
+
+    .three-column-wrapper .percentage sup {
+        font-size: .5em;
+        top: -1.75rem;
+    }
+
+    .three-column-wrapper p.specialItalic {
+        margin-top: 0;
+        margin-bottom: .6rem;
+    }
+    #skin-active p.fineprint {
+        margin: -1rem 0 1rem;
+        padding: 0;
+        text-align: right;
+        width: 100%;
+    }
+    @media screen and (min-width: 981px) {
+        .desktop-nowrap {
+            white-space: nowrap;
+        }
+    }
+    @media screen and (min-width: 1400px) {
+        #module4-5modal.home-main-module .half-content .home-main-content.right h3 {
+            max-width: 31vw;
+        }
+    }
+    .home-main-module h3.lineheight {
+        line-height: 1.333em;
+        font-weight: 500;
+    }
+    @media only screen and (max-width:980px) {
+        #module4-5modal.home-main-module .half-content #skin-proof.home-main-content.left h3,
+        #module4-5modal.home-main-module .half-content #skin-active.home-main-content.right h3
+            {
+                width:50vw;
+                font-size: 3.83rem;
+            }
+    }
+    @media only screen and (min-width: 961px) {
+        .half-content .background-full-image img {
+            max-width: 50vw;
+        }
+    }
+    @media only screen and (max-width:960px) {
+        .half-content{
+            display:flex;
+            position:relative;
+        }
+        #module4-5modal.home-main-module {
+            display: block;
+        }
+        #module4-5modal.home-main-module .half-content .home-main-content.left {
+            margin: 0 auto;
+            left: 50%;
+            top: 35%;
+        }
+        #module4-5modal.home-main-module .half-content .home-main-content.right {
+            margin: 0 auto;
+            left: 50%;
+            top: 48%;
+        }
+        #middle-content-full {width: 66%;}
+        #module4-5modal.home-main-module .half-content #skin-active.home-main-content.right h3,
+        #module4-5modal.home-main-module .half-content #skin-proof.home-main-content.left h3
+        {width:75vw;}
+
+        /* new styles for mobile */
+        #module4-5modal picture.background-full-image {
+            position: absolute;
+        }
+
+        #module4-5modal div#skin-proof {
+            position: relative;
+        }
+        #module4-5modal div#skin-active {
+            position: relative;
+        }
+
+        #module4-5modal.home-main-module .half-content .home-main-content.left {
+            margin: 0 auto;
+            left: 0;
+            top: 25%;
+            transform: translate(0, -50%);
+            margin-bottom: 40vw;
+        }
+
+        #module4-5modal.home-main-module .half-content .home-main-content.right {
+            margin: 0 auto 20vw;
+            left: 0;
+            top: 3.89rem;
+            transform: none;
+        }
+
+        #module4-5modal #skin-proof picture.background-full-image img {
+            height: 200vw;
+        }
+        #module4-5modal .three-column-wrapper p.specialItalic {
+            width: auto;
+            flex-direction: column;
+            padding: 0;
+        }
+
+        #module4-5modal .half-content {
+            height: fit-content;
+        }
+        #module4-5modal .three-column-wrapper {
+            width: 100%;
+        }
+        #module4-5modal .half-content:nth-child(2) picture.background-full-image img {
+            height: 100%;
+        }
+        #module4-5modal .half-content:nth-child(2) picture.background-full-image {
+            height: 152vw;
+        }
+}
+
+
+</style>
+
+<div id="module4-5modal" class="home-main-module">
+    <div class="half-content">
+        <picture class="background-full-image">
+            <!-- IMAGE FOR LARGE VIEWPORTS -->
+            <source srcset="/cms/files/homepagemodule4modal_A.jpg" media="(min-width: 769px)"/>
+            <!-- IMAGE FOR SMALL VIEWPORTS -->
+            <img src="/cms/files/homepagemodule4modal_A-m.jpg" alt="The miracle of antiaging" />
+        </picture>
+        <div id="skin-proof" class="home-main-content left">
+            <h3 class="lineheight">We have <br> healthy-looking skin <br> down to a science.</h3>
+            <div class="sm-break"></div>
+            <a href="/products-skin-condition-antiaging/c/34" class="primary-btn">SEE ANTIAGING PRODUCTS</a>
+        </div>
+    </div>
+    <div class="half-content">
+        <picture class="background-full-image">
+            <!-- IMAGE FOR ALL VIEWPORTS -->
+            <img src="/cms/files/homepagemodule4modal_B.jpg" alt="Backed by independent clinical studies" />
+        </picture>
+        <div id="skin-active" class="home-main-content right">
+            <h3 class="lineheight"><span>Backed by independent clinical studies and <span style="white-space: nowrap">real-world</span> results.</span></h3>
+            <img id="middle-content-full" src="/cms/files/skin-active-trio.png" alt="Skin Active skincare system products">
+            <hr class="thick top">
+            <h5>In a clinical study of the NEOSTRATA® SKIN ACTIVE skincare system*</h5>
+            <div class="three-column-wrapper">
+                <div class="col-xs-4">
+                    <div class="percentage">98<sup>%</sup></div>
+                    <p class="specialItalic">Reported <span  class="desktop-nowrap">smoother skin</span></p>
+                </div>
+                <div class="col-xs-4">
+                    <div class="percentage">95<sup>%</sup></div>
+                    <p class="specialItalic"><span class="desktop-nowrap">Noted firm and</span> radiant skin</p>
+
+                </div>
+                <div class="col-xs-4">
+                    <div class="percentage">91<sup>%</sup></div>
+                    <p class="specialItalic">said they <span  class="desktop-nowrap">looked younger</span></p>
+
+                </div>
+            </div>
+            <hr class="thick">
+            <p class="fineprint">*Reference: Journal of Drugs in Dermatology, December 2012</p>
+            <a href="/skin-active/c/23" class="primary-btn">SEE NEOSTRATA<sup>&reg;</sup> SKIN ACTIVE</a>
+        </div>
+    </div>
+</div>
