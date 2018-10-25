@@ -18,7 +18,6 @@
 <meta name="twitter:card" content="summary_large_image" />
 
 {% with model|get_product_attribute("tenant~twitter-card-title") as twitterTitle %}{% if twitterTitle %}
-Length : {{ twitterTitle.values.length }}
 <meta
     name="twitter:title"
     content="{% for v in twitterTitle.values %}{% if v.value %}{{ v.stringValue|safe }}{% endif %}{% endfor %}" />
