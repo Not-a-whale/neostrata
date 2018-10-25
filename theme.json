@@ -1494,7 +1494,7 @@
         "displayName":"BazaarVoice Conversations ROI Beacon",
         "displayTemplate":"BVConversations/bv-conversations-roi",
         "icon":"/resources/admin/widgets/BV_ROI_Beacon.png",
-        "validPageTypes":["order"]
+        "validPageTypes":["*"]
     },
     {
       "displayName": "RTI Recommended Products",
