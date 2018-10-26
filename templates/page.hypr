@@ -60,7 +60,10 @@
 
 		{% if PageContext.CrawlerInfo.CanonicalUrl  %}
         <link rel="canonical" href="{{PageContext.CrawlerInfo.CanonicalUrl}}">
-        {% endif %}
+        <link rel="alternate" href="{{PageContext.CrawlerInfo.CanonicalUrl}}" hreflang="en-ca">
+    {% endif %}
+
+
 
 		{% if PageContext.CrawlerInfo.PreviousUrl  %}
         <link rel="prev" href="{{PageContext.CrawlerInfo.PreviousUrl}}">
