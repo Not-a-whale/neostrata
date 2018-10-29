@@ -1,6 +1,6 @@
 {% extends "page" %}
 {% block title-tag-content %}{% firstof pageContext.metaTitle|replace("'","&rsquo;")|replace('"',"”")|safe model.content.productName|replace("'","&rsquo;")|replace('"',"”")|safe %}  - {% parent %}{% endblock title-tag-content %}
-{% block meta-tags %}
+{% block product-meta-tags %}
 
 {% with model|get_product_attribute("tenant~open-graph-title") as ogTitle %}{% if ogTitle %}
 <meta property="og:title" content="{% for v in ogTitle.values %}{% if v.value %}{{ v.stringValue|safe }}{% endif %}{% endfor %}" />
@@ -33,7 +33,7 @@
 {% endfor %}
 {% endwith %}
 
-{% endblock meta-tags %}
+{% endblock product-meta-tags %}
 {% block html-tag-classes %}mz-product{% endblock html-tag-classes %}
 {% block body-tag-classes %}mz-product{% endblock body-tag-classes %}
 {% block body-content %}

@@ -40,8 +40,10 @@
         <meta name="description" content="{{ PageContext.MetaDescription }}">
         <meta name="keywords" content="{{ PageContext.MetaKeywords }}">
         <meta name="correlationId" content="{{ pageContext.correlationId }}">
-
         {% endblock meta-tags %}
+
+        {% block product-meta-tags %}
+        {% endblock product-meta-tags %}
 
        <title>{% block title-tag-content %}{{ siteContext.generalSettings.websiteName }}{% endblock title-tag-content %}</title>
 
