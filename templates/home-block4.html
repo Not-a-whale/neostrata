@@ -1,5 +1,9 @@
 <style>
-    #skin-proof.home-main-content.left {left:24% }
+    #skin-proof.home-main-content.left {
+      top: 30%;
+      left:24%
+    }
+
     #skin-proof.home-main-content.left h3 { width: 28vw; }
 
     #middle-content-full {
@@ -105,8 +109,10 @@
         }
         #middle-content-full {width: 66%;}
         #module4-5modal.home-main-module .half-content #skin-active.home-main-content.right h3,
-        #module4-5modal.home-main-module .half-content #skin-proof.home-main-content.left h3
-        {width:75vw;}
+        #module4-5modal.home-main-module .half-content #skin-proof.home-main-content.left h3 {
+          width:75vw;
+          max-width: 41rem;
+        }
 
         /* new styles for mobile */
         #module4-5modal picture.background-full-image {
@@ -135,7 +141,7 @@
         #module4-5modal.home-main-module .half-content .home-main-content.left {
             flex: 0 0 auto;
             position: static;
-            margin: auto;
+            margin: 5.8vw auto auto;
             transform: none;
         }
 
@@ -179,13 +185,13 @@
     <div class="half-content">
         <picture class="background-full-image">
             <!-- IMAGE FOR LARGE VIEWPORTS -->
-            <source srcset="/cms/files/homepagemodule4modal_A.jpg" media="(min-width: 769px)"/>
+            <source srcset="/cms/files/homepagemodule4a-v4-d.jpg" media="(min-width: 769px)"/>
             <!-- IMAGE FOR SMALL VIEWPORTS -->
-            <img src="/cms/files/homepagemodule4modal_A-m.jpg" alt="The miracle of antiaging" />
+            <img src="/cms/files/homepagemodule4a-v4-m.png" alt="The miracle of antiaging" />
         </picture>
         <div class="flex-column-middle">
           <div id="skin-proof" class="home-main-content left">
-              <h3 class="lineheight">We have <br> healthy-looking skin <br> down to a science.</h3>
+              <h3 class="lineheight">We have healthy-looking skin down to a science.</h3>
               <div class="sm-break"></div>
               <a href="/products-skin-condition-antiaging/c/34" class="primary-btn">SEE ANTIAGING PRODUCTS</a>
           </div>
