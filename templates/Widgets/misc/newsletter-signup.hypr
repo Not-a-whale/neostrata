@@ -357,7 +357,7 @@
 <script type="text/template" id="template-newsletter-disclaimer">
   <div id="newsletter-disclaimer">
     <p>
-      {{ labels.newsletterDisclaimer }}
+      {{ labels.newsletterDisclaimer|safe }}
     </p>
   </div>
 </script>

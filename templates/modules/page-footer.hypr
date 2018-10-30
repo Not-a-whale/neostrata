@@ -11,7 +11,7 @@
     <span class="close"></span>
     <div class="cookie-title">{{ labels.cookieTitle }}</div>
     <div class="cookie-text">
-        {{ labels.cookieText }}
+        {{ labels.cookieText|safe }}
     </div>
     <div>
         <a href="http://www.jnjcanada.com/ad-choices#ie-privacy-blk">{{ labels.cookieTextAboutAds }}</a>
