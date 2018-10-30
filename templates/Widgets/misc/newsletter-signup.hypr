@@ -315,17 +315,17 @@
     }
 </style>
 <div class="newsletter-header">
-    <h2>Email Sign up!</h2>
-    <p>Don't miss out on the latest product launches, sales and insider deals!</p>
+    <h2>{{ labels.newsletterTitle }}</h2>
+    <p>{{ labels.newsletterSubtitle }}</p>
 </div>
 <div class="newsletter-confirmation">
-    <p>The NEOSTRATA® INSIDER program, brought to you by NEOSTRATA® of Canada, will be reaching out to you with trial offers, contests, high-value coupons and helpful health and wellness and happiness tips and information. Do you consent to receive these communications, including by electronic means (e.g. email and/or text) from the NEOSTRATA® INSIDER program?</p>
+    <p>{{ labels.newsletterConfirmation }}</p>
 </div>
 <div id="newsletter-form" class="newsletter-form" style="display: none;">
     <!-- Begin Constant Contact Inline Form Code -->
     <div class="ctct-inline-form" data-form-id="{{ model.config.ccFormId }}"></div>
     <!-- End Constant Contact Inline Form Code -->
-    <label class="required-fields"><span>*</span>- Required Field</label>
+    <label class="required-fields"><span>*</span>- {{ labels.requiredField }}</label>
 </div>
 <!-- Begin Constant Contact Active Forms -->
 <script id="cc-universal">
@@ -335,18 +335,18 @@
 
 <script type="text/template" id="template-newsletter-usertype">
   <input class="input_usertype" name="input_usertype" type="checkbox" id="type_advisor" value="Advisor">
-  <label for="type_advisor">Advisor</label>
+  <label for="type_advisor">{{ labels.newsletterAdvisor }}</label>
   <input class="input_usertype" name="input_usertype" type="checkbox" id="type_consumer" value="Consumer">
-  <label for="type_consumer">Consumer</label></div>
+  <label for="type_consumer">{{ labels.newsletterConsumer }}</label></div>
 </script>
 
 <script type="text/template" id="template-newsletter-skintype">
   <select name="input_skintype" id="input_skintype" class="input_skintype">
-    <option value="">Select your skin type</option>
-    <option value="Normal Skin">Normal Skin</option>
-    <option value="Dry Skin">Dry Skin</option>
-    <option value="Oily Skin">Oily Skin</option>
-    <option value="Sensitive Skin">Sensitive Skin</option>
+    <option value="">{{ labels.newsletterSelectSkinType }}</option>
+    <option value="Normal Skin">{{ labels.normalSkin }}</option>
+    <option value="Dry Skin">{{ labels.drySkin }}</option>
+    <option value="Oily Skin">{{ labels.oilySkin }}</option>
+    <option value="Sensitive Skin">{{ labels.sensitiveSkin }}</option>
   </select>
 </script>
 
@@ -357,13 +357,13 @@
 <script type="text/template" id="template-newsletter-disclaimer">
   <div id="newsletter-disclaimer">
     <p>
-      Your personal information will be stored in the databases of NEOSTRATA® of Canada and its third party service providers inside and outside Canada. The personnel, agents and third party service providers of NEOSTRATA® of Canada. may have access to your personal information to manage data in compliance with our <a href="/privacy-policy">Privacy Policy</a> or to provide you with promotional materials or services you have requested or to which you have consented. For more information on the privacy practices of NEOSTRATA® of Canada, including data collection, use, purposes, disclosure and our use of service providers inside and outside of Canada, or to request a written copy of our Privacy Policy, access to your file or the correction of information, or to unsubscribe or withdraw your consent for any communications from us, please use our <a href="https://www.ccc-consumercarecenter.com/UCUConfiguration?id=a075800004sn4F3" target="_blank">contact us</a> form or send your request by mail to Consumer Care Center, Attn: Canadian Chief Privacy Officer, 199 Grandview Rd., Skillman, NJ, USA 08558-9418.
+      {{ labels.newsletterDisclaimer }}
     </p>
   </div>
 </script>
 
 <script type="text/template" id="template-newsletter-submit">
-  <button type="button" class="ctct-form-button" data-role="submit-override">Sign Up</button>
+  <button type="button" class="ctct-form-button" data-role="submit-override">{{ labels.signUp }}</button>
 </script>
 
 {% require_script "widgets/newsletter-signup" %}
