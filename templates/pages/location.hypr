@@ -16,7 +16,7 @@
         <div class="mz-l-stack">
             <p class="mz-locationsearch-pleasewait hidden">
                 {{ labels.locationWait|safe }}
-             </p> 
+             </p>
              <div class="empty-store-container">
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
@@ -49,14 +49,14 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-5 col-sm-5">
                         <p class="label-nearby-stores">{{ labels.locateStore }}</p>
-                        <div class="store-search-container"> 
+                        <div class="store-search-container">
                             <div class="input-group stylish-input-group">
                                 <input id="searchTermView" type="text" class="form-control"  placeholder="{{ labels.searchStorePlaceHolder }}">
                                 <div class="input-group-addon dl-storelocator-button-search-container">
                                     <span class="ml-storelocator-ui-button-image-container">
                                         <button type="button" name="eslMyLocationSearch" id="eslMyLocationSearch" alt="search with my location" class="eslMyLocationSearch ml-secondary-button ml-storelocator-locate-btn">
                                             <i class="fa fa-location-arrow"></i> {{ labels.storeMyLocation }}
-                                        <button/>
+                                        </button>
                                         <button class="btn-find-stores" type="submit">
                                             {{ labels.search }}
                                         </button>
@@ -69,13 +69,13 @@
                         <p class="hidden empty-search">{{ labels.emptyStoreSearch }}</p>
                         <div class="error-success-message-container hidden">
                             <p id="success-shops"></p>
-                            <p class="hidden invalid-location">{{ labels.invalidStoreLocation }}</p> 
+                            <p class="hidden invalid-location">{{ labels.invalidStoreLocation }}</p>
                             <p id="noNearbyStores" class="hidden">{{ labels.noNearByStores }}</p>
                         </div>
                         <div class="mz-l-stack-section mz-locationlist fades-in hidden col-md-3 col-sm-5" id="location-list">
                             {% include "modules/location/locations" with model=model.locations %}
                         </div>
-                        <div class="pagination-wrapper hidden">    
+                        <div class="pagination-wrapper hidden">
                             <a id="showLessStores" class="pull-left hidden" href="#" data-start-index="0">prev</a>
                             <a id="showMoreStores" class="pull-right" href="#" data-start-index="{{themeSettings.storesPageSize}}">see more</a>
                         </div>
@@ -87,7 +87,7 @@
                                 <div id="map"></div>
                                 <script src="//maps.googleapis.com/maps/api/js?key={{themeSettings.googleMapAPIKey}}&libraries=places,geometry"></script>
                             {%endif%}
-                        </div> 
+                        </div>
                     </div>
                 </div>
              </div>
