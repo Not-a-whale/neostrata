@@ -80,7 +80,7 @@
         <link rel="stylesheet" href="{% make_url "stylesheet" "/stylesheets/vendor/swiper/swiper.min.css" %}" title="default" />
         <link rel="stylesheet" href="{% make_url "stylesheet" "/stylesheets/storefront.less" %}" title="default" />
         <link rel="stylesheet" type="text/css" href="{% make_url "stylesheet" "/stylesheets/vendor/font-awesome/css/font-awesome.min.css" %}" media="all">
-        <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/7074216/7036592/css/fonts.css" />
+        <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/7074216/7126592/css/fonts.css" />
         {% endblock stylesheets %}
 
         {% block head-tag-scripts %}

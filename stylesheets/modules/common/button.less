@@ -110,6 +110,14 @@ a.primary-btn{
 .enlighten .primary-btn{
     .primary-btn-enlighten();
 }
+.primary-btn-skin-active(@color: @mutedBlue) {
+    .button-prop(@color);
+    .button-focus(@color);
+}
+ 
+.skin.active .primary-btn{
+    .primary-btn-skin-active();
+}
 .primary-btn-skinActive(@color: @mutedBlue) {
     .button-prop(@color);
     .button-focus(@color);
