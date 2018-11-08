@@ -573,5 +573,18 @@
   "details" : "[fr-CA]Details[fr-CA]",
   "howToApply" : "[fr-CA]How To Apply[fr-CA]",
   "before" : "[fr-CA]Before[fr-CA]",
-  "after" : "[fr-CA]After[fr-CA]"
+  "after" : "[fr-CA]After[fr-CA]",
+  "matchContent1" : "[fr-CA]The all-new NEOSTRATA&reg; has arrived.[fr-CA]",
+  "matchContent2" : "[fr-CA]Meet the new &amp; scientifically reformulated NEOSTRATA&reg;[fr-CA]",
+  "matchContent3" : "[fr-CA]Now there are even more reasons to love the products you love.[fr-CA]",
+  "matchContent4" : "[fr-CA]We’ve reimagined and reformulated all your favourite products and added new, specialized skincare treatments. Our entire catalog has been organized into seven collections that target universal skin concerns with powerhouse performance and a brand new look.[fr-CA]",
+  "matchContent5" : "[fr-CA]Select your current favourites from the list below to see what’s new and what to look for.[fr-CA]",
+  "matchContent6" : "[fr-CA]Don't have a current favourite?<br /> Let's fix that, shall we?[fr-CA]",
+  "matchContent8" : "[fr-CA]If you previously liked[fr-CA]",
+  "selectAProduct" : "[fr-CA]Select a Product[fr-CA]",
+  "seeAllProducts" : "[fr-CA]See all products[fr-CA]",
+  "tryOurNew" : "[fr-CA]Try our new[fr-CA]",
+  "tryOur" : "[fr-CA]Try our[fr-CA]",
+  "viewProduct" : "[fr-CA]View Product[fr-CA]",
+  "dontSeeYourProduct" : "[fr-CA]DON’T SEE YOUR FAVOURITE PRODUCT?[fr-CA]"
 }
