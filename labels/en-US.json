@@ -564,5 +564,15 @@
   "normalSkin" : "Normal Skin",
   "drySkin" : "Dry Skin",
   "oilySkin" : "Oily Skin",
-  "sensitiveSkin" : "Sensitive Skin"
+  "sensitiveSkin" : "Sensitive Skin",
+  "userType" : "User Type",
+  "suggestedRetailPrice" : "Suggested Retail Price",
+  "idealFor" : "Ideal For",
+  "findARetailer" : "Find A Retailer",
+  "keyIngredients" : "Key Ingredients",
+  "results" : "Results",
+  "details" : "Details",
+  "howToApply" : "How To Apply",
+  "before" : "Before",
+  "after" : "After"
 }

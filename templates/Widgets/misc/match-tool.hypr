@@ -124,7 +124,7 @@
                 <%= price %>
               </div>
               <div class="match-content-15">
-                Suggested Retail Price
+                {{ labels.suggestedRetailPrice }}
               </div>
             </div>
           </div>

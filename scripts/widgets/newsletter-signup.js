@@ -49,6 +49,9 @@ require([
       $( '#custom_field_string_user_type_0' ).prop( 'type', 'hidden' );
       $( '#custom_field_string_user_type_field_0' ).append( $( '#template-newsletter-usertype' ).html() );
 
+      // Customize user-type label
+      $( '#custom_field_string_user_type_label_0' ).html( Hypr.getLabel('userType') );
+
       // Customize brith-date field.
       $( '#custom_field_date_b-day_label_0' ).html( Hypr.getLabel('newsletterBirthday')+ ' *' );
 

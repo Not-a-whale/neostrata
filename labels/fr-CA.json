@@ -563,5 +563,15 @@
   "normalSkin" : "[fr-CA]Normal Skin[fr-CA]",
   "drySkin" : "[fr-CA]Dry Skin[fr-CA]",
   "oilySkin" : "[fr-CA]Oily Skin[fr-CA]",
-  "sensitiveSkin" : "[fr-CA]Sensitive Skin[fr-CA]"
+  "sensitiveSkin" : "[fr-CA]Sensitive Skin[fr-CA]",
+  "userType" : "[fr-CA]User Type[fr-CA]",
+  "suggestedRetailPrice" : "[fr-CA]Suggested Retail Price[fr-CA]",
+  "idealFor" : "[fr-CA]Ideal For[fr-CA]",
+  "findARetailer" : "[fr-CA]Find A Retailer[fr-CA]",
+  "keyIngredients" : "[fr-CA]Key Ingredients[fr-CA]",
+  "results" : "[fr-CA]Results[fr-CA]",
+  "details" : "[fr-CA]Details[fr-CA]",
+  "howToApply" : "[fr-CA]How To Apply[fr-CA]",
+  "before" : "[fr-CA]Before[fr-CA]",
+  "after" : "[fr-CA]After[fr-CA]"
 }

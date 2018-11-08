@@ -57,7 +57,7 @@
             $<%= selection.cost %>.00
           </div>
           <div class="suggested-price">
-            Suggested retail price
+            {{ labels.suggestedRetailPrice }}
           </div>
         </div>
       </div>
@@ -65,7 +65,7 @@
     <div class="">
       <div class="flex-center-column align-center">
         <div class="flex-fixed">
-          <a href="/store-locator" class="primary-btn align-center">Find a Retailer</a>
+          <a href="/store-locator" class="primary-btn align-center">{{ labels.findARetailer }}</a>
         </div>
       </div>
     </div>
@@ -110,7 +110,7 @@
           $<%= price.price %>.00
         </div>
         <div class="suggested-price">
-          Suggested retail price
+          {{ labels.suggestedRetailPrice }}
         </div>
       </div>
     </div>
