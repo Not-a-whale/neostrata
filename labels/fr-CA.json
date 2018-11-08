@@ -544,7 +544,7 @@
   "productaddToCartError": "[fr-CA]The following item(s) are not added to cart[fr-CA]",
 
   "storeMyLocation": "[fr-CA]Locate Me[fr-CA]",
-  "searchStorePlaceHolder": "Address, City or Postal Code",
+  "searchStorePlaceHolder": "[fr-CA]Address, City or Postal Code[fr-CA]",
   "searchPlaceholder"    : "[fr-CA]Search Our Site[fr-CA]",
   "cookieTitle" : "[fr-CA]Cookie Notice[fr-CA]",
   "cookieText" : "[fr-CA]NEOSTRATA® of Canada uses cookies and other technologies on our site so that we, and our media agencies can understand how you use our site and provide you with ads tailored to your interests across the Internet. You may also visit the <a href=\"http://youradchoices.ca/choices/\">AdChoices consumer opt-out page</a> to learn more about interest based advertising and manage your preferences for interest based advertising by any of the participating companies listed on the tool.[fr-CA]",
@@ -586,5 +586,13 @@
   "tryOurNew" : "[fr-CA]Try our new[fr-CA]",
   "tryOur" : "[fr-CA]Try our[fr-CA]",
   "viewProduct" : "[fr-CA]View Product[fr-CA]",
-  "dontSeeYourProduct" : "[fr-CA]DON’T SEE YOUR FAVOURITE PRODUCT?[fr-CA]"
+  "dontSeeYourProduct" : "[fr-CA]DON’T SEE YOUR FAVOURITE PRODUCT?[fr-CA]",
+  "regimenContent1": "[fr-CA]BUILD YOUR UNIQUE REGIMEN FOR CUSTOMIZED RESULTS[fr-CA]",
+  "regimenContent2": "[fr-CA]Discover the ideal combination of products created to deliver noticeable results that only get better over time. Potent formulations backed by our heritage of breakthrough dermatological research reveal your best skin.[fr-CA]",
+  "regimenContent3": "[fr-CA]Select your skin type for a perfectly tailored routine.[fr-CA]",
+  "yourRoutine": "[fr-CA]Your Routine[fr-CA]",
+  "products": "[fr-CA]Products[fr-CA]",
+  "step": "[fr-CA]STEP[fr-CA]",
+  "includeInRegimen": "[fr-CA]INCLUDE IN REGIMEN[fr-CA]",
+  "storesNear": "[fr-CA]Stores near[fr-CA]"
 }

@@ -587,5 +587,13 @@
   "tryOurNew" : "Try our new",
   "tryOur" : "Try our",
   "viewProduct" : "View Product",
-  "dontSeeYourProduct" : "DON’T SEE YOUR FAVOURITE PRODUCT?"
+  "dontSeeYourProduct" : "DON’T SEE YOUR FAVOURITE PRODUCT?",
+  "regimenContent1": "BUILD YOUR UNIQUE REGIMEN FOR CUSTOMIZED RESULTS",
+  "regimenContent2": "Discover the ideal combination of products created to deliver noticeable results that only get better over time. Potent formulations backed by our heritage of breakthrough dermatological research reveal your best skin.",
+  "regimenContent3": "Select your skin type for a perfectly tailored routine.",
+  "yourRoutine": "Your Routine",
+  "products": "Products",
+  "step": "STEP",
+  "includeInRegimen": "INCLUDE IN REGIMEN",
+  "storesNear": "Stores near"
 }
