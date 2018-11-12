@@ -1,9 +1,11 @@
 require([
   'modules/jquery-mozu',
-  'underscore'
+  'underscore',
+  'hyprlive'
 ], function(
   $,
-  _
+  _,
+  Hypr
 ) {
   var config = {
     attributes: true,
@@ -32,9 +34,9 @@ require([
     if ( !didInit ) {
       // Add placeholders.
       _.each({
-        '#first_name_0':  'First name *',
-        '#last_name_0':   'Last name *',
-        '#email_address_0': 'Email Address *'
+        '#first_name_0':  Hypr.getLabel('firstName') + ' *',
+        '#last_name_0':   Hypr.getLabel('lastName') + ' *',
+        '#email_address_0': Hypr.getLabel('emailAddress') + ' *'
       }, function( placeholder, id ) {
         $( id ).prop( 'placeholder', placeholder );
       });
@@ -47,8 +49,11 @@ require([
       $( '#custom_field_string_user_type_0' ).prop( 'type', 'hidden' );
       $( '#custom_field_string_user_type_field_0' ).append( $( '#template-newsletter-usertype' ).html() );
 
+      // Customize user-type label
+      $( '#custom_field_string_user_type_label_0' ).html( Hypr.getLabel('userType') );
+
       // Customize brith-date field.
-      $( '#custom_field_date_b-day_label_0' ).html( 'Birthday (must be 13 years of age or older) *' );
+      $( '#custom_field_date_b-day_label_0' ).html( Hypr.getLabel('newsletterBirthday')+ ' *' );
 
       _.each( [
         '#custom_field_date_b-day_month_0',
@@ -59,7 +64,7 @@ require([
       });
 
       // Customize skin-type field.
-      $( '#custom_field_string_skin_type_label_0' ).html( 'Skin Type *' );
+      $( '#custom_field_string_skin_type_label_0' ).html( Hypr.getLabel( 'skinType' ) + ' *' );
       $( '#custom_field_string_skin_type_0' ).prop( 'type', 'hidden' );
 
       $( '#custom_field_string_skin_type_field_0' ).append( $( '#template-newsletter-skintype' ).html() );

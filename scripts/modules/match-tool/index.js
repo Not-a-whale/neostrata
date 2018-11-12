@@ -3,12 +3,14 @@ define([
   'modules/jquery-mozu',
   'underscore',
   'modules/backbone-mozu',
-  'modules/api'
+  'modules/api',
+  'hyprlive'
 ], function(
   $,
   _,
   Backbone,
-  API
+  API,
+  Hypr
 ) {
   API.get( 'entityList', {
       listName: 'bvsettings@mzint',
@@ -53,7 +55,7 @@ define([
       return a[0].localeCompare( b[0] );
     })
     .concat([
-      ['DON’T SEE YOUR FAVOURITE PRODUCT?', '']
+      [ Hypr.getLabel('dontSeeYourProduct'), '']
     ]);
 
   var State = Backbone.Model.extend({

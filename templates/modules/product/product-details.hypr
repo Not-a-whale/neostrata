@@ -48,7 +48,7 @@
             {% with model|get_product_attribute("tenant~skin-type") as skinType %}
               {% if skinType %}
                 <div class="ideal-for">
-                  <span class="ideal-for-label">Ideal For:</span>
+                  <span class="ideal-for-label">{{ labels.idealFor }}:</span>
                   {% for v in skinType.values %}
                     {% if v.stringValue %}
                       {{ v.stringValue|safe }}{% if not forloop.last %}, {% endif %}
@@ -58,13 +58,13 @@
               {% endif %}
             {% endwith %}
             <div class="form-row actionable find-a-retailer">
-              <a class="primary-btn" href="/store-locator">Find A Retailer</a>
+              <a class="primary-btn" href="/store-locator">{{ labels.findARetailer }}</a>
             </div>
             {% with model|get_product_attribute("tenant~ingredient-highlights") as highlights %}
             {% with model|get_product_attribute("tenant~features-benefits") as featuresBenefits %}
               {% if highlights and highlights.values.length > 0 or featuresBenefits and featuresBenefits.values.length > 0 %}
                 <div class="product-features center-mobile">
-                  <h4 class="feature-title">Key Ingredients</h4>
+                  <h4 class="feature-title">{{ labels.keyIngredients }}</h4>
                   {% if highlights and highlights.values.length > 0 %}
                     <div class="product-highlights">
                       {% for v in highlights.values %}

@@ -244,7 +244,7 @@ require([
                         if (status == google.maps.GeocoderStatus.OK) {
                             //console.log(results);
                             callback(results);
-                            document.getElementById("success-shops").innerHTML = "Stores near " + results[0].formatted_address;
+                            document.getElementById("success-shops").innerHTML = Hypr.getLabel('storesNear')+ " " + results[0].formatted_address;
                             document.getElementsByClassName("invalid-location")[0].classList.add("hidden");
                             document.getElementById("noNearbyStores").classList.add("hidden");
                         } else {

@@ -8,13 +8,13 @@
 
 <ul class="nav nav-tabs">
     {% if beforeAndAfter or dermQuote or clinicalStudy %}
-        <li class="active"><a data-toggle="tab" href="#tab1"><span>Results</span></a></li>
+        <li class="active"><a data-toggle="tab" href="#tab1"><span>{{ labels.results }}</span></a></li>
     {% endif %}
     {% if details or size or ingredients %}
-        <li{% if not beforeAndAfter and not dermQuote and not clinicalStudy) %} class="active"{% endif %}><a data-toggle="tab" href="#tab2"><span>Details</span></a></li>
+        <li{% if not beforeAndAfter and not dermQuote and not clinicalStudy) %} class="active"{% endif %}><a data-toggle="tab" href="#tab2"><span>{{ labels.details }}</span></a></li>
     {% endif %}
     {% if howToApply %}
-        <li{% if not beforeAndAfter and not dermQuote and not clinicalStudy and not details and not size and not ingredients) %} class="active"{% endif %}><a data-toggle="tab" href="#tab3"><span>How To Apply</span></a></li>
+        <li{% if not beforeAndAfter and not dermQuote and not clinicalStudy and not details and not size and not ingredients) %} class="active"{% endif %}><a data-toggle="tab" href="#tab3"><span>{{ labels.howToApply }}</span></a></li>
     {% endif %}
 
 </ul>
@@ -39,8 +39,8 @@
                   {% endif %}
               </div>
             {% endfor %}
-            <span class="beforeLabel">Before</span>
-            <span class="afterLabel">After</span>
+            <span class="beforeLabel">{{ labels.before }}</span>
+            <span class="afterLabel">{{ labels.after }}</span>
             {% if clinicalStudy %}
                 <hr>
                 {% for v in clinicalStudy.values %}

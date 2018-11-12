@@ -1,21 +1,21 @@
 <div class="regimen-builder-widget container" data-widget="regimen-builder">
   <div class="block">
     <h2 class="align-center">
-      BUILD YOUR UNIQUE REGIMEN FOR CUSTOMIZED RESULTS
+        {{ labels.regimenContent1|safe }}
     </h2>
     <div class="text-base align-center">
-      Discover the ideal combination of products created to deliver noticeable results that only get better over time. Potent formulations backed by our heritage of breakthrough dermatological research reveal your best skin.
+        {{ labels.regimenContent2|safe }}
     </div>
   </div>
   <div class="divider"></div>
   <div class="text-base align-center block">
-    Select your skin type for a perfectly tailored routine.
+    {{ labels.regimenContent3|safe }}
   </div>
   <div data-view="selector" class="align-center">
     <div class="inline anchor align-left cursor-pointer" data-role="wrapper">
       <div class="height-fixed border-strong uppercase pointer icon-right" data-control="toggle">
         <div class="chevron-down"></div>
-        Select Skin Type
+        {{ labels.select }} {{ labels.skinType }}
       </div>
     </div>
   </div>
@@ -26,7 +26,7 @@
   <div class="inline anchor align-left cursor-pointer" data-role="wrapper">
     <div class="height-fixed border-strong uppercase pointer icon-right" data-control="toggle">
       <div class="chevron-down"></div>
-      <%= selected ? selected[1] : 'Select Skin Type' %>
+      <%= selected ? selected[1] : (labels.select  + ' ' + labels.skinType) %>
     </div>
     <% if ( open ) { %>
       <div class="mobile backdrop"></div>
@@ -46,18 +46,18 @@
   <div class="regimen-template">
     <div class="your-routine">
       <div class="h2">
-        Your Routine
+        {{ labels.yourRoutine }}
       </div>
       <div class="">
         <div class="products h3">
-          <%= selection.count %> <%= selection.count == 1 ? 'Product' : 'Products' %>
+          <%= selection.count %> <%= selection.count == 1 ? labels.product : labels.products %>
         </div>
         <div class="">
           <div class="selection-cost">
             $<%= selection.cost %>.00
           </div>
           <div class="suggested-price">
-            Suggested retail price
+            {{ labels.suggestedRetailPrice }}
           </div>
         </div>
       </div>
@@ -65,7 +65,7 @@
     <div class="">
       <div class="flex-center-column align-center">
         <div class="flex-fixed">
-          <a href="/store-locator" class="primary-btn align-center">Find a Retailer</a>
+          <a href="/store-locator" class="primary-btn align-center">{{ labels.findARetailer }}</a>
         </div>
       </div>
     </div>
@@ -77,7 +77,7 @@
     <h3 class="flex-row">
       <div class="flex-center-row-mobile">
         <div class="flex-fixed pad-inners-standard border-right-light">
-          STEP <%= number %>
+          {{ labels.step }} <%= number %>
         </div>
         <div class="flex-fixed pad-inners-standard">
           <%= type %>
@@ -110,14 +110,14 @@
           $<%= price.price %>.00
         </div>
         <div class="suggested-price">
-          Suggested retail price
+          {{ labels.suggestedRetailPrice }}
         </div>
       </div>
     </div>
     <div class="include-in-regimen">
       <div class="form-row">
         <input id="checkbox_<%= productCode %>" type="checkbox" data-control="include" data-value="<%= number %>" <%= included ? 'checked' : '' %> />
-        <label class="icon-check form-element" for="checkbox_<%= productCode %>"> INCLUDE IN REGIMEN</label>
+        <label class="icon-check form-element" for="checkbox_<%= productCode %>"> {{ labels.includeInRegimen }}</label>
       </div>
     </div>
     </div>

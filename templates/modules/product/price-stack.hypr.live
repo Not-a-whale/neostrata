@@ -13,5 +13,5 @@
         {% include "modules/common/price" with model=model.price %}
         </span>
     {% endif %}
-    <div class="price-msrp">Suggested Retail Price</div>
+    <div class="price-msrp">{{ labels.suggestedRetailPrice }}</div>
 </div>
