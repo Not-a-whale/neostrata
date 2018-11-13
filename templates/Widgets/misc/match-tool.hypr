@@ -7,24 +7,22 @@
     <div class="flex-swing match-block-1">
       <div class="flex-fill match-col-1">
         <div class="text-align-center match-content-1">
-          The all-new NEOSTRATA&reg; has arrived.
+          {{ labels.matchContent1|safe }}
         </div>
         <div class="text-align-center match-content-2">
-          Meet the new &amp; scientifically reformulated NEOSTRATA&reg;
+          {{ labels.matchContent2|safe }}
         </div>
       </div>
       <div class="flex-column-middle match-col-2">
         <div>
           <div class="match-content-3">
-            Now there are even more reasons to love the products you love.
+            {{ labels.matchContent3|safe }}
           </div>
           <div class="match-content-4">
-            We’ve reimagined and reformulated all your favourite products and added new, specialized skincare treatments.
-            Our entire catalog has been organized into seven collections that target universal skin concerns with powerhouse
-            performance and a brand new look.
+            {{ labels.matchContent4|safe }}
           </div>
           <div class="match-content-5">
-            Select your current favourites from the list below to see what’s new and what to look for.
+            {{ labels.matchContent5|safe }}
           </div>
         </div>
       </div>
@@ -37,7 +35,7 @@
         <div class="inline anchor left-align">
           <div class="height-fixed select-toggle pointer" data-control="toggle">
             <div class="chevron-down"></div>
-            Select a Product
+            {{ labels.selectAProduct }}
           </div>
         </div>
       </div>
@@ -46,11 +44,10 @@
   <div data-view="match"></div>
   <div class="match-block-3 dark">
     <div class="match-content-6">
-      Don't have a current favourite?<br />
-      Let's fix that, shall we?
+      {{ labels.matchContent6|safe }}
     </div>
 
-    <a class="primary-btn" href="/products/c/66">See all products</a>
+    <a class="primary-btn" href="/products/c/66">{{ labels.seeAllProducts }}</a>
   </div>
 </div>
 
@@ -58,7 +55,7 @@
   <div class="inline anchor left-align" data-role="wrapper">
     <div class="height-fixed select-toggle pointer" data-control="toggle">
       <div class="chevron-down"></div>
-      <%= selected ? selected.before.name : 'Select a Product' %>
+      <%= selected ? selected.before.name : labels.selectAProduct %>
     </div>
     <% if ( open ) { %>
       <div class="mobile backdrop"></div>
@@ -82,7 +79,7 @@
       <div class="flex-fill match-col-3a flex-column-middle">
         <div class="flex-fixed match-col-3b">
           <div class="match-content-8 text-align-center">
-            If you previously liked:
+            {{ labels.matchContent6 }}:
           </div>
           <div class="match-content-9 text-align-center">
             <%= before.name %>
@@ -104,7 +101,7 @@
       <div class="flex-fill flex-column-middle match-col-4a">
         <div class="flex-fixed flex-column match-col-4b">
           <div class="flex-fixed match-content-10 text-align-center">
-            Try our new
+            {{ labels.tryOurNew }}
           </div>
           <div class="flex-fixed match-content-11 text-align-center">
             <%= name %>
@@ -113,7 +110,7 @@
             <%= ingredients.join( ' | ' ) %>
           </div>
           <div class="flex-fill match-content-13">
-            Try our <%= try_our %>
+            {{ labels.tryOur }} <%= try_our %>
           </div>
           <div class="flex-fixed flex-row match-block-4">
             <div class="flex-fixed match-col-5 flex-column-middle">
@@ -129,7 +126,7 @@
             </div>
           </div>
           <div class="footer flex-fixed dark match-content-16">
-            <a href="/p/<%= code %>" class="primary-btn">View Product</a>
+            <a href="/p/<%= code %>" class="primary-btn">{{ labels.viewProduct }}</a>
           </div>
         </div>
       </div>
