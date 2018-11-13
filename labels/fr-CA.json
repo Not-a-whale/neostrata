@@ -594,5 +594,7 @@
   "products": "produits",
   "step": "Étape",
   "includeInRegimen": "Inclure dans le régime de soins",
-  "storesNear": "Emplacements près de"
+  "storesNear": "Emplacements près de",
+  "sort": "[fr-CA]SORT[fr-CA]",
+  "filter": "[fr-CA]FILTER[fr-CA]"
 }
