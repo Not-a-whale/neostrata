@@ -450,6 +450,10 @@
   ],
   "settings": {
     "commerceEnabled": false,
+    "sitesURLs": {
+      "en-ca": "//www.neostrata.ca",
+      "fr-ca": "//www-fr.neostrata.ca"
+    },
     "oneSizeAttributeName": "tenant~ONESIZE",
     "oneSizeProductType": "Single Variant",
     "maxRecentlyViewedItems": 5,
