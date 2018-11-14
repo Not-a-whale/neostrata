@@ -55,7 +55,7 @@
   <div class="inline anchor left-align" data-role="wrapper">
     <div class="height-fixed select-toggle pointer" data-control="toggle">
       <div class="chevron-down"></div>
-      <%= selected ? selected.before.name : labels.selectAProduct %>
+      <%= selected ? selected.before.name : '{{ labels.selectAProduct }}' %>
     </div>
     <% if ( open ) { %>
       <div class="mobile backdrop"></div>
