@@ -1,6 +1,9 @@
-<div class="form-row">
-<select title="Language Selector" class="lang-selector">
-    <option>FR</option>
-    <option>EN</option>
-</select>
+<div>
+    <button type="button" class="dropdown-select dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span>{% if apicontext.headers.x-vol-locale=='fr-CA' %}FR{% else %}EN{% endif %}</span><i class="dropdown-icon"></i>
+    </button>
+    <ul class="dropdown-menu dropdown-select-list lang-selector" title="Language Selector">
+        <li data-value="en-ca">EN</li>
+        <li data-value="fr-ca">FR</li>
+    </ul>
 </div>

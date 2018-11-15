@@ -18,11 +18,13 @@
                     {% include "modules/page-header/utility-nav" %}
                 {% endblock utility-nav %}
             </div>
+            {% if themeSettings.showSiteSelector %}
             <div class="ml-header-lang-wrapper">
                 {% block lang-selector %}
                     {% include "modules/page-header/lang-selector" %}
                 {% endblock lang-selector %}
             </div>
+            {% endif %}
             {% if themeSettings.commerceEnabled %}
               <div class="ml-header-global-cart-wrapper" style="display:none;">
                   {% block global-cart-container %}
