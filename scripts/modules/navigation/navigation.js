@@ -1,7 +1,8 @@
 define([
     'modules/jquery-mozu',
-    "doubletaptogo"
-], function($, doubletaptogo) {
+    "doubletaptogo",
+    'hyprlivecontext'
+], function($, doubletaptogo, hyprlivecontext) {
     //Sub Dropdown Menu
     function calculatingSubPosition() {
         var leftReference = $(".ml-header-content").offset().left,
@@ -121,6 +122,30 @@ define([
         } catch (e0) {
             //console.log('Error in loading: ' + e0);
         }
+
+        var apiConfig = require.mozuData('apicontext');
+        if(apiConfig.headers['x-vol-locale'].startsWith('fr-')){
+            $('.ml-header-lang-wrapper .dropdown-select span').html('FR');
+            $('.ml-header-lang-wrapper .dropdown-select-list li[data-value*="fr"]').addClass('disabled');
+        }
+        else{
+            $('.ml-header-lang-wrapper .dropdown-select span').html('EN');
+            $('.ml-header-lang-wrapper .dropdown-select-list li[data-value*="en"]').addClass('disabled');
+        }
+
+        $('.ml-header-lang-wrapper .lang-selector li').click(function(){
+            console.log('Selected language:', $(this).data('value'));
+            if(!$(this).hasClass('disabled')) {
+                var link = $( "link[hreflang='" + $( this ).data( 'value' ) + "']" );
+                if ( link.length > 0 ) {
+                    location.href = link.attr( 'href' );
+                }
+                else {
+                    console.log( 'Redirect to home' );
+                    location.href = hyprlivecontext.locals.themeSettings.sitesURLs[ $( this ).data( 'value' ) ];
+                }
+            }
+        });
     });
     $(window).resize(function() {
         window_resize();

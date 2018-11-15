@@ -39,6 +39,11 @@
                     "xtype": "mz-input-checkbox",
                     "name": "commerceEnabled",
                     "fieldLabel": "Commerce Enabled"
+                },
+                {
+                    "xtype": "mz-input-checkbox",
+                    "name": "showSiteSelector",
+                    "fieldLabel": "Show Site Selector"
                 }
             ]
         },
