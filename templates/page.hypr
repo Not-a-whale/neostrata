@@ -62,7 +62,7 @@
 
 		{% if PageContext.CrawlerInfo.CanonicalUrl  %}
         <link rel="canonical" href="{{PageContext.CrawlerInfo.CanonicalUrl}}">
-        <link rel="alternate" href="{{PageContext.CrawlerInfo.CanonicalUrl}}" hreflang="en-ca">
+        <link rel="alternate" href="{{PageContext.CrawlerInfo.CanonicalUrl}}" hreflang="{{ apicontext.headers.x-vol-locale|lower }}">
     {% endif %}
 
 
@@ -106,7 +106,7 @@
     {% block body-tag %}
 
     {% block open-body-tag %}
-    <body class="{% block body-tag-classes %} neostrata-theme {% endblock body-tag-classes %}">
+    <body class="neostrata-theme locale-{{ apicontext.headers.x-vol-locale|lower }} {% block body-tag-classes %} {% endblock body-tag-classes %}">
 
         <!-- Google Tag Manager (noscript) -->
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P7FDDBQ"
