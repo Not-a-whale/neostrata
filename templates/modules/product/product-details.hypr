@@ -3,7 +3,7 @@
 {% endif %}
 {% require_script "pages/product" %}
 {% with model|get_product_attribute_value("tenant~skin-care-system") as skinCareSystem %}
-<div itemscope itemtype="http://schema.org/Product" class="mz-l-container container {{skinCareSystem|lower}}">
+<div itemscope itemtype="http://schema.org/Product" class="mz-l-container container {{model|get_product_attribute("tenant~skin-care-system")|prop("values")|first|prop("value")|lower}}">
     {% if (PageContext.isTablet or PageContext.isDesktop) and themeSettings.enableProductCarousel %}
     {% include "modules/product/product-top-carousel" %}
     {% endif %}
