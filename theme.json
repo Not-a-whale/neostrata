@@ -1104,7 +1104,9 @@
       "parentCategoryCode": "browse-product",
       "firstLevel": [
         { "url": "/which-skincare-product-is-right-for-you", "image": "", "childrenGoToThis": true},
-        { "url": "/product", "image": "", "childrenGoToThis": false }
+        { "url": "/product", "image": "", "childrenGoToThis": false },
+        { "url": "/quel-produit-de-soins-pour-la-peau-est-fait-pour-vous", "image": "", "childrenGoToThis": true},
+        { "url": "/produit", "image": "", "childrenGoToThis": false }
       ],
       "categoryLookups":   [
         { "url": "/skin-type", "linkedCategoryCode": "18", "includeInSecondaryNav": true },
