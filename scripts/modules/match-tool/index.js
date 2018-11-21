@@ -12,7 +12,7 @@ define([
   API,
   Hypr
 ) {
-  API.get( 'entityList', {
+  var req = API.get( 'entityList', {
       listName: 'bvsettings@mzint',
       id: API.context.site
   }).then( function( res ) {
@@ -26,7 +26,17 @@ define([
         $( '[data-widget="match-tool"]' ).each( function( i, $el ) {
           new App({ el: $el });
         });
+      })
+      .fail(function( jqxhr, settings, exception ) {
+        console.error( 'BazaarVoice failed to load.', exception );
       });
+  }).catch( function( err ) {
+    console.warn( err );
+    console.log( 'Initializing match-tool without BazaarVoice.' );
+
+    $( '[data-widget="match-tool"]' ).each( function( i, $el ) {
+      new App({ el: $el });
+    });
   });
 
   var __MATCHES = [];
@@ -149,10 +159,12 @@ define([
           containerId: 'BVRRInlineRating-' + current.code
         };
 
-        $BV.ui( 'rr', 'inline_ratings', {
-          productIds: productIds,
-          containerPrefix: 'BVRRInlineRating'
-        });
+        if ( typeof $BV !== 'undefined' ) {
+          $BV.ui( 'rr', 'inline_ratings', {
+            productIds: productIds,
+            containerPrefix: 'BVRRInlineRating'
+          });
+        }
       }
     }
   });
