@@ -61,7 +61,6 @@ module.exports = function (grunt) {
         }
       },
       options: {
-        es3: true,
         browser: true,
         undef: true,
         nonstandard: true,
