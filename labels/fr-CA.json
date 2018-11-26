@@ -436,7 +436,7 @@
   "more"                 : "[fr-CA]more[fr-CA]",
   "checkLocalStores"     : "[fr-CA]Check Local Stores[fr-CA]",
   "mfgPartNumber"    : "[fr-CA]Mfg. Part Number[fr-CA]",
-  "msrp"         : "[fr-CA]MSRP[fr-CA]",
+  "msrp"         : "PDS",
   "upc"          : "[fr-CA]UPC[fr-CA]",
   "weight"               : "[fr-CA]Weight[fr-CA]",
   "length"         : "[fr-CA]Length[fr-CA]",
