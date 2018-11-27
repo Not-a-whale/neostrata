@@ -14,7 +14,7 @@
         {{ labels.cookieText|safe }}
     </div>
     <div>
-        <a href="http://www.jnjcanada.com/ad-choices#ie-privacy-blk">{{ labels.cookieTextAboutAds }}</a>
+        <a href="{{ labels.cookieUrlAboutAds|safe }}">{{ labels.cookieTextAboutAds }}</a>
     </div>
 </div>
 <footer>
