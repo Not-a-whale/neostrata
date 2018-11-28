@@ -1,0 +1,9 @@
+{% if apicontext.headers.x-vol-locale|lower == "fr-ca"  %}
+{% with amount|floatformat(0) as dollarAmount %}
+{% with amount|subtract(dollarAmount)|multiply(100) as centsAmount %}
+  {{dollarAmount}},{% if centsAmount < 10 %}0{% endif %}{{centsAmount}} $
+{% endwith %}
+{% endwith %}
+{% else %}
+  {{ amount|currency }}
+{% endif %}
