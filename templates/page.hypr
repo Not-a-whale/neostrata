@@ -61,8 +61,8 @@
         {% endif %}
 
 		{% if PageContext.CrawlerInfo.CanonicalUrl  %}
-        <link rel="canonical" href="{{PageContext.CrawlerInfo.CanonicalUrl}}">
-        <link rel="alternate" href="{{PageContext.CrawlerInfo.CanonicalUrl}}" hreflang="{{ apicontext.headers.x-vol-locale|lower }}">
+        <link rel="canonical" href="{{themeSettings.canonicalUrlPrefix}}{{PageContext.CrawlerInfo.CanonicalUrl}}">
+        <link rel="alternate" href="{{themeSettings.canonicalUrlPrefix}}{{PageContext.CrawlerInfo.CanonicalUrl}}" hreflang="{{ apicontext.headers.x-vol-locale|lower }}">
     {% endif %}
 
 

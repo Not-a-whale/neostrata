@@ -450,6 +450,7 @@
   ],
   "settings": {
     "commerceEnabled": false,
+    "canonicalUrlPrefix": "",
     "sitesURLs": {
       "en-ca": "//www.neostrata.ca",
       "fr-ca": "//fr.neostrata.ca"

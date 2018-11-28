@@ -44,6 +44,11 @@
                     "xtype": "mz-input-checkbox",
                     "name": "showSiteSelector",
                     "fieldLabel": "Show Site Selector"
+                },
+                {
+                    "xtype": "mz-input-text",
+                    "name": "canonicalUrlPrefix",
+                    "fieldLabel": "Canonical URL Prefix"
                 }
             ]
         },
