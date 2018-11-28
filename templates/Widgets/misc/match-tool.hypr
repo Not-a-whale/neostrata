@@ -84,7 +84,7 @@
       <div class="flex-fill match-col-3a flex-column-middle">
         <div class="flex-fixed match-col-3b">
           <div class="match-content-8 text-align-center">
-            {{ labels.matchContent6 }}:
+            {{ labels.matchContent8|safe }}:
           </div>
           <div class="match-content-9 text-align-center">
             <%= before.name %>
