@@ -7,7 +7,7 @@ require([
         'modules/models-product'
     ],
     function ($, _, Hypr, Backbone, LocationModels, ProductModels) {
-        
+
         var defaults = {
             googleMapAPIKey: Hypr.getThemeSetting('googleMapAPIKey'),
             googleMapLatitude: Hypr.getThemeSetting('googleMapLatitude'),
@@ -20,7 +20,7 @@ require([
             googleGeolocationMaximumAge: Hypr.getThemeSetting('googleGeolocationMaximumAge'),
             storeDetailDisplaySocialWidget: Hypr.getThemeSetting('storeDetailDisplaySocialWidget')
         };
-        
+
         var InfoSummaryView = Backbone.MozuView.extend({
             templateName: 'modules/location/location-infosummary',
             initialize: function() {
@@ -32,13 +32,13 @@ require([
                 return this;
             }
         });
-        
+
         var Model = Backbone.MozuModel.extend();
-        
+
         try {
             defaults.googleMapZoom = parseInt(defaults.googleMapZoom, 10);
         } catch (e) { }
-        
+
         var map,
             google = window.google || {},
             infowindow,
@@ -46,25 +46,25 @@ require([
             marker,
             currentMarker,
             socialShareWidgetTemplate = Hypr.getTemplate('modules/location/social-share-widget');
-        
+
         function getQueryStrings() {
             var assoc = {};
             var decode = function (s) { return decodeURIComponent(s.replace(/\+/g, " ")); };
             var queryString = location.search.substring(1);
             var keyValues = queryString.split('&');
-            
+
             for (var i in keyValues) {
                 var key = keyValues[i].split('=');
                 if (key.length > 1) {
                     assoc[decode(key[0])] = decode(key[1]);
                 }
             }
-            
+
             return assoc;
         }
-        
+
         var positionErrorLabel = Hypr.getLabel('positionError'),
-            
+
             LocationsView = Backbone.MozuView.extend({
                 templateName: 'modules/location/locations',
                 initialize: function () {
@@ -73,7 +73,7 @@ require([
                 },
                 populate: function (location) {
                     var self = this;
-                    
+
                     var show = function () {
                         self.render();
                         $('.mz-locationsearch-pleasewait').fadeOut();
@@ -122,7 +122,7 @@ require([
                             $(".search-view-container").addClass("active");
                             self.drawMap(window.lv.model.apiModel.data.items);
                         }
-                        
+
                         //hide loading
                         $(".store-locator-overlay").removeClass("active");
                     };
@@ -165,18 +165,18 @@ require([
                         center: center,
                         mapTypeId: google.maps.MapTypeId.ROADMAP
                     });
-                    
+
                     infowindow = new google.maps.InfoWindow();
                     bounds = new google.maps.LatLngBounds();
                     google.maps.event.addListener(map, 'click', function () {
                         infowindow.close();
                     });
-                    
+
                     for (var i = 0; i < locations.length; i++) {
                         this.createMarker(locations[i], i);
                         this.bindMarkers(locations[i], currentMarker);
                     }
-                    
+
                     //Remove link to Store Detail Page from store name
                     //this.bindShowDetailPage();
                     if(locations.length > 1){
@@ -195,11 +195,11 @@ require([
                     bounds.extend(marker.position);
                     //for marker event binding to DOM
                     currentMarker = marker;
-                    
+
                     // Display search address on store locator page, so the logic below has been commented out
                     //var storeSearched = ($("#success-shops").text().length > 0) ? "hidden" : "";
                     var storeSearched = "";
-                    
+
                     google.maps.event.addListener(marker, 'click', (function (marker, i) {
                         return function () {
                             var dirQueryString = [
@@ -213,14 +213,14 @@ require([
                             ];
                             location.storeSearched = storeSearched;
                             location.dirQueryString = dirQueryString.join(" ");
-                            var saddr = '<input type="text" name="saddr" placeholder="Start address">';
+                            var saddr = '<input type="text" name="saddr" placeholder="' + Hypr.getLabel('startAddress') + '">';
                             location.saddr = saddr;
                             location.regularHours = false;
-                            
+
                             //Info window content DOM
                             var view = new InfoSummaryView({ model: new Model(location) });
                             var infoWindowDOM = view.render().el;
-                            
+
                             //Info window content DOM END
                             map.setCenter(marker.getPosition());
                             infowindow.setContent(infoWindowDOM);
@@ -282,7 +282,7 @@ require([
                             if (data.length < pageSize) {
                                 $(".pagination-wrapper").addClass("hidden");
                             }
-                            
+
                             // set distance from searchPoint
                             var searchPoint = self.model.get( 'searchLanLng' );
                             try{
@@ -367,16 +367,16 @@ require([
                         _self.$el.find('input[name=daddr]').val(dirQueryString.join(" "));
                         //_self.model.set("dirQueryString",dirQueryString);
                     });
-                    
+
                 },
                 geocodeW3CMyLocation: function(){
                     var _self = this;
-                    
+
                     if (navigator.geolocation) {
                         navigator.geolocation.getCurrentPosition(function (position) {
                             if($(".store-search-container").hasClass("has-error"))
                                 $(".store-search-container").removeClass("has-error");
-                            
+
                             $(".geolocationError").html("");
                             _self.getNearbyShops(defaults.storesPageSize, position.coords.latitude, position.coords.longitude, 0, function () {
                                 _self.drawMap(window.lv.model.apiModel.data.items);
@@ -404,7 +404,7 @@ require([
                     }
                 }
             }),
-            
+
             LocationsSearchView = LocationsView.extend({
                 templateName: 'modules/location/location-search',
                 populate: function (location) {
@@ -436,7 +436,7 @@ require([
                     });
                 }
             });
-        
+
         $(document).ready(function () {
             //DOM used for binding events
             var btnFindStores = $(".btn-find-stores"),
@@ -451,11 +451,11 @@ require([
                 emptySearch = $(".empty-search"),
                 storeSearchContainer = $(".store-search-container"),
                 btnMyLocation = $('#eslMyLocationSearch');
-            
+
             //Get URL Param for auto search
             var qs = getQueryStrings();
             var isZipcode = qs.zipcode;
-            
+
             if (isZipcode) {
                 //show loading
                 $(".store-locator-overlay").addClass("active");
@@ -463,19 +463,19 @@ require([
             } else {
                 emptyStoreContainer.addClass("active");
             }
-            
-            
+
+
             var $locationSearch = $('#location-list'),
                 product = ProductModels.Product.fromCurrent(),
                 productPresent = !!product.get('productCode'),
                 locationsCollection = new LocationModels.LocationCollection();
-            
+
             var ViewClass = productPresent ? LocationsSearchView : LocationsView,
                 view = new ViewClass({
                     model: locationsCollection,
                     el: $locationSearch
                 });
-            
+
             if (productPresent) {
                 view.setProduct(product);
             } else {
@@ -483,12 +483,12 @@ require([
                 $(".store-locator-overlay").removeClass("active");
             }
             window.lv = view;
-            
+
             btnFindStoresEmpty.on("click", function () {
                 if(!$(".store-description-container").hasClass("hidden")){
                     $(".store-description-container").addClass("hidden");
                 }
-                
+
                 var zipcode = $.trim(searchTermEmpty.val());
                 if (zipcode.length > 0) {
                     searchTermView.val(zipcode);
@@ -499,12 +499,12 @@ require([
                     storeSearchContainer.addClass("has-error");
                 }
             });
-            
+
             btnFindStores.on("click", function () {
                 if(!$(".store-description-container").hasClass("hidden")){
                     $(".store-description-container").addClass("hidden");
                 }
-                
+
                 var zipcode = $.trim(searchTermView.val());
                 if (zipcode.length > 0) {
                     if (window.location.pathname.indexOf("store-details") > -1) {
@@ -515,10 +515,10 @@ require([
                     $(".store-locator-overlay").addClass("active");
                     emptyStoreContainer.removeClass("active");
                     searchViewContainer.addClass("active");
-                    
+
                     showMoreStores.attr("data-start-index", defaults.storesPageSize);
                     showLessStores.attr("data-start-index", 0);
-                    
+
                     if ($("#map").length > 0) {
                         view.getGeoCode(zipcode, function (data) {
                             var lat = data[0].geometry.location.lat(),
@@ -536,12 +536,12 @@ require([
                     storeSearchContainer.addClass("has-error");
                 }
             });
-            
+
             showMoreStores.on("click", function (e) {
                 e.preventDefault();
                 var startIndex = parseInt($(this).attr("data-start-index"), 10),
                     zipcode = $.trim(searchTermView.val());
-                
+
                 if ((startIndex + defaults.storesPageSize) > window.lv.model.attributes.totalCount) {
                     startIndex = (window.lv.model.attributes.totalCount - defaults.storesPageSize);
                     $(this).addClass("hidden");
@@ -564,7 +564,7 @@ require([
                     }
                 }
             });
-            
+
             showLessStores.on("click", function (e) {
                 e.preventDefault();
                 var startIndex = parseInt($(this).attr("data-start-index"), 10),
