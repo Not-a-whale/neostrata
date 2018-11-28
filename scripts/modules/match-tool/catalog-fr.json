@@ -1,0 +1,655 @@
+[
+  {
+    "code": "F30097D",
+    "name": "Concentré Vitamine C",
+    "skin_care_system": "Enlighten",
+    "product_type": "Serum\nMoisturizer",
+    "benefits": "radiance",
+    "header": "NOUVEAU LOOK. FORMULE AVANCÉE.",
+    "try_our": "sérum concentré à base de vitamine C antioxydante, qui améliore l'éclat et la clarté globale de la peau.",
+    "description": "This concentrated serum, containing pure 10% Vitamin C antioxidant, is packaged in protective single-dose capsules to enhance product freshness. This powerful antioxidant is an effective daily treatment to protect against drying environmental stressors.",
+    "ingredients": [
+      "ACIDE L-ASCORBIQUE 10 % (VITAMINE C)"
+    ],
+    "price": "45,00 $",
+    "images": {
+      "front": "/resources/images/match-tool/F30097D.png",
+      "hero": "/cms/files/ENLIGHTEN_VITAMIN_C_CONCENTRATE_V1.jpg"
+    },
+    "status": "Matched",
+    "before": {
+      "name": "Concentré Vitamine C",
+      "image": "/resources/images/match-tool/F30097D-before.png"
+    }
+  },
+  {
+    "code": "F30098D",
+    "name": "Mousse Glycolique Nettoyante",
+    "skin_care_system": "Resurface",
+    "product_type": "Cleanser\nToner",
+    "benefits": "resurfacing",
+    "header": "NOUVEAU LOOK. FORMULE AVANCÉE.",
+    "try_our": "NOUVELLE mousse nettoyante ultra-concentrée en acide glycolique, formulée pour exfolier et purifier les pores obstrués.",
+    "description": "This high-strength foaming cleanser is formulated with an amphoteric system designed to deliver the benefits of Glycolic Acid and Bionic Acid while minimizing the potential for skin irritation. Formulated to lightly exfoliate and cleanse clogged pores to prepare the skin for optimal benefits of the regimen that follows.",
+    "ingredients": [
+      "MÉLANGE AHA/PHA (ACIDE GLYCOLIQUE (AHA) 12 % ET ACIDE LACTOBIONIQUE (PHA))"
+    ],
+    "price": "35,00 $",
+    "images": {
+      "front": "/resources/images/match-tool/F30098D.png",
+      "hero": "/cms/files/RESURFACE_GLYCOLIC_MOUSSE_CLEANSER_V1.jpg"
+    },
+    "status": "Enhanced",
+    "before": {
+      "name": "GEL NETTOYANT SANS HUILE",
+      "image": "/resources/images/match-tool/F30098D-before.png"
+    }
+  },
+  {
+    "code": "F30101D",
+    "name": "Soin de Microdermabrasion à l’acide glycolique",
+    "skin_care_system": "Correct",
+    "product_type": "Exfoliation",
+    "benefits": "exfoliating",
+    "header": "NOUVEAU LOOK. FORMULE AVANCÉE.",
+    "try_our": "NOUVEAU soin exfoliant en une seule étape: formulé à base d'acide glycolique (10%) et de cristaux d'alumine de qualité professionnelle pour revitaliser immédiatement la peau, il offre une action resurfaçante instantanée et une apparence plus lisse et plus éclatante.",
+    "description": "This one-step exfoliating polish provides instant skin resurfacing with 10% Glycolic Acid combined with professional grade alumina crystals. The dual physical and chemical action rapidly removes skin’s surface cells to help clarify and clear impurities from pores.",
+    "ingredients": [
+      "ACIDE GLYCOLIQUE (AHA) 10 % COMBINÉ À DES CRISTAUX DE QUALITÉ PROFESSIONNELLE"
+    ],
+    "price": "85,00 $",
+    "images": {
+      "front": "/resources/images/match-tool/F30101D.png",
+      "hero": "/cms/files/CORRECT_GLYCOLIC_MICROABRASION_POLISH_V3.jpg"
+    },
+    "status": "Enhanced",
+    "before": {
+      "name": "DUO RESURFAÇANT POUR LA PEAU",
+      "image": "/resources/images/match-tool/F30101D-before.png"
+    }
+  },
+  {
+    "code": "F30102D",
+    "name": "Sérum de Nuit Intégral avec 0, 3% de Rétinol",
+    "skin_care_system": "Correct",
+    "product_type": "Serum",
+    "benefits": "",
+    "header": "NOUVEAU LOOK. FORMULE AVANCÉE.",
+    "try_our": "NOUVEAU soin régénérant puissant à base de rétinol pur pour cibler un aspect global de la peau visiblement plus ferme.",
+    "description": "This potent serum delivers 0.3% pure, stabilized Retinol along with NEOGLUCOSAMINE™ and Hyaluronic Acid to synergistically intensify skin’s hydrating matrix for a firmer look.",
+    "ingredients": [
+      "RÉTINOL STABILISÉ PUR 0,3 %",
+      "ACIDE HYALURONIQUE PUR"
+    ],
+    "price": "92,00 $",
+    "images": {
+      "front": "/resources/images/match-tool/F30102D.png",
+      "hero": "/cms/files/CORRECT_RETINOL_NIGHT_SERUM_V2.jpg"
+    },
+    "status": "Matched",
+    "before": {
+      "name": "SÉRUM NUIT TOUT-EN-UN",
+      "image": "/resources/images/match-tool/F30102D-before.png"
+    }
+  },
+  {
+    "code": "F30104D",
+    "name": "Contour des Yeux Intégral au rétinol",
+    "skin_care_system": "Correct",
+    "product_type": "Eye Care",
+    "benefits": "",
+    "header": "NOUVEAU LOOK. FORMULE AVANCÉE.",
+    "try_our": "NOUVEAU soin yeux fermeté puissant à base de rétinol pur pour cibler un contour des yeux visiblement plus ferme.",
+    "description": "This potent eye cream is formulated with pure Retinol in a firming complex to help encourage skin renewal for a brighter, firmer and smoother undereye appearance.",
+    "ingredients": [
+      "0.05% RÉTINOL STABILISÉ PUR, NEOGLUCOSAMINE™, MÉLANGE DOUBLE PEPTIDE"
+    ],
+    "price": "54,00 $",
+    "images": {
+      "front": "/resources/images/match-tool/F30104D.png",
+      "hero": "/cms/files/CORRECT_RETINOL_EYE_CREAM_V1.jpg"
+    },
+    "status": "Matched",
+    "before": {
+      "name": "SÉRUM YEUX TOUT-EN-UN",
+      "image": "/resources/images/match-tool/F30104D-before.png"
+    }
+  },
+  {
+    "code": "F30105D",
+    "name": "Sérum Glycolique Régénérateur",
+    "skin_care_system": "Resurface",
+    "product_type": "Serum",
+    "benefits": "exfoliating",
+    "header": "NOUVEAU LOOK. FORMULE AVANCÉE.",
+    "try_our": "NOUVEAU soin lissant antioxydant à base de 10 % d'acide glycolique (AHA) pour affiner l'apparence du grain de peau, cibler un teint plus lisse et éclatant, et améliorer la qualité globale de la peau.",
+    "description": "This powerful combination of 10% Alpha Hydroxy Acid (AHA) and antioxidants is formulated to renew the appearance of skin’s surface texture. Glycolic Acid is precisely blended to maximize exfoliation of surface skin cells, while maintaining an optimal pH.",
+    "ingredients": [
+      "AHA (ACIDE GLYCOLIQUE) 10 %"
+    ],
+    "price": "52,00 $",
+    "images": {
+      "front": "/resources/images/match-tool/F30105D.png",
+      "hero": "/cms/files/RESURFACE_GLYCOLIC_RENEWING_SERUM_V1.jpg"
+    },
+    "status": "Matched",
+    "before": {
+      "name": "SÉRUM GLYCOLIQUE RÉGÉNÉRATEUR SOIN LISSANT ANTIOXYDANT",
+      "image": "/resources/images/match-tool/F30105D-before.png"
+    }
+  },
+  {
+    "code": "F30106D",
+    "name": "Crème de Nuit Réparatrice",
+    "skin_care_system": "Correct",
+    "product_type": "Moisturizer, Exfoliation",
+    "benefits": "moisturizing",
+    "header": "NOUVEAU LOOK. FORMULE AVANCÉE.",
+    "try_our": "NOUVELLE crème de nuit hydratante à l'acide glycolique (AHA), qui agit la nuit pour exfolier les cellules de surface et cibler le combleur naturel hydratant de la peau pour la laisser lisse et éclatante.",
+    "description": "Intensive radiance boosting moisturizing cream \n<ul>Works overnight to renew skin\n</ul>\n<ul>Formulated to reveal and boost skin’s natural radiance\n</ul>\n<ul>Powerful combination of Glycolic Acid and a skin brightener</ul> \n",
+    "ingredients": [
+      "8 % ACIDE GLYCOLIQUE (AHA) ACTIF ÉCLAIRCISSANT"
+    ],
+    "price": "42,00 $",
+    "images": {
+      "front": "/resources/images/match-tool/F30106D.png",
+      "hero": "/cms/files/CORRECT_NIGHT_REPAIR_CREAM_V2.jpg"
+    },
+    "status": "Matched",
+    "before": {
+      "name": "CRÈME DE NUIT RÉPARATRICE",
+      "image": "/resources/images/match-tool/F30106D-before.png"
+    }
+  },
+  {
+    "code": "F30107D",
+    "name": "Crème Hydratante Reconstituante",
+    "skin_care_system": "Correct",
+    "product_type": "Moisturizer",
+    "benefits": "",
+    "header": "NOUVEAU LOOK. FORMULE AVANCÉE.",
+    "try_our": "NOUVEAU concentré anti-rides, spécialement formulé pour hydrater et repulper visiblement la peau, cibler la matrice d'hydratation et ainsi améliorer progressivement l'apparence des rides et des ridules.",
+    "description": "This daily moisturizing cream is specially formulated to provide hydration and visible skin plumping benefits. Hyaluronic acid and an antiaging peptide complex are blended together to target the look of fine lines and wrinkles.",
+    "ingredients": [
+      "MINI COMPLEXE TRIPLE HYDRATATION ACIDE HYALURONIQUE PURE (Acide hyaluronique/facteur naturel d’hydratation (FNH)/sucres naturels d’hydratation) COMPLEXE DOUBLE PEPTIDE"
+    ],
+    "price": "49,00 $",
+    "images": {
+      "front": "/resources/images/match-tool/F30107D.png",
+      "hero": "/cms/files/CORRECT_HYDRA_FILLING_CREAM_V4.jpg"
+    },
+    "status": "Enhanced",
+    "before": {
+      "name": "CRÈME HYDRATANTE RECONSTITUANTE AQUAYOUTH®",
+      "image": "/resources/images/match-tool/F30107D-before.png"
+    }
+  },
+  {
+    "code": "F30110D",
+    "name": "Solution Clarifiante Anti-acné",
+    "skin_care_system": "Clarify",
+    "product_type": "Toner",
+    "benefits": "",
+    "header": "NOUVEAU LOOK. FORMULE AVANCÉE.",
+    "try_our": "NOUVELLE solution clarifiants qui assèche les boutons d'acné et en favorise l'élimination et permet à la peau de cicatriser et aide à prévenir la formation de nouveaux boutons d'acné.",
+    "description": "N/A",
+    "ingredients": [
+      "ACIDE SALICYLIQUE (BHA) 2 % MÉLANGE DÉRIVÉ AHA (ACIDE CITRIQUE ACIDE TARTRIQUE, NEOCITRIATE™)"
+    ],
+    "price": "32,00 $",
+    "images": {
+      "front": "/resources/images/match-tool/F30110D.png",
+      "hero": "/cms/files/CLARIFY_ACNE_CLARIFYING_CLEANSER_V4.jpg"
+    },
+    "status": "Matched",
+    "before": {
+      "name": "Acné Clear Solution Clarifiante",
+      "image": "/resources/images/match-tool/F30110D-before.png"
+    }
+  },
+  {
+    "code": "F30111D",
+    "name": "Peeling Éclaircissant Duo d'Acides",
+    "skin_care_system": "Enlighten",
+    "product_type": "Masks & At-Home Peels",
+    "benefits": "brightening",
+    "header": "NOUVEAU LOOK. FORMULE AVANCÉE.",
+    "try_our": "NOUVELLE peeling double action puissant qui offre l'effet lissant d'un peeling chimique grâce à un complexe ultra-concentré d'acide glycolique et d'acide poly-hydroxylé pour cibler un teint plus clair.",
+    "description": "This potent dual-action peel combines the skin smoothing action of a chemical peel utilizing a highly concentrated complex of 10% Glycolic Acid and 10% Polyhydroxy Acid (PHA) with a scientifically proven brightening peptide to target maximum radiance results. ",
+    "ingredients": [
+      "ACIDE GLYCOLIQUE (AHA) 10 % ET",
+      "ACIDE POLY-HYDROXYLÉS (PHA) 10 %",
+      "PEPTIDE ÉCLAIRCISSANT"
+    ],
+    "price": "80,00 $",
+    "images": {
+      "front": "/resources/images/match-tool/F30111D.png",
+      "hero": "/cms/files/ENLIGHTEN_DUAL_ACID_BRIGHTENING_PEEL_V1.jpg"
+    },
+    "status": "Matched",
+    "before": {
+      "name": "SOLUTION PEELING Éclaircissant",
+      "image": "/resources/images/match-tool/F30111D-before.png"
+    }
+  },
+  {
+    "code": "F30112D",
+    "name": "Peeling Anti-âge Duo d’Acides",
+    "skin_care_system": "Correct",
+    "product_type": "Masks & At-Home Peels",
+    "benefits": "antiaging",
+    "header": "NOUVEAU LOOK. FORMULE AVANCÉE.",
+    "try_our": "NOUVELLE peeling double action puissant qui allie l'effet lissant d'un peeling chimique à un agent volumateur pour cibler la matrice d'hydratation naturelle de la peau, et réduire l'apparence des rides et des ridules.",
+    "description": "This potent dual-action face peel combines the smoothing action of a chemical peel with a volumizing agent to target the skin's natural hydrating matrix and reduce the appearance of fine lines and wrinkles.",
+    "ingredients": [
+      "ACIDE GLYCOLIQUE (AHA 10 %, GLUCONOLACTONE (PHA) 10 % ET AMINOFIL™"
+    ],
+    "price": "80,00 $",
+    "images": {
+      "front": "/resources/images/match-tool/F30112D.png",
+      "hero": "/cms/files/CORRECT_DUAL_ACID_ANTIAGING_PEEL_V4.jpg"
+    },
+    "status": "Matched",
+    "before": {
+      "name": "SOLUTION PEELING ANTI-ÂGE",
+      "image": "/resources/images/match-tool/F30112D-before.png"
+    }
+  },
+  {
+    "code": "F30113D",
+    "name": "Peeling Clarifiant Duo d’Acides",
+    "skin_care_system": "Clarify",
+    "product_type": "Masks & At-Home Peels",
+    "benefits": "renewal",
+    "header": "NOUVEAU LOOK. FORMULE AVANCÉE.",
+    "try_our": "NOUVEAU peeling double action puissant qui allie l'effet lissant d'un peeling chimique à un agent volumateur pour cibler la matrice d'hydratation naturelle de la peau, et réduire l'apparence des rides et des ridules.",
+    "description": "This potent dual-action Antiaging peel features the skin smoothing action of a chemical peel utilizing an exfoliating complex of 10% Glycolic Acid and 10% Polyhydroxy Acid (PHA) to target maximum clarifying results.",
+    "ingredients": [
+      "ACIDE GLYCOLIQUE (AHA) 10 % ET",
+      "GLUCONOLACTONE (PHA) 10 %. Peut être utilisé sur le visage, le cou et le décolleté"
+    ],
+    "price": "80,00 $",
+    "images": {
+      "front": "/resources/images/match-tool/F30113D.png",
+      "hero": "/cms/files/CLARIFY_DUAL_ACID_CLARIFYING_PEEL_V4.jpg"
+    },
+    "status": "Enhanced",
+    "before": {
+      "name": "SOLUTION PEELING RÉGÉNÉRANT",
+      "image": "/resources/images/match-tool/F30113D-before.png"
+    }
+  },
+  {
+    "code": "F30114D",
+    "name": "Crème raffermissante Anti-rides",
+    "skin_care_system": "",
+    "product_type": "Moisturizer",
+    "benefits": "",
+    "header": "NOUVEAU LOOK. FORMULE AVANCÉE. ",
+    "try_our": "NOUVELLE crème de jour haute puissance, formulée avec l'acide glycolique et un peptide raffermissant pour cibler la matrice d'hydratation de la peau et ainsi minimiser l'apparence des rides et des ridules.",
+    "description": "This powerful daily anti-wrinkle and fine lines cream is formulated with 8% glycolic acid and a firming peptide to target skin's hydrating matrix to minimize the look of fine lines and wrinkles.",
+    "ingredients": [
+      "ACIDE GLYCOLIQUE (AHA) 8 %",
+      "PEPTIDE RAFFERMISSANT"
+    ],
+    "price": "46,00 $",
+    "images": {
+      "front": "/resources/images/match-tool/F30114D.png",
+      "hero": "/cms/files/FIRMING_ANTI_WRINKLE_CREAM_V1.jpg"
+    },
+    "status": "Matched",
+    "before": {
+      "name": "CRÈME RAFFERMISSANTE ANTI-RIDES FIRMALIFT",
+      "image": "/resources/images/match-tool/F30114D-before.png"
+    }
+  },
+  {
+    "code": "F30119D",
+    "name": "Contour des Yeux Illuminateur",
+    "skin_care_system": "Enlighten",
+    "product_type": "Eye Care",
+    "benefits": "",
+    "header": "NOUVEAU LOOK. FORMULE AVANCÉE.",
+    "try_our": "NOUVEAU correcteur anti-cernes à base d'antioxydants, de peptides et d'extraits d'algues, formulé pour éclaircir l'apparence des zones sombres sous les yeux.",
+    "description": "This powerful cream blends together antioxidants, peptides, and algae extracts to target visible dark circles under the eyes. An anti-aging blend of Gluconolactone plus Bionic Acid targets skin’s natural hydrating matrix to cushion and brighten the appearance of dark, under eye skin.",
+    "ingredients": [
+      "COMPLEXE D’ANTIOXYDANTS MULTI-ACTION, PEPTIDES, EXTRAITS D’ALGUES, VITAMINES C ET E STABILISÉES, MÉLANGE PHA (GLUCONOLACTONE ET ACIDE LACTOBIONIQUE)"
+    ],
+    "price": "48,00 $",
+    "images": {
+      "front": "/resources/images/match-tool/F30119D.png",
+      "hero": "/cms/files/ENLIGHTEN_BRIGHTENING_EYE_CREAM_V1.jpg"
+    },
+    "status": "Enhanced",
+    "before": {
+      "name": "COMPLEXE ANTI-CERNES SECUREWHITE",
+      "image": "/resources/images/match-tool/F30119D-before.png"
+    }
+  },
+  {
+    "code": "F30132D",
+    "name": "Crème Glycolique Lissante",
+    "skin_care_system": "Resurface",
+    "product_type": "Moisturizer\nExfoliation",
+    "benefits": "exfoliating moisture",
+    "header": "NOUVEAU LOOK. FORMULE AVANCÉE.",
+    "try_our": "NOUVELLE crème lissante aux acides glycolique et citrique hautement concentrés, formulée pour réduire les signes de vieillissement.",
+    "description": "This 10% Alpha Hydroxy Acid (AHA) moisturizer combines Glycolic and Citric Acids to reduce signs of aging. Glycolic Acid is scientifically proven to target skin’s natural filler, plumping and volumizing the appearance of skin, so that wrinkles appear smoother. Specially formulated to provide a potent and precise delivery of Glycolic Acid while maintaining an optimal pH of this high-strength formulation.",
+    "ingredients": [
+      "AHA (ACIDE GLYCOLIQUE ET ACIDE CITRIQUE) 10 %",
+      "BEURRE DE KARITÉ"
+    ],
+    "price": "45,00 $",
+    "images": {
+      "front": "/resources/images/match-tool/F30132D.png",
+      "hero": "/cms/files/RESURFACE_GLYCOLIC SMOOTHING_CREAM_V1.jpg"
+    },
+    "status": "Matched",
+    "before": {
+      "name": "CRÈME ADOUCISSANTE GLYCOLIC RENEWAL",
+      "image": "/resources/images/match-tool/F30132D-before.png"
+    }
+  },
+  {
+    "code": "F30133D",
+    "name": "Lotion Glycolique Lissante",
+    "skin_care_system": "Resurface",
+    "product_type": "Moisturizer\nExfoliation\nNeck and Body",
+    "benefits": "",
+    "header": "NOUVEAU LOOK. FORMULE AVANCÉE.",
+    "try_our": "NOUVELLE Lotion lissante aux acides glycolique et citrique hautement concentrés à la puissante action anti-âge.",
+    "description": "This 10% Alpha Hydroxy Acid (AHA) lotion combines Glycolic and Citric Acids for powerful antiaging action. Glycolic Acid is scientifically proven to target skin’s natural filler, plumping and volumizing the appearance of skin, so that wrinkles appear smoother. \n\nSpecially formulated to provide a potent and precise delivery of Glycolic Acid while maintaining an optimal pH of this high-strength formulation.",
+    "ingredients": [
+      "AHA (ACIDE GLYCOLIQUE ET ACIDE CITRIQUE) 10 %"
+    ],
+    "price": "45,00 $",
+    "images": {
+      "front": "/resources/images/match-tool/F30133D.png",
+      "hero": "/cms/files/RESURFACE_GLYCOLIC_RENEWAL_SOOTHING_LOTION_V1.jpg"
+    },
+    "status": "Matched",
+    "before": {
+      "name": "GLYCOLIC RENEWAL 10 % LOTION ADOUCISSANTE",
+      "image": "/resources/images/match-tool/F30133D-before.png"
+    }
+  },
+  {
+    "code": "F30136D",
+    "name": "Crème Visage Ultra-Hydratante",
+    "skin_care_system": "Restore",
+    "product_type": "Moisturizer",
+    "benefits": "moisturizing",
+    "header": "NOUVEAU LOOK. FORMULE AVANCÉE.",
+    "try_our": "NOUVELLE crème visage anti-âge douce et hautement concentrée, formulée avec des acides poly-hydroxylés afin d'exfolier légèrement, d'hydrater et de réduire les signes visibles de vieillissement. Non comédogène, sans parfum.",
+    "description": "A gentle, high-strength, antiaging face cream with 10% Polyhydroxy Acid (PHA) to lightly exfoliate, moisturize and reduce visible signs of aging. Contains PHA, known to soothe and strengthen the protective moisture barrier for dry or stressed skin.",
+    "ingredients": [
+      "PHA 10 % (GLUCONOLACTONE) VITAMINE E"
+    ],
+    "price": "68,00 $",
+    "images": {
+      "front": "/resources/images/match-tool/F30136D.png",
+      "hero": "/cms/files/MISSING.png"
+    },
+    "status": "Enhanced",
+    "before": {
+      "name": "YOUTH FACTOR CRÈME RÉGÉNÉRANTE COMPLÈTE",
+      "image": "/resources/images/match-tool/F30136D-before.png"
+    }
+  },
+  {
+    "code": "F30138X",
+    "name": "Sérum Bionic pour le visage",
+    "skin_care_system": "Restore",
+    "product_type": "Serum",
+    "benefits": "antiaging",
+    "header": "NOUVEAU LOOK. FORMULE AVANCÉE.",
+    "try_our": "NOUVEAU Sérum Bionic hautement concentré à 10 % de PHA, formulé pour corriger visiblement les signes de vieillissement cutané et apporter un éclat renforcé.",
+    "description": "This high-strength 10% Bionic serum is designed to create a protective layer to help restore skin’s youthful appearance. Contains Polyhydroxy Acid (PHA), a potent antioxidant to help replenish skin’s moisture barrier and protect against environmental factors.",
+    "ingredients": [
+      "PHA 10 % (ACIDE LACTOBIONIQUE)"
+    ],
+    "price": "85,00 $",
+    "images": {
+      "front": "/resources/images/match-tool/F30138X.png",
+      "hero": "/cms/files/RESTORE_BIONIC_FACE_SERUM_V1.jpg"
+    },
+    "status": "Enhanced",
+    "before": {
+      "name": "Youth Factor GF Total Regenerating Serum",
+      "image": "/resources/images/match-tool/F30138X-before.png"
+    }
+  },
+  {
+    "code": "F30140D",
+    "name": "Lotion Bionic",
+    "skin_care_system": "Restore",
+    "product_type": "Neck and Body",
+    "benefits": "",
+    "header": "NOUVEAU LOOK. FORMULE AVANCÉE.",
+    "try_our": "NOUVELLE lotion légère au mélange hautement concentré d'acides poly-hydroxylés, conçue pour apaiser la peau sèche et réactive du visage et du corps.",
+    "description": "A lightweight lotion containing a high-strength 15% Polyhydroxy Acid (PHA) blend which acts as a humectant, attracting and binding moisture to the skin. Formulated to gently exfoliate, smoothing rough, dry skin while providing restorative antioxidants to help protect against environmental factors.",
+    "ingredients": [
+      "PHA 15 % ( GLUCONOLACTONE ET ACIDE LACTOBIONIQUE)"
+    ],
+    "price": "55,00 $",
+    "images": {
+      "front": "/resources/images/match-tool/F30140D.png",
+      "hero": "/cms/files/RESTORE_BIONIC_LOTION_V2.jpg"
+    },
+    "status": "Enhanced",
+    "before": {
+      "name": "GLYCOLIC RENEWAL LOTION POUR LE CORPS ADOUCISSANTE",
+      "image": "/resources/images/match-tool/F30140D-before.png"
+    }
+  },
+  {
+    "code": "F30142D",
+    "name": "Nettoyant Mandélique Purifiant",
+    "skin_care_system": "Clarify",
+    "product_type": "Cleanser\nToner",
+    "benefits": "",
+    "header": "NOUVEAU LOOK. FORMULE AVANCÉE.",
+    "try_our": "NOUVEAU gel nettoyant moussant visage à l'acide mandélique, formulé pour l'exfoliation à la fois douce et efficace des peaux grasses.",
+    "description": "This soap-free foaming gel cleanser is formulated with Mandelic Acid, a gentle yet effective Alpha Hydroxy Acid (AHA) that is ideal for exfoliating oily skin. It also contains a Polyhydroxy Acid (PHA) and Salicylic Acid, known to help clarify pores and improve skin texture.",
+    "ingredients": [
+      "4 % PHA/AHA (ACIDE MANDÉLIQUE (AHA), ACIDE SALICYLIQUE (BHA) ET GLUCONOLACTONE (PHA))"
+    ],
+    "price": "27,00 $",
+    "images": {
+      "front": "/resources/images/match-tool/F30142D.png",
+      "hero": "/cms/files/CLARIFY_MANDELLIC_CLARIFYING_CLEANSER_V3.jpg"
+    },
+    "status": "Enhanced",
+    "before": {
+      "name": "GEL NETTOYANT CLARIFIANT ACNE CLEAR",
+      "image": "/resources/images/match-tool/F30142D-before.png"
+    }
+  },
+  {
+    "code": "F30143D",
+    "name": "Sérum Mandélique Matifiant",
+    "skin_care_system": "Clarify",
+    "product_type": "Serum",
+    "benefits": "mattifying",
+    "header": "NOUVEAU LOOK. FORMULE AVANCÉE. ",
+    "try_our": "NOUVEAU gel-sérum matifiant léger aux acides mandélique et poly-hydroxylé, formulé pour contribuer à clarifier les pores et à améliorer l'aspect des peaux grasses.",
+    "description": "This lightweight, mattifying gel-serum absorbs skin’s surface oils to create a velvety finish, minimizing the appearance of pores and controlling shine. An 8% exfoliating blend containing Mandelic Acid and Polyhydroxy Acid (PHA) helps clarify skin and improves the appearance of oily skin.",
+    "ingredients": [
+      "MÉLANGE EXFOLIANT (ACIDE MANDÉLIQUE (AHA) ET GLUCONOLACTONE (PHA))"
+    ],
+    "price": "38,00 $",
+    "images": {
+      "front": "/resources/images/match-tool/F30143D.png",
+      "hero": "/cms/files/CLARIFY_MANDELLIC_MATTIFYING_SERUM_V2.jpg"
+    },
+    "status": "Enhanced",
+    "before": {
+      "name": "FLUIDE MATIFIANT SANS HUILE",
+      "image": "/resources/images/match-tool/F30143D-before.png"
+    }
+  },
+  {
+    "code": "F30144D",
+    "name": "Gel Anti-Obstruction",
+    "skin_care_system": "Clarify",
+    "product_type": "Exfoliation",
+    "benefits": "",
+    "header": "NOUVEAU LOOK. FORMULE AVANCÉE. ",
+    "try_our": "NOUVEAU gel traitant ciblé triple action, formulé pour exfolier les cellules mortes et contribuer à débarrasser les pores de leurs impuretés.",
+    "description": "N/A",
+    "ingredients": [
+      "ACIDE SALICYLIQUE (BHA)",
+      "TRIPLE MÉLANGE DE AHA (ACIDES MANDÉLIQUE, CITTRIQUE, TARTARIQUE), PROVITAMINE A (ACÉTATE DE RÉTINYLE)"
+    ],
+    "price": "26,00 $",
+    "images": {
+      "front": "/resources/images/match-tool/F30144D.png",
+      "hero": "/cms/files/CLARIFY_TARGETED_CLARIFYING_GEL_V2.jpg"
+    },
+    "status": "Enhanced",
+    "before": {
+      "name": "ACNE CLEAR GEL POUR BOUTONS D'ACNÉ",
+      "image": "/resources/images/match-tool/F30144D-before.png"
+    }
+  },
+  {
+    "code": "F30145D",
+    "name": "Solution pour Peau Grasse",
+    "skin_care_system": "Clarify",
+    "product_type": "Cleanser\nToner",
+    "benefits": "purifying",
+    "header": "NOUVEAU LOOK. FORMULE AVANCÉE.",
+    "try_our": "NOUVEAU tonique réducteur de pores à base d'acide glycolique, un acide alpha-hydroxylé reconnu pour exfolier, clarifier et aider à resserrer les pores.",
+    "description": "This hydroalcoholic solution contains 8% Glycolic Acid, an Alpha Hydroxy Acid (AHA), to exfoliate skin, and target clogged pores and excess surface oil.",
+    "ingredients": [
+      "8 % ACIDE GLYCOLIQUE (AHA)"
+    ],
+    "price": "32,00 $",
+    "images": {
+      "front": "/resources/images/match-tool/F30145D.png",
+      "hero": "/cms/files/CLARIFY_OILY_SKIN_SOLUTION_V1.jpg"
+    },
+    "status": "Enhanced",
+    "before": {
+      "name": "SOLUTION PURIFIANTE",
+      "image": "/resources/images/match-tool/F30145D-before.png"
+    }
+  },
+  {
+    "code": "F30149D",
+    "name": "Restructurant Matriciel",
+    "skin_care_system": "",
+    "product_type": "Moisturizer",
+    "benefits": "",
+    "header": "NOUVEAU LOOK. FORMULE AVANCÉE.",
+    "try_our": "nouvelle formule avancée!",
+    "description": "Targets the skin's hydrating matrix to firm the skin's appearance and repair the look of fine lines and wrinkles.",
+    "ingredients": [
+      "NEOGLUCOSAMINE CRÈME DE JOUR AVEC 0,1 % RÉTINOL ET PEPTIDES LARGE SPECTRE FPS 30"
+    ],
+    "price": "75,00 $",
+    "images": {
+      "front": "/resources/images/match-tool/F30149D.png",
+      "hero": "/cms/files/MISSING.png"
+    },
+    "status": "Enhanced",
+    "before": {
+      "name": "Crème Hydratante Anti-Rides Réparatrice SPF 30\nou\nCrème Anti- ge SPF 15 aux Cellules Souches de Peptides",
+      "image": "/resources/images/match-tool/F30149D-before.png"
+    }
+  },
+  {
+    "code": "F30160D",
+    "name": "Concentré Éclaircissant",
+    "skin_care_system": "Enlighten",
+    "product_type": "Moisturizer",
+    "benefits": "",
+    "header": "NOUVEAU LOOK. FORMULE AVANCÉE.",
+    "try_our": "NOUVELLE traitement éclaircissant multiaction, qui contient des ingrédients bénéfiques hautement concentrés permettant d'améliorer l'aspect de la peau et de réduire l'apparence des décolorations.",
+    "description": "This intensive, multi-action brightening treatment contains highly active benefit ingredients including NEOGLUCOSAMINE™, Retinol (0.1%), and stabilized Vitamin C to enhance skin resurfacing and diminish the appearance of discoloration. This specially formulated product helps immediately brighten the appearance of skin while a potent antioxidant found in Turmeric targets the look of dark spots.",
+    "ingredients": [
+      "NEOGLUCOSAMINE™ RÉTINOL 0,1 %, EXTRAITS PLANTES ÉCLAIRCISSANTES",
+      "VITAMINE C STABILISÉE ET UN ANTIOXYDANT PUISSANT PRÉSENT DANS LE CURCUMA"
+    ],
+    "price": "62,00 $",
+    "images": {
+      "front": "/resources/images/match-tool/F30160D.png",
+      "hero": "/cms/files/ENLIGHTEN_BRIGHTENING_COMPLEX_V1.jpg"
+    },
+    "status": "Enhanced",
+    "before": {
+      "name": "SÉRUM ÉCLAIRCISSANT SECUREWHITE®",
+      "image": "/resources/images/match-tool/F30160D-before.png"
+    }
+  },
+  {
+    "code": "F30161D",
+    "name": "Sérum Illuminateur",
+    "skin_care_system": "Enlighten",
+    "product_type": "Serum",
+    "benefits": "brightening",
+    "header": "NOUVEAU LOOK. FORMULE AVANCÉE.",
+    "try_our": "NOUVEAU sérum multiaction qui contient un exfoliant doux contribuant à réduire l'apparence des décolorations cutanées.",
+    "description": "This multi-action serum targets skin discoloration and uneven skin tone. Contains NEOGLUCOSAMINE™, a gentle exfoliator known to help fade the appearance of existing skin discolorations. This formula includes 4% Niacinamide (Vitamin B3), and a blend of\nVitamin C, B-Resorcinol and Licorice Extract to help promote a brighter and more even skin tone.\n",
+    "ingredients": [
+      "NEOGLUCOSAMINE™ 4 % NIACINAMIDE (VITAMINE B3) VITAMINE C"
+    ],
+    "price": "82,00 $",
+    "images": {
+      "front": "/resources/images/match-tool/F30161D.png",
+      "hero": "/cms/files/ENLIGHTEN_ILLUMINATING_SERUM_V1.jpg"
+    },
+    "status": "Matched",
+    "before": {
+      "name": "SÉRUM ÉCLAIRCI-TEINT",
+      "image": "/resources/images/match-tool/F30161D-before.png"
+    }
+  },
+  {
+    "code": "F30164D",
+    "name": "Protection Physique Ultra-Légère",
+    "skin_care_system": "Defend",
+    "product_type": "Sun Care, Serum",
+    "benefits": "",
+    "header": "NOUVEAU LOOK. FORMULE AVANCÉE.",
+    "try_our": "nouvelle formule avancée!",
+    "description": "This mattifying fluid sunscreen combines potent antioxidants with a Polyhydroxy Acid (PHA) complex to protect and strengthen skin's moisture barrier against environmental aggressors. Formulated exclusively with mineral sunscreens: Zinc Oxide and Titanium Dioxide.",
+    "ingredients": [
+      "DIOXYDE DE TITANE 7 % ET MÉLANGE OXYDE DE ZINC 6 % (GLUCONOLACTONE ET ACIDE LACTOBIONIQUE)",
+      "VITAMINE E"
+    ],
+    "price": "33,00 $",
+    "images": {
+      "front": "/resources/images/match-tool/F30164D.png",
+      "hero": "/cms/files/DEFEND_SHEER_PHYSICAL_PROTECTION_V1.jpg"
+    },
+    "status": "Enhanced",
+    "before": {
+      "name": "Lotion Protectrice avec Écran Minéral SPF 45",
+      "image": "/resources/images/match-tool/F30164D-before.png"
+    }
+  },
+  {
+    "code": "F30165D",
+    "name": "Sérum Défensif Antioxidant",
+    "skin_care_system": "Correct",
+    "product_type": "Serum",
+    "benefits": "Antiaging",
+    "header": "NOUVEAU LOOK. FORMULE AVANCÉE.",
+    "try_our": "NOUVEAU Sérum de Défense Antioxydant, formulé pour renforcer les défenses cutanées contre les agressions environnementales, pour une peau resplendissante de santé.",
+    "description": "Formulated to help combat the appearance of oxidation-induced photoaging\nMulti-action formula targets 5 types of environmental aggressors\nOil-free",
+    "ingredients": [
+      "Mélange 8 % de AHA/PHA (ACIDE CITRIQUE, GLUCONOLACTONE ET ACIDE MALTOBIONQUE). COMPLEXE DE VITAMINES C, E, ACIDE CITRIQUE, ainsi que lilas, thé vert et EXTRAITS DE PÉPINS DE RAISINS DE CHARDONNAY"
+    ],
+    "price": "85,00 $",
+    "images": {
+      "front": "/resources/images/match-tool/F30165D.png",
+      "hero": "/cms/files/CORRECT_ANTIOX_DEFENSE_SERUM_V3.jpg"
+    },
+    "status": "Enhanced",
+    "before": {
+      "name": "SÉRUM ANTI-ÂGE",
+      "image": "/resources/images/match-tool/F30165D-before.png"
+    }
+  }
+]
