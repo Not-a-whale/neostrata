@@ -1,8 +1,13 @@
 <div id="match-tool" class="match-tool-widget" data-widget="match-tool">
   <div class="match-hero">
     <div class="match-header">
-      <img class="image desktop" src="/resources/images/match-tool/matchtoolheader-d.jpg" />
-      <img class="image mobile" src="/resources/images/match-tool/matchtoolheader-m.jpg" />
+      {% if apicontext.headers.x-vol-locale|lower == "fr-ca"  %}
+        <img class="image desktop" src="/resources/images/match-tool/matchtoolheader-d-fr.jpg" />
+        <img class="image mobile" src="/resources/images/match-tool/matchtoolheader-m-fr.jpg" />
+      {% else %}
+        <img class="image desktop" src="/resources/images/match-tool/matchtoolheader-d.jpg" />
+        <img class="image mobile" src="/resources/images/match-tool/matchtoolheader-m.jpg" />
+      {% endif %}
     </div>
     <div class="flex-swing match-block-1">
       <div class="flex-fill match-col-1">
@@ -79,7 +84,7 @@
       <div class="flex-fill match-col-3a flex-column-middle">
         <div class="flex-fixed match-col-3b">
           <div class="match-content-8 text-align-center">
-            {{ labels.matchContent6 }}:
+            {{ labels.matchContent8|safe }}:
           </div>
           <div class="match-content-9 text-align-center">
             <%= before.name %>
