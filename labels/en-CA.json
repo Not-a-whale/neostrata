@@ -596,6 +596,7 @@
   "step": "STEP",
   "includeInRegimen": "INCLUDE IN REGIMEN",
   "storesNear": "Stores near",
+  "startAddress": "Start address",
   "sort": "SORT",
   "filter": "FILTER"
 
