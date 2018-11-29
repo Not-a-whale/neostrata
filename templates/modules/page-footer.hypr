@@ -22,7 +22,7 @@
         {% include "modules/secondary-nav" %}
     {% endblock secondary-nav %}
     <div class="signup-footer">
-        <a href="/sign-up">{{ labels.newsletterLink }}</a>
+        <a href="{{ labels.newsletterLinkPath }}">{{ labels.newsletterLink }}</a>
     </div>
 	<div class="container-fluid">
 		<div class="row ">

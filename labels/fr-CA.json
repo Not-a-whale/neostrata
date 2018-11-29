@@ -551,6 +551,7 @@
   "cookieTextAboutAds" : "À propos des annonces ciblées par centres d’intérêt",
   "cookieURLAboutAds" : "http://www.jnjcanada.com/fr/ad-choices#ie-privacy-blk",
   "newsletterLink" : "Abonnez-vous à notre Infolettre",
+  "newsletterLinkPath" : "/sinscrire",
   "newsletterTitle" : "Abonnement courriel!",
   "newsletterSubtitle" : "Ne manquez pas les plus récents lancements de produits, ventes et aubaines pour les initiés!",
   "newsletterConfirmation" : "Le programme <b>INITIÉS NEOSTRATA®</b>, qui vous est offert par NEOSTRATA® du Canada, communiquera avec vous pour vous proposer des essais gratuits, des concours, des coupons de grande valeur, ainsi que des conseils et des renseignements pratiques au sujet de la santé, du bien-être et du bonheur. Consentez-vous à recevoir ces communications, y compris par moyens électroniques (p.ex. courriel ou message texte), du programme <b>INITIÉS NEOSTRATA®</b>?",
@@ -598,5 +599,6 @@
   "storesNear": "Emplacements près de",
   "startAddress": "Adresse de départ",
   "sort": "Filtrer par",
-  "filter": "Filtrer par"
+  "filter": "Filtrer par",
+  "shopBy": "Magasiner par"
 }
