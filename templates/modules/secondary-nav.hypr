@@ -6,11 +6,6 @@
       {% for lookup in themeSettings.megaMenu.categoryLookups %}
         {% if lookup.includeInSecondaryNav %}
           {% with lookupCategory.items|findwhere('categoryCode', lookup.linkedCategoryCode) as linkedCategory %}
-
-                          Lookup URL: {{lookup.url}}
-                          Lookup URL: {{linkedCategory.url}}
-
-
             {% if lookup.url == linkedCategory.url %}
               <li class="mz-sitenav-item">
                 <div class="mz-sitenav-item-inner">
