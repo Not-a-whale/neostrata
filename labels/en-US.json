@@ -600,5 +600,6 @@
   "storesNear": "Stores near",
   "startAddress": "Start address",
   "sort": "SORT",
-  "filter": "FILTER"
+  "filter": "FILTER",
+  "shopBy": "Shop by"
 }
