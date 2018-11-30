@@ -10,7 +10,7 @@
     {% block breadcrumbs %}{% endblock breadcrumbs %}
 
     <div class="mz-l-container mz-site-map container">
-        <h1 class="mz-pagetitle">Site Map</h1>
+        <h1 class="mz-pagetitle">{{labels.siteMap}}</h1>
         {% for link in navigation.tree %}
           {% if not link.isHidden %}
             <div class="row">
