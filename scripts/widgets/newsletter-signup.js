@@ -23,7 +23,6 @@ require([
       $('.required-fields').hide();
       $('#newsletter-disclaimer').hide();
       $('.newsletter-confirmation').hide();
-
       observer.disconnect();
     }
   });
@@ -156,6 +155,9 @@ require([
           $( document ).scrollTop( $( '#newsletter-form' ).offset().top - 150 );
         }
       });
+
+      $('#success_message_'+getFormId()+' h2').html( Hypr.getLabel('newsletterThanksHeader') );
+      $('#success_message_'+getFormId()+' p').html( Hypr.getLabel('newsletterThanksText') );        
 
       // Reveal form.
       $('#newsletter-form').show();
