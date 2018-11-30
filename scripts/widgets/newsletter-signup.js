@@ -18,7 +18,8 @@ require([
       initOnce();
     }
 
-    if( $( '#success_message_0' ).is( ':visible' ) ) {
+    var successMessage = '#success_message_'+getFormId();
+    if($(successMessage).is( ':visible' ) ) {
       $('.required-fields').hide();
       $('#newsletter-disclaimer').hide();
       $('.newsletter-confirmation').hide();
@@ -32,49 +33,42 @@ require([
   var didInit = false;
   function initOnce() {
     if ( !didInit ) {
+        
       // Add placeholders.
-      _.each({
-        '#first_name_0':  Hypr.getLabel('firstName') + ' *',
-        '#last_name_0':   Hypr.getLabel('lastName') + ' *',
-        '#email_address_0': Hypr.getLabel('emailAddress') + ' *'
-      }, function( placeholder, id ) {
-        $( id ).prop( 'placeholder', placeholder );
-      });
+      $('#first_name_'+getFormId()).prop( 'placeholder', Hypr.getLabel('firstName') + ' *' );
+      $('#last_name_'+getFormId()).prop( 'placeholder', Hypr.getLabel('lastName') + ' *' );
+      $('#email_address_'+getFormId()).prop( 'placeholder', Hypr.getLabel('emailAddress') + ' *' );
 
       // Reorder fields.
-      $('#email_address_field_0').insertAfter($('#last_name_field_0'));
-      $('#custom_field_string_user_type_field_0').insertAfter($('#email_address_field_0'));
+      $('#email_address_field_'+getFormId()).insertAfter($('#last_name_field_'+getFormId()));
+      $('#custom_field_string_user_type_field_'+getFormId()).insertAfter($('#email_address_field'+getFormId()));
 
       // Customize user-type field.
-      $( '#custom_field_string_user_type_0' ).prop( 'type', 'hidden' );
-      $( '#custom_field_string_user_type_field_0' ).append( $( '#template-newsletter-usertype' ).html() );
+      $( '#custom_field_string_user_type_'+getFormId()).prop( 'type', 'hidden' );
+      $( '#custom_field_string_user_type_field_'+getFormId()).append( $( '#template-newsletter-usertype').html() );
 
       // Customize user-type label
-      $( '#custom_field_string_user_type_label_0' ).html( Hypr.getLabel('userType') );
+      $( '#custom_field_string_user_type_label_'+getFormId()).html( Hypr.getLabel('userType') );
 
       // Customize brith-date field.
-      $( '#custom_field_date_b-day_label_0' ).html( Hypr.getLabel('newsletterBirthday')+ ' *' );
+      $( '#custom_field_date_b-day_label_'+getFormId()).html( Hypr.getLabel('newsletterBirthday')+ ' *' );
 
-      _.each( [
-        '#custom_field_date_b-day_month_0',
-        '#custom_field_date_b-day_day_0',
-        '#custom_field_date_b-day_year_0'
-      ], function( id ) {
-        $( id ).addClass( 'input_age' );
-      });
+      $('#custom_field_date_b-day_month_'+getFormId()).addClass( 'input_age' );
+      $('#custom_field_date_b-day_day_'+getFormId()).addClass( 'input_age' );
+      $('#custom_field_date_b-day_year_'+getFormId()).addClass( 'input_age' );
 
       // Customize skin-type field.
-      $( '#custom_field_string_skin_type_label_0' ).html( Hypr.getLabel( 'skinType' ) + ' *' );
-      $( '#custom_field_string_skin_type_0' ).prop( 'type', 'hidden' );
+      $( '#custom_field_string_skin_type_label_'+getFormId() ).html( Hypr.getLabel( 'skinType' ) + ' *' );
+      $( '#custom_field_string_skin_type_'+getFormId() ).prop( 'type', 'hidden' );
 
-      $( '#custom_field_string_skin_type_field_0' ).append( $( '#template-newsletter-skintype' ).html() );
+      $( '#custom_field_string_skin_type_field_'+getFormId() ).append( $( '#template-newsletter-skintype' ).html() );
 
       // Setup consumer-dependent fields (group)
-      $( '#custom_field_string_skin_type_field_0' ).after( $( '#template-newsletter-consumer-group' ).html() );
+      $( '#custom_field_string_skin_type_field_'+getFormId() ).after( $( '#template-newsletter-consumer-group' ).html() );
       $( '#consumer-field' )
         .append(
-          $( '#custom_field_date_b-day_field_0' ),
-          $( '#custom_field_string_skin_type_field_0' )
+          $( '#custom_field_date_b-day_field_'+getFormId() ),
+          $( '#custom_field_string_skin_type_field_'+getFormId() )
         );
 
       // Insert disclaimer.
@@ -87,15 +81,12 @@ require([
           $( this ).prop( 'checked', true );
 
           var value = $(this).prop('value');
-          $( '#custom_field_string_user_type_0' ).prop( 'value', value );
+          $( '#custom_field_string_user_type_'+getFormId() ).prop( 'value', value );
 
-          switch ( value ) {
-            case 'Advisor':
+          if(value == 'Advisor' || value == 'Conseiller') {
               $( '#consumer-field' ).hide( 'slow' );
-              break;
-            case 'Consumer':
+          }else if(value == 'Consumer' || value == 'Consommateur'){
               $( '#consumer-field' ).show( 'slow' );
-              break;
           }
 
           //$('.ctct-form-button').prop('disabled',true);
@@ -103,7 +94,7 @@ require([
 
       // Handle skin-type changes.
       $( '#input_skintype' ).change( function() {
-          $( '#custom_field_string_skin_type_0' ).prop( 'value', $( this ).prop( 'value' ) );
+          $( '#custom_field_string_skin_type_'+getFormId() ).prop( 'value', $( this ).prop( 'value' ) );
       });
 
       var $submit = $( '.ctct-form-button' );
@@ -124,9 +115,9 @@ require([
         var valid = true;
 
         _.each( [
-          '#first_name_0',
-          '#last_name_0',
-          '#email_address_0'
+          '#first_name_'+getFormId(),
+          '#last_name_'+getFormId(),
+          '#email_address_'+getFormId()
         ], function( id ) {
           $( id ).removeClass( 'is-error' );
           if ( $( id ).val() === '' ) {
@@ -137,21 +128,21 @@ require([
 
         // User Type
         $( '.input_usertype' ).removeClass( 'is-error' );
-        if ( $( '#custom_field_string_user_type_0' ).val() === '' ) {
+        if ( $( '#custom_field_string_user_type_'+getFormId() ).val() === '' ) {
           $( '.input_usertype' ).addClass( 'is-error' );
           valid = false;
         }
 
         // Date
         $( '.input_age' ).removeClass( 'is-error' );
-        if ( $( '#custom_field_string_user_type_0' ).val() === 'Consumer' && !checkDate() ) {
+        if ( $( '#custom_field_string_user_type_'+getFormId() ).val() === 'Consumer' && !checkDate() ) {
           $( '.input_age' ).addClass( 'is-error' );
           valid = false;
         }
 
         // Skin Type
         $( '.input_skintype' ).removeClass( 'is-error' );
-        if ( $( '#custom_field_string_user_type_0' ).val() === 'Consumer' && $( '#custom_field_string_skin_type_0' ).val() === '' ) {
+        if ( $( '#custom_field_string_user_type_'+getFormId() ).val() === 'Consumer' && $( '#custom_field_string_skin_type_'+getFormId() ).val() === '' ) {
           $( '.input_skintype' ).addClass( 'is-error' );
           valid = false;
         }
@@ -196,6 +187,11 @@ require([
     }
 
     return true;
+  }
+
+  function getFormId(){
+      
+      return $( 'form.ctct-form-custom').attr('id').split("_").pop();
   }
 
   // Load the ConstantContact sign-up widget library.

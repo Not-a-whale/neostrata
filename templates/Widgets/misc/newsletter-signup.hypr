@@ -334,9 +334,9 @@
 <!-- End Constant Contact Active Forms -->
 
 <script type="text/template" id="template-newsletter-usertype">
-  <input class="input_usertype" name="input_usertype" type="checkbox" id="type_advisor" value="Advisor">
+  <input class="input_usertype" name="input_usertype" type="checkbox" id="type_advisor" value="{{ labels.newsletterAdvisor }}">
   <label for="type_advisor">{{ labels.newsletterAdvisor }}</label>
-  <input class="input_usertype" name="input_usertype" type="checkbox" id="type_consumer" value="Consumer">
+  <input class="input_usertype" name="input_usertype" type="checkbox" id="type_consumer" value="{{ labels.newsletterConsumer }}">
   <label for="type_consumer">{{ labels.newsletterConsumer }}</label></div>
 </script>
 
