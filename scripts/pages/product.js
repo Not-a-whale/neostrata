@@ -3,7 +3,7 @@
     "underscore",
     "bxslider",
     "elevatezoom",
-    'modules/block-ui',    
+    'modules/block-ui',
     "hyprlive",
     "modules/backbone-mozu",
     "modules/cart-monitor",
@@ -145,7 +145,7 @@
             $('#details-accordion').find('.panel-heading a').first().click();
             $(".family-details [data-mz-action='addToCart']").addClass('hide');
             $(".mz-productdetail-conversion-buttons").removeClass('hide');
-            
+
             if (this.model.get('productType') === Hypr.getThemeSetting('familyProductType')) {
                 try {
                     blockUiLoader.globalLoader();
@@ -222,7 +222,7 @@
         },
         quantityPlus: function() {
             if(!$("#plus").hasClass('disabled')){
-                this.model.messages.reset(); 
+                this.model.messages.reset();
                 var qty = this.model.get('quantity');
                 this.model.set('quantity',++qty);
                 setTimeout(function(){
@@ -310,9 +310,9 @@
             }
         },
         addToCart: _.debounce(function() {
-            var me = this;  
+            var me = this;
             me.model.messages.reset();
-            //If Family Products            
+            //If Family Products
             if (this.model.get('productType') === Hypr.getThemeSetting('familyProductType')) {
                 blockUiLoader.globalLoader();
                 /* jshint ignore:start */
@@ -400,6 +400,8 @@
                         blockUiLoader.unblockUi();
                     })
                     /* jshint ignore:end */
+            }else if(me.model.get('inventoryInfo').manageStock === false){
+                me.model.addToCart();
             }else if(typeof me.model.get('inventoryInfo').onlineStockAvailable !== 'undefined' && me.model.get('inventoryInfo').outOfStockBehavior === "AllowBackOrder"){
                 me.model.addToCart();
             }else if (typeof me.model.get('inventoryInfo').onlineStockAvailable !== "undefined" && me.model.get('inventoryInfo').onlineStockAvailable === 0 && me.model.get('inventoryInfo').outOfStockBehavior === "DisplayMessage") {
@@ -477,7 +479,7 @@
                 if(pdpMainImageNameSwatch.indexOf("{2}") != -1){
                     pdpMainImageNameSwatch = pdpMainImageNameSwatch.replace("{2}", version);
                 }
-            } 
+            }
             var imagepath = imagefilepath + '/' + pdpMainImageNameSwatch +'?maxWidth=';
             var mainImage = imagepath + width_pdp;
             var zoomimagepath = imagepath + width_zoom;
@@ -584,7 +586,7 @@
     $(document).ready(function() {
         if ($('.mz-product-detail-tabs ul.tabs li').length === 0)
             $('.mz-product-detail-tabs').remove();
-        
+
         var product = ProductModels.Product.fromCurrent();
 
         product.on('addedtocart', function(cartitem) {
@@ -593,7 +595,7 @@
                 CartMonitor.addToCount(product.get('quantity'));
                 $('html,body').animate({
                     scrollTop: $('header').offset().top
-                }, 1000); 
+                }, 1000);
                 product.set('quantity', 1);
                 if(product.get('options')){
                     var optionModels = product.get('options').models;
@@ -601,7 +603,7 @@
                         optionModels[k].set('value', null);
                     }
                 }
-                product.unset('stockInfo'); 
+                product.unset('stockInfo');
                 var priceDiscountTemplate = Hypr.getTemplate("modules/product/price-stack");
                 $('.mz-productdetail-price').html(priceDiscountTemplate.render({
                     model: priceModel
@@ -639,7 +641,7 @@
         }
         if ($('#productmobile-Carousel').length) {
             createPager(slider_mobile);
-        }        
+        }
 
         var productImagesView = new ProductImageViews.ProductPageImagesView({
             el: $('[data-mz-productimages]'),
