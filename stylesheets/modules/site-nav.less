@@ -345,13 +345,13 @@
                         }
                     }
                 }
-                &:nth-of-type(1), &:nth-of-type(11){
+                &:nth-of-type(1), &:nth-of-type(6){
                     border-top:none;
                 }
-                &:nth-of-type(9){
+                &:nth-of-type(5){
                     padding-bottom: 3rem;
                 }
-                &:nth-of-type(1), &:nth-of-type(3), &:nth-of-type(5), &:nth-of-type(7), &:nth-of-type(9) {
+                &:nth-of-type(1), &:nth-of-type(2), &:nth-of-type(3), &:nth-of-type(4), &:nth-of-type(5) {
                     >.mz-sitenav-item-inner{
                         >.mz-sitenav-link {
                             font-size: 1.5rem;
@@ -623,7 +623,8 @@
 
           .mz-sitenav-list {
               >.mz-sitenav-item {
-                  display: none;
+                  display: inline-block;
+                  text-transform: uppercase;
                   >.mz-sitenav-item-inner>.mz-sitenav-link{
                       .commerce-enabled-false & {
                         height: 6rem;
@@ -640,23 +641,25 @@
                   text-align: center;
                   width: 13%;
                   .mz-sitenav-item {
-                      text-transform: uppercase;
                   }
                   &:nth-of-type(1) {
                       margin-left: 5%;
                       margin-right: 3%;
-                      display: inline-block;
+                  }
+                  &:nth-of-type(2) {
+                      margin-right: 26.5%;
                   }
                   &:nth-of-type(3) {
-                      margin-right: 26.5%;
-                      display: inline-block;
                   }
-                  &:nth-of-type(5) {
-                      display: inline-block;
-                  }
-                  &:nth-of-type(7) {
+                  &:nth-of-type(4) {
                       width: 10%;
-                      display: inline-block;
+                  }
+                  &:nth-of-type(4) {
+                      width: 10%;
+                  }
+                  // show only 4 items in the nav.
+                  &:nth-of-type(n+5) {
+                    display: none;
                   }
               }
           }
@@ -683,7 +686,7 @@
   }
 
   .commerce-enabled-true {
-    #nav-header-container .sticky-nav {
+    #nav-header-container.sticky-nav {
       .mz-pageheader {
         height: 9rem;
         .ml-header-content {

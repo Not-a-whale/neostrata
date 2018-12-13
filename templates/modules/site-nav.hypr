@@ -75,7 +75,6 @@
                 {% endif %}
               </div>
             </li>
-            <li class="ml-navbar-separator"></li>
             {% endif %}
           {% endfor %}
           {% endpartial_cache %}
