@@ -106,7 +106,7 @@
     {% block body-tag %}
 
     {% block open-body-tag %}
-    <body class="neostrata-theme locale-{{ apicontext.headers.x-vol-locale|lower }} {% block body-tag-classes %} {% endblock body-tag-classes %}">
+    <body class="neostrata-theme commerce-enabled-{{ themeSettings.commerceEnabled|lower }} locale-{{ apicontext.headers.x-vol-locale|lower }} {% block body-tag-classes %} {% endblock body-tag-classes %}">
 
         <!-- Google Tag Manager (noscript) -->
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P7FDDBQ"
