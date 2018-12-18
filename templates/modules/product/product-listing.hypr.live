@@ -49,6 +49,6 @@
 </div>
     <div class="bottom-details">
     {% include "modules/product/price-stack" %}
-     <div id="BVRRInlineRating-{{model.productCode}}" class="pdp5 bvr-inline-rating" data-mz-product-code="{{ model.productCode }}" data-mz-product-url="{{ model.url }}"></div>
+     <div id="BVRRInlineRating-{{apicontext.headers.x-vol-locale}}-{{model.productCode}}" class="pdp5 bvr-inline-rating" data-mz-product-code="{{apicontext.headers.x-vol-locale}}-{{ model.productCode }}" data-mz-product-url="{{ model.url }}"></div>
      </div>
 </div>

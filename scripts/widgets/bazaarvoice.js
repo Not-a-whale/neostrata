@@ -36,7 +36,7 @@ require([
                         if (isWidget) {
                             var currentProduct = ProductModels.Product.fromCurrent();
                             $BV.configure('global', {
-                                productId: currentProduct.id
+                                productId: Api.context.locale + '-' + currentProduct.id
                             });
                             var tabCode = $('[data-mz-bv-config]').data('mzBvConfig').tabCode;
                             var widgetType = $('[data-mz-bv-config]').data('mzBvConfig').widgetType;
