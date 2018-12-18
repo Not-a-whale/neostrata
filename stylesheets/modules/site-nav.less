@@ -431,11 +431,50 @@
 
       .mz-pageheader {
           .ml-header-content {
+                .commerce-enabled-true & {
+                    .flex-display(flex);
+                    .flex-direction(row-reverse);
+                }
               .ml-header-search-wrapper {
                   font-size: 2.5rem;
                   right: 12%;
                   top: 46%;
+                  .commerce-enabled-true & {
+                    right: unset;
+                    position: relative;
+                    left: unset;
+                    .flex-display(flex);
+                    height: 1rem;
+                    .flex-order(2);
+                    margin-right: 2rem;
+                    top: 30%;
+                      span {
+                        text-transform: uppercase;
+                        padding-left: 3.5rem;
+                        font-size: 1rem;
+                        display: inline-block;
+                        font-weight: bold;
+                    }
+                }
               }
+            .commerce-enabled-true & {
+              .site-link {
+                top: 25%;
+                position: absolute;
+                left: 1.7rem;
+                a {
+                    text-decoration: none;
+                    font-weight: bold;
+                }
+                .flag {
+                    background: url(../resources/images/canadian_flag.svg) no-repeat bottom center;
+                    width: 26px;
+                    height: 14px;
+                    display: inline-block;
+                    margin-left: 10px;
+                }
+              }
+            }
 
               .ml-header-global-cart-wrapper {
                   position: absolute;
@@ -446,6 +485,23 @@
                   background: inherit;
                   border: 0;
                   padding: 2px 0 5px 5px;
+                  .commerce-enabled-true & {
+                    bottom: -1.7rem;
+                    right: 1.7rem;
+                    .ml-header-global-cart-text {
+                        margin-left: 50px;
+                        text-transform: uppercase;
+                        font-size: 1rem;
+                    }
+                    .ml-header-global-cart-count {
+                        float: right;
+                        margin-top: -10px;
+                        .mz-cartmonitor {
+                            font-size: 14px;
+                            font-weight: normal;
+                        }
+                    }
+                  }
                 .ml-header-global-cart-label {
                       display: inline-block;
                       font-weight: bold;
@@ -454,6 +510,12 @@
               }
 
               .ml-header-links-wrapper {
+                .commerce-enabled-true & {
+                        .flex-order(1);
+                        height: 1rem;
+                        position: relative;
+                        top: 19%;
+                    }
                   .mz-utilitynav-item{
                       padding: 0 0px 0 15px;
                       &.site-msg{
@@ -473,10 +535,71 @@
                           }
                       }
                       &.store-locator{
-                          i{
-                              font-size: 3.3rem;
+                        .commerce-enabled-true & {
+                            display: none;
+                        }
+                        i {
+                            font-size: 3.3rem;
                           }
                       }
+                     .commerce-enabled-true & {
+                        &.user-login {
+                            top: unset;
+                            position: relative;
+                            right: unset;
+                            .glyphicon-user {
+                                font-size: 2.5rem;
+                                float: left;
+                            }
+                            .login-link-text {
+                                text-transform: uppercase;
+                                color: #4e5458;
+                                font-size: 1rem;
+                                line-height: 2.5;
+                                display: inline-block;
+                                vertical-align: middle;
+                                font-weight: bold;
+                                margin-left: 1rem;
+                                span {
+                                    font-weight: normal;
+                                }
+                            }                            
+                        }
+                        #mz-logged-in-notice {
+                            .glyphicon-user {
+                                padding-right: 1rem;
+                            }
+                            #my-account {
+                                text-transform: uppercase;
+                                color: #4e5458;
+                                font-size: 1rem;
+                                line-height: 2.5;
+                                display: inline-block;
+                                vertical-align: middle;
+                                font-weight: bold;
+                                margin-left: 0;
+                            }
+                        }
+                        #my-account-content {
+                            position: absolute;
+                            .box-shadow(0 6px 12px rgba(0,0,0,0.175));
+                            top: 35px;
+                            right: 0;
+                            width: auto;
+                            padding: 1rem;
+                            border: 1px solid rgba(0,0,0,0.15);
+                            background: white;
+                            z-index: 2;
+                            border-radius: 3px;
+                            h4 {
+                                font-size: 1rem;
+                                text-transform: uppercase;
+                            }
+                            p {
+                                display: none;
+                            }
+                        }
+                    }
                   }
               }
               .ml-header-lang-wrapper {
@@ -615,6 +738,9 @@
               padding: 8px 0;
               color: @charcoal;
               font-weight: bold;
+              .commerce-enabled-true & {
+                    font-size: 1rem;
+                }
               &:visited {
                   color: @charcoal;
               }

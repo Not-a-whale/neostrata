@@ -5,6 +5,14 @@
                 {% dropzone "browser-detection" scope="site" %}
             </div>
             {% require_script "modules/browser-detect" %}
+            {% if themeSettings.commerceEnabled %}
+            <div class="site-link">
+                {% if themeSettings.sitesURLs && themeSettings.sitesURLs.length > 0 %}
+                    <a href="{{ themeSettings.sitesURLs.en-ca }}">CA</a>
+                    <i class="flag"></i>
+                {% endif %}
+            </div>
+            {% endif %}
             <div class="ml-header-logo-wrapper">
                 {% block store-branding %}
                     {% include "modules/page-header/store-branding" %}
