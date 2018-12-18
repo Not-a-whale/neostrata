@@ -447,6 +447,7 @@
                     height: 1rem;
                     .flex-order(2);
                     margin-right: 2rem;
+                    top: 30%;
                       span {
                         text-transform: uppercase;
                         padding-left: 3.5rem;
@@ -458,9 +459,9 @@
               }
             .commerce-enabled-true & {
               .site-link {
-                top: 41%;
+                top: 25%;
                 position: absolute;
-                left: 1rem;
+                left: 1.7rem;
                 a {
                     text-decoration: none;
                     font-weight: bold;
@@ -485,8 +486,8 @@
                   border: 0;
                   padding: 2px 0 5px 5px;
                   .commerce-enabled-true & {
-                    bottom: -20px;
-                    right: 1rem;
+                    bottom: -1.7rem;
+                    right: 1.7rem;
                     .ml-header-global-cart-text {
                         margin-left: 50px;
                         text-transform: uppercase;
@@ -513,7 +514,7 @@
                         .flex-order(1);
                         height: 1rem;
                         position: relative;
-                        top: 35%;
+                        top: 19%;
                     }
                   .mz-utilitynav-item{
                       padding: 0 0px 0 15px;
@@ -559,7 +560,44 @@
                                 vertical-align: middle;
                                 font-weight: bold;
                                 margin-left: 1rem;
+                                span {
+                                    font-weight: normal;
+                                }
                             }                            
+                        }
+                        #mz-logged-in-notice {
+                            .glyphicon-user {
+                                padding-right: 1rem;
+                            }
+                            #my-account {
+                                text-transform: uppercase;
+                                color: #4e5458;
+                                font-size: 1rem;
+                                line-height: 2.5;
+                                display: inline-block;
+                                vertical-align: middle;
+                                font-weight: bold;
+                                margin-left: 0;
+                            }
+                        }
+                        #my-account-content {
+                            position: absolute;
+                            .box-shadow(0 6px 12px rgba(0,0,0,0.175));
+                            top: 35px;
+                            right: 0;
+                            width: auto;
+                            padding: 1rem;
+                            border: 1px solid rgba(0,0,0,0.15);
+                            background: white;
+                            z-index: 2;
+                            border-radius: 3px;
+                            h4 {
+                                font-size: 1rem;
+                                text-transform: uppercase;
+                            }
+                            p {
+                                display: none;
+                            }
                         }
                     }
                   }

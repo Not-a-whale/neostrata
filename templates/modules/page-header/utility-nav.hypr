@@ -17,9 +17,9 @@
         {% endcomment %}
         {% require_script "modules/login-links" %}
         {% if not user.isAnonymous %}
-        <li class="mz-utilitynav-item">
+        <li class="mz-utilitynav-item user-login">
             <div id="mz-logged-in-notice">
-            <a href="/myaccount" tabindex="0" data-mz-action="my-account" id="my-account" role="button" data-trigger="click" data-toggle="popover" data-content="" class="mz-utilitynav-link">{{user.firstName|default(user.email)}}
+            <a href="/myaccount" tabindex="0" data-mz-action="my-account" id="my-account" role="button" data-trigger="click" data-toggle="popover" data-content="" class="mz-utilitynav-link">Hi, {{user.firstName|default(user.email)}}
             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
             </a>
 
@@ -80,10 +80,11 @@
             </div>
 
         </li>
+        <!--
         <li class="mz-utilitynav-item">
             <a href="/logout" class="mz-utilitynav-link">{{ labels.logOut }}</a>
-
         </li>
+        -->
         {%else%}
           {% if themeSettings.commerceEnabled %}
             <li class="mz-utilitynav-item  user-login">
@@ -91,7 +92,7 @@
 
                 <!-- Button trigger modal -->
                 <a type="button" class="login-link-text" data-toggle="modal" data-mz-action="lite-registration" >
-                  login
+                  sign in <span>or</span> create an account
                 </a>
                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
             </li>
