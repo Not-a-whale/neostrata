@@ -462,6 +462,7 @@
                 top: 25%;
                 position: absolute;
                 left: 1.7rem;
+                display: block;
                 a {
                     text-decoration: none;
                     font-weight: bold;
@@ -488,18 +489,28 @@
                   .commerce-enabled-true & {
                     bottom: -1.7rem;
                     right: 1.7rem;
+                    padding: 0;
+                    transform: none;
                     .ml-header-global-cart-text {
-                        margin-left: 50px;
+                        margin-left: 4.5rem;
                         text-transform: uppercase;
                         font-size: 1rem;
                     }
                     .ml-header-global-cart-count {
-                        float: right;
+                        position: absolute;
                         margin-top: -10px;
+                        left: 2.5rem;
                         .mz-cartmonitor {
-                            font-size: 14px;
+                            font-size: 1rem;
                             font-weight: normal;
                         }
+                    }
+                    .icon-cart {
+                        position: absolute;
+                        font-size: 2.5rem;
+                    }
+                    .ml-header-global-cart-text {
+                        display: block;
                     }
                   }
                 .ml-header-global-cart-label {
@@ -547,7 +558,9 @@
                             top: unset;
                             position: relative;
                             right: unset;
-                            .glyphicon-user {
+                            display: inline-block;
+                            .icon-user {
+                                .icon(before, @icon-user);
                                 font-size: 2.5rem;
                                 float: left;
                             }
@@ -566,7 +579,7 @@
                             }                            
                         }
                         #mz-logged-in-notice {
-                            .glyphicon-user {
+                            .icon-user {
                                 padding-right: 1rem;
                             }
                             #my-account {
@@ -842,4 +855,12 @@
         }
     }
   }
+}
+
+@media screen and (min-width: 1901px) {
+.ml-header-global-cart-wrapper {
+    .commerce-enabled-true & {
+          bottom: -1rem !important;
+      }
+    }
 }
