@@ -22,15 +22,15 @@
 
     {% require_script "widgets/bazaarvoice" %}
 {% endif %}
-
 {% with pageContext.query.showSEO|default("0") as showSEO %}
 {% if (pageContext.IsCrawler and model.config.widgetType == "seo") or (model.config.widgetType == "seo" and showSEO == 1) %}
    {% with "productCode eq '{0}' and pageNumber eq {1}" as qFormat%}
         {% with pageContext.query.pageNumber|default("1") as pageNum %}
-                {% with qFormat|string_format(pageModel.productCode, pageNum) as q %}
+          {% with "{0}-{1}"|string_format(apicontext.headers.x-vol-locale,pageModel.productCode) as bvProductCode %}
+                {% with qFormat|string_format(bvProductCode, pageNum) as q %}
                    {% include_entities "Widgets/BVConversations/bv-seo-review-template" listFQN="bvproductreviews@mzint"  query=q %}
-
                 {% endwith %}
+          {% endwith %}
         {% endwith %}
    {% endwith %}
 {% endif %}
