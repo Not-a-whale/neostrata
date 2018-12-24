@@ -2,9 +2,10 @@
     @navHeight: 37px;
     width: 100%;
     height: @navHeight;
-    overflow: visible;
+    overflow: visible;height: @navHeight;
     .clearfix();
 
+    
     > .mz-sitenav-list {
         display: table-row;
         > .mz-sitenav-item:first-child {
@@ -103,8 +104,13 @@
 
 .mz-sitenav {
     background: @white;
-    .close-menu{
+    .close-menu {
         display: none;
+    }
+    .commerce-enabled-true & {
+        .user-login {
+            display: none;                                    
+        }
     }
     .container {
         padding: 0;
@@ -241,6 +247,9 @@
             .mz-sitenav-item{
                 >.mz-sitenav-item-inner>.mz-sitenav-link{
                     height: 3rem;
+                    .commerce-enabled-true & {
+                        height: unset;
+                    }
                 }
             }
         }
@@ -269,6 +278,41 @@
                 span{
                     display: none;
                 }
+            }
+        }
+        .commerce-enabled-true & {
+            .user-login {
+                padding-bottom: 1rem;
+                padding-left: 4.375rem;
+                line-height: 3.5rem;
+                display: block;
+                width: 100%;
+                .icon-user {
+                    .icon(before, @icon-user);
+                    font-size: 2.5rem;
+                    float: left;
+                }
+                .login-link-text, #mz-logged-in-notice #my-account {
+                    text-transform: uppercase;
+                    text-decoration: none;
+                    cursor: pointer;
+                    color: #4e5458;
+                    font-size: 1.5rem;
+                    line-height: 2.5;
+                    display: inline-block;
+                    vertical-align: middle;
+                    font-weight: bold;
+                    margin-left: 1rem;
+                    span {
+                        font-weight: normal;
+                    }
+                }
+                #mz-logged-in-notice #my-account {
+                    margin-left: 0;
+                    .icon-user {
+                        padding-right: 1rem;
+                    }
+                }                            
             }
         }
         .mz-sitenav-list{
@@ -487,7 +531,7 @@
                   border: 0;
                   padding: 2px 0 5px 5px;
                   .commerce-enabled-true & {
-                    bottom: -1.7rem;
+                    bottom: -2.5rem;
                     right: 1.7rem;
                     padding: 0;
                     transform: none;
@@ -500,10 +544,19 @@
                         position: absolute;
                         margin-top: -10px;
                         left: 2.5rem;
+                        padding: 0 6px;
+                        @media (min-width: 1252px) {
+                            padding: 3px 6px;
+                        }
                         .mz-cartmonitor {
                             font-size: 1rem;
                             font-weight: normal;
                         }
+                        @media (min-width: 1901px) {
+                            .mz-cartmonitor {
+                                font-size: .8rem;
+                            }
+                        }        
                     }
                     .icon-cart {
                         position: absolute;
@@ -561,7 +614,7 @@
                             display: inline-block;
                             .icon-user {
                                 .icon(before, @icon-user);
-                                font-size: 2.5rem;
+                                font-size: 2.3rem;
                                 float: left;
                             }
                             .login-link-text {
@@ -657,6 +710,11 @@
       .mz-sitenav {
 
           display: block;
+          
+            .commerce-enabled-true & {
+                @navHeight: 3.75rem;
+                height: @navHeight;
+            }
 
           // tuck in menu items to left and right of the logo
           .commerce-enabled-false & {
@@ -802,6 +860,7 @@
 
                   // position elements around logo when commerce-enabled-false
                   .commerce-enabled-true & {
+                    margin-top: 1.5rem;
                     &:nth-of-type(1) {
                         margin-left: 22%;
                     }
@@ -855,12 +914,4 @@
         }
     }
   }
-}
-
-@media screen and (min-width: 1901px) {
-.ml-header-global-cart-wrapper {
-    .commerce-enabled-true & {
-          bottom: -1rem !important;
-      }
-    }
 }

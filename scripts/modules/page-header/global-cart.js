@@ -89,6 +89,11 @@ define([
                 if (globalCartRelatedProducts) {
                     me.showRelatedProducts(resp.data.items);
                 }
+                if(resp.data.cartItems.length === 0) {
+                    $('.ml-header-global-cart-count').addClass('emptyCart');
+                } else {
+                    $('.ml-header-global-cart-count').removeClass('emptyCart');
+                }
             });
         }
     });
