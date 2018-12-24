@@ -227,7 +227,14 @@
                             border-bottom: 1px solid #D9D9D9;
                             &:last-child{border-bottom: none;}
                             a{
-                                h4{font-size: 15px; font-weight: 600; margin-top: 6px; margin-bottom: 6px;}
+                                h4{font-size: 15px; font-weight: 600; margin-top: 6px; margin-bottom: 6px;
+                                    .commerce-enabled-true & {
+                                        font-size: 1rem;
+                                        text-transform: uppercase;
+                                        font-family: "Gotham A", "Gotham B", sans-serif;
+                                    }
+                                }
+                                
                                 p{display: none; font-size: 13px; color: #333; margin-bottom: 6px;}
                             }
                         }

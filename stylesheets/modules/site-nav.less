@@ -465,6 +465,14 @@
 
 @media (min-width: 992px) {
 
+    #liteRegistrationModal {
+        .modal-dialog.login-modal {
+            .commerce-enabled-true & {
+                left: unset !important;
+            }
+        }
+    }
+
   #nav-header-container{
       position: fixed;
       width: 100%;
@@ -593,7 +601,11 @@
                           .popover-content{
                               .my-account-details{
                                   a{
-                                      p{display: block; }
+                                      p {display: block; 
+                                        .commerce-enabled-true & {
+                                            display: none;
+                                        }
+                                    }
                                   }
                               }
                           }
