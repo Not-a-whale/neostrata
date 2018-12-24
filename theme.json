@@ -806,6 +806,7 @@
     "maxProductImageThumbnailSize": 800,
     "maxProductSummaryWords": 40,
     "maxTopLevelNavItems": 8,
+    "maxTopLevelNavItemsCommerceEnabled": 10,
     "maxTopLevelNavLabelLength": 20,
     "productCarouselSize": 8,
     "pageSizeOptions": [
