@@ -1884,6 +1884,9 @@ ul.tabs {
                 .mz-productlisting-title{
 
                 }
+                .itemOutOfStock{
+                    text-transform: uppercase;
+                }
             }
             .mz-productlisting-image {
                 .zoom-container-listing{
@@ -1927,6 +1930,36 @@ ul.tabs {
                 float: left;
             }
         }
+        .mz-productdetail-conversion-buttons {
+            position: absolute;
+            right: .5rem;
+            bottom: 0;
+            left: .5rem;
+            height: 0px;
+            .primary-btn {
+                height: 3rem;
+                line-height: 1.5rem;
+                font-size: 1.2rem;
+            }
+            .mz-productdetail-addtowishlist{
+                text-decoration: none;
+                text-align:center;
+                span{
+                    font-size: 2rem;
+                    line-height:3rem;
+                    &.blank-heart{
+                        .icon(before, @icon-heart-outline);
+
+                    }
+                    &.filled-heart{
+                        .icon(before, @icon-heart-filled);
+                    }
+                }
+                &:hover{
+                    cursor: pointer;
+                }
+            }
+        }        
     }
 }
 #mz-drop-zone-category-page-top{

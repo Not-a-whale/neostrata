@@ -10,8 +10,11 @@ define([
     'modules/get-partial-view',
     'modules/color-swatches',
      'modules/block-ui',
-    'modules/category/infinite-scroller'
-], function(Backbone, $ , _, UrlDispatcher, IntentEmitter, getPartialView,colorSwatch,blockUiLoader,InfiniteScroller) {
+     'modules/category/infinite-scroller',
+     'modules/models-product',
+     'modules/api',
+     'hyprlive'
+], function(Backbone, $ , _, UrlDispatcher, IntentEmitter, getPartialView,colorSwatch,blockUiLoader,InfiniteScroller, ProductModels, api, Hypr) {
 
     function factory(conf) {
 
@@ -217,6 +220,68 @@ define([
             toggleButtons.removeClass("active");
             _self.addClass("active");
         }
+        /*directory Add-To-Cart action */
+        var directoryAddToCart = IntentEmitter(_$body,
+                                               ['click #product-list-ul .mz-productdetail-addtocart',
+                                                'click #more-list-ul .mz-productdetail-addtocart'],
+                                               directoryAddToCartAction);
+        function directoryAddToCartAction(_e){
+            var productCode = $(_e.currentTarget).data("mz-product-code");           
+            if(productCode && productCode !== ''){
+                api.get('product', productCode).then(function(productResponse){
+                    var product = new ProductModels.Product(productResponse.data);
+                    product.addToCart();
+                    return location.reload();
+                });
+            }
+        }        
+        /*directory Add-To-Cart action */
+        /*directory Add-To-Wishlist action */
+        var directoryAddToWishlist = IntentEmitter(_$body,
+                                                   ['click #product-list-ul .mz-productdetail-addtowishlist',
+                                                    'click #more-list-ul .mz-productdetail-addtowishlist'],
+                                                    directoryAddToWishlistAction);
+        function directoryAddToWishlistAction(_e){
+            var productCode = $(_e.currentTarget).data("mz-product-code");           
+            if(productCode && productCode !== ''){
+                api.get('product', productCode).then(function(productResponse){
+                    var product = new ProductModels.Product(productResponse.data);
+                    product.addToWishlist();
+                    return location.reload();
+                });
+            }
+        }        
+        /*directory Add-To-Wishlist action */        
+        /*directory Email-Me action */
+        var directoryEmailMe = IntentEmitter(_$body,
+                                                   ['click #product-list-ul .mz-productdetail-emailme',
+                                                    'click #more-list-ul .mz-productdetail-emailme'],
+                                                    directoryEmailMeAction);
+        function directoryEmailMeAction(_e){
+            blockUiLoader.globalLoader();
+            var productCode = $(_e.currentTarget).data("mz-product-code");           
+            var locationCode = $(_e.currentTarget).data("mz-location-code");           
+            var user = require.mozuData('user');
+            if(productCode && productCode !== '' && user){
+                api.get('product', productCode).then(function(productResponse){
+                    var product = new ProductModels.Product(productResponse.data);
+                    api.create('instockrequest', {
+                        email: user.email,
+                        customerId: user.accountId,
+                        productCode: productCode,
+                        locationCode: product.get('inventoryInfo').onlineLocationCode
+                    }).then(function () {
+                        console.log(product);
+                        //self.render();
+                    }, function (res) {
+                        console.log(res.message);
+                        console.log(Hypr.getLabel('notifyWidgetError'));
+                    }); 
+                });
+            }
+            blockUiLoader.unblockUi();
+        }        
+        /*directory Email-Me action */         
          //Select color Swatch
         var selectSwatch = IntentEmitter(
             _$body, [
