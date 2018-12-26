@@ -2522,7 +2522,18 @@ ul.tabs {
     border-right: 0.0625em solid @midGray;
     margin-right: 2.5em;
     display: inline-block;
-
+        .mz-favorites {
+            color: #85acce;
+            font-weight: bold;
+            font-family: 'icomoon';
+            font-size:1.7rem;
+            .heart-filled:before{
+                content: "\e910";
+            }
+            .heart-outline:before{
+                content: "\e90f";
+            }
+        }
       .mz-reviews-pdp-stars{
           color: @colorGreen;
       }
@@ -2635,6 +2646,16 @@ ul.tabs {
                     font-size: @fontSize;
                     color: @secondaryColor;
                     .fontRegular();
+                }
+            }
+        }
+        .add-to-cart-container {
+            .mz-productdetail-addtocart {
+                width: 21.8rem;
+                border-color: #87accf !important;
+                margin: 0 auto;
+                &:hover{
+                    background: #87accf !important;
                 }
             }
         }

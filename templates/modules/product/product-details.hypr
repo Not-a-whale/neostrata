@@ -20,6 +20,10 @@
             </h2>
             <div class="center-mobile reviews-and-price">
               <div class="mz-all-review-container">
+                <span class="mz-favorites">
+                  <span class="heart-filled"></span>
+                  <span class="heart-outline"></span>
+                </span>
                 <span class="mz-reviews-pdp-stars">
                   {% dropzone "reviews-pdp-stars" scope="template" %}
                 </span>
