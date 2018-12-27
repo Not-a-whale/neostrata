@@ -20,7 +20,7 @@
   "secureConnectionMessage" : "[fr-CA]Your Connection to this website is secure.[fr-CA]",
   "signUpLink"           : "[fr-CA]Create an Account[fr-CA]",
   "forgotPassword"       : "[fr-CA]Forgot your password[fr-CA]",
-  "liteRegForgotPasswordLabel"       : "[fr-CA]Forgot Password?[fr-CA]",
+  "liteRegForgotPasswordLabel"       : "[fr-CA]Forgot Password[fr-CA]",
   "orderStatus"          : "[fr-CA]Order Status[fr-CA]",
   "order"                : "[fr-CA]Order[fr-CA]",
   "verifyWith"           : "[fr-CA]Verify With[fr-CA]",

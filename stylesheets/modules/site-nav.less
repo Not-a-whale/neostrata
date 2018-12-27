@@ -465,10 +465,39 @@
 
 @media (min-width: 992px) {
 
-    #liteRegistrationModal {
-        .modal-dialog.login-modal {
-            .commerce-enabled-true & {
+    //login popup
+    #liteRegistrationModal{
+        .commerce-enabled-true & {
+            .modal-dialog.login-modal{
                 left: unset !important;
+                .modal-content{
+                    .modal-body {
+                        padding: 0 2rem;
+                        .link-button {
+                            width: 53%;
+                        }
+                        .input-group {
+                            width: 53%;
+                        }
+                        .nav-tabs {
+                            margin: 0 auto 3rem;
+                            width: 86%;
+                        }
+                        li.first-tab {
+                            padding-right: 2%;
+                        }
+                        li.second-tab {
+                            padding-left: 2%;
+                        }
+                        li .btn {
+                            font-size: 2rem;
+                            padding-bottom: 10px 15px 4px 15px;
+                        }
+                        .login-btn-row {
+                            width: 34%;
+                        }
+                    }
+                }
             }
         }
     }
