@@ -81,16 +81,6 @@
                     <span class="input-group-addon glyphicon glyphicon-lock"></span>
                     <input type="password" class="form-control" data-mz-signup-confirmpassword placeholder="{{ labels.reEnterPassword }}" aria-describedby="basic-addon1" maxlength="{{themeSettings.passwordMaxLength}}">
                   </div>
-                  <div class = "input-group">
-                    <span class="input-group-addon glyphicon glyphicon-question-sign" id="list" aria-hidden="true"></span>
-                    <select id="recoveryQuestionList" data-mz-signup-recoveryquestion>
-                      <option value="0">{{ labels.recoveryQuestion }}</option>
-                    </select>
-                  </div>
-                  <div class="input-group">
-                    <span class="input-group-addon glyphicon glyphicon-comment" id="" aria-hidden="true"></span>
-                    <input type="text" class="form-control" id="recoveryAnswer" maxlength="100" data-mz-signup-recoveryanswer placeholder="{{ labels.recoveryAnswer }}" aria-describedby="basic-addon1">
-                  </div>
                   <div class="checkbox">
                     <label><input type="checkbox" data-mz-signup-emailupdates> {{ labels.signupEmailupdates }}</label>
                   </div>
