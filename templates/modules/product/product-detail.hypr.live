@@ -46,6 +46,9 @@
               {{ labels.addToCart }}
           </button>
         </div>
+         <div class="text-center mz-day-guarantee-statement">
+          {{ labels.dayGuaranteeStatement }}
+        </div>
       </div>
     {% endif %}
 </section>
