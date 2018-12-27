@@ -264,8 +264,8 @@ require([
                                             slidesToShow: 4,
                                             slidesToScroll: 1,
                                             infinite: false,
-                                            prevArrow: '<i class="fa fa-angle-left" aria-hidden="true"></i>',
-                                            nextArrow: '<i class="fa fa-angle-right" aria-hidden="true"></i>',
+                                            prevArrow: '<i class="fa fa-caret-left" aria-hidden="true"></i>',
+                                            nextArrow: '<i class="fa fa-caret-right" aria-hidden="true"></i>',
                                             responsive: [{
                                                 breakpoint: 992,
                                                 settings: {

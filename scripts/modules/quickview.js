@@ -112,8 +112,8 @@ define([
                     maxSlides: 4,
                     moveSlides: 1,
                     slideMargin: 15,
-                    nextText: '<i class="fa fa-angle-right" aria-hidden="true"></i>',
-                    prevText: '<i class="fa fa-angle-left" aria-hidden="true"></i>',
+                    nextText: '<i class="fa fa-caret-right" aria-hidden="true"></i>',
+                    prevText: '<i class="fa fa-caret-left" aria-hidden="true"></i>',
                     infiniteLoop: false,
                     hideControlOnEnd: true,
                     pager: false
