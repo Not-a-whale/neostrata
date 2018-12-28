@@ -15,18 +15,13 @@
 		        </a> 
 		        {% endblock product-image %} 
 		        <p class="mz-related-product-brand-name">{{ prod|get_product_attribute_value('tenant~Brands')|default('')|safe }}</p>
-		        <div class="mz-related-products-title-container">
-                    <a class="mz-productlisting-title" href="{% make_url "product" prod %}">{{prod.content.productName|safe}}</a> 
-                    {% comment %}
-                    <div class="mz-productlisting-title mz-productlisting-price">
-                         {% include "modules/product/price-stack" with model=prod %}
-                    </div>
-                    {% endcomment %}
+		        <div class="mz-related-products-title-container text-left">
+                        {% include "modules/product/product-carusel-footer"%}
                 </div>
+                {% comment %}
                 {% if prod.properties and prod|get_product_attribute_value("tenant~isExclusive") %}
                     <p class="exclusive-text">{{ labels.exclusive }}</p>
                 {% endif %}                 
-                {% comment %}
                 {% for option in prod.options %}
                     {% if option.attributeFQN==='tenant~COLOR' && option.values && option.values.length > 1 %}
                         <ul class="image-swatches text-center mz-reset-padding-left"> 
