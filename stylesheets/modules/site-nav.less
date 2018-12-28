@@ -496,6 +496,9 @@
                         .login-btn-row {
                             width: 34%;
                         }
+                        .checkbox {
+                            width: 53%;
+                        }
                     }
                 }
             }
@@ -582,9 +585,6 @@
                         margin-top: -10px;
                         left: 2.5rem;
                         padding: 0 6px;
-                        @media (min-width: 1252px) {
-                            padding: 3px 6px;
-                        }
                         .mz-cartmonitor {
                             font-size: 1rem;
                             font-weight: normal;
@@ -852,6 +852,8 @@
               font-weight: bold;
               .commerce-enabled-true & {
                     font-size: 1rem;
+                    height: 2.4rem;
+                    padding: 8px 0 0 0;
                 }
               &:visited {
                   color: @charcoal;
@@ -860,6 +862,11 @@
                   background-color: inherit;
               }
           }
+          .commerce-enabled-true & {
+            .mz-sitenav-sub-container {
+                    display: block;
+                }
+            }
 
           .mz-sitenav-list {
               >.mz-sitenav-item {

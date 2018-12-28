@@ -65,7 +65,7 @@
                 <!------- Signup start-------->
                 <div class="tab-pane " id="newshopper">
                   <div class="close-button"><a href="#" data-dismiss="modal"><i class="icon-close"></i></a></div>
-                  <p class="login-text">Sign in for a personalized experience.</p>
+                  <p class="login-text">Sign up for a personalized experience.</p>
                   <div class="input-group validation-message">
                       <label data-mz-role="popover-message" class="popover-message"></label>
                     </div>
