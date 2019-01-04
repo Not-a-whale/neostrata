@@ -266,3 +266,33 @@
 .mz-l-formfieldgroup-full{
       display: block;
 }
+
+/* new checkout styles */
+
+.mz-checkout #page-content {
+    margin-top: 12.9rem;
+}
+.checkout-signin-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+
+    .secondary-button {
+        .primary-btn(@mutedBlue);
+
+        font-size: 1rem;
+        line-height: 2.8125rem;
+        padding: 0 4.6875rem;
+        height: 2.8125rem;
+    }
+    span {
+        font-size: 1rem;
+        height: 2.8125rem;
+        line-height: 2.5rem;
+        margin-left: 2rem;
+    }
+}
+.mz-checkoutform {
+    clear: both;
+}
