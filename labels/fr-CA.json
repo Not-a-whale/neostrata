@@ -603,5 +603,7 @@
   "sort": "Filtrer par",
   "filter": "Filtrer par",
   "shopBy": "Magasiner par",
-  "siteMap": "Plan du site"
+  "siteMap": "Plan du site",
+  "passwordFormat": "[fr-CA]7 Characters minimum[fr-CA]"
+
 }
