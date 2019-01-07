@@ -1259,6 +1259,21 @@
     	"defaultConfig": {
 
     	},
+    	"displayName": "Quiz",
+    	"displayTemplate": "misc/quiz",
+      "editViewFields": [
+
+      ],
+    	"icon": "/resources/admin/widgets/26_related_products.png",
+    	"id": "quiz",
+    	"validPageTypes": [
+    		"*"
+    	]
+    },
+    {
+    	"defaultConfig": {
+
+    	},
     	"displayName": "Regimen Builder",
     	"displayTemplate": "misc/regimen-builder",
       "editViewFields": [

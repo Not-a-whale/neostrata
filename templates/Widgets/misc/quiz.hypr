@@ -1,0 +1,5 @@
+<div class="quiz-widget" data-widget="quiz">
+
+</div>
+
+{% require_script "modules/quiz/index" %}
