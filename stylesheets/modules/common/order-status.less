@@ -4,7 +4,7 @@
 
         @media (max-width: 991px) {
             border: none; 
-            min-height: 64rem; 
+            min-height: 85rem; 
             .container-fluid {
                 background: none;
             }
@@ -17,7 +17,30 @@
                 margin: 0 auto;
             }
            
-            
+            .mz-messagebar, .mz-popover-message {
+                .mz-errors, .mz-validationmessage {
+                    margin: 0;
+                    padding: 0 4.44rem 0 2.875rem;
+                    border: 0.1875rem solid @charcoal; 
+                    height: 5.375rem;
+                    line-height: 3.33em;
+                    .fontsBook();
+                    background: @inputError; 
+                    text-transform: uppercase;
+                    font-size: 1.31em;
+                    line-height: 4em;
+                    font-style: normal;
+                    margin: 0;
+                    color: @charcoal; 
+                
+                    li {
+                        font-size: 1.31em;
+                        line-height: 4em;
+                        font-style: normal;
+                        margin: 0;
+                    }
+                }
+            }
             .mz-pagetitle {
                 text-align: center;
                 font-size: 3.4375rem;
@@ -89,11 +112,17 @@
                             text-align: left;
                             font-size: 1.737rem;
                             letter-spacing: 0.2347em; 
-                            
                         }
-
                     }
         
+                    /*select:before {
+                        font-size: 2em;
+                        top: -0.5rem;
+                        right: 2.5rem;
+                        content: "\e907";
+                        position: absolute;
+                    }   */
+                    
                     .mz-l-formfieldgroup-row {
                         margin: 0 auto; 
                         width: 61%; 
