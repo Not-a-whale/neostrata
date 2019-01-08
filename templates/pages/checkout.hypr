@@ -37,17 +37,6 @@
         {% include "modules/checkout/checkout-order-summary" %}
       </div>
 
-        <div class="mz-l-formfieldgroup">
-            <div class="mz-checkoutform-couponcode mz-l-formfieldgroup-row" id="coupon-code-field" >
-                {% include "modules/checkout/coupon-code-field" %}
-            </div>
-            {% if themeSettings.showCheckoutCommentsField %}
-            <div class="mz-checkoutform-comments mz-l-formfieldgroup-row" id="comments-field" >
-                {% include "modules/checkout/comments-field" %}
-            </div>
-            {% endif %}
-        </div>
-
     </div>
 
     <div class="mz-l-column checkout-leftcolumn">
@@ -70,6 +59,17 @@
 
         <div class="mz-formstep mz-checkoutform-review" id="step-review">
             {% include "modules/checkout/step-review" %}
+        </div>
+
+        <div class="mz-l-formfieldgroup">
+            <div class="mz-checkoutform-couponcode mz-l-formfieldgroup-row" id="coupon-code-field" >
+                {% include "modules/checkout/coupon-code-field" %}
+            </div>
+            {% if themeSettings.showCheckoutCommentsField %}
+            <div class="mz-checkoutform-comments mz-l-formfieldgroup-row" id="comments-field" >
+                {% include "modules/checkout/comments-field" %}
+            </div>
+            {% endif %}
         </div>
 
     </div><!-- left .column -->

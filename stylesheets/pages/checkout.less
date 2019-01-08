@@ -264,6 +264,7 @@
     justify-content: flex-end;
     align-items: center;
     padding-top: 3.9375rem;
+    padding-bottom: 1.25rem;
 
     .secondary-button {
         .primary-btn(@mutedBlue);
@@ -292,20 +293,21 @@
     justify-content: space-between;
 
     h5 {
-        margin: 3.9375rem 0 3.5625rem;
+        margin: 0 0 3.5625rem;
         font-weight: 500;
     }
 
     .ordersummary-column {
         width: 32rem;
+        padding-top: 1.95rem;
     }
     .checkout-leftcolumn {
         width: 61.375rem;
     }
     
     .mz-checkoutform-header {
-        padding: 0;
-        margin: 0;
+        padding: 0 0 1.375rem;
+        margin: 0 0 3.9375rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -327,9 +329,11 @@
         }
     }
 
-    input[type="text"] {
+    input[type="text"],
+    input[type="tel"] {
         width: 100%;
         height: 4.375rem;
+        border: 0.1875rem solid @charcoal;
 
         &::-webkit-input-placeholder {text-transform: uppercase;}
         &::-moz-placeholder          {text-transform: uppercase;}/* Firefox 19+ */
@@ -362,6 +366,75 @@
         display: flex;
         justify-content: center;
     }
+    
+    .mz-ordersummary-checkout {
+        .mz-checkoutform-header {
+            font-size: 1.875rem;
+            line-height: 1.5333em;
+            padding-bottom: 1.125rem;
+        }
+
+        .mz-formstep-next {
+            justify-content: flex-start;
+
+            button {
+                padding: 0;
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        .order-summary-promo,
+        .order-summary-privacyPolicy {
+            text-align: center;
+
+            p {
+                font-size: 1.25rem;
+                line-height: 1.5em;
+
+                a {
+                    font-weight: 500;
+                    text-decoration: none;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+        .order-summary-promo {
+            padding-top: 1.625rem;
+            padding-bottom: 2rem;
+        }
+
+        .order-summary-privacyPolicy {
+            border-top: 0.125rem solid @midGray;
+            margin-top: 3.125rem;
+            padding-top: 0.625rem;
+        }
+
+        .mz-checkout-total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mz-ordersummary-totalname,
+        .mz-ordersummary-totalvalue {
+            color: @charcoal;
+        }
+
+        .mz-ordersummary-grandtotal {
+            .mz-ordersummary-totalname {
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+        }
+    }
+
 }
 
+.mz-checkoutform-shippingaddress {
+    margin-top: 8.25rem;
+}
 

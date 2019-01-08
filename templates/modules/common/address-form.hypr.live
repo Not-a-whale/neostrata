@@ -11,7 +11,7 @@
         </div>
     </div>
     {% if catalogRequest %}
-    <div class="mz-l-formfieldgroup-row mz-addressform-middlename">
+    <div class="mz-l-formfieldgroup-row mz-addressform-middlename form-row">
         {% comment %}
             <div class="mz-l-formfieldgroup-cell">
                 <label for="middlename">{{ labels.middleName }} </label>
@@ -23,7 +23,7 @@
         </div>
     </div>    
     {% endif %}
-    <div class="mz-l-formfieldgroup-row mz-addressform-lastname">
+    <div class="mz-l-formfieldgroup-row mz-addressform-lastname form-row">
         {% comment %}
             <div class="mz-l-formfieldgroup-cell">
                 <label for="lastname">{{ labels.lastName }}<span class="is-required"> *</span></label>
@@ -34,7 +34,7 @@
             <span class="mz-validationmessage" data-mz-validationmessage-for="{{ addresscontext }}lastNameOrSurname"></span>
         </div>
     </div>
-    <div class="mz-l-formfieldgroup-row mz-addressform-address1">
+    <div class="mz-l-formfieldgroup-row mz-addressform-address1 form-row">
         {% comment %}
             <div class="mz-l-formfieldgroup-cell">
                 <label for="address-line-1">{{ labels.address }}<span class="is-required"> *</span></label>
@@ -45,14 +45,14 @@
             <span class="mz-validationmessage" data-mz-validationmessage-for="{{ addresscontext }}address.address1"></span>
         </div>
     </div>
-    <div class="mz-l-formfieldgroup-row mz-addressform-address2">
+    <div class="mz-l-formfieldgroup-row mz-addressform-address2 form-row">
         <!--<div class="mz-l-formfieldgroup-cell mz-hide-column-catalog"></div>-->
         <div class="mz-l-formfieldgroup-cell mz-custom-padding-address">
             <input type="text" class="input" name="address-line-2" data-mz-value="{{ addresscontext }}address.address2" value="{{ model.address.address2 }}" maxlength="{{themeSettings.addressLength}}" placeholder="{{ labels.address }} Line 2">
             <span class="mz-validationmessage"></span>
         </div>
     </div>
-    <div class="mz-l-formfieldgroup-row mz-addressform-country">
+    <div class="mz-l-formfieldgroup-row mz-addressform-country form-row">
         <div class="mz-l-formfieldgroup-cell mz-custom-padding-country">
             <label for="country">{{ labels.country }} : United States</label>
         </div>
@@ -77,7 +77,7 @@
             <span class="mz-validationmessage" data-mz-validationmessage-for="{{ addresscontext }}address.countryCode"></span>
         </div>
     </div>
-    <div class="mz-l-formfieldgroup-row mz-addressform-city">
+    <div class="mz-l-formfieldgroup-row mz-addressform-city form-row">
         {% comment %}
             <div class="mz-l-formfieldgroup-cell">
                 <label for="city">{{ labels.city }}<span class="is-required"> *</span></label>
@@ -104,7 +104,7 @@
     </div>
     <div class="mz-l-formfieldgroup-row mz-addressform-state" {% if model.address.countryCode != "US" %}style="display: none"{% endif %}>
     {% endcomment %}
-    <div class="mz-l-formfieldgroup-row mz-addressform-state">
+    <div class="mz-l-formfieldgroup-row mz-addressform-state form-row">
         {% comment %}
             <div class="mz-l-formfieldgroup-cell">
                 <label for="stateprov">{{ labels.state }}<span class="is-required"> *</span></label>
@@ -134,7 +134,7 @@
             <span class="mz-validationmessage" data-mz-validationmessage-for="{{ addresscontext }}address.stateOrProvince"></span>
         </div>
     </div>
-    <div class="mz-l-formfieldgroup-row mz-addressform-zip">
+    <div class="mz-l-formfieldgroup-row mz-addressform-zip form-row">
         {% comment %}
             <div class="mz-l-formfieldgroup-cell">
                 <label for="postal-code">{{ labels.postalCode }}<span class="is-required"> *</span></label>
@@ -145,7 +145,7 @@
             <span class="mz-validationmessage" data-mz-validationmessage-for="{{ addresscontext }}address.postalOrZipCode"></span>
         </div>
     </div>
-    <div {% if model.address.CountryCode != "UK" %}style="display: none"{% endif %} class="mz-l-formfieldgroup-row mz-addressform-postaltown">
+    <div {% if model.address.CountryCode != "UK" %}style="display: none"{% endif %} class="mz-l-formfieldgroup-row mz-addressform-postaltown form-row">
         <div class="mz-l-formfieldgroup-cell">
             <label for="postal-town">{{ labels.postalTown }}</label>
         </div>
@@ -156,13 +156,13 @@
     </div>
 
     {% if catalogRequest %}
-    <div class="mz-l-formfieldgroup-row mz-addressform-phone">
+    <div class="mz-l-formfieldgroup-row mz-addressform-phone form-row">
         <div class="mz-l-formfieldgroup-cell">
             <input type="tel" class="input" name="officephone" data-mz-value="{{ addresscontext }}phoneNumbers.office" value="{{ model.phoneNumbers.office }}" maxlength="{{themeSettings.phoneNumberLength}}" minlength="{{themeSettings.phoneNumberLength}}" placeholder="{{ labels.dayTimePhone }}">
             <span class="mz-validationmessage" data-mz-validationmessage-for="{{ addresscontext }}phoneNumbers.office"></span>
         </div>
     </div> 
-    <div class="mz-l-formfieldgroup-row mz-addressform-phone">
+    <div class="mz-l-formfieldgroup-row mz-addressform-phone form-row">
         <div class="mz-l-formfieldgroup-cell">
             <input type="tel" class="input" name="cellphone" data-mz-value="{{ addresscontext }}phoneNumbers.home" value="{{ model.phoneNumbers.home }}" maxlength="{{themeSettings.phoneNumberLength}}" minlength="{{themeSettings.phoneNumberLength}}" placeholder="{{ labels.cellPhone }}">
             <span class="mz-validationmessage" data-mz-validationmessage-for="{{ addresscontext }}phoneNumbers.home"></span>
@@ -171,7 +171,7 @@
      
     {% else %}  
 
-    <div class="mz-l-formfieldgroup-row mz-addressform-phone">
+    <div class="mz-l-formfieldgroup-row mz-addressform-phone form-row">
         {% comment %}
             <div class="mz-l-formfieldgroup-cell">
                 <label for="shippingphone">{{ labels.phone }}<span class="is-required"> *</span></label>
@@ -188,7 +188,7 @@
 
   
     {% if themeSettings.showAddressTypeDropdown and not catalogRequest %}
-    <div class="mz-l-formfieldgroup-row mz-addressform-addresstype">
+    <div class="mz-l-formfieldgroup-row mz-addressform-addresstype form-row">
         {% comment %}
         <div class="mz-l-formfieldgroup-cell">
             <label for="addresstype">{{ labels.addressType }}<span class="is-required"> *</span></label>
