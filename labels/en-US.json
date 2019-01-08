@@ -608,5 +608,6 @@
   "sort": "SORT",
   "filter": "FILTER",
   "shopBy": "Shop by",
-  "siteMap": "Site Map"
+  "siteMap": "Site Map",
+  "passwordFormat": "7 Characters minimum"
 }

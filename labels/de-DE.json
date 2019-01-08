@@ -518,5 +518,6 @@
     "includeInRegimen": "INCLUDE IN REGIMEN",
     "storesNear": "Stores near",
     "sort": "SORT",
-    "filter": "FILTER"
+    "filter": "FILTER",
+    "passwordFormat": "7 Characters minimum"
 }
