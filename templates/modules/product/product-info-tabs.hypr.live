@@ -5,18 +5,16 @@
 {% with model|get_product_attribute("tenant~ingredients") as ingredients %}
 {% with model.content.productFullDescription as details %}
 {% with model|get_product_attribute("tenant~how-to-apply") as howToApply %}
-
 <ul class="nav nav-tabs">
-    {% if beforeAndAfter or dermQuote or clinicalStudy %}
-        <li class="active"><a data-toggle="tab" href="#tab1"><span>{{ labels.results }}</span></a></li>
+    {% if howToApply %}
+      <li class="active"><a data-toggle="tab" href="#tab3"><span>{{ labels.howToApply }}</span></a></li>
     {% endif %}
     {% if details or size or ingredients %}
-        <li{% if not beforeAndAfter and not dermQuote and not clinicalStudy) %} class="active"{% endif %}><a data-toggle="tab" href="#tab2"><span>{{ labels.details }}</span></a></li>
+        <li><a data-toggle="tab" href="#tab2"><span>{{ labels.details }}</span></a></li>
     {% endif %}
-    {% if howToApply %}
-        <li{% if not beforeAndAfter and not dermQuote and not clinicalStudy and not details and not size and not ingredients) %} class="active"{% endif %}><a data-toggle="tab" href="#tab3"><span>{{ labels.howToApply }}</span></a></li>
+    {% if beforeAndAfter or dermQuote or clinicalStudy %}
+        <li><a data-toggle="tab" href="#tab1"><span>{{ labels.results }}</span></a></li>
     {% endif %}
-
 </ul>
 
 <div class="tab-content">
@@ -35,7 +33,7 @@
             {% for v in beforeAndAfter.values %}
               <div class="tab-content-1">
                   {% if v.stringValue %}
-                          {{ v.stringValue|safe }}
+                    {% include "modules/product/beforeAndAfterSlider"  width images=v.stringValue %}
                   {% endif %}
               </div>
             {% endfor %}

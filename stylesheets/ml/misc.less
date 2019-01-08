@@ -2607,7 +2607,19 @@ ul.tabs {
     border-right: 0.0625em solid @midGray;
     margin-right: 2.5em;
     display: inline-block;
-
+    max-height: 2rem;
+        .mz-favorites {
+            color: #85acce;
+            font-weight: 100;
+            font-family: 'icomoon';
+            font-size:1.7rem;
+            .heart-filled:before{
+                content: "\e910";
+            }
+            .heart-outline:before{
+                content: "\e90f";
+            }
+        }
       .mz-reviews-pdp-stars{
           color: @colorGreen;
       }
@@ -2707,6 +2719,7 @@ ul.tabs {
             }
             .mz-productdetail-conversion-buttons {
                 padding: 0;
+                margin-bottom: 3rem;
                 .tell-a-friend{
                     padding-top: @gutter*2;
                     text-decoration: underline;
@@ -2722,6 +2735,23 @@ ul.tabs {
                     .fontRegular();
                 }
             }
+        }
+        .add-to-cart-container {
+            margin: 3rem 0 1.5rem 0;
+            .mz-productdetail-addtocart {
+                width: 27rem;
+                border-color: #85acce !important;
+                margin: 0 auto;
+                display: inline-block;
+                &:hover{
+                    background: #85acce !important;
+                }
+            }
+        }
+        .mz-day-guarantee-statement{
+            max-width: 18rem;
+            margin: 7.12rem auto 0 auto;
+            font-size: 0.8rem;
         }
         .stock-info {
             font-size: @fontSize;
@@ -2764,7 +2794,31 @@ ul.tabs {
             }
         }
     }
-
+    .add-to-cart-container {
+        margin: 2rem 0;
+    }
+    .mz-productdetail-emailme {
+        width: 27rem;
+        border-color: #85acce !important;
+        margin: 0 auto;
+        display: inline-block;
+        &:hover{
+            background: #85acce !important;
+        }
+    }
+    .emailMe{
+        color: #85acce;
+        font-size: 3.43rem;
+        line-height: 1.36em;
+        font-weight: 500;
+        margin-bottom: 3rem;
+        text-align: left;
+    }
+    .mz-day-guarantee-statement{
+        max-width: 18rem;
+        margin: 7rem auto 4rem auto;
+        font-size: 0.8rem;
+    }
     .mz-productdetail-shortdesc{
         font-size: @fontSize*1.1;
         line-height: 1.4;
@@ -2928,19 +2982,21 @@ body.mz-product {
     }
     .beforeLabel {
       .p3;
-      position: absolute;
-      transform: rotate(270deg);
-      top: 40%;
-      left: 0;
+    //   position: absolute;
+    //   transform: rotate(270deg);
+    //   top: 40%;
+    //   left: 0;
       text-transform: uppercase;
     }
     .afterLabel {
       .p3;
-      position: absolute;
-      transform: rotate(90deg);
-      top: 40%;
-      right: 0;
+    //   position: absolute;
+    //   transform: rotate(90deg);
+    //   top: 40%;
+    //   right: 0;
       text-transform: uppercase;
+      float: right;
+      clear: both;
     }
 
     .description {

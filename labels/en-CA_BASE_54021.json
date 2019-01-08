@@ -603,7 +603,5 @@
   "sort": "SORT",
   "filter": "FILTER",
   "shopBy": "Shop by",
-  "siteMap": "Site Map",
-  "passwordFormat": "7 Characters minimum",
-  "dayGuaranteeStatement": "30-day Money Back Guarantee. Order by 1:00 PM EST for sameday shipping."
+  "siteMap": "Site Map"
 }

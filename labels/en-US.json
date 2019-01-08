@@ -449,7 +449,7 @@
   "locationWaitProd"     : "We're searching local stores for <strong>{0}</strong>. Your browser may ask for permission to use your location. Click \"Allow\" to sort the search results by distance.",
   "storeInformation"     : "Store Information",
   "storePickup"          : "Store Pickup",
-  "outOfStock"           : "Out of stock",
+  "outOfStock"           : "Currently Out of Stock.",
   "availableNow"         : "Available Now",
   "noNearbyLocations"    : "No nearby locations could be found.",
   "noNearbyLocationsProd": "No nearby locations could be found for this product.",
@@ -605,5 +605,7 @@
   "filter": "FILTER",
   "shopBy": "Shop by",
   "siteMap": "Site Map",
-  "passwordFormat": "7 Characters minimum"
+  "passwordFormat": "7 Characters minimum",
+  "dayGuaranteeStatement": "30-day Money Back Guarantee. Order by 1:00 PM EST for sameday shipping."
+  ,"emailMeTxt": "We will email you when this product is back instock."
 }
