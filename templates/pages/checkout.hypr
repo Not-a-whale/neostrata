@@ -21,7 +21,7 @@
 {% preload_json model "checkout" %}
 
 <div class="mz-l-container">
-    <div class="mz-l-column checkout-signin-header">
+    <div class="mz-l-column checkout-signin-header container">
         {% if not user.isAuthenticated %}
             <a data-toggle="modal" data-mz-action="lite-registration" class="mz-pagetitle-note secondary-button">
                 {{ labels.logIn }}
@@ -29,10 +29,10 @@
             <span>{{ labels.forFasterCheckout }}</span>
         {% endif %}
     </div>
-    <form id="checkout-form" class="mz-checkoutform mz-l-2column mz-l-2column-right fades-in" method="post" onsubmit="return false;">
+    <form id="checkout-form" class="mz-checkoutform mz-l-2column mz-l-2column-right fades-in container" method="post" onsubmit="return false;">
 
     {% include "modules/common/message-bar" with model=model.messages %}
-    <div class="mz-l-column" id="checkout-rightcol">
+    <div class="mz-l-column ordersummary-column" id="checkout-rightcol">
       <div class="mz-formstep mz-checkoutform-ordersummary" id="order-summary">
         {% include "modules/checkout/checkout-order-summary" %}
       </div>
@@ -50,7 +50,11 @@
 
     </div>
 
-    <div class="mz-l-column">
+    <div class="mz-l-column checkout-leftcolumn">
+        <!-- TODO Checkout First name, Last name, email -->
+        <div class="mz-formstep mz-checkoutform-checkoutcustomerinfo">
+            {% include "modules/checkout/checkout-customer-info" %}
+        </div>
 
         <div class="mz-formstep mz-checkoutform-shippingaddress" id="step-shipping-address">
             {% include "modules/checkout/step-shipping-address" %}

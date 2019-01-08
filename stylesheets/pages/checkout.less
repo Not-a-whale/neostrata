@@ -20,16 +20,9 @@
     height: 8em;
 }
 
-
-.mz-checkoutform-active {
-    background-color: #eeeeee;
-    width: 100%;
-    margin-bottom: @gutter/2;
-}
-
 .mz-checkoutform {
-    padding: 10px;
     box-sizing: border-box;
+
     label {
       cursor: default;
     }
@@ -52,7 +45,6 @@
 }
 
 .mz-checkoutform-shipping {
-  padding-top: @gutter - 10;
     display: block;
 }
 
@@ -87,13 +79,7 @@
 
 .mz-formstep-header {
     &.mz-checkoutform-header {
-        background-color: #666666;
-        color: #ffffff;
-        padding-left: 10px;
-        > a {
-            color: #ffffff;
-            padding-right: 10px;
-        }
+        
     }
 }
 
@@ -277,22 +263,105 @@
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
+    padding-top: 3.9375rem;
 
     .secondary-button {
         .primary-btn(@mutedBlue);
 
         font-size: 1rem;
-        line-height: 2.8125rem;
-        padding: 0 4.6875rem;
+        line-height: 2.5rem;
         height: 2.8125rem;
+        padding: 0 4.6875rem;
+        cursor: pointer;
     }
     span {
         font-size: 1rem;
+        line-height: 2.8125rem;
         height: 2.8125rem;
-        line-height: 2.5rem;
         margin-left: 2rem;
     }
 }
 .mz-checkoutform {
     clear: both;
 }
+
+#checkout-form {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+
+    h5 {
+        margin: 3.9375rem 0 3.5625rem;
+        font-weight: 500;
+    }
+
+    .ordersummary-column {
+        width: 32rem;
+    }
+    .checkout-leftcolumn {
+        width: 61.375rem;
+    }
+    
+    .mz-checkoutform-header {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 0.1875rem solid @midGray;
+
+        span {
+            font-size: 3.4375rem;
+            font-weight: 500;
+            line-height: 1.3636em;
+        }
+        a {
+            font-size: 1.5rem;
+            text-decoration: none;
+            position: static;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    input[type="text"] {
+        width: 100%;
+        height: 4.375rem;
+
+        &::-webkit-input-placeholder {text-transform: uppercase;}
+        &::-moz-placeholder          {text-transform: uppercase;}/* Firefox 19+ */
+        &:-moz-placeholder           {text-transform: uppercase;}/* Firefox 18- */
+        &:-ms-input-placeholder      {text-transform: uppercase;}
+    }
+    .mz-l-formfieldgroup-cell {
+        padding: 0;
+    }
+    .form-row {
+        padding: 0 0 3rem;
+    }
+
+    .checkout-twocolumn-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        .mz-addressform-firstname,
+        .mz-addressform-lastname {
+            width: calc(50% - 0.75rem);  
+        }
+    }
+    
+    .primary-btn {
+        padding: 0 8.125rem;
+    }
+
+    .mz-formstep-next {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+

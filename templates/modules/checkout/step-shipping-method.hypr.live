@@ -1,5 +1,5 @@
     <h3 class="mz-formstep-header mz-checkoutform-header">
-        {{ labels.shippingMethod }}
+        <span>{{ labels.shippingMethod }}</span>
     </h3>
     <div class="mz-formstep-body mz-checkoutform">
         {% if model.requiresFulfillmentInfo %}

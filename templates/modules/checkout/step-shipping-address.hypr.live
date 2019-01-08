@@ -1,7 +1,7 @@
  <h3 class="mz-formstep-header mz-checkoutform-header">
-        {{ labels.shippingInformation }}
+        <span>{{ labels.shippingInformation }}</span>
         {% if model.requiresFulfillmentInfo %}
-        <a href="javascript:;" class="mz-formstep-edit" data-mz-action="edit">{{ labels.change }}</a>
+        <a href="javascript:;" class="mz-formstep-edit" data-mz-action="edit">{{ labels.edit }}</a>
         {% endif %}
     </h3>
     <div class="mz-formstep-body">
