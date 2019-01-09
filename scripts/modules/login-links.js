@@ -426,9 +426,10 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
         this.bindListeners =  function (on) {
             var onOrOff = on ? "on" : "off";
             $(this).parent()[onOrOff]('click', '[data-mz-action="lite-registration"]', self.openLiteModal);
+            $(this).parent()[onOrOff]('click', '[data-mz-action="lite-registration"]', self.closeMainNav);
             $(this).parents('.mz-utilitynav')[onOrOff]('click', '[data-mz-action="doLogin"]', self.doLogin);
             $(this).parents('.mz-utilitynav')[onOrOff]('click', '[data-mz-action="doSignup"]', self.doSignup);
-
+            //$('#ml-nav').removeClass('in');
             // bind other events
         };
 
@@ -438,6 +439,12 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
                 $(".third-tab").hide();
             }
             self.modalEl.modal('show');
+        };
+
+        this.closeMainNav = function(){
+            if ($('#ml-nav').length > 0) {
+                $('#ml-nav').removeClass('in');
+            }
         };
 
         this.doLogin = function(){
@@ -476,6 +483,8 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
             if(emailupdates === "on")
                 accMarketing = true;
             var email = $(this).parents('#newshopper').find('[data-mz-signup-emailaddress]').val().trim();
+            var firstName = $(this).parents('#newshopper').find('[data-mz-signup-firstname]').val().trim();
+            var lastName = $(this).parents('#newshopper').find('[data-mz-signup-lastname]').val().trim();
             //var recoveryquestion = $(this).parents('#newshopper').find('[data-mz-signup-recoveryquestion]').val();
             //var recoveryanswer = $(this).parents('#newshopper').find('[data-mz-signup-recoveryanswer]').val().trim();
             var payload = {

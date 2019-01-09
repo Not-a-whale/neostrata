@@ -43,6 +43,8 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
         },
         startEdit: function(event) {
             event.preventDefault();
+            $('.mz-l-stack-section').hide();
+            $('.mz-accountsettings').show();
             this.editing = true;
             this.render();
         },

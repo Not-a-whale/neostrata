@@ -288,8 +288,9 @@
   "errorDetail"          : "Our software encountered an error it couldn't resolve.",
 
   "myAccount"            : "My Account",
-  "yourAccount"          : "Your Account",
-  "accountSettings"      : "Account Settings",
+  "yourAccount"          : "Account Dashboard",
+  "yourAccountSubt"      : "View and update your account info.",
+  "accountSettings"      : "Personal Info",
   "accountMyWishlist"    : "My Wishlist",
   "accountYourWishlist"  : "Your Wishlist",
   "accountNoWishlists"   : "You do not have any wishlist items.",
