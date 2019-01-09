@@ -72,7 +72,7 @@
                             </div>
                         </div>
                         <div class="mz-l-formfieldgroup-row">
-                            <div class="mz-l-formfieldgroup-cell">
+                            <!-- <div class="mz-l-formfieldgroup-cell">
                                 <label for="verifywith">{{ labels.verifyWith }}</label>
                             </div>
                             <div class="mz-l-formfieldgroup-cell">
@@ -81,15 +81,17 @@
                                     {% if themeSettings.zipCodeEnabled %}<option value="zipCode">{{ labels.billingPostalCode }}</option>{% endif %}
                                     {% if themeSettings.phoneNumberEnabled %}<option value="phoneNumber">{{ labels.billingPhoneNumber }}</option>{% endif %}
                                     {% if themeSettings.billingEmailEnabled %}<option value="email">{{ labels.billingEmail }}</option>{% endif %}
-                                </select>
-                            </div>
+                                </select>   -->
+
+                            <!-- </div>  -->
+                            <input name="verifyWith" value="zipCode" type="hidden"  data-mz-verify-with />
                         </div>
                         <div class="mz-l-formfieldgroup-row">
                             <div class="mz-l-formfieldgroup-cell">
-                                <label for="verification">{{ labels.verification }}</label>
+                                <label for="verification">{{ labels.billingPostalCode }}</label>
                             </div>
                             <div class="mz-l-formfieldgroup-cell">
-                                <input name="verification" value="" type="text" placeholder="{{ labels.verification }}" data-mz-verification />
+                                <input name="verification" value="" type="text" placeholder="{{ labels.billingPostalCode }}" data-mz-verification />
                             </div>
                         </div>
                         <div class="mz-l-formfieldgroup-row">
