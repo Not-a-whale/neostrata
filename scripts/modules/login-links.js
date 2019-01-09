@@ -399,6 +399,7 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
         this.openPopover = function(e){
             //self.popoverEl.popover('show');
             e.preventDefault();
+            var a = self.popoverEl.html();
             $("#my-account").popover({
                 html : true,
                 placement : 'bottom',
@@ -406,6 +407,7 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
                   return self.popoverEl.html();
                 }
             }); //.popover('show');
+            $('.commerce-enabled-true .mz-sitenav .user-login #my-account-content').show();
         };
     };
 
