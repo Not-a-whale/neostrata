@@ -605,6 +605,8 @@
   "filter": "Filtrer par",
   "shopBy": "Magasiner par",
   "siteMap": "Plan du site",
-  "passwordFormat": "[fr-CA]7 Characters minimum[fr-CA]"
+  "passwordFormat": "[fr-CA]7 Characters minimum[fr-CA]",
+  "billingRequiredMsg" : "[fr-CA]Billing Zip Code field required.[fr-CA]"
+
 
 }

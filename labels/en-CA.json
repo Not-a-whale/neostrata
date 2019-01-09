@@ -606,5 +606,7 @@
   "shopBy": "Shop by",
   "siteMap": "Site Map",
   "passwordFormat": "7 Characters minimum",
-  "dayGuaranteeStatement": "30-day Money Back Guarantee. Order by 1:00 PM EST for sameday shipping."
+  "dayGuaranteeStatement": "30-day Money Back Guarantee. Order by 1:00 PM EST for sameday shipping.",
+  "billingRequiredMsg" : "Billing Zip Code field required."
+
 }

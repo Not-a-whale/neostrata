@@ -518,5 +518,6 @@
     "storesNear": "Stores near",
     "sort": "SORT",
     "filter": "FILTER",
-    "passwordFormat": "7 Characters minimum"
+    "passwordFormat": "7 Characters minimum",
+    "billingRequiredMsg" : "Billing Zip Code field required."
 }

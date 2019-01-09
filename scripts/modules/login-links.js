@@ -99,7 +99,7 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
         },
         customRetrieveErrorLabel: function (xhr) {
             if (xhr.message === "Verification field required.") {
-                xhr.message = "Billing Zip Code field required."; 
+                xhr.message =  Hypr.getLabel("billingRequiredMsg"); 
             } 
             this.retrieveErrorLabel(xhr); 
         },

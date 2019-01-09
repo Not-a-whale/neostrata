@@ -608,5 +608,6 @@
   "siteMap": "Site Map",
   "passwordFormat": "7 Characters minimum",
   "dayGuaranteeStatement": "30-day Money Back Guarantee. Order by 1:00 PM EST for sameday shipping."
-  ,"emailMeTxt": "We will email you when this product is back instock."
+  ,"emailMeTxt": "We will email you when this product is back instock.", 
+  "billingRequiredMsg" : "Billing Zip Code field required."
 }
