@@ -2476,7 +2476,7 @@ ul.tabs {
         float: left;
         width: 30%;
 
-        margin-right: 5%;
+        margin-right: 3%;
 
         img {
           width: 100%;
@@ -2637,6 +2637,9 @@ ul.tabs {
   }
 
   .find-a-retailer {
+    .commerce-enabled-true & {
+        display: none;
+    }
     text-align: center;
       padding: 5rem 1rem;
   }
@@ -2710,7 +2713,9 @@ ul.tabs {
         padding-left: 0px;
         float: left;
         width: 100%;
-
+        .commerce-enabled-false & {
+            display: none;
+        }
         .mz-l-stack-section{
             clear: none;
             &.mz-productdetail-price {
@@ -2740,11 +2745,11 @@ ul.tabs {
             margin: 3rem 0 1.5rem 0;
             .mz-productdetail-addtocart {
                 width: 27rem;
-                border-color: #85acce !important;
+                // border-color: #85acce !important;
                 margin: 0 auto;
                 display: inline-block;
                 &:hover{
-                    background: #85acce !important;
+                    // background: #85acce !important;
                 }
             }
         }
@@ -2799,15 +2804,15 @@ ul.tabs {
     }
     .mz-productdetail-emailme {
         width: 27rem;
-        border-color: #85acce !important;
+        // border-color: #85acce !important;
         margin: 0 auto;
         display: inline-block;
         &:hover{
-            background: #85acce !important;
+            // background: #85acce !important;
         }
     }
     .emailMe{
-        color: #85acce;
+        color: #ffd2b2;
         font-size: 3.43rem;
         line-height: 1.36em;
         font-weight: 500;
