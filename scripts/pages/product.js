@@ -32,13 +32,13 @@
 
     function initSlider() {
         slider = $('#productpager-Carousel').bxSlider({
-            slideWidth: 90,
-            minSlides: 4,
-            maxSlides: 4,
+            slideWidth: 125,
+            minSlides: 3,
+            maxSlides: 3,
             moveSlides: 1,
             slideMargin: 15,
             nextText: '<i class="fa fa-caret-right" aria-hidden="true"></i>',
-            prevText: '<i class="fa fa-caret-right" aria-hidden="true"></i>',
+            prevText: '<i class="fa fa-caret-left" aria-hidden="true"></i>',
             infiniteLoop: false,
             hideControlOnEnd: true,
             pager: false
