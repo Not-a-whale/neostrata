@@ -97,6 +97,12 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
 
             }
         },
+        customRetrieveErrorLabel: function (xhr) {
+            if (xhr.message === "Verification field required.") {
+                xhr.message = "Billing Zip Code field required."; 
+            } 
+            this.retrieveErrorLabel(xhr); 
+        },
         retrieveErrorLabel: function (xhr) {
             var message = "";
             if (xhr.message) {
@@ -258,7 +264,7 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
                 email: email,
                 billingZipCode: billingZipCode,
                 billingPhoneNumber: billingPhoneNumber
-            }).then(function () { window.location.href = (HyprLiveContext.locals.siteContext.siteSubdirectory||'') +  "/my-anonymous-account?returnUrl="+(HyprLiveContext.locals.siteContext.siteSubdirectory||'')+"/myaccount"; }, _.bind(this.retrieveErrorLabel, this));
+            }).then(function () { window.location.href = (HyprLiveContext.locals.siteContext.siteSubdirectory||'') +  "/my-anonymous-account?returnUrl="+(HyprLiveContext.locals.siteContext.siteSubdirectory||'')+"/myaccount"; }, _.bind(this.customRetrieveErrorLabel, this));
         },
         retrievePassword: function () {
             this.setLoading(true);
