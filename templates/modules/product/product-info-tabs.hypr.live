@@ -7,13 +7,13 @@
 {% with model|get_product_attribute("tenant~how-to-apply") as howToApply %}
 <ul class="nav nav-tabs">
     {% if howToApply %}
-      <li class="active"><a data-toggle="tab" href="#tab3"><span>{{ labels.howToApply }}</span></a></li>
+      <li><a data-toggle="tab" href="#tab3"><span>{{ labels.howToApply }}</span></a></li>
     {% endif %}
     {% if details or size or ingredients %}
         <li><a data-toggle="tab" href="#tab2"><span>{{ labels.details }}</span></a></li>
     {% endif %}
     {% if beforeAndAfter or dermQuote or clinicalStudy %}
-        <li><a data-toggle="tab" href="#tab1"><span>{{ labels.results }}</span></a></li>
+        <li class="active"><a data-toggle="tab" href="#tab1"><span>{{ labels.results }}</span></a></li>
     {% endif %}
 </ul>
 
@@ -39,14 +39,15 @@
             {% endfor %}
             <span class="beforeLabel">{{ labels.before }}</span>
             <span class="afterLabel">{{ labels.after }}</span>
+            <div class="text-center">
             {% if clinicalStudy %}
-                <hr>
                 {% for v in clinicalStudy.values %}
                   {% if v.stringValue %}
                     {{ v.stringValue|safe }}
                   {% endif %}
                 {% endfor %}
             {% endif %}
+            </div>
           </div>
         </div>
       </div>
