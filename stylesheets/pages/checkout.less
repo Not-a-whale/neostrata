@@ -447,6 +447,43 @@
             font-family: 'icomoon' !important;
         }
     }
+    .mz-paymentselector {
+        .mz-l-formfieldgroup-address {
+            .checkout-twocolumn-row.checkout-customer-name.form-row {
+                display: none;
+            }
+        }
+    }
+
+    .checkout-select-wrapper {
+        .bootstrap-select {
+            width: 100%;
+        }
+        .dropdown-toggle {
+            text-align: center;
+            
+            &:before {
+                display: none;
+            }
+            .filter-option {
+                position: static;
+                height: auto;
+                width: auto;
+                text-align: center;
+                display: inline;
+                padding: 0;
+
+                .filter-option-inner,
+                .filter-option-inner-inner {
+                    display: inline;
+                }
+            }
+            .caret {
+                display: none;
+            }
+        }
+    }
+    
 }
 
 #checkout-form .checkout-leftcolumn .mz-formstep {
@@ -487,3 +524,4 @@
         line-height: 1em;
     }
 }
+

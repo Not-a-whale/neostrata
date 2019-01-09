@@ -45,7 +45,7 @@
             {% include "modules/checkout/checkout-customer-info" %}
         </div>
 
-        <div class="mz-formstep mz-checkoutform-shippingaddress hidden" id="step-shipping-address">
+        <div class="mz-formstep mz-checkoutform-shippingaddress" id="step-shipping-address">
             {% include "modules/checkout/step-shipping-address" %}
         </div>
 

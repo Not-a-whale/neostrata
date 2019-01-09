@@ -1,5 +1,5 @@
 ﻿{% block address-form %}
-    <div class="checkout-twocolumn-row form-row">
+    <div class="checkout-twocolumn-row checkout-customer-name form-row">
         <h5 class="checkout-fields-title">{{ labels.bothName }}</h5>
         <div class="mz-l-formfieldgroup-row mz-addressform-firstname form-row">
             {% comment %}
@@ -57,7 +57,7 @@
             <span class="mz-validationmessage"></span>
         </div>
     </div>
-    <div class="mz-l-formfieldgroup-row mz-addressform-country form-row">
+    <div class="mz-l-formfieldgroup-row mz-addressform-country form-row hidden">
         <div class="mz-l-formfieldgroup-cell mz-custom-padding-country">
             <label for="country">{{ labels.country }} : United States</label>
         </div>
@@ -117,55 +117,28 @@
                 </div>
             {% endcomment %}
             <div class="mz-l-formfieldgroup-cell">
-                <!--TODO validate functioonality custom select -->
                 <div class="checkout-select-wrapper">
-                    <button type="button" class="dropdown-select dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-mz-value="{{ addresscontext }}address.stateOrProvince">
-                        <span>{{labels.state}}</span><i class="dropdown-icon"></i>
-                    </button>
-                    <ul class="dropdown-menu dropdown-select-list lang-selector" title="Language Selector">
-                        <li data-value="en-ca">EN</li>
-                        <li data-value="fr-ca">FR</li>
+                    <select class="select selectpicker" data-mz-value="{{ addresscontext }}address.stateOrProvince">
+                        <option value="" selected>{{labels.state}}*</option>
 
                         {% if states && states.length > 0 %}
                         {% for state in states %}
-                            <li {% if model.address.stateOrProvince == state.key %}selected="selected"{% endif %} value="{{ state.key }}" data-value="{{ state.key }}">{{ state.value }}</li>
+                            <option {% if model.address.stateOrProvince == state.key %}selected="selected"{% endif %} value="{{ state.key }}">{{ state.value }}</option>
                         {% endfor %}
                         {% else %}
                             {% if themeSettings.customStates && themeSettings.customStates.length > 0 %}
                                 {% for state in themeSettings.customStates %}
-                                    <li {% if model.address.stateOrProvince == state.key %}selected="selected"{% endif %} value="{{ state.key }}" data-value="{{ state.key }}">{{ state.value }}</li>
+                                    <option {% if model.address.stateOrProvince == state.key %}selected="selected"{% endif %} value="{{ state.key }}">{{ state.value }}</option>
                                 {% endfor %}                    
                             {% else %}
                                 {% for state in pageContext.billingStates %}
-                                    <li {% if model.address.stateOrProvince == state.key %}selected="selected"{% endif %} value="{{ state.key }}" data-value="{{ state.key }}">{{ state.value }}</li>
+                                    <option {% if model.address.stateOrProvince == state.key %}selected="selected"{% endif %} value="{{ state.key }}">{{ state.value }}</option>
                                 {% endfor %}
                             {% endif %}
                         {% endif %}
-                    </ul>
+
+                    </select>
                 </div>
-
-                <select class="select" data-mz-value="{{ addresscontext }}address.stateOrProvince">
-                    <option value="" selected>{{labels.state}}*</option>
-
-                    {% if states && states.length > 0 %}
-                    {% for state in states %}
-                        <option {% if model.address.stateOrProvince == state.key %}selected="selected"{% endif %} value="{{ state.key }}">{{ state.value }}</option>
-                    {% endfor %}
-                    {% else %}
-                        {% if themeSettings.customStates && themeSettings.customStates.length > 0 %}
-                            {% for state in themeSettings.customStates %}
-                                <option {% if model.address.stateOrProvince == state.key %}selected="selected"{% endif %} value="{{ state.key }}">{{ state.value }}</option>
-                            {% endfor %}                    
-                        {% else %}
-                            {% for state in pageContext.billingStates %}
-                                <option {% if model.address.stateOrProvince == state.key %}selected="selected"{% endif %} value="{{ state.key }}">{{ state.value }}</option>
-                            {% endfor %}
-                        {% endif %}
-                    {% endif %}
-
-                </select>
-                {% comment %}
-                {% endcomment %}
 
                 <span class="mz-validationmessage" data-mz-validationmessage-for="{{ addresscontext }}address.stateOrProvince"></span>
             </div>
@@ -234,11 +207,13 @@
         </div>
         {% endcomment %}
         <div class="mz-l-formfieldgroup-cell">
-            <select class="select" data-mz-value="{{ addresscontext }}address.addressType">
-                <option value="">{{labels.addressType}}*</option>
-                <option value="Residential" {% if model.address.addressType == "Residential" %}selected="selected"{% endif %} >{{ labels.residential }}</option>
-                <option value="Commercial" {% if model.address.addressType == "Commercial" %}selected="selected"{% endif %} >{{ labels.commercial }}</option>
-            </select>
+            <div class="checkout-select-wrapper">
+                <select class="select selectpicker" data-mz-value="{{ addresscontext }}address.addressType">
+                    <option value="">{{labels.addressType}}*</option>
+                    <option value="Residential" {% if model.address.addressType == "Residential" %}selected="selected"{% endif %} >{{ labels.residential }}</option>
+                    <option value="Commercial" {% if model.address.addressType == "Commercial" %}selected="selected"{% endif %} >{{ labels.commercial }}</option>
+                </select>
+            </div>
             <span class="mz-validationmessage" data-mz-validationmessage-for="{{ addresscontext }}address.addressType"></span>
         </div>
     </div>

@@ -7,6 +7,7 @@ require(["modules/jquery-mozu",
     'hyprlivecontext', 
     'modules/editable-view', 
     'modules/preserve-element-through-render',
+    'modules/bootstrap-select',
     'modules/xpress-paypal'], 
     function ($, _, Hypr, Backbone, CheckoutModels, messageViewFactory, CartMonitor, HyprLiveContext, EditableView, preserveElements,PayPal) {
 
@@ -14,6 +15,7 @@ require(["modules/jquery-mozu",
     var CheckoutStepView = EditableView.extend({
         edit: function () {
             this.model.edit();
+            $('.selectpicker').selectpicker();
         },
         next: function () {
             // wait for blur validation to complete
@@ -637,5 +639,7 @@ require(["modules/jquery-mozu",
 
         $checkoutView.noFlickerFadeIn();
 
+
+        $('.selectpicker').selectpicker();
     });
 });

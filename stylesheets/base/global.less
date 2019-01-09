@@ -633,7 +633,8 @@ ul {
   .slashHeading(@redOrange);
 }
 
-.dropdown-select {
+.dropdown-select,
+.checkout-select-wrapper .dropdown-toggle {
   font-family: @fontFamily;
   font-weight: @fontWeightBook;
   font-size: 1.5rem;
@@ -646,6 +647,7 @@ ul {
   height: 6rem;
   line-height: 5.625rem;
   padding: 0 3.125rem;
+  border-radius: 0;
 
   &:hover {
     color: @charcoal;
@@ -655,7 +657,8 @@ ul {
       color: @charcoal;
     }
   }
-  i {
+  i,
+  .bs-caret {
     .icon(before, @icon-keyboard_arrow_down);
     margin: 0 3.125rem 0 2.5rem;
     &:before {
@@ -666,7 +669,8 @@ ul {
     }
   }
 }
-.dropdown-select-list{
+.dropdown-select-list,
+.checkout-select-wrapper .dropdown-menu {
   width: 100%;
   padding: 0;
   margin-top: -1px;
