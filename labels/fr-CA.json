@@ -288,8 +288,9 @@
   "errorDetail"          : "[fr-CA]Our software encountered an error it couldn't resolve.[fr-CA]",
 
   "myAccount"            : "[fr-CA]My Account[fr-CA]",
-  "yourAccount"          : "[fr-CA]Your Account[fr-CA]",
-  "accountSettings"      : "[fr-CA]Account Settings[fr-CA]",
+  "yourAccount"          : "[fr-CA]Account Dashboard[fr-CA]",
+  "yourAccountSubt"      : "[fr-CA]View and update your account info.[fr-CA]",
+  "accountSettings"      : "[fr-CA]Personal Info[fr-CA]",
   "accountMyWishlist"    : "[fr-CA]My Wishlist[fr-CA]",
   "accountYourWishlist"  : "[fr-CA]Your Wishlist[fr-CA]",
   "accountNoWishlists"   : "[fr-CA]You do not have any wishlist items.[fr-CA]",
