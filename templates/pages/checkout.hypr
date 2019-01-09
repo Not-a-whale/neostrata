@@ -45,7 +45,7 @@
             {% include "modules/checkout/checkout-customer-info" %}
         </div>
 
-        <div class="mz-formstep mz-checkoutform-shippingaddress" id="step-shipping-address">
+        <div class="mz-formstep mz-checkoutform-shippingaddress hidden" id="step-shipping-address">
             {% include "modules/checkout/step-shipping-address" %}
         </div>
 
@@ -59,17 +59,6 @@
 
         <div class="mz-formstep mz-checkoutform-review" id="step-review">
             {% include "modules/checkout/step-review" %}
-        </div>
-
-        <div class="mz-l-formfieldgroup">
-            <div class="mz-checkoutform-couponcode mz-l-formfieldgroup-row" id="coupon-code-field" >
-                {% include "modules/checkout/coupon-code-field" %}
-            </div>
-            {% if themeSettings.showCheckoutCommentsField %}
-            <div class="mz-checkoutform-comments mz-l-formfieldgroup-row" id="comments-field" >
-                {% include "modules/checkout/comments-field" %}
-            </div>
-            {% endif %}
         </div>
 
     </div><!-- left .column -->

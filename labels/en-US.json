@@ -110,6 +110,7 @@
   "confirmPassword"      : "Confirm Password",
   "billingContact"       : "Email Id",
   "shippingContact"      : "Shipping Contact",
+  "bothName"             : "Name",
   "firstName"            : "First Name",
   "lastName"             : "Last Name",
   "address"              : "Address",

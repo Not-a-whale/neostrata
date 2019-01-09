@@ -1,39 +1,44 @@
 ﻿{% block address-form %}
-    <div class="mz-l-formfieldgroup-row mz-addressform-firstname form-row">
-        {% comment %}
+    <div class="checkout-twocolumn-row form-row">
+        <h5 class="checkout-fields-title">{{ labels.bothName }}</h5>
+        <div class="mz-l-formfieldgroup-row mz-addressform-firstname form-row">
+            {% comment %}
+                <div class="mz-l-formfieldgroup-cell">
+                    <label for="firstname">{{ labels.firstName }}<span class="is-required"> *</span></label>
+                </div>
+            {% endcomment %}
+    
             <div class="mz-l-formfieldgroup-cell">
-                <label for="firstname">{{ labels.firstName }}<span class="is-required"> *</span></label>
+                <input type="text" class="input" name="firstname" data-mz-value="{{ addresscontext }}firstName" value="{{ model.firstName }}" maxlength="{{themeSettings.firstNameLength}}" placeholder="{{ labels.firstName }}*">
+                <span class="mz-validationmessage" data-mz-validationmessage-for="{{ addresscontext }}firstName"></span>
             </div>
-        {% endcomment %}
-        <div class="mz-l-formfieldgroup-cell">
-            <input type="text" class="input" name="firstname" data-mz-value="{{ addresscontext }}firstName" value="{{ model.firstName }}" maxlength="{{themeSettings.firstNameLength}}" placeholder="{{ labels.firstName }}*">
-            <span class="mz-validationmessage" data-mz-validationmessage-for="{{ addresscontext }}firstName"></span>
+        </div>
+        {% if catalogRequest %}
+        <div class="mz-l-formfieldgroup-row mz-addressform-middlename form-row">
+            {% comment %}
+                <div class="mz-l-formfieldgroup-cell">
+                    <label for="middlename">{{ labels.middleName }} </label>
+                </div>
+            {% endcomment %}
+            <div class="mz-l-formfieldgroup-cell">
+                <input type="text" class="input" name="middlename" data-mz-value="{{ addresscontext }}middleNameInitials" value="{{ model.middleNameInitials }}" maxlength="{{themeSettings.middleNameInitialsLength}}" placeholder="{{ labels.middleName }}">
+                <span class="mz-validationmessage" data-mz-validationmessage-for="{{ addresscontext }}middleNameInitials"></span>
+            </div>
+        </div>    
+        {% endif %}
+        <div class="mz-l-formfieldgroup-row mz-addressform-lastname form-row">
+            {% comment %}
+                <div class="mz-l-formfieldgroup-cell">
+                    <label for="lastname">{{ labels.lastName }}<span class="is-required"> *</span></label>
+                </div>
+            {% endcomment %}
+            <div class="mz-l-formfieldgroup-cell">
+                <input type="text" class="input" name="lastname" data-mz-value="{{ addresscontext }}lastNameOrSurname" value="{{ model.lastNameOrSurname }}" maxlength="{{themeSettings.firstNameLength}}" placeholder="{{ labels.lastName }}*">
+                <span class="mz-validationmessage" data-mz-validationmessage-for="{{ addresscontext }}lastNameOrSurname"></span>
+            </div>
         </div>
     </div>
-    {% if catalogRequest %}
-    <div class="mz-l-formfieldgroup-row mz-addressform-middlename form-row">
-        {% comment %}
-            <div class="mz-l-formfieldgroup-cell">
-                <label for="middlename">{{ labels.middleName }} </label>
-            </div>
-        {% endcomment %}
-        <div class="mz-l-formfieldgroup-cell">
-            <input type="text" class="input" name="middlename" data-mz-value="{{ addresscontext }}middleNameInitials" value="{{ model.middleNameInitials }}" maxlength="{{themeSettings.middleNameInitialsLength}}" placeholder="{{ labels.middleName }}">
-            <span class="mz-validationmessage" data-mz-validationmessage-for="{{ addresscontext }}middleNameInitials"></span>
-        </div>
-    </div>    
-    {% endif %}
-    <div class="mz-l-formfieldgroup-row mz-addressform-lastname form-row">
-        {% comment %}
-            <div class="mz-l-formfieldgroup-cell">
-                <label for="lastname">{{ labels.lastName }}<span class="is-required"> *</span></label>
-            </div>
-        {% endcomment %}
-        <div class="mz-l-formfieldgroup-cell">
-            <input type="text" class="input" name="lastname" data-mz-value="{{ addresscontext }}lastNameOrSurname" value="{{ model.lastNameOrSurname }}" maxlength="{{themeSettings.firstNameLength}}" placeholder="{{ labels.lastName }}*">
-            <span class="mz-validationmessage" data-mz-validationmessage-for="{{ addresscontext }}lastNameOrSurname"></span>
-        </div>
-    </div>
+    <h5 class="checkout-fields-title">{{ labels.address }}</h5>
     <div class="mz-l-formfieldgroup-row mz-addressform-address1 form-row">
         {% comment %}
             <div class="mz-l-formfieldgroup-cell">
@@ -77,61 +82,93 @@
             <span class="mz-validationmessage" data-mz-validationmessage-for="{{ addresscontext }}address.countryCode"></span>
         </div>
     </div>
-    <div class="mz-l-formfieldgroup-row mz-addressform-city form-row">
-        {% comment %}
+    <div class="checkout-twocolumn-row form-row">
+        <div class="mz-l-formfieldgroup-row mz-addressform-city">
+            {% comment %}
+                <div class="mz-l-formfieldgroup-cell">
+                    <label for="city">{{ labels.city }}<span class="is-required"> *</span></label>
+                </div>
+            {% endcomment %}
             <div class="mz-l-formfieldgroup-cell">
-                <label for="city">{{ labels.city }}<span class="is-required"> *</span></label>
+                <input type="text" class="input" name="city" data-mz-value="{{ addresscontext }}address.cityOrTown" value="{{ model.address.cityOrTown }}" maxlength="{{themeSettings.cityNameLength}}" placeholder="{{ labels.city }}*">
+                <span class="mz-validationmessage" data-mz-validationmessage-for="{{ addresscontext }}address.cityOrTown"></span>
             </div>
-        {% endcomment %}
-        <div class="mz-l-formfieldgroup-cell">
-            <input type="text" class="input" name="city" data-mz-value="{{ addresscontext }}address.cityOrTown" value="{{ model.address.cityOrTown }}" maxlength="{{themeSettings.cityNameLength}}" placeholder="{{ labels.city }}*">
-            <span class="mz-validationmessage" data-mz-validationmessage-for="{{ addresscontext }}address.cityOrTown"></span>
+                <div class="mz-addressform-autocompletefields">
+                    <label for="autocomplete-state">{{ labels.state }}</label><input type="text" name="state" data-mz-value="{{ addresscontext }}address.stateOrProvince" value="{{ model.address.stateOrProvince }}" />
+                    <label for="autocomplete-zip">{{ labels.zip }}</label><input type="text" name="zip" data-mz-value="{{ addresscontext }}address.postalOrZipCode" value="{{ model.address.postalOrZipCode }}" />
+                </div>
         </div>
-            <div class="mz-addressform-autocompletefields">
-                <label for="autocomplete-state">{{ labels.state }}</label><input type="text" name="state" data-mz-value="{{ addresscontext }}address.stateOrProvince" value="{{ model.address.stateOrProvince }}" />
-                <label for="autocomplete-zip">{{ labels.zip }}</label><input type="text" name="zip" data-mz-value="{{ addresscontext }}address.postalOrZipCode" value="{{ model.address.postalOrZipCode }}" />
-            </div>
-    </div>
-    {% comment %}
-    <div class="mz-l-formfieldgroup-row mz-addressform-state" {% if model.address.countryCode == "US" %} style="display: none"{% endif %}>
-        <div class="mz-l-formfieldgroup-cell">
-            <label for="stateOrProvince">{{ labels.stateOrProvince }}<span class="is-required"> *</span></label>
-        </div>
-        <div class="mz-l-formfieldgroup-cell">
-            <input type="text" class="input" name="stateOrProvince" data-mz-value="{{ addresscontext }}address.stateOrProvince" value="{{ model.address.stateOrProvince }}" maxlength="{{themeSettings.stateNameLength}}">
-            <span class="mz-validationmessage" data-mz-validationmessage-for="{{ addresscontext }}address.stateOrProvince"></span>
-        </div>
-    </div>
-    <div class="mz-l-formfieldgroup-row mz-addressform-state" {% if model.address.countryCode != "US" %}style="display: none"{% endif %}>
-    {% endcomment %}
-    <div class="mz-l-formfieldgroup-row mz-addressform-state form-row">
         {% comment %}
+        <div class="mz-l-formfieldgroup-row mz-addressform-state" {% if model.address.countryCode == "US" %} style="display: none"{% endif %}>
             <div class="mz-l-formfieldgroup-cell">
-                <label for="stateprov">{{ labels.state }}<span class="is-required"> *</span></label>
+                <label for="stateOrProvince">{{ labels.stateOrProvince }}<span class="is-required"> *</span></label>
             </div>
+            <div class="mz-l-formfieldgroup-cell">
+                <input type="text" class="input" name="stateOrProvince" data-mz-value="{{ addresscontext }}address.stateOrProvince" value="{{ model.address.stateOrProvince }}" maxlength="{{themeSettings.stateNameLength}}">
+                <span class="mz-validationmessage" data-mz-validationmessage-for="{{ addresscontext }}address.stateOrProvince"></span>
+            </div>
+        </div>
+        <div class="mz-l-formfieldgroup-row mz-addressform-state" {% if model.address.countryCode != "US" %}style="display: none"{% endif %}>
         {% endcomment %}
-        <div class="mz-l-formfieldgroup-cell">
-            <select class="select" data-mz-value="{{ addresscontext }}address.stateOrProvince">
-                <option value="" selected>{{labels.state}}*</option>
+        <div class="mz-l-formfieldgroup-row mz-addressform-state">
+            {% comment %}
+                <div class="mz-l-formfieldgroup-cell">
+                    <label for="stateprov">{{ labels.state }}<span class="is-required"> *</span></label>
+                </div>
+            {% endcomment %}
+            <div class="mz-l-formfieldgroup-cell">
+                <!--TODO validate functioonality custom select -->
+                <div class="checkout-select-wrapper">
+                    <button type="button" class="dropdown-select dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-mz-value="{{ addresscontext }}address.stateOrProvince">
+                        <span>{{labels.state}}</span><i class="dropdown-icon"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-select-list lang-selector" title="Language Selector">
+                        <li data-value="en-ca">EN</li>
+                        <li data-value="fr-ca">FR</li>
 
-                {% if states && states.length > 0 %}
-                {% for state in states %}
-                    <option {% if model.address.stateOrProvince == state.key %}selected="selected"{% endif %} value="{{ state.key }}">{{ state.value }}</option>
-                {% endfor %}
-                {% else %}
-                    {% if themeSettings.customStates && themeSettings.customStates.length > 0 %}
-                        {% for state in themeSettings.customStates %}
-                            <option {% if model.address.stateOrProvince == state.key %}selected="selected"{% endif %} value="{{ state.key }}">{{ state.value }}</option>
-                        {% endfor %}                    
-                    {% else %}
-                        {% for state in pageContext.billingStates %}
-                            <option {% if model.address.stateOrProvince == state.key %}selected="selected"{% endif %} value="{{ state.key }}">{{ state.value }}</option>
+                        {% if states && states.length > 0 %}
+                        {% for state in states %}
+                            <li {% if model.address.stateOrProvince == state.key %}selected="selected"{% endif %} value="{{ state.key }}" data-value="{{ state.key }}">{{ state.value }}</li>
                         {% endfor %}
-                    {% endif %}
-                {% endif %}
+                        {% else %}
+                            {% if themeSettings.customStates && themeSettings.customStates.length > 0 %}
+                                {% for state in themeSettings.customStates %}
+                                    <li {% if model.address.stateOrProvince == state.key %}selected="selected"{% endif %} value="{{ state.key }}" data-value="{{ state.key }}">{{ state.value }}</li>
+                                {% endfor %}                    
+                            {% else %}
+                                {% for state in pageContext.billingStates %}
+                                    <li {% if model.address.stateOrProvince == state.key %}selected="selected"{% endif %} value="{{ state.key }}" data-value="{{ state.key }}">{{ state.value }}</li>
+                                {% endfor %}
+                            {% endif %}
+                        {% endif %}
+                    </ul>
+                </div>
 
-            </select>
-            <span class="mz-validationmessage" data-mz-validationmessage-for="{{ addresscontext }}address.stateOrProvince"></span>
+                <select class="select" data-mz-value="{{ addresscontext }}address.stateOrProvince">
+                    <option value="" selected>{{labels.state}}*</option>
+
+                    {% if states && states.length > 0 %}
+                    {% for state in states %}
+                        <option {% if model.address.stateOrProvince == state.key %}selected="selected"{% endif %} value="{{ state.key }}">{{ state.value }}</option>
+                    {% endfor %}
+                    {% else %}
+                        {% if themeSettings.customStates && themeSettings.customStates.length > 0 %}
+                            {% for state in themeSettings.customStates %}
+                                <option {% if model.address.stateOrProvince == state.key %}selected="selected"{% endif %} value="{{ state.key }}">{{ state.value }}</option>
+                            {% endfor %}                    
+                        {% else %}
+                            {% for state in pageContext.billingStates %}
+                                <option {% if model.address.stateOrProvince == state.key %}selected="selected"{% endif %} value="{{ state.key }}">{{ state.value }}</option>
+                            {% endfor %}
+                        {% endif %}
+                    {% endif %}
+
+                </select>
+                {% comment %}
+                {% endcomment %}
+
+                <span class="mz-validationmessage" data-mz-validationmessage-for="{{ addresscontext }}address.stateOrProvince"></span>
+            </div>
         </div>
     </div>
     <div class="mz-l-formfieldgroup-row mz-addressform-zip form-row">
@@ -170,6 +207,8 @@
     </div>    
      
     {% else %}  
+
+    <h5 class="checkout-fields-title">{{ labels.phone }}</h5>
 
     <div class="mz-l-formfieldgroup-row mz-addressform-phone form-row">
         {% comment %}

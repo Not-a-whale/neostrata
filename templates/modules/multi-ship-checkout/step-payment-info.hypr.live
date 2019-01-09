@@ -101,10 +101,11 @@
                 {{ labels.billingContact }}: <strong>{{ model.billingContact.email }}</strong>
             </p>
         </div>
-        
+        {% comment%}
         <div class="mz-l-stack-section mz-paymentselector-separator mz-checkoutform">
             {% include "modules/checkout/checkout-digital-credit" %}
         </div>
+        {% endcomment%}
     </div>
 
     <div class="mz-formstep-fields mz-l-stack">
@@ -159,7 +160,8 @@
             <h4 class="mz-checkout-nopaymentrequired mz-checkoutform">{{ labels.noPaymentRequired|string_format(model.remainingTotal|currency) }}</h4>
 
         {% endif %}
-
+        
+        {% comment%}
         <div class="mz-l-stack-section mz-formfieldgroup-row mz-paymentselector-separator mz-checkoutform">
             <div class="mz-l-formfieldgroup">
                 <div class="mz-l-formfieldgroup-row">
@@ -183,13 +185,15 @@
                 </div>
             </div>
         </div>
-
+        {% endcomment%}
+        {% comment%}
         <div class="mz-l-stack-section mz-formfieldgroup-row mz-paymentselector-separator mz-checkoutform">
             {% include "modules/checkout/checkout-digital-credit" %}
         </div>
+        {% endcomment%}
     </div>
 
     <div class="mz-formstep-next">
-        <button class="mz-button button_primary primary-btn" data-mz-action="next">{{ labels.next }}</button>
+        <button class="mz-button primary-btn" data-mz-action="next">{{ labels.next }}</button>
     </div>
 </div><!-- .mz-panel-wrap -->

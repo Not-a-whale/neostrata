@@ -1,6 +1,6 @@
 ﻿{% block credit-card-form %}
     
-    <div class="mz-l-formfieldgroup-row mz-payment-credit-card-number-row mz-card-type-images">        
+    <div class="mz-l-formfieldgroup-row mz-payment-credit-card-number-row mz-card-type-images hidden">        
         {% comment %}
         <div class="mz-l-formfieldgroup-cell">
             <label for="mz-payment-credit-card-number"></label>
@@ -28,6 +28,7 @@
             <span class="mz-validationmessage" data-mz-validationmessage-for="{{ cardcontext }}paymentOrCardType"></span>
         {% endif %}
     </div>
+    <h5 class="checkout-fields-title">{{ labels.cardNumber }}</h5>
     <div class="mz-l-formfieldgroup-row mz-payment-credit-card-number-row">
         {% comment %}
         <div class="mz-l-formfieldgroup-cell">
@@ -39,7 +40,7 @@
             <span class="mz-validationmessage" data-mz-validationmessage-for="{{ cardcontext }}cardNumberPartOrMask"></span>
         </div>
     </div>
-    <div class="mz-l-formfieldgroup-row mz-payment-credit-card-name-row">
+    <div class="mz-l-formfieldgroup-row mz-payment-credit-card-name-row hidden">
         {% comment %}
         <div class="mz-l-formfieldgroup-cell">
             <label for="mz-payment-credit-card-name">{{ labels.nameOnCard }}<span class="is-required"> *</span>:</label>
@@ -50,7 +51,8 @@
             <span class="mz-validationmessage" data-mz-validationmessage-for="{{ cardcontext }}nameOnCard" ></span>
         </div>
     </div>
-    <div class="mz-l-formfieldgroup-row mz-payment-credit-card-expiration-row">
+    <h5 class="checkout-fields-title">{{ labels.expires }}</h5>
+    <div class="mz-l-formfieldgroup-row mz-payment-credit-card-expiration-row checkout-twocolumn-row form-row">
     {% comment %}
         <div class="mz-l-formfieldgroup-cell">
             <label for="mz-payment-expiration-month">{{ labels.expires }}<span class="is-required"> *</span>:</label>
