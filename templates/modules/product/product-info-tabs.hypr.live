@@ -36,9 +36,11 @@
                     {% include "modules/product/beforeAndAfterSlider"  width images=v.stringValue %}
                   {% endif %}
               </div>
+            {% if v.stringValue %}
+              <span class="beforeLabel">{{ labels.before }}</span>
+              <span class="afterLabel">{{ labels.after }}</span>
+            {% endif %}
             {% endfor %}
-            <span class="beforeLabel">{{ labels.before }}</span>
-            <span class="afterLabel">{{ labels.after }}</span>
             <div class="text-center">
             {% if clinicalStudy %}
                 {% for v in clinicalStudy.values %}
