@@ -1,5 +1,7 @@
 <div class="arrow-up"></div>
+<a href="javascript:void(0)" onclick="jQuery(&quot;#global-cart&quot;).css(&quot;display&quot;,&quot;none&quot;);" id="closeGlobalCart">X</a>
 {% if model.items.length>0 %}
+<h5>ADDED TO CART!</h5>
 	<ul class="media-list">	
 			<div class="media heading-row">
 				<div class="media-left">
@@ -17,8 +19,13 @@
 					</div>
 				</div>
 			</div>
-
-		    {% for items in model.cartItems  %}
+				
+			{% set cartItemsTotal = 0 %}
+		    {% for items in model.cartItems|reverse  %}
+				{% set cartItemsTotal = cartItemsTotal + items.quantity %}
+				
+				{% if forloop.index == 1 %}
+				
 		    	<div class="media">
 					<div class="media-left">
 						<a href="/p/{{items.product.productCode}}">							
@@ -42,7 +49,7 @@
 						</a>
 					</div>
 					<div class="media-body">
-						<div class="col-xs-5 global-cart-padding">
+						<div class="col-xs-9 global-cart-padding">
 							<h5 class="media-heading">
 								<a href="/p/{{items.product.productCode}}">
 									{{ items.product.name }}									
@@ -53,11 +60,11 @@
 								<div><b>{{ option.name }}</b>  <span>{% if option.stringname %}{{ option.stringname }}{% else %}{{ option.value }}{% endif %}</span></div>
 								{% endfor %}
 							{% endif %}	
-							<div><b>{{ labels.qty }} </b>  <span>{{ items.quantity }}</span></div>
+							<div style="display:none;"><b>{{ labels.qty }} </b>  <span>{{ items.quantity }}</span></div>
 						</div>
-						<div class="col-xs-7">
+						<div class="col-xs-3">
 							<div class="row">
-								<div class="col-xs-7 global-cart-padding"  >
+								<div class="global-cart-padding text-right"  >
 								{% include "modules/common/item-price" with item=items %}
 								</div>
 								<div class="col-xs-5 price-amount-col">{% include "modules/common/item-total" with item=items isGlobalCart="true" %}</div>	
@@ -65,12 +72,17 @@
 						</div>
 					</div>
 				</div>
-		    {% endfor %}
+				{% endif %}
+
+			{% endfor %}
 	</ul>
 	<div class="row total-amount-row">
-	    <div class="col-xs-12 text-right">
-	    	<b>Subtotal: </b>
-	    	<span>{{ model.subtotal|currency }}</span>
+	    <div class="col-xs-12 cart-subtotal">
+	    	<b>Cart Subtotal </b>
+	    	<span>
+				({{ cartItemsTotal }} Item{% if cartItemsTotal>1 %}s{% endif %})
+			</span>
+	    	<span><b>{{ model.subtotal|currency }}</b></span>
 	    </div>
   	    {% if model.orderDiscounts %}
 	  	    {% for orderDiscount in model.orderDiscounts  %}
@@ -85,31 +97,33 @@
 	    	<a href="/cart"> {{model.items.length-themeSettings.globalCartMaxItemCount}} more item(s)... </a>
 	    </div>
 	    {% endif%}
-	    <div class="{% if model.items.length > themeSettings.globalCartMaxItemCount %}col-xs-6{% else %}col-xs-12{% endif %} text-right">
-	    	<b>Total: </b>
-	    	<span>{{ model.total|currency }}</span>
+	    <div class="{% if model.items.length > themeSettings.globalCartMaxItemCount %}col-xs-6{% else %}col-xs-12{% endif %}">
+			<div class="cart-total">
+				<b>Total: </b>
+				<span>{{ model.total|currency }}</span>
+			</div>
 	    </div>	    
 	</div>
 	<div class="row">
-		<div class="col-xs-8">
+		<div class="col-xs-5">
 			<a href="/cart" class="primary-btn view-cart-btn">{{ labels.openCart }}</a>
 			{% if (themeSettings.globalCartEnableSaveCart && user.isAnonymous)  %}
-				<button data-mz-action="openLiteRegistration" class="primary-btn">Save Cart</button>
+				<button data-mz-action="openLiteRegistration" class="primary-btn save-cart-btn">Save Cart</button>
 			{% endif %}
 		</div>
-		<div class="col-xs-4 text-right">
+		<div class="col-xs-6">
 			{% if not user.isAnonymous %}
   				<form method="post" value="" action="{{ pageContext.secureHost }}/cart/checkout">
-  					<button type="submit" class="mz-button btn btn-default" >Checkout</button>
+  					<button type="submit" class="mz-button btn btn-default checkout-cart-btn" >Go To Checkout</button>
   				</form>
  			{% else%}
- 				<button type="submit" class="mz-button btn btn-default" data-mz-action="checkoutGuest">Checkout</button>
+ 				<button type="submit" class="mz-button btn btn-default checkout-cart-btn" data-mz-action="checkoutGuest">Go To Checkout</button>
 			{% endif%}
 		</div>
 	</div>
 
 	{% if themeSettings.globalCartRelatedProducts %}
-		<h5>You may also like</h5>
+		<h5 class="text-center">Add these products for a more <br>complete skin care regimen.</h5>
 		<div class="related-products"></div>
 	{% endif %}
 	<div class="row text-center" style="padding-top: 15px;">
@@ -118,6 +132,9 @@
 		  	<img src="{% make_url "image" themeSettings.globalCartEmptyBasketFooter.imageUrl with width=370 as_parameters %}"  />
 		  </a>
 		{% endif %}		
+	</div>
+	<div class="row text-center" style="padding-top: 15px;">
+		<h5 class="full-recommended"><a href="#">View Full Recommended Regimen ></a></h5>
 	</div>
 
 {% else %}
