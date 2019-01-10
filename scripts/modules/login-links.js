@@ -407,7 +407,7 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
                   return self.popoverEl.html();
                 }
             }); //.popover('show');
-            $('.commerce-enabled-true .mz-sitenav .user-login #my-account-content').show();
+            
         };
     };
 
@@ -573,6 +573,10 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
             var popover = new MyAccountPopover();
             popover.init(this);
             $(this).data('mz.popover', popover);
+            if(!$('.commerce-enabled-true .mz-sitenav .user-login #my-account-content').is(':visible'))
+                $('.commerce-enabled-true .mz-sitenav .user-login #my-account-content').show();
+            else
+                $('.commerce-enabled-true .mz-sitenav .user-login #my-account-content').hide();
         });
         $("#my-account").popover({
                 html : true,
