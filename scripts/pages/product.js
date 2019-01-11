@@ -704,10 +704,46 @@
                 return wishlist.data;
             }).then(function(wishlistItems) {          
                 for (var i = 0; i < wishlistItems.items.length; i++) {
+                    if(wishlistItems.items[i].product.productCode === $('.mz-productdetail-addToWishlist-Action').data('mz-product-code')){
+                        $( "#removeFromWishlistHide" ).html('<a  class="mz-action" data-mz-action="finishRemoveItem" mz-item-id="'+wishlistItems.items[i].id+'"></a>');
+                    }
                     $('[data-mz-product-code="'+wishlistItems.items[i].product.productCode+'"] span').removeClass("heart-outline").addClass("heart-filled");
                 }
             });
         }
+        $('.mz-productdetail-addToWishlist-Action').click(function() {
+            if($('.mz-productdetail-addToWishlist-Action span').hasClass('heart-outline')){
+                $( "#addToWishlistHide" ).trigger( "click" );
+                setTimeout(function(){ 
+                    if(user.accountId){
+                        api.createSync('wishlist').getOrCreate(user.accountId).then(function(wishlist) {
+                            return wishlist.data;
+                        }).then(function(wishlistItems) {          
+                            for (var i = 0; i < wishlistItems.items.length; i++) {
+                                if(wishlistItems.items[i].product.productCode === $('.mz-productdetail-addToWishlist-Action').data('mz-product-code')){
+                                    $( "#removeFromWishlistHide" ).html('<a  class="mz-action" data-mz-action="finishRemoveItem" mz-item-id="'+wishlistItems.items[i].id+'"></a>');
+                                }
+                                $('[data-mz-product-code="'+wishlistItems.items[i].product.productCode+'"] span').removeClass("heart-outline").addClass("heart-filled");
+                            }
+                        });
+                    }
+                 }, 1000);
+            }
+            // else{
+            //     $( "#removeFromWishlistHide > a" ).trigger( "click" );
+            //     setTimeout(function(){ 
+            //         if(user.accountId){
+            //             api.createSync('wishlist').getOrCreate(user.accountId).then(function(wishlist) {
+            //                 return wishlist.data;
+            //             }).then(function(wishlistItems) {          
+            //                 for (var i = 0; i < wishlistItems.items.length; i++) {
+            //                     $('[data-mz-product-code="'+wishlistItems.items[i].product.productCode+'"] span').removeClass("heart-filled").addClass("heart-outline");
+            //                 }
+            //             });
+            //         }
+            //      }, 1000);
+            // }
+        });
     });
 
     function recentProd(json, product) {

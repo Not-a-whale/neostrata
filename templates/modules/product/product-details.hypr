@@ -20,7 +20,7 @@
             </h2>
             <div class="center-mobile reviews-and-price">
               <div class="mz-all-review-container add-to-wishlist-container">
-              <button class="mz-productdetail-addToWishlist mz-favorites" data-mz-action="addToWishlist" data-mz-product-code="{{ model.productCode }}">
+              <button class="mz-productdetail-addToWishlist-Action mz-favorites" data-mz-action="addToWishlist" data-mz-product-code="{{ model.productCode }}">
                   <span class="heart-outline"></span>
               </button>
                 <span class="mz-reviews-pdp-stars">
