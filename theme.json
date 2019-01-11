@@ -295,6 +295,14 @@
       "userCreatable": true
     },
     {
+      "id": "order-error",
+      "title": "Order Error",
+      "entityType": "webpage",
+      "documentType": "web_page",
+      "template": "pages/order-error",
+      "userCreatable": true
+    },
+    {
       "entityType": "category",
       "id": "category",
       "template": "category",

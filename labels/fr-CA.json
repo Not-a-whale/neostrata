@@ -606,6 +606,8 @@
   "shopBy": "Magasiner par",
   "siteMap": "Plan du site",
   "passwordFormat": "[fr-CA]7 Characters minimum[fr-CA]",
+  "orderFailsHeader": "[fr-CA]There was a problem with your order.[fr-CA]",
+  "orderFailsText": "[fr-CA]We are unable to process your order at this time.[fr-CA]",
   "billingRequiredMsg" : "[fr-CA]Billing Zip Code field required.[fr-CA]"
 
 

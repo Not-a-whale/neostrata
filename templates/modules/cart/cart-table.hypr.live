@@ -174,7 +174,28 @@
        {% if not model.isEmpty %}<span class="mz-empty-cart-link-container"><button class="font-large button_promotional" href="javascript:;" data-mz-action="empty">{{ labels.emptyCart }}</button></span>{% endif %}
        {% endif %} 
       <div class="mz-common-button-padding pull-right">
-                <button id="cart-checkout" class="mz-button font-large button_primary"  {% if model.isEmpty %} disabled="disabled" {% endif %} data-mz-action="proceedToCheckout">{{ labels.proceedToCheckout }}</button>
+        <button id="cart-checkout" class="mz-button font-large button_primary"  {% if model.isEmpty %} disabled="disabled" {% endif %} data-mz-action="proceedToCheckout">{{ labels.proceedToCheckout }}</button>
+        {% if not model.isEmpty %}
+          {% with siteContext.checkoutSettings.externalPaymentWorkflowSettings|findwhere("isEnabled", true) as externalPaymentWorkflowsEnabled %}
+            {% if externalPaymentWorkflowsEnabled %}
+              <div>
+                <p>{{labels.orWith}}</p>
+                {% for externalPayment in siteContext.checkoutSettings.externalPaymentWorkflowSettings %}
+                    {% if externalPayment.isEnabled %}
+                    <div class="mz-carttable-thirdpartypayment" >
+                      {% if externalPayment.name == "VisaCheckout" %}
+                        <img alt="Visa Checkout" class="v-button" role="button" src="{{pageContext.visaCheckoutButtonUrl}}"/>
+                      {%endif%}
+                      {% if externalPayment.name == "PayPalExpress2" %}
+                        <img id="btn_xpressPaypal" class="p-button" alt="Check out with PayPal" role="button" src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-medium.png" width="170px" height="32px" align="left" style="margin-top:12px; float:right;"/>
+                      {%endif%}
+                    </div>
+                    {%endif%}
+                {%endfor%}
+              </div>
+            {% endif %}
+          {%endwith%}
+        {% endif %}
       </div>
       </div>
 
