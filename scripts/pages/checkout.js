@@ -273,6 +273,8 @@ require(["modules/jquery-mozu",
 
             if (this.$(".p-button").length > 0)
                 PayPal.loadScript();
+                
+            $('.selectpicker').selectpicker();
         },
         updateAcceptsMarketing: function(e) {
             this.model.getOrder().set('acceptsMarketing', $(e.currentTarget).prop('checked'));
@@ -578,6 +580,7 @@ require(["modules/jquery-mozu",
         var $checkoutView = $('#checkout-form'),
             checkoutData = require.mozuData('checkout');
 
+
         var checkoutModel = window.order = new CheckoutModels.CheckoutPage(checkoutData),
             checkoutViews = {
                 parentView: new ParentView({
@@ -640,6 +643,5 @@ require(["modules/jquery-mozu",
         $checkoutView.noFlickerFadeIn();
 
 
-        $('.selectpicker').selectpicker();
     });
 });

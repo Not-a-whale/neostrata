@@ -39,7 +39,7 @@
         </div>
     </div>
     <h5 class="checkout-fields-title">{{ labels.address }}</h5>
-    <div class="mz-l-formfieldgroup-row mz-addressform-address1 form-row">
+    <div class="mz-addressform-address1 form-row">
         {% comment %}
             <div class="mz-l-formfieldgroup-cell">
                 <label for="address-line-1">{{ labels.address }}<span class="is-required"> *</span></label>
@@ -50,7 +50,7 @@
             <span class="mz-validationmessage" data-mz-validationmessage-for="{{ addresscontext }}address.address1"></span>
         </div>
     </div>
-    <div class="mz-l-formfieldgroup-row mz-addressform-address2 form-row">
+    <div class="mz-addressform-address2 form-row">
         <!--<div class="mz-l-formfieldgroup-cell mz-hide-column-catalog"></div>-->
         <div class="mz-l-formfieldgroup-cell mz-custom-padding-address">
             <input type="text" class="input" name="address-line-2" data-mz-value="{{ addresscontext }}address.address2" value="{{ model.address.address2 }}" maxlength="{{themeSettings.addressLength}}" placeholder="{{ labels.address }} Line 2">
@@ -144,7 +144,7 @@
             </div>
         </div>
     </div>
-    <div class="mz-l-formfieldgroup-row mz-addressform-zip form-row">
+    <div class="mz-addressform-zip form-row">
         {% comment %}
             <div class="mz-l-formfieldgroup-cell">
                 <label for="postal-code">{{ labels.postalCode }}<span class="is-required"> *</span></label>
@@ -166,13 +166,13 @@
     </div>
 
     {% if catalogRequest %}
-    <div class="mz-l-formfieldgroup-row mz-addressform-phone form-row">
+    <div class="mz-addressform-phone form-row">
         <div class="mz-l-formfieldgroup-cell">
             <input type="tel" class="input" name="officephone" data-mz-value="{{ addresscontext }}phoneNumbers.office" value="{{ model.phoneNumbers.office }}" maxlength="{{themeSettings.phoneNumberLength}}" minlength="{{themeSettings.phoneNumberLength}}" placeholder="{{ labels.dayTimePhone }}">
             <span class="mz-validationmessage" data-mz-validationmessage-for="{{ addresscontext }}phoneNumbers.office"></span>
         </div>
     </div> 
-    <div class="mz-l-formfieldgroup-row mz-addressform-phone form-row">
+    <div class="mz-addressform-phone form-row">
         <div class="mz-l-formfieldgroup-cell">
             <input type="tel" class="input" name="cellphone" data-mz-value="{{ addresscontext }}phoneNumbers.home" value="{{ model.phoneNumbers.home }}" maxlength="{{themeSettings.phoneNumberLength}}" minlength="{{themeSettings.phoneNumberLength}}" placeholder="{{ labels.cellPhone }}">
             <span class="mz-validationmessage" data-mz-validationmessage-for="{{ addresscontext }}phoneNumbers.home"></span>
@@ -183,7 +183,7 @@
 
     <h5 class="checkout-fields-title">{{ labels.phone }}</h5>
 
-    <div class="mz-l-formfieldgroup-row mz-addressform-phone form-row">
+    <div class="mz-addressform-phone form-row">
         {% comment %}
             <div class="mz-l-formfieldgroup-cell">
                 <label for="shippingphone">{{ labels.phone }}<span class="is-required"> *</span></label>
@@ -200,7 +200,7 @@
 
   
     {% if themeSettings.showAddressTypeDropdown and not catalogRequest %}
-    <div class="mz-l-formfieldgroup-row mz-addressform-addresstype form-row">
+    <div class="mz-l-formfieldgroup-row mz-addressform-addresstype form-row hidden">
         {% comment %}
         <div class="mz-l-formfieldgroup-cell">
             <label for="addresstype">{{ labels.addressType }}<span class="is-required"> *</span></label>

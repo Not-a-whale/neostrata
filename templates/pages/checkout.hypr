@@ -56,8 +56,8 @@
         <div class="mz-formstep mz-checkoutform-paymentinfo" id="step-payment-info">
             {% include "modules/checkout/step-payment-info" %}
         </div>
-
-        <div class="mz-formstep mz-checkoutform-review" id="step-review">
+        <!-- TODO Can be removed if not needed -->
+        <div class="mz-formstep mz-checkoutform-review hidden" id="step-review">
             {% include "modules/checkout/step-review" %}
         </div>
 

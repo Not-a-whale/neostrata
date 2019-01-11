@@ -1,7 +1,7 @@
-﻿        <div class="mz-l-formfieldgroup-cell">
-            <label for="coupon-code">{{ labels.couponCode }}: </label>
-        </div>
-        <div class="mz-l-formfieldgroup-cell">
+﻿        <h5 class="checkout-fields-title">{{ labels.couponCode }}: </h5>
+        <div class="mz-l-formfieldgroup-cell coupon-code-wrapper">
             <input type="text" id="coupon-code" name="coupon-code" value="{{ model.couponCode }}" data-mz-value="couponCode" maxlength="{{themeSettings.couponCodeLength}}">
-            <button class="mz-button primary-btn" data-mz-action="addCoupon" {% if not model.couponCode %} disabled="disabled" {% endif %}>{{ labels.apply }}</button>
+            <button class="mz-button primary-btn" data-mz-action="addCoupon" {% if not model.couponCode %} {% endif %}>{{ labels.apply }}</button>
         </div>
+        <a href="#" class="btn-add-promo-code">+ Cuopon or Promo Code</a>
+        <a href="#" class="btn-add-promo-code">+ Enter Another Coupon or Promo Code</a>

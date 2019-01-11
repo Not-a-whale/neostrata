@@ -196,7 +196,7 @@
     </div>
     
     <div class="mz-l-formfieldgroup">
-        <div class="mz-checkoutform-couponcode mz-l-formfieldgroup-row" id="coupon-code-field" >
+        <div class="mz-checkoutform-couponcode mz-l-formfieldgroup-row form-row" id="coupon-code-field" >
             {% include "modules/checkout/coupon-code-field" %}
         </div>
         {% if themeSettings.showCheckoutCommentsField %}
@@ -205,9 +205,20 @@
         </div>
         {% endif %}
     </div>
-
+    
     <div class="mz-formstep-next">
-        <button class="mz-button primary-btn" data-mz-action="next">{{ labels.next }}</button>
+        <button class="mz-button primary-btn" data-mz-action="submit">{{ labels.useThisPaymentInfo }}</button>
+    </div>
+    <!-- TODO Paypal Checkout -->
+    <div class="checkout-paypal">
+        <img src="/resources/images/paypal.png" alt="">
+    </div>
+
+    <!-- TODO Create account -->
+
+    <div class="checkout-create-account form-row">
+        <input type="checkbox" id="create-account" name="create-account"  value="true">
+        <label class="mz-inline icon-check form-element" for="create-account">{{ labels.createAccountCheckout|safe }}</label>
     </div>
 
 </div><!-- .mz-panel-wrap -->

@@ -342,6 +342,7 @@
     }
     .mz-l-formfieldgroup-cell {
         padding: 0;
+        margin: 0;
     }
     .form-row {
         padding: 0 0 3rem;
@@ -362,6 +363,14 @@
 
             .mz-validationmessage {
                 position: absolute;
+            }
+        }
+    }
+
+    .mz-payment-credit-card-expiration-row {
+        .checkout-twocolumn-row {
+            .checkout-select-wrapper {
+                width: calc(49.25%);
             }
         }
     }
@@ -459,9 +468,14 @@
         .bootstrap-select {
             width: 100%;
         }
+        .dropdown-menu {
+            overflow-x: hidden !important;
+        }
         .dropdown-toggle {
             text-align: center;
-            
+            height: 4.375rem;
+            line-height: 1em;
+
             &:before {
                 display: none;
             }
@@ -482,6 +496,13 @@
                 display: none;
             }
         }
+        .dropdown-menu>li>a:hover {
+            background: none;
+        }
+    }
+
+    .mz-payment-credit-card-expiration-row{
+        
     }
     
 }
@@ -525,3 +546,36 @@
     }
 }
 
+.checkout-paypal {
+    padding-bottom: 2rem;
+
+    img {
+        display: block;
+        margin: 2.3125rem auto 0;
+    }
+}
+
+.checkout-create-account {
+    border-top: 0.1875rem solid @midGray;
+    padding-top: 4.1875rem !important;
+
+    &.form-row {
+        input[type="checkbox"]+label {
+            font-size: 1.25rem;
+            line-height: 1.5em;
+
+            &:after {
+                top: 23px;
+            }
+            &:before {
+                top: 19px;
+                left: 1px;
+            }
+        }
+    }
+}
+.coupon-code-wrapper {
+    .primary-btn {
+        margin-top: 2rem;
+    }
+}

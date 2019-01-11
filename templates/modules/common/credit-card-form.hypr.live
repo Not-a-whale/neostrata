@@ -52,13 +52,13 @@
         </div>
     </div>
     <h5 class="checkout-fields-title">{{ labels.expiration }}</h5>
-    <div class="mz-l-formfieldgroup-row mz-payment-credit-card-expiration-row checkout-twocolumn-row form-row">
+    <div class="mz-l-formfieldgroup-row mz-payment-credit-card-expiration-row form-row">
     {% comment %}
         <div class="mz-l-formfieldgroup-cell">
             <label for="mz-payment-expiration-month">{{ labels.expires }}<span class="is-required"> *</span>:</label>
         </div>
     {% endcomment %}
-        <div class="mz-l-formfieldgroup-cell">
+        <div class="mz-l-formfieldgroup-cell checkout-twocolumn-row">
             <div class="checkout-select-wrapper">
                 <select class="mz-l-formfieldgroup-halfsize expiry-month selectpicker" id="mz-payment-expiration-month" name="expiration-month" data-mz-value="{{ cardcontext }}expireMonth">
                     <option value="">{{ labels.expiryMonth }}*</option>
@@ -91,8 +91,8 @@
                     <option {% if model.expireYear == "2027" %}selected="selected"{% endif %} value="2027">2027</option>
                     <option {% if model.expireYear == "2028" %}selected="selected"{% endif %} value="2028">2028</option>
                 </select>
+                <span class="mz-validationmessage" data-mz-validationmessage-for="{{ cardcontext }}expireYear"></span>
             </div>
-            <span class="mz-validationmessage" data-mz-validationmessage-for="{{ cardcontext }}expireYear"></span>
         </div>
     </div>
 {% endblock credit-card-form %}
