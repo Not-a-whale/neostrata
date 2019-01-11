@@ -699,6 +699,16 @@
         var recentProducts = existingProducts ? $.parseJSON(existingProducts) : [];
         recentProducts = recentProd(recentProducts, recentProduct);
         $.cookie("recentProducts", JSON.stringify(recentProducts), {path: '/', expires: 21 });
+        var user = require.mozuData('user');
+        if(user.accountId){
+            api.createSync('wishlist').getOrCreate(user.accountId).then(function(wishlist) {
+                return wishlist.data;
+            }).then(function(wishlistItems) {          
+                for (var i = 0; i < wishlistItems.items.length; i++) {
+                    $('[data-mz-product-code="'+wishlistItems.items[i].product.productCode+'"] span').removeClass("heart-outline").addClass("heart-filled");
+                }
+            });
+        }
     });
 
     function recentProd(json, product) {

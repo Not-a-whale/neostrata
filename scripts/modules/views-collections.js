@@ -239,7 +239,8 @@ define([
         /*directory Add-To-Wishlist action */
         var directoryAddToWishlist = IntentEmitter(_$body,
                                                    ['click #product-list-ul .mz-productdetail-addtowishlist',
-                                                    'click #more-list-ul .mz-productdetail-addtowishlist'],
+                                                    'click #more-list-ul .mz-productdetail-addtowishlist',
+                                                    'click #pdpAddToWishlist'],
                                                     directoryAddToWishlistAction);
         function directoryAddToWishlistAction(_e){
             var productCode = $(_e.currentTarget).data("mz-product-code");           
