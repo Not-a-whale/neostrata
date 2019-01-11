@@ -1,6 +1,7 @@
 <div class="arrow-up"></div>
 <a href="javascript:void(0)" onclick="jQuery(&quot;#global-cart&quot;).css(&quot;display&quot;,&quot;none&quot;);" id="closeGlobalCart">X</a>
 {% if model.items.length>0 %}
+
 <h5>ADDED TO CART!</h5>
 	<ul class="media-list">	
 			<div class="media heading-row">
@@ -54,6 +55,7 @@
 								<a href="/p/{{items.product.productCode}}">
 									{{ items.product.name }}									
 								</a>
+								<br><span class="items-short-description">{{ items.product.description }}</span>
 							</h5>
 							{% if items.product.options %}
 								{% for option in items.product.options %}
