@@ -1,24 +1,68 @@
-﻿    <div>{{ model.firstName }} {{ model.lastNameOrSurname }}</div>
-    <div>{{ model.address.address1 }}</div>
-    {% if model.address.address2 %}
-        <div>{{ model.address.address2 }}</div>
-    {% endif %}
-    {% if model.address.address3 %}
-        <div>{{ model.address.address3 }}</div>
-    {% endif %}
-    {% if model.address.address4 %}
-        <div>{{ model.address.address4 }}</div>
-    {% endif %}
-    <div>{{ model.address.cityOrTown }} {{ model.address.stateOrProvince }} {{ model.address.postalOrZipCode }}</div>
-    <div>{{ model.address.countryCode }}</div>
-
-    {% if model.phoneNumbers.home %}
-        <span>{{ model.phoneNumbers.home }}</span>
-    {% else %}
-        {% if model.locationTypes && model.phone %}
-                <span itemprop="telephone"><a href="tel:+ {{ model.phone }}">{{ model.phone }}</a></span>
+﻿    <div class="mz-l-formfieldgroup mz-checkoutform  mz-checkoutform-shipping mz-checkoutform-section mz-checkoutform-disabled">
+        <div class="checkout-twocolumn-row checkout-customer-name form-row">
+            <h5 class="checkout-fields-title">Name</h5>
+            <div class="mz-l-formfieldgroup-row mz-addressform-firstname form-row">
+                <div class="mz-l-formfieldgroup-cell">
+                    <input type="text" class="input" name="firstname" value="{{ model.firstName }}" disabled="disabled">
+                </div>
+            </div>
+            <div class="mz-l-formfieldgroup-row mz-addressform-lastname form-row">
+                <div class="mz-l-formfieldgroup-cell">
+                    <input type="text" class="input" name="lastname" value="{{ model.lastNameOrSurname }}" disabled="disabled">
+                </div>
+            </div>
+        </div>
+        <h5 class="checkout-fields-title">Address</h5>
+        <div class="mz-addressform-address1 form-row">
+            <div class="mz-l-formfieldgroup-cell">
+                <input type="text" class="input" name="address-line-1" value="{{ model.address.address1 }}" disabled="disabled">
+            </div>
+        </div>
+        {% if model.address.address2 %}
+        <div class="mz-addressform-address2 form-row">
+            <div class="mz-l-formfieldgroup-cell mz-custom-padding-address">
+                <input type="text" class="input" name="address-line-2" value="{{ model.address.address2 }}" disabled="disabled">
+            </div>
+        </div>
         {% endif %}
-    {% endif %}
+        {% if model.address.address3 %}
+        <div class="mz-addressform-address3 form-row">
+            <div class="mz-l-formfieldgroup-cell mz-custom-padding-address">
+                <input type="text" class="input" name="address-line-2" value="{{ model.address.address3 }}" disabled="disabled">
+            </div>
+        </div>
+        {% endif %}
+        {% if model.address.address4 %}
+        <div class="mz-addressform-address4 form-row">
+            <div class="mz-l-formfieldgroup-cell mz-custom-padding-address">
+                <input type="text" class="input" name="address-line-2" value="{{ model.address.address4 }}" disabled="disabled">
+            </div>
+        </div>
+        {% endif %}
+        <div class="checkout-twocolumn-row form-row">
+            <div class="mz-l-formfieldgroup-row mz-addressform-city">
+                <div class="mz-l-formfieldgroup-cell">
+                    <input type="text" class="input" name="city" value="{{ model.address.cityOrTown }}" disabled="disabled">
+                </div>
+            </div>
+            <div class="mz-l-formfieldgroup-row mz-addressform-state">
+                <div class="mz-l-formfieldgroup-cell">
+                    <input type="text" name="state" value="{{ model.address.stateOrProvince }}" disabled="disabled">
+                </div>
+            </div>
+        </div>
+        <div class="mz-addressform-zip form-row">
+            <div class="mz-l-formfieldgroup-cell">
+                <input type="text" class="input" name="postal-code" value="{{ model.address.postalOrZipCode }}" disabled="disabled">
+            </div>
+        </div>
+        <h5 class="checkout-fields-title">Phone</h5>
+        <div class="mz-addressform-phone form-row">
+            <div class="mz-l-formfieldgroup-cell">
+                <input type="tel" class="input" name="shippingphone" value="{{ model.phoneNumbers.home }}" disabled="disabled">
+            </div>
+        </div>
+    </div>
    
     {% if model.regularHours %}
         <br>
