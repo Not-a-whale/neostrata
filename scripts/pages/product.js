@@ -91,7 +91,6 @@
         });
     };
 
-
     function updateImages(productInitialImages) {
         var mainImage = productInitialImages.mainImage.src + '?maxWidth=' + width_pdp;
         var zoomImage = productInitialImages.mainImage.src + '?maxWidth=' + width_zoom;

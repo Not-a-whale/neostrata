@@ -19,10 +19,10 @@
               <span itemscope itemprop="description">{{ model.content.productShortDescription|safe }}</span>
             </h2>
             <div class="center-mobile reviews-and-price">
-              <div class="mz-all-review-container">
-              <span id="pdpAddToWishlist" class="mz-favorites mz-productdetail-addtowishlist wishlistHeart" data-mz-action="directoryAddToWishlist" data-mz-product-code="{{ model.productCode }}">
+              <div class="mz-all-review-container add-to-wishlist-container">
+              <button class="mz-productdetail-addToWishlist mz-favorites" data-mz-action="addToWishlist" data-mz-product-code="{{ model.productCode }}">
                   <span class="heart-outline"></span>
-              </span>
+              </button>
                 <span class="mz-reviews-pdp-stars">
                   {% dropzone "reviews-pdp-stars" scope="template" %}
                 </span>
