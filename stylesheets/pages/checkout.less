@@ -77,12 +77,6 @@
     }
 }
 
-.mz-formstep-header {
-    &.mz-checkoutform-header {
-        
-    }
-}
-
 .mz-formstep-body {
     > .mz-formstep-edit {
         float: right;
@@ -353,6 +347,11 @@
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
+
+        
+        @media (max-width: 800px) {
+            justify-content: initial;
+        }
         
         .mz-addressform-firstname,
         .mz-addressform-lastname,
@@ -361,8 +360,18 @@
             width: calc(50% - 0.75rem);
             position: relative;
 
+            @media (max-width: 800px) {
+                width: 100%;
+            }
+
             .mz-validationmessage {
                 position: absolute;
+            }
+        }
+        .mz-addressform-firstname,
+        .mz-addressform-city {
+            @media (max-width: 800px) {
+                padding: 0 0 3rem;
             }
         }
     }
@@ -371,7 +380,17 @@
         .checkout-twocolumn-row {
             .checkout-select-wrapper {
                 width: calc(49.25%);
+
+                @media (max-width: 800px) {
+                    width: 100%;
+                }
+                &:first-child {
+                    @media (max-width: 800px) {
+                        padding: 0 0 3rem;
+                    }
+                }
             }
+
         }
     }
     
@@ -389,6 +408,12 @@
             font-size: 1.875rem;
             line-height: 1.5333em;
             padding-bottom: 1.125rem;
+            @media (max-width: 800px) {
+                border: 0;
+
+                padding: 0 1.25rem;
+                margin: 0;
+            }
         }
 
         .mz-formstep-next {
@@ -422,6 +447,10 @@
         .order-summary-promo {
             padding-top: 1.625rem;
             padding-bottom: 2rem;
+
+            @media (max-width: 800px) {
+                text-align: left;
+            }
         }
 
         .order-summary-privacyPolicy {
@@ -512,6 +541,40 @@
             opacity: 0.5;
         }
     }
+
+    .ordersummary-column,
+    .checkout-leftcolumn {
+        @media (max-width: 800px) {
+            
+            width: 100%;
+
+            + .mz-l-column {
+                padding-right: 0;
+            }
+        }
+
+        .checkout-twocolumn-row {
+            
+        }
+    }
+    .ordersummary-column {
+        order: 1;
+    }
+    .checkout-leftcolumn {
+        order: 0;
+    }
+
+    button {
+        @media (max-width: 800px) {
+            border-radius: 0;
+        }
+    }
+
+    .mz-formstep-edit{
+        @media (max-width: 800px) {
+            display: none;
+        }
+    }
 }
 
 #checkout-form .checkout-leftcolumn .mz-formstep {
@@ -575,8 +638,9 @@
                 top: 23px;
             }
             &:before {
+                font-size: 1em;
                 top: 19px;
-                left: 1px;
+                left: 2px;
             }
         }
     }
