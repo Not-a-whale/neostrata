@@ -483,7 +483,8 @@ define([
       },
 
       'click [data-role="next"]': function(evt) {
-        var target = this.$el.offset().top;
+        // Subtract quiz-container offset to account for sticky navigation/header.
+        var target = this.$el.offset().top - this.$el.parents('.quiz-widget').offset().top;
         $(document).scrollTop(target);
 
         this.model.set('currentSection', this.nextSection || (this.sectionNumber + 1));
