@@ -465,7 +465,9 @@ define([
         path = path.split('.');
       }
 
-      return _.property(path)(this.attributes);
+      // The Kibo version of Underscore.js is 1.8.3. Deep reference was added to the property
+      // method in v. 1.9.0.
+      return deepGet(this.attributes, path);
     }
   });
 
@@ -508,7 +510,10 @@ define([
         validated: this.validate()
       };
 
-      this.$el.html(this.template(_.extend({ section: section }, this.locals(), templateHelpers)));
+      var locals = _.extend({ section: section }, this.locals(), templateHelpers);
+      var html = this.template(locals);
+
+      this.$el.html(html);
     },
 
     updateActiveState: function() {
@@ -989,6 +994,16 @@ define([
 
       return base;
     }, {});
+  }
+
+  // From Underscore.js 1.9.0+
+  function deepGet(obj, path) {
+    var length = path.length;
+    for (var i = 0; i < length; i++) {
+      if (obj === null) return void 0;
+      obj = obj[path[i]];
+    }
+    return length ? obj : void 0;
   }
 
   function ease(progress) {

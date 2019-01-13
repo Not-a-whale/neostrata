@@ -27,7 +27,7 @@
       <div class="control <%= (option.value === value) ? 'selected' : '' %>" data-option-value="<%= option.value %>">
         <div class="line"></div>
         <div class="node"></div>
-        <div class="label">
+        <div class="quiz-label">
           <%= option.label %>
         </div>
       </div>
