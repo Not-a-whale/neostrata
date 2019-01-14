@@ -57,6 +57,44 @@
   </div>
 </script>
 
+<script type="text/x-template" id="template-product-detail">
+  <div class="quiz-product-detail">
+    <div class="quiz-product-image" style="background-image: url(<%= mainImage.src %>)"></div>
+    <div class="quiz-product-content">
+      <div class="quiz-recommend-callout">
+        <div class="quiz-callout-text">
+          WE RECOMMEND
+        </div>
+        <div class="quiz-callout-feather"></div>
+        <div class="quiz-callout-feather"></div>
+        <div class="quiz-callout-feather"></div>
+      </div>
+      <div class="quiz-product-name">
+        <%= content.productName %>
+      </div>
+      <div class="quiz-product-ingredients">
+        <div class="fpo fpo-text">
+          PLACEHOLDER<BR />INGREDIENTS
+        </div>
+      </div>
+      <div class="quiz-product-description">
+        <%= content.productName %>
+      </div>
+      <div class="quiz-product-price">
+        <div class="quiz-product-price-amount">
+          $<%= price.price %>
+        </div>
+        <div class="quiz-product-price-qualifier">
+          SUGGESTED RETAIL PRICE
+        </div>
+      </div>
+      <button type="button">
+        ADD TO CART
+      </button>
+    </div>
+  </div>
+</script>
+
 <script type="text/x-template" id="template-experise-section">
   <%= _sectionTabPart(section) %>
   <div class="quiz-section-main">
@@ -225,17 +263,9 @@
           The products recommended here were specially formulated to address a variety of concerns for your unique skin type.
         </div>
         <div class="product-container">
-          <div class="fpo-product">
-            <div>
-              PLACEHOLDER
-            </div>
-            <div>
-              <%= product ? deepGet(product, ['content', 'productName']) : '' %>
-            </div>
-            <div>
-              <%= product ? deepGet(product, ['url']) : '' %>
-            </div>
-          </div>
+          <% if (product) { %>
+            <%= _productDetailPart(product) %>
+          <% } %>
         </div>
       </div>
     </div>

@@ -448,12 +448,14 @@ define([
   var RadioSpectrum = _.template($('#template-radio-spectrum').html());
   var SectionTab = _.template($('#template-section-tab').html());
   var SectionBullet = _.template($('#template-section-bullet').html());
+  var ProductDetail = _.template($('#template-product-detail').html());
 
   var templateHelpers = {
     deepGet: deepGet,
     _spectrumPart: RadioSpectrum,
     _sectionTabPart: SectionTab,
-    _sectionBulletPart: SectionBullet
+    _sectionBulletPart: SectionBullet,
+    _productDetailPart: ProductDetail
   };
 
   var State = Backbone.Model.extend({
