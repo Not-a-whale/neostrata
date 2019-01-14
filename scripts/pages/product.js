@@ -419,6 +419,15 @@
         addToWishlist: function() {
             this.model.addToWishlist();
         },
+        finishRemoveItem: function() {
+            var finishRemoveItem_id = $('#removeFromWishlistHide').data('mz-item-id');
+            var wishlistId = $( "#removeFromWishlistHide" ).data('mz-wishlist-id');
+            var serviceurl = '/api/commerce/wishlists/'+ wishlistId +'/items/' + finishRemoveItem_id;
+            var user = require.mozuData('user');
+	        api.request('DELETE', serviceurl).then(function(res) {
+                $('.mz-productdetail-addToWishlist-Action span').removeClass("heart-filled").addClass("heart-outline");
+            });
+        },
         checkLocalStores: function(e) {
             var me = this;
             e.preventDefault();
@@ -705,7 +714,8 @@
             }).then(function(wishlistItems) {          
                 for (var i = 0; i < wishlistItems.items.length; i++) {
                     if(wishlistItems.items[i].product.productCode === $('.mz-productdetail-addToWishlist-Action').data('mz-product-code')){
-                        $( "#removeFromWishlistHide" ).html('<a  class="mz-action" data-mz-action="finishRemoveItem" mz-item-id="'+wishlistItems.items[i].id+'"></a>');
+                        $( "#removeFromWishlistHide" ).data('mz-item-id', wishlistItems.items[i].id);
+                        $( "#removeFromWishlistHide" ).data('mz-wishlist-id', wishlistItems.id);
                     }
                     $('[data-mz-product-code="'+wishlistItems.items[i].product.productCode+'"] span').removeClass("heart-outline").addClass("heart-filled");
                 }
@@ -721,7 +731,8 @@
                         }).then(function(wishlistItems) {          
                             for (var i = 0; i < wishlistItems.items.length; i++) {
                                 if(wishlistItems.items[i].product.productCode === $('.mz-productdetail-addToWishlist-Action').data('mz-product-code')){
-                                    $( "#removeFromWishlistHide" ).html('<a  class="mz-action" data-mz-action="finishRemoveItem" mz-item-id="'+wishlistItems.items[i].id+'"></a>');
+                                    $( "#removeFromWishlistHide" ).data('mz-item-id', wishlistItems.items[i].id);
+                                    $( "#removeFromWishlistHide" ).data('mz-wishlist-id', wishlistItems.id);
                                 }
                                 $('[data-mz-product-code="'+wishlistItems.items[i].product.productCode+'"] span').removeClass("heart-outline").addClass("heart-filled");
                             }
@@ -729,20 +740,9 @@
                     }
                  }, 1000);
             }
-            // else{
-            //     $( "#removeFromWishlistHide > a" ).trigger( "click" );
-            //     setTimeout(function(){ 
-            //         if(user.accountId){
-            //             api.createSync('wishlist').getOrCreate(user.accountId).then(function(wishlist) {
-            //                 return wishlist.data;
-            //             }).then(function(wishlistItems) {          
-            //                 for (var i = 0; i < wishlistItems.items.length; i++) {
-            //                     $('[data-mz-product-code="'+wishlistItems.items[i].product.productCode+'"] span').removeClass("heart-filled").addClass("heart-outline");
-            //                 }
-            //             });
-            //         }
-            //      }, 1000);
-            // }
+            else{
+                $( "#removeFromWishlistHide" ).trigger( "click" );
+            }
         });
     });
 

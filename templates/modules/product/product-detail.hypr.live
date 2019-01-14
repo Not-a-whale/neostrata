@@ -1,5 +1,5 @@
 <a id="addToWishlistHide" class="mz-productdetail-addToWishlist mz-favorites" data-mz-action="addToWishlist" data-mz-product-code="{{ model.productCode }}"></a>
-<span id="removeFromWishlistHide"></span>
+<a id="removeFromWishlistHide" class="mz-action" data-mz-action="finishRemoveItem"></a>
 {% if model.stockInfo %}
 <div class="stock-info">{{ labels.upcInStock }}
   <span class="stock-price">{{ model.stockInfo }}</span>
