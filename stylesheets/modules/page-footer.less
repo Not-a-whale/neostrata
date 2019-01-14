@@ -15,25 +15,102 @@
 }
 
 footer {
-  background: #edeeee;
 
-  .footer-column {
-    h2 {
-      text-transform: uppercase;
-      font-size: 2em;
-      line-height: 1.25em;
-      font-weight: 500;
-      letter-spacing: 0rem;
-    }
+/*  &:after {
+    content:""; 
+    padding: 0 0 10px;
+    background: url(../resources/images/footer_wave_1360x200.svg) repeat-x #ebebeb;
+    height: 100%;
+    background-position: 0 100%;
+    background-size: 160vw auto;
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;   
+  }
+*/
+  .commerce-enabled-true & {
+    background-color: #edeeee;
+    background-image: linear-gradient(to bottom, rgba(237,238,238,0.5) 0%,rgba(237,238,238,0.5) 100%),url(../resources/images/footer_wave_1360x200.svg);
+   
+    .container-fluid {
+      margin: 0; 
 
-    ul {
-      padding: 0;
+      > .row > .pull-right {
+        padding-right: 4.6%; 
+      }
+      .regular-footer {
+        padding-left: 4.6%;
+      }
+      .social-links {
+        margin-top: 5rem; 
+        text-align: right;
+        a {
+          font-size: 4.8rem;
+        }
+      }
+      .footer-column {
+        h2 {
 
-      li {
-        font-weight: 400;
-        font-size: 1.73rem;
-        line-height: 1.4em;
-				padding-bottom: 1.2rem;
+          margin-top: 5rem; 
+          text-transform: uppercase;
+          font-size: 1.5625em;
+          line-height: 1.875em;
+        
+          letter-spacing: 0.0625rem;
+          .fontsMedium(); 
+          color: @charcoal;
+          font-style: italic;
+          &:nth-child(1) {
+            font-style: normal;
+          }
+        }
+        ul {
+          padding: 0;
+          li {
+            a {
+              .fontsBook(); 
+              font-size: 1.5625rem; 
+              letter-spacing: 0.0625rem;
+              color: @charcoal;
+              line-height: 2.2em;
+            }
+          }
+        }
+      }
+      #mz-drop-zone-footer-bottom-row {
+        padding: 0 4.6%; 
+        div[class*="col-"] {
+          padding: 0;
+        }
+        .col-sm-4 {
+          width: 33.33333333%;
+        }
+
+        .footer-column {
+          .h2 {
+            .fontsMedium(); 
+
+            font-size: 1.5625rem; 
+            letter-spacing: 0.0625rem;
+            color: @charcoal;
+            line-height: 2.2em;
+            font-style: italic;
+          }
+        }
+        .fineprint {
+          font-size: 0.875rem; 
+          line-height: 1.375em;
+          text-align: center;
+          color: @charcoal;
+
+          .fontsBook();
+          text-align: center;
+          
+        }
       }
     }
   }
