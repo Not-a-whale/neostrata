@@ -1180,9 +1180,12 @@
                 }
 
 							var card = this.get('card');
-							var billingData = this.get('data') || {};
-							billingData.unmaskedCreditCard = card.apiModel.data.cardNumber;
-							this.set('data', billingData);
+
+							if(card.apiModel.data.cardNumber && !card.apiModel.data.cardNumber.includes("*") ) {
+								var billingData = this.get( 'data' ) || {};
+								billingData.unmaskedCreditCard = card.apiModel.data.cardNumber;
+								this.set( 'data', billingData );
+							}
 
                 if(this.get('paymentType').toLowerCase() === "purchaseorder") {
                     this.get('purchaseOrder').inflateCustomFields();
