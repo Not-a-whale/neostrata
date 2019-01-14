@@ -249,24 +249,17 @@ define([
 
   var REGIMENS = {
     'SAR/F': {
+      slug: 'sa',
       name: 'NEOSTRATA SKIN ACTIVE',
       description: 'A collection of premium products designed for maximum, noticeable antiaging benefits. Exclusive and potent formulations deliver results that build over time.',
       products: {
-        cleanser: {
-          name: 'Exfoliating Wash'
-        },
+        cleanser: null,
         toner: null,
-        serum: {
-          name: 'Tri-Therapy Lifting Serum'
-        },
-        day: {
-          name: 'Matrix Support SPF 30'
-        },
-        night: {
-          name: 'Dermal Replenishment'
-        },
-        eye: {},
-        targeted: {}
+        serum: null,
+        day: null,
+        night: null,
+        eye: null,
+        targeted: null
       },
       ingredients: [
         'RETINOL',
@@ -275,17 +268,18 @@ define([
       ]
     },
     'RESURFACE': {
+      slug: 'resurface',
       name: 'RESURFACE',
       description: 'A collection of products that harnesses the power of exfoliating ' +
         'Glycolic Acid (AHA) at potent levels. Diminishes the look of enlarged pores and smooths the appearance of fine lines and wrinkles. Enhanced with Smart Amphoteric Complex that delivers the acid gradually for maximum efficacy and minimal irritation.',
       products: {
-        cleanser: {},
-        toner: {},
-        serum: {},
-        day: {},
-        night: {},
-        eye: {},
-        targeted: {}
+        cleanser: null,
+        toner: null,
+        serum: null,
+        day: null,
+        night: null,
+        eye: null,
+        targeted: null
       },
       ingredients: [
         'GLYCOLIC ACID',
@@ -293,25 +287,16 @@ define([
       ]
     },
     'RESTORE': {
+      slug: 'restore',
       name: 'RESTORE',
       description: 'A specialized collection of products that feature gentle yet effective Polyhydroxy Acids (PHAs). PHAs help protect the skin’s moisture barrier and deliver antioxidant benefits as well as provide mild exfoliation that’s ideal for dry and sensitive skin.',
       products: {
-        cleanser: {
-          name: 'Facial Cleanser'
-        },
+        cleanser: null,
         toner: null,
-        serum: {
-          name: 'Bionic Face Serum'
-        },
-        day: {
-          name: 'Sheer Physical Protection SPF 50'
-        },
-        night: {
-          name: 'Ultra Moisturizing Face Cream'
-        },
-        eye: {
-          name: 'Eye Cream'
-        },
+        serum: null,
+        day: null,
+        night: null,
+        eye: null,
         targeted: null
       },
       ingredients: [
@@ -321,17 +306,18 @@ define([
       ]
     },
     'CLARIFY': {
+      slug: 'clarify',
       name: 'CLARIFY',
       description: 'A targeted collection of products for oily and acne-prone skin. Formulated to clear clogged pores and reduce oil and blemishes. The exfoliating power of Glycolic and Mandelic Acids and NeoGlucosamine™, ' +
         'in this collection helps refine surface texture for smoother, healthier-looking skin.',
       products: {
-        cleanser: {},
-        toner: {},
-        serum: {},
-        day: {},
-        night: {},
-        eye: {},
-        targeted: {}
+        cleanser: null,
+        toner: null,
+        serum: null,
+        day: null,
+        night: null,
+        eye: null,
+        targeted: null
       },
       ingredients: [
         'GLYCOLIC ACID',
@@ -340,16 +326,17 @@ define([
       ]
     },
     'ENLIGHTEN': {
+      slug: 'enlighten',
       name: 'ENLIGHTEN',
       description: 'A unique collection of products that addresses a multitude of clarity and discoloration issues. Powerful skin brighteners such as Vitamin C, Retinol and NeoGlucosamine help reveal even-toned, glowing skin.',
       products: {
-        cleanser: {},
-        toner: {},
-        serum: {},
-        day: {},
-        night: {},
-        eye: {},
-        targeted: {}
+        cleanser: null,
+        toner: null,
+        serum: null,
+        day: null,
+        night: null,
+        eye: null,
+        targeted: null
       },
       ingredients: [
         'VITAMIN C',
@@ -358,8 +345,18 @@ define([
       ]
     },
     'CORRECT': {
+      slug: 'correct',
       name: 'CORRECT',
       description: 'A collection of products that contains potent antiaging ingredients to refine and even skin texture and tone. Also targets visible lines and wrinkles.',
+      products: {
+        cleanser: null,
+        toner: null,
+        serum: null,
+        day: null,
+        night: null,
+        eye: null,
+        targeted: null
+      },
       ingredients: [
         'RETINOL',
         'HYALURONIC ACID',
@@ -368,8 +365,18 @@ define([
       ]
     },
     'DEFEND': {
+      slug: 'defend',
       name: 'DEFEND',
       description: 'The ideal sun protection collection with a multitude of antiaging benefits. Formulated with broad-spectrum UVA/UVB sunscreens and antioxidants, these products help protect against sun exposure and environmental stressors.',
+      products: {
+        cleanser: null,
+        toner: null,
+        serum: null,
+        day: null,
+        night: null,
+        eye: null,
+        targeted: null
+      },
       ingredients: [
         'NEOGLUCOSAMINE',
         'GLUCONOLACTONE',
@@ -436,11 +443,14 @@ define([
       'topically, HA acts like a sponge to attract and hold moisture, thus hydrating skin.'
   };
 
+  var CATALOG = {};
+
   var RadioSpectrum = _.template($('#template-radio-spectrum').html());
   var SectionTab = _.template($('#template-section-tab').html());
   var SectionBullet = _.template($('#template-section-bullet').html());
 
   var templateHelpers = {
+    deepGet: deepGet,
     _spectrumPart: RadioSpectrum,
     _sectionTabPart: SectionTab,
     _sectionBulletPart: SectionBullet
@@ -956,6 +966,10 @@ define([
     new App({ el: $el });
   });
 
+  CATALOG = scrapeCatalog();
+  console.log('Catalog', CATALOG);
+  addRegimensProducts();
+
   function setPath(target, path, value) {
     if (typeof path === 'string') {
       path = path.split('.');
@@ -1009,6 +1023,60 @@ define([
 
   function ease(progress) {
     return -0.5 * (Math.cos(Math.PI * progress) - 1);
+  }
+
+  function scrapeCatalog() {
+    var catalog = {};
+
+    $('[data-role="regimen-product"]').each(function(i, el) {
+      var include = $(el).html().trim();
+
+      if (!include) return;
+
+      try {
+        var data = JSON.parse(include);
+
+        data.items.forEach(function(item) {
+          catalog[item.productCode] = item;
+        });
+      }
+      catch (err) {
+        console.warn('Couldn\'t parse data from...', el);
+      }
+    });
+
+    return catalog;
+  }
+
+  // Scrapes the regimen product selection out of the DOM (passed from the Kibo admin)
+  // and adds them to the REGIMENS object.
+  function addRegimensProducts() {
+    var CONFIG = loadConfig();
+
+    console.log('CONFIG', CONFIG);
+
+    Object.keys(REGIMENS).forEach(function(regimenKey) {
+      var slug = REGIMENS[regimenKey].slug;
+
+      Object.keys(REGIMENS[regimenKey].products).forEach(function(stepKey) {
+        var configKey = slug + stepKey.charAt(0).toUpperCase() + stepKey.substr(1);
+
+        console.log(configKey, CONFIG[configKey]);
+
+        REGIMENS[regimenKey].products[stepKey] = CONFIG[configKey] && CATALOG[CONFIG[configKey]];
+      });
+    });
+
+    console.log('REGIMENS', REGIMENS);
+  }
+
+  function loadConfig() {
+    try {
+      return JSON.parse($('#quiz-config').html());
+    }
+    catch (err) {
+      console.error('Failed to load quiz configuration.', err);
+    }
   }
 
   if (DEBUG) {

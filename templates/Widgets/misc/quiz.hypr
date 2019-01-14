@@ -229,7 +229,12 @@
             <div>
               PLACEHOLDER
             </div>
-            <%= product ? product.name : '' %>
+            <div>
+              <%= product ? deepGet(product, ['content', 'productName']) : '' %>
+            </div>
+            <div>
+              <%= product ? deepGet(product, ['url']) : '' %>
+            </div>
           </div>
         </div>
       </div>
@@ -298,6 +303,206 @@
 
     </div>
   </div>
+</script>
+
+<script type="text/json" id="quiz-config">
+{{ model.config|safe }}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.saCleanser %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.saToner %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.saSerum %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.saDay %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.saNight %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.saEye %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.saTargeted %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.resurfaceCleanser %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.resurfaceToner %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.resurfaceSerum %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.resurfaceDay %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.resurfaceNight %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.resurfaceEye %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.resurfaceTargeted %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.restoreCleanser %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.restoreToner %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.restoreSerum %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.restoreDay %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.restoreNight %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.restoreEye %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.restoreTargeted %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.clarifyCleanser %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.clarifyToner %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.clarifySerum %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.clarifyDay %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.clarifyNight %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.clarifyEye %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.clarifyTargeted %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.enlightenCleanser %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.enlightenToner %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.enlightenSerum %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.enlightenDay %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.enlightenNight %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.enlightenEye %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.enlightenTargeted %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.correctCleanser %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.correctToner %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.correctSerum %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.correctDay %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.correctNight %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.correctEye %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.correctTargeted %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.defendCleanser %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.defendToner %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.defendSerum %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.defendDay %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.defendNight %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.defendEye %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.defendTargeted %}
 </script>
 
 {% require_script "modules/quiz/index" %}
