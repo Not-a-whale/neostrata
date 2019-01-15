@@ -52,7 +52,6 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             this.render();
         },
         cancelEdit: function() {
-            
             this.editing = false;
             this.afterEdit();
         },
@@ -70,7 +69,7 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
         afterEdit: function() {
             var self = this;
             
-            $('.mz-l-stack-section.mz-accountsettings').removeClass('is-editing').addClass('no-editing');
+            $('.mz-l-stack-section').removeClass('is-editing').addClass('no-editing');
             $('.mz-l-stack-section').show();
             $('.dl-maintitle').show();
 
@@ -692,6 +691,11 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             addr.set('isValidated', true);
             this.render();
         },
+        viewAddressBook: function () {
+            this.editing.contact = "view";
+            this.startEditAddressBook();
+            this.render();
+        }, 
         startEditAddressBook: function () {
             $('.mz-l-stack-section').hide();
             $('.mz-l-stack-section.mz-accountaddressbook').show();
@@ -728,6 +732,11 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             this.editing.contact = false;
             this.model.endEditContact();
             this.render();
+
+            $('.mz-l-stack-section').removeClass('is-editing').addClass('no-editing');
+            $('.mz-l-stack-section').show();
+            $('.dl-maintitle').show();
+
         },
         beginDeleteContact: function (e) {
             var self = this,

@@ -1129,7 +1129,37 @@
                             text-transform: none;
                         }
                     }
+                    
                 }                
+                &.mz-accountaddressbook {
+                    &.no-editing {
+                        .mz-accountaddressbook-contact {
+                            width: 100%;
+                            border-right: none;
+                            display: none;
+                            min-height: auto;
+                            &:first-of-type {
+                                display: block;
+                            }
+                        }
+                        .dl-link-newaddress, .dz-backtodashboard, .mz-accountaddressbook-actions {
+                            display: none;
+                        }
+                    }
+                    &.is-editing {
+                        .dl-link-editaddress {
+                            display: none;
+                        }
+                        .mz-accountaddressbook-contact:not(.mz-accountaddressbook-form) {
+                            width: 50%;
+                            display: inline-block;
+                            float: left;
+                            margin: 0;
+                            border: none;
+                            padding: 0 4% 0 0;
+                        }
+                    }
+                }
             }
         }
     }

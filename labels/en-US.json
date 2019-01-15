@@ -529,6 +529,7 @@
   "wishListsInfo": "Create and maintain lists of the items you'd like to receive, then email them to your friends and family",
   "orderHistoryInfo": "Review all orders placed with us using this account",
   "addressBookInfo": "Update your saved addresses.",
+  "addressBookInfoView": "View and update your addresses.",
   "logOutInfo": "Sign out of your account",
   "wishLists" : "Wish Lists",
   "productwithoutSku" : "Product without Sku",

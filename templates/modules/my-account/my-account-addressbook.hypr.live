@@ -1,13 +1,15 @@
-﻿<h1 class="mz-l-stack-sectiontitle">{{ labels.addressBook }}
-  {% if not editing.contact %}<a class="dl-link-edit" href="javascript:;" data-mz-action="beginAddContact">{{ labels.addNewContact }}</a>{% endif %} 
+﻿<h1 class="mz-l-stack-sectiontitle">{{ labels.addressBook }}  
+  {% if not editing.contact %}<a class="dl-link-edit dl-link-editaddress" href="javascript:;" data-mz-action="viewAddressBook">{{ labels.edit }}</a>{% endif %} 
 </h1>
-{% if editing.contact || editing.contact == "new" %}<h5 class="mz-l-stack-sectionsubtitle">{{ labels.addressBookInfo }}</h5>{% endif %}
+{% if (editing.contact || editing.contact == "new") && editing.contact != "view" %}<h5 class="mz-l-stack-sectionsubtitle">{{ labels.addressBookInfo }}</h5>{% endif %}
+{% if editing.contact == "view" %}<h5 class="mz-l-stack-sectionsubtitle">{{ labels.addressBookInfoView }}</h5>{% endif %}
 {% if model.hasSavedContacts || editing.contact == "new" %}
 <ul class="mz-accountaddressbook-list mz-l-tiles">
   {% for contact in model.contacts %}
   {% if editing.contact == contact.id %}
   {% include "modules/my-account/my-account-address-form" with model=model.editingContact %}
   {% else %}
+  {% if (not editing.contact && editing.contact != "new") || editing.contact == "view" %}
   <li class="mz-accountaddressbook-contact">
     <div class="mz-accountaddressbook-actions">
       <a class="mz-accountaddressbook-edit" href="javascript:;" data-mz-action="beginEditContact" data-mz-contact="{{ contact.id }}">{{ labels.edit }}</a>
@@ -25,11 +27,18 @@
     </div>
   </li>
   {% endif %}
+  {% endif %}
   {% endfor %}
   {% if editing.contact == "new" %}
   {% include "modules/my-account/my-account-address-form" with model=model.editingContact %}
   {% endif %}
 </ul>
+
+{% if editing.contact == "view" %}
+  <a class="mz-button primary-btn dl-link-newaddress" href="javascript:;" data-mz-action="beginAddContact">{{ labels.addNewContact }}</a>
+  <button class="dz-backtodashboard" data-mz-action="cancelEditContact">{{ labels.accountDashboardBack }}</button>  
+{% endif %}
+
 {% else %}
 <p class="mz-accountaddressbook-empty">
   {{ labels.noSavedContacts }} <a href="javascript:;" data-mz-action="beginAddContact">{{ labels.addNewContact }}</a>

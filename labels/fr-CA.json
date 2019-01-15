@@ -529,6 +529,7 @@
   "wishListsInfo": "[fr-CA]Create and maintain lists of the items you'd like to receive, then email them to your friends and family[fr-CA]",
   "orderHistoryInfo": "[fr-CA]Review all orders placed with us using this account[fr-CA]",
   "addressBookInfo": "[fr-CA]Update your saved addresses.[fr-CA]",
+  "addressBookInfoView": "[fr-CA]View and update your addresses.[fr-CA]",
   "logOutInfo": "[fr-CA]Sign out of your account[fr-CA]",
   "wishLists" : "[fr-CA]Wish Lists[fr-CA]",
   "productwithoutSku" : "[fr-CA]Product without Sku[fr-CA]",
