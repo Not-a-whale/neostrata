@@ -744,7 +744,7 @@
                     $( "#removeFromWishlistHide" ).trigger( "click" );
                 }
             }else{
-                location.href = '/user/login?returnUrl=' + encodeURIComponent(location.href);
+                $('.login-link-text').trigger( "click" );
             }
         });
         setTimeout(function(){
@@ -792,7 +792,7 @@
                         }
                     }
                 }else{
-                    location.href = '/user/login?returnUrl=' + encodeURIComponent(location.href);
+                    $('.login-link-text').trigger( "click" );
                 }
             });
         }, 1500);
