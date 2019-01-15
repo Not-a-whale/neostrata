@@ -8,7 +8,6 @@ define(['modules/jquery-mozu', 'underscore', "modules/api", "modules/backbone-mo
         var pageContext = require.mozuData('pagecontext');
 
         $(document).ready(function() {
-           
             var productCollection = [];
             
             $('[data-mz-recently-viewed-products]').each(function (index, rp) {
