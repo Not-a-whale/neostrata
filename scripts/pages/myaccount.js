@@ -707,6 +707,7 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             this.model.endEditContact();
             this.editing.contact = "new";
             this.render();
+            $('#account-panels .selectpicker').selectpicker(); 
             $("input[name='firstname']").focus();
         },
         beginEditContact: function (e) {
@@ -784,7 +785,7 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
     $(document).ready(function() {
 
         var accountModel = window.accountModel = CustomerModels.EditableCustomer.fromCurrent();
-        
+
         $('#account-panels .selectpicker').selectpicker();
 
         var $accountSettingsEl = $('#account-settings'),
