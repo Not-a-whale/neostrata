@@ -17,7 +17,6 @@
     {% include "modules/product/price-stack" with model=prod %}
 </div>
 <span class="mz-favorites">
-    <!-- <span class="heart-filled"></span> -->
     <span class="heart-outline"></span>
 </span>
 {% if prod.quantityNull === 0 or prod.quantity == 0%}
