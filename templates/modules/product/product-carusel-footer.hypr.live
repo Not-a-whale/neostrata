@@ -16,7 +16,7 @@
 <div class="mz-productlisting-title mz-productlisting-price text-right">
     {% include "modules/product/price-stack" with model=prod %}
 </div>
-<span class="mz-favorites">
+<span class="mz-favorites mz-slider-favorites" data-mz-product-code="{{ prod.productCode }}" data-mz-action="directoryAddToWishlist">
     <span class="heart-outline"></span>
 </span>
 {% if prod.quantityNull === 0 or prod.quantity == 0%}
