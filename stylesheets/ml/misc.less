@@ -2613,6 +2613,17 @@ ul.tabs {
         .fontRegular();
     }
 
+.commerce-enabled-false{
+    .mz-recently-viewed-products{
+        display: none !important;
+    }
+    .mz-related-products{
+        display: none !important;
+    }
+    #mz-drop-zone-product-middle-breakpoint{
+        display: none !important;
+    }
+}
   .mz-all-review-container{
 
     border-right: 0.0625em solid @midGray;
@@ -2620,6 +2631,9 @@ ul.tabs {
     display: inline-block;
     max-height: 2rem;
         .mz-favorites {
+            .commerce-enabled-false & {
+                display: none;
+            }
             color: #85acce;
             font-weight: 100;
             font-family: 'icomoon';
