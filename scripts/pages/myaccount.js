@@ -1,5 +1,4 @@
-define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', 'modules/jquery-mozu', 'underscore', 'modules/models-customer', 'modules/views-paging', 'modules/editable-view','modules/block-ui'], function(Backbone, Api, Hypr, HyprLiveContext, $, _, CustomerModels, PagingViews, EditableView,blockUiLoader) {
-
+define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', 'modules/jquery-mozu', 'underscore', 'modules/models-customer', 'modules/views-paging', 'modules/editable-view','modules/block-ui', 'vendor/bootstrap-select/dist/js/bootstrap-select'], function(Backbone, Api, Hypr, HyprLiveContext, $, _, CustomerModels, PagingViews, EditableView,blockUiLoader) {
     var AccountSettingsView = EditableView.extend({
         templateName: 'modules/my-account/my-account-settings',
         autoUpdate: [
@@ -715,6 +714,7 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             var id = this.editing.contact = e.currentTarget.getAttribute('data-mz-contact');
             this.model.beginEditContact(id);
             this.render();
+            $('#account-panels .selectpicker').selectpicker();
         },
         finishEditContact: function () {
             var self = this,
@@ -784,6 +784,8 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
     $(document).ready(function() {
 
         var accountModel = window.accountModel = CustomerModels.EditableCustomer.fromCurrent();
+        
+        $('#account-panels .selectpicker').selectpicker();
 
         var $accountSettingsEl = $('#account-settings'),
             $passwordEl = $('#password-section'),
