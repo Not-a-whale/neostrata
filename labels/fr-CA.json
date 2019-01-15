@@ -525,10 +525,10 @@
   "BrowsOur": "[fr-CA]Browse Our[fr-CA]",
   "storeTitle": "NEOSTRATA®",
   "storeHoursInfo":"Heures et infos",
-  "accountSettingsInfo": "[fr-CA]Review and edit your email address, password, your password hint information and/or your billing address [fr-CA]",
+  "accountSettingsInfo": "[fr-CA]Update your personal info.[fr-CA]",
   "wishListsInfo": "[fr-CA]Create and maintain lists of the items you'd like to receive, then email them to your friends and family[fr-CA]",
   "orderHistoryInfo": "[fr-CA]Review all orders placed with us using this account[fr-CA]",
-  "addressBookInfo": "[fr-CA]View, edit or delete addresses in your personal address book[fr-CA]",
+  "addressBookInfo": "[fr-CA]Update your saved addresses.[fr-CA]",
   "logOutInfo": "[fr-CA]Sign out of your account[fr-CA]",
   "wishLists" : "[fr-CA]Wish Lists[fr-CA]",
   "productwithoutSku" : "[fr-CA]Product without Sku[fr-CA]",
@@ -606,7 +606,9 @@
   "shopBy": "Magasiner par",
   "siteMap": "Plan du site",
   "passwordFormat": "[fr-CA]7 Characters minimum[fr-CA]",
-  "billingRequiredMsg" : "[fr-CA]Billing Zip Code field required.[fr-CA]"
+  "billingRequiredMsg" : "[fr-CA]Billing Zip Code field required.[fr-CA]",
+  "accountDashboardBack" : "[fr-CA]Back to Dashboard[fr-CA]",
+  "saveAddress": "[fr-CA]Save Address[fr-CA]"
 
 
 }

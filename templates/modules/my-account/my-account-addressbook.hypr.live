@@ -1,4 +1,7 @@
-﻿<h3 class="mz-l-stack-sectiontitle">{{ labels.addressBook }} <a href="javascript:;" data-mz-action="beginAddContact">{{ labels.addNewContact }}</a></h3>
+﻿<h1 class="mz-l-stack-sectiontitle">{{ labels.addressBook }}
+  {% if not editing.contact %}<a class="dl-link-edit" href="javascript:;" data-mz-action="beginAddContact">{{ labels.addNewContact }}</a>{% endif %} 
+</h1>
+{% if editing.contact || editing.contact == "new" %}<h5 class="mz-l-stack-sectionsubtitle">{{ labels.addressBookInfo }}</h5>{% endif %}
 {% if model.hasSavedContacts || editing.contact == "new" %}
 <ul class="mz-accountaddressbook-list mz-l-tiles">
   {% for contact in model.contacts %}
