@@ -558,10 +558,14 @@
         }
     }
     .ordersummary-column {
-        order: 1;
+        @media (max-width: 800px) {
+            order: 1;
+        }
     }
     .checkout-leftcolumn {
-        order: 0;
+        @media (max-width: 800px) {
+            order: 0;
+        }
     }
 
     button {
