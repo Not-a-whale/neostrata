@@ -1,0 +1,7 @@
+{% if  model.discountThresholdMessages %}
+    {% for discounts in model.discountThresholdMessages %}
+        {% if  discounts.showInCart %}
+            <div class="discount-threshold-messages">{{ discounts.message }}</div>
+        {% endif %}
+    {% endfor %}
+{% endif %}

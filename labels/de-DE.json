@@ -150,6 +150,7 @@
     "orderTotal": "Gesamtbestellung",
     "emptyCart": "Einkaufswagen leeren",
     "proceedToCheckout": "Kasse",
+    "moneyBackMsg"         : "30-day Money Back Guarantee. Order by 1:00pm EST for same-day shipping.",
     "storePickupAt": "In-Store Pickup <strong> {0} </ strong>",
     "checkout": "Kasse",
     "orderSummary": "Bestellübersicht",
