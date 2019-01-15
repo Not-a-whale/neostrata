@@ -73,7 +73,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="row hidden-xs">
+		<div class="row">
 				{% dropzone "footer-bottom-row" scope="site" %}
 				{% block copyright-footer %}
 

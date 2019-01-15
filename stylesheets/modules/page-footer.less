@@ -96,6 +96,10 @@ footer {
       }
       #mz-drop-zone-footer-bottom-row {
         padding: 0 4.6%; 
+
+        @media (max-width: 991px) {
+          padding: 0 15px; 
+        }
         div[class*="col-"] {
           padding: 0;
         }
@@ -123,6 +127,29 @@ footer {
           .fontsBook();
           text-align: center;
           
+        }
+
+        .pagefooter-logo {
+          background: url(../resources/images/neostrata-logo-sm.png) no-repeat;
+          display: block;
+          height: 2rem;
+          width: 100%;
+          background-size: 15rem auto;
+          margin-bottom: 0.5rem;
+          background-position: right 0;
+
+          &:before {
+            content: "COPYRIGHT ©2018 NEOSTRATA";
+            text-align: right;
+            position: absolute;
+            right: 0;
+            top: 3rem;
+
+            font-size: 1.5625rem; 
+            line-height: 1.875em;
+            color: @charcoal;
+            .fontsBook();
+          }
         }
       }
     }
