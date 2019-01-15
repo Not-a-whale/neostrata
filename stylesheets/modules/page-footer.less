@@ -41,6 +41,10 @@ footer {
 
       > .row > .pull-right {
         padding-right: 4.6%; 
+
+        @media (max-width: 991px) {
+          padding-right: 15px; 
+        }
       }
       .regular-footer {
         padding-left: 4.6%;
@@ -50,6 +54,10 @@ footer {
         text-align: right;
         a {
           font-size: 4.8rem;
+        }
+
+        @media (max-width: 991px) {
+          text-align: center;
         }
       }
       .footer-column {
@@ -63,9 +71,10 @@ footer {
           letter-spacing: 0.0625rem;
           .fontsMedium(); 
           color: @charcoal;
-          font-style: italic;
-          &:nth-child(1) {
-            font-style: normal;
+          font-style: normal;
+          @media (max-width: 991px) {
+            font-size: 2.01em;
+            line-height: 2.39em;
           }
         }
         ul {
@@ -77,6 +86,10 @@ footer {
               letter-spacing: 0.0625rem;
               color: @charcoal;
               line-height: 2.2em;
+              @media (max-width: 991px) {
+                font-size: 1.734rem; 
+                line-height: 3.75em;
+              }
             }
           }
         }
