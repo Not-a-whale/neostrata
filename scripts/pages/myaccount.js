@@ -44,18 +44,30 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             event.preventDefault();
             $('.mz-l-stack-section').hide();
             $('.mz-l-stack-section.mz-accountsettings').show();
+            $('.mz-l-stack-section.mz-passwordsection').show();
             $('.mz-l-stack-section.mz-accountsettings').removeClass('no-editing').addClass('is-editing');
+            $('.mz-l-stack-section.mz-passwordsection').removeClass('is-dashboard').addClass('no-dashboard');
             $('.dl-maintitle').hide();
-            //window.accountViews.parent.activeSection = "Personal Info";
             this.editing = true;
             this.render();
         },
         cancelEdit: function() {
             this.editing = false;
             this.afterEdit();
+
+            $('.mz-l-stack-section').removeClass('is-editing').addClass('no-editing');
+            $('.mz-l-stack-section.mz-passwordsection').removeClass('no-dashboard').addClass('is-dashboard');
+            $('.mz-l-stack-section').show();
+            $('.dl-maintitle').show();
+            
         },
         finishEdit: function() {
             var self = this;
+
+            $('.mz-l-stack-section').removeClass('is-editing').addClass('no-editing');
+            $('.mz-l-stack-section.mz-passwordsection').removeClass('no-dashboard').addClass('is-dashboard');
+            $('.mz-l-stack-section').show();
+            $('.dl-maintitle').show();
 
             this.doModelAction('apiUpdate').then(function() {
                 self.editing = false;
@@ -67,14 +79,10 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
         },
         afterEdit: function() {
             var self = this;
-            
-            $('.mz-l-stack-section').removeClass('is-editing').addClass('no-editing');
-            $('.mz-l-stack-section').show();
-            $('.dl-maintitle').show();
-
             self.initialize().ensure(function() {
                 self.render();
             });
+            
         }
     });
 
@@ -87,12 +95,11 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
         ],
         startEditPassword: function(event) {
             event.preventDefault();
-            $('.mz-l-stack-section').hide();
-            $('.mz-l-stack-section.mz-passwordsection').show();
             $('.mz-l-stack-section.mz-passwordsection').removeClass('no-editing').addClass('is-editing');
-            $('.dl-maintitle').hide();
+            $('.mz-l-stack-section.mz-accountsettings').removeClass('no-editing-password').addClass('is-editing-password');
             this.editing.password = true;
             this.render();
+
         },
         finishEditPassword: function() {
             var self = this;
@@ -104,17 +111,14 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
                 self.editing.password = true;
             });
             this.editing.password = false;
-            //this.afterEditPassword();
+            $('.mz-l-stack-section.mz-passwordsection').removeClass('is-editing').addClass('no-editing');
+            $('.mz-l-stack-section.mz-accountsettings').removeClass('is-editing-password').addClass('no-editing-password');
         },
         cancelEditPassword: function() {
             this.editing.password = false;
             this.render();
-            //this.afterEditPassword();
-        },
-        afterEditPassword: function() {
             $('.mz-l-stack-section.mz-passwordsection').removeClass('is-editing').addClass('no-editing');
-            $('.mz-l-stack-section').show();
-            $('.dl-maintitle').show();
+            $('.mz-l-stack-section.mz-accountsettings').removeClass('is-editing-password').addClass('no-editing-password');
         }
     });
 
