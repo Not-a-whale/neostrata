@@ -527,10 +527,11 @@
   "BrowsOur": "Browse Our",
   "storeTitle": "Mozu Store!",
   "storeHoursInfo":"Hours & Info",
-  "accountSettingsInfo": "Review and edit your email address, password, your password hint information and/or your billing address ",
+  "accountSettingsInfo": "Update your personal info.",
   "wishListsInfo": "Create and maintain lists of the items you'd like to receive, then email them to your friends and family",
   "orderHistoryInfo": "Review all orders placed with us using this account",
-  "addressBookInfo": "View, edit or delete addresses in your personal address book",
+  "addressBookInfo": "Update your saved addresses.",
+  "addressBookInfoView": "View and update your addresses.",
   "logOutInfo": "Sign out of your account",
   "wishLists" : "Wish Lists",
   "productwithoutSku" : "Product without Sku",
@@ -611,5 +612,7 @@
   "passwordFormat": "7 Characters minimum",
   "dayGuaranteeStatement": "30-day Money Back Guarantee. Order by 1:00 PM EST for sameday shipping."
   ,"emailMeTxt": "We will email you when this product is back instock.", 
-  "billingRequiredMsg" : "Billing Zip Code field required."
+  "billingRequiredMsg" : "Billing Zip Code field required.",
+  "accountDashboardBack" : "Back to Dashboard",
+  "saveAddress": "Save Address"
 }

@@ -1,10 +1,8 @@
 ﻿{% block address-form %}
     <div class="mz-l-formfieldgroup-row mz-addressform-firstname">
-        {% comment %}
-            <div class="mz-l-formfieldgroup-cell">
-                <label for="firstname">{{ labels.firstName }}<span class="is-required"> *</span></label>
-            </div>
-        {% endcomment %}
+        <div class="mz-l-formfieldgroup-cell">
+            <label for="firstname">{{ labels.firstName }}<span class="is-required"> *</span></label>
+        </div>
         <div class="mz-l-formfieldgroup-cell">
             <input type="text" class="input" name="firstname" data-mz-value="{{ addresscontext }}firstName" value="{{ model.firstName }}" maxlength="{{themeSettings.firstNameLength}}" placeholder="{{ labels.firstName }}*">
             <span class="mz-validationmessage" data-mz-validationmessage-for="{{ addresscontext }}firstName"></span>
@@ -24,22 +22,18 @@
     </div>    
     {% endif %}
     <div class="mz-l-formfieldgroup-row mz-addressform-lastname">
-        {% comment %}
             <div class="mz-l-formfieldgroup-cell">
                 <label for="lastname">{{ labels.lastName }}<span class="is-required"> *</span></label>
             </div>
-        {% endcomment %}
         <div class="mz-l-formfieldgroup-cell">
             <input type="text" class="input" name="lastname" data-mz-value="{{ addresscontext }}lastNameOrSurname" value="{{ model.lastNameOrSurname }}" maxlength="{{themeSettings.firstNameLength}}" placeholder="{{ labels.lastName }}*">
             <span class="mz-validationmessage" data-mz-validationmessage-for="{{ addresscontext }}lastNameOrSurname"></span>
         </div>
     </div>
     <div class="mz-l-formfieldgroup-row mz-addressform-address1">
-        {% comment %}
             <div class="mz-l-formfieldgroup-cell">
                 <label for="address-line-1">{{ labels.address }}<span class="is-required"> *</span></label>
             </div>
-        {% endcomment %}
         <div class="mz-l-formfieldgroup-cell">
             <input type="text" class="input" name="address-line-1" data-mz-value="{{ addresscontext }}address.address1" value="{{ model.address.address1 }}" maxlength="{{themeSettings.addressLength}}" placeholder="{{ labels.address }} Line 1*">
             <span class="mz-validationmessage" data-mz-validationmessage-for="{{ addresscontext }}address.address1"></span>
@@ -57,9 +51,11 @@
             <label for="country">{{ labels.country }} : United States</label>
         </div>
         <div class="mz-l-formfieldgroup-cell">
-            <select class="select" data-mz-value="{{ addresscontext }}address.countryCode" style="display:none;">
-                <option selected="selected" value="US">United States</option>
-            </select>
+            <div class="custom-select-wrapper">
+                <select class="select selectpicker" data-mz-value="{{ addresscontext }}address.countryCode" style="display:none;">
+                    <option selected="selected" value="US">United States</option>
+                </select>
+            </div>
             {% comment %}
                 <select class="select" data-mz-value="{{ addresscontext }}address.countryCode">
                     <option value="">{{labels.defaultDropDownSelection}}</option>
@@ -111,26 +107,28 @@
             </div>
         {% endcomment %}
         <div class="mz-l-formfieldgroup-cell">
-            <select class="select" data-mz-value="{{ addresscontext }}address.stateOrProvince">
-                <option value="" selected>{{labels.state}}*</option>
+            <div class="custom-select-wrapper">
+                <select class="select selectpicker" data-mz-value="{{ addresscontext }}address.stateOrProvince">
+                    <option value="" selected>{{labels.state}}*</option>
 
-                {% if states && states.length > 0 %}
-                {% for state in states %}
-                    <option {% if model.address.stateOrProvince == state.key %}selected="selected"{% endif %} value="{{ state.key }}">{{ state.value }}</option>
-                {% endfor %}
-                {% else %}
-                    {% if themeSettings.customStates && themeSettings.customStates.length > 0 %}
-                        {% for state in themeSettings.customStates %}
-                            <option {% if model.address.stateOrProvince == state.key %}selected="selected"{% endif %} value="{{ state.key }}">{{ state.value }}</option>
-                        {% endfor %}                    
+                    {% if states && states.length > 0 %}
+                    {% for state in states %}
+                        <option {% if model.address.stateOrProvince == state.key %}selected="selected"{% endif %} value="{{ state.key }}">{{ state.value }}</option>
+                    {% endfor %}
                     {% else %}
-                        {% for state in pageContext.billingStates %}
-                            <option {% if model.address.stateOrProvince == state.key %}selected="selected"{% endif %} value="{{ state.key }}">{{ state.value }}</option>
-                        {% endfor %}
+                        {% if themeSettings.customStates && themeSettings.customStates.length > 0 %}
+                            {% for state in themeSettings.customStates %}
+                                <option {% if model.address.stateOrProvince == state.key %}selected="selected"{% endif %} value="{{ state.key }}">{{ state.value }}</option>
+                            {% endfor %}                    
+                        {% else %}
+                            {% for state in pageContext.billingStates %}
+                                <option {% if model.address.stateOrProvince == state.key %}selected="selected"{% endif %} value="{{ state.key }}">{{ state.value }}</option>
+                            {% endfor %}
+                        {% endif %}
                     {% endif %}
-                {% endif %}
 
-            </select>
+                </select>
+            </div>
             <span class="mz-validationmessage" data-mz-validationmessage-for="{{ addresscontext }}address.stateOrProvince"></span>
         </div>
     </div>
@@ -172,11 +170,9 @@
     {% else %}  
 
     <div class="mz-l-formfieldgroup-row mz-addressform-phone">
-        {% comment %}
             <div class="mz-l-formfieldgroup-cell">
                 <label for="shippingphone">{{ labels.phone }}<span class="is-required"> *</span></label>
             </div>
-        {% endcomment %}
         <div class="mz-l-formfieldgroup-cell">
             <input type="tel" class="input" name="shippingphone" data-mz-value="{{ addresscontext }}phoneNumbers.home" value="{{ model.phoneNumbers.home }}" maxlength="{{themeSettings.phoneNumberLength}}" minlength="{{themeSettings.phoneNumberLength}}" placeholder="{{ labels.phone }}*">
             <span class="mz-validationmessage" data-mz-validationmessage-for="{{ addresscontext }}phoneNumbers.home"></span>
@@ -193,15 +189,18 @@
         <div class="mz-l-formfieldgroup-cell">
             <label for="addresstype">{{ labels.addressType }}<span class="is-required"> *</span></label>
         </div>
-        {% endcomment %}
         <div class="mz-l-formfieldgroup-cell">
-            <select class="select" data-mz-value="{{ addresscontext }}address.addressType">
-                <option value="">{{labels.addressType}}*</option>
-                <option value="Residential" {% if model.address.addressType == "Residential" %}selected="selected"{% endif %} >{{ labels.residential }}</option>
-                <option value="Commercial" {% if model.address.addressType == "Commercial" %}selected="selected"{% endif %} >{{ labels.commercial }}</option>
-            </select>
+            <div class="custom-select-wrapper">
+                <select class="select selectpicker" data-mz-value="{{ addresscontext }}address.addressType">
+                    <option value="">{{labels.addressType}}*</option>
+                    <option value="Residential" {% if model.address.addressType == "Residential" %}selected="selected"{% endif %} >{{ labels.residential }}</option>
+                    <option value="Commercial" {% if model.address.addressType == "Commercial" %}selected="selected"{% endif %} >{{ labels.commercial }}</option>
+                </select>
+            </div>
             <span class="mz-validationmessage" data-mz-validationmessage-for="{{ addresscontext }}address.addressType"></span>
         </div>
+        {% endcomment %}
     </div>
     {% endif %}
+
 {% endblock address-form %}

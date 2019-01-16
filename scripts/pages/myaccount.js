@@ -1,5 +1,4 @@
-define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', 'modules/jquery-mozu', 'underscore', 'modules/models-customer', 'modules/views-paging', 'modules/editable-view','modules/block-ui'], function(Backbone, Api, Hypr, HyprLiveContext, $, _, CustomerModels, PagingViews, EditableView,blockUiLoader) {
-
+define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', 'modules/jquery-mozu', 'underscore', 'modules/models-customer', 'modules/views-paging', 'modules/editable-view','modules/block-ui', 'vendor/bootstrap-select/dist/js/bootstrap-select'], function(Backbone, Api, Hypr, HyprLiveContext, $, _, CustomerModels, PagingViews, EditableView,blockUiLoader) {
     var AccountSettingsView = EditableView.extend({
         templateName: 'modules/my-account/my-account-settings',
         autoUpdate: [
@@ -44,16 +43,31 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
         startEdit: function(event) {
             event.preventDefault();
             $('.mz-l-stack-section').hide();
-            $('.mz-accountsettings').show();
+            $('.mz-l-stack-section.mz-accountsettings').show();
+            $('.mz-l-stack-section.mz-passwordsection').show();
+            $('.mz-l-stack-section.mz-accountsettings').removeClass('no-editing').addClass('is-editing');
+            $('.mz-l-stack-section.mz-passwordsection').removeClass('is-dashboard').addClass('no-dashboard');
+            $('.dl-maintitle').hide();
             this.editing = true;
             this.render();
         },
         cancelEdit: function() {
             this.editing = false;
             this.afterEdit();
+
+            $('.mz-l-stack-section').removeClass('is-editing').addClass('no-editing');
+            $('.mz-l-stack-section.mz-passwordsection').removeClass('no-dashboard').addClass('is-dashboard');
+            $('.mz-l-stack-section').show();
+            $('.dl-maintitle').show();
+            
         },
         finishEdit: function() {
             var self = this;
+
+            $('.mz-l-stack-section').removeClass('is-editing').addClass('no-editing');
+            $('.mz-l-stack-section.mz-passwordsection').removeClass('no-dashboard').addClass('is-dashboard');
+            $('.mz-l-stack-section').show();
+            $('.dl-maintitle').show();
 
             this.doModelAction('apiUpdate').then(function() {
                 self.editing = false;
@@ -65,10 +79,10 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
         },
         afterEdit: function() {
             var self = this;
-
             self.initialize().ensure(function() {
                 self.render();
             });
+            
         }
     });
 
@@ -79,9 +93,13 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             'password',
             'confirmPassword'
         ],
-        startEditPassword: function() {
+        startEditPassword: function(event) {
+            event.preventDefault();
+            $('.mz-l-stack-section.mz-passwordsection').removeClass('no-editing').addClass('is-editing');
+            $('.mz-l-stack-section.mz-accountsettings').removeClass('no-editing-password').addClass('is-editing-password');
             this.editing.password = true;
             this.render();
+
         },
         finishEditPassword: function() {
             var self = this;
@@ -93,15 +111,24 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
                 self.editing.password = true;
             });
             this.editing.password = false;
+            $('.mz-l-stack-section.mz-passwordsection').removeClass('is-editing').addClass('no-editing');
+            $('.mz-l-stack-section.mz-accountsettings').removeClass('is-editing-password').addClass('no-editing-password');
         },
         cancelEditPassword: function() {
             this.editing.password = false;
             this.render();
+            $('.mz-l-stack-section.mz-passwordsection').removeClass('is-editing').addClass('no-editing');
+            $('.mz-l-stack-section.mz-accountsettings').removeClass('is-editing-password').addClass('no-editing-password');
         }
     });
 
     var WishListView = EditableView.extend({
         templateName: 'modules/my-account/my-account-wishlist',
+        constructor: function() {
+            EditableView.apply(this, arguments);
+            this.editing.wishlist = false;
+            this.invalidFields = {};
+        },
         addItemToCart: function(e) {
             var self = this,
                 $target = $(e.currentTarget),
@@ -110,6 +137,30 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
                 this.editing.added = id;
                 return this.doModelAction('addItemToCart', id);
             }
+        },
+        startEditWishlist: function(event) {
+            event.preventDefault();
+            $('.mz-l-stack-section').hide();
+            $('.mz-l-stack-section.mz-accountwishlist').show();
+            $('.mz-l-stack-section.mz-accountwishlist').removeClass('no-editing').addClass('is-editing');
+            $('.dl-maintitle').hide();
+            this.editing.wishlist = true;
+            this.render();
+        },
+        finishEditWishlist: function() {
+            var self = this;
+            this.doModelAction('changeWishlist').then(function() {
+                _.delay(function() {
+                    //self.$('[data-mz-validationmessage-for="wishlistChanged"]').show().text(Hypr.getLabel('wishlistChanged')).fadeOut(3000);
+                }, 250);
+            }, function() {
+                self.editing.wishlist = true;
+            });
+            this.editing.wishlist = false;
+        },
+        cancelEditWishlist: function() {
+            this.editing.wishlist = false;
+            //this.render();
         },
         doNotRemove: function() {
             this.editing.added = false;
@@ -530,7 +581,13 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
         additionalEvents: {
             "blur #mz-payment-credit-card-number": "changeCardType",
             "input  [name='security-code'],[name='credit-card-number']": "allowDigit"
-        },  
+        },
+        render: function() {
+            var self = this;
+            Backbone.MozuView.prototype.render.apply(this, arguments);
+
+            $('#account-panels .selectpicker').selectpicker();
+        },
         allowDigit:function(e){
             e.target.value= e.target.value.replace(/[^\d]/g,'');
         },         
@@ -629,6 +686,12 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             'editingContact.isBillingContact',
             'editingContact.isShippingContact'
         ],
+        render: function() {
+            var self = this;
+            Backbone.MozuView.prototype.render.apply(this, arguments);
+
+            $('#account-panels .selectpicker').selectpicker();
+        },
         choose: function (e) {
             var self = this;
             var idx = parseInt($(e.currentTarget).val(), 10);
@@ -642,8 +705,20 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             addr.set('candidateValidatedAddresses',null);
             addr.set('isValidated', true);
             this.render();
+        },
+        viewAddressBook: function () {
+            this.editing.contact = "view";
+            this.startEditAddressBook();
+            this.render();
+        }, 
+        startEditAddressBook: function () {
+            $('.mz-l-stack-section').hide();
+            $('.mz-l-stack-section.mz-accountaddressbook').show();
+            $('.mz-l-stack-section.mz-accountaddressbook').removeClass('no-editing').addClass('is-editing');
+            $('.dl-maintitle').hide();
         },        
         beginAddContact: function () {
+            this.startEditAddressBook();
             this.editing.contact = false;
             this.model.endEditContact();
             this.editing.contact = "new";
@@ -651,6 +726,7 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             $("input[name='firstname']").focus();
         },
         beginEditContact: function (e) {
+            this.startEditAddressBook();
             var id = this.editing.contact = e.currentTarget.getAttribute('data-mz-contact');
             this.model.beginEditContact(id);
             this.render();
@@ -671,6 +747,11 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             this.editing.contact = false;
             this.model.endEditContact();
             this.render();
+
+            $('.mz-l-stack-section').removeClass('is-editing').addClass('no-editing');
+            $('.mz-l-stack-section').show();
+            $('.dl-maintitle').show();
+
         },
         beginDeleteContact: function (e) {
             var self = this,
@@ -707,11 +788,19 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             });
         }
     });
-
-
+/*
+    var ParentView = Backbone.MozuView.extend({
+        templateName: 'pages/my-account',
+        constructor: function() {
+            this.activeSection = "Account Dashboard";
+        }
+    });
+*/
     $(document).ready(function() {
 
         var accountModel = window.accountModel = CustomerModels.EditableCustomer.fromCurrent();
+
+        $('#account-panels .selectpicker').selectpicker();
 
         var $accountSettingsEl = $('#account-settings'),
             $passwordEl = $('#password-section'),
@@ -721,11 +810,18 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             $addressBookEl = $('#account-addressbook'),
             $wishListEl = $('#account-wishlist'),
             $messagesEl = $('#account-messages'),
-            $storeCreditEl = $('#account-storecredit'),
+            $storeCreditEl = $('#account-storecredit'),            
             orderHistory = accountModel.get('orderHistory'),
             returnHistory = accountModel.get('returnHistory');
+            //$parentEl = $('.mz-myaccount .mz-l-container');
 
         var accountViews = window.accountViews = {
+            /*
+            parent: new ParentView({
+                el: $parentEl,
+                model: accountModel,
+                messagesEl: $messagesEl
+            }),*/
             settings: new AccountSettingsView({
                 el: $accountSettingsEl,
                 model: accountModel,
@@ -786,6 +882,10 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             model: accountModel.get('wishlist'),
             messagesEl: $messagesEl
         });
+
+        $('.mz-myaccount-nav .dl-personalInfo').on('click', function (e) {accountViews.settings.startEdit(e);});
+        $('.mz-myaccount-nav .dl-accountwishlist').on('click', function (e) {accountViews.wishList.startEditWishlist(e);});
+
 
         // TODO: upgrade server-side models enough that there's no delta between server output and this render,
         // thus making an up-front render unnecessary.
