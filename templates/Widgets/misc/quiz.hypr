@@ -1,0 +1,538 @@
+<div class="quiz-widget" data-widget="quiz">
+  <div data-role="intro">
+    <div class="quiz-intro-text">
+      Skincare is a serious science but choosing what products to use shouldn’t be.
+    </div>
+    <div class="quiz-intro-text">
+      Find what’s right for you with our fast quiz.
+    </div>
+    <button type="button" data-role="open">
+      TAKE OUR QUIZ
+    </button>
+  </div>
+  <div data-role="quiz">
+    <div class="quiz-section" data-section="expertise"></div>
+    <div class="quiz-section" data-section="skin-concerns"></div>
+    <div class="quiz-section" data-section="skin-type"></div>
+    <div class="quiz-section" data-section="current-products"></div>
+    <div class="quiz-section" data-section="about-you"></div>
+
+    <div data-section="results"></div>
+  </div>
+</div>
+
+<script type="text/x-template" id="template-radio-spectrum">
+  <div class="quiz-options option-spectrum" data-option-group="<%= name %>">
+    <% _.each(options, function(option) { %>
+      <div class="control <%= (option.value === value) ? 'selected' : '' %>" data-option-value="<%= option.value %>">
+        <div class="line"></div>
+        <div class="node"></div>
+        <div class="quiz-label">
+          <%= option.label %>
+        </div>
+      </div>
+    <% })%>
+  </div>
+</script>
+
+<script type="text/x-template" id="template-section-tab">
+  <div class="quiz-section-tab <%= summary ? 'answered' : '' %>">
+    <div class="quiz-section-tab-label">
+      <div class="quiz-label-text">
+        <%= label %>
+      </div>
+      <div class="quiz-section-number">
+        <%= number %>
+      </div>
+    </div>
+  </div>
+</script>
+
+<script type="text/x-template" id="template-section-bullet">
+  <div class="quiz-section-tab">
+    <div class="quiz-section-tab-label">
+      <%= label %>
+      <div class="quiz-section-bullet"></div>
+    </div>
+  </div>
+</script>
+
+<script type="text/x-template" id="template-product-detail">
+  <div class="quiz-product-detail">
+    <div class="quiz-product-image" style="background-image: url(<%= mainImage.src %>)"></div>
+    <div class="quiz-product-content">
+      <div class="quiz-recommend-callout">
+        <div class="quiz-callout-text">
+          WE RECOMMEND
+        </div>
+        <div class="quiz-callout-feather"></div>
+        <div class="quiz-callout-feather"></div>
+        <div class="quiz-callout-feather"></div>
+      </div>
+      <div class="quiz-product-name">
+        <%= content.productName %>
+      </div>
+      <div class="quiz-product-ingredients">
+        <div class="fpo fpo-text">
+          PLACEHOLDER<BR />INGREDIENTS
+        </div>
+      </div>
+      <div class="quiz-product-description">
+        <%= content.productName %>
+      </div>
+      <div class="quiz-product-price">
+        <div class="quiz-product-price-amount">
+          $<%= price.price %>
+        </div>
+        <div class="quiz-product-price-qualifier">
+          SUGGESTED RETAIL PRICE
+        </div>
+      </div>
+      <button type="button">
+        ADD TO CART
+      </button>
+    </div>
+  </div>
+</script>
+
+<script type="text/x-template" id="template-experise-section">
+  <%= _sectionTabPart(section) %>
+  <div class="quiz-section-main">
+    <div class="quiz-section-answered">
+      <%= section.summary %>
+    </div>
+    <div class="quiz-section-body">
+      <div class="quiz-prompt">
+        Do you consider yourself a skincare expert or novice?
+      </div>
+      <%= _spectrumPart({ name: 'expertise', options: options, value: value }) %>
+
+      <% if (value && optionMap[value]) { %>
+        <div class="quiz-meta">
+          <%= optionMap[value].description %>
+        </div>
+      <% } %>
+      <button type="button" <%= section.validated ? '' : 'disabled="true"' %> data-role="next">
+        NEXT
+      </button>
+    </div>
+  </div>
+</script>
+
+<script type="text/x-template" id="template-skin-concerns-section">
+  <%= _sectionTabPart(section) %>
+  <div class="quiz-section-main">
+    <div class="quiz-section-answered">
+      <%= section.summary %>
+    </div>
+    <div class="quiz-section-body">
+      <div class="quiz-prompt">
+        What is your primary skin concern?
+      </div>
+      <div data-option-group="concern">
+        <% _.each(options, function(option) { %>
+          <div class="<%= (value === option.value ? 'active' : '')%>" data-option-value="<%= option.value %>">
+            <div class="quiz-icons quiz-icons-concerns" data-icon="<%= option.value %>"></div>
+            <div class="quiz-option-label">
+              <%= option.label %>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+      <% if (value && optionsMap[value]) { %>
+        <div class="quiz-meta">
+          <%= optionsMap[value].description %>
+        </div>
+      <% } %>
+      <button type="button" <%= section.validated ? '' : 'disabled="true"' %> data-role="next">
+        NEXT
+      </button>
+    </div>
+  </div>
+</script>
+
+<script type="text/x-template" id="template-skin-type-section">
+  <%= _sectionTabPart(section) %>
+  <div class="quiz-section-main">
+    <div class="quiz-section-answered">
+      <%= section.summary %>
+    </div>
+    <div class="quiz-section-body">
+      <div class="quiz-prompt">
+        What is your skin type?
+      </div>
+      <div class="quiz-context">
+        Not sure what skin type you have? Wash your face and let your skin dry without product then wait for a couple of hours to see how your skin matches the following skin type descriptions.
+      </div>
+      <div data-option-group="type">
+        <% _.each(options, function(option) { %>
+          <div class="<%= (value === option.value ? 'active' : '')%>" data-option-value="<%= option.value %>">
+            <div class="quiz-icons quiz-icons-types" data-icon="<%= option.value %>"></div>
+            <div class="quiz-option-label">
+              <%= option.label %>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+      <% if (value && optionsMap[value]) { %>
+        <div class="quiz-meta">
+          <%= optionsMap[value].description %>
+        </div>
+      <% } %>
+      <button type="button" <%= section.validated ? '' : 'disabled="true"' %> data-role="next">
+        NEXT
+      </button>
+    </div>
+  </div>
+</script>
+
+<script type="text/x-template" id="template-current-products-section">
+  <%= _sectionTabPart(section) %>
+  <div class="quiz-section-main">
+    <div class="quiz-section-answered">
+      <%= section.summary %>
+    </div>
+    <div class="quiz-section-body">
+      <div class="quiz-prompt">
+        What products do you currently use?
+      </div>
+      <div data-option-group="products">
+        <% _.each(options, function(option) { %>
+          <div class="<%= ((value || []).indexOf(option.value) !== -1 ? 'active' : '')%>" data-option-value="<%= option.value %>">
+            <div class="quiz-icons quiz-icons-current-products" data-icon="<%= option.value %>"></div>
+            <div class="quiz-option-label">
+              <%= option.label %>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+      <% if (focus && optionsMap[focus]) { %>
+        <div class="quiz-meta">
+          <%= optionsMap[focus].description %>
+        </div>
+      <% } %>
+      <button type="button" <%= section.validated ? '' : 'disabled="true"' %> data-role="next">
+        NEXT
+      </button>
+    </div>
+  </div>
+</script>
+
+<script type="text/x-template" id="template-about-you-section">
+  <%= _sectionTabPart(section) %>
+  <div class="quiz-section-main">
+    <div class="quiz-section-answered">
+      <%= section.summary %>
+    </div>
+    <div class="quiz-section-body">
+      <div class="quiz-prompt">
+        What climate do you spend most of your time in?
+      </div>
+      <%= _spectrumPart({ name: 'climate', options: climate.options, value: climate.value }) %>
+
+      <div class="quiz-prompt">
+        How much of a routine is realistic for you?
+      </div>
+      <%= _spectrumPart({ name: 'routine', options: routine.options, value: routine.value }) %>
+
+      <div class="quiz-prompt">
+        Tell us about you.
+      </div>
+      <%= _spectrumPart({ name: 'gender', options: gender.options, value: gender.value }) %>
+
+      <%= _spectrumPart({ name: 'age', options: age.options, value: age.value }) %>
+      <button type="button" <%= section.validated ? '' : 'disabled="true"' %> data-role="next">
+        GET MY RESULTS
+      </button>
+    </div>
+  </div>
+</script>
+
+<script type="text/x-template" id="template-results-section">
+  <div class="quiz-section">
+    <%= _sectionTabPart(section) %>
+    <div class="quiz-section-main">
+      <div class="quiz-section-body"></div>
+    </div>
+  </div>
+  <div class="quiz-section" data-section-sub="top-product">
+    <%= _sectionBulletPart({ label: 'OUR TOP PRODUCT RECOMMENDATION' }) %>
+    <div class="quiz-section-main">
+      <div class="quiz-section-body">
+        <div class="quiz-content">
+          The products recommended here were specially formulated to address a variety of concerns for your unique skin type.
+        </div>
+        <div class="product-container">
+          <% if (product) { %>
+            <%= _productDetailPart(product) %>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz-section" data-section-sub="ingredients">
+    <%= _sectionBulletPart({ label: 'INGREDIENTS ESPECIALLY FOR YOUR SKIN' }) %>
+    <div class="quiz-section-main">
+      <div class="quiz-section-body">
+        <div class="quiz-content">
+          Our scientifically proven ingredients aren’t one size fits all. Each ingredient in the products for your skin type is chosen for its specific skin benefit.
+        </div>
+        <div>
+          <% _.each(ingredients, function(ingredient) { %>
+            <div>
+              <div class="quiz-heading-label">
+                <%= ingredient.name %>
+              </div>
+              <div class="quiz-content">
+                <%= ingredient.description %>
+              </div>
+            </div>
+          <% })%>
+        </div>
+        <div class="quiz-carousel-container">
+          <div class="fpo fpo-carousel">
+            <div>PLACEHOLDER</div>
+            ADDITIONAL PRODUCTS WITH THESE INGREDIENTS
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz-section" data-section-sub="regimen">
+    <%= _sectionBulletPart({ label: 'FOR LASTING RESULTS' }) %>
+    <div class="quiz-section-main">
+      <div class="quiz-section-body">
+        <div class="quiz-content">
+          A regimen of the right products for your skin type is the first part of revealing your best skin. The second part is sticking with it; results build and get better with time.
+        </div>
+        <% if (regimen) { %>
+          <div class="quiz-regimen-description">
+            <div class="regimen-image-container">
+              <div class="fpo-regimen-image">
+                <div>PLACEHOLDER</div>
+                <%= regimen.name %>
+              </div>
+            </div>
+            <div class="quiz-content">
+              <%= regimen.description %>
+            </div>
+          </div>
+        <% } %>
+        <button type="button">
+          VIEW MY REGIMEN
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz-section" data-section-sub="resources">
+    <%= _sectionBulletPart({ label: 'ADDITIONAL RESOURCES' }) %>
+    <div class="quiz-section-main">
+
+    </div>
+  </div>
+</script>
+
+<script type="text/json" id="quiz-config">
+{{ model.config|safe }}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.saCleanser %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.saToner %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.saSerum %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.saDay %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.saNight %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.saEye %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.saTargeted %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.resurfaceCleanser %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.resurfaceToner %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.resurfaceSerum %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.resurfaceDay %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.resurfaceNight %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.resurfaceEye %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.resurfaceTargeted %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.restoreCleanser %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.restoreToner %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.restoreSerum %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.restoreDay %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.restoreNight %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.restoreEye %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.restoreTargeted %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.clarifyCleanser %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.clarifyToner %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.clarifySerum %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.clarifyDay %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.clarifyNight %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.clarifyEye %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.clarifyTargeted %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.enlightenCleanser %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.enlightenToner %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.enlightenSerum %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.enlightenDay %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.enlightenNight %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.enlightenEye %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.enlightenTargeted %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.correctCleanser %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.correctToner %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.correctSerum %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.correctDay %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.correctNight %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.correctEye %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.correctTargeted %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.defendCleanser %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.defendToner %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.defendSerum %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.defendDay %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.defendNight %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.defendEye %}
+</script>
+
+<script type="text/json" data-role="regimen-product">
+  {% include_products "modules/product/json-products" with productCodes=model.config.defendTargeted %}
+</script>
+
+{% require_script "modules/quiz/index" %}

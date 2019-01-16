@@ -1,0 +1,7 @@
+ {% if model.items %}
+	<div class="global-cart-product-listing">
+      {% for prod in model.items %}
+      		{% include "modules/product/product-listing" with model=prod %}
+      {% endfor %}
+	</div>
+ {% endif %}

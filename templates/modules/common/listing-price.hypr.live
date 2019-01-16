@@ -1,0 +1,22 @@
+﻿{% if model.onSale %}
+<span class="is-not-ranged mz-price is-crossedout">
+    {% include "modules/common/localized-currency" with amount=model.price %}
+</span>
+<span itemprop="price" class="mz-price is-saleprice">
+    {% include "modules/common/localized-currency" with amount=model.price %}
+    {% if model.priceType == "MAP" %}
+    <div>add to cart to see final price</div>
+    {% endif %}
+</span>
+<span class="is-ranged mz-price is-crossedout">
+    {% include "modules/common/localized-currency" with amount=model.price %}
+</span>
+{% else %}
+<span itemprop="price" class="mz-price">
+
+{% include "modules/common/localized-currency" with amount=model.price %}
+    {% if model.priceType == "MAP" %}
+    <div>add to cart to see final price</div>
+    {% endif %}
+</span>
+{% endif %}

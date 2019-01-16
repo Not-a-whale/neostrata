@@ -150,6 +150,7 @@
     "orderTotal": "Gesamtbestellung",
     "emptyCart": "Einkaufswagen leeren",
     "proceedToCheckout": "Kasse",
+    "moneyBackMsg"         : "30-day Money Back Guarantee. Order by 1:00pm EST for same-day shipping.",
     "storePickupAt": "In-Store Pickup <strong> {0} </ strong>",
     "checkout": "Kasse",
     "orderSummary": "Bestellübersicht",
@@ -452,6 +453,7 @@
     "wishListsInfo": "Erstellen und verwalten Sie Listen der Artikel, die Sie erhalten möchten, und senden Sie sie per E-Mail an Ihre Freunde und Familie",
     "orderHistoryInfo": "Überprüfen Sie alle Bestellungen, die über dieses Konto bei uns eingehen",
     "addressBookInfo": "Anzeigen, Bearbeiten oder Löschen von Adressen in Ihrem persönlichen Adressbuch",
+    "addressBookInfoView": "View and update your addresses.",
     "logOutInfo": "Melden Sie sich von Ihrem Konto ab",
     "wishLists": "Wunschlisten",
     "productwithoutSku": "Product without Sku",
@@ -519,5 +521,7 @@
     "sort": "SORT",
     "filter": "FILTER",
     "passwordFormat": "7 Characters minimum",
-    "billingRequiredMsg" : "Billing Zip Code field required."
+    "billingRequiredMsg" : "Billing Zip Code field required.",
+    "accountDashboardBack" : "Back to Dashboard",
+    "saveAddress": "Save Address"
 }

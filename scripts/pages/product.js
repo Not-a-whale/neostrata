@@ -91,7 +91,6 @@
         });
     };
 
-
     function updateImages(productInitialImages) {
         var mainImage = productInitialImages.mainImage.src + '?maxWidth=' + width_pdp;
         var zoomImage = productInitialImages.mainImage.src + '?maxWidth=' + width_zoom;
@@ -420,6 +419,14 @@
         addToWishlist: function() {
             this.model.addToWishlist();
         },
+        finishRemoveItem: function() {
+            var finishRemoveItem_id = $('#removeFromWishlistHide').data('mz-item-id');
+            var wishlistId = $( "#removeFromWishlistHide" ).data('mz-wishlist-id');
+            var serviceurl = '/api/commerce/wishlists/'+ wishlistId +'/items/' + finishRemoveItem_id;
+	        api.request('DELETE', serviceurl).then(function(res) {
+                $('.mz-productdetail-addToWishlist-Action span').removeClass("heart-filled").addClass("heart-outline");
+            });
+        },
         checkLocalStores: function(e) {
             var me = this;
             e.preventDefault();
@@ -699,6 +706,96 @@
         var recentProducts = existingProducts ? $.parseJSON(existingProducts) : [];
         recentProducts = recentProd(recentProducts, recentProduct);
         $.cookie("recentProducts", JSON.stringify(recentProducts), {path: '/', expires: 21 });
+        var user = require.mozuData('user');
+        if(user.accountId){
+            api.createSync('wishlist').getOrCreate(user.accountId).then(function(wishlist) {
+                return wishlist.data;
+            }).then(function(wishlistItems) {          
+                for (var i = 0; i < wishlistItems.items.length; i++) {
+                    if(wishlistItems.items[i].product.productCode === $('.mz-productdetail-addToWishlist-Action').data('mz-product-code')){
+                        $( "#removeFromWishlistHide" ).data('mz-item-id', wishlistItems.items[i].id);
+                        $( "#removeFromWishlistHide" ).data('mz-wishlist-id', wishlistItems.id);
+                    }
+                    $('[data-mz-product-code="'+wishlistItems.items[i].product.productCode+'"] span').removeClass("heart-outline").addClass("heart-filled");
+                }
+            });
+        }
+        $('.mz-productdetail-addToWishlist-Action').click(function() {
+            if(user.accountId){
+                if($('.mz-productdetail-addToWishlist-Action span').hasClass('heart-outline')){
+                    $( "#addToWishlistHide" ).trigger( "click" );
+                    setTimeout(function(){ 
+                        if(user.accountId){
+                            api.createSync('wishlist').getOrCreate(user.accountId).then(function(wishlist) {
+                                return wishlist.data;
+                            }).then(function(wishlistItems) {          
+                                for (var i = 0; i < wishlistItems.items.length; i++) {
+                                    if(wishlistItems.items[i].product.productCode === $('.mz-productdetail-addToWishlist-Action').data('mz-product-code')){
+                                        $( "#removeFromWishlistHide" ).data('mz-item-id', wishlistItems.items[i].id);
+                                        $( "#removeFromWishlistHide" ).data('mz-wishlist-id', wishlistItems.id);
+                                    }
+                                    $('[data-mz-product-code="'+wishlistItems.items[i].product.productCode+'"] span').removeClass("heart-outline").addClass("heart-filled");
+                                }
+                            });
+                        }
+                    }, 1000);
+                }
+                else{
+                    $( "#removeFromWishlistHide" ).trigger( "click" );
+                }
+            }else{
+                $('.login-link-text').trigger( "click" );
+            }
+        });
+        setTimeout(function(){
+            if(user.accountId){
+                api.createSync('wishlist').getOrCreate(user.accountId).then(function(wishlist) {
+                    return wishlist.data;
+                }).then(function(wishlistItems) {          
+                    for (var i = 0; i < wishlistItems.items.length; i++) {
+                        $('[data-mz-product-code="'+wishlistItems.items[i].product.productCode+'"]' ).data('mz-item-id', wishlistItems.items[i].id);
+                        $('[data-mz-product-code="'+wishlistItems.items[i].product.productCode+'"]' ).data('mz-wishlist-id', wishlistItems.id);
+                        $('[data-mz-product-code="'+wishlistItems.items[i].product.productCode+'"] span').removeClass("heart-outline").addClass("heart-filled");
+                    }
+                });
+            }
+            $('.bxslider .product-code .mz-slider-favorites').click(function() {
+                if(user.accountId){
+                    var self = this;
+                    if($(this).find('span').hasClass("heart-filled")){
+                        var finishRemoveItem_id = $(this).data('mz-item-id');
+                        var wishlistId = $(this).data('mz-wishlist-id');
+                        var serviceurl = '/api/commerce/wishlists/'+ wishlistId +'/items/' + finishRemoveItem_id;
+                        api.request('DELETE', serviceurl).then(function(res) {
+                            $(self).find('span').removeClass("heart-filled").addClass("heart-outline");
+                        });
+                    }else{
+                        var pCode = $(this).data('mz-product-code');           
+                        if(pCode && pCode !== ''){
+                            api.get('product', pCode).then(function(productResponse){
+                                var product = new ProductModels.Product(productResponse.data);
+                                product.addToWishlist();
+                                setTimeout(function(){
+                                    $(self).find('span').removeClass("heart-outline").addClass("heart-filled");
+                                    api.createSync('wishlist').getOrCreate(user.accountId).then(function(wishlist) {
+                                        return wishlist.data;
+                                    }).then(function(wishlistItems) {        
+                                        for (var i = 0; i < wishlistItems.items.length; i++) {
+                                            if(wishlistItems.items[i].product.productCode === pCode){
+                                                $(self).data('mz-item-id', wishlistItems.items[i].id);
+                                                $(self).data('mz-wishlist-id', wishlistItems.id);
+                                            }
+                                        }
+                                    });
+                                }, 1000);
+                            });
+                        }
+                    }
+                }else{
+                    $('.login-link-text').trigger( "click" );
+                }
+            });
+        }, 1500);
     });
 
     function recentProd(json, product) {

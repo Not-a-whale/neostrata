@@ -601,9 +601,10 @@
                     }
                     .ml-header-global-cart-count {
                         position: absolute;
-                        margin-top: -10px;
-                        left: 2.5rem;
-                        padding: 0 6px;
+                        margin-top: -13px;
+                        left: 3rem;
+                        padding: 1% 4%;
+                        min-width: 1.2rem;
                         .mz-cartmonitor {
                             font-size: 1rem;
                             font-weight: normal;
@@ -617,7 +618,9 @@
                     .icon-cart {
                         position: absolute;
                         font-size: 2.5rem;
-                    }
+                        top: -0.4rem;
+                        left: 0.7rem;
+                        }
                     .ml-header-global-cart-text {
                         display: block;
                     }
@@ -929,7 +932,14 @@
                   .commerce-enabled-true & {
                     margin-top: 1.5rem;
                     &:nth-of-type(1) {
-                        margin-left: 22%;
+                        margin-left: 23%;
+                    }
+                    &:nth-of-type(3) {
+                        width: 18%;
+                    }
+
+                    &:nth-of-type(4) {
+                        width: 9%;
                     }
                     &:nth-of-type(4) {
                         margin-right: 22%;
@@ -984,25 +994,226 @@
 }
 
 // Account Dashboard
-.mz-myaccount { 
+.mz-myaccount {
+    @leftPosition: 21.40625%; 
     .mz-l-container {
-        margin: 0 auto;
+        margin: 10rem auto 0;
         max-width: 83.33%;
 
-        .mz-pagetitle {
-            font-size: 3.375rem;
-            margin-left: 21.40625%;
+        .dl-maintitle {
+            margin-left: @leftPosition;
+            position: absolute;
+            top: -10rem;
+            .mz-pagetitle {
+                font-size: 3.375rem;
+            }
+            .dl-pagesubtitle {
+                font-size: 1.6875rem;
+                font-weight: normal;
+            }
         }
-        .dl-pagesubtitle {
-            font-size: 1.6875rem;
-            font-weight: normal;
-            margin-left: 21.40625%;
+        .mz-myaccount-nav {
+            width: @leftPosition;
         }
-        .mz-l-stack-section {
-            display: inline-block;
-            width: 49%;
-            vertical-align: top;
-            padding: 2%;
+        .mz-myaccount-panels {
+            margin-left: @leftPosition;
+            .mz-l-stack-section {
+                &.no-editing {
+                    display: inline-block;
+                    width: 49%;
+                    vertical-align: top;
+                    padding: 0 15px 15px;
+                    margin-left: -15px;
+                    margin-right: auto;
+                    .mz-accountsettings-section {
+                        min-height: unset;
+                        padding: 0;
+                    }
+                    .mz-l-stack-sectiontitle {
+                        font-size: 1.375rem;
+                        line-height: 1.5;
+                    }
+                    .dl-link-edit {
+                        float: right;
+                        line-height: 1.5;
+                        font-size: 1.375rem;
+                    }
+                    .mz-accountsettings-label {
+                        display: none;
+                    }
+                    .mz-accountsettings-acceptsmarketing label, #account-acceptsmarketing {
+                        display: none;
+                    }
+
+                }
+                &.is-editing {
+                    width: 100%;
+                    margin-top: -10rem;
+                    .mz-l-stack-sectiontitle {
+                        font-size: 3.375rem;
+                        border-bottom: none;
+                        margin-top: 20px;
+                        margin-bottom: 10px;
+                    }
+                    .mz-l-stack-sectionsubtitle {
+                        font-size: 1.6875rem;
+                        font-weight: normal;
+                        margin-bottom: 2rem;
+                    }
+                    
+                    input[type=text], input[type=email], select, input[type=tel] {
+                        border-radius: 0;
+                        border: 2px solid #4e5458;
+                        height: 4rem;
+                        font-size: 1rem;
+                        color: #4e5458;
+                        padding: 0 0 0 2rem;
+                        margin-top: 0.5rem;
+                        width: 100%;
+                        &.mz-accountsettings-firstname {
+                            width: 50%;
+                            float: left;
+                        }
+                        @leftInputMargin: 1.5rem; 
+                        &.mz-accountsettings-lastname {
+                            width: calc(50% ~"-" @leftInputMargin);
+                            margin-left: @leftInputMargin;
+                        }
+                    }
+                    
+                    .mz-accountsettings-label {
+                        display: block;
+                        color: #4e5458 !important;
+                    }
+
+                    .mz-accountsettings-acceptsmarketing label {
+                        font-weight: normal;
+                    }
+
+                    .dz-backtodashboard {
+                        border: none;
+                        background: none;
+                        text-decoration: underline;
+                        display: block;
+                        margin: 2rem 0;
+                        padding: 0;
+                    }
+
+                    button.mz-button {
+                        height: 3rem !important;
+                        line-height: 3rem !important;
+                        border-width: 2px !important;
+                        border-radius: 0;
+                        font-size: 1rem;
+                        padding: 0 3rem;
+                        text-transform: uppercase;
+                    }
+
+                    //Address Book
+                    .mz-accountaddressbook-form {
+                        width: 100%;
+                        .mz-addressform-firstname, .mz-addressform-lastname, .mz-addressform-city, .mz-addressform-state {
+                            width: 50%;
+                            float: left;
+                            display: block;
+                        }
+                        &.mz-l-formfieldgroup {
+                            .mz-l-formfieldgroup-row {
+                                display: block;
+                                &.mz-addressform-country {
+                                    display: none;
+                                }
+                            }
+                            .mz-l-formfieldgroup-cell {
+                                display: block;
+                            }
+                        }
+                        .mz-contact-actions {
+                            margin: 0 auto;
+                            text-align: center;
+                        }
+                        .mz-contact-cancel {
+                            float: right;
+                            border: none;
+                            text-transform: none;
+                        }
+                    }
+                    
+                }                
+                &.mz-accountaddressbook {
+                    &.no-editing {
+                        .mz-accountaddressbook-contact {
+                            width: 100%;
+                            border-right: none;
+                            display: none;
+                            min-height: auto;
+                            &:first-of-type {
+                                display: block;
+                            }
+                        }
+                        .dl-link-newaddress, .dz-backtodashboard, .mz-accountaddressbook-actions {
+                            display: none;
+                        }
+                    }
+                    &.is-editing {
+                        .mz-accountaddressbook-list {
+                            width: 100%;
+                            float: left;
+                        }
+                        .dl-link-editaddress {
+                            display: none;
+                        }
+                        .mz-accountaddressbook-contact:not(.mz-accountaddressbook-form) {
+                            width: 50%;
+                            display: inline-block;
+                            float: left;
+                            margin: 0;
+                            border: none;
+                            padding: 0 4% 0 0;
+                        }
+                        .mz-accountaddressbook-empty {
+                            margin: 4rem 0;
+                        }
+                        .mz-contact-actions .mz-button {
+                            background: none;
+                        }
+                    }
+                }
+                &.mz-accountsettings {
+                    &.is-editing {
+                        button.mz-accountsettings-editdone {
+                            margin-top: 7rem;
+                        }
+                        &.is-editing-password button.mz-accountsettings-editdone {
+                            margin-top: 12rem;
+                        }
+                    }
+                }
+                &.mz-passwordsection {
+                    label {
+                        font-weight: normal;
+                        display: inline-block;
+                        width: 175px;
+                        margin-bottom: 1rem;
+                    }
+                    input {
+                        border: 1px solid #4e5458;
+                    }
+                    &.is-dashboard {
+                        display: none !important;
+                    }
+                    &.no-dashboard {
+                        display: block;
+                    }
+                    &#password-section {
+                        bottom: 9rem;
+                        position: absolute;
+                        &.is-editing {
+                            bottom: 10rem;
+                        }        
+                    }
+                }
+            }
         }
     }
 }

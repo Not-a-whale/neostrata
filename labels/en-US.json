@@ -159,13 +159,15 @@
   "noResultsText"        : "We're sorry! No results were found matching your query.",
   "searchResultsSummary"  : "Your search for \"{0}\" within {1} returned {2} results. <a href=\"#\" data-mz-action=\"expandSearch\">Repeat this search across all categories.</a>",
 
-  "cart"                 : "Cart",
+  "cart"                 : "Your Cart",
   "itemTotal"            : "Item Total",
+  "itemsInOrder"         : "Items In Order",
   "cartEmpty"            : "You have no items in your cart.",
   "taxAtCheckout"        : "Tax & Shipping Calculated at Checkout",
   "orderTotal"           : "Order Total",
   "emptyCart"            : "Empty Cart",
-  "proceedToCheckout"    : "Checkout",
+  "proceedToCheckout"    : "Proceed to Checkout",
+  "moneyBackMsg"         : "30-day Money Back Guarantee. Order by 1:00pm EST for same-day shipping.",
   "storePickupAt"        : "In-Store Pickup at <strong>{0}</strong>",
   "inStorePickup"                         : "In-Store Pickup",
   "unavailableForThisItem"                : "Unavailable for this item.",
@@ -525,10 +527,11 @@
   "BrowsOur": "Browse Our",
   "storeTitle": "Mozu Store!",
   "storeHoursInfo":"Hours & Info",
-  "accountSettingsInfo": "Review and edit your email address, password, your password hint information and/or your billing address ",
+  "accountSettingsInfo": "Update your personal info.",
   "wishListsInfo": "Create and maintain lists of the items you'd like to receive, then email them to your friends and family",
   "orderHistoryInfo": "Review all orders placed with us using this account",
-  "addressBookInfo": "View, edit or delete addresses in your personal address book",
+  "addressBookInfo": "Update your saved addresses.",
+  "addressBookInfoView": "View and update your addresses.",
   "logOutInfo": "Sign out of your account",
   "wishLists" : "Wish Lists",
   "productwithoutSku" : "Product without Sku",
@@ -609,5 +612,7 @@
   "passwordFormat": "7 Characters minimum",
   "dayGuaranteeStatement": "30-day Money Back Guarantee. Order by 1:00 PM EST for sameday shipping."
   ,"emailMeTxt": "We will email you when this product is back instock.", 
-  "billingRequiredMsg" : "Billing Zip Code field required."
+  "billingRequiredMsg" : "Billing Zip Code field required.",
+  "accountDashboardBack" : "Back to Dashboard",
+  "saveAddress": "Save Address"
 }

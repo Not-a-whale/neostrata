@@ -6,7 +6,8 @@
     {% endif %}
     <li class="mz-accountaddressbook-contact mz-accountaddressbook-form mz-l-formfieldgroup">
     {% parent %}
-<div class="mz-contacttypes">
+    <div class="mz-contacttypes">
+        {% comment %}
         <div class="mz-l-formfieldgroup mz-l-formfieldgroup-norows mz-contacttype">
             <label>
                 <input type="checkbox" data-mz-value="editingContact.isBillingContact" value="true" {% if model.isBillingContact %} checked="checked" {% endif %}> {{ labels.billingContact }}
@@ -17,10 +18,13 @@
             </label>
             {% endif %}
         </div>
+        {% endcomment %}
         <div class="mz-l-formfieldgroup mz-l-formfieldgroup-norows mz-contacttype">
+            {% comment %}
             <label>
                 <input type="checkbox" data-mz-value="editingContact.isShippingContact" value="true" {% if model.isShippingContact %} checked="checked" {% endif %}> {{ labels.shippingContact }}
             </label>
+            {% endcomment %}
             {% if model.isShippingContact %}
             <label class="mz-contacttype-isprimary">
                 <input type="checkbox" data-mz-value="editingContact.isPrimaryShippingContact" value="true" {% if model.isPrimaryShippingContact %} checked="checked" {% endif %}> {{ labels.primary }}
@@ -30,7 +34,7 @@
     </div>
     <div class="mz-contact-actions"> 
         {% include "modules/my-account/my-account-address-suggestions" with model=model.address %}
-        <button class="mz-button mz-contact-save" data-mz-action="finishEditContact">{{ labels.save }}</button>
+        <button class="mz-button mz-contact-save" data-mz-action="finishEditContact">{{ labels.saveAddress }}</button>
         <button class="mz-button mz-contact-cancel" data-mz-action="cancelEditContact">{{ labels.cancel }}</button>
     </div>
     </li>

@@ -1,5 +1,6 @@
-﻿<h3 class="mz-l-stack-sectiontitle">{{ labels.accountYourWishlist }}</h3>
-
+﻿<h3 class="mz-l-stack-sectiontitle">{{ labels.accountYourWishlist }}
+{% if not editing.wishlist %}<a href class="mz-link-edit-accountyourwishlist" data-mz-action="startEditWishlist">{{ labels.edit }}</a>{% endif %}</h3>
+</h3>
 <div class="mz-accountwishlist-list">
   {% if model.hasItems %}
     {% for item in model.items %}
