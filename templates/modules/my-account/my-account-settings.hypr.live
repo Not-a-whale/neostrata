@@ -88,5 +88,5 @@
 
 {% if editing %}
 <button class="mz-button primary-btn mz-accountsettings-editdone" data-mz-action="finishEdit">{{ labels.save }}</button>
-<button class="dz-backtodashboard mz-accountsettings-editdone" data-mz-action="cancelEdit">{{ labels.accountDashboardBack }}</button>
+<button class="dz-backtodashboard" data-mz-action="cancelEdit">{{ labels.accountDashboardBack }}</button>
 {% endif %}

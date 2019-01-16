@@ -37,14 +37,19 @@
             {% include "modules/my-account/my-account-settings" %}
         </div>
 
+        <a id="password"></a>
+        <div class="mz-l-stack-section mz-passwordsection no-editing is-dashboard" id="password-section">
+            {% include "modules/my-account/my-account-password" %}
+        </div>
+
         <a id="addressbook"></a>
         <div class="mz-l-stack-section mz-accountaddressbook no-editing" id="account-addressbook">
             {% include "modules/my-account/my-account-addressbook" %}
         </div>
 
-        <a id="password"></a>
-        <div class="mz-l-stack-section mz-passwordsection no-editing" id="password-section">
-            {% include "modules/my-account/my-account-password" %}
+        <a id="paymentmethods"></a>
+        <div class="mz-l-stack-section mz-accountpaymentmethods no-editing" id="account-paymentmethods">
+            {% include "modules/my-account/my-account-paymentmethods" %}
         </div>
 
         {% if siteContext.generalSettings.isWishlistCreationEnabled %}
@@ -62,11 +67,6 @@
         <a id="returnhistory"></a>
         <div class="mz-l-stack-section mz-accountreturnhistory no-editing" id="account-returnhistory">
             {% include "modules/my-account/my-account-returnhistory" with model=model.returnHistory %}
-        </div>
-
-        <a id="paymentmethods"></a>
-        <div class="mz-l-stack-section mz-accountpaymentmethods no-editing" id="account-paymentmethods">
-            {% include "modules/my-account/my-account-paymentmethods" %}
         </div>
 
         <a id="{{ labels.digitalCreditsAnchor }}"></a>

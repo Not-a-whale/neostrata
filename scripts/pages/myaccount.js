@@ -581,7 +581,13 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
         additionalEvents: {
             "blur #mz-payment-credit-card-number": "changeCardType",
             "input  [name='security-code'],[name='credit-card-number']": "allowDigit"
-        },  
+        },
+        render: function() {
+            var self = this;
+            Backbone.MozuView.prototype.render.apply(this, arguments);
+
+            $('#account-panels .selectpicker').selectpicker();
+        },
         allowDigit:function(e){
             e.target.value= e.target.value.replace(/[^\d]/g,'');
         },         
@@ -680,6 +686,12 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             'editingContact.isBillingContact',
             'editingContact.isShippingContact'
         ],
+        render: function() {
+            var self = this;
+            Backbone.MozuView.prototype.render.apply(this, arguments);
+
+            $('#account-panels .selectpicker').selectpicker();
+        },
         choose: function (e) {
             var self = this;
             var idx = parseInt($(e.currentTarget).val(), 10);
@@ -718,7 +730,6 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             var id = this.editing.contact = e.currentTarget.getAttribute('data-mz-contact');
             this.model.beginEditContact(id);
             this.render();
-            $('#account-panels .selectpicker').selectpicker();
         },
         finishEditContact: function () {
             var self = this,
@@ -788,7 +799,7 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
     $(document).ready(function() {
 
         var accountModel = window.accountModel = CustomerModels.EditableCustomer.fromCurrent();
-        
+
         $('#account-panels .selectpicker').selectpicker();
 
         var $accountSettingsEl = $('#account-settings'),
