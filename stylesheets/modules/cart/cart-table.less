@@ -1,10 +1,71 @@
-﻿.mz-table-cart {
-
+.mz-table-cart {
+    .mz-header-basket-md-sm{
+        div{
+            border-bottom: 2px solid #e1e1e1;
+            text-transform: capitalize;
+            text-align: left;
+            padding-left: 0;
+            font-size: 1.8rem;
+            padding-bottom: 15px;
+            @media screen and (max-width: 991px) {
+                padding-bottom: 5px;
+                padding-top: 5px;
+                font-size:1.6rem;
+            }
+        }
+    }
+    .mz-cart-total-main-container{
+        padding-top:0 !important;
+        @media screen and (max-width: 991px) {
+            padding:15px !important;
+        }
+        .mz-header-basket-md-sm{
+            margin-bottom: 74px;
+            @media screen and (max-width: 991px) {
+                display:none;
+            }
+            span{
+                float:right;
+                font-weight: 400;
+            }
+        }
+        .mz-carttable-total-row {
+            font-size: @fontSizeLarge;
+            .mz-carttable-total-wrap{
+                text-align: left;
+                font-size: 1.6rem;
+                .mz-carttable-total {
+                    display: inline-block;
+                    @media screen and (max-width: 991px) {
+                        text-align: right;
+                    }
+                    strong{
+                        color: #4e5458;
+                        font-size: 1.7rem;
+                        font-weight: 400;
+                    }
+                }
+            }
+        }   
+    }
+    .mz-button-checkout-cart-top{
+        margin-top: 20px;
+    }
+    .mz-table-cart-items{
+        padding-bottom: 30px;
+        @media screen and (max-width: 991px) {
+            padding-right:15px;     
+        }
+    }
     .mz-carttable-item-image {
         float: left;
-        margin: 0 @gutter/4 @gutter/4 0;
+        margin: 0 27px @gutter/4 0;
+        max-width: 83px;
+        @media screen and (max-width: 991px) {
+            max-width: 53px;    
+            margin-right: 15px;
+        }
     }
-
     .mz-carttable-header-price, .mz-carttable-header-fulfillment, .mz-carttable-header-total,
     .mz-carttable-item-price, .mz-carttable-item-total,
     .mz-carttable-shipping-row td, .mz-carttable-total-row td,
@@ -18,17 +79,88 @@
 
     .mz-carttable-item-info-wrap {
         overflow: hidden;
-
+        .mz-carttable-item-title{
+            text-transform: uppercase;
+            text-decoration: none;
+            font-size: 1.6rem;
+            line-height: 1.8rem;
+            color:#4e5458 !important;
+        }
         .mz-propertylist {
             float: right;
             margin: 0;
             width: 40%;
         }
     }
-
+    .mz-carttable-checkout-row{
+        .mz-button-bottom-cart{
+            width: 100%;
+            .discount-threshold-messages{
+                text-align: center;
+                font-size: 1.7rem;
+                padding: 0 3px 29px;
+                @media screen and (max-width: 991px) {
+                    font-style: italic;
+                    padding-bottom: 5px;    
+                }
+            }
+            .mz-common-button-padding{
+                width: 100%;    
+                padding:0;
+                #cart-checkout{
+                    width: 100%;        
+                    font-size: 1.4rem;
+                }
+            }
+        }
+    }
+    .money-back-msg{
+        text-align: center;
+        margin: 15px 30px;
+        font-size: 1.25rem;
+        line-height: 2rem;
+        font-weight: 400;
+    }
+    .cart-item-qty{
+        .label-qty{
+            font-size: 1.9rem;
+            text-transform: uppercase;
+            line-height: 1.8rem;
+            @media screen and (max-width: 991px) {
+                font-weight: 500;
+                font-size: 1.7rem;
+            }
+        }
+        .mz-cart-qty-box{
+            padding-top: 20px;
+        }
+    }
+    .mz-price-total-container{
+        .label-total{
+            font-size: 1.9rem;    
+            line-height: 1.8rem;    
+            @media screen and (max-width: 991px) {
+                font-weight: 500;
+                font-size: 1.7rem;
+            }
+        }
+        .mz-carttable-item-total{
+            padding-top: 27px;
+            .mz-item-rowtotal{
+                font-size: 1.7rem;
+                color: #4e5458;
+                line-height: 2rem;
+                @media screen and (max-width: 991px) {
+                    font-weight: 400;
+                }
+            }
+        }        
+    }
+    
     .mz-carttable-item-title {
         display: block;
         font-size: @fontSizeLarger;
+        
     }
 
     .mz-carttable-item-code {
@@ -46,21 +178,43 @@
 
     .mz-carttable-qty-field {
         width: 75px;
+        border: 2px solid;
+        font-weight: bold;
+        font-size: 1.7rem;
+        line-height: 2rem;
+        padding: 5px;
+        @media screen and (max-width: 991px) {
+            width: 50px;    
+            border: 1px solid;            
+        }
     }
 
-    .mz-carttable-item-remove {
-        width: 40px;
-        text-align: center;
+    .btn-remove-area{
+        @media screen and (max-width: 991px) {
+            padding-right: 10px;
+        }
+        .mz-carttable-item-remove {
+            text-align: right;
+            padding-right:0;
+            .btn-link{
+                font-size: 1.9rem;
+                line-height: 2.4rem;
+                text-decoration: none !important;
+                font-weight: 400 !important;
+                color: #4e5458 !important;
+                @media screen and (max-width: 991px) {
+                    font-size: 1.7rem;
+                }                
+            }
+        }
     }
 
-    .mz-carttable-total-row {
-        font-size: @fontSizeLarge;
+    .mz-carttable-shipping-row{
+        .mz-auxiliary-text{
+            display:none;
+        }
     }
-
-    .mz-carttable-total {
-        display: inline-block;
-    }
-
+    
     .mz-carttable-emptylink {
         font-size: @fontSizeSmall;
         display: inline-block;
@@ -90,8 +244,6 @@
 .mz-carttable-button-active {
     width: 230px;
 }
-
-
 
 .location-select-option{
   border-bottom: 1px solid #ccc;

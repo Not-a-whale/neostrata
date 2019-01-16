@@ -6,7 +6,7 @@
 {% if model.content.productImages.length > 1 %}
 <figure class="mz-productimages-thumbs" data-length="{{model.content.productImages.length}}">
   <div>
-    <ul{% if model.content.productImages.length > 4 %} id="productpager-Carousel"{% endif %} class="products_list ">
+    <ul id="productpager-Carousel" class="products_list ">
       {% for image in model.content.productImages %}
           <li{% if forloop.index==1 %} class="active"{% endif %} data-mz-productimage-thumb="{{ forloop.index }}" data-label="{{image.imageLabel}}">
               <a class="mz-productimages-thumb" data-slide-index="{{ forloop.index0 }}" href="javascript:void(0);">

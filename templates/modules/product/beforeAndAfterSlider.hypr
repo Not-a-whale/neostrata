@@ -1,0 +1,18 @@
+{% if images %}
+<div class="product-carousel-listing">
+<!-- Swiper -->
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+    {% for image in images|split(' ') %}
+        <div class="swiper-slide product-item">
+            <img class="image" src="/cms/files/{{ image }}" onerror="this.setAttribute('src','/cms/files/{{ image }}')">
+        </div>
+    {% endfor %}
+    </div>
+  </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-next" id="swiper_meta_name_next"></div>
+      <div class="swiper-button-prev" id="swiper_meta_name_prev"></div>
+  </div>
+  {% require_script "modules/product/product-carousel-swiper-b-and-f" %}
+{% endif %}

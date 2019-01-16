@@ -97,6 +97,12 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
 
             }
         },
+        customRetrieveErrorLabel: function (xhr) {
+            if (xhr.message === "Verification field required.") {
+                xhr.message =  Hypr.getLabel("billingRequiredMsg"); 
+            } 
+            this.retrieveErrorLabel(xhr); 
+        },
         retrieveErrorLabel: function (xhr) {
             var message = "";
             if (xhr.message) {
@@ -258,7 +264,7 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
                 email: email,
                 billingZipCode: billingZipCode,
                 billingPhoneNumber: billingPhoneNumber
-            }).then(function () { window.location.href = (HyprLiveContext.locals.siteContext.siteSubdirectory||'') +  "/my-anonymous-account?returnUrl="+(HyprLiveContext.locals.siteContext.siteSubdirectory||'')+"/myaccount"; }, _.bind(this.retrieveErrorLabel, this));
+            }).then(function () { window.location.href = (HyprLiveContext.locals.siteContext.siteSubdirectory||'') +  "/my-anonymous-account?returnUrl="+(HyprLiveContext.locals.siteContext.siteSubdirectory||'')+"/myaccount"; }, _.bind(this.customRetrieveErrorLabel, this));
         },
         retrievePassword: function () {
             this.setLoading(true);
@@ -393,6 +399,7 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
         this.openPopover = function(e){
             //self.popoverEl.popover('show');
             e.preventDefault();
+            var a = self.popoverEl.html();
             $("#my-account").popover({
                 html : true,
                 placement : 'bottom',
@@ -400,6 +407,7 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
                   return self.popoverEl.html();
                 }
             }); //.popover('show');
+            
         };
     };
 
@@ -426,9 +434,10 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
         this.bindListeners =  function (on) {
             var onOrOff = on ? "on" : "off";
             $(this).parent()[onOrOff]('click', '[data-mz-action="lite-registration"]', self.openLiteModal);
+            $(this).parent()[onOrOff]('click', '[data-mz-action="lite-registration"]', self.closeMainNav);
             $(this).parents('.mz-utilitynav')[onOrOff]('click', '[data-mz-action="doLogin"]', self.doLogin);
             $(this).parents('.mz-utilitynav')[onOrOff]('click', '[data-mz-action="doSignup"]', self.doSignup);
-
+            //$('#ml-nav').removeClass('in');
             // bind other events
         };
 
@@ -438,6 +447,12 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
                 $(".third-tab").hide();
             }
             self.modalEl.modal('show');
+        };
+
+        this.closeMainNav = function(){
+            if ($('#ml-nav').length > 0) {
+                $('#ml-nav').removeClass('in');
+            }
         };
 
         this.doLogin = function(){
@@ -476,6 +491,8 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
             if(emailupdates === "on")
                 accMarketing = true;
             var email = $(this).parents('#newshopper').find('[data-mz-signup-emailaddress]').val().trim();
+            var firstName = $(this).parents('#newshopper').find('[data-mz-signup-firstname]').val().trim();
+            var lastName = $(this).parents('#newshopper').find('[data-mz-signup-lastname]').val().trim();
             //var recoveryquestion = $(this).parents('#newshopper').find('[data-mz-signup-recoveryquestion]').val();
             //var recoveryanswer = $(this).parents('#newshopper').find('[data-mz-signup-recoveryanswer]').val().trim();
             var payload = {
@@ -556,6 +573,10 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
             var popover = new MyAccountPopover();
             popover.init(this);
             $(this).data('mz.popover', popover);
+            if(!$('.commerce-enabled-true .mz-sitenav .user-login #my-account-content').is(':visible'))
+                $('.commerce-enabled-true .mz-sitenav .user-login #my-account-content').show();
+            else
+                $('.commerce-enabled-true .mz-sitenav .user-login #my-account-content').hide();
         });
         $("#my-account").popover({
                 html : true,

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Unidirectional dispatch-driven collection views, for your pleasure.
  */
 define([
@@ -13,8 +13,9 @@ define([
      'modules/category/infinite-scroller',
      'modules/models-product',
      'modules/api',
-     'hyprlive'
-], function(Backbone, $ , _, UrlDispatcher, IntentEmitter, getPartialView,colorSwatch,blockUiLoader,InfiniteScroller, ProductModels, api, Hypr) {
+     'hyprlive',
+     'modules/models-customer'
+], function(Backbone, $ , _, UrlDispatcher, IntentEmitter, getPartialView,colorSwatch,blockUiLoader,InfiniteScroller, ProductModels, api, Hypr, CustomerModels) {
 
     function factory(conf) {
 
@@ -242,14 +243,32 @@ define([
                                                     'click #more-list-ul .mz-productdetail-addtowishlist'],
                                                     directoryAddToWishlistAction);
         function directoryAddToWishlistAction(_e){
-            var productCode = $(_e.currentTarget).data("mz-product-code");           
+            var productCode = $(_e.currentTarget).data("mz-product-code");
             if(productCode && productCode !== ''){
-                api.get('product', productCode).then(function(productResponse){
-                    var product = new ProductModels.Product(productResponse.data);
-                    product.addToWishlist();
-                    return location.reload();
-                });
-            }
+                var user = require.mozuData('user');
+                if(user.accountId){                
+                    var action = $(_e.currentTarget).data("mz-action");
+                    if(action == 'directoryAddToWishlist'){        
+                        api.get('product', productCode).then(function(productResponse){
+                            var product = new ProductModels.Product(productResponse.data);
+                            product.addToWishlist();
+                            $('#wishlist-'+productCode).attr("data-mz-action", "directoryRemoveFromWishlist");
+                            return $('#wishlist-'+productCode+' span').removeClass("blank-heart").addClass("filled-heart");
+                        });                                                  
+                    }else if(action == 'directoryRemoveFromWishlist'){
+                        var finishRemoveItemId = $(_e.currentTarget).data('mz-item-id');
+                        var wishlistId = $(_e.currentTarget).data('mz-wishlist-id');
+                        var serviceurl = '/api/commerce/wishlists/'+ wishlistId +'/items/' + finishRemoveItemId;
+                        api.request('DELETE', serviceurl).then(function(res) {
+                            $('#wishlist-'+productCode).attr("data-mz-action", "directoryAddToWishlist");
+                            return $('#wishlist-'+productCode+' span').removeClass("filled-heart").addClass("blank-heart");
+                        });
+                    }                              
+                }else{
+                    sessionStorage.setItem('addToWishlist', productCode);
+                    $(".login-link-text").trigger("click");
+                }
+            }            
         }        
         /*directory Add-To-Wishlist action */        
         /*directory Email-Me action */
@@ -503,6 +522,35 @@ define([
         $('[data-toggle-product-list="tooltip"]').tooltip({
             trigger: 'click'
         });
+        var user = require.mozuData('user');
+        if(user.accountId){
+            var addToWishlist = sessionStorage.getItem('addToWishlist');            
+            if(addToWishlist){
+                sessionStorage.removeItem('addToWishlist');
+                sessionStorage.clear();    
+                api.get('product', addToWishlist).then(function(productResponse){
+                    var product = new ProductModels.Product(productResponse.data);
+                    product.addToWishlist();
+                    $('#wishlist-'+addToWishlist).attr("data-mz-action", "directoryRemoveFromWishlist");
+                    $('#wishlist-'+addToWishlist+' span').removeClass("blank-heart").addClass("filled-heart");
+                });     
+            }
+            api.createSync('wishlist').getOrCreate(user.accountId).then(function(wishlist) {
+                return wishlist.data;
+            }).then(function(wishlistItems) {          
+                var wishlistId = wishlistItems.id;
+                for (var i = 0; i < wishlistItems.items.length; i++) {
+                    var divId = '#wishlist-'+wishlistItems.items[i].product.productCode;
+                    if($(divId)){
+                        $(divId).attr("data-mz-wishlist-id", wishlistId);
+                        $(divId).attr("data-mz-item-id", wishlistItems.items[i].id);
+                        $(divId).attr("data-mz-action", "directoryRemoveFromWishlist");
+                        $(divId+' span').removeClass("blank-heart").addClass("filled-heart");
+                    }                    
+                }
+            });
+        }
+
         $('body').click(function(e){
             var self = $(this);
             if(e.target.attributes['data-toggle-product-list']===undefined){

@@ -40,7 +40,7 @@
 
     #account-settings {
         clear: none;
-
+        /*
         .mz-link-edit-accountsettings {
             float: none;
             line-height: inherit;
@@ -51,7 +51,9 @@
             color: #999;
             font-size: 80%;
         }
+        */
     }
+    
 
     .mz-orderlisting {
 
@@ -77,5 +79,48 @@
 .mz-anonymous-account {
     #mz-printReturnLabelView {
         display: none;
+    }
+}
+#account-panels {
+    .custom-select-wrapper {
+        .bootstrap-select {
+            width: 100%;
+        }
+        .dropdown-menu {
+            overflow-x: hidden !important;
+        }
+        .dropdown-toggle {
+            height: 4rem;
+            line-height: 1em;
+            border-width: 2px;
+            text-align: left;
+            margin-top: 0.5rem; 
+            padding: 0 0 0 2rem;
+            display: flex;
+            justify-content: space-between;
+    
+            &:before {
+                display: none;
+            }
+            .filter-option {
+                position: static;
+                height: auto;
+                width: auto;
+                text-align: center;
+                display: inline;
+                padding: 0;
+    
+                .filter-option-inner,
+                .filter-option-inner-inner {
+                    display: inline;
+                }
+            }
+            .caret {
+                display: none;
+            }
+        }
+        .dropdown-menu>li>a:hover {
+            background: none;
+        }
     }
 }

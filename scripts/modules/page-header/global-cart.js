@@ -45,7 +45,7 @@ define([
             console.log("filter", filter);
             Api.get("search", { filter: filter, pageSize : globalCartRelatedProductsSize}).then(function(collection) {
                 console.log("collection.data",collection.data);
-                var template = 'Widgets/misc/product-carousel-listing';
+                var template = 'Widgets/misc/product-related-listing';
                 var RelatedProductsView = Backbone.MozuView.extend({
                     templateName: template
                 });

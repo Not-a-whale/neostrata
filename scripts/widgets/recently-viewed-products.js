@@ -8,7 +8,6 @@ define(['modules/jquery-mozu', 'underscore', "modules/api", "modules/backbone-mo
         var pageContext = require.mozuData('pagecontext');
 
         $(document).ready(function() {
-           
             var productCollection = [];
             
             $('[data-mz-recently-viewed-products]').each(function (index, rp) {
@@ -87,8 +86,8 @@ define(['modules/jquery-mozu', 'underscore', "modules/api", "modules/backbone-mo
                                     maxSlides: 4,
                                     slideWidth: 270,
                                     slideMargin: 20,
-                                    nextText:'<i class="fa fa-angle-right" aria-hidden="true"></i>',
-                                    prevText: '<i class="fa fa-angle-left" aria-hidden="true"></i>',
+                                    nextText:'<i class="fa fa-caret-right" aria-hidden="true"></i>',
+                                    prevText: '<i class="fa fa-caret-left" aria-hidden="true"></i>',
                                     responsive: true,
                                     speed: 0,
                                     infiniteLoop: false,
