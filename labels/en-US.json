@@ -40,7 +40,7 @@
   "product"              : "Product",
   "item"                 : "Item",
   "price"                : "Price",
-  "qty"                  : "Qty",
+  "qty"                  : "Quantity",
   "each"                 : "Each",
   "total"                : "Total",
   "subtotal"             : "Subtotal",

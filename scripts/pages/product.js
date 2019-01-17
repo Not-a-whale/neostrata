@@ -126,6 +126,7 @@
             "click [data-mz-product-option-attribute]": "onOptionChangeAttribute",
             "click [data-mz-qty-minus]": "quantityMinus",
             "click [data-mz-qty-plus]": "quantityPlus",
+            "change .mz-productdetail-qty": "updateQty",
             'mouseenter .color-options': 'onMouseEnterChangeImage',
             'mouseleave .color-options': 'onMouseLeaveResetImage'
         },
@@ -238,6 +239,13 @@
                     }
                 },500);
             }
+        },
+        updateQty: function() {
+            var newVal = $('#mz_pdp_qty').val();
+            this.model.set('quantity', newVal);
+            setTimeout(function(){
+                $('#mz_pdp_qty').val(newVal);
+            },150);
         },
         onOptionChangeAttribute: function(e) {
             return this.configureAttribute($(e.currentTarget));
