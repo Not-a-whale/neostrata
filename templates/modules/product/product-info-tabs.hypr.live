@@ -45,7 +45,7 @@
             {% if clinicalStudy %}
                 {% for v in clinicalStudy.values %}
                   {% if v.stringValue %}
-                    {{ v.stringValue|safe }}
+                    {% include "modules/product/clinicalStudySlider"  width textSlider=v.stringValue %}
                   {% endif %}
                 {% endfor %}
             {% endif %}

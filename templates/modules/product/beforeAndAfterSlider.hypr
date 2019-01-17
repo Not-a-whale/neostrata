@@ -1,7 +1,7 @@
 {% if images %}
 <div class="product-carousel-listing">
 <!-- Swiper -->
-  <div class="swiper-container">
+  <div class="swiper-container" id="swiper-b-and-f">
     <div class="swiper-wrapper">
     {% for image in images|split(' ') %}
         <div class="swiper-slide product-item">
