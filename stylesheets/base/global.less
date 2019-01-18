@@ -339,8 +339,8 @@ button {
   input[type="checkbox"],
   input[type="radio"] {
     position: absolute;
-    opacity: 0;
-    left: -9999rem;
+    left: 0.1em;
+    top: -0.1rem;
 
   }
   input[type="checkbox"] + label {
@@ -401,7 +401,8 @@ button {
   }
 
 
-  input[type="text"] {
+  input[type="text"],
+  input[type="tel"] {
     color: @charcoal;
     margin: 0;
     padding: 0 4.44rem 0 2.875rem;
@@ -633,6 +634,7 @@ ul {
 }
 
 .dropdown-select,
+.checkout-select-wrapper .dropdown-toggle,
 .custom-select-wrapper .dropdown-toggle {
   font-family: @fontFamily;
   font-weight: @fontWeightBook;
@@ -669,6 +671,7 @@ ul {
   }
 }
 .dropdown-select-list,
+.checkout-select-wrapper .dropdown-menu,
 .custom-select-wrapper .dropdown-toggle {
   width: 100%;
   padding: 0;

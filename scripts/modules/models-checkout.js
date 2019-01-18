@@ -234,6 +234,46 @@
                 }
             }
         }),
+    
+        CustomerInfo = CheckoutStep.extend({
+            initialize: function () {
+            },
+            validation: {
+                firstName: {
+                    required: true,
+                    msg: Hypr.getLabel('firstNameMissing')
+                },
+                lastNameOrSurname: {
+                    required: true,
+                    msg: Hypr.getLabel('lastNameMissing')
+                },
+                email: {
+                    pattern: 'email',
+                    msg: Hypr.getLabel('emailMissing')
+                }
+            },
+            defaults: function () {
+                return {
+                    firstName: null,
+                    lastNameOrSurname: null,
+                    email: null,
+                    acceptsMarketing: false
+                };
+            },
+            calculateStepStatus: function () {
+                if (this.validate()){
+                    return this.stepStatus('incomplete');
+                }
+                return this.stepStatus('complete');
+            },
+            next: function () {
+                if (this.validate()){
+                    return false;
+                }
+
+                this.stepStatus('complete');
+            }
+        }),
 
         FulfillmentInfo = CheckoutStep.extend({
             initialize: function () {
@@ -1013,7 +1053,7 @@
             },
             initialize: function () {
                 var me = this;
-
+    
                 _.defer(function () {
                     //set purchaseOrder defaults here.
                     me.setPurchaseOrderInfo();
@@ -1037,6 +1077,24 @@
                             me.setSavedPaymentMethod(me.get('savedPaymentMethodId'));
                         }
                     });
+    
+                    // bind Step 1 Customer Info to this payment
+                    me.listenTo( me.getOrder().get( 'customerInfo' ), "change", function ( a, b ) {
+                        if( me.getOrder().get( 'customerInfo' ) ){
+                            if( me.getOrder().get( 'customerInfo' ).get( 'firstName' ) && me.getOrder().get( 'customerInfo' ).get( 'lastNameOrSurname' ) ){
+                                if( me.get( 'card' ) ){
+                                    me.get( 'card' ).set( 'nameOnCard', me.getOrder().get( 'customerInfo' ).get( 'firstName' ) + ' ' +  me.getOrder().get( 'customerInfo' ).get( 'lastNameOrSurname' ) );
+                                }
+                            }
+                            if( me.getOrder().get( 'customerInfo' ).get( 'email' ) ){
+                                me.get( 'billingContact' ).set( 'email', me.getOrder().get( 'customerInfo' ).get( 'email' ) );
+                            }
+                            if( me.getOrder().get( 'customerInfo' ) ){
+                                me.getOrder().set( 'acceptsMarketing', me.getOrder().get( 'customerInfo' ).get( 'acceptsMarketing' ) );
+                            }
+                        }
+                    });
+                    
                 });
                 var billingContact = this.get('billingContact');
                 this.on('change:paymentType', this.selectPaymentType);
@@ -1299,6 +1357,7 @@
             mozuType: 'order',
             handlesMessages: true,
             relations: {
+                customerInfo: CustomerInfo,
                 fulfillmentInfo: FulfillmentInfo,
                 billingInfo: BillingInfo,
                 shopperNotes: ShopperNotes,
