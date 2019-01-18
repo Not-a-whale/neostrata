@@ -59,7 +59,7 @@
         </div>
     {% endcomment %}
         <div class="mz-l-formfieldgroup-cell checkout-twocolumn-row">
-            <div class="checkout-select-wrapper">
+            <div class="custom-select-wrapper">
                 <select class="mz-l-formfieldgroup-halfsize expiry-month selectpicker" id="mz-payment-expiration-month" name="expiration-month" data-mz-value="{{ cardcontext }}expireMonth">
                     <option value="">{{ labels.expiryMonth }}*</option>
                     <option {% if model.expireMonth == "01" %}selected="selected"{% endif %} value="01">01 - {{ labels.january }}</option>
@@ -76,7 +76,7 @@
                     <option {% if model.expireMonth == "12" %}selected="selected"{% endif %} value="12">12 - {{ labels.december }}</option>
                 </select>
             </div>
-            <div class="checkout-select-wrapper">
+            <div class="custom-select-wrapper">
                 <select class="mz-l-formfieldgroup-halfsize selectpicker" name="mz-payment-expiration-year" data-mz-value="{{ cardcontext }}expireYear">
                     <option value="">{{ labels.expiryYear }}*</option>
                     <option {% if model.expireYear == "2018" %}selected="selected"{% endif %} value="2018">2018</option>
