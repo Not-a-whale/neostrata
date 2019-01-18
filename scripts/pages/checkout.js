@@ -78,7 +78,17 @@ require(["modules/jquery-mozu",
         // override loading button changing at inappropriate times
         handleLoadingChange: function () { }
     });
-
+    
+    var CustomerInfoView = CheckoutStepView.extend({
+        templateName: 'modules/checkout/checkout-customer-info',
+        autoUpdate: [
+            'firstName',
+            'lastNameOrSurname',
+            'email',
+            'acceptsMarketing'
+        ]
+    });
+    
     var ShippingAddressView = CheckoutStepView.extend({
         templateName: 'modules/checkout/step-shipping-address',
         autoUpdate: [
@@ -182,7 +192,10 @@ require(["modules/jquery-mozu",
             'paymentType',
             'isSameBillingShippingAddress',
             'usingSavedCard',
-            'savedPaymentMethodId'
+            'savedPaymentMethodId',
+            'card.nameOnCard',
+            'billingContact.email'
+            
         ],
         additionalEvents: {
             "blur #mz-payment-credit-card-number": "changeCardType",
@@ -239,6 +252,9 @@ require(["modules/jquery-mozu",
             }, this);
             this.listenTo(this.model, 'change:savedPaymentMethodId', function (order, scope) {
                 $('[data-mz-saved-cvv]').val('').change();
+                this.render();
+            }, this);
+            this.listenTo(this.model.parent, 'change:acceptsMarketing', function (order, scope) {
                 this.render();
             }, this);
             this.codeEntered = !!this.model.get('digitalCreditCode');
@@ -588,6 +604,10 @@ require(["modules/jquery-mozu",
                   model: checkoutModel
                 }),
                 steps: {
+                    customerInfoView: new CustomerInfoView({
+                        el: $('#step-customer-info'),
+                        model: checkoutModel.get('customerInfo')
+                    }),
                     shippingAddress: new ShippingAddressView({
                         el: $('#step-shipping-address'),
                         model: checkoutModel.get('fulfillmentInfo').get('fulfillmentContact')

@@ -186,21 +186,20 @@
     <h5 class="checkout-fields-title">{{ labels.phone }}</h5>
 
     <div class="mz-addressform-phone form-row">
-        {% comment %}
             <div class="mz-l-formfieldgroup-cell">
                 <label for="shippingphone">{{ labels.phone }}<span class="is-required"> *</span></label>
             </div>
-        {% endcomment %}
         <div class="mz-l-formfieldgroup-cell">
             <input type="tel" class="input" name="shippingphone" data-mz-value="{{ addresscontext }}phoneNumbers.home" value="{{ model.phoneNumbers.home }}" maxlength="{{themeSettings.phoneNumberLength}}" minlength="{{themeSettings.phoneNumberLength}}" placeholder="{{ labels.phone }}*">
             <span class="mz-validationmessage" data-mz-validationmessage-for="{{ addresscontext }}phoneNumbers.home"></span>
         </div>
     </div>
 
-    {% endif %}  
+    {% endif %}
 
 
-  
+
+
     {% if themeSettings.showAddressTypeDropdown and not catalogRequest %}
     <div class="mz-l-formfieldgroup-row mz-addressform-addresstype form-row hidden">
         {% comment %}

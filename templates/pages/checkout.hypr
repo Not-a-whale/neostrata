@@ -41,7 +41,7 @@
 
     <div class="mz-l-column checkout-leftcolumn">
         <!-- TODO Checkout First name, Last name, email -->
-        <div class="mz-formstep mz-checkoutform-checkoutcustomerinfo">
+        <div class="mz-formstep mz-checkoutform-checkoutcustomerinfo" id="step-customer-info">
             {% include "modules/checkout/checkout-customer-info" %}
         </div>
 
@@ -57,7 +57,7 @@
             {% include "modules/checkout/step-payment-info" %}
         </div>
         <!-- TODO Can be removed if not needed -->
-        <div class="mz-formstep mz-checkoutform-review hidden" id="step-review">
+        <div class="mz-formstep mz-checkoutform-review" id="step-review">
             {% include "modules/checkout/step-review" %}
         </div>
 

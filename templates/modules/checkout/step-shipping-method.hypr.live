@@ -6,11 +6,11 @@
             {% if model.availableShippingMethods.length %}
                 {% for method in model.availableShippingMethods %}
                     <div class="form-row">
-                        <input type="radio" name="shippingMethod"
-                                value="{{ method.shippingMethodCode }}" data-mz-value="shippingMethodCode" data-mz-shipping-method
-                                {% if model.shippingMethodCode == method.shippingMethodCode %} checked="checked" {% endif %}>
                         <label class="icon-dot form-element">
-                            <strong>{{ method.shippingMethodName }}</strong> <span>{{ method.price|currency }}</span>
+                            <input type="radio" name="shippingMethod"
+                                value="{{ method.shippingMethodCode }}" data-mz-value="shippingMethodCode" data-mz-shipping-method
+                                {% if model.shippingMethodCode == method.shippingMethodCode %} checked="checked" {% endif %} >
+                            <strong>{{ method.shippingMethodName }}</strong> <span>{%if method.price == 0 %}{{ labels.shippingFree }}{% else %}{{ method.price|currency }}{% endif %}</span>
                         </label>
                     </div>
                 {% endfor %}
@@ -22,6 +22,6 @@
             {{ labels.noFulfillmentInfoRequired }}
         {% endif %}
         <div class="mz-formstep-next">
-            <button type="button" class="mz-button primary-btn" data-mz-action="next">{{ labels.useThisInfo }}</button>
+            <button type="button" class="mz-button primary-btn" data-mz-action="next">{{ labels.useThisShippingInfo }}</button>
         </div>
     </div>

@@ -1,4 +1,4 @@
-<h3 class="mz-formstep-header mz-checkoutform-header">
+ <h3 class="mz-formstep-header mz-checkoutform-header">
     <span>{{ labels.paymentInformation }}</span>
     {%if not model.isExternalCheckoutFlowComplete%}
         <a href="javascript:;" class="mz-formstep-edit" data-mz-action="edit">{{ labels.edit }}</a>
@@ -17,7 +17,8 @@
             <div class="mz-l-stack-section mz-checkout-current-payment mz-checkout-saved-billingaddress">
                 <h4 class="mz-checkoutform-title">{{ labels.billingAddress }}</h4>
                 <div class="mz-addresssummary">
-                    {% include "modules/common/address-summary" with model=model.billingContact %}
+                111111
+                    {% include "modules/common/address-summary" with model=model.billingContact showShippingDisabled="true" %}
                 </div>
             </div>
         </div>
@@ -31,7 +32,8 @@
             <div class="mz-l-stack-section mz-checkout-current-payment mz-checkout-saved-billingaddress">
                 <h4 class="mz-checkoutform-title">{{ labels.billingAddress }}</h4>
                 <div class="mz-addresssummary">
-                    {% include "modules/common/address-summary" with model=model.billingContact %}
+                222222
+                    {% include "modules/common/address-summary" with model=model.billingContact showShippingDisabled="true" %}
                 </div>
             </div>
         </div>
@@ -67,7 +69,8 @@
             <div class="mz-l-stack-section mz-checkout-current-payment mz-checkout-saved-billingaddress">
                 <h4 class="mz-checkoutform-title">{{ labels.billingAddress }}</h4>
                 <div class="mz-addresssummary">
-                    {% include "modules/common/address-summary" with model=model.billingContact %}
+                33333333
+                    {% include "modules/common/address-summary" with model=model.billingContact  showShippingDisabled="true"%}
                 </div>
             </div>
         </div>
@@ -87,7 +90,8 @@
 
                    {%if model.billingContact.firstName %}
                     <div class="mz-addresssummary">
-                        {% include "modules/common/address-summary" with model=model.billingContact %}
+                    4444444
+                        {% include "modules/common/address-summary" with model=model.billingContact showShippingDisabled="true" %}
                     </div>
                    {%endif%}
 
@@ -145,7 +149,7 @@
                         <div class="mz-l-stack-section mz-checkout-current-payment mz-checkout-saved-billingaddress">
                             <h4 class="mz-checkoutform-title">{{ labels.billingAddress }}</h4>
                             <div class="mz-addresssummary">
-                                {% include "modules/common/address-summary" with model=model.billingContact %}
+                                {% include "modules/common/address-summary" with model=model.billingContact showShippingDisabled="true" %}
                             </div>
                         </div>
                     </div>
@@ -163,7 +167,7 @@
 
         {% endif %}
 
-        {% comment%}
+
         <div class="mz-l-stack-section mz-formfieldgroup-row mz-paymentselector-separator mz-checkoutform">
             <div class="mz-l-formfieldgroup">
                 <div class="mz-l-formfieldgroup-row">
@@ -187,7 +191,7 @@
                 </div>
             </div>
         </div>
-        {% endcomment%}
+
         {% comment%}
         <div class="mz-l-stack-section mz-formfieldgroup-row mz-paymentselector-separator mz-checkoutform">
             {% include "modules/checkout/checkout-digital-credit" %}
@@ -207,8 +211,9 @@
     </div>
     
     <div class="mz-formstep-next">
-        <button class="mz-button primary-btn" data-mz-action="submit">{{ labels.useThisPaymentInfo }}</button>
+        <button type="button" class="mz-button primary-btn" data-mz-action="next">{{ labels.useThisPaymentInfo }}</button>
     </div>
+
     <!-- TODO Paypal Checkout -->
     <div class="checkout-paypal">
         <img src="/resources/images/paypal.png" alt="">
@@ -217,7 +222,7 @@
     <!-- TODO Create account -->
 
     <div class="checkout-create-account form-row">
-        <input type="checkbox" id="create-account" name="create-account"  value="true">
+        <input type="checkbox" id="create-account" name="create-account" value="true">
         <label class="mz-inline icon-check form-element" for="create-account">{{ labels.createAccountCheckout|safe }}</label>
     </div>
 
