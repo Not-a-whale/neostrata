@@ -1,14 +1,17 @@
 {% if model.requiresFulfillmentInfo and not model.usingSavedCard %}
-<div class="mz-l-formfieldgroup mz-l-formfieldgroup-norows"><label><input type="checkbox" data-mz-value="isSameBillingShippingAddress" value="true" {% if model.isSameBillingShippingAddress %}checked="checked"{% endif %}> {{ labels.useShippingAddress }}</label></div>
+<div class="mz-l-formfieldgroup mz-l-formfieldgroup-norows form-row">
+    <input type="checkbox" id="isSameBillingShippingAddress" data-mz-value="isSameBillingShippingAddress" value="true" {% if model.isSameBillingShippingAddress %}checked="checked"{% endif %}>
+    <label for="isSameBillingShippingAddress" class="icon-check form-element">{{ labels.useShippingAddress }}</label>
+</div>
 {% endif %}
 {% if model.isSameBillingShippingAddress %}
     <div class="mz-addresssummary mz-same-as-shipping-summary" id="mz-same-as-shipping-summary">
-        {% include "modules/common/address-summary" with model=model.billingContact %}
+        {% include "modules/common/address-summary" with model=model.billingContact showShippingDisabled="true" %}
     </div>
 {% else %}
 {% if model.usingSavedCard and model.savedPaymentMethodId %}
 <div class="mz-addresssummary mz-same-as-shipping-summary" id="mz-same-as-shipping-summary">
-        {% include "modules/common/address-summary" with model=model.billingContact %}
+        {% include "modules/common/address-summary" with model=model.billingContact showShippingDisabled="true" %}
     </div>
 {% else %}
 <div class="mz-l-formfieldgroup mz-l-formfieldgroup-address">

@@ -11,7 +11,6 @@
 
 {% block body-tag-classes %} mz-checkout {% endblock body-tag-classes %}
 
-{% block site-nav %}{% endblock site-nav %}
 {% block secondary-nav %}{% endblock secondary-nav %}
 {% block page-footer %}{% endblock page-footer%}
 
@@ -22,39 +21,29 @@
 {% preload_json model "checkout" %}
 
 <div class="mz-l-container">
-    <h1 class="mz-pagetitle">
-        {{ labels.checkout }}
-    </h1>
-     {% if not user.isAuthenticated %}
-         <a data-toggle="modal" data-mz-action="lite-registration" class="mz-pagetitle-note">
-            <span>
-                {{ labels.registeredCustomer }} {{ labels.logIn }}
-            </span>
-        </a>
-    {% endif %}
-
-    <form id="checkout-form" class="mz-checkoutform mz-l-2column mz-l-2column-right fades-in" method="post" onsubmit="return false;">
+    <div class="mz-l-column checkout-signin-header container">
+        {% if not user.isAuthenticated %}
+            <a data-toggle="modal" data-mz-action="lite-registration" class="mz-pagetitle-note secondary-button">
+                {{ labels.logIn }}
+            </a>
+            <span>{{ labels.forFasterCheckout }}</span>
+        {% endif %}
+    </div>
+    <form id="checkout-form" class="mz-checkoutform mz-l-2column mz-l-2column-right fades-in container" method="post" onsubmit="return false;">
 
     {% include "modules/common/message-bar" with model=model.messages %}
-    <div class="mz-l-column" id="checkout-rightcol">
+    <div class="mz-l-column ordersummary-column" id="checkout-rightcol">
       <div class="mz-formstep mz-checkoutform-ordersummary" id="order-summary">
         {% include "modules/checkout/checkout-order-summary" %}
       </div>
 
-        <div class="mz-l-formfieldgroup">
-            <div class="mz-checkoutform-couponcode mz-l-formfieldgroup-row" id="coupon-code-field" >
-                {% include "modules/checkout/coupon-code-field" %}
-            </div>
-            {% if themeSettings.showCheckoutCommentsField %}
-            <div class="mz-checkoutform-comments mz-l-formfieldgroup-row" id="comments-field" >
-                {% include "modules/checkout/comments-field" %}
-            </div>
-            {% endif %}
-        </div>
-
     </div>
 
-    <div class="mz-l-column">
+    <div class="mz-l-column checkout-leftcolumn">
+        <!-- TODO Checkout First name, Last name, email -->
+        <div class="mz-formstep mz-checkoutform-checkoutcustomerinfo" id="step-customer-info">
+            {% include "modules/checkout/checkout-customer-info" %}
+        </div>
 
         <div class="mz-formstep mz-checkoutform-shippingaddress" id="step-shipping-address">
             {% include "modules/checkout/step-shipping-address" %}
@@ -67,7 +56,7 @@
         <div class="mz-formstep mz-checkoutform-paymentinfo" id="step-payment-info">
             {% include "modules/checkout/step-payment-info" %}
         </div>
-
+        <!-- TODO Can be removed if not needed -->
         <div class="mz-formstep mz-checkoutform-review" id="step-review">
             {% include "modules/checkout/step-review" %}
         </div>
