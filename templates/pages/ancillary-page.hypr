@@ -1,0 +1,12 @@
+﻿{% extends "page" %}
+{% comment %}
+This page is like the Blank Page template except that it doesn't include the og:title tag in the header.
+This allows it to be added as extra meta data in the admin.
+{% endcomment %}
+
+{% block title-tag-content %}{% firstof pageContext.metaTitle model.name %}  - {% parent %}{% endblock title-tag-content %}
+
+{% block og-title %}
+{% endblock og-title %}
+
+{% block body-tag-classes %} mz-blankpage neostrata-theme {% endblock body-tag-classes %}

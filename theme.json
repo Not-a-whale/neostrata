@@ -239,6 +239,14 @@
     {
       "documentType": "web_page",
       "entityType": "webpage",
+      "id": "ancillary-page",
+      "template": "ancillary-page",
+      "title": "Ancillary Page",
+      "userCreatable": true
+    },
+    {
+      "documentType": "web_page",
+      "entityType": "webpage",
       "id": "blank-splash-page",
       "template": "blank-splash-page",
       "title": "Blank Splash Page",
