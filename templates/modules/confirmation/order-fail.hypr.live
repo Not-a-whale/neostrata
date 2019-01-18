@@ -1,0 +1,6 @@
+<div class="mz-l-container">
+    <h2 class="mz-pagetitle">{{ labels.orderFailsHeader }} </h2>
+    <div class="col-sm-12 mz-reset-padding-left">
+    	<p class="col-md-5 col-sm-12 mz-reset-padding-left">{{ labels.orderFailsText }}</p>
+    </div>
+</div><!-- #order-fail -->

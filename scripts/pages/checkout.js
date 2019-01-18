@@ -7,8 +7,8 @@ require(["modules/jquery-mozu",
     'hyprlivecontext', 
     'modules/editable-view', 
     'modules/preserve-element-through-render',
-    'modules/bootstrap-select',
-    'modules/xpress-paypal'], 
+    'modules/xpress-paypal',
+		'modules/bootstrap-select'],
     function ($, _, Hypr, Backbone, CheckoutModels, messageViewFactory, CartMonitor, HyprLiveContext, EditableView, preserveElements,PayPal) {
 
 
