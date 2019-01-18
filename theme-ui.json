@@ -121,6 +121,16 @@
                     "xtype": "mz-input-number",
                     "name": "allProductsCategoryId",
                     "fieldLabel": "Enter CategoryId which is having all products"
+                },
+                {
+                    "xtype": "mz-input-image",
+                    "name": "searchBannerSM",
+                    "fieldLabel": "Search Banner SM"
+                },
+                {
+                    "xtype": "mz-input-image",
+                    "name": "searchBannerXS",
+                    "fieldLabel": "Search Banner XS"
                 }
             ]
         },

@@ -863,6 +863,8 @@
     "categoryEntityName": "categoryAttributes@ng",
     "globalPageHeaderLogoSM": null,
     "globalPageHeaderLogoXS": null,
+    "searchBannerSM": null,
+    "searchBannerXS": null,
     "enableProductCarousel": true,
     "homePageCategoryWidgetAltText": "home_cat_widget_img",
     "usStates": [

@@ -162,7 +162,7 @@
   "blankSearchResult"    : "Please enter a keyword or item number.",
   "searchLessCharacters" :"Your keyword or item number must be at least 3 characters long",
   //ends
-  "searchResults"        : "Search Results",
+  "searchResults"        : "Search",
   "searchTitle"          : "Search Results for {0}",
   "noResultsTitle"       : "No results for {0}",
   "noResults"            : "No Results",
