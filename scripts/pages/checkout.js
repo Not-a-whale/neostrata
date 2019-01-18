@@ -7,6 +7,7 @@ require(["modules/jquery-mozu",
     'hyprlivecontext', 
     'modules/editable-view', 
     'modules/preserve-element-through-render',
+    'modules/bootstrap-select',
     'modules/xpress-paypal'], 
     function ($, _, Hypr, Backbone, CheckoutModels, messageViewFactory, CartMonitor, HyprLiveContext, EditableView, preserveElements,PayPal) {
 
@@ -14,6 +15,7 @@ require(["modules/jquery-mozu",
     var CheckoutStepView = EditableView.extend({
         edit: function () {
             this.model.edit();
+            $('.selectpicker').selectpicker();
         },
         next: function () {
             // wait for blur validation to complete
@@ -76,7 +78,17 @@ require(["modules/jquery-mozu",
         // override loading button changing at inappropriate times
         handleLoadingChange: function () { }
     });
-
+    
+    var CustomerInfoView = CheckoutStepView.extend({
+        templateName: 'modules/checkout/checkout-customer-info',
+        autoUpdate: [
+            'firstName',
+            'lastNameOrSurname',
+            'email',
+            'acceptsMarketing'
+        ]
+    });
+    
     var ShippingAddressView = CheckoutStepView.extend({
         templateName: 'modules/checkout/step-shipping-address',
         autoUpdate: [
@@ -180,7 +192,10 @@ require(["modules/jquery-mozu",
             'paymentType',
             'isSameBillingShippingAddress',
             'usingSavedCard',
-            'savedPaymentMethodId'
+            'savedPaymentMethodId',
+            'card.nameOnCard',
+            'billingContact.email'
+            
         ],
         additionalEvents: {
             "blur #mz-payment-credit-card-number": "changeCardType",
@@ -239,6 +254,9 @@ require(["modules/jquery-mozu",
                 $('[data-mz-saved-cvv]').val('').change();
                 this.render();
             }, this);
+            this.listenTo(this.model.parent, 'change:acceptsMarketing', function (order, scope) {
+                this.render();
+            }, this);
             this.codeEntered = !!this.model.get('digitalCreditCode');
         },
         allowDigit:function(e){
@@ -271,6 +289,8 @@ require(["modules/jquery-mozu",
 
             if (this.$(".p-button").length > 0)
                 PayPal.loadScript();
+                
+            $('.selectpicker').selectpicker();
         },
         updateAcceptsMarketing: function(e) {
             this.model.getOrder().set('acceptsMarketing', $(e.currentTarget).prop('checked'));
@@ -576,6 +596,7 @@ require(["modules/jquery-mozu",
         var $checkoutView = $('#checkout-form'),
             checkoutData = require.mozuData('checkout');
 
+
         var checkoutModel = window.order = new CheckoutModels.CheckoutPage(checkoutData),
             checkoutViews = {
                 parentView: new ParentView({
@@ -583,6 +604,10 @@ require(["modules/jquery-mozu",
                   model: checkoutModel
                 }),
                 steps: {
+                    customerInfoView: new CustomerInfoView({
+                        el: $('#step-customer-info'),
+                        model: checkoutModel.get('customerInfo')
+                    }),
                     shippingAddress: new ShippingAddressView({
                         el: $('#step-shipping-address'),
                         model: checkoutModel.get('fulfillmentInfo').get('fulfillmentContact')
@@ -636,6 +661,7 @@ require(["modules/jquery-mozu",
         _.invoke(checkoutViews.steps, 'initStepView');
 
         $checkoutView.noFlickerFadeIn();
+
 
     });
 });

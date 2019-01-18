@@ -1,0 +1,42 @@
+<h3 class="mz-formstep-header mz-checkoutform-header">
+  <span>{{ labels.checkout }}</span>
+  <a href="javascript:;" class="mz-formstep-edit" data-mz-action="edit">{{ labels.edit }}</a>
+</h3>
+<div class="mz-formstep-body">
+  <h5>{{ labels.yourInformation }}</h5>
+  <div class="mz-formstep-fields mz-l-stack">
+    <div class="checkout-twocolumn-row form-row">
+      <div class="mz-l-formfieldgroup-row mz-addressform-firstname">
+          <div class="mz-l-formfieldgroup-cell">
+              <input type="text" class="input" name="firstname" data-mz-value="{{ addresscontext }}firstName" value="{{ model.firstName }}" maxlength="{{themeSettings.firstNameLength}}" placeholder="{{ labels.firstName }}*" {% if model.stepStatus == 'complete'%}disabled{% endif %} >
+              <span class="mz-validationmessage" data-mz-validationmessage-for="{{ addresscontext }}firstName"></span>
+          </div>
+      </div>
+      <div class="mz-l-formfieldgroup-row mz-addressform-lastname">
+          <div class="mz-l-formfieldgroup-cell">
+              <input type="text" class="input" name="lastname" data-mz-value="{{ addresscontext }}lastNameOrSurname" value="{{ model.lastNameOrSurname }}" maxlength="{{themeSettings.firstNameLength}}" placeholder="{{ labels.lastName }}*" {% if model.stepStatus == 'complete'%}disabled{% endif %} >
+              <span class="mz-validationmessage" data-mz-validationmessage-for="{{ addresscontext }}lastNameOrSurname"></span>
+          </div>
+      </div>
+    </div>
+    <div class="mz-l-stack-section mz-formfieldgroup-row mz-paymentselector-separator mz-checkoutform">
+      <div class="mz-l-formfieldgroup">
+          <div class="mz-l-formfieldgroup-row form-row">
+              <div class="mz-l-formfieldgroup-cell">
+                  <input type="text" id="email" name="email" data-mz-value="email" value="{{ model.email }}" placeholder="{{ labels.emailAddress }}" {% if model.stepStatus == 'complete'%}disabled{% endif %} />
+                  <span class="mz-validationmessage" data-mz-validationmessage-for="email"></span>
+              </div>
+          </div>
+          <div class="mz-l-formfieldgroup-row">
+              <div class="mz-l-formfieldgroup-cell form-row">
+                  <input type="checkbox" name="special-offers" {% if model.acceptsMarketing %}checked="checked" {% endif %}data-mz-value="acceptsMarketing" class="mz-checkout-optin" id="email-subscription" {% if model.stepStatus == 'complete'%}disabled{% endif %} />
+                  <label class="mz-inline icon-check form-element" for="email-subscription" >{{ labels.optInSmall }}</label>
+              </div>
+          </div>
+      </div>
+    </div>
+    <div class="mz-formstep-next">
+        <button class="mz-button primary-btn" data-mz-action="next" {% if model.stepStatus == 'complete'%}disabled{% endif %}>{{ labels.useThisInfo }}</button>
+    </div>
+  </div>
+</div>

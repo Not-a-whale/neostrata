@@ -239,6 +239,14 @@
     {
       "documentType": "web_page",
       "entityType": "webpage",
+      "id": "ancillary-page",
+      "template": "ancillary-page",
+      "title": "Ancillary Page",
+      "userCreatable": true
+    },
+    {
+      "documentType": "web_page",
+      "entityType": "webpage",
       "id": "blank-splash-page",
       "template": "blank-splash-page",
       "title": "Blank Splash Page",
@@ -806,6 +814,7 @@
     "maxProductImageThumbnailSize": 800,
     "maxProductSummaryWords": 40,
     "maxTopLevelNavItems": 8,
+    "maxTopLevelNavItemsCommerceEnabled": 10,
     "maxTopLevelNavLabelLength": 20,
     "productCarouselSize": 8,
     "pageSizeOptions": [
@@ -840,7 +849,7 @@
     "showCartItemWeight": true,
     "showCategoryFacets": true,
     "showChildCategoriesInFaceting": true,
-    "showCheckoutCommentsField": true,
+    "showCheckoutCommentsField": false,
     "showMSRP": true,
     "showProductDetailMeasurements": true,
     "showProductDetailMfgPartNumber": true,
@@ -1250,6 +1259,349 @@
       ],
     	"icon": "/resources/admin/widgets/26_related_products.png",
     	"id": "match-tool",
+    	"validPageTypes": [
+    		"*"
+    	]
+    },
+    {
+    	"defaultConfig": {
+
+    	},
+    	"displayName": "Quiz",
+    	"displayTemplate": "misc/quiz",
+      "editViewFields": [
+        {
+          "xtype": "panel",
+          "title": "Skin Active Repair/Firming Regimen",
+          "collapsed": false,
+          "items": [
+            {
+              "xtype": "mz-input-product",
+              "name": "saCleanser",
+              "fieldLabel": "Step One: Cleanser"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "saToner",
+              "fieldLabel": "Step Two: Toner"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "saSerum",
+              "fieldLabel": "Step Three: Serum"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "saDay",
+              "fieldLabel": "Step Four: Day"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "saNight",
+              "fieldLabel": "Step Five: Night"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "saEye",
+              "fieldLabel": "Step Six: Eye"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "saTargeted",
+              "fieldLabel": "Step Seven: Targeted"
+            },
+            {
+              "xtype": "mz-input-text",
+              "name": "saRegimenUrl",
+              "fieldLabel": "Regimen Url"
+            }
+          ]
+        },
+        {
+          "xtype": "panel",
+          "title": "Resurface Regimen",
+          "collapsed": false,
+          "items": [
+            {
+              "xtype": "mz-input-product",
+              "name": "resurfaceCleanser",
+              "fieldLabel": "Step One: Cleanser"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "resurfaceToner",
+              "fieldLabel": "Step Two: Toner"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "resurfaceSerum",
+              "fieldLabel": "Step Three: Serum"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "resurfaceDay",
+              "fieldLabel": "Step Four: Day"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "resurfaceNight",
+              "fieldLabel": "Step Five: Night"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "resurfaceEye",
+              "fieldLabel": "Step Six: Eye"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "resurfaceTargeted",
+              "fieldLabel": "Step Seven: Targeted"
+            },
+            {
+              "xtype": "mz-input-text",
+              "name": "resurfaceRegimenUrl",
+              "fieldLabel": "Regimen Url"
+            }
+          ]
+        },
+        {
+          "xtype": "panel",
+          "title": "Restore Regimen",
+          "collapsed": false,
+          "items": [
+            {
+              "xtype": "mz-input-product",
+              "name": "restoreCleanser",
+              "fieldLabel": "Step One: Cleanser"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "restoreToner",
+              "fieldLabel": "Step Two: Toner"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "restoreSerum",
+              "fieldLabel": "Step Three: Serum"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "restoreDay",
+              "fieldLabel": "Step Four: Day"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "restoreNight",
+              "fieldLabel": "Step Five: Night"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "restoreEye",
+              "fieldLabel": "Step Six: Eye"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "restoreTargeted",
+              "fieldLabel": "Step Seven: Targeted"
+            },
+            {
+              "xtype": "mz-input-text",
+              "name": "restoreRegimenUrl",
+              "fieldLabel": "Regimen Url"
+            }
+          ]
+        },
+        {
+          "xtype": "panel",
+          "title": "Clarify Regimen",
+          "collapsed": false,
+          "items": [
+            {
+              "xtype": "mz-input-product",
+              "name": "clarifyCleanser",
+              "fieldLabel": "Step One: Cleanser"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "clarifyToner",
+              "fieldLabel": "Step Two: Toner"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "clarifySerum",
+              "fieldLabel": "Step Three: Serum"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "clarifyDay",
+              "fieldLabel": "Step Four: Day"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "clarifyNight",
+              "fieldLabel": "Step Five: Night"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "clarifyEye",
+              "fieldLabel": "Step Six: Eye"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "clarifyTargeted",
+              "fieldLabel": "Step Seven: Targeted"
+            },
+            {
+              "xtype": "mz-input-text",
+              "name": "clarifyRegimenUrl",
+              "fieldLabel": "Regimen Url"
+            }
+          ]
+        },
+        {
+          "xtype": "panel",
+          "title": "Enlighten Regimen",
+          "collapsed": false,
+          "items": [
+            {
+              "xtype": "mz-input-product",
+              "name": "enlightenCleanser",
+              "fieldLabel": "Step One: Cleanser"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "enlightenToner",
+              "fieldLabel": "Step Two: Toner"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "enlightenSerum",
+              "fieldLabel": "Step Three: Serum"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "enlightenDay",
+              "fieldLabel": "Step Four: Day"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "enlightenNight",
+              "fieldLabel": "Step Five: Night"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "enlightenEye",
+              "fieldLabel": "Step Six: Eye"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "enlightenTargeted",
+              "fieldLabel": "Step Seven: Targeted"
+            },
+            {
+              "xtype": "mz-input-text",
+              "name": "enlightenRegimenUrl",
+              "fieldLabel": "Regimen Url"
+            }
+          ]
+        },
+        {
+          "xtype": "panel",
+          "title": "Correct Regimen",
+          "collapsed": false,
+          "items": [
+            {
+              "xtype": "mz-input-product",
+              "name": "correctCleanser",
+              "fieldLabel": "Step One: Cleanser"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "correctToner",
+              "fieldLabel": "Step Two: Toner"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "correctSerum",
+              "fieldLabel": "Step Three: Serum"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "correctDay",
+              "fieldLabel": "Step Four: Day"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "correctNight",
+              "fieldLabel": "Step Five: Night"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "correctEye",
+              "fieldLabel": "Step Six: Eye"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "correctTargeted",
+              "fieldLabel": "Step Seven: Targeted"
+            },
+            {
+              "xtype": "mz-input-text",
+              "name": "correctRegimenUrl",
+              "fieldLabel": "Regimen Url"
+            }
+          ]
+        },
+        {
+          "xtype": "panel",
+          "title": "Defend Regimen",
+          "collapsed": false,
+          "items": [
+            {
+              "xtype": "mz-input-product",
+              "name": "defendCleanser",
+              "fieldLabel": "Step One: Cleanser"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "defendToner",
+              "fieldLabel": "Step Two: Toner"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "defendSerum",
+              "fieldLabel": "Step Three: Serum"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "defendDay",
+              "fieldLabel": "Step Four: Day"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "defendNight",
+              "fieldLabel": "Step Five: Night"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "defendEye",
+              "fieldLabel": "Step Six: Eye"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "defendTargeted",
+              "fieldLabel": "Step Seven: Targeted"
+            },
+            {
+              "xtype": "mz-input-text",
+              "name": "defendRegimenUrl",
+              "fieldLabel": "Regimen Url"
+            }
+          ]
+        }
+      ],
+    	"icon": "/resources/admin/widgets/26_related_products.png",
+    	"id": "quiz",
     	"validPageTypes": [
     		"*"
     	]

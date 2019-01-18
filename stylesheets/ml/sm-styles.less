@@ -55,7 +55,7 @@
 			    border: 0;
 			    padding: 2px 0 5px 5px;
 			    &:hover{
-			    	#global-cart{display: block;}
+			    	//#global-cart{display: none;}
 			    }
 			}
 
@@ -126,26 +126,6 @@
     .ml-navbar-secondary {
     	display:none;
     }
-
-    //Login screen
-    .modal-dialog.login-modal{
-    	width: 370px!important;
-    	margin: 0 auto!important;
-    	.modal-content{
-	    	.login-btn{
-	            height: 34px!important;
-	            line-height: 34px!important;
-	            padding: 0 36px!important;
-		    }
-		    .nav-tabs{
-		    	top: -45px!important;
-		    }
-		    .arrow{
-		    	top: 34px!important;
-		    }
-	    }
-	}
-
 
     //Footer
 	.mz-pagefooter {
@@ -245,7 +225,7 @@
 		#product-detail{
 			.mz-l-stack-section{
 				.mz-price {
-					font-size: @fontSize+16;
+					font-size: @fontSize*1.5;
 					.mz-price-discountname {
 						font-size: @fontSize;
 						color: @secondaryColor;
@@ -495,23 +475,6 @@
 	        margin-top: 25px;
 	    }
     }
-    //Checkout Page
-    .mz-checkout{
-    	 .mz-pagetitle-note{
-    	 	float: right;
-    	 	clear: none;
-    	 	margin-top: 25px;
-    	 }
-    	 .mz-pagetitle{
-    	 	display: inline-block;
-    	 }
-    }
-	.mz-pagetitle.parent-heading,.new-hierarchy{
-	    display: block;
-	}
-	.mz-pricestack-price-upper{
-        padding-left: 6px;
-    }
     //Recently viewed Css
     .mz-related-products{
         h3{
@@ -586,13 +549,56 @@
             display: none;
         }
     }
-    /*  CART PAGE  */
-    .mz-cart-heading{
-    	padding: 0px  15px;
+}
+.mz-productlist {
+	.bx-wrapper {
+		position: initial;
+		@media (max-width: 768px) {
+			.bx-controls{
+				display: none;
+			}
+		}
+	}
+    .bxslider{
+		
+        li{
+			@media (max-width: 768px) {
+				width: 22rem !important;
+				.pdp4 {
+					font-size: 1rem;
+				}
+			}
+			margin-right: 0 !important;   
+			.mz-favorites {
+				color: #85acce;
+				font-weight: 100;
+				font-family: 'icomoon';
+				font-size:1.7rem;
+				.heart-filled:before{
+					content: "\e910";
+				}
+				.heart-outline:before{
+					content: "\e90f";
+				}
+			}        
+            .primary-btn{
+                color: #4e5458;
+                letter-spacing: 0.14em;
+                border: 0.1875rem solid #4e5458;
+                height: 3rem;
+                line-height: 1.5rem;
+                font-size: 0.9rem;
+                &:hover{
+                    background: #4e5458;
+                    text-decoration: none;
+                    color: #fff;
+                }
+            }
+        }
     }
-	.mz-table-cart-items{
-	    .mz-row-carttable-item{
-	        padding: 0px 15px 0px 15px;
-	    }
+}
+@media (max-width: 768px) {
+	.product-wrapper .product-info-tabs-container ul.nav-tabs li a{
+		padding: 0 2rem;
 	}
 }

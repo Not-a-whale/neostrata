@@ -3,6 +3,11 @@
     <div class="close-menu">
         <a data-target="#ml-nav" data-toggle="collapse" href="#ml-nav"><span>Collapse Menu</span></a>
     </div>
+    {% if themeSettings.commerceEnabled %}
+    <div class="user-login">
+         {% include "modules/page-header/login" %}
+    </div>
+    {% endif %}
     <div class="">
       <ul class="mz-sitenav-list"
           data-mz-contextify='.mz-sitenav-link[href="{{ navigation.currentNode.url }}"]'
@@ -10,7 +15,12 @@
           data-mz-contextify-val='is-current'>
           {% partial_cache %}
           {% for link in navigation.tree %}
-            {% if not link.isHidden and forloop.counter0 < themeSettings.maxTopLevelNavItems and link.url != "/home" %}
+            {% if themeSettings.commerceEnabled %}
+              {% set_var var_maxTopLevelNavItems=themeSettings.maxTopLevelNavItemsCommerceEnabled %}
+            {% else %}
+              {% set_var var_maxTopLevelNavItems=themeSettings.maxTopLevelNavItems %}
+            {% endif %}
+            {% if not link.isHidden and forloop.counter0 < var_maxTopLevelNavItems and link.url != "/home" %}
                 {% set_var childrenGoToThis=false %}
                 {% for item in themeSettings.megaMenu.firstLevel %}
                   {% if item.url == link.url %}
@@ -75,7 +85,6 @@
                 {% endif %}
               </div>
             </li>
-            <li class="ml-navbar-separator"></li>
             {% endif %}
           {% endfor %}
           {% endpartial_cache %}

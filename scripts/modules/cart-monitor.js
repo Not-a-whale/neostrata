@@ -15,6 +15,11 @@ define(['modules/jquery-mozu', 'modules/api', 'bootstrap', 'modules/page-header/
             },           
             setCount: function(count) {
                 this.$el.text(count);
+                if(savedCart.totalQuantity === 0) {
+                    $('.ml-header-global-cart-count').addClass('emptyCart');
+                } else {
+                    $('.ml-header-global-cart-count').removeClass('emptyCart');
+                }
             },
             addToCount: function(count) {
                 this.update(true);
@@ -52,6 +57,11 @@ define(['modules/jquery-mozu', 'modules/api', 'bootstrap', 'modules/page-header/
     //}
 
     $document.ready(function () {
+        if(savedCart.totalQuantity === 0) {
+            $('.ml-header-global-cart-count').addClass('emptyCart');
+        } else {
+            $('.ml-header-global-cart-count').removeClass('emptyCart');
+        }       
         CartMonitor.$el = $('[data-mz-role="cartcount"]').text(savedCart.totalQuantity || 0);
         CartMonitor.$amountEl = $('[data-mz-role="cartamount"]').text(savedCart.total || 0);
     });

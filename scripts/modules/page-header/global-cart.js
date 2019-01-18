@@ -45,7 +45,7 @@ define([
             console.log("filter", filter);
             Api.get("search", { filter: filter, pageSize : globalCartRelatedProductsSize}).then(function(collection) {
                 console.log("collection.data",collection.data);
-                var template = 'Widgets/misc/product-carousel-listing';
+                var template = 'Widgets/misc/product-related-listing';
                 var RelatedProductsView = Backbone.MozuView.extend({
                     templateName: template
                 });
@@ -88,6 +88,11 @@ define([
                 }
                 if (globalCartRelatedProducts) {
                     me.showRelatedProducts(resp.data.items);
+                }
+                if(resp.data.cartItems.length === 0) {
+                    $('.ml-header-global-cart-count').addClass('emptyCart');
+                } else {
+                    $('.ml-header-global-cart-count').removeClass('emptyCart');
                 }
             });
         }

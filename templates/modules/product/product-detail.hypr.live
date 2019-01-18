@@ -1,3 +1,5 @@
+<a id="addToWishlistHide" class="mz-productdetail-addToWishlist mz-favorites" data-mz-action="addToWishlist" data-mz-product-code="{{ model.productCode }}"></a>
+<a id="removeFromWishlistHide" class="mz-action" data-mz-action="finishRemoveItem"></a>
 {% if model.stockInfo %}
 <div class="stock-info">{{ labels.upcInStock }}
   <span class="stock-price">{{ model.stockInfo }}</span>
@@ -24,13 +26,23 @@
 {% endif %}
 <section class="mz-l-stack-section mz-productdetail-conversion row">
   {% if themeSettings.commerceEnabled and model.productType != themeSettings.familyProductType %}
-    <div class="mz-productdetail-conversion-controls col-xs-4 col-sm-4">
-      <label class="mz-qty-label text-uppercase" for="mz_pdp_qty">{{ labels.qty }}</label>
-      <div class="qty-block">
-        <div class="qty-counter" id="minus" data-mz-qty-minus role="button"><i class="fa fa-minus"  aria-hidden="true"></i></div>
-        <input id="mz_pdp_qty" class="mz-productdetail-qty text-center" type="text" value="{{model.quantity}}" readonly onfocus="this.blur()" data-mz-value="{{model.quantity}}" title="Quantity" />
-        <div class="qty-counter" id="plus" data-mz-qty-plus role="button"><i class="fa fa-plus" aria-hidden="true"></i></div>
+    <div class="mz-productdetail-conversion-controls row">
+      <!-- <label class="mz-qty-label text-uppercase" for="mz_pdp_qty">{{ labels.qty }}</label> -->
+      <div class="mz-qty-label text-uppercase col-xs-6 text-right">{{ labels.qty }}:</div>
+      <div class="mz_pdp_qty col-xs-6">
+        <select class="mz-productdetail-qty" id="mz_pdp_qty" >
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
       </div>
+        <!-- <div class="qty-block">
+          <div class="qty-counter" id="minus" data-mz-qty-minus role="button"><i class="fa fa-minus"  aria-hidden="true"></i></div>
+          <input id="mz_pdp_qty" class="mz-productdetail-qty text-center" type="text" value="{{model.quantity}}" readonly onfocus="this.blur()" data-mz-value="{{model.quantity}}" title="Quantity" />
+          <div class="qty-counter" id="plus" data-mz-qty-plus role="button"><i class="fa fa-plus" aria-hidden="true"></i></div>
+        </div>  -->
       <span class="mz-validationmessage" data-mz-validationmessage-for="quantity"></span>
     </div>
 
@@ -41,10 +53,13 @@
 
     {% if themeSettings.commerceEnabled %}
       <div class="mz-productdetail-conversion-buttons col-xs-12 hide">
-        <div class="col-xs-12 add-to-cart-container">
-          <button id="add-to-cart" class="mz-button mz-productdetail-addtocart font-large button_primary pull-right {% if not model.purchasableState.isPurchasable %}button_disabled{% endif %}" data-mz-action="addToCart" >
+        <div class="col-xs-12 add-to-cart-container skinActive text-center">
+          <button id="add-to-cart" class="primary-btn mz-button mz-productdetail-addtocart font-large button_primary {% if not model.purchasableState.isPurchasable %}button_disabled{% endif %}" data-mz-action="addToCart" >
               {{ labels.addToCart }}
           </button>
+        </div>
+         <div class="text-center mz-day-guarantee-statement">
+          {{ labels.dayGuaranteeStatement }}
         </div>
       </div>
     {% endif %}
