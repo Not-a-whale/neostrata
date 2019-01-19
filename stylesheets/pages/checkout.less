@@ -321,6 +321,29 @@
                 text-decoration: underline;
             }
         }
+        &.checkout-fields-title {
+            width: 100%;
+            border: 0px;
+            color: @charcoal;
+            margin: 0;
+            span {
+                font-weight: 500;
+                font-size: 1.5rem;
+                line-height: 1.25em;
+            }
+            a {
+                font-size: 1.5rem;
+                text-decoration: none;
+                position: static;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+            .mz-formstep-summary{
+                display: flex;
+            }
+        }
     }
 
     input[type="text"],
@@ -576,13 +599,13 @@
 
     .mz-formstep-edit{
         @media (max-width: 800px) {
-            display: none;
+            //display: none;
         }
     }
 }
 
 #checkout-form .checkout-leftcolumn .mz-formstep {
-    margin-bottom: 8.25rem;
+    margin-bottom: 6.25rem;
 }
 
 .checkout-fields-title {
