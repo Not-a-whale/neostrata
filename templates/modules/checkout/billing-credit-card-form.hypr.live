@@ -13,6 +13,8 @@
 				<span class="mz-validationmessage" data-mz-validationmessage-for="{{ cardcontext }}cvv"></span>
 			</div>
 		</div>
+		{% comment %}
+		<!-- Comment it per OMX integration and Saved CC -->
         <div class="mz-l-formfieldgroup-row mz-payment-credit-card-savepayment-row form-row">
             <div class="mz-l-formfieldgroup-cell"></div>
             <div class="mz-l-formfieldgroup-cell">
@@ -20,4 +22,5 @@
                 <label class="mz-inline icon-check form-element" for="save-card-info">{{ labels.saveCard }}</label>
             </div>
         </div>
+		{% endcomment %}
 {% endblock credit-card-form %}
