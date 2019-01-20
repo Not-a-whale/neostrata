@@ -1,13 +1,46 @@
 <div class="mz-l-container">
-    <h1 class="mz-pagetitle">{{ labels.orderConfirmation }} </h1>
-    <div class="col-sm-12 mz-reset-padding-left">
-    	<p class="col-md-5 col-sm-12 mz-reset-padding-left">{{ labels.confirmationText }}</p>
-        <i id="mz-print-content-confirmation" class="mz-reset-padding-left fa fa-print pull-right text-right" title="print"  aria-hidden="true" data-mz-print-order></i>
-    </div> 
+    <div class="mz-l-column checkout-signin-header container">
+        {% if not user.isAuthenticated %}
+            <a data-toggle="modal" data-mz-action="lite-registration" class="mz-pagetitle-note secondary-button">
+                {{ labels.logIn }}
+            </a>
+            <span>{{ labels.forFasterCheckout }}</span>
+        {% endif %}
+    </div>
+    <div class="mz-l-stack">
+        <!-- TODO Create Account -->
+        <div class="mz-l-stack-section">
+            <h1 class="mz-pagetitle">{{ labels.confirmationText }}</h1>
+            <p class="mz-pagesubtitle">{{ labels.yourOrderNumber|string_format(model.orderNumber)|safe }}</p>
+            <i id="mz-print-content-confirmation" class="mz-reset-padding-left fa fa-print pull-right text-right" title="print"  aria-hidden="true" data-mz-print-order></i>
+            <div class="mz-l-stack-item">
+                <p class="confirmation-title">{{ labels.confirmationCreateAccTitle }}</p>
+                <p class="confirmation-text">{{ labels.confirmationCreateAccText }}</p>
+            </div>
+            <div class="mz-l-stack-item">
+                <a href="#" class="primary-btn">{{ labels.signUpLink }}</a>
+            </div>
+        </div>
+        <!-- END TODO Create Account -->
 
-    <p>{{ labels.yourOrderNumber|string_format(model.orderNumber)|safe }}</p>
+        <div class="mz-l-stack-section">
+            <h4 class="mz-l-stack-sectiontitle order-summary-title">{{ labels.orderSummary }} </h4>
+            {% include "modules/common/order-summary" %}
+            {% if model.shopperNotes.comments %}
+            <div class="mz-ordercomments">
+                <h5 class="mz-ordercomments-header">{{ labels.comments }}</h5>
+                <p class="mz-ordercomments-body">{{ model.shopperNotes.comments }}</p>
+            </div>
+            {% endif %}
+            {% if model.shopperNotes.giftMessage %}
+            <div class="mz-ordercomments">
+                <h5 class="mz-ordercomments-header">{{ labels.giftMessage }}</h5>
+                <p class="mz-ordercomments-body">{{ model.shopperNotes.giftMessage }}</p>
+            </div>
+            {% endif %}
+        </div>
 
-  <div class="mz-l-stack">
+
         {% if model.hasDirectShip %}
         <div class="mz-l-stack-section">
             <h4 class="mz-l-stack-sectiontitle">{{ labels.shippingInformation }}</h4>
@@ -92,24 +125,210 @@
         </div>
         {% endif %}
 
-        <div class="mz-l-stack-section">
-            <h4 class="mz-l-stack-sectiontitle">{{ labels.orderSummary }} </h4>
-            {% include "modules/common/order-summary" %}
-            {% if model.shopperNotes.comments %}
-            <div class="mz-ordercomments">
-                <h5 class="mz-ordercomments-header">{{ labels.comments }}</h5>
-                <p class="mz-ordercomments-body">{{ model.shopperNotes.comments }}</p>
+    </div>
+
+    <div class="confirmation-cart-items-wrapper">
+        <h4 class="mz-l-stack-sectiontitle">{{ labels.confirmationCartTitle }}</h4>
+
+      {% for item in model.items %}
+          <div class="mz-ordersummary-lineitems mz-carttable-item clearfix">
+            <div class="mz-ordersummary-line mz-ordersummary-line-item {% if item.discountTotal > 0 %}is-discounted{% endif %} clearfix">
+                <div class="mz-ordersummary-item-product mz-order-content-container mz-reset-padding">
+                    <div class="pull-left mz-order-summary-image">
+                      {% with item.product|get_product_attribute("tenant~color") as colorAttr %}  
+                        {% if colorAttr %}
+                          {% with colorAttr.value|replace(" ","_") as colorValue %}
+                            {% with "/cms/files/{0}_{1}_v1.jpg"|string_format(item.product.productCode, colorValue) as fileName %}
+                                <img class="mz-carttable-item-image" src="https:{% make_url "cdn" fileName with maxWidth=themeSettings.globalCartItemImageMaxWidth as_parameter %}" {% if item.product.imageAlternateText %}alt="{{ item.product.imageAlternateText }}"{% endif %} onerror="this.setAttribute('src','{% if item.product.imageUrl %}{% make_url 'image' item.product with maxWidth=themeSettings.globalCartItemImageMaxWidth as_parameters %}{% else %}https:{% make_url 'cdn' '/cms/files/No_image_available.png' with maxWidth=themeSettings.globalCartItemImageMaxWidth as_parameter %}{% endif %}')"/>
+                            {% endwith %}     
+                          {% endwith %}
+                        {% else %}
+                          {% if item.product.imageUrl %}
+                                <img class="mz-carttable-item-image" src="{% make_url "image" item.product with maxWidth=themeSettings.globalCartItemImageMaxWidth as_parameters %}" {% if item.product.imageAlternateText %}alt="{{ item.product.imageAlternateText }}"{% endif %} />
+                          {% else %}
+                              <span class="mz-carttable-item-image mz-product-image-placeholder pull-left">
+                                <span class="mz-productlisting-imageplaceholdertext">{{ labels.productImagePlaceholder }}</span>
+                              </span>
+                          {% endif %}    
+                        {% endif %}  
+                      {% endwith %}                       
+                    </div>
+                    <div class="mz-carttable-item-info-wrap mz-reset-padding-right">
+                      <div class="mz-carttable-item-title" >{{ item.product.name |safe }}</div>
+                    </div>
+                  </div>
+                  <div class="clearfix visible-xs mz-print-hide"></div>
+                  <div class="mz-qty-container">
+                    <span class="cartproduct-title">{{ labels.qty }}</span>
+                    <span class="text-capitalize mz-item-qty">{{ item.quantity }}</span>
+                  </div>
+                  <div class="hidden-xs mz-price-each-display mz-price-main-container">
+                      {% include "modules/common/item-price" %}
+                  </div>
+                  <div class="mz-checkout-item-total-container pull-right">
+                      {% include "modules/common/item-total" %}
+                  </div>
+              </div>
+          </div>
+      {% endfor %}
+    </div>
+    <!-- TODO Recommendations -->
+    <div class="recommendation-wrapper">
+        <h3>Add these prodcuts for a more complete skin care regimen.</h3>
+        <div class="recommendation-product-list">
+            <div class="product-item">
+                <div class="product-listing-container">
+                    <div class="mz-productlisting " data-mz-product="F30149D">
+                        <div class="mz-productlisting-image">
+                            <div class="zoom-container-listing">
+                                <a href="/product/skin-active-repair-matrix-support-wrinkle-repair-spf-30/F30149D">
+                                    <img src="//cdn-sb.mozu.com/26439-41130/cms/41130/files/d023f219-53c5-41e8-8c78-54b4ffedbff0?max=800" data-zoom-image="//cdn-sb.mozu.com/26439-41130/cms/41130/files/d023f219-53c5-41e8-8c78-54b4ffedbff0?max=700" alt="with Sunscreen Broad Spectrum SPF 30">
+                                </a>
+                            </div> 
+                        </div>
+                        <div class="mz-productlisting-info">
+                            <div class="pdp1">Moisturizers, Sun Care</div>
+                            <a class="mz-productlisting-title pdp2" href="/product/skin-active-repair-matrix-support-wrinkle-repair-spf-30/F30149D">Matrix Support</a>
+                            <div class="mz-productlisting-shortdesc pdp3">with Sunscreen Broad Spectrum SPF 30</div>
+                        </div>
+                    </div>
+                    <div class="bottom-details">
+                        <div itemprop="priceSpecification" itemscope="" itemtype="http://schema.org/PriceSpecification" class="pdp4 mz-pricestack">
+                            <span class="not-range">
+                                <span itemprop="price" class="mz-price">$75.00</span>
+                            </span>
+                            <div class="price-msrp">Suggested Retail Price</div>
+                        </div>
+                        <div id="BVRRInlineRating-F30149D" class="pdp5 bvr-inline-rating" data-mz-product-code="F30149D" data-mz-product-url="/skin-active-repair-matrix-support-wrinkle-repair-spf-30/p/F30149D"></div>
+                    </div>
+                    <div class="mz-productdetail-conversion-buttons col-xs-12">
+                        <div class="col-xs-2 add-to-wishlist-container">
+                            <a id="wishlist-F30149D" class="mz-productdetail-addtowishlist wishlistHeart" data-mz-action="directoryAddToWishlist" data-mz-product-code="F30149D">
+                                <span class="blank-heart"></span>
+                            </a>
+                        </div>
+                        <div class="col-xs-10 add-to-cart-container">
+                            <button id="add-to-cart-F30149D" class="primary-btn mz-productdetail-addtocart font-large button_primary pull-right " data-mz-action="directoryAddToCart" data-mz-product-code="F30149D">Add To Cart</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            {% endif %}
-            {% if model.shopperNotes.giftMessage %}
-            <div class="mz-ordercomments">
-                <h5 class="mz-ordercomments-header">{{ labels.giftMessage }}</h5>
-                <p class="mz-ordercomments-body">{{ model.shopperNotes.giftMessage }}</p>
+            <div class="product-item">
+                <div class="product-listing-container">
+                    <div class="mz-productlisting " data-mz-product="F30149D">
+                        <div class="mz-productlisting-image">
+                            <div class="zoom-container-listing">
+                                <a href="/product/skin-active-repair-matrix-support-wrinkle-repair-spf-30/F30149D">
+                                    <img src="//cdn-sb.mozu.com/26439-41130/cms/41130/files/d023f219-53c5-41e8-8c78-54b4ffedbff0?max=800" data-zoom-image="//cdn-sb.mozu.com/26439-41130/cms/41130/files/d023f219-53c5-41e8-8c78-54b4ffedbff0?max=700" alt="with Sunscreen Broad Spectrum SPF 30">
+                                </a>
+                            </div> 
+                        </div>
+                        <div class="mz-productlisting-info">
+                            <div class="pdp1">Moisturizers, Sun Care</div>
+                            <a class="mz-productlisting-title pdp2" href="/product/skin-active-repair-matrix-support-wrinkle-repair-spf-30/F30149D">Matrix Support</a>
+                            <div class="mz-productlisting-shortdesc pdp3">with Sunscreen Broad Spectrum SPF 30</div>
+                        </div>
+                    </div>
+                    <div class="bottom-details">
+                        <div itemprop="priceSpecification" itemscope="" itemtype="http://schema.org/PriceSpecification" class="pdp4 mz-pricestack">
+                            <span class="not-range">
+                                <span itemprop="price" class="mz-price">$75.00</span>
+                            </span>
+                            <div class="price-msrp">Suggested Retail Price</div>
+                        </div>
+                        <div id="BVRRInlineRating-F30149D" class="pdp5 bvr-inline-rating" data-mz-product-code="F30149D" data-mz-product-url="/skin-active-repair-matrix-support-wrinkle-repair-spf-30/p/F30149D"></div>
+                    </div>
+                    <div class="mz-productdetail-conversion-buttons col-xs-12">
+                        <div class="col-xs-2 add-to-wishlist-container">
+                            <a id="wishlist-F30149D" class="mz-productdetail-addtowishlist wishlistHeart" data-mz-action="directoryAddToWishlist" data-mz-product-code="F30149D">
+                                <span class="blank-heart"></span>
+                            </a>
+                        </div>
+                        <div class="col-xs-10 add-to-cart-container">
+                            <button id="add-to-cart-F30149D" class="primary-btn mz-productdetail-addtocart font-large button_primary pull-right " data-mz-action="directoryAddToCart" data-mz-product-code="F30149D">Add To Cart</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            {% endif %}
+            <div class="product-item">
+                <div class="product-listing-container">
+                    <div class="mz-productlisting " data-mz-product="F30149D">
+                        <div class="mz-productlisting-image">
+                            <div class="zoom-container-listing">
+                                <a href="/product/skin-active-repair-matrix-support-wrinkle-repair-spf-30/F30149D">
+                                    <img src="//cdn-sb.mozu.com/26439-41130/cms/41130/files/d023f219-53c5-41e8-8c78-54b4ffedbff0?max=800" data-zoom-image="//cdn-sb.mozu.com/26439-41130/cms/41130/files/d023f219-53c5-41e8-8c78-54b4ffedbff0?max=700" alt="with Sunscreen Broad Spectrum SPF 30">
+                                </a>
+                            </div> 
+                        </div>
+                        <div class="mz-productlisting-info">
+                            <div class="pdp1">Moisturizers, Sun Care</div>
+                            <a class="mz-productlisting-title pdp2" href="/product/skin-active-repair-matrix-support-wrinkle-repair-spf-30/F30149D">Matrix Support</a>
+                            <div class="mz-productlisting-shortdesc pdp3">with Sunscreen Broad Spectrum SPF 30</div>
+                        </div>
+                    </div>
+                    <div class="bottom-details">
+                        <div itemprop="priceSpecification" itemscope="" itemtype="http://schema.org/PriceSpecification" class="pdp4 mz-pricestack">
+                            <span class="not-range">
+                                <span itemprop="price" class="mz-price">$75.00</span>
+                            </span>
+                            <div class="price-msrp">Suggested Retail Price</div>
+                        </div>
+                        <div id="BVRRInlineRating-F30149D" class="pdp5 bvr-inline-rating" data-mz-product-code="F30149D" data-mz-product-url="/skin-active-repair-matrix-support-wrinkle-repair-spf-30/p/F30149D"></div>
+                    </div>
+                    <div class="mz-productdetail-conversion-buttons col-xs-12">
+                        <div class="col-xs-2 add-to-wishlist-container">
+                            <a id="wishlist-F30149D" class="mz-productdetail-addtowishlist wishlistHeart" data-mz-action="directoryAddToWishlist" data-mz-product-code="F30149D">
+                                <span class="blank-heart"></span>
+                            </a>
+                        </div>
+                        <div class="col-xs-10 add-to-cart-container">
+                            <button id="add-to-cart-F30149D" class="primary-btn mz-productdetail-addtocart font-large button_primary pull-right " data-mz-action="directoryAddToCart" data-mz-product-code="F30149D">Add To Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-listing-container">
+                    <div class="mz-productlisting " data-mz-product="F30149D">
+                        <div class="mz-productlisting-image">
+                            <div class="zoom-container-listing">
+                                <a href="/product/skin-active-repair-matrix-support-wrinkle-repair-spf-30/F30149D">
+                                    <img src="//cdn-sb.mozu.com/26439-41130/cms/41130/files/d023f219-53c5-41e8-8c78-54b4ffedbff0?max=800" data-zoom-image="//cdn-sb.mozu.com/26439-41130/cms/41130/files/d023f219-53c5-41e8-8c78-54b4ffedbff0?max=700" alt="with Sunscreen Broad Spectrum SPF 30">
+                                </a>
+                            </div> 
+                        </div>
+                        <div class="mz-productlisting-info">
+                            <div class="pdp1">Moisturizers, Sun Care</div>
+                            <a class="mz-productlisting-title pdp2" href="/product/skin-active-repair-matrix-support-wrinkle-repair-spf-30/F30149D">Matrix Support</a>
+                            <div class="mz-productlisting-shortdesc pdp3">with Sunscreen Broad Spectrum SPF 30</div>
+                        </div>
+                    </div>
+                    <div class="bottom-details">
+                        <div itemprop="priceSpecification" itemscope="" itemtype="http://schema.org/PriceSpecification" class="pdp4 mz-pricestack">
+                            <span class="not-range">
+                                <span itemprop="price" class="mz-price">$75.00</span>
+                            </span>
+                            <div class="price-msrp">Suggested Retail Price</div>
+                        </div>
+                        <div id="BVRRInlineRating-F30149D" class="pdp5 bvr-inline-rating" data-mz-product-code="F30149D" data-mz-product-url="/skin-active-repair-matrix-support-wrinkle-repair-spf-30/p/F30149D"></div>
+                    </div>
+                    <div class="mz-productdetail-conversion-buttons col-xs-12">
+                        <div class="col-xs-2 add-to-wishlist-container">
+                            <a id="wishlist-F30149D" class="mz-productdetail-addtowishlist wishlistHeart" data-mz-action="directoryAddToWishlist" data-mz-product-code="F30149D">
+                                <span class="blank-heart"></span>
+                            </a>
+                        </div>
+                        <div class="col-xs-10 add-to-cart-container">
+                            <button id="add-to-cart-F30149D" class="primary-btn mz-productdetail-addtocart font-large button_primary pull-right " data-mz-action="directoryAddToCart" data-mz-product-code="F30149D">Add To Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div><!-- #order-confirmation -->
+    <!-- ENDTODO Recommendations -->
+</div>
+<!-- #order-confirmation -->
 <style>
     {% inline_style "print-order.less" %}
 </style>

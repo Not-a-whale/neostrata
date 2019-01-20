@@ -189,7 +189,7 @@
     "createAccount": "Erstellen Sie ein Konto für die einfache Vorgang bei künftigen Bestellungen",
     "placeOrder": "Bestellung aufgeben",
     "orderConfirmation": "Auftragsbestätigung",
-    "confirmationText": "Vielen Dank für Ihre Bestellung! Sie erhalten eine E-Mail-Bestätigung.",
+    "confirmationText": "Vielen Dank für Ihre Bestellung!",
     "yourOrderNumber": "Ihre Auftragsnummer ist <strong> {0} </ strong>.",
     "payments": "Zahlungen",
     "orderDetails": "Bestelldetails",
