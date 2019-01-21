@@ -253,6 +253,13 @@ define([
                             var product = new ProductModels.Product(productResponse.data);
                             product.addToWishlist();
                             $('#wishlist-'+productCode).attr("data-mz-action", "directoryRemoveFromWishlist");
+                            if($('#addToWishListPopUp').length === 1){
+                                $('#addToWishListPopUp').remove();
+                            }
+                            $( '<div id="addToWishListPopUp" class="row alert" role="alert"><div class="col-xs-6 text-right">Item added to wishlist.</div><div class="col-xs-6 text-left"><a href="/myaccount#wishlist">View Wishlist</a></div></div>' ).insertAfter('#nav-header-container > #ml-nav');
+                            setTimeout(function(){ 
+                                $('#addToWishListPopUp').fadeOut(function(){$(this).remove();});
+                            }, 5000);
                             return $('#wishlist-'+productCode+' span').removeClass("blank-heart").addClass("filled-heart");
                         });                                                  
                     }else if(action == 'directoryRemoveFromWishlist'){
@@ -261,6 +268,13 @@ define([
                         var serviceurl = '/api/commerce/wishlists/'+ wishlistId +'/items/' + finishRemoveItemId;
                         api.request('DELETE', serviceurl).then(function(res) {
                             $('#wishlist-'+productCode).attr("data-mz-action", "directoryAddToWishlist");
+                            if($('#addToWishListPopUp').length === 1){
+                                $('#addToWishListPopUp').remove();
+                            }
+                            $( '<div id="addToWishListPopUp" class="row alert" role="alert"><div class="col-xs-6 text-right">Item removed from wishlist.</div><div class="col-xs-6 text-left"><a href="/myaccount#wishlist">View Wishlist</a></div></div>' ).insertAfter('#nav-header-container > #ml-nav');
+                            setTimeout(function(){ 
+                                $('#addToWishListPopUp').fadeOut(function(){$(this).remove();});
+                            }, 5000);
                             return $('#wishlist-'+productCode+' span').removeClass("filled-heart").addClass("blank-heart");
                         });
                     }                              
@@ -531,6 +545,13 @@ define([
                 api.get('product', addToWishlist).then(function(productResponse){
                     var product = new ProductModels.Product(productResponse.data);
                     product.addToWishlist();
+                    if($('#addToWishListPopUp').length === 1){
+                        $('#addToWishListPopUp').remove();
+                    }
+                    $( '<div id="addToWishListPopUp" class="row alert" role="alert"><div class="col-xs-6 text-right">Item added to wishlist.</div><div class="col-xs-6 text-left"><a href="/myaccount#wishlist">View Wishlist</a></div></div>' ).insertAfter('#nav-header-container > #ml-nav');
+                    setTimeout(function(){ 
+                        $('#addToWishListPopUp').fadeOut(function(){$(this).remove();});
+                    }, 5000);
                     $('#wishlist-'+addToWishlist).attr("data-mz-action", "directoryRemoveFromWishlist");
                     $('#wishlist-'+addToWishlist+' span').removeClass("blank-heart").addClass("filled-heart");
                 });     
