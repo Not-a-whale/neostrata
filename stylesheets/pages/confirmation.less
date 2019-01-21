@@ -49,32 +49,30 @@
             margin: 0 0 3.875rem;
         }
     }
-    .shipping-information-section {
-        .mz-addresssummary {
-            padding-top: 1.125rem;
+    .mz-addresssummary {
+        padding-top: 1.125rem;
 
-            div,
-            span {
-                font-size: 1.71875rem;
-                line-height: 1.5em;
-            }
-            .address-customer-name {
-                font-weight: 500;
-            }
+        div,
+        span {
+            font-size: 1.71875rem;
+            line-height: 1.5em;
         }
-        .shipping-method-row {
-            display: flex;
-            div,
-            small {
-                font-size: 1.71875rem;
-                line-height: 1.5em;
-                font-weight: 500;
-                margin-right: 1rem;
-            }
+        .address-customer-name {
+            font-weight: 500;
         }
-        .shipping-address-row {
-            margin: 0;
+    }
+    .shipping-method-row {
+        display: flex;
+        div,
+        small {
+            font-size: 1.71875rem;
+            line-height: 1.5em;
+            font-weight: 500;
+            margin-right: 1rem;
         }
+    }
+    .shipping-address-row {
+        margin: 0;
     }
 
     .confirmation-cart-items-wrapper {
@@ -142,6 +140,7 @@
                     font-size: 1.7125rem;
                     line-height: 1.5em;
                     font-weight: 500;
+                    color: @charcoal;
                 }
             }
         }
@@ -173,6 +172,61 @@
 
     .checkout-signin-header {
         padding-bottom: 0.5rem;
+    }
+
+    .mz-checkout-payment {
+        .mz-checkout-paymenttitle {
+            padding: 0;
+            border: 0;
+            white-space: nowrap;    
+            
+            strong {
+                font-weight: 500;
+            }
+            strong,
+            span {
+                font-size: 1.7125rem;
+                line-height: 1.5em;
+            }
+        }
+
+        .mz-checkout-payment-billingAddress {
+            .mz-addresssummary {
+                padding-top: 0;
+            }
+            small {
+                font-size: 1.7125rem;
+                line-height: 1.5em;
+                font-weight: 500;
+            }
+        }
+
+        .card-type-confirmation {
+            display: flex;
+            align-items: center;
+
+            img {
+                display: block;
+                margin-right: 2rem;
+            }
+
+            .card-type-confirmation-cardinfo {
+                display: flex;
+                flex-direction: column;
+                margin: 0;
+                padding: 2.3125rem 0;
+
+                strong,
+                span {
+                    font-size: 1.485rem;
+                    line-height: 1.5em;
+                }
+
+                strong {
+                    font-weight: 500;
+                }
+            }
+        }
     }
 }
 
