@@ -43,12 +43,12 @@
 
 
         {% if model.hasDirectShip %}
-        <div class="mz-l-stack-section">
+        <div class="mz-l-stack-section shipping-information-section">
             <h4 class="mz-l-stack-sectiontitle">{{ labels.shippingInformation }}</h4>
-            <div class="mz-l-stack-item">
+            <div class="mz-l-stack-item shipping-address-row">
                 <div class="mz-addresssummary">{% include "modules/common/address-summary" with model=model.fulfillmentInfo.fulfillmentContact %}</div>
             </div>
-            <div class="mz-l-stack-item">
+            <div class="mz-l-stack-item shipping-method-row">
                 <small>{{ labels.shippingMethod }}</small>
                 <div>{{ model.fulfillmentInfo.shippingMethodName }}</div>
             </div>
