@@ -7,141 +7,26 @@
 {% block body-content %}
 
 {% require_script "pages/search" %}
-<div class="mz-cms-block"><div class="mz-cms-content"><div class="mz-content-widget-wrap">
-    <div class="mz-content-widget-inner-wrap">
-            
-                <style>
-    .home-main-module {
-        margin-left: calc((100vw - 100%) / -2);
-        display: flex;
-        align-items: center;
-        width: 100vw;
-        max-width: 100vw;
-        overflow: hidden;
-        position: relative;
-    }
-    .background-full-image {
-        position: relative;
-        width: 100%;
-    }
-    .background-full-image img{
-        width:100%;
-    }
-    .home-main-content.right {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        left: 75%; /* left of background to center of foreground content */
-        position: absolute;
-        transform: translate(-50%, -50%); /* centers foreground content on left/top measurements */
-        top: 50%; /* top of background to vertical center of foreground content */
-        width: 44.375rem; /* width of widest copy block element ÷ 1920 */
-    }
-    .home-main-content.left {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        left: 30%; /* left of background to center of foreground content */
-        position: absolute;
-        transform: translate(-50%, -50%); /* centers foreground content on left/top measurements */
-        top: 50%; /* top of background to vertical center of foreground content */
-        width: 50%; /* width of widest copy block element ÷ 1920 */
-    }
-    .home-main-content h3 {
-        width: 34vw; /* width of copy block ÷ 1920 */
-    }
-    .home-main-content .p1 {
-        width: 25vw; /* width of copy block ÷ 1920 */
-    }
-    .home-main-module .primary-btn,
-    .home-main-module .p1 {
-        margin: 2.0625rem 0;
-    }
-    .home-main-module h3 {
-        margin: 1.08rem 0;
-    }
-
-    /* IE11 Styles */
-    
-    _:-ms-fullscreen, :root #module1modal.home-main-module {
-        height: 49vw;
-        background: url('/cms/files/homepagemodule1-v4-d.png');
-        background-size: cover;
-        background-repeat: no-repeat;
-    }
-    
-    _:-ms-fullscreen, :root #module1modal .background-full-image {
-        display: none;
-    }
-    
-    _:-ms-fullscreen, :root #module1modal .home-main-content.right {
-        left: calc(40% + 22vw);
-        transform: none;
-        top: 25%;
-        width: 44.375rem;
-    }
-
-    @media only screen and (min-width:769px) {
-        #module1modal.home-main-module .home-main-content.right {
-            padding-right: 1.5625rem;
-        }
-    }
-
-    @media only screen and (max-width:1200px) {
-
-    }
-
-    @media only screen and (max-width:960px) {
-        .home-main-content h3 {
-            width: 50vw;
-        }
-        .home-main-content .p1 {
-            width: 50vw;
-        }
-    }
-
-    @media only screen and (max-width:768px) {
-        .home-main-content.right {
-            top:25%;
-            left:50%;
-            width: 90%;
-        }
-
-        .home-main-content.left {
-            top:25%;
-            left:50%;
-            width: 90%;
-        }
-        .home-main-content h3 {
-            width: 80vw; 
-        }
-        .home-main-content .p1 {
-            width: 75vw;
-        }
-
-    }
-
-</style>
-
-<div id="module1modal" class="home-main-module">
-    <picture class="background-full-image">
-        <!-- IMAGE FOR LARGE VIEWPORTS --> 
-        <source srcset="{% if themeSettings.searchBannerXS %}{{ themeSettings.searchBannerXS }}{% else %}/cms/files/homepagemodule1-v4-d.png{% endif %}" media="(min-width: 769px)">
-        <!-- IMAGE FOR SMALL VIEWPORTS -->   
-        <img src="{% if themeSettings.searchBannerSM %}{{ themeSettings.searchBannerSM }}{% else %}/cms/files/homepagemodule1-v4-m.png{% endif %}" alt="NEOSTRATA® - Rejuvenated products to better rejuvenate your skin">
-    </picture>
-    <div class="home-main-content right">
-        <h1 class="h3">{{ labels.searchResults }}: <span class="mz-searchresults-query">{{ pageContext.search.query }}</span></h1>
-        <p class="p1">{{model.totalCount}} Results</p>
+<div class="mz-cms-block">
+    <div class="mz-cms-content">
+        <div class="mz-content-widget-wrap">
+            <div class="mz-content-widget-inner-wrap">
+                <div id="module1modal" class="home-main-module">
+                    <picture class="background-full-image">
+                        <!-- IMAGE FOR LARGE VIEWPORTS --> 
+                        <source srcset="{% if themeSettings.searchBannerXS %}{{ themeSettings.searchBannerXS }}{% else %}/cms/files/homepagemodule1-v4-d.png{% endif %}" media="(min-width: 769px)">
+                        <!-- IMAGE FOR SMALL VIEWPORTS -->   
+                        <img src="{% if themeSettings.searchBannerSM %}{{ themeSettings.searchBannerSM }}{% else %}/cms/files/homepagemodule1-v4-m.png{% endif %}" alt="NEOSTRATA® - Rejuvenated products to better rejuvenate your skin">
+                    </picture>
+                    <div class="home-main-content right">
+                        <h1 class="h3">{{ labels.searchResults }}: <span class="mz-searchresults-query">{{ pageContext.search.query }}</span></h1>
+                        <p class="p1">{{model.totalCount}} Results</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-
-            
-    </div>
-</div>
-</div></div>
 <div {% if pageContext.categoryId %}data-mz-category="{{ pageContext.categoryId }}" {% endif %}data-mz-search="{{ pageContext.search.query }}" class="mz-l-container container search-results">
 	{% include "pages/search-interior" %}
 </div>
