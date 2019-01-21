@@ -46,6 +46,7 @@
 
         &.order-summary-title {
             font-weight: bold;
+            margin: 0 0 3.875rem;
         }
     }
 
@@ -119,7 +120,6 @@
         }
     }
 
-
     .recommendation-wrapper {
         padding: 0 0 2.375rem;
 
@@ -144,4 +144,118 @@
         }
     }
 
+    .checkout-signin-header {
+        padding-bottom: 0.5rem;
+    }
+}
+
+.confirmation-summary {
+    h1.mz-pagetitle {
+        text-transform: none;
+        font-size: 3.4375rem;
+        font-weight: 500;
+        margin: 0 0 0.8125rem;
+    }
+    
+    .thankyou-order-block {
+        .mz-l-stack-item {
+            padding: 0 17% 0 1%;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        .confirmation-title {
+            font-size: 1.875rem;
+            line-height: 1em;
+            font-weight: 500;
+            margin: 4rem 0 1.6875rem;
+        }
+        
+        .confirmation-text {
+            font-size: 1.5rem;
+            line-height: 1.5em;
+            margin-bottom: 2rem;
+        }
+    }
+}
+
+.ordersummary-confirmation {
+    padding: 2.72rem 0 4.375rem;
+
+    .mz-checkoutform-header {
+        font-size: 1.875rem;
+        line-height: 1.5333em;
+        padding-bottom: 1.125rem;
+        
+        @media (max-width: 800px) {
+            border: 0;
+
+            padding: 0 1.25rem;
+            margin: 0;
+        }
+    }
+
+    .order-summary-privacyPolicy {
+        border-top: 0.125rem solid @midGray;
+        margin-top: 3.125rem;
+        padding-top: 0.625rem;
+    }
+
+    .mz-checkout-total-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.375rem 0;
+    }
+
+    .mz-ordersummary-totalname,
+    .mz-ordersummary-totalvalue {
+        color: @charcoal !important;
+    }
+
+    .mz-ordersummary-grandtotal {
+        .mz-ordersummary-totalname,
+        .mz-ordersummary-totalvalue {
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 1.875rem;
+        }
+        .mz-checkout-total-row {
+            padding: 3rem 0;
+        }
+    }
+    .order-summary-links {
+        a {
+            font-size: 1.25rem;
+            color: @charcoal;
+            text-decoration: none;
+            font-weight: 500;
+            line-height: 1em;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .order-summary-confirmation-info {
+        font-size: 1.7125rem;
+    }
+}
+.mz-l-stack-section-title {
+    border-bottom: 0.1875rem solid @midGray;
+    padding-bottom: 0.78rem;
+
+    .mz-pagetitle {
+        font-size: 3.4375rem;
+        line-height: 1em;
+        font-weight: 500;
+    }
+    .mz-pagesubtitle {
+        font-size: 1.5rem;
+        line-height: 1em;
+        font-weight: 500;
+    }
 }

@@ -216,7 +216,7 @@
   "orderConfirmation"    : "Order Confirmation",
   "confirmationText"     : "Thank you for your order!",
   "yourOrderNumber"      : "Your order number is <strong>{0}</strong>. A confirmation email is on its way.",
-  "confirmationCreateAccTitle" : "Save your info for faster ordering next time, and much more.",
+  "confirmationCreateAccTitle" : "Save your info for faster ordering next time, <br /> and much more.",
   "confirmationCreateAccText" : "Create a NeoStrata account for a personalized experience, free shipping, early access to new items, special offers and more.",
   "confirmationCartTitle": "Items in Order",
   "payments"             : "Payments",

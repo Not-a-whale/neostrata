@@ -1,4 +1,4 @@
-<div class="mz-l-container">
+<div class="mz-l-container confirmation-summary">
     <div class="mz-l-column checkout-signin-header container">
         {% if not user.isAuthenticated %}
             <a data-toggle="modal" data-mz-action="lite-registration" class="mz-pagetitle-note secondary-button">
@@ -9,12 +9,13 @@
     </div>
     <div class="mz-l-stack">
         <!-- TODO Create Account -->
-        <div class="mz-l-stack-section">
-            <h1 class="mz-pagetitle">{{ labels.confirmationText }}</h1>
-            <p class="mz-pagesubtitle">{{ labels.yourOrderNumber|string_format(model.orderNumber)|safe }}</p>
-            <i id="mz-print-content-confirmation" class="mz-reset-padding-left fa fa-print pull-right text-right" title="print"  aria-hidden="true" data-mz-print-order></i>
+        <div class="mz-l-stack-section thankyou-order-block">
+            <div class="mz-l-stack-section-title">
+                <h1 class="mz-pagetitle">{{ labels.confirmationText }}</h1>
+                <p class="mz-pagesubtitle">{{ labels.yourOrderNumber|string_format(model.orderNumber)|safe }}</p>
+            </div>
             <div class="mz-l-stack-item">
-                <p class="confirmation-title">{{ labels.confirmationCreateAccTitle }}</p>
+                <p class="confirmation-title">{{ labels.confirmationCreateAccTitle|safe }}</p>
                 <p class="confirmation-text">{{ labels.confirmationCreateAccText }}</p>
             </div>
             <div class="mz-l-stack-item">
@@ -23,9 +24,9 @@
         </div>
         <!-- END TODO Create Account -->
 
-        <div class="mz-l-stack-section">
+        <div class="mz-l-stack-section ordersummary-confirmation">
             <h4 class="mz-l-stack-sectiontitle order-summary-title">{{ labels.orderSummary }} </h4>
-            {% include "modules/common/order-summary" %}
+            {% include "modules/common/order-summary-confirmation" %}
             {% if model.shopperNotes.comments %}
             <div class="mz-ordercomments">
                 <h5 class="mz-ordercomments-header">{{ labels.comments }}</h5>
@@ -45,7 +46,6 @@
         <div class="mz-l-stack-section">
             <h4 class="mz-l-stack-sectiontitle">{{ labels.shippingInformation }}</h4>
             <div class="mz-l-stack-item">
-                <small>{{ labels.shipTo }}</small>
                 <div class="mz-addresssummary">{% include "modules/common/address-summary" with model=model.fulfillmentInfo.fulfillmentContact %}</div>
             </div>
             <div class="mz-l-stack-item">

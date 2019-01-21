@@ -123,7 +123,7 @@
         {% endif %}
     {% endif %}
 {% else %}
-    <div>{{ model.firstName }} {{ model.lastNameOrSurname }}</div>
+    <div class="address-customer-name">{{ model.firstName }} {{ model.lastNameOrSurname }}</div>
     <div>{{ model.address.address1 }}</div>
     {% if model.address.address2 %}
         <div>{{ model.address.address2 }}</div>
@@ -135,10 +135,13 @@
         <div>{{ model.address.address4 }}</div>
     {% endif %}
     <div>{{ model.address.cityOrTown }} {{ model.address.stateOrProvince }} {{ model.address.postalOrZipCode }}</div>
+    {% comment %}
     <div>{{ model.address.countryCode }}</div>
+    {% endcomment %}
     {% if model.phoneNumbers.home %}
         <span>{{ model.phoneNumbers.home }}</span>
     {% endif %}
+    
 
     {% if model.regularHours %}
         <br>
