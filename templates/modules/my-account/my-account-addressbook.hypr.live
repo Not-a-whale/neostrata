@@ -30,7 +30,7 @@
   {% endif %}
   {% endfor %}
   {% if editing.contact == "new" %}
-  {% include "modules/my-account/my-account-address-form" with model=model.editingContact %}
+  {% include "modules/my-account/my-account-address-form" with model=model.editingContact with isWishlistView="true"%}
   {% endif %}
 </ul>
 
