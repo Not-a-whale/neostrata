@@ -637,6 +637,7 @@
   "savePayment": "[fr-CA]Save Payment[fr-CA]",
   "youHaveWishlist": "[fr-CA]You have {0} items on your wishlist.[fr-CA]",
   "orderPackagePrice": "[fr-CA]Price Each[fr-CA]",
-  "wishlistViewInfo": "[fr-CA]View and manage your wishlist[fr-CA]"
+  "wishlistViewInfo": "[fr-CA]View and manage your wishlist[fr-CA]",
+  "orderStatusTitle" : "[fr-CA]Find your order number from your order confirmation email and enter it below along with your billing zip code to track your order status.[fr-CA]"
 
 }
