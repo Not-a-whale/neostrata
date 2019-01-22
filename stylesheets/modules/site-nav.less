@@ -991,6 +991,7 @@
         }
     }
   }
+  
 }
 
 // Account Dashboard
@@ -999,7 +1000,9 @@
     .mz-l-container {
         margin: 10rem auto 0;
         max-width: 83.33%;
-
+        font-size: 1.6875rem;
+        display: flex;
+        flex-direction: column;
         .h1, h1 {
             margin-top: 1.25rem;
             margin-bottom: 0.625rem;
@@ -1010,10 +1013,13 @@
         }
 
         .dl-maintitle {
-            margin-left: @leftPosition;
             position: absolute;
             top: -10rem;
-            padding-left: 6.3%;
+            left: 50%;
+            transform: translate(-50%,0);
+            order: 1;
+            width: 100%;
+            text-align: center;
             .mz-pagetitle {
                 font-size: 3.375rem;
             }
@@ -1023,10 +1029,14 @@
             }
         }
         .mz-myaccount-nav {
-            width: @leftPosition;
+            width: 100%;
             padding-right: 0;
+            order: 3;
+            text-align: center;
+            .mz-scrollnav-item {
+                float: unset;
+            }
             .mz-scrollnav-list.nav {
-                min-height: 500px;
                 .mz-scrollnav-link {
                     font-size: 1.875rem;
                     color: #4e5458;
@@ -1043,29 +1053,31 @@
             }
         }
         .mz-myaccount-panels {
-            margin-left: @leftPosition;
-            padding-right: 13%;
-            padding-left: 6.3%;
+            padding-left: 0;
+            order: 2;
+            margin: 3rem 0;
             .mz-l-stack-section {
                 &.no-editing {
                     display: inline-block;
-                    width: 49%;
+                    width: 100%;
                     vertical-align: top;
-                    padding: 0 15px 15px;
-                    margin-left: -15px;
+                    padding: 0 0 4rem;
+                    margin-left: 0;
                     margin-right: auto;
+
                     .mz-accountsettings-section {
                         min-height: unset;
                         padding: 0;
                     }
                     .mz-l-stack-sectiontitle {
-                        font-size: 1.375rem;
+                        font-size: 1.875rem;
                         line-height: 1.5;
+                        border-bottom: 2px solid #eee;
                     }
                     .dl-link-edit {
                         float: right;
                         line-height: 1.5;
-                        font-size: 1.375rem;
+                        font-size: 1.875rem;
                     }
                     .mz-accountsettings-label {
                         display: none;
@@ -1081,14 +1093,16 @@
                     .mz-l-stack-sectiontitle {
                         font-size: 3.375rem;
                         border-bottom: none;
-                        margin-top: 6.25rem;
                         margin-bottom: 0;
+                        margin-top: 0;
+                        text-align: center;
                     }
                     .mz-l-stack-sectionsubtitle {
                         font-size: 1.6875rem;
                         font-weight: normal;
                         margin-bottom: 4rem;
                         margin-top: 0;
+                        text-align: center;
                     }
                     
                     input[type=text], input[type=email], select, input[type=tel] {
@@ -1124,7 +1138,7 @@
                     }
 
                     .mz-accountsettings-acceptsmarketing label {
-                        display: inline-block;
+                        display: inline;
                     }
 
                     .dz-backtodashboard {
@@ -1218,38 +1232,26 @@
                         }
                     }
                 }
-                &.mz-accountsettings {
-                    &.is-editing {
-                        button.mz-accountsettings-editdone {
-                            margin-top: 7rem;
-                        }
-                        &.is-editing-password button.mz-accountsettings-editdone {
-                            margin-top: 12rem;
-                        }
-                    }
-                }
                 &.mz-passwordsection {
                     label {
-                        display: inline-block;
-                        width: 200px;
-                        margin-bottom: 1rem;
-                        font-size: 1rem;
+                        padding-bottom: 0.5rem;
                     }
                     input {
-                        border: 1px solid #4e5458;
+                        border-radius: 0;
+                        border: 2px solid #4e5458;
+                        height: 4rem;
+                        font-size: 1rem;
+                        color: #4e5458;
+                        padding: 0 0 0 2rem;
+                        margin: 0.5rem 0 1.5rem;
+                        width: 100%;
                     }
                     &.is-dashboard {
                         display: none !important;
                     }
                     &.no-dashboard {
                         display: block;
-                    }
-                    &#password-section {
-                        bottom: 9rem;
-                        position: absolute;
-                        &.is-editing {
-                            bottom: 10rem;
-                        }        
+                        margin-top: 3rem;
                     }
                 }
 
@@ -1359,7 +1361,7 @@
                         .mz-itemlisting {
                                 border-bottom: 2px solid #c2c2c2;
                                 padding: 2.5rem 1rem;
-                             .mz-itemlisting-title-wrapper {
+                            .mz-itemlisting-title-wrapper {
                                 text-decoration: none;
                                 text-transform: uppercase;
                                 margin-bottom: 3rem;
