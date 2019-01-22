@@ -1,0 +1,55 @@
+<table class="mz-orderitems" cellpadding="1" width="100%">
+    <thead>
+        <tr>
+            <td colspan="4" class="mz-ordersummary-header-items">{{ labels.emailItemsInOrder }}</td>
+        </tr>
+    </thead>
+    <tbody class="mz-ordersummary-lineitems">
+    {% for item in model.items %}
+        <tr class="mz-ordersummary-line mz-ordersummary-line-item {% if item.discountTotal > 0 %}is-discounted{% endif %}">
+            <td class="mz-ordersummary-item-product">
+            {% if item.product.imageUrl %}
+                <a href="{{ item.product.url }}" id="{{ item.product.url }}">
+                  <img class="mz-carttable-item-image" id="{{ item.product.imageUrl }}" {% if item.product.imageAlternateText %}alt="{{ item.product.imageAlternateText }}"{% endif %} />
+                </a>
+            {% else %}
+                <a href="{{ item.product.url }}">
+                  <div class="cart-noimage">
+                    [{{ labels.noImages }}]
+                  </div>
+                </a>
+            {% endif %}    
+                <div class="mz-carttable-item-info-wrap">
+                    <a class="mz-carttable-item-title" href="{{item.product.url}}">{{ item.product.name|safe }}</a>
+                </div>
+            {% if item.product.productUsage == 'Bundle' %}
+                <dl class="mz-propertylist">
+                {% for bundledProduct in item.product.bundledProducts %}
+                    <dt>{{ bundledProduct.productCode }}</dt>&nbsp;
+                    <dd>{{ bundledProduct.name }} ({{ bundledProduct.quantity }})</dd>
+                {% endfor %}
+                </dl>
+            {% endif %}
+            </td>
+            <td class="qty-td">
+                <span class="label-qty">{{ labels.qty }}</span>
+                <div class="mz-carttable-item-qty mz-cart-qty-box">
+                  <span class="mz-carttable-qty-field text-center">{{ item.quantity }}</span>
+                </div>
+            </td>
+            <td align="center">
+                <span class="label-total">{{ labels.total }}</span>
+                <div class="">
+                    {% include "modules/common/email-item-price" %}
+                </div>
+            </td>
+            <td align="right">
+                <span class="label-total">{{ labels.total }}</span>
+                <div class="">
+                    {% include "modules/common/email-item-total" %}
+                </div>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
