@@ -1,0 +1,59 @@
+{% include "modules/product/featured/featured-product" %}
+{% include "modules/product/featured/regimen-products" %}
+<style>
+.featuredBlock{
+    border: 0.1875rem solid #4e5458;
+    padding-bottom: 0 !important;
+    margin: 0 0 1rem 0;
+}
+.featuredBlock .mz-productlisting-image{
+    padding-left: 0;
+}
+.featuredBlock .mz-productlisting-info {
+    padding: 2rem 0;
+}
+.featuredBlock .slashHeading span {
+    order: 1;
+    background: #afafaf;
+    color: white;
+}
+.featuredBlock .slashHeading:before{
+    display: none;
+}
+.featuredBlock .slashHeading:after {
+    content: "\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0";
+    background-image: linear-gradient(125deg,#afafaf 40%,transparent 40%,transparent 50%,#afafaf 50%,#afafaf 70%,transparent 70%,transparent 100%);
+    height: 100%;
+    position: relative;
+    flex: 0;
+    order: 2;
+}
+.featuredBlock .wishAndPricew{
+    margin-top: 3rem;
+}
+.featuredBlock .price-msrp {
+    text-transform: uppercase;
+    font-size: .75rem;
+    font-style: italic;
+}
+.featuredBlock .posLeft{
+    border-left: 0.0625em solid #c2c2c2;
+    margin-left: 2.5em;
+    display: inline-block;
+    max-height: 3rem;
+}
+.featuredBlock .pdp1{
+    margin-top: 3rem !important;
+}
+.featuredBlockButton .mz-productdetail-addtocart{
+    width: 100%;
+    height: 4rem !important;
+    font-size: 1.3rem !important;
+}
+.featuredBlockButton .add-to-wishlist-container{
+    padding-top: 1rem !important;
+}
+.featuredBlockButton .add-to-cart-container{
+    padding-right: 0 !important;
+}
+</style>
