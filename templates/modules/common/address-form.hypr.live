@@ -1,7 +1,7 @@
 ﻿{% block address-form %}
     <div class="mz-l-formfieldgroup-row mz-addressform-firstname">
         <div class="mz-l-formfieldgroup-cell">
-            <label for="firstname">{{ labels.firstName }}<span class="is-required"> *</span></label>
+            <label for="firstname">{{ labels.firstName }}</label>
         </div>
         <div class="mz-l-formfieldgroup-cell">
             <input type="text" class="input" name="firstname" data-mz-value="{{ addresscontext }}firstName" value="{{ model.firstName }}" maxlength="{{themeSettings.firstNameLength}}" placeholder="{{ labels.firstName }}*">
@@ -23,7 +23,7 @@
     {% endif %}
     <div class="mz-l-formfieldgroup-row mz-addressform-lastname">
             <div class="mz-l-formfieldgroup-cell">
-                <label for="lastname">{{ labels.lastName }}<span class="is-required"> *</span></label>
+                <label for="lastname">{{ labels.lastName }}</label>
             </div>
         <div class="mz-l-formfieldgroup-cell">
             <input type="text" class="input" name="lastname" data-mz-value="{{ addresscontext }}lastNameOrSurname" value="{{ model.lastNameOrSurname }}" maxlength="{{themeSettings.firstNameLength}}" placeholder="{{ labels.lastName }}*">
@@ -32,7 +32,7 @@
     </div>
     <div class="mz-l-formfieldgroup-row mz-addressform-address1">
             <div class="mz-l-formfieldgroup-cell">
-                <label for="address-line-1">{{ labels.address }}<span class="is-required"> *</span></label>
+                <label for="address-line-1">{{ labels.address }}</label>
             </div>
         <div class="mz-l-formfieldgroup-cell">
             <input type="text" class="input" name="address-line-1" data-mz-value="{{ addresscontext }}address.address1" value="{{ model.address.address1 }}" maxlength="{{themeSettings.addressLength}}" placeholder="{{ labels.address }} Line 1*">
@@ -76,7 +76,7 @@
     <div class="mz-l-formfieldgroup-row mz-addressform-city">
         {% comment %}
             <div class="mz-l-formfieldgroup-cell">
-                <label for="city">{{ labels.city }}<span class="is-required"> *</span></label>
+                <label for="city">{{ labels.city }}</label>
             </div>
         {% endcomment %}
         <div class="mz-l-formfieldgroup-cell">
@@ -91,7 +91,7 @@
     {% comment %}
     <div class="mz-l-formfieldgroup-row mz-addressform-state" {% if model.address.countryCode == "US" %} style="display: none"{% endif %}>
         <div class="mz-l-formfieldgroup-cell">
-            <label for="stateOrProvince">{{ labels.stateOrProvince }}<span class="is-required"> *</span></label>
+            <label for="stateOrProvince">{{ labels.stateOrProvince }}</label>
         </div>
         <div class="mz-l-formfieldgroup-cell">
             <input type="text" class="input" name="stateOrProvince" data-mz-value="{{ addresscontext }}address.stateOrProvince" value="{{ model.address.stateOrProvince }}" maxlength="{{themeSettings.stateNameLength}}">
@@ -103,7 +103,7 @@
     <div class="mz-l-formfieldgroup-row mz-addressform-state">
         {% comment %}
             <div class="mz-l-formfieldgroup-cell">
-                <label for="stateprov">{{ labels.state }}<span class="is-required"> *</span></label>
+                <label for="stateprov">{{ labels.state }}</label>
             </div>
         {% endcomment %}
         <div class="mz-l-formfieldgroup-cell">
@@ -135,7 +135,7 @@
     <div class="mz-l-formfieldgroup-row mz-addressform-zip">
         {% comment %}
             <div class="mz-l-formfieldgroup-cell">
-                <label for="postal-code">{{ labels.postalCode }}<span class="is-required"> *</span></label>
+                <label for="postal-code">{{ labels.postalCode }}</label>
             </div>
         {% endcomment %}
         <div class="mz-l-formfieldgroup-cell">
@@ -171,7 +171,7 @@
 
     <div class="mz-l-formfieldgroup-row mz-addressform-phone">
             <div class="mz-l-formfieldgroup-cell">
-                <label for="shippingphone">{{ labels.phone }}<span class="is-required"> *</span></label>
+                <label for="shippingphone">{{ labels.phone }}</label>
             </div>
         <div class="mz-l-formfieldgroup-cell">
             <input type="tel" class="input" name="shippingphone" data-mz-value="{{ addresscontext }}phoneNumbers.home" value="{{ model.phoneNumbers.home }}" maxlength="{{themeSettings.phoneNumberLength}}" minlength="{{themeSettings.phoneNumberLength}}" placeholder="{{ labels.phone }}*">
@@ -187,7 +187,7 @@
     <div class="mz-l-formfieldgroup-row mz-addressform-addresstype">
         {% comment %}
         <div class="mz-l-formfieldgroup-cell">
-            <label for="addresstype">{{ labels.addressType }}<span class="is-required"> *</span></label>
+            <label for="addresstype">{{ labels.addressType }}</label>
         </div>
         <div class="mz-l-formfieldgroup-cell">
             <div class="custom-select-wrapper">

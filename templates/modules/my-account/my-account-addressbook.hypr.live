@@ -35,12 +35,12 @@
 </ul>
 
 {% else %}
-<p class="mz-accountaddressbook-empty">
+<p class="mz-empty">
   {{ labels.noSavedContacts }}
 </p>
 {% endif %}
 
 {% if editing.contact == "view" %}
 <a class="mz-button primary-btn dl-link-newaddress" href="javascript:;" data-mz-action="beginAddContact">{{ labels.addNewContact }}</a>
-<button class="dz-backtodashboard" data-mz-action="cancelEditContact">{{ labels.accountDashboardBack }}</button>  
+<button class="dz-backtodashboard" data-mz-action="cancelViewContact">{{ labels.accountDashboardBack }}</button>  
 {% endif %}
