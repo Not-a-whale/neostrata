@@ -2,13 +2,13 @@
   <span>{{ labels.checkout }}</span>
   <a href="javascript:;" class="mz-formstep-edit" data-mz-action="edit">{{ labels.edit }}</a>
 </h3>
-<div class="mz-formstep-body">
+<div class="mz-formstep-body {% if model.stepStatus == 'complete'%}mz-checkoutform-disabled{% endif %}">
   <h5>{{ labels.yourInformation }}</h5>
   <div class="mz-formstep-fields mz-l-stack">
     <div class="checkout-twocolumn-row form-row">
       <div class="mz-l-formfieldgroup-row mz-addressform-firstname">
           <div class="mz-l-formfieldgroup-cell">
-              <input type="text" class="input" name="firstname" data-mz-value="{{ addresscontext }}firstName" value="{{ model.firstName }}" maxlength="{{themeSettings.firstNameLength}}" placeholder="{{ labels.firstName }}*" {% if model.stepStatus == 'complete'%}disabled{% endif %} >
+              <input type="text" class="input" name="firstname" data-mz-value="{{ addresscontext }}firstName" value="{{ model.firstName }}" maxlength="{{themeSettings.firstNameLength}}" placeholder="{{ labels.firstName }}*" {% if model.stepStatus == 'complete'%}disabled="disabled"{% endif %} >
               <span class="mz-validationmessage" data-mz-validationmessage-for="{{ addresscontext }}firstName"></span>
           </div>
       </div>
@@ -29,7 +29,7 @@
           </div>
           <div class="mz-l-formfieldgroup-row">
               <div class="mz-l-formfieldgroup-cell form-row">
-                  <input type="checkbox" name="special-offers" {% if model.acceptsMarketing %}checked="checked" {% endif %}data-mz-value="acceptsMarketing" class="mz-checkout-optin" id="email-subscription" {% if model.stepStatus == 'complete'%}disabled{% endif %} />
+                  <input type="checkbox" name="special-offers" {% if model.acceptsMarketing %}checked="checked" {% endif %}data-mz-value="acceptsMarketing" class="mz-checkout-optin hide" id="email-subscription" {% if model.stepStatus == 'complete'%}disabled{% endif %} />
                   <label class="mz-inline icon-check form-element" for="email-subscription" >{{ labels.optInSmall }}</label>
               </div>
           </div>

@@ -1,7 +1,6 @@
-﻿        <h5 class="checkout-fields-title">{{ labels.couponCode }}: </h5>
-        <div class="mz-l-formfieldgroup-cell coupon-code-wrapper">
+﻿        <h5 class="checkout-fields-title" data-toggle="collapse" href="#coupon-code-wrapper" role="button" aria-expanded="false" aria-controls="coupon-code-wrapper">{{ labels.couponCode }}: </h5>
+        <div class="mz-l-formfieldgroup-cell coupon-code-wrapper collapse" id="coupon-code-wrapper">
             <input type="text" id="coupon-code" name="coupon-code" value="{{ model.couponCode }}" data-mz-value="couponCode" maxlength="{{themeSettings.couponCodeLength}}">
-            <button class="mz-button primary-btn" data-mz-action="addCoupon" {% if not model.couponCode %} {% endif %}>{{ labels.apply }}</button>
+            <button type="button" class="mz-button primary-btn" data-mz-action="addCoupon" {% if not model.couponCode %} {% endif %}>{{ labels.apply }}</button>
         </div>
-        <a href="#" class="btn-add-promo-code">+ Cuopon or Promo Code</a>
         <a href="#" class="btn-add-promo-code">+ Enter Another Coupon or Promo Code</a>

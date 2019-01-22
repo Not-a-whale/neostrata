@@ -46,7 +46,7 @@
             <label for="mz-payment-credit-card-name">{{ labels.nameOnCard }}<span class="is-required"> *</span>:</label>
         </div>
         {% endcomment %}
-        <div class="mz-l-formfieldgroup-cell">
+        <div class="mz-l-formfieldgroup-cell hidden">
             <input type="text" name="credit-card-name" id="mz-payment-credit-card-name" data-mz-value="{{ cardcontext }}nameOnCard" value="{{ model.nameOnCard }}" maxlength="{{themeSettings.fullNameLength}}" placeholder="{{ labels.nameOnCard }}*">
             <span class="mz-validationmessage" data-mz-validationmessage-for="{{ cardcontext }}nameOnCard" ></span>
         </div>
