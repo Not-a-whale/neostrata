@@ -607,6 +607,6 @@
   "siteMap": "Site Map",
   "passwordFormat": "7 Characters minimum",
   "dayGuaranteeStatement": "30-day Money Back Guarantee. Order by 1:00 PM EST for sameday shipping.",
-  "billingRequiredMsg" : "Billing Zip Code field required."
-
+  "billingRequiredMsg" : "Billing Zip Code field required.",
+  "orderStatusTitle" : "Find your order number from your order confirmation email and enter it below along with your billing zip code to track your order status."
 }

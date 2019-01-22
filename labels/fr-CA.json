@@ -606,7 +606,9 @@
   "shopBy": "Magasiner par",
   "siteMap": "Plan du site",
   "passwordFormat": "[fr-CA]7 Characters minimum[fr-CA]",
-  "billingRequiredMsg" : "[fr-CA]Billing Zip Code field required.[fr-CA]"
+  "billingRequiredMsg" : "[fr-CA]Billing Zip Code field required.[fr-CA]", 
+  "orderStatusTitle" : "[fr-CA]Find your order number from your order confirmation email and enter it below along with your billing zip code to track your order status.[fr-CA]"
+
 
 
 }
