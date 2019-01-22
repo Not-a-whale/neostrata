@@ -620,14 +620,10 @@
   "orderFailsText": "[fr-CA]We are unable to process your order at this time.[fr-CA]",
   "billingRequiredMsg" : "[fr-CA]Billing Zip Code field required.[fr-CA]",
   "accountDashboardBack" : "[fr-CA]Back to Dashboard[fr-CA]",
-<<<<<<< HEAD
-  "saveAddress": "[fr-CA]Save Address[fr-CA]"
-=======
   "saveAddress": "[fr-CA]Save Address[fr-CA]",
   "savePayment": "[fr-CA]Save Payment[fr-CA]",
   "youHaveWishlist": "[fr-CA]You have {0} items on your wishlist.[fr-CA]",
   "orderPackagePrice": "[fr-CA]Price Each[fr-CA]",
   "wishlistViewInfo": "[fr-CA]View and manage your wishlist[fr-CA]"
 
->>>>>>> feature/33319_Account_Dashboard_III_Payments
 }
