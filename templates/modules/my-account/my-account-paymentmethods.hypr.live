@@ -1,4 +1,9 @@
-﻿<h3 class="mz-l-stack-sectiontitle">{{ labels.paymentMethods }} <a href="javascript:;" data-mz-card="new" data-mz-action="beginEditCard">{{ labels.addNewCard }}</a></h3>
+﻿<h1 class="mz-l-stack-sectiontitle">{{ labels.payments }} 
+    {% if not editing.card %}<a class="dl-link-edit dl-link-editpayment" href="javascript:;" data-mz-card="new" data-mz-action="viewPayments">{{ labels.edit }}</a>{% endif %} 
+</h1>
+{% if (editing.card || editing.card == "new") && editing.card != "view" %}<h5 class="mz-l-stack-sectionsubtitle">{{ labels.paymentMethodsInfo }}</h5>{% endif %}
+{% if editing.card == "view" %}<h5 class="mz-l-stack-sectionsubtitle">{{ labels.paymentMethodsInfoView }}</h5>{% endif %}
+
 {% if model.hasSavedCards or editing.card == "new" or model.purchaseOrder and model.purchaseOrder.isEnabled %}
 <ul class="mz-accountpaymentmethods-list mz-l-tiles">
     {% if model.purchaseOrder and model.purchaseOrder.isEnabled and siteContext.checkoutSettings.purchaseOrder.isEnabled %}
@@ -18,5 +23,10 @@
     {% endif %}
 </ul>
 {% else %}
-<p class="mz-accountpaymentmethods-empty">{{ labels.noSavedCards }} <a href="javascript:;" data-mz-card="new" data-mz-action="beginEditCard">{{ labels.addNewCard }}</a></p>
+<p class="mz-empty">{{ labels.noSavedCards }} </p>
+{% endif %}
+
+{% if editing.card == "view" %}
+<a class="mz-button primary-btn dl-link-newpayments" href="javascript:;" data-mz-action="beginEditCard" data-mz-card="new">{{ labels.addNewCard }}</a>
+<button class="dz-backtodashboard" data-mz-action="cancelViewCard">{{ labels.accountDashboardBack }}</button>  
 {% endif %}

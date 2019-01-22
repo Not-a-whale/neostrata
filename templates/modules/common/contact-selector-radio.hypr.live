@@ -18,6 +18,9 @@
             <input type="radio" data-mz-value="{{ contactcontext }}contactId" name="contactId" value="new" data-mz-enternewcontact checked="checked">
         </span>
         <span class="mz-contactselector-summarywrapper">
+            <div class="mz-addresssummary">
+                <span>{{ labels.enterNewAddress }}</span>
+            </div>
             {% block enter-new-form %}
             {% include "modules/common/address-form" with model=editingContact %}
             {% endblock enter-new-form %}

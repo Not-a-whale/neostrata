@@ -77,8 +77,8 @@
   "cardType"             : "[fr-CA]Card Type[fr-CA]",
   "cardNumber"           : "[fr-CA]Card Number[fr-CA]",
   "nameOnCard"           : "[fr-CA]Name On Card[fr-CA]",
-  "expires"              : "[fr-CA]Expires[fr-CA]",
-  "securityCode"         : "[fr-CA]Security Code (CVV2)[fr-CA]",
+  "expires"              : "[fr-CA]Expiration[fr-CA]",
+  "securityCode"         : "[fr-CA]CVV[fr-CA]",
   "phone"                : "[fr-CA]Phone[fr-CA]",
   "purchaseOrder"                         : "[fr-CA]Purchase Order[fr-CA]",
   "purchaseOrderAmount"                   : "[fr-CA]Amount[fr-CA]",
@@ -299,7 +299,7 @@
   "yourAccountSubt"      : "[fr-CA]View and update your account info.[fr-CA]",
   "accountSettings"      : "[fr-CA]Personal Info[fr-CA]",
   "accountMyWishlist"    : "[fr-CA]My Wishlist[fr-CA]",
-  "accountYourWishlist"  : "[fr-CA]Your Wishlist[fr-CA]",
+  "accountYourWishlist"  : "[fr-CA]Wishlist[fr-CA]",
   "accountNoWishlists"   : "[fr-CA]You do not have any wishlist items.[fr-CA]",
   "accountNoOrders"      : "[fr-CA]You have not placed any orders.[fr-CA]",
   "accountNoReturns"     : "[fr-CA]You have not requested any returns.[fr-CA]",
@@ -321,7 +321,7 @@
   "replace"              : "[fr-CA]Replace[fr-CA]",
   "returnOrReplace"      : "[fr-CA]Return or Replace Items[fr-CA]",
   "returnRequestDate"    : "[fr-CA]Return Request Date[fr-CA]",
-  "addNewCard"           : "[fr-CA]Add new card[fr-CA]",
+  "addNewCard"           : "[fr-CA]Add new payment[fr-CA]",
   "noSavedCards"         : "[fr-CA]You have no saved payment methods.[fr-CA]",
   "confirmDeleteCard"    : "[fr-CA]Are you sure you want to delete the credit card {0}?[fr-CA]",
   "contactType"          : "[fr-CA]Type[fr-CA]",
@@ -330,11 +330,11 @@
   "noSavedContacts"      : "[fr-CA]You have no saved addresses.[fr-CA]",
   "confirmDeleteContact" : "[fr-CA]Are you sure you want to delete the address {0}?[fr-CA]",
   "confirmDeleteContact2":  "This will delete all associated credit cards![fr-CA]",
-  "removeFromWishlist"   : "[fr-CA]Remove From Wishlist[fr-CA]",
+  "removeFromWishlist"   : "[fr-CA]Remove[fr-CA]",
   "addedToCart"          : "[fr-CA]{0} has been added to your cart.[fr-CA]",
   "leaveOnWishlist"      : "[fr-CA]Leave On Wishlist[fr-CA]",
   "confirmRemoveFromWishlist": "[fr-CA]Are you sure you want to remove {0} from your wishlist?[fr-CA]",
-  "selectBillingAddress" : "[fr-CA]Select Billing Address[fr-CA]",
+  "selectBillingAddress" : "[fr-CA]Billing Address[fr-CA]",
   "enterNewAddress"      : "[fr-CA]Enter New Address[fr-CA]",
   "reasonForReturn"      : "[fr-CA]Reason for Return[fr-CA]",
   "quantityToReturn"     : "[fr-CA]Quantity to Return[fr-CA]",
@@ -537,6 +537,8 @@
   "orderHistoryInfo": "[fr-CA]Review all orders placed with us using this account[fr-CA]",
   "addressBookInfo": "[fr-CA]Update your saved addresses.[fr-CA]",
   "addressBookInfoView": "[fr-CA]View and update your addresses.[fr-CA]",
+  "paymentMethodsInfo": "[fr-CA]Update your Payments.[fr-CA]",
+  "paymentMethodsInfoView": "[fr-CA]View and update your saved Payments.[fr-CA]",
   "logOutInfo": "[fr-CA]Sign out of your account[fr-CA]",
   "wishLists" : "[fr-CA]Wish Lists[fr-CA]",
   "productwithoutSku" : "[fr-CA]Product without Sku[fr-CA]",
@@ -618,5 +620,14 @@
   "orderFailsText": "[fr-CA]We are unable to process your order at this time.[fr-CA]",
   "billingRequiredMsg" : "[fr-CA]Billing Zip Code field required.[fr-CA]",
   "accountDashboardBack" : "[fr-CA]Back to Dashboard[fr-CA]",
+<<<<<<< HEAD
   "saveAddress": "[fr-CA]Save Address[fr-CA]"
+=======
+  "saveAddress": "[fr-CA]Save Address[fr-CA]",
+  "savePayment": "[fr-CA]Save Payment[fr-CA]",
+  "youHaveWishlist": "[fr-CA]You have {0} items on your wishlist.[fr-CA]",
+  "orderPackagePrice": "[fr-CA]Price Each[fr-CA]",
+  "wishlistViewInfo": "[fr-CA]View and manage your wishlist[fr-CA]"
+
+>>>>>>> feature/33319_Account_Dashboard_III_Payments
 }

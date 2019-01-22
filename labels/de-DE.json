@@ -459,6 +459,8 @@
     "orderHistoryInfo": "Überprüfen Sie alle Bestellungen, die über dieses Konto bei uns eingehen",
     "addressBookInfo": "Anzeigen, Bearbeiten oder Löschen von Adressen in Ihrem persönlichen Adressbuch",
     "addressBookInfoView": "View and update your addresses.",
+    "paymentMethodsInfo": "Update your Payments.",
+    "paymentMethodsInfoView": "View and update your saved Payments.",
     "logOutInfo": "Melden Sie sich von Ihrem Konto ab",
     "wishLists": "Wunschlisten",
     "productwithoutSku": "Product without Sku",
@@ -528,5 +530,9 @@
     "passwordFormat": "7 Characters minimum",
     "billingRequiredMsg" : "Billing Zip Code field required.",
     "accountDashboardBack" : "Back to Dashboard",
-    "saveAddress": "Save Address"
+    "saveAddress": "Save Address",
+    "savePayment": "Save Payment",
+    "youHaveWishlist": "You have {0} items on your wishlist.",
+    "orderPackagePrice": "Price Each",
+    "wishlistViewInfo": "View and manage your wishlist"
 }
