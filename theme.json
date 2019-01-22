@@ -245,6 +245,14 @@
       "userCreatable": true
     },
     {
+      "entityType": "category",
+      "id": "antiaging-page",
+      "template": "antiaging-page",
+      "title": "Antiaging Products",
+      "userCreatable": false,
+      "customEditor": "categoryContent@mozu"
+    },
+    {
       "documentType": "web_page",
       "entityType": "webpage",
       "id": "blank-splash-page",

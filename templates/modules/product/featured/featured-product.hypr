@@ -1,0 +1,91 @@
+<li
+  class="mz-productlist-item product-item col-xs-12 col-sm-6 col-md-6"
+  data-mz-product="F30095D"
+>
+  <div class="product-listing-container">
+    <div
+      class="mz-productlisting mz-productlist-tiled featuredBlock row defend"
+      data-mz-product="F30095D"
+    >
+      <div class="mz-productlisting-image col-xs-5">
+        <div class="zoom-container-listing">
+          <a
+            href="/product/skin-active-repair-comprehensive-antiaging-system/F30095D"
+          >
+            <img
+              src="//cdn-sb.mozu.com/26425-41093/cms/41093/files/7cf610e7-2479-4137-816f-abdd6bc68e4f?max=800"
+              data-zoom-image="//cdn-sb.mozu.com/26425-41093/cms/41093/files/7cf610e7-2479-4137-816f-abdd6bc68e4f?max=700"
+              alt="Targets the visible signs of photodamage"
+            />
+          </a>
+        </div>
+      </div>
+      <div class="mz-productlisting-info col-xs-7">
+        <div class="slashHeading"><span>FEATURED PRODUCT</span></div>
+        <div class="pdp1">Kits</div>
+
+        <a
+          class="mz-productlisting-title pdp2"
+          href="/product/skin-active-repair-comprehensive-antiaging-system/F30095D"
+          >Comprehensive Antiaging System 123</a
+        >
+
+        <div class="mz-productlisting-shortdesc pdp3">
+          Targets the visible signs of photodamage
+        </div>
+        <div class="row wishAndPricew">
+          <div class="col-xs-4"></div>
+          <div class="col-xs-6 posLeft">
+            <div
+              itemprop="offers"
+              itemscope=""
+              itemtype="http://schema.org/Offer"
+              class="mz-productdetail-price mz-l-stack-section"
+            >
+              <div
+                itemprop="priceSpecification"
+                itemscope=""
+                itemtype="http://schema.org/PriceSpecification"
+                class="pdp4 mz-pricestack"
+              >
+                <span class="not-range">
+                  <span itemprop="price" class="mz-price">
+                    $33.00
+
+                    <span class="price-small-srp">SRP</span>
+                  </span>
+                </span>
+
+                <div class="price-msrp">Suggested Retail Price</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="mz-productdetail-conversion-buttons featuredBlockButton col-xs-12"
+    >
+      <div class="col-xs-1 add-to-wishlist-container">
+        <a
+          id="wishlist-F30095D"
+          class="mz-productdetail-addtowishlist wishlistHeart"
+          data-mz-action="directoryAddToWishlist"
+          data-mz-product-code="F30095D"
+        >
+          <span class="blank-heart"></span>
+        </a>
+      </div>
+      <div class="col-xs-11 add-to-cart-container">
+        <button
+          id="add-to-cart-F30095D"
+          class="primary-btn mz-productdetail-addtocart font-large button_primary pull-right "
+          data-mz-action="directoryAddToCart"
+          data-mz-product-code="F30095D"
+        >
+          Add To Cart
+        </button>
+      </div>
+    </div>
+  </div>
+</li>
