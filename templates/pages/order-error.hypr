@@ -1,0 +1,14 @@
+{% extends "page" %}
+
+{% block title-tag-content %}{% firstof pageContext.metaTitle labels.orderConfirmation %} - {% parent %}{% endblock title-tag-content %}
+
+{% block body-tag-classes %} mz-order-error {% endblock body-tag-classes %}
+
+{% block body-content %}
+
+<div id="confirmation-container">
+    {% dropzone "order-error-top" scope="template" %}
+    {% include "modules/confirmation/order-fail" %}
+    {% dropzone "order-error-bottom" scope="template" %}
+</div>
+{% endblock body-content %}

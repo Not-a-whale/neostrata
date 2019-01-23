@@ -835,7 +835,18 @@
         min-height:0;
     }
 }
-
+#addToWishListPopUp{
+    background-color: @midGray;
+    color: @charcoal;
+    font-weight: @fontWeightMedium;
+    font-size: @fontSizeLarger;
+    a{
+        color: @charcoal;
+        &:hover{
+            color: @charcoal;
+        }
+    }
+}
 .search-results{
     .facets-block{
         height: 7rem;
@@ -2588,10 +2599,10 @@ ul.tabs {
             cursor: pointer;
             border: none;
             .heart-filled:before{
-                content: "\e910";
+                content: @icon-heart-filled;
             }
             .heart-outline:before{
-                content: "\e90f";
+                content: @icon-heart-outline;
             }
         }
       .mz-reviews-pdp-stars{
@@ -2692,7 +2703,41 @@ ul.tabs {
         .commerce-enabled-false & {
             display: none;
         }
+        .mz-productdetail-conversion-controls{
+            margin-top: 5rem;
+        }
+        #mz_pdp_qty{
+            border: 0.25rem solid @charcoal;
+            border-radius: 0;
+            width: 7rem;
+            height: 4rem;
+            font-size: 1.9rem;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            padding: 0 0 0 2rem;
+        }
+        .mz-qty-label{
+            font-size: 1.5rem;
+            font-weight: 500;
+            padding-top: 1rem;
+        }
+        .mz_pdp_qty{
+            position: relative;
+            &:after {
+                content: "\e909";
+                font-family: 'icomoon' !important;
+                font-size: 2.5rem;
+                position: absolute;
+                top: 0.2rem;
+                left: 5rem;
+                pointer-events: none;
+            }
+        }
         .mz-l-stack-section{
+            .mz-pricestack{
+                display: none;
+            }
             clear: none;
             &.mz-productdetail-price {
                 margin-top: 22px;
@@ -3836,4 +3881,314 @@ body.mz-product {
 }
 .mz-product #BVRRContainer {
     margin: 4rem 0;
+}
+
+@media (min-width: 992px) {
+// Account Dashboard
+.mz-myaccount {
+    @leftPosition: 19.5%; 
+    .mz-l-container {
+        display: block;
+        .h1, h1 {
+            margin-top: 1.25rem;
+            margin-bottom: 0.625rem;
+        }
+        .h5, h5 {
+            margin-top: 0.625rem;
+            margin-bottom: 0.625rem;
+        }
+
+        .dl-maintitle {
+            margin-left: @leftPosition;
+            padding-left: 6.3%;                        
+            transform: none;
+            left: unset;
+            width: unset;
+            text-align: left;
+        }
+        .mz-myaccount-nav {
+            width: @leftPosition;
+            padding-right: 0;
+            text-align: left;
+        }
+        .mz-myaccount-panels {
+            margin: -4rem 0 0 @leftPosition;
+            padding-left: 6.3%;
+            .mz-l-stack-section {
+                &.no-editing {
+                    width: 49%;
+                    padding: 0 3.75rem 4rem;
+                    margin-left: -3.75rem;
+                    .mz-accountsettings-section {
+                        min-height: unset;
+                        padding: 0;
+                    }
+                    .mz-l-stack-sectiontitle {
+                        font-size: 1.875rem;
+                        line-height: 1.5;
+                        border-bottom: 2px solid #eee;
+                    }
+                    .dl-link-edit {
+                        float: right;
+                        line-height: 1.5;
+                        font-size: 1.875rem;
+                    }
+                    .mz-accountsettings-label {
+                        display: none;
+                    }
+                    .mz-accountsettings-acceptsmarketing label, #account-acceptsmarketing {
+                        display: none;
+                    }
+
+                }
+                &.is-editing {
+                    width: 100%;
+                    margin-top: -10rem;
+                    .mz-l-stack-sectiontitle {
+                        margin-top: 6.25rem;
+                        text-align: left;
+                    }
+                    .mz-l-stack-sectionsubtitle {
+                        text-align: left;
+                    }
+                    
+                    //Address Book Info
+                    .mz-accountaddressbook-form {
+                        width: 100%;
+                        .mz-addressform-firstname, .mz-addressform-lastname, .mz-addressform-city, .mz-addressform-state {
+                            width: 50%;
+                            float: left;
+                            display: block;
+                        }
+                        &.mz-l-formfieldgroup {
+                            .mz-l-formfieldgroup-row {
+                                display: block;
+                                &.mz-addressform-country {
+                                    display: none;
+                                }
+                            }
+                            .mz-l-formfieldgroup-cell {
+                                display: block;
+                            }
+                        }
+                        .mz-contact-actions {
+                            margin: 0 auto;
+                            text-align: center;
+                        }
+                        .mz-contact-cancel {
+                            float: right;
+                            border: none;
+                            text-transform: none !important;
+                        }
+                    }
+                    
+                }                
+                &.mz-accountaddressbook {
+                    &.no-editing {
+                        .mz-accountaddressbook-contact {
+                            width: 100%;
+                            border-right: none;
+                            display: none;
+                            min-height: auto;
+                            &:first-of-type {
+                                display: block;
+                            }
+                        }
+                        .dl-link-newaddress, .dz-backtodashboard, .mz-accountaddressbook-actions {
+                            display: none;
+                        }
+                        
+                    }
+                    &.is-editing {
+                        .mz-accountaddressbook-list {
+                            width: 100%;
+                            float: left;
+                        }
+                        .dl-link-editaddress {
+                            display: none;
+                        }
+                        .mz-accountaddressbook-contact:not(.mz-accountaddressbook-form) {
+                            width: 50%;
+                            display: inline-block;
+                            float: left;
+                            margin: 0;
+                            border: none;
+                            padding: 0 4% 0 0;
+                        }
+                        .mz-contact-actions .mz-button {
+                            background: none;
+                        }
+                        .dl-link-newaddress {
+                            .my-account-button();
+                        }
+                        input, select {
+                            margin-bottom: 0.8rem;
+                        }
+                    }
+                }
+
+                .mz-accountpaymentmethods-form {
+                    width: 100%;
+                    .mz-l-formfieldgroup-halfsize {
+                        float: left;
+                        display: block;
+                        margin-left: 0;
+                        margin-right: 0;
+                        &:first-of-type {
+                            width: 50%;
+                        }
+                        @leftInputMargin: 1.5rem; 
+                        &:last-of-type {
+                            width: calc(50% ~"-" @leftInputMargin);
+                            margin-left: @leftInputMargin;
+                        }
+                    }
+                    .mz-l-formfieldgroup {
+                        display: block;
+                        .mz-l-formfieldgroup-row {
+                            display: block;
+                        }
+                        .mz-l-formfieldgroup-cell {
+                            display: block;
+                        }
+                    }
+                    .mz-creditcard-actions {
+                        margin: 0 auto;
+                        text-align: center;
+                    }
+                    .mz-creditcard-cancel {
+                        float: right;
+                        border: none;
+                        text-transform: none !important;
+                    }
+                    input, select {
+                        margin-bottom: 0.8rem;
+                        text-transform: uppercase;
+                    }
+                    input[type="radio"] {
+                        margin-bottom: 0;
+                    }
+                    .mz-contactselector-contact {
+                        margin: 2rem 1rem;
+                        .flex-display(flex);
+                        width: 100%;
+                        min-height: auto;
+                        &.mz-contactselector-new {
+                            span {
+                                display: inline-block;
+                            }
+                            .mz-contactselector-inputwrapper {
+                                vertical-align: top;
+                            }
+                            .mz-contactselector-summarywrapper {
+                                padding: 0;
+                                width: 100%;
+                            }
+                            label {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+
+                &.mz-accountpaymentmethods {
+                    &.is-editing {
+                        .mz-accountpaymentmethods-list {
+                            width: 100%;
+                            float: left;
+                        }
+                        .dl-link-editpayment {
+                            display: none;
+                        }
+                        .mz-creditcard-actions .mz-button {
+                            background: none;
+                        }
+                        .dl-link-newpayments {
+                            .my-account-button();
+                        }
+                    }
+                }
+
+                &.mz-accountwishlist  {
+                    &.is-editing {
+                        margin-bottom: 4rem;
+                        .mz-itemlisting-actions {
+                            display: block;
+                            width: 100%;
+                            margin: 2.5rem 0;
+                            .remove {
+                                float: left;
+                                text-decoration: none;
+                                text-transform: uppercase;
+                                font-weight: 700;
+                                display: inline-block;
+                                line-height: 3rem;
+                            }
+                            .add {
+                                display: inline-block;
+                                float: right;
+                                .my-account-button();
+                            }
+                        }
+                        .mz-itemlisting {
+                                border-bottom: 2px solid #c2c2c2;
+                                padding: 2.5rem 1rem;
+                             .mz-itemlisting-title-wrapper {
+                                text-decoration: none;
+                                text-transform: uppercase;
+                                margin-bottom: 3rem;
+                                display: inline-block;
+                                width: 47%;
+                                .mz-itemlisting-title {
+                                    margin-bottom: 2.5rem;
+                                    display: block;
+                                }
+                            }
+                            .mz-itemlisting-thumb {
+                                float: left;
+                                width: 12%;
+                                margin-right: 2%;
+                                .mz-itemlisting-thumb-img {
+                                    width: auto;
+                                    max-width: 100%;
+                                }
+                            }
+                            .mz-itemlisting-details {
+                                width: 86%;
+                                margin: 0;
+                                display: inline-block;
+                                
+                                .mz-itemlisting-price {
+                                    display: inline-block;
+                                    float: right;
+                                    width: 33%;
+                                    text-align: right;
+                                    .mz-itemlisting-price-title {
+                                        margin-bottom: 2.5rem;
+                                    }
+                                }
+                                .mz-itemlisting-quantity {
+                                    display: inline-block;
+                                    float: right;
+                                    text-align: center;
+                                    width: 20%;
+                                }
+                            }
+                        }
+                    }
+                    &.no-editing {
+                        .mz-accountwishlist-list {
+                            display: none;
+                        }
+                    }
+                }
+
+                &.mz-accountstorecredit {
+                    display: none;
+                }
+
+            }
+        }
+    }
+}
 }

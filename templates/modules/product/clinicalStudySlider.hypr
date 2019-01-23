@@ -1,0 +1,15 @@
+{% if textSlider %}
+<div>
+<!-- Swiper -->
+  <div class="swiper-container" id="clinicalStudySwipe">
+    <div class="swiper-wrapper">
+    {% for textS in textSlider|split('[[]]') %}
+        <div class="swiper-slide product-item">
+            {{ textS|safe }}
+        </div>
+    {% endfor %}
+    </div>
+  </div>
+</div>
+  {% require_script "modules/product/product-carousel-swiper-b-and-f-clinicalStudy" %}
+{% endif %}

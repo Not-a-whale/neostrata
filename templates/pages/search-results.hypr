@@ -7,7 +7,26 @@
 {% block body-content %}
 
 {% require_script "pages/search" %}
-
+<div class="mz-cms-block">
+    <div class="mz-cms-content">
+        <div class="mz-content-widget-wrap">
+            <div class="mz-content-widget-inner-wrap">
+                <div id="module1modal" class="home-main-module">
+                    <picture class="background-full-image">
+                        <!-- IMAGE FOR LARGE VIEWPORTS --> 
+                        <source srcset="{% if themeSettings.searchBannerXS %}{{ themeSettings.searchBannerXS }}{% else %}/cms/files/homepagemodule1-v4-d.png{% endif %}" media="(min-width: 769px)">
+                        <!-- IMAGE FOR SMALL VIEWPORTS -->   
+                        <img src="{% if themeSettings.searchBannerSM %}{{ themeSettings.searchBannerSM }}{% else %}/cms/files/homepagemodule1-v4-m.png{% endif %}" alt="NEOSTRATA® - Rejuvenated products to better rejuvenate your skin">
+                    </picture>
+                    <div class="home-main-content right">
+                        <h1 class="h3">{{ labels.searchResults }}: <span class="mz-searchresults-query">{{ pageContext.search.query }}</span></h1>
+                        <p class="p1">{{model.totalCount}} Results</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div {% if pageContext.categoryId %}data-mz-category="{{ pageContext.categoryId }}" {% endif %}data-mz-search="{{ pageContext.search.query }}" class="mz-l-container container search-results">
 	{% include "pages/search-interior" %}
 </div>

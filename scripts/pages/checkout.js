@@ -7,8 +7,8 @@ require(["modules/jquery-mozu",
     'hyprlivecontext', 
     'modules/editable-view', 
     'modules/preserve-element-through-render',
-    'modules/bootstrap-select',
-    'modules/xpress-paypal'], 
+    'modules/xpress-paypal',
+		'modules/bootstrap-select'],
     function ($, _, Hypr, Backbone, CheckoutModels, messageViewFactory, CartMonitor, HyprLiveContext, EditableView, preserveElements,PayPal) {
 
 
@@ -109,7 +109,7 @@ require(["modules/jquery-mozu",
         renderOnChange: [
             'address.countryCode',
             'contactId'
-        ],
+    ],
         beginAddContact: function () {
             this.model.set('contactId', 'new');
         },
@@ -118,6 +118,10 @@ require(["modules/jquery-mozu",
         },
         allowDigit:function(e){
             e.target.value= e.target.value.replace(/[^\d]/g,'');
+        },
+        render: function() {
+            CheckoutStepView.prototype.render.apply(this );
+            $('.selectpicker').selectpicker();
         }
     });
 

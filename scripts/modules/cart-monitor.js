@@ -7,11 +7,13 @@ define(['modules/jquery-mozu', 'modules/api', 'bootstrap', 'modules/page-header/
     var $cartCount,
         user = require.mozuData('user'),
         userId = user.userId,
+        cartTotal = 0,
         $document = $(document),
         CartMonitor = {
             setAmount: function(amount) {
                 var localAmount = Hypr.engine.render("{{price|currency}}",{ locals: { price: amount }});
                 this.$amountEl.text(localAmount);
+                cartTotal = amount;
             },           
             setCount: function(count) {
                 this.$el.text(count);
@@ -21,23 +23,38 @@ define(['modules/jquery-mozu', 'modules/api', 'bootstrap', 'modules/page-header/
                     $('.ml-header-global-cart-count').removeClass('emptyCart');
                 }
             },
-            addToCount: function(count) {
-                this.update(true);
+            addToCount: function( count, offerSampleProducts ) {
+                this.update(true, offerSampleProducts);
             },
             getCount: function() {
                 return parseInt(this.$el.text(), 10) || 0;
             },
-            update: function(showGlobalCart) {
+            getCartTotal: function() {
+                return cartTotal;
+            },
+            getItemsCache: function() {
+                return GlobalCart.getItemsCache();
+            },
+            update: function( showGlobalCart, offerSampleProducts ) {
                 api.get('cartsummary').then(function(summary) {
                     $.cookie('mozucart', JSON.stringify(summary.data), { path: '/' });
                     savedCarts[userId] = summary.data;
-                    console.log(summary);
-                    $document.ready(function() {
-                        $('.ml-header-global-cart-wrapper').css('display', 'block');
-                        CartMonitor.setCount(summary.data.totalQuantity);
-                        CartMonitor.setAmount(summary.data.total); 
-                        GlobalCart.update(showGlobalCart);                         
-                    });
+                    //console.log(summary);
+                    if( offerSampleProducts  && summary.data.total && summary.data.total > Hypr.getThemeSetting('freeSampleOrderTotalThreshold') ){
+                        $document.ready(function() {
+                            CartMonitor.setCount(summary.data.totalQuantity);
+                            CartMonitor.setAmount(summary.data.total);
+                            window.location.href = Hypr.getThemeSetting('freeSamplePagePath') || "/c/" + Hypr.getThemeSetting('freeSampleCategoryId');
+                        });
+                    }
+                    else{
+                        $document.ready(function() {
+                            $('.ml-header-global-cart-wrapper').css('display', 'block');
+                            CartMonitor.setCount(summary.data.totalQuantity);
+                            CartMonitor.setAmount(summary.data.total);
+                            GlobalCart.update( showGlobalCart );
+                        });
+                    }
                 });
                 
             }

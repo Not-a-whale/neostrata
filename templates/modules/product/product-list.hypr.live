@@ -9,3 +9,4 @@
     <div id="more-item-container" class="clearfix"></div>
     {% require_script "modules/category/infinite-scroller" %}
 </div>
+{% include "modules/google-tag-manager/gtm-product-list" %}

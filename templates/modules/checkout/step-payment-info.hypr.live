@@ -172,14 +172,14 @@
                             {{ labels.billingContact }}<span class="is-required"> *</span>:
                         </label>
                     </div>
-                    <div class="mz-l-formfieldgroup-cell">
+                    <div class="mz-l-formfieldgroup-cell form-row mz-checkoutform-disabled">
                         <input type="text" id="billing-email" name="billing-email" data-mz-value="billingContact.email" value="{{ model.billingContact.email }}"/>
                         <span class="mz-validationmessage" data-mz-validationmessage-for="billingContact.email"></span>
                     </div>
                 </div>
                 <div class="mz-l-formfieldgroup-row">
                     <div class="mz-l-formfieldgroup-cell"></div>
-                    <div class="mz-l-formfieldgroup-cell">
+                    <div class="mz-l-formfieldgroup-cell mz-checkoutform-disabled">
                         <label class="mz-inline">
                             <input type="checkbox" name="special-offers" {% if model.acceptsMarketing %}checked="checked" {% endif %}data-mz-value="acceptsMarketing" class="mz-checkout-optin" /> {{ labels.optIn|string_format(siteContext.generalSettings.websiteName) }}
                         </label>
@@ -196,9 +196,7 @@
     </div>
     
     <div class="mz-l-formfieldgroup">
-        <div class="mz-checkoutform-couponcode mz-l-formfieldgroup-row form-row" id="coupon-code-field" >
-            {% include "modules/checkout/coupon-code-field" %}
-        </div>
+
         {% if themeSettings.showCheckoutCommentsField %}
         <div class="mz-checkoutform-comments mz-l-formfieldgroup-row" id="comments-field" >
             {% include "modules/checkout/comments-field" %}
@@ -210,16 +208,13 @@
         <button type="button" class="mz-button primary-btn" data-mz-action="next">{{ labels.useThisPaymentInfo }}</button>
     </div>
 
-    <!-- TODO Paypal Checkout -->
-    <div class="checkout-paypal">
-        <img src="/resources/images/paypal.png" alt="">
-    </div>
-
+{% comment%}
     <!-- TODO Create account -->
 
     <div class="checkout-create-account form-row">
         <input type="checkbox" id="create-account" name="create-account" value="true">
         <label class="mz-inline icon-check form-element" for="create-account">{{ labels.createAccountCheckout|safe }}</label>
     </div>
+{% endcomment%}
 
 </div><!-- .mz-panel-wrap -->

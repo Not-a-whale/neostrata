@@ -237,7 +237,6 @@
     
         CustomerInfo = CheckoutStep.extend({
             initialize: function () {
-                console.log( 'CustomerInfo init' );
             },
             validation: {
                 firstName: {
@@ -1091,9 +1090,7 @@
                                 me.get( 'billingContact' ).set( 'email', me.getOrder().get( 'customerInfo' ).get( 'email' ) );
                             }
                             if( me.getOrder().get( 'customerInfo' ) ){
-                                console.log( 'before',me.getOrder().get( 'acceptsMarketing' ) );
                                 me.getOrder().set( 'acceptsMarketing', me.getOrder().get( 'customerInfo' ).get( 'acceptsMarketing' ) );
-                                console.log( 'after',me.getOrder().get( 'acceptsMarketing' ) );
                             }
                         }
                     });
@@ -1240,7 +1237,14 @@
                     return false;
                 }
 
-                var card = this.get('card');
+							var card = this.get('card');
+
+							if(card.apiModel.data.cardNumber && !card.apiModel.data.cardNumber.includes("*") ) {
+								var billingData = this.get( 'data' ) || {};
+								billingData.unmaskedCreditCard = card.apiModel.data.cardNumber;
+								this.set( 'data', billingData );
+							}
+
                 if(this.get('paymentType').toLowerCase() === "purchaseorder") {
                     this.get('purchaseOrder').inflateCustomFields();
                 }

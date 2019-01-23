@@ -1,7 +1,18 @@
-    <h5 class="checkout-fields-title">
-        <span>{{ labels.shippingMethod }}</span>
-    </h5>
-    <div class="mz-formstep-body mz-checkoutform shipping-method-wrapper">
+<h5 class="mz-formstep-header mz-checkoutform-header checkout-fields-title">
+    <span>{{ labels.shippingMethod }}</span>
+    {% if model.requiresFulfillmentInfo %}
+        <a href="javascript:;" class="mz-formstep-edit" data-mz-action="edit">{{ labels.edit }}</a>
+    {% endif %}
+</h5>
+<div class="mz-formstep-body mz-checkoutform shipping-method-wrapper">
+    <div class="mz-formstep-summary">
+        {% if model.requiresFulfillmentInfo %}
+            <strong class="form-row">{{ model.shippingMethodName }}</strong> <label>({%if model.price == 0 %}{{ labels.shippingFree }}{% else %}{{ model.price|currency }}{% endif %})</label>
+        {% else %}
+            {{ labels.noFulfillmentInfoRequired }}
+        {% endif %}
+    </div>
+    <div class="mz-formstep-fields mz-l-formfieldgroup">
         {% if model.requiresFulfillmentInfo %}
             {% if model.availableShippingMethods.length %}
                 {% for method in model.availableShippingMethods %}
@@ -21,7 +32,8 @@
         {% else %}
             {{ labels.noFulfillmentInfoRequired }}
         {% endif %}
-        <div class="mz-formstep-next">
-            <button type="button" class="mz-button primary-btn" data-mz-action="next">{{ labels.useThisShippingInfo }}</button>
-        </div>
     </div>
+    <div class="mz-formstep-next">
+        <button type="button" class="mz-button primary-btn {% if model.stepStatus == 'complete'%}hidden{% endif %}" data-mz-action="next">{{ labels.useThisShippingInfo }}</button>
+    </div>
+</div>

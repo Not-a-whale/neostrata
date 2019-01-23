@@ -239,6 +239,22 @@
     {
       "documentType": "web_page",
       "entityType": "webpage",
+      "id": "ancillary-page",
+      "template": "ancillary-page",
+      "title": "Ancillary Page",
+      "userCreatable": true
+    },
+    {
+      "entityType": "category",
+      "id": "antiaging-page",
+      "template": "antiaging-page",
+      "title": "Antiaging Products",
+      "userCreatable": false,
+      "customEditor": "categoryContent@mozu"
+    },
+    {
+      "documentType": "web_page",
+      "entityType": "webpage",
       "id": "blank-splash-page",
       "template": "blank-splash-page",
       "title": "Blank Splash Page",
@@ -295,6 +311,14 @@
       "userCreatable": true
     },
     {
+      "id": "order-error",
+      "title": "Order Error",
+      "entityType": "webpage",
+      "documentType": "web_page",
+      "template": "pages/order-error",
+      "userCreatable": true
+    },
+    {
       "entityType": "category",
       "id": "category",
       "template": "category",
@@ -308,6 +332,13 @@
       "title": "ParentCategory",
       "userCreatable": false,
       "customEditor": "categoryContent@mozu"
+    },
+    {
+      "entityType": "category",
+      "id": "freeSampleCategory",
+      "template": "free-sample-category",
+      "title": "Free Sample Category",
+      "userCreatable": false
     },
     {
       "entityType": "product",
@@ -820,6 +851,8 @@
     "googleMapAPIKey": "",
     "googleMapLatitude": 45.4994924,
     "googleMapLongitude": -73.5731634,
+    "googleTagManagerEnabled": true,
+    "googleTagManagerKey": "",
     "googleMapZoom": 8,
     "storesPageSize": 5,
     "facebookShareLink": "https://www.facebook.com/Neostrata",
@@ -855,6 +888,8 @@
     "categoryEntityName": "categoryAttributes@ng",
     "globalPageHeaderLogoSM": null,
     "globalPageHeaderLogoXS": null,
+    "searchBannerSM": null,
+    "searchBannerXS": null,
     "enableProductCarousel": true,
     "homePageCategoryWidgetAltText": "home_cat_widget_img",
     "usStates": [
@@ -1102,6 +1137,10 @@
     "returnsInfo": "Return Item",
     "paymentsMethodInfo": "Payment Methods",
     "giftCardsInfo": "Gift Card",
+    "freeSampleCategoryId": 165,
+    "freeSamplePagePath": "/product/free-sample",
+    "freeSampleQty": 3,
+    "freeSampleOrderTotalThreshold": 75,
     "megaMenu": {
       "parentCategoryCode": "browse-product",
       "firstLevel": [

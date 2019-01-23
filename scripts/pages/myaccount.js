@@ -160,7 +160,11 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
         },
         cancelEditWishlist: function() {
             this.editing.wishlist = false;
-            //this.render();
+            
+            $('.mz-l-stack-section').removeClass('is-editing').addClass('no-editing');
+            $('.mz-l-stack-section').show();
+            $('.dl-maintitle').show();
+            this.render();
         },
         doNotRemove: function() {
             this.editing.added = false;
@@ -626,8 +630,20 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
                 this.model.set('editingCard.paymentOrCardType',null);    
             }
 
-        },             
+        },
+        viewPayments: function () {
+            this.editing.card = "view";
+            this.startEditPayments();
+            this.render();
+        }, 
+        startEditPayments: function () {
+            $('.mz-l-stack-section').hide();
+            $('.mz-l-stack-section.mz-accountpaymentmethods').show();
+            $('.mz-l-stack-section.mz-accountpaymentmethods').removeClass('no-editing').addClass('is-editing');
+            $('.dl-maintitle').hide();
+        },                  
         beginEditCard: function (e) {
+            this.startEditPayments();
             var id = this.editing.card = e.currentTarget.getAttribute('data-mz-card');
             this.model.beginEditCard(id);
             this.render();
@@ -643,13 +659,21 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
                 operation.otherwise(function() {
                     self.editing.card = true;
                 });
-                this.editing.card = false;
+                this.editing.card = "view";
             }
         },
         cancelEditCard: function () {
-            this.editing.card = false;
+            this.editing.card = "view";
             this.model.endEditCard();
             this.render();
+        },
+        cancelViewCard: function () {
+            this.editing.card = false;
+            this.render();
+
+            $('.mz-l-stack-section').removeClass('is-editing').addClass('no-editing');
+            $('.mz-l-stack-section').show();
+            $('.dl-maintitle').show();
         },
         beginDeleteCard: function (e) {
             var self = this,
@@ -740,12 +764,16 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
                 operation.otherwise(function() {
                     self.editing.contact = true;
                 });
-                this.editing.contact = false;
+                this.editing.contact = "view";
             }
         },
         cancelEditContact: function () {
-            this.editing.contact = false;
+            this.editing.contact = "view";
             this.model.endEditContact();
+            this.render();
+        },
+        cancelViewContact: function () {
+            this.editing.contact = false;
             this.render();
 
             $('.mz-l-stack-section').removeClass('is-editing').addClass('no-editing');

@@ -1,0 +1,7 @@
+{% dropzone "free-sample-category-page-top" scope="page" %}
+{% partial_cache model.categoryId pageContext.Sorting pageContext.Pagination pageContext.query.sortBy %}
+{% require_script "pages/free-sample-category" %}
+{% include_products "modules/product/free-sample/free-sample-products" with includeFacets=false and pageWithUrl=true and sortWithUrl=true and pageSize=themeSettings.defaultPageSize as_parameter %}
+{% endpartial_cache %}
+
+{% dropzone "free-sample-category-page-bottom" scope="page" %}
