@@ -760,6 +760,23 @@
               "fieldLabel": "Cart Total threshold"
             }
           ]
+        },
+        {
+            "xtype": "panel",
+            "title": "Integrations",
+            "collapsed": false,
+            "items": [
+                {
+                    "xtype": "mz-input-checkbox",
+                    "name": "googleTagManagerEnabled",
+                    "fieldLabel": "Enable Google Tag Manager"
+                },
+                {
+                    "xtype": "mz-input-text",
+                    "name": "googleTagManagerKey",
+                    "fieldLabel": "Google Tag Manager Key"
+                }
+            ]
         }
     ]
 }

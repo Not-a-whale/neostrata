@@ -851,6 +851,8 @@
     "googleMapAPIKey": "",
     "googleMapLatitude": 45.4994924,
     "googleMapLongitude": -73.5731634,
+    "googleTagManagerEnabled": true,
+    "googleTagManagerKey": "",
     "googleMapZoom": 8,
     "storesPageSize": 5,
     "facebookShareLink": "https://www.facebook.com/Neostrata",

@@ -15,8 +15,9 @@ define([
      'modules/api',
      'hyprlive',
      'modules/models-customer',
-     "modules/cart-monitor"
-], function(Backbone, $ , _, UrlDispatcher, IntentEmitter, getPartialView,colorSwatch,blockUiLoader,InfiniteScroller, ProductModels, api, Hypr, CustomerModels, CartMonitor) {
+     "modules/cart-monitor",
+     "modules/metrics"
+], function(Backbone, $ , _, UrlDispatcher, IntentEmitter, getPartialView,colorSwatch,blockUiLoader,InfiniteScroller, ProductModels, api, Hypr, CustomerModels, CartMonitor, MetricsEngine) {
 
     function factory(conf) {
 
@@ -228,15 +229,16 @@ define([
                                                 'click #more-list-ul .mz-productdetail-addtocart'],
                                                directoryAddToCartAction);
         function directoryAddToCartAction(_e){
-            var productCode = $(_e.currentTarget).data("mz-product-code");           
+            var productCode = $(_e.currentTarget).data("mz-product-code");
             if(productCode && productCode !== ''){
                 api.get('product', productCode).then(function(productResponse){
                     var product = new ProductModels.Product(productResponse.data);
                     product.on('addedtocart', function(cartitem) {
                         if (cartitem && cartitem.prop('id')) {
-            
+
                             //product.isLoading(true);
                             CartMonitor.addToCount( product.get('quantity'), true);
+                            MetricsEngine.trackDirectoryAddToCart(product, product.get('categories')[0], false, 1);
                             $('html,body').animate({
                                 scrollTop: $('header').offset().top
                             }, 1000);
@@ -248,7 +250,7 @@ define([
                     //return location.reload();
                 });
             }
-        }        
+        }
         /*directory Add-To-Cart action */
         /*directory Add-To-Wishlist action */
         var directoryAddToWishlist = IntentEmitter(_$body,
@@ -259,9 +261,9 @@ define([
             var productCode = $(_e.currentTarget).data("mz-product-code");
             if(productCode && productCode !== ''){
                 var user = require.mozuData('user');
-                if(user.accountId){                
+                if(user.accountId){
                     var action = $(_e.currentTarget).data("mz-action");
-                    if(action == 'directoryAddToWishlist'){        
+                    if(action == 'directoryAddToWishlist'){
                         api.get('product', productCode).then(function(productResponse){
                             var product = new ProductModels.Product(productResponse.data);
                             product.addToWishlist();
@@ -270,11 +272,11 @@ define([
                                 $('#addToWishListPopUp').remove();
                             }
                             $( '<div id="addToWishListPopUp" class="row alert" role="alert"><div class="col-xs-6 text-right">Item added to wishlist.</div><div class="col-xs-6 text-left"><a href="/myaccount#wishlist">View Wishlist</a></div></div>' ).insertAfter('#nav-header-container > #ml-nav');
-                            setTimeout(function(){ 
+                            setTimeout(function(){
                                 $('#addToWishListPopUp').fadeOut(function(){$(this).remove();});
                             }, 5000);
                             return $('#wishlist-'+productCode+' span').removeClass("blank-heart").addClass("filled-heart");
-                        });                                                  
+                        });
                     }else if(action == 'directoryRemoveFromWishlist'){
                         var finishRemoveItemId = $(_e.currentTarget).data('mz-item-id');
                         var wishlistId = $(_e.currentTarget).data('mz-wishlist-id');
@@ -285,19 +287,19 @@ define([
                                 $('#addToWishListPopUp').remove();
                             }
                             $( '<div id="addToWishListPopUp" class="row alert" role="alert"><div class="col-xs-6 text-right">Item removed from wishlist.</div><div class="col-xs-6 text-left"><a href="/myaccount#wishlist">View Wishlist</a></div></div>' ).insertAfter('#nav-header-container > #ml-nav');
-                            setTimeout(function(){ 
+                            setTimeout(function(){
                                 $('#addToWishListPopUp').fadeOut(function(){$(this).remove();});
                             }, 5000);
                             return $('#wishlist-'+productCode+' span').removeClass("filled-heart").addClass("blank-heart");
                         });
-                    }                              
+                    }
                 }else{
                     sessionStorage.setItem('addToWishlist', productCode);
                     $(".login-link-text").trigger("click");
                 }
-            }            
-        }        
-        /*directory Add-To-Wishlist action */        
+            }
+        }
+        /*directory Add-To-Wishlist action */
         /*directory Email-Me action */
         var directoryEmailMe = IntentEmitter(_$body,
                                                    ['click #product-list-ul .mz-productdetail-emailme',
@@ -305,8 +307,8 @@ define([
                                                     directoryEmailMeAction);
         function directoryEmailMeAction(_e){
             blockUiLoader.globalLoader();
-            var productCode = $(_e.currentTarget).data("mz-product-code");           
-            var locationCode = $(_e.currentTarget).data("mz-location-code");           
+            var productCode = $(_e.currentTarget).data("mz-product-code");
+            var locationCode = $(_e.currentTarget).data("mz-location-code");
             var user = require.mozuData('user');
             if(productCode && productCode !== '' && user){
                 api.get('product', productCode).then(function(productResponse){
@@ -322,12 +324,12 @@ define([
                     }, function (res) {
                         console.log(res.message);
                         console.log(Hypr.getLabel('notifyWidgetError'));
-                    }); 
+                    });
                 });
             }
             blockUiLoader.unblockUi();
-        }        
-        /*directory Email-Me action */         
+        }
+        /*directory Email-Me action */
          //Select color Swatch
         var selectSwatch = IntentEmitter(
             _$body, [
@@ -455,7 +457,7 @@ define([
             var url= path.replace(new RegExp(facetVal+'\:(.*?)(,|&)', 'g'), '');
             if(url[url.length -1]==','){
                 url = url.replace(new RegExp(',$', 'g'), '\&');
-                
+
             }
             var parser = document.createElement('a');
             parser.href = url;
@@ -551,10 +553,10 @@ define([
         });
         var user = require.mozuData('user');
         if(user.accountId){
-            var addToWishlist = sessionStorage.getItem('addToWishlist');            
+            var addToWishlist = sessionStorage.getItem('addToWishlist');
             if(addToWishlist){
                 sessionStorage.removeItem('addToWishlist');
-                sessionStorage.clear();    
+                sessionStorage.clear();
                 api.get('product', addToWishlist).then(function(productResponse){
                     var product = new ProductModels.Product(productResponse.data);
                     product.addToWishlist();
@@ -562,16 +564,16 @@ define([
                         $('#addToWishListPopUp').remove();
                     }
                     $( '<div id="addToWishListPopUp" class="row alert" role="alert"><div class="col-xs-6 text-right">Item added to wishlist.</div><div class="col-xs-6 text-left"><a href="/myaccount#wishlist">View Wishlist</a></div></div>' ).insertAfter('#nav-header-container > #ml-nav');
-                    setTimeout(function(){ 
+                    setTimeout(function(){
                         $('#addToWishListPopUp').fadeOut(function(){$(this).remove();});
                     }, 5000);
                     $('#wishlist-'+addToWishlist).attr("data-mz-action", "directoryRemoveFromWishlist");
                     $('#wishlist-'+addToWishlist+' span').removeClass("blank-heart").addClass("filled-heart");
-                });     
+                });
             }
             api.createSync('wishlist').getOrCreate(user.accountId).then(function(wishlist) {
                 return wishlist.data;
-            }).then(function(wishlistItems) {          
+            }).then(function(wishlistItems) {
                 var wishlistId = wishlistItems.id;
                 for (var i = 0; i < wishlistItems.items.length; i++) {
                     var divId = '#wishlist-'+wishlistItems.items[i].product.productCode;
@@ -580,7 +582,7 @@ define([
                         $(divId).attr("data-mz-item-id", wishlistItems.items[i].id);
                         $(divId).attr("data-mz-action", "directoryRemoveFromWishlist");
                         $(divId+' span').removeClass("blank-heart").addClass("filled-heart");
-                    }                    
+                    }
                 }
             });
         }

@@ -1,0 +1,45 @@
+{% if themeSettings.googleTagManagerEnabled and not pageContext.isEditMode %}
+<script type="text/javascript">
+      window.dataLayer = window.dataLayer || [];
+      dataLayer.push({
+        "event": "DEPLabs",
+        "depData": {
+        "currencyCode": "USD",                      
+         "impressions": [
+          {% for item in model.items %}
+              {
+                     "name": "{{item.content.productName|safe}}",      
+                     "id": "{{item.productCode}}",
+                     "price": "{% if item.priceRange %}{{item.priceRange.lower.salePrice}} - {{item.priceRange.upper.salePrice}}{% else %}{% if item.price.onSale %}{{item.price.salePrice}}{% else %}{{item.price.price}}{% endif %}{% endif %}",
+                     "originalPrice" : "{% if item.priceRange %}{{item.priceRange.lower.price}} - {{item.priceRange.upper.price}}{% else %}{{item.price.price}}{% endif %}",
+                     "brand": "",
+                     "category": "{% for crumb in navigation.breadcrumbs %}{% if not crumb.isHidden %}{% if not forloop.last %}{{crumb.name|safe}}/{% else %}{{ crumb.name|safe }}{% endif %}{% endif %}{% endfor %}",
+                     "variant": "{% for option in item.options %}{{option.attributeDetail.name}}{% if not forloop.last %},{% endif %}{% endfor %}",
+                     "list": "directory",
+                     "position": {{forloop.index}}
+              }{% if not forloop.last %},{% endif %}
+          {% endfor %}
+          ]{% if globalCart.items.length > 0 %},
+              "cart": {
+                "coupon": "{% for coupon in globalCart.couponCodes %}{{coupon}}{% if not forloop.last %},{% endif %}{% endfor %}",
+                "products": [
+                {% for orderItem in globalCart.items %}
+                    {
+                        "name": "{{orderItem.product.name|escape|safe}}",
+                        "id": "{{orderItem.product.productCode}}",
+                        "sku": "{{orderItem.product.variationProductCode}}",
+                        "price": "{{orderItem.unitPrice.extendedAmount}}",
+                        "originalPrice": "{{orderItem.unitPrice.listAmount}}",
+                        "brand": "{% with siteContext.generalSettings.websiteName as siteName %}{% if siteName == themeSettings.chadwicksSiteName %}{% endif %}{% if siteName == themeSettings.chasingFirefliesSiteName %}{{ orderItem.product|get_product_attribute_value(themeSettings.productAttrCFBrands) }}{% endif %}{% if siteName == themeSettings.metroStyleSiteName %}{{ orderItem.product|get_product_attribute_value(themeSettings.productAttrTAMBrands) }}{% endif %}{% if siteName == themeSettings.territoryAheadSiteName %}{{orderItem.product|get_product_attribute_value(themeSettings.productAttrTAMBrands) }}{% endif %}{% if siteName == themeSettings.travelSmithSiteName %}{{ orderItem.product|get_product_attribute_value(themeSettings.productAttrTSBrands) }}{% endif %}{% endwith %}",
+                        "category": "{% with categories|find(orderItem.product.categories.0.id) as category %}{{category.content.name|safe}}{% endwith %}",
+                        "variant": "{% for option in orderItem.product.options %}{{option.value}}{% if not forloop.last %},{% endif %}{% endfor %}",
+                        "quantity": {{orderItem.quantity}}
+                    }{% if not forloop.last %},{% endif %}
+                {% endfor %}
+                ]
+              }
+              {% endif %}
+         }
+      });
+</script>
+{% endif %}
