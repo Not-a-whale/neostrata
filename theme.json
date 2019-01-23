@@ -334,6 +334,13 @@
       "customEditor": "categoryContent@mozu"
     },
     {
+      "entityType": "category",
+      "id": "freeSampleCategory",
+      "template": "free-sample-category",
+      "title": "Free Sample Category",
+      "userCreatable": false
+    },
+    {
       "entityType": "product",
       "id": "product",
       "template": "product",
@@ -1128,6 +1135,10 @@
     "returnsInfo": "Return Item",
     "paymentsMethodInfo": "Payment Methods",
     "giftCardsInfo": "Gift Card",
+    "freeSampleCategoryId": 165,
+    "freeSamplePagePath": "/product/free-sample",
+    "freeSampleQty": 3,
+    "freeSampleOrderTotalThreshold": 75,
     "megaMenu": {
       "parentCategoryCode": "browse-product",
       "firstLevel": [

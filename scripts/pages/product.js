@@ -623,8 +623,9 @@
 
         product.on('addedtocart', function(cartitem) {
             if (cartitem && cartitem.prop('id')) {
+    
                 //product.isLoading(true);
-                CartMonitor.addToCount(product.get('quantity'));
+                CartMonitor.addToCount( product.get('quantity'), true);
                 $('html,body').animate({
                     scrollTop: $('header').offset().top
                 }, 1000);
@@ -643,6 +644,7 @@
                 if (product.get('options').length)
                     $("[data-mz-action='addToCart']").addClass('button_disabled');
                 $(".mz-productcodes-productcode").text(Hypr.getLabel('item')+" # " + product.get('productCode'));
+    
             } else {
                 product.trigger("error", { message: Hypr.getLabel('unexpectedError') });
             }

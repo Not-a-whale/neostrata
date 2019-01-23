@@ -638,6 +638,9 @@
   "youHaveWishlist": "[fr-CA]You have {0} items on your wishlist.[fr-CA]",
   "orderPackagePrice": "[fr-CA]Price Each[fr-CA]",
   "wishlistViewInfo": "[fr-CA]View and manage your wishlist[fr-CA]",
-  "orderStatusTitle" : "[fr-CA]Find your order number from your order confirmation email and enter it below along with your billing zip code to track your order status.[fr-CA]"
-
+  "orderStatusTitle" : "[fr-CA]Find your order number from your order confirmation email and enter it below along with your billing zip code to track your order status.[fr-CA]",
+  "selectFreeSample": "[fr-CA]Select this sample[fr-CA]",
+  "selectFreeSampleCartButton": "[fr-CA]Add Free Sample to Cart[fr-CA]",
+  "selectFreeSampleCancelButton": "[fr-CA]No Thanks[fr-CA]",
+  "selectFreeSampleLimit": "[fr-CA]You have reached your limit, please hit the Add to Bag button to continue[fr-CA]"
 }

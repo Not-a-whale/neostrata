@@ -650,5 +650,9 @@
   "youHaveWishlist": "You have {0} items on your wishlist.",
   "orderPackagePrice": "Price Each",
   "wishlistViewInfo": "View and manage your wishlist",
-  "orderStatusTitle" : "Find your order number from your order confirmation email and enter it below along with your billing zip code to track your order status."
+  "orderStatusTitle" : "Find your order number from your order confirmation email and enter it below along with your billing zip code to track your order status.",
+  "selectFreeSample": "Select this sample",
+  "selectFreeSampleCartButton": "Add Free Sample to Cart",
+  "selectFreeSampleCancelButton": "No Thanks",
+  "selectFreeSampleLimit": "You have reached your limit, please hit the Add to Bag button to continue"
 }
