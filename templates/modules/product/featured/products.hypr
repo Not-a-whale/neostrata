@@ -56,4 +56,31 @@
 .featuredBlockButton .add-to-cart-container{
     padding-right: 0 !important;
 }
+.regimenProducts .featuredBlockButton {
+    padding-left: 0 !important;
+}
+.regimenProducts .featuredBlockButton .add-to-cart-container {
+    padding-left: 15px  !important;
+}
+.regimenProducts .featuredBlockButton .add-to-cart-container:first-of-type {
+    padding-left: 0 !important;
+    padding-right: 15px !important;
+}
+.regimenProducts .featuredBlock .mz-productlisting-info {
+    padding: 2rem;
+}
+.regimenProducts .featuredBlock .mz-productlisting-image {
+    padding: 0;
+}
+.regimenProducts .slashHeading{
+    margin-bottom: 2rem;
+}
+.regimenProducts .countProd{
+    line-height: 2.25;
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+.regimenProducts .zoom-container-listing img{
+    max-height: 17rem;
+}
 </style>
