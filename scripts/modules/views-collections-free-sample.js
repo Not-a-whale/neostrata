@@ -276,17 +276,31 @@ define([
                 var existingItem = _.find( existingCartItems, function( item ){
                     return ( item.product.productCode == productCode );
                 });
-                console.log( 'existingItem', existingItem );
                 if( !existingItem ) {
                     deferredAddToCart.push((function (callback) {
                         var self = this;
         
                         api.get('product', productCode).then(function (productResponse) {
                             var product = new ProductModels.Product(productResponse.data);
-                            product.addToCart();
-                            callback(null, productCode);
+    
+                            // Add to cart calling the API
+                            var fulfillMethod = product.get('fulfillmentMethod');
+                            if ( !fulfillMethod ) {
+                                fulfillMethod = ( product.get('goodsType') === 'Physical' ) ? "Ship" : "Digital";
+                            }
+                            
+                            product.apiAddToCart({
+                                options: product.getConfiguredOptions(),
+                                fulfillmentMethod: fulfillMethod,
+                                quantity: 1
+                            }).then(function (item) {
+                                callback(null, productCode);
+                            }, function(err) {
+                                callback( productCode, null );
+                            });
+                            
                         }).catch(function (error) {
-                            console.log('Product Sample failed');
+                            console.log('Product Sample failed', error);
                             callback(productCode, null);
                         });
                     }).bind({productCode: productCode}));
@@ -295,17 +309,16 @@ define([
     
             if ( selectedSamples.length > 0 ) {
                 async.series( deferredAddToCart , function( err, results ) {
-                    console.log(' err, results ', err, results);
+                    //console.log(' err, results ', err, results);
                     selectedSamples = [];
                     deferred.resolve( true );
                     blockUiLoader.unblockUi();
                     setTimeout( function(){
-                        console.log('now redirect');
                         window.location.href = '/cart';
                     }, 500);
                 });
             } else {
-                deferred.resolve( true ); // when user doesn't select any warranty
+                deferred.resolve( true ); // when user doesn't select any sample
                 window.location.href = '/cart';
             }
     
