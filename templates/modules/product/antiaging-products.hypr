@@ -76,7 +76,6 @@
         <div class="mz-productlist mz-productlist-tiled">
             {% if model.items %}
             <ul id="product-list-ul" class="mz-productlist-list row ml-list-view-toggle grid-view mz-l-tiles">
-                {% include "modules/product/featured/products" %}
                 {% for prod in model.items %}
                 <li class="mz-productlist-item product-item col-xs-12 col-sm-4 col-md-3" data-mz-product="{{ prod.productCode }}">{% include "modules/product/product-listing" with model=prod %}</li>
                 {% endfor %}

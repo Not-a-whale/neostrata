@@ -1,0 +1,97 @@
+.featuredBlock{
+    border: 0.1875rem solid #4e5458;
+    padding-bottom: 0 !important;
+    margin: 0 0 1rem 0;
+    .mz-productlisting-image{
+        padding-left: 0;
+    }
+    .mz-productlisting-info {
+        padding: 2rem 0 2rem 2rem;
+    }
+    .slashHeading{
+        span {
+            order: 1;
+            background: #afafaf;
+            color: white;
+        }
+        &:before{
+            display: none;
+        }
+        &:after {
+            content: "\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0";
+            background-image: linear-gradient(125deg,#afafaf 40%,transparent 40%,transparent 50%,#afafaf 50%,#afafaf 70%,transparent 70%,transparent 100%);
+            height: 100%;
+            position: relative;
+            flex: 0;
+            order: 2;
+        }
+    }
+    .wishAndPricew{
+        margin-top: 3rem;
+    }
+    .price-msrp {
+        text-transform: uppercase;
+        font-size: .75rem;
+        font-style: italic;
+    }
+    .posLeft{
+        border-left: 0.0625em solid #c2c2c2;
+        margin-left: 2.5em;
+        display: inline-block;
+        max-height: 3rem;
+    }
+    .pdp1{
+        margin-top: 3rem !important;
+    }
+}
+
+
+.featuredBlockButton{
+    .mz-productdetail-addtocart{
+        width: 100%;
+        height: 4rem !important;
+        font-size: 1.3rem !important;
+    }
+    .add-to-wishlist-container{
+        padding-top: 1rem !important;
+    }
+    .add-to-cart-container{
+        padding-right: 0 !important;
+    }
+} 
+
+.regimenProducts {
+    .featuredBlockButton {
+        padding-left: 0 !important;
+        .add-to-cart-container {
+            padding-left: 15px  !important;
+            &:first-of-type {
+                padding-left: 0 !important;
+                padding-right: 15px !important;
+            }
+        }
+    }
+    .featuredBlock 
+    {
+        .mz-productlisting-info {
+            padding: 2rem;
+        }
+        .mz-productlisting-image {
+            padding: 0;
+        }
+    }
+    .slashHeading{
+        margin-bottom: 2rem;
+    }
+    .countProd{
+        line-height: 2.25;
+        font-weight: bold;
+        margin-bottom: 2rem;
+        min-height: 3rem;
+    }
+    .zoom-container-listing {
+        img{
+            max-height: 16.3rem;
+        }
+    }
+}
