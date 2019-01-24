@@ -44,10 +44,7 @@
             </div>
             {% endif %}
         </div>
-
-        model
-
-
+        
         {% if model.hasDirectShip %}
         <div class="mz-l-stack-section shipping-information-section">
             <h4 class="mz-l-stack-sectiontitle">{{ labels.shippingInformation }}</h4>
