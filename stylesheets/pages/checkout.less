@@ -41,7 +41,49 @@
       border: 1px solid #999;
       color: black;
     }
+    
+    input[type="checkbox"],
+    input[type="radio"] {
+        left: -9999rem;
+        opacity: 0;
+    }
+    .form-row {
+        .two-rows-checkbox {
+            padding-top: 0;
+            font-size: 1.25rem;
+            line-height: 1.5em !important;
+    
+            strong {
+                font-weight: 500;
+            }
+    
+            &:after {
+                top: 18px;
+            } 
+            &:before {
+                top: 20px;
+                left: 3px;
+                line-height: 18px;
+                width: 18px;
+                font-size: 1.1rem;
+            }
+        }
 
+        .terms-conditions-label {
+            font-size: 1.25rem;
+        }
+    }
+
+    &.mz-create-account-fields {
+        p {
+            font-size: 1.25rem;
+            line-height: 1.5em;
+
+            strong {
+                font-weight: 500;
+            }
+        }
+    }
 }
 
 .mz-checkoutform-shipping {
@@ -355,7 +397,8 @@
     }
 
     input[type="text"],
-    input[type="tel"] {
+    input[type="tel"],
+    input[type="password"] {
         width: 100%;
         height: 4.375rem;
         border: 0.1875rem solid @charcoal;
@@ -371,6 +414,7 @@
     }
     .form-row {
         padding: 0 0 3rem;
+        position: relative;
     }
 
     .checkout-twocolumn-row {
@@ -511,7 +555,9 @@
 
     input[type="radio"] + label {
         .icon (before, @icon-dot-single);
-            font-family: @fontFamily !important;
+        
+        font-family: @fontFamily !important;
+
         &:before, &:after{
             font-family: 'icomoon' !important;
         }
@@ -614,6 +660,7 @@
 
 #checkout-form .checkout-leftcolumn .mz-formstep {
     margin-bottom: 6.25rem;
+    float: none;
 }
 
 .checkout-fields-title {
@@ -637,6 +684,11 @@
             span {
                 font-weight: 500;
             }
+        }
+        input[type="checkbox"],
+        input[type="radio"] {
+            left: -9999rem;
+            opacity: 0;
         }
     }
 }
@@ -683,5 +735,41 @@
 .coupon-code-wrapper {
     .primary-btn {
         margin-top: 2rem;
+    }
+}
+
+.filled-credit-card-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    img {
+        display: block;
+        margin-right: 2rem;
+    }
+
+    .card-info {
+        display: flex;
+        flex-direction: column;
+
+        span {
+            font-size: 1.485rem;
+            line-height: 1.5em;
+        }
+    }
+}
+
+.mz-checkoutform-couponcode {
+    margin-bottom: 4rem;
+
+    .coupon-code-wrapper {
+        margin-bottom: 1rem !important;
+    }
+
+    .btn-add-promo-code {
+        text-decoration: none;
+        font-size: 1.25rem;
+        line-height: 1em;
+        font-weight: 500;
     }
 }

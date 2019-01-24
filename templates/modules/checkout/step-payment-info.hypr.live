@@ -97,7 +97,7 @@
         {% endif %}
         {% endfor %}
 
-        <div class="mz-l-stack-section mz-paymentselector-separator mz-checkoutform">
+        <div class="mz-l-stack-section mz-paymentselector-separator mz-checkoutform hidden">
             <p>
                 {{ labels.billingContact }}: <strong>{{ model.billingContact.email }}</strong>
             </p>
@@ -127,13 +127,18 @@
                         {% else %}
                             <a class="mz-checkout-payment-change" href="javascript:;" data-mz-action="beginEditingCard">{{ labels.change }}</a>
                         {% endif %}
-                            <p>{{ model.card.paymentOrCardType }} {{ model.card.cardNumberPartOrMask }}
-                            <br/>{{ labels.expires }} {{ model.card.expireMonth }}/{{ model.card.expireYear }}</p>
+                            <div class="filled-credit-card-wrapper">
+                                <img src="/resources/images/icons/payment/credit-card-image.png" alt="Credit Card">
+                                <div class="card-info">
+                                    <span>{{ model.card.paymentOrCardType }} {{ model.card.cardNumberPartOrMask }}</span>
+                                    <span>{{ labels.expires }} {{ model.card.expireMonth }}/{{ model.card.expireYear }}</span>
+                                </div>
+                            </div>
                         {% if not themeSettings.isCvvSuppressed %}
-                            <div class="mz-l-formfieldgroup">
-                              <div class="mz-l-formfieldgroup-row mz-payment-credit-card-securitycode-row">
+                            <div class="mz-l-formfieldgroup cvv-form-row">
+                              <div class="mz-l-formfieldgroup-row mz-payment-credit-card-securitycode-row form-row">
                                 <div class="mz-l-formfieldgroup-cell">
-                                    <label for="mz-payment-security-code">{{ labels.securityCode }}<span class="is-required"> *</span>:</label>
+                                    <h5 for="mz-payment-security-code">{{ labels.securityCode }}<span class="is-required"> *</span>:</h5>
                                 </div>
                                 <div class="mz-l-formfieldgroup-cell">
                                     <input type="tel" name="security-code" id="mz-payment-security-code" class="mz-l-formfieldgroup-halfsize" data-mz-value="card.cvv" value="{{ model.card.cvv }}" autocomplete="off" maxlength="{{themeSettings.paymentSecurityCodeLength}}"/>
@@ -143,7 +148,7 @@
                             </div>
                         {% endif %}
                         <div class="mz-l-stack-section mz-checkout-current-payment mz-checkout-saved-billingaddress">
-                            <h4 class="mz-checkoutform-title">{{ labels.billingAddress }}</h4>
+                            <h5 class="mz-checkoutform-title">{{ labels.billingAddress }}</h5>
                             <div class="mz-addresssummary">
                                 {% include "modules/common/address-summary" with model=model.billingContact showShippingDisabled="true" %}
                             </div>
@@ -164,7 +169,7 @@
         {% endif %}
 
 
-        <div class="mz-l-stack-section mz-formfieldgroup-row mz-paymentselector-separator mz-checkoutform">
+        <div class="mz-l-stack-section mz-formfieldgroup-row mz-paymentselector-separator mz-checkoutform hidden">
             <div class="mz-l-formfieldgroup">
                 <div class="mz-l-formfieldgroup-row">
                     <div class="mz-l-formfieldgroup-cell">

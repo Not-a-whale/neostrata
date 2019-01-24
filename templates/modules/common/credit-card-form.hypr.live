@@ -1,7 +1,7 @@
 ﻿{% if isWishlistView %}
 {% block credit-card-form %}
     {% if not editing.card == "new" %}
-    <div class="mz-l-formfieldgroup-row mz-payment-credit-card-number-row mz-card-type-images">        
+    <div class="mz-l-formfieldgroup-row mz-payment-credit-card-number-row mz-card-type-images hidden">        
         {% comment %}
         <div class="mz-l-formfieldgroup-cell">
             <label for="mz-payment-credit-card-number"></label>
@@ -105,7 +105,7 @@
 
 {% block credit-card-form %}
     
-    <div class="mz-l-formfieldgroup-row mz-payment-credit-card-number-row mz-card-type-images">
+    <div class="mz-l-formfieldgroup-row mz-payment-credit-card-number-row mz-card-type-images hidden">
         {% comment %}
         <div class="mz-l-formfieldgroup-cell">
             <label for="mz-payment-credit-card-number"></label>
@@ -145,13 +145,13 @@
             <span class="mz-validationmessage" data-mz-validationmessage-for="{{ cardcontext }}cardNumberPartOrMask"></span>
         </div>
     </div>
-    <div class="mz-l-formfieldgroup-row mz-payment-credit-card-name-row form-row">
+    <div class="mz-l-formfieldgroup-row mz-payment-credit-card-name-row form-row hidden">
         {% comment %}
         <div class="mz-l-formfieldgroup-cell">
             <label for="mz-payment-credit-card-name">{{ labels.nameOnCard }}<span class="is-required"> *</span>:</label>
         </div>
         {% endcomment %}
-        <div class="mz-l-formfieldgroup-cell hidden">
+        <div class="mz-l-formfieldgroup-cell">
             <input type="text" name="credit-card-name" id="mz-payment-credit-card-name" data-mz-value="{{ cardcontext }}nameOnCard" value="{{ model.nameOnCard }}" maxlength="{{themeSettings.fullNameLength}}" placeholder="{{ labels.nameOnCard }}*">
             <span class="mz-validationmessage" data-mz-validationmessage-for="{{ cardcontext }}nameOnCard" ></span>
         </div>
