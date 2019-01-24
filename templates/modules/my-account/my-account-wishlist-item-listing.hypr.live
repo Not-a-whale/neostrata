@@ -2,7 +2,7 @@
 
 {% block item-details %}
   {% parent %}
-  <div class="mz-itemlisting-quantity">{{ labels.qty }}: {{ model.quantity }}</div>
+  <div class="mz-itemlisting-quantity"><span>{{ labels.qty }}</span><span>{{ model.quantity }}</span></div>
 {% endblock %}
 
 {% block item-listing-actions %}

@@ -1146,12 +1146,20 @@
                         background: none;
                         text-decoration: underline;
                         display: block;
-                        margin: 2rem 0;
+                        margin: 2rem auto;
                         padding: 0;
                     }
 
-                    button.mz-button {
+                    .mz-accountsettings-editdone {
                         .my-account-button();
+                        text-align: center;
+                        margin: 3rem auto;
+                        left: 50%;
+                        transform: translate(-50%, 0);
+                        width: 100%;
+                        max-width: 420px;
+                        position: relative;
+                        font-size: 1.8rem;
                     }
 
                     .mz-empty {
@@ -1209,23 +1217,43 @@
                         .mz-accountaddressbook-list {
                             width: 100%;
                             float: left;
+                            margin: 3rem 0;
                         }
                         .dl-link-editaddress {
                             display: none;
                         }
                         .mz-accountaddressbook-contact:not(.mz-accountaddressbook-form) {
-                            width: 50%;
+                            width: 100%;
                             display: inline-block;
                             float: left;
                             margin: 0;
-                            border: none;
-                            padding: 0 4% 0 0;
+                            border: none;                            
+                            padding: 0 2rem 2rem 2rem;
+                            min-height: auto;
+                            .mz-accountaddressbook-actions {
+                                float: none;
+                                text-align: right;
+                                margin-bottom: 0.5rem;
+                            }
+                            .mz-accountaddressbook-contactdetails {
+                                float: none;
+                                padding-top: 0.5rem;
+                                border-top: 2px solid #eee;
+                            }
                         }
                         .mz-contact-actions .mz-button {
                             background: none;
                         }
                         .dl-link-newaddress {
                             .my-account-button();
+                            text-align: center;
+                            margin: 3rem auto;
+                            left: 50%;
+                            transform: translate(-50%, 0);
+                            width: 100%;
+                            max-width: 420px;
+                            position: relative;
+                            font-size: 1.8rem;
                         }
                         input, select {
                             margin-bottom: 0.8rem;
@@ -1251,19 +1279,29 @@
                     }
                     &.no-dashboard {
                         display: block;
-                        margin-top: 3rem;
+                        margin: 3rem 0;
+                        padding: 0;
                     }
                 }
 
                 .mz-accountpaymentmethods-form {
                     width: 100%;
+                    .checkout-fields-title {
+                        display: block;
+                        color: #4e5458;
+                        font-size: 1.5rem;
+                        font-weight: normal;
+                        margin-bottom: 0;
+                        padding-bottom: 0.5rem;
+                    }
                     .mz-l-formfieldgroup-halfsize {
                         float: left;
                         display: block;
                         margin-left: 0;
                         margin-right: 0;
-                        &:first-of-type {
-                            width: 50%;
+                        &.expiry-month {
+                            width: 50% !important;
+                            margin-left: 0 !important;
                         }
                         @leftInputMargin: 1.5rem; 
                         &:last-of-type {
@@ -1275,9 +1313,11 @@
                         display: block;
                         .mz-l-formfieldgroup-row {
                             display: block;
+                            padding: 0;
                         }
                         .mz-l-formfieldgroup-cell {
                             display: block;
+                            padding: 0;
                         }
                     }
                     .mz-creditcard-actions {
@@ -1333,6 +1373,14 @@
                         }
                         .dl-link-newpayments {
                             .my-account-button();
+                            text-align: center;
+                            margin: 3rem auto;
+                            left: 50%;
+                            transform: translate(-50%, 0);
+                            width: 100%;
+                            max-width: 420px;
+                            position: relative;
+                            font-size: 1.8rem;
                         }
                     }
                 }
@@ -1360,7 +1408,7 @@
                         }
                         .mz-itemlisting {
                                 border-bottom: 2px solid #c2c2c2;
-                                padding: 2.5rem 1rem;
+                                padding: 2.5rem 0;
                             .mz-itemlisting-title-wrapper {
                                 text-decoration: none;
                                 text-transform: uppercase;
@@ -1374,15 +1422,15 @@
                             }
                             .mz-itemlisting-thumb {
                                 float: left;
-                                width: 12%;
-                                margin-right: 2%;
+                                width: 16%;
+                                margin-right: 3%;
                                 .mz-itemlisting-thumb-img {
                                     width: auto;
                                     max-width: 100%;
                                 }
                             }
                             .mz-itemlisting-details {
-                                width: 86%;
+                                width: 81%;
                                 margin: 0;
                                 display: inline-block;
                                 
@@ -1400,6 +1448,13 @@
                                     float: right;
                                     text-align: center;
                                     width: 20%;
+                                    span {
+                                        display: block;
+                                        text-transform: uppercase;
+                                        &:first-of-type {
+                                            font-weight: 700;
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -1412,7 +1467,7 @@
                 }
 
                 &.mz-accountstorecredit {
-                    display: none;
+                    display: none !important;
                 }
 
             }

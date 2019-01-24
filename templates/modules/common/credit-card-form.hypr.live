@@ -104,7 +104,6 @@
 {% else %}
 
 {% block credit-card-form %}
-    
     <div class="mz-l-formfieldgroup-row mz-payment-credit-card-number-row mz-card-type-images">
         {% comment %}
         <div class="mz-l-formfieldgroup-cell">
