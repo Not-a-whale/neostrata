@@ -14,7 +14,7 @@
   "anonOrderNumberMissing": "[fr-CA]The order number you provided was not found. Please validate the order number and try again or contact customer service.[fr-CA]",
   "anonAuthError": "[fr-CA]Sorry, the information you provided did not match our records. Please check the information that you provided and try again or contact the customer service department.[fr-CA]",
   "signUp"               : "s'inscrire",
-  "signupEmailupdates"   : "[fr-CA]Sign me up for Kibo Training Email Updates about new services and special offers![fr-CA]",
+  "signupEmailupdates"   : "[fr-CA]Sign up for Email Updates about new products and special offers from NEOSTRATA®.[fr-CA]",
   "recoveryQuestion"     : "[fr-CA]Select a recovery question[fr-CA]",
   "recoveryAnswer"       : "[fr-CA]Enter Answer[fr-CA]",
   "secureConnectionMessage" : "[fr-CA]Your Connection to this website is secure.[fr-CA]",
