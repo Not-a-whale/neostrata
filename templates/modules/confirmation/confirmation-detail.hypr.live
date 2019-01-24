@@ -14,7 +14,7 @@
                 <h1 class="mz-pagetitle">{{ labels.confirmationText }}</h1>
                 {% for orderAttribute in model.attributes %}
                     {% if orderAttribute.fullyQualifiedName == "tenant~omx_order_number" and orderAttribute.values.length != 0 %}
-                        <p class="mz-pagesubtitle">{{ labels.yourOrderNumber|orderAttribute.values|first|safe }}</p>
+                        <p class="mz-pagesubtitle">{{ labels.yourOrderNumber|string_format(orderAttribute.values|first)|safe }}</p>
                     {% endif %}
                 {% endfor %}~
             </div>
