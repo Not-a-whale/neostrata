@@ -40,7 +40,7 @@
   "product"              : "Product",
   "item"                 : "Item",
   "price"                : "Price",
-  "qty"                  : "Quantity",
+  "qty"                  : "Qty",
   "each"                 : "Each",
   "total"                : "Total",
   "subtotal"             : "Subtotal",
@@ -632,6 +632,7 @@
   "accountDashboardBack" : "Back to Dashboard",
   "saveAddress": "Save Address",
   "savePayment": "Save Payment",
+  "savePersonalInfo": "Save Personal Info",
   "youHaveWishlist": "You have {0} items on your wishlist.",
   "orderPackagePrice": "Price Each",
   "wishlistViewInfo": "View and manage your wishlist"

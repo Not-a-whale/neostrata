@@ -3901,7 +3901,7 @@ body.mz-product {
             text-align: left;
         }
         .mz-myaccount-panels {
-            margin: -4rem 0 0 @leftPosition;
+            margin: 0 0 0 @leftPosition;
             padding-left: 6.3%;
             .mz-l-stack-section {
                 &.no-editing {
@@ -3940,7 +3940,17 @@ body.mz-product {
                     .mz-l-stack-sectionsubtitle {
                         text-align: left;
                     }
-                    
+                    .dz-backtodashboard {
+                        margin: 2rem 0;
+                    }
+                    .mz-accountsettings-editdone {
+                        margin: 0 auto;
+                        left: unset;
+                        transform: none;
+                        width: auto;
+                        font-size: 1rem;
+                    }
+
                     //Address Book Info
                     .mz-accountaddressbook-form {
                         width: 100%;
@@ -3989,26 +3999,23 @@ body.mz-product {
                         
                     }
                     &.is-editing {
-                        .mz-accountaddressbook-list {
-                            width: 100%;
-                            float: left;
-                        }
                         .dl-link-editaddress {
                             display: none;
                         }
                         .mz-accountaddressbook-contact:not(.mz-accountaddressbook-form) {
                             width: 50%;
-                            display: inline-block;
-                            float: left;
-                            margin: 0;
-                            border: none;
-                            padding: 0 4% 0 0;
+                            margin: 0 0 0 -4rem;
+                            padding: 0 4rem 4rem 4rem;                            
                         }
                         .mz-contact-actions .mz-button {
                             background: none;
                         }
                         .dl-link-newaddress {
-                            .my-account-button();
+                            margin: 0 auto;
+                            left: unset;
+                            transform: none;
+                            width: auto;
+                            font-size: 1rem;
                         }
                         input, select {
                             margin-bottom: 0.8rem;
@@ -4094,6 +4101,9 @@ body.mz-product {
                         }
                         .dl-link-newpayments {
                             .my-account-button();
+                            margin: 0 auto;
+                            left: unset;
+                            transform: none;
                         }
                     }
                 }
@@ -4120,48 +4130,16 @@ body.mz-product {
                             }
                         }
                         .mz-itemlisting {
-                                border-bottom: 2px solid #c2c2c2;
-                                padding: 2.5rem 1rem;
+                             padding: 2.5rem 1rem;
                              .mz-itemlisting-title-wrapper {
-                                text-decoration: none;
-                                text-transform: uppercase;
-                                margin-bottom: 3rem;
-                                display: inline-block;
                                 width: 47%;
-                                .mz-itemlisting-title {
-                                    margin-bottom: 2.5rem;
-                                    display: block;
-                                }
                             }
                             .mz-itemlisting-thumb {
-                                float: left;
                                 width: 12%;
                                 margin-right: 2%;
-                                .mz-itemlisting-thumb-img {
-                                    width: auto;
-                                    max-width: 100%;
-                                }
                             }
                             .mz-itemlisting-details {
                                 width: 86%;
-                                margin: 0;
-                                display: inline-block;
-                                
-                                .mz-itemlisting-price {
-                                    display: inline-block;
-                                    float: right;
-                                    width: 33%;
-                                    text-align: right;
-                                    .mz-itemlisting-price-title {
-                                        margin-bottom: 2.5rem;
-                                    }
-                                }
-                                .mz-itemlisting-quantity {
-                                    display: inline-block;
-                                    float: right;
-                                    text-align: center;
-                                    width: 20%;
-                                }
                             }
                         }
                     }
@@ -4171,11 +4149,6 @@ body.mz-product {
                         }
                     }
                 }
-
-                &.mz-accountstorecredit {
-                    display: none;
-                }
-
             }
         }
     }
