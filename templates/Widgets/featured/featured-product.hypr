@@ -1,0 +1,75 @@
+{% if model.items %}
+{% for prod in model.items %}
+<div
+  class="mz-productlist-item product-item col-xs-12 col-sm-6 col-md-6"
+  data-mz-product="{{prod.productCode}}"
+>
+  <div class="product-listing-container">
+    <div
+      class="mz-productlisting mz-productlist-tiled featuredBlock row defend"
+      data-mz-product="{{prod.productCode}}"
+    >
+      <div class="mz-productlisting-image col-xs-5">
+        <div class="zoom-container-listing">
+            {% if prod.mainImage.imageUrl %}
+              <a href="{% make_url "product" prod %}">
+                  <img src="{{prod.mainImage.imageUrl}}?max={% block thumbnail-size %}{{ themeSettings.listProductThumbSize }}{% endblock thumbnail-size %}" data-zoom-image="{{prod.mainImage.imageUrl}}?max={% block thumbnail-size %}{{ themeSettings.productZoomImageMaxWidth }}{% endblock thumbnail-size %}" alt="{{ prod.content.productShortDescription|striptags|truncatewords(themeSettings.maxProductSummaryWords) }}" />
+              </a>
+            {% else %}
+                <span class="mz-productlisting-imageplaceholder"><span class="mz-productlisting-imageplaceholdertext">{{ labels.productImagePlaceholder }}</span></span>
+            {% endif %}
+        </div>
+      </div>
+      <div class="mz-productlisting-info col-xs-7">
+        <div class="slashHeading"><span>FEATURED PRODUCT</span></div>
+        {% with prod|get_product_attribute("tenant~product-type") as productType %}
+        <div class="pdp1">
+            {% for v in productType.values %}
+                {% if v.stringValue %}
+                    {{ v.stringValue|safe }}{% if not forloop.last %},{% endif %}
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% endwith %}
+        <a class="mz-productlisting-title pdp2"
+          href="{% make_url "product" prod %}"
+          >{{ prod.productName }}</a>
+        <div class="mz-productlisting-shortdesc pdp3">
+            {{ prod.content.productShortDescription|striptags|truncatewords(themeSettings.maxProductSummaryWords) }}
+        </div>
+        <div class="row wishAndPricew">
+          <div class="col-xs-4"></div>
+          <div class="col-xs-6 posLeft">
+              {% include "modules/product/price-stack" with model=prod %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="mz-productdetail-conversion-buttons featuredBlockButton col-xs-12"
+    >
+      <div class="col-xs-1 add-to-wishlist-container">
+        <a
+          id="wishlist-{{prod.productCode}}"
+          class="mz-productdetail-addtowishlist wishlistHeart"
+          data-mz-action="directoryAddToWishlist"
+          data-mz-product-code="{{prod.productCode}}"
+        >
+          <span class="blank-heart"></span>
+        </a>
+      </div>
+      <div class="col-xs-11 add-to-cart-container">
+        <button
+          id="add-to-cart-{{prod.productCode}}"
+          class="primary-btn mz-productdetail-addtocart font-large button_primary pull-right "
+          data-mz-action="directoryAddToCart"
+          data-mz-product-code="{{prod.productCode}}"
+        >
+          Add To Cart
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% endif %}

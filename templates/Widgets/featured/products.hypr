@@ -1,0 +1,5 @@
+<div class="featured-regimen-display-widget container" data-widget="featured-regimen-display">
+{% include_products "Widgets/featured/featured-product" with productCodes=model.config.product as_parameter %}
+{% include "Widgets/featured/regimen-products" %}
+</div>
+{% require_script "widgets/featured-products" %}

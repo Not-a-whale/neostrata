@@ -1913,6 +1913,48 @@
       ]
     },
     {
+      "displayName": "Featured Regimen",
+      "displayTemplate": "featured/products",
+      "editViewFields": [
+        {
+          "anchor": "100%",
+          "fieldLabel": "Select Featured Product",
+          "name": "product",
+          "xtype": "mz-input-product"
+        },
+        {
+          "fieldLabel": "Select Regimen Category",
+          "name": "category",
+          "xtype": "mz-input-category",
+          "displayField": "name",
+          "anchor": "100%",
+          "valueField": "id",
+          "queryMode": "local",
+          "allowMultiple": false,
+          "store": {
+            "type": "Taco.store.Categories"
+          }
+        },
+        {
+          "anchor": "100%",
+          "fieldLabel": "Regimen Category Description",
+          "name": "descr",
+          "xtype": "mz-input-text"
+        },
+        {
+          "anchor": "100%",
+          "fieldLabel": "Regimen Category Image",
+          "name": "image",
+          "xtype": "mz-input-imageurl"
+        }
+      ],
+      "icon": "/resources/admin/widgets/01_photo_text.png",
+      "id": "featured-regimen-display",
+      "validPageTypes": [
+        "*"
+      ]
+    },
+    {
       "defaultConfig": {},
       "displayName": "Product carousel",
       "displayTemplate": "misc/product-carousel",
