@@ -12,45 +12,45 @@ Use require_script to load AMD modules that are wrapped in define() or require()
     <!-- ! (<a href="/logout" data-mz-action="logout" class="mz-utilitynav-link">{{ labels.logOut }}</a>)-->
         <div id="my-account-content" style="display:none;">
             <div class="my-account-details">
-                <a href="/myaccount#settings">
+                <a href="/myaccount">
                     <h4>{{ labels.accountSettings }}</h4>
                     <p>{{ labels.accountSettingsInfo }}</p>
                 </a>
             </div>
             {% if siteContext.generalSettings.isWishlistCreationEnabled %}
                 <div class="my-account-details">
-                    <a href="/myaccount#wishlist">
+                    <a href="/myaccount">
                         <h4>{{ labels.wishLists }}</h4>
                         <p>{{ labels.wishListsInfo }}</p>
                     </a>
                 </div>
             {% endif %}
             <div class="my-account-details">
-                <a href="/myaccount#orderhistory">
+                <a href="/myaccount">
                     <h4>{{ labels.orderHistory }}</h4>
                     <p>{{ labels.orderHistoryInfo }}</p>
                 </a>
             </div>
             <div class="my-account-details">
-                <a href="/myaccount#returnhistory">
+                <a href="/myaccount">
                     <h4>{{ labels.returns }}</h4>
                     <p>{{ themeSettings.returnsInfo }} </p>
                 </a>
             </div>
             <div class="my-account-details">
-                <a href="/myaccount#paymentmethods">
+                <a href="/myaccount">
                     <h4>{{ labels.paymentMethods }}</h4>
                     <p>{{ themeSettings.paymentsMethodInfo }} </p>
                 </a>
             </div>
             <div class="my-account-details">
-                <a href="/myaccount#addressbook">
+                <a href="/myaccount">
                     <h4>{{ labels.addressBook }}</h4>
                     <p>{{ labels.addressBookInfo }}</p>
                 </a>
             </div>
             <div class="my-account-details">
-                <a href="/myaccount#{{ labels.digitalCreditsAnchor }}">
+                <a href="/myaccount">
                     <h4>{{ labels.digitalCredit }}</h4>
                     <p>{{ themeSettings.giftCardsInfo }} </p>
                 </a>

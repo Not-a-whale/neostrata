@@ -48,6 +48,8 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             $('.mz-l-stack-section.mz-accountsettings').removeClass('no-editing').addClass('is-editing');
             $('.mz-l-stack-section.mz-passwordsection').removeClass('is-dashboard').addClass('no-dashboard');
             $('.dl-maintitle').hide();
+            $('.mz-scrollnav-item').removeClass('active');
+            $('.mz-scrollnav-item.dl-personalInfo').addClass('active');
             this.editing = true;
             this.render();
         },
@@ -59,6 +61,8 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             $('.mz-l-stack-section.mz-passwordsection').removeClass('no-dashboard').addClass('is-dashboard');
             $('.mz-l-stack-section').show();
             $('.dl-maintitle').show();
+            $('.mz-scrollnav-item').removeClass('active');
+            $('.mz-scrollnav-item.dl-accountDashboard').addClass('active');
             
         },
         finishEdit: function() {
@@ -67,7 +71,9 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             $('.mz-l-stack-section').removeClass('is-editing').addClass('no-editing');
             $('.mz-l-stack-section.mz-passwordsection').removeClass('no-dashboard').addClass('is-dashboard');
             $('.mz-l-stack-section').show();
-            $('.dl-maintitle').show();
+            $('.dl-maintitle').show();            
+            $('.mz-scrollnav-item').removeClass('active');
+            $('.mz-scrollnav-item.dl-accountDashboard').addClass('active');
 
             this.doModelAction('apiUpdate').then(function() {
                 self.editing = false;
@@ -144,6 +150,8 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             $('.mz-l-stack-section.mz-accountwishlist').show();
             $('.mz-l-stack-section.mz-accountwishlist').removeClass('no-editing').addClass('is-editing');
             $('.dl-maintitle').hide();
+            $('.mz-scrollnav-item').removeClass('active');
+            $('.mz-scrollnav-item.dl-accountwishlist').addClass('active');
             this.editing.wishlist = true;
             this.render();
         },
@@ -163,7 +171,9 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             
             $('.mz-l-stack-section').removeClass('is-editing').addClass('no-editing');
             $('.mz-l-stack-section').show();
-            $('.dl-maintitle').show();
+            $('.dl-maintitle').show();            
+            $('.mz-scrollnav-item').removeClass('active');
+            $('.mz-scrollnav-item.dl-accountDashboard').addClass('active');
             this.render();
         },
         doNotRemove: function() {
@@ -641,6 +651,8 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             $('.mz-l-stack-section.mz-accountpaymentmethods').show();
             $('.mz-l-stack-section.mz-accountpaymentmethods').removeClass('no-editing').addClass('is-editing');
             $('.dl-maintitle').hide();
+            $('.mz-scrollnav-item').removeClass('active');
+            $('.mz-scrollnav-item.dl-paymentmethods').addClass('active');
         },                  
         beginEditCard: function (e) {
             this.startEditPayments();
@@ -674,6 +686,8 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             $('.mz-l-stack-section').removeClass('is-editing').addClass('no-editing');
             $('.mz-l-stack-section').show();
             $('.dl-maintitle').show();
+            $('.mz-scrollnav-item').removeClass('active');
+            $('.mz-scrollnav-item.dl-accountDashboard').addClass('active');
         },
         beginDeleteCard: function (e) {
             var self = this,
@@ -740,6 +754,8 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             $('.mz-l-stack-section.mz-accountaddressbook').show();
             $('.mz-l-stack-section.mz-accountaddressbook').removeClass('no-editing').addClass('is-editing');
             $('.dl-maintitle').hide();
+            $('.mz-scrollnav-item').removeClass('active');
+            $('.mz-scrollnav-item.dl-addressbook').addClass('active');
         },        
         beginAddContact: function () {
             this.startEditAddressBook();
@@ -779,6 +795,8 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             $('.mz-l-stack-section').removeClass('is-editing').addClass('no-editing');
             $('.mz-l-stack-section').show();
             $('.dl-maintitle').show();
+            $('.mz-scrollnav-item').removeClass('active');
+            $('.mz-scrollnav-item.dl-accountDashboard').addClass('active');
 
         },
         beginDeleteContact: function (e) {
@@ -911,9 +929,19 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             messagesEl: $messagesEl
         });
 
+        $('.mz-myaccount-nav .dl-accountDashboard').on('click', function (e) {
+            $('.mz-scrollnav-item').removeClass('active');
+            $(this).addClass('active');
+            accountViews.settings.cancelEdit();
+            accountViews.addressBook.cancelViewContact();
+            accountViews.paymentMethods.cancelViewCard();
+            accountViews.wishList.cancelEditWishlist();
+        });
         $('.mz-myaccount-nav .dl-personalInfo').on('click', function (e) {accountViews.settings.startEdit(e);});
+        $('.mz-myaccount-nav .dl-addressbook').on('click', function (e) {accountViews.addressBook.viewAddressBook(e);});
+        $('.mz-myaccount-nav .dl-paymentmethods').on('click', function (e) {accountViews.paymentMethods.viewPayments(e);});
+        $('.mz-myaccount-nav .dl-orderhistory').on('click', function (e) {});
         $('.mz-myaccount-nav .dl-accountwishlist').on('click', function (e) {accountViews.wishList.startEditWishlist(e);});
-
 
         // TODO: upgrade server-side models enough that there's no delta between server output and this render,
         // thus making an up-front render unnecessary.

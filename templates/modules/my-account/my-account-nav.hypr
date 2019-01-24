@@ -1,6 +1,6 @@
 ﻿<nav class="mz-scrollnav" id="account-nav" data-mz-scrollnav="{{ navtarget }}">
     <ul class="mz-scrollnav-list nav">
-        <li class="mz-scrollnav-item">
+        <li class="mz-scrollnav-item dl-accountDashboard active">
                 <a class="mz-scrollnav-link" href="/myaccount">
                     {{ labels.yourAccount }}
                 </a>
@@ -10,6 +10,21 @@
                 {{ labels.accountSettings }}
             </a>
         </li>
+        <li class="mz-scrollnav-item dl-addressbook">
+            <a class="mz-scrollnav-link" href="">
+                {{ labels.addressBook }}
+            </a>
+        </li>
+        <li class="mz-scrollnav-item dl-paymentmethods">
+            <a class="mz-scrollnav-link" href="">
+                {{ labels.paymentMethods }}
+            </a>
+        </li>
+        <li class="mz-scrollnav-item dl-orderhistory">
+            <a class="mz-scrollnav-link" href="">
+                {{ labels.orderHistory }}
+            </a>
+        </li>
         {% if siteContext.generalSettings.isWishlistCreationEnabled %}
         <li class="mz-scrollnav-item dl-accountwishlist">
             <a class="mz-scrollnav-link" href>
@@ -17,24 +32,11 @@
             </a>
         </li>
         {% endif %}
-        <li class="mz-scrollnav-item dl-orderhistory">
-            <a class="mz-scrollnav-link" href="#orderhistory">
-                {{ labels.orderHistory }}
-            </a>
-        </li>
+        
+        {% comment %}
         <li class="mz-scrollnav-item">
             <a class="mz-scrollnav-link" href="#returnhistory">
                 {{ labels.returns }}
-            </a>
-        </li>
-        <li class="mz-scrollnav-item dl-paymentmethods">
-            <a class="mz-scrollnav-link" href="#paymentmethods">
-                {{ labels.paymentMethods }}
-            </a>
-        </li>
-        <li class="mz-scrollnav-item dl-addressbook">
-            <a class="mz-scrollnav-link" href="#addressbook">
-                {{ labels.addressBook }}
             </a>
         </li>
         <li class="mz-scrollnav-item">
@@ -42,6 +44,7 @@
                 {{ labels.digitalCredit }}
             </a>
         </li>
+        {% endcomment %}
     </ul>
 </nav>
 {% require_script "modules/scroll-nav" %}

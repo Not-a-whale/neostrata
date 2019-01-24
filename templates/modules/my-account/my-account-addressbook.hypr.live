@@ -7,7 +7,7 @@
 <ul class="mz-accountaddressbook-list mz-l-tiles">
   {% for contact in model.contacts %}
   {% if editing.contact == contact.id %}
-  {% include "modules/my-account/my-account-address-form" with model=model.editingContact %}
+  {% include "modules/my-account/my-account-address-form" with model=model.editingContact isWishlistView="true" %}
   {% else %}
   {% if (not editing.contact && editing.contact != "new") || editing.contact == "view" %}
   <li class="mz-accountaddressbook-contact">
@@ -30,7 +30,7 @@
   {% endif %}
   {% endfor %}
   {% if editing.contact == "new" %}
-  {% include "modules/my-account/my-account-address-form" with model=model.editingContact with isWishlistView="true"%}
+  {% include "modules/my-account/my-account-address-form" with model=model.editingContact with isWishlistView="true" %}
   {% endif %}
 </ul>
 

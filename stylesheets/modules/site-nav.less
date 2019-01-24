@@ -1045,6 +1045,9 @@
                     padding-bottom: 1.875rem;
                     &:hover, &:focus {
                         background: none;
+                        outline: none;
+                        text-decoration: none;
+                        font-weight: bold;
                     }
                     .active {
                         font-weight: 700;
@@ -1185,12 +1188,7 @@
                                 display: block;
                             }
                         }
-                        .mz-contact-actions {
-                            margin: 0 auto;
-                            text-align: center;
-                        }
                         .mz-contact-cancel {
-                            float: right;
                             border: none;
                             text-transform: none !important;
                         }
@@ -1241,10 +1239,8 @@
                                 border-top: 2px solid #eee;
                             }
                         }
-                        .mz-contact-actions .mz-button {
+                        .mz-contact-actions .mz-button, .dl-link-newaddress {
                             background: none;
-                        }
-                        .dl-link-newaddress {
                             .my-account-button();
                             text-align: center;
                             margin: 3rem auto;
