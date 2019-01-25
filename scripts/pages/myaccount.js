@@ -369,9 +369,11 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             $.each(this.$el.find('[data-mz-omx-order-history-listing]'), function(index, val) {
 
                 var orderId = $(this).data('mzOrderId');
-                var myOrder = self.model.get('items').get(orderId);
+                var myOrder = _.find(self.model.models, function(model) {
+                    return model.attributes.orderId == orderId;
+                });
                 var orderHistoryListingView = new OmxOrderHistoryListingView({
-                    el: $(this).find('.listing'),
+                    el: $(this).find('.mz-omx-orderlisting'),
                     model: myOrder,
                     messagesEl: $(this).find('[data-order-message-bar]')
                 });
@@ -392,9 +394,9 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             };
         },
         getOrderDetail: function(event) {
-          var orderCode = $(event.currentTarget).data('mzOrderCode').trim();
+          var orderCode = $(event.currentTarget).data('mzOrderCode');
           if (!require.mozuData('pagecontext').isEditMode) {
-              window.location.href = (HyprLiveContext.locals.siteContext.siteSubdirectory || '') + '/order-status-detail?orderNumber='+orderCode;
+              window.location.href = (HyprLiveContext.locals.siteContext.siteSubdirectory || '') + '/order-status-detail?order='+orderCode;
           }
         },
         views: function() {
@@ -906,7 +908,7 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
         var $accountSettingsEl = $('#account-settings'),
             $passwordEl = $('#password-section'),
             $orderHistoryEl = $('#account-orderhistory'),
-            $omxOrderHistoryEl = $('#account-omxorderhistory'),
+            $omxOrderHistoryEl = $('#account-omx-orderhistory'),
             $returnHistoryEl = $('#account-returnhistory'),
             $paymentMethodsEl = $('#account-paymentmethods'),
             $addressBookEl = $('#account-addressbook'),
@@ -936,7 +938,7 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
                 messagesEl: $messagesEl
             }),
             omxOrderHistory: new OmxOrderHistoryView({
-              el: $omxOrderHistoryEl.find('[data-mz-omxorderlist]'),
+              el: $omxOrderHistoryEl.find('[data-mz-omx-orderlist]'),
               model: omxOrderHistoryModel
             }),
             /*orderHistory: new OrderHistoryView({

@@ -1,4 +1,4 @@
-<div class="mz-omx-orderlisting" data-mz-id="{{ model.orderId }}">
+<div class="mz-omx-orderlisting" data-mz-id="{{ model.orderNumber }}">
     <div class="mz-orderlisting-detail">
       {% block order-details %}
         <ul class="mz-orderlisting-details-list">
