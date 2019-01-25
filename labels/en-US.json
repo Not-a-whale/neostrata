@@ -663,5 +663,9 @@
   "selectFreeSample": "Select this sample",
   "selectFreeSampleCartButton": "Add Free Sample to Cart",
   "selectFreeSampleCancelButton": "No Thanks",
-  "selectFreeSampleLimit": "You have reached your limit, please hit the Add to Bag button to continue"
+  "selectFreeSampleLimit": "You have reached your limit, please hit the Add to Bag button to continue",
+  "orderHistoryDate": "Date",
+  "orderHistoryStatus": "Status",
+  "orderHistoryTotal": "Total",
+  "orderHistoryNumber": "Order #"
 }
