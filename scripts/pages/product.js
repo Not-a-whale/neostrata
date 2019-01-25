@@ -735,6 +735,7 @@
         if(user.accountId){
             if(localStorage.getItem('addToWishlist')){
                 var savedProdToWish = JSON.parse(localStorage.getItem('addToWishlist'));
+                localStorage.removeItem('addToWishlist');
                 api.get('product', savedProdToWish.code).then(function(productResponse){
                     var product = new ProductModels.Product(productResponse.data);
                     product.addToWishlist();
