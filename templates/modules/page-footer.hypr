@@ -7,6 +7,7 @@
 		</div>
 	</div>
 </div>
+{% if not themeSettings.commerceEnabled %}
 <div id="cookies-notice" style="display:none">
     <span class="close"></span>
     <div class="cookie-title">{{ labels.cookieTitle }}</div>
@@ -17,6 +18,7 @@
         <a href="{{ labels.cookieUrlAboutAds|safe }}">{{ labels.cookieTextAboutAds }}</a>
     </div>
 </div>
+{% endif %}
 <footer>
     {% block secondary-nav %}
         {% include "modules/secondary-nav" %}
