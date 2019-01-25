@@ -655,5 +655,11 @@
   "selectFreeSample": "Select this sample",
   "selectFreeSampleCartButton": "Add Free Sample to Cart",
   "selectFreeSampleCancelButton": "No Thanks",
-  "selectFreeSampleLimit": "You have reached your limit, please hit the Add to Bag button to continue"
+  "selectFreeSampleLimit": "You have reached your limit, please hit the Add to Bag button to continue",
+  "addressesCount": "Addresses",
+  "wishlistsCount": "Items",
+  "defaultAddress": "Default Address",
+  "primaryShippingContact": "Make this my default shipping address",
+  "infoAddress": "We are unable to ship to P.O. Boxes. A physical street address is required."
+
 }

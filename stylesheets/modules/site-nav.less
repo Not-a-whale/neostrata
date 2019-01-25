@@ -1067,6 +1067,36 @@
                     padding: 0 0 4rem;
                     margin-left: 0;
                     margin-right: auto;
+                    position: relative;
+
+                    .dl-view-wrapper {
+                        display: flex;
+                        width: 100%;
+                        flex-flow: row nowrap;
+                        place-content: center flex-start;
+                        align-items: flex-start;
+                        .dl-info-count {
+                            text-align: right;
+                            color: #9e9e9e;
+                            line-height: 1.4;
+                            order: 2;
+                            flex: 1 1 auto;
+                            align-self: auto;
+                            margin-top: 0.5rem;
+                        }
+                        .dl-info-message {
+                            order: 1;
+                            flex: 2 1 auto;
+                            align-self: auto;
+                            margin-top: 0.5rem;
+                        }
+                    }
+
+                    .dl-info-count {
+                        text-align: right;
+                        color: @colorLighterGray;
+                        line-height: 1.8;
+                    }
 
                     .mz-accountsettings-section {
                         min-height: unset;
@@ -1117,6 +1147,7 @@
                         padding: 0 0 0 2rem;
                         margin-top: 0.5rem;
                         width: 100%;
+                        text-transform: uppercase;
                         &.mz-accountsettings-firstname {
                             width: 50%;
                             float: left;
@@ -1197,13 +1228,25 @@
                 }                
                 &.mz-accountaddressbook {
                     &.no-editing {
-                        .mz-accountaddressbook-contact {
-                            width: 100%;
-                            border-right: none;
-                            display: none;
-                            min-height: auto;
-                            &:first-of-type {
-                                display: block;
+                        .mz-accountaddressbook-list {
+                            display: flex;
+                            flex-direction: column;
+                            max-height: 12rem;
+                            overflow: hidden;
+                        
+                            .mz-accountaddressbook-contact {
+                                width: 100%;
+                                border-right: none;
+                                display: none;
+                                min-height: auto;
+                                order: 2;
+                                &:first-of-type {
+                                    display: flex;
+                                }
+                                &.dl-isPrimaryShippingContact {
+                                    display: flex;
+                                    order: 1;
+                                }
                             }
                         }
                         .dl-link-newaddress, .dz-backtodashboard, .mz-accountaddressbook-actions {
@@ -1219,6 +1262,14 @@
                         }
                         .dl-link-editaddress {
                             display: none;
+                        }
+                        .dl-infoaddress {
+                            margin-top: -1rem;
+                            margin-bottom: 1rem;
+                            span {
+                                font-size: 1.25rem;
+                                font-style: italic;
+                            }
                         }
                         .mz-accountaddressbook-contact:not(.mz-accountaddressbook-form) {
                             width: 100%;
