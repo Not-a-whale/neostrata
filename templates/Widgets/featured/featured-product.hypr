@@ -1,6 +1,6 @@
 {% if model.items %}
 {% for prod in model.items %}
-<div
+<div id="product-list-featuredBlock"
   class="mz-productlist-item product-item col-xs-12 col-sm-6 col-md-6"
   data-mz-product="{{prod.productCode}}"
 >
@@ -60,9 +60,8 @@
       </div>
       <div class="col-xs-11 add-to-cart-container">
         <button
-          id="add-to-cart-{{prod.productCode}}"
+          id="add-to-cart-featuredBlock"
           class="primary-btn mz-productdetail-addtocart font-large button_primary pull-right "
-          data-mz-action="directoryAddToCart"
           data-mz-product-code="{{prod.productCode}}"
         >
           Add To Cart
