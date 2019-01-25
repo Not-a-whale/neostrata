@@ -772,9 +772,12 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             this.render();
         },
         finishEditContact: function () {
+            
             var self = this,
                 isAddressValidationEnabled = HyprLiveContext.locals.siteContext.generalSettings.isAddressValidationEnabled;
-            var operation = this.doModelAction('saveContact', { forceIsValid: isAddressValidationEnabled, editingView: self }); // hack in advance of doing real validation in the myaccount page, tells the model to add isValidated: true
+            self.model.set('editingContact.isShippingContact', true);
+
+                var operation = this.doModelAction('saveContact', { forceIsValid: isAddressValidationEnabled, editingView: self }); // hack in advance of doing real validation in the myaccount page, tells the model to add isValidated: true
             if (operation) {
                 blockUiLoader.unblockUi();
                 operation.otherwise(function() {
@@ -937,11 +940,36 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             accountViews.paymentMethods.cancelViewCard();
             accountViews.wishList.cancelEditWishlist();
         });
-        $('.mz-myaccount-nav .dl-personalInfo').on('click', function (e) {accountViews.settings.startEdit(e);});
-        $('.mz-myaccount-nav .dl-addressbook').on('click', function (e) {accountViews.addressBook.viewAddressBook(e);});
-        $('.mz-myaccount-nav .dl-paymentmethods').on('click', function (e) {accountViews.paymentMethods.viewPayments(e);});
-        $('.mz-myaccount-nav .dl-orderhistory').on('click', function (e) {});
-        $('.mz-myaccount-nav .dl-accountwishlist').on('click', function (e) {accountViews.wishList.startEditWishlist(e);});
+        $('.mz-myaccount-nav .dl-personalInfo').on('click', function (e) {
+            accountViews.settings.cancelEdit();
+            accountViews.addressBook.cancelViewContact();
+            accountViews.paymentMethods.cancelViewCard();
+            accountViews.wishList.cancelEditWishlist();
+            accountViews.settings.startEdit(e);});
+        $('.mz-myaccount-nav .dl-addressbook').on('click', function (e) {
+            accountViews.settings.cancelEdit();
+            accountViews.addressBook.cancelViewContact();
+            accountViews.paymentMethods.cancelViewCard();
+            accountViews.wishList.cancelEditWishlist();
+            accountViews.addressBook.viewAddressBook(e);});
+        $('.mz-myaccount-nav .dl-paymentmethods').on('click', function (e) {
+            accountViews.settings.cancelEdit();
+            accountViews.addressBook.cancelViewContact();
+            accountViews.paymentMethods.cancelViewCard();
+            accountViews.wishList.cancelEditWishlist();
+            accountViews.paymentMethods.viewPayments(e);});
+        $('.mz-myaccount-nav .dl-orderhistory').on('click', function (e) {
+            accountViews.settings.cancelEdit();
+            accountViews.addressBook.cancelViewContact();
+            accountViews.paymentMethods.cancelViewCard();
+            accountViews.wishList.cancelEditWishlist();
+        });
+        $('.mz-myaccount-nav .dl-accountwishlist').on('click', function (e) {
+            accountViews.settings.cancelEdit();
+            accountViews.addressBook.cancelViewContact();
+            accountViews.paymentMethods.cancelViewCard();
+            accountViews.wishList.cancelEditWishlist();
+            accountViews.wishList.startEditWishlist(e);});
 
         // TODO: upgrade server-side models enough that there's no delta between server output and this render,
         // thus making an up-front render unnecessary.

@@ -262,6 +262,11 @@
             <span class="mz-validationmessage" data-mz-validationmessage-for="{{ addresscontext }}address.address1"></span>
         </div>
     </div>
+    <div class="mz-l-formfieldgroup-row">
+        <div class="mz-l-formfieldgroup-cell dl-infoaddress">
+            <span>{{ labels.infoAddress }}</span>
+        </div>
+    </div>  
     <div class="mz-l-formfieldgroup-row mz-addressform-address2">
         <!--<div class="mz-l-formfieldgroup-cell mz-hide-column-catalog"></div>-->
         <div class="mz-l-formfieldgroup-cell mz-custom-padding-address">
@@ -403,8 +408,6 @@
     </div>
 
     {% endif %}  
-
-
   
     {% if themeSettings.showAddressTypeDropdown and not catalogRequest %}
     <div class="mz-l-formfieldgroup-row mz-addressform-addresstype">

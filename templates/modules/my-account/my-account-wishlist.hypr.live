@@ -1,7 +1,11 @@
 ﻿<h1 class="mz-l-stack-sectiontitle">{{ labels.accountYourWishlist }}
 {% if not editing.wishlist %}<a href class="dl-link-edit mz-link-edit-accountyourwishlist mz-link-edit-accountyourwishlist" data-mz-action="startEditWishlist">{{ labels.edit }}</a>{% endif %}</h3>
 </h1>
-{% if not editing.wishlist %}<p>{{ labels.wishlistViewInfo }}</p>{% endif %}
+{% if not editing.wishlist && model.hasItems %}
+<div class="dl-view-wrapper">
+  <div class="dl-info-message">{{ labels.wishlistViewInfo }}</div>
+  <div class="dl-info-count">{{ model.items.length }} {{ labels.wishlistsCount }}</div>
+{% endif %}
 
 {% if editing.wishlist %}
   {% if model.hasItems %}

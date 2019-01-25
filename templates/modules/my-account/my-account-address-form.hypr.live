@@ -1,6 +1,7 @@
 ﻿{% extends "modules/common/address-form" %}
 {% block address-form %}
     {% set addresscontext="editingContact." %}
+
     {% if model.isShippingContact %}
     {% set countries=pageContext.shippingCountries %}
     {% endif %}
@@ -21,15 +22,13 @@
         {% endcomment %}
         <div class="mz-l-formfieldgroup mz-l-formfieldgroup-norows mz-contacttype">
             {% comment %}
-            <label>
-                <input type="checkbox" data-mz-value="editingContact.isShippingContact" value="true" {% if model.isShippingContact %} checked="checked" {% endif %}> {{ labels.shippingContact }}
+            <label class="mz-contacttype-isShippingContact">
+                <input type="checkbox" data-mz-value="editingContact.isShippingContact" value="true" checked="checked"> {{ labels.shippingContact }}
             </label>
             {% endcomment %}
-            {% if model.isShippingContact %}
             <label class="mz-contacttype-isprimary">
-                <input type="checkbox" data-mz-value="editingContact.isPrimaryShippingContact" value="true" {% if model.isPrimaryShippingContact %} checked="checked" {% endif %}> {{ labels.primary }}
+                <input type="checkbox" data-mz-value="editingContact.isPrimaryShippingContact" value="true" {% if model.isPrimaryShippingContact %} checked="checked" {% endif %}> {{ labels.primaryShippingContact }}
             </label>
-            {% endif %}
         </div>
     </div>
     <div class="mz-contact-actions"> 

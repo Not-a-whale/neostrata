@@ -651,5 +651,11 @@
   "selectFreeSample": "[fr-CA]Select this sample[fr-CA]",
   "selectFreeSampleCartButton": "[fr-CA]Add Free Sample to Cart[fr-CA]",
   "selectFreeSampleCancelButton": "[fr-CA]No Thanks[fr-CA]",
-  "selectFreeSampleLimit": "[fr-CA]You have reached your limit, please hit the Add to Bag button to continue[fr-CA]"
+  "selectFreeSampleLimit": "[fr-CA]You have reached your limit, please hit the Add to Bag button to continue[fr-CA]",
+  "addressesCount": "[fr-CA]Addresses[fr-CA]",
+  "wishlistsCount": "[fr-CA]Items[fr-CA]",
+  "defaultAddress": "[fr-CA]Default Address[fr-CA]",
+  "primaryShippingContact": "[fr-CA]Make this my default shipping address[fr-CA]",
+  "infoAddress": "We are unable to ship to P.O. Boxes. A physical street address is required."
+
 }
