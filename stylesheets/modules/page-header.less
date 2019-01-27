@@ -152,4 +152,42 @@
 }
 .browser-detection-wrapper{
     display: none;
+}.mz-sitenav {
+  @media (min-width: 992px) {
+    height: 4.375rem;
+  }
+
+  .sticky-nav & {
+    @media (min-width: 992px) {
+      height: 6.375rem;
+      margin-top: -6.375rem;
+    }
+  }
+}
+
+.mz-pageheader .ml-header-content .site-link {
+  display: none;
+  top: 25%;
+  position: absolute;
+  left: 1.7rem;
+  display: block;
+
+  a {
+      text-decoration: none;
+      font-weight: bold;
+  }
+
+  .commerce-enabled-true & {
+    display: block;
+  }
+
+  .flag {
+    display: inline-block;
+    background-image: url(../resources/images/flag-us-small.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    width: 26px;
+    height: 14px;
+  }
 }
