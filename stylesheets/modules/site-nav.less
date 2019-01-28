@@ -108,8 +108,10 @@
         display: none;
     }
     .commerce-enabled-true & {
-        .user-login {
-            display: none;
+        @media (max-width: 991px) {
+          .user-login {
+              display: none;
+          }
         }
     }
     .container {
@@ -477,10 +479,6 @@
         }
     }
 }
-@media (min-width: 768px) {
-    .mz-sitenav{
-    }
-}
 
 @media (min-width: 992px) {
 
@@ -534,53 +532,36 @@
 
       .mz-pageheader {
           .ml-header-content {
-                .commerce-enabled-true & {
+              .commerce-enabled-true & {
                     .flex-display(flex);
                     .flex-direction(row-reverse);
                 }
-              .ml-header-search-wrapper {
+              .ecommerce-enabled-false & .ml-header-search-wrapper {
                   font-size: 2.5rem;
                   right: 12%;
                   top: 46%;
-                  .commerce-enabled-true & {
-                    right: unset;
-                    position: relative;
-                    left: unset;
-                    .flex-display(flex);
-                    height: 1rem;
-                    .flex-order(2);
-                    margin-right: 2rem;
-                    top: 30%;
-                      span {
-                        text-transform: uppercase;
-                        padding-left: 3.5rem;
-                        font-size: 1rem;
-                        display: inline-block;
-                        font-weight: bold;
-                    }
-                }
               }
 
 
               .ml-header-global-cart-wrapper {
-                  position: absolute;
-                  top: auto;
-                  right: 2px;
-                  bottom: 15px;
-                  left: auto;
-                  background: inherit;
-                  border: 0;
-                  padding: 2px 0 5px 5px;
+                  .commerce-enabled-false & {
+                    position: absolute;
+                    top: auto;
+                    right: 2px;
+                    bottom: 15px;
+                    left: auto;
+                    background: inherit;
+                    border: 0;
+                    padding: 2px 0 5px 5px;
+                  }
+
                   .commerce-enabled-true & {
-                    bottom: -2.5rem;
-                    right: 1.7rem;
-                    padding: 0;
-                    transform: none;
                     .ml-header-global-cart-text {
                         margin-left: 4.5rem;
                         text-transform: uppercase;
                         font-size: 1rem;
                     }
+
                     .ml-header-global-cart-count {
                         position: absolute;
                         margin-top: -13px;
@@ -598,13 +579,10 @@
                         }
                     }
                     .icon-cart {
-                        position: absolute;
-                        font-size: 2.5rem;
-                        top: -0.4rem;
-                        left: 0.7rem;
-                        }
-                    .ml-header-global-cart-text {
-                        display: block;
+                      position: absolute;
+                      top: 0;
+                      left: 0;
+                      font-size: 2.125rem;
                     }
                   }
                 .ml-header-global-cart-label {
@@ -615,12 +593,6 @@
               }
 
               .ml-header-links-wrapper {
-                .commerce-enabled-true & {
-                        .flex-order(1);
-                        height: 1rem;
-                        position: relative;
-                        top: 19%;
-                    }
                   .mz-utilitynav-item{
                       padding: 0 0px 0 15px;
                       &.site-msg{
@@ -652,30 +624,6 @@
                           }
                       }
                      .commerce-enabled-true & {
-                        &.user-login {
-                            top: unset;
-                            position: relative;
-                            right: unset;
-                            display: inline-block;
-                            .icon-user {
-                                .icon(before, @icon-user);
-                                font-size: 2.3rem;
-                                float: left;
-                            }
-                            .login-link-text {
-                                text-transform: uppercase;
-                                color: #4e5458;
-                                font-size: 1rem;
-                                line-height: 2.5;
-                                display: inline-block;
-                                vertical-align: middle;
-                                font-weight: bold;
-                                margin-left: 1rem;
-                                span {
-                                    font-weight: normal;
-                                }
-                            }
-                        }
                         #mz-logged-in-notice {
                             .icon-user {
                                 padding-right: 1rem;
@@ -758,7 +706,6 @@
 
             .commerce-enabled-true & {
                 @navHeight: 3.75rem;
-                height: @navHeight;
             }
 
           // tuck in menu items to left and right of the logo
@@ -913,6 +860,7 @@
                   // position elements around logo when commerce-enabled-false
                   .commerce-enabled-true & {
                     margin-top: 1.5rem;
+
                     &:nth-of-type(1) {
                         margin-left: 23%;
                     }
@@ -937,6 +885,25 @@
       }
   }
 
+  .mz-sitenav .mz-sitenav-list > .mz-sitenav-item {
+    .commerce-enabled-true #nav-header-container.sticky-nav & {
+      margin-top: 2.75rem;
+      width: 12%;
+
+      &:nth-of-type(1) {
+          margin-left: 18%;
+      }
+
+      &:nth-of-type(3) {
+          margin-left: 14%;
+      }
+
+      &:nth-of-type(4) {
+          width: 9%;
+      }
+    }
+  }
+
   // height of nav and margin top of page change together
   .commerce-enabled-false {
     #nav-header-container.sticky-nav {
@@ -957,19 +924,11 @@
   }
 
   .commerce-enabled-true {
-    #nav-header-container.sticky-nav {
-      .mz-pageheader {
-        height: 9rem;
-        .ml-header-content {
-          height: 9rem;
-        }
-      }
-    }
-
     #page-content{
-        margin-top: 12.75rem;
+        margin-top: 8.75rem;
+
         &.sticky-nav-present{
-            margin-top: 12.75rem;
+            margin-top: 8.75rem;
         }
     }
   }
