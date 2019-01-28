@@ -21,12 +21,9 @@
         </div>
       </div>
       <div class="mz-productlisting-image col-xs-12">
-        <div class="zoom-container-listing">
-          <a
-            href="{{ cat.url }}"
-          >
-          <img src="{{model.config.image}}?max={% block thumbnail-size %}{{ themeSettings.listProductThumbSize }}{% endblock thumbnail-size %}" data-zoom-image="{{model.config.image}}?max={% block thumbnail-size %}{{ themeSettings.productZoomImageMaxWidth }}{% endblock thumbnail-size %}" alt="{{ cat.name|striptags|truncatewords(themeSettings.maxProductSummaryWords) }}" />
-          </a>
+      <div class="featuredImg" style="
+          background-image: url('{{model.config.image}}?max={% block thumbnail-size %}{{ themeSettings.listProductThumbSize }}{% endblock thumbnail-size %}');
+      ">
         </div>
       </div>
     </div>
