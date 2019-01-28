@@ -1,7 +1,8 @@
 {% if model.items %}
 {% for prod in model.items %}
+<div class="col-xs-12 col-sm-6 col-md-6 wrapRelBlock">
 <div id="product-list-featuredBlock"
-  class="mz-productlist-item product-item col-xs-12 col-sm-6 col-md-6"
+  class="mz-productlist-item product-item"
   data-mz-product="{{prod.productCode}}"
 >
   <div class="product-listing-container">
@@ -10,15 +11,16 @@
       data-mz-product="{{prod.productCode}}"
     >
       <div class="mz-productlisting-image col-xs-5">
-        <div class="zoom-container-listing">
             {% if prod.mainImage.imageUrl %}
               <a href="{% make_url "product" prod %}">
-                  <img src="{{prod.mainImage.imageUrl}}?max={% block thumbnail-size %}{{ themeSettings.listProductThumbSize }}{% endblock thumbnail-size %}" data-zoom-image="{{prod.mainImage.imageUrl}}?max={% block thumbnail-size %}{{ themeSettings.productZoomImageMaxWidth }}{% endblock thumbnail-size %}" alt="{{ prod.content.productShortDescription|striptags|truncatewords(themeSettings.maxProductSummaryWords) }}" />
+                  <div class="featuredProdImg" style="
+                  background-image: url('{{prod.mainImage.imageUrl}}?max={% block thumbnail-size %}{{ themeSettings.listProductThumbSize }}{% endblock thumbnail-size %}');
+              ">
+                </div>
               </a>
             {% else %}
                 <span class="mz-productlisting-imageplaceholder"><span class="mz-productlisting-imageplaceholdertext">{{ labels.productImagePlaceholder }}</span></span>
             {% endif %}
-        </div>
       </div>
       <div class="mz-productlisting-info col-xs-7">
         <div class="slashHeading"><span>FEATURED PRODUCT</span></div>
@@ -69,6 +71,7 @@
       </div>
     </div>
   </div>
+</div>
 </div>
 {% endfor %}
 {% endif %}
