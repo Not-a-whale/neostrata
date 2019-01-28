@@ -170,7 +170,6 @@
   top: 25%;
   position: absolute;
   left: 1.7rem;
-  display: block;
 
   a {
       text-decoration: none;
@@ -178,7 +177,9 @@
   }
 
   .commerce-enabled-true & {
-    display: block;
+    @media (min-width: 992px) {
+      display: block;
+    }
   }
 
   .flag {
