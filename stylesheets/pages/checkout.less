@@ -400,6 +400,17 @@
         }
     }
 
+    .mz-checkout-payment-change {
+        font-size: 1.5rem;
+        text-decoration: none;
+        position: static;
+        text-transform: capitalize;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    
     input[type="text"],
     input[type="tel"],
     input[type="password"] {
@@ -775,5 +786,72 @@
         font-size: 1.25rem;
         line-height: 1em;
         font-weight: 500;
+    }
+}
+
+.mz-paymentselector-label-savedcreditcard,
+.mz-paymentselector-label-newcreditcard {
+    strong {
+        font-weight: 500;
+    }
+}
+
+.paymentselector-savedcreditcard-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .filter-option-inner-inner {
+        white-space: normal;
+        padding-left: 2.875rem;
+    }
+    
+    .dropdown-toggle {
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.2rem;
+    }
+}
+
+.contactselector-savedcontact-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media (max-width: 800px) {
+        flex-wrap: wrap;
+    }
+
+    .secondary-button {
+        .primary-btn(@mutedBlue);
+    
+        font-size: 1rem;
+        line-height: 2.5rem;
+        height: 2.8125rem;
+        white-space: nowrap;
+        padding: 0 1.6875rem;
+        cursor: pointer;
+
+        @media (max-width: 800px) {
+            margin-top: 2rem;
+        }
+    }
+
+    .filter-option-inner-inner {
+        white-space: normal;
+        padding-left: 2.875rem;
+    }
+
+    .custom-select-wrapper {
+        width: 70%;
+
+        @media (max-width: 800px) {
+            width: 100%;
+        }
+    }
+    .dropdown-toggle {
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.2rem;
     }
 }
