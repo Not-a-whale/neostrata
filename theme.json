@@ -1972,6 +1972,42 @@
       ]
     },
     {
+      "defaultConfig": {},
+      "displayName": "Product carousel 4 products",
+      "displayTemplate": "misc/product-carousel-4products",
+      "editViewFields": [
+        {
+          "anchor": "100%",
+          "fieldLabel": "Select Products",
+          "name": "products",
+          "xtype": "mz-input-productmulti"
+        }
+      ],
+      "icon": "/resources/admin/widgets/city-carousel-icon.png",
+      "id": "product-carousel-4-widget",
+      "validPageTypes": [
+        "*"
+      ]
+    },
+    {
+      "defaultConfig": {},
+      "displayName": "Product carousel 4 products Dark",
+      "displayTemplate": "misc/product-carousel-4products-dark",
+      "editViewFields": [
+        {
+          "anchor": "100%",
+          "fieldLabel": "Select Products",
+          "name": "products",
+          "xtype": "mz-input-productmulti"
+        }
+      ],
+      "icon": "/resources/admin/widgets/city-carousel-icon.png",
+      "id": "product-carousel-4-dark-widget",
+      "validPageTypes": [
+        "*"
+      ]
+    },
+    {
       "defaultConfig": {
         "template": "modules/product/product-list"
       },
