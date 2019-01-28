@@ -5,7 +5,7 @@
     overflow: visible;height: @navHeight;
     .clearfix();
 
-    
+
     > .mz-sitenav-list {
         display: table-row;
         > .mz-sitenav-item:first-child {
@@ -108,8 +108,10 @@
         display: none;
     }
     .commerce-enabled-true & {
-        .user-login {
-            display: none;                                    
+        @media (max-width: 991px) {
+          .user-login {
+              display: none;
+          }
         }
     }
     .container {
@@ -331,7 +333,7 @@
                             }
                         }
                     }
-                }                            
+                }
             }
         }
         .mz-sitenav-list{
@@ -477,10 +479,6 @@
         }
     }
 }
-@media (min-width: 768px) {
-    .mz-sitenav{
-    }
-}
 
 @media (min-width: 992px) {
 
@@ -524,7 +522,7 @@
         }
     }
 
-  #nav-header-container{
+  #nav-header-container {
       position: fixed;
       width: 100%;
       top: 0;
@@ -534,71 +532,36 @@
 
       .mz-pageheader {
           .ml-header-content {
-                .commerce-enabled-true & {
+              .commerce-enabled-true & {
                     .flex-display(flex);
                     .flex-direction(row-reverse);
                 }
-              .ml-header-search-wrapper {
+              .ecommerce-enabled-false & .ml-header-search-wrapper {
                   font-size: 2.5rem;
                   right: 12%;
                   top: 46%;
-                  .commerce-enabled-true & {
-                    right: unset;
-                    position: relative;
-                    left: unset;
-                    .flex-display(flex);
-                    height: 1rem;
-                    .flex-order(2);
-                    margin-right: 2rem;
-                    top: 30%;
-                      span {
-                        text-transform: uppercase;
-                        padding-left: 3.5rem;
-                        font-size: 1rem;
-                        display: inline-block;
-                        font-weight: bold;
-                    }
-                }
               }
-            .commerce-enabled-true & {
-              .site-link {
-                top: 25%;
-                position: absolute;
-                left: 1.7rem;
-                display: block;
-                a {
-                    text-decoration: none;
-                    font-weight: bold;
-                }
-                .flag {
-                    background: url(../resources/images/canadian_flag.svg) no-repeat bottom center;
-                    width: 26px;
-                    height: 14px;
-                    display: inline-block;
-                    margin-left: 10px;
-                }
-              }
-            }
+
 
               .ml-header-global-cart-wrapper {
-                  position: absolute;
-                  top: auto;
-                  right: 2px;
-                  bottom: 15px;
-                  left: auto;
-                  background: inherit;
-                  border: 0;
-                  padding: 2px 0 5px 5px;
+                  .commerce-enabled-false & {
+                    position: absolute;
+                    top: auto;
+                    right: 2px;
+                    bottom: 15px;
+                    left: auto;
+                    background: inherit;
+                    border: 0;
+                    padding: 2px 0 5px 5px;
+                  }
+
                   .commerce-enabled-true & {
-                    bottom: -2.5rem;
-                    right: 1.7rem;
-                    padding: 0;
-                    transform: none;
                     .ml-header-global-cart-text {
                         margin-left: 4.5rem;
                         text-transform: uppercase;
                         font-size: 1rem;
                     }
+
                     .ml-header-global-cart-count {
                         position: absolute;
                         margin-top: -13px;
@@ -613,16 +576,13 @@
                             .mz-cartmonitor {
                                 font-size: .8rem;
                             }
-                        }        
+                        }
                     }
                     .icon-cart {
-                        position: absolute;
-                        font-size: 2.5rem;
-                        top: -0.4rem;
-                        left: 0.7rem;
-                        }
-                    .ml-header-global-cart-text {
-                        display: block;
+                      position: absolute;
+                      top: 0;
+                      left: 0;
+                      font-size: 2.125rem;
                     }
                   }
                 .ml-header-global-cart-label {
@@ -633,12 +593,6 @@
               }
 
               .ml-header-links-wrapper {
-                .commerce-enabled-true & {
-                        .flex-order(1);
-                        height: 1rem;
-                        position: relative;
-                        top: 19%;
-                    }
                   .mz-utilitynav-item{
                       padding: 0 0px 0 15px;
                       &.site-msg{
@@ -652,7 +606,7 @@
                           .popover-content{
                               .my-account-details{
                                   a{
-                                      p {display: block; 
+                                      p {display: block;
                                         .commerce-enabled-true & {
                                             display: none;
                                         }
@@ -670,30 +624,6 @@
                           }
                       }
                      .commerce-enabled-true & {
-                        &.user-login {
-                            top: unset;
-                            position: relative;
-                            right: unset;
-                            display: inline-block;
-                            .icon-user {
-                                .icon(before, @icon-user);
-                                font-size: 2.3rem;
-                                float: left;
-                            }
-                            .login-link-text {
-                                text-transform: uppercase;
-                                color: #4e5458;
-                                font-size: 1rem;
-                                line-height: 2.5;
-                                display: inline-block;
-                                vertical-align: middle;
-                                font-weight: bold;
-                                margin-left: 1rem;
-                                span {
-                                    font-weight: normal;
-                                }
-                            }                            
-                        }
                         #mz-logged-in-notice {
                             .icon-user {
                                 padding-right: 1rem;
@@ -773,10 +703,9 @@
       .mz-sitenav {
 
           display: block;
-          
+
             .commerce-enabled-true & {
                 @navHeight: 3.75rem;
-                height: @navHeight;
             }
 
           // tuck in menu items to left and right of the logo
@@ -931,6 +860,7 @@
                   // position elements around logo when commerce-enabled-false
                   .commerce-enabled-true & {
                     margin-top: 1.5rem;
+
                     &:nth-of-type(1) {
                         margin-left: 23%;
                     }
@@ -955,6 +885,25 @@
       }
   }
 
+  .mz-sitenav .mz-sitenav-list > .mz-sitenav-item {
+    .commerce-enabled-true #nav-header-container.sticky-nav & {
+      margin-top: 2.75rem;
+      width: 12%;
+
+      &:nth-of-type(1) {
+          margin-left: 18%;
+      }
+
+      &:nth-of-type(3) {
+          margin-left: 14%;
+      }
+
+      &:nth-of-type(4) {
+          width: 9%;
+      }
+    }
+  }
+
   // height of nav and margin top of page change together
   .commerce-enabled-false {
     #nav-header-container.sticky-nav {
@@ -975,28 +924,20 @@
   }
 
   .commerce-enabled-true {
-    #nav-header-container.sticky-nav {
-      .mz-pageheader {
-        height: 9rem;
-        .ml-header-content {
-          height: 9rem;
-        }
-      }
-    }
-
     #page-content{
-        margin-top: 12.75rem;
+        margin-top: 8.75rem;
+
         &.sticky-nav-present{
-            margin-top: 12.75rem;
+            margin-top: 8.75rem;
         }
     }
   }
-  
+
 }
 
 // Account Dashboard
 .mz-myaccount {
-    @leftPosition: 19.5%; 
+    @leftPosition: 19.5%;
     .mz-l-container {
         margin: 10rem auto 0;
         max-width: 83.33%;
@@ -1137,7 +1078,7 @@
                         margin-top: 0;
                         text-align: center;
                     }
-                    
+
                     input[type=text], input[type=email], select, input[type=tel] {
                         border-radius: 0;
                         border: 2px solid #4e5458;
@@ -1152,13 +1093,13 @@
                             width: 50%;
                             float: left;
                         }
-                        @leftInputMargin: 1.5rem; 
+                        @leftInputMargin: 1.5rem;
                         &.mz-accountsettings-lastname {
                             width: calc(50% ~"-" @leftInputMargin);
                             margin-left: @leftInputMargin;
                         }
                     }
-                    
+
                     .mz-accountsettings-label, label {
                         display: block;
                         color: #4e5458 !important;
@@ -1224,8 +1165,8 @@
                             text-transform: none !important;
                         }
                     }
-                    
-                }                
+
+                }
                 &.mz-accountaddressbook {
                     &.no-editing {
                         .mz-accountaddressbook-list {
@@ -1233,7 +1174,7 @@
                             flex-direction: column;
                             max-height: 12rem;
                             overflow: hidden;
-                        
+
                             .mz-accountaddressbook-contact {
                                 width: 100%;
                                 border-right: none;
@@ -1252,7 +1193,7 @@
                         .dl-link-newaddress, .dz-backtodashboard, .mz-accountaddressbook-actions {
                             display: none;
                         }
-                        
+
                     }
                     &.is-editing {
                         .mz-accountaddressbook-list {
@@ -1276,7 +1217,7 @@
                             display: inline-block;
                             float: left;
                             margin: 0;
-                            border: none;                            
+                            border: none;
                             padding: 0 2rem 2rem 2rem;
                             min-height: auto;
                             .mz-accountaddressbook-actions {
@@ -1350,7 +1291,7 @@
                             width: 50% !important;
                             margin-left: 0 !important;
                         }
-                        @leftInputMargin: 1.5rem; 
+                        @leftInputMargin: 1.5rem;
                         &:last-of-type {
                             width: calc(50% ~"-" @leftInputMargin);
                             margin-left: @leftInputMargin;
@@ -1480,7 +1421,7 @@
                                 width: 81%;
                                 margin: 0;
                                 display: inline-block;
-                                
+
                                 .mz-itemlisting-price {
                                     display: inline-block;
                                     float: right;
