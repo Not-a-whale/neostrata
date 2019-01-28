@@ -125,7 +125,7 @@
             if(searchVal === ""){
                 alert(Hypr.getLabel('blankSearchResult'));
                 e.preventDefault();
-            }else if(searchVal.length < 3){ 
+            }else if(searchVal.length < 3){
                 alert(Hypr.getLabel('searchLessCharacters'));
                 e.preventDefault();
             }
@@ -158,7 +158,7 @@
 		$(window).scroll(function() {
 			var $nav_header_container = $('#nav-header-container');
 			var $page_content = $('#page-content');
-			if ( window.pageYOffset > 0 ) {
+			if ( window.pageYOffset > 38 ) {
 				$nav_header_container.addClass( "sticky-nav" );
                 $page_content.addClass( "sticky-nav-present" );
 			} else {

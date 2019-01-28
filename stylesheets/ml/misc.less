@@ -115,7 +115,7 @@
             z-index: 1;
             .commerce-enabled-true & {
                 left: 50%;
-            } 
+            }
             .logo {
                 .hide-anchor-text();
 
@@ -141,11 +141,6 @@
                 height: 52px;
             }
         }
-        .commerce-enabled-true & {
-            .site-link {
-                display: none;
-            }
-        }
         .ml-header-search-wrapper {
             position: absolute;
             top: 53%;
@@ -163,6 +158,7 @@
                 top: 50%;
             }
             .commerce-enabled-true & {
+              @media (max-width: 991px) {
                 position: absolute;
                 right: auto;
                 left: 6rem;
@@ -170,6 +166,7 @@
                 .ml-header-search-label {
                     display: none;
                 }
+              }
             }
             .search-button{
                 .icon(before, @icon-search);
@@ -234,7 +231,7 @@
                                         font-family: "Gotham A", "Gotham B", sans-serif;
                                     }
                                 }
-                                
+
                                 p{display: none; font-size: 13px; color: #333; margin-bottom: 6px;}
                             }
                         }
@@ -263,7 +260,9 @@
                 }
                 .commerce-enabled-true & {
                     &.user-login {
-                        display: none;
+                        @media (max-width: 991px) {
+                          display: none;
+                        }
                     }
                 }
             }
@@ -279,11 +278,13 @@
             border-radius: 3px;
             padding: 0 5px;
             .commerce-enabled-true & {
-                right: 5.5rem;
-                top: 58%;
-                transform: translateY(-58%);
-                padding: 0;
-                @media screen and (min-width: 768px) {
+                @media (max-width: 991px) {
+                  right: 5.5rem;
+                  top: 58%;
+                  transform: translateY(-58%);
+                  padding: 0;
+                }
+                @media screen and (min-width: 768px) and (max-width: 991px) {
                     top: 49%;
                     transform: translateY(-49%);
                 }
@@ -385,7 +386,7 @@
                 display: none;
             }
         }
-        
+
     }
 }
 
@@ -460,8 +461,8 @@
     .mz-pagetitle{
         /*float: left;*/
         text-transform: uppercase;
-        font-size: 30px;        
-    }    
+        font-size: 30px;
+    }
     .mz-carttable-item{
         padding: 25px 0 16px;
         @media screen and (max-width: 767px) {
@@ -482,7 +483,7 @@
         .cart-item-qty{
             text-align:center;
             .label-qty{
-                
+
             }
         }
     }
@@ -597,7 +598,7 @@
         font-size: 16px;
         text-transform: uppercase;
         @media screen and (max-width: 767px) {
-            font-size: 1.6rem;    
+            font-size: 1.6rem;
         }
     }
     .mz-carttable-item-price{
@@ -1038,7 +1039,7 @@ footer {
                 }
                 .input-group {
                     padding: 0;
-                    .flex-display(flex);                    
+                    .flex-display(flex);
                     width: 80%;
                     margin: 0 auto;
                     .input-group-addon {
@@ -1074,7 +1075,7 @@ footer {
                         }
                     }
                 }
-                
+
                 .left-column,.bottom-text{padding-left: 0px;}
                 .right-column{padding-right: 3px;}
                 select{width: 100%; height:34px; border-radius: 3px;}
@@ -1123,7 +1124,7 @@ footer {
                     display: inline;
                     padding: 0 0 0.5rem 0;
                     border: 0;
-                    
+
                     &:focus, &:active {
                         outline: none;
                         box-shadow: none;
@@ -2017,9 +2018,9 @@ ul.tabs {
                     &:hover{
                         cursor: pointer;
                     }
-                }    
+                }
             }
-        }        
+        }
     }
 }
 #mz-drop-zone-category-page-top{
@@ -3886,7 +3887,7 @@ body.mz-product {
 @media (min-width: 992px) {
 // Account Dashboard
 .mz-myaccount {
-    @leftPosition: 19.5%; 
+    @leftPosition: 19.5%;
     .mz-l-container {
         display: block;
         .h1, h1 {
@@ -3900,7 +3901,7 @@ body.mz-product {
 
         .dl-maintitle {
             margin-left: @leftPosition;
-            padding-left: 6.3%;                        
+            padding-left: 6.3%;
             transform: none;
             left: unset;
             width: unset;
@@ -3989,8 +3990,8 @@ body.mz-product {
                             float: right;
                         }
                     }
-                    
-                }                
+
+                }
                 &.mz-accountaddressbook {
                     &.no-editing {
                         .mz-accountaddressbook-contact {
@@ -4005,7 +4006,7 @@ body.mz-product {
                         .dl-link-newaddress, .dz-backtodashboard, .mz-accountaddressbook-actions {
                             display: none;
                         }
-                        
+
                     }
                     &.is-editing {
                         .dl-link-editaddress {
@@ -4014,7 +4015,7 @@ body.mz-product {
                         .mz-accountaddressbook-contact:not(.mz-accountaddressbook-form) {
                             width: 50%;
                             margin: 0 0 0 -4rem;
-                            padding: 0 4rem 4rem 4rem;                            
+                            padding: 0 4rem 4rem 4rem;
                         }
                         .mz-contact-actions .mz-button, .dl-link-newaddress {
                             margin: 0 auto;
@@ -4039,7 +4040,7 @@ body.mz-product {
                         &:first-of-type {
                             width: 50%;
                         }
-                        @leftInputMargin: 1.5rem; 
+                        @leftInputMargin: 1.5rem;
                         &:last-of-type {
                             width: calc(50% ~"-" @leftInputMargin);
                             margin-left: @leftInputMargin;
