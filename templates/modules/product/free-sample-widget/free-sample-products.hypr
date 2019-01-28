@@ -1,0 +1,27 @@
+﻿{% if not pageContext.query.partial %}
+<script type="text/json" id="data-mz-preload-facetedproducts">
+{
+	"items" : {% json model.items %},
+    "facets": {% json model.facets %},
+    "currentPage": {{ model.currentPage }},
+    "firstIndex": {{ model.firstIndex }},
+    "hasNextPage": {{ model.hasNextPage|lower }},
+    "hasPreviousPage": {{ model.hasPreviousPage|lower }},
+    "lastIndex": {{ model.lastIndex }},
+    "middlePageNumbers": {% json model.middlePageNumbers %},
+    "pageCount": {{ model.pageCount }},
+    "pageSize": {{ model.pageSize }},
+    "startIndex": {{ model.startIndex }},
+    "totalCount": {{ model.totalCount }},
+    "currentSort": "{{ model.currentSort }}",
+		"cartData": "{{ cartData }}"
+
+}
+</script>
+{% endif %}
+CART DATA: {{ cart }}
+<div class="product-list mz-l-paginatedlist col-12">
+    <div data-mz-productlist class="mz-l-paginatedlist-list">
+        {% include "modules/product/free-sample-widget/product-list-tiled" %}
+    </div>
+</div>

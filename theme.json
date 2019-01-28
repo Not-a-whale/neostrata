@@ -1876,6 +1876,23 @@
     },
     {
         "category" : "catalog",
+        "id":"free-samples-widget",
+        "displayName":"Free Samples",
+        "displayTemplate":"neostrata/free-samples",
+        "editViewFields":[
+          {"name":"freeSampleCategory", "fieldLabel":"Free Sample Category", "xtype": "mz-input-category"},
+          {"name":"freeSampleProducts", "fieldLabel":"Free Sample Products", "xtype": "mz-input-productmulti"},
+          {"name":"system", "fieldLabel":"System"},
+          {"name":"imagePath", "fieldLabel":"Image Path"},
+          {"name":"description", "fieldLabel":"Description"},
+          {"name":"linkPath", "fieldLabel":"Link Path"},
+          {"name":"linkTitle", "fieldLabel":"Link Title"}
+        ],
+        "icon":"/resources/admin/widgets/26_related_products.png",
+        "validPageTypes":["*"]
+    },
+    {
+        "category" : "catalog",
         "id":"bv-conversations-ratings",
         "displayName":"BazaarVoice Conversations Ratings",
         "displayTemplate":"BVConversations/bv-conversations-ratings",
