@@ -1,0 +1,7 @@
+{% if model.config.product %}
+<div class="featured-product-only-widget" data-widget="featured-product-only">
+    {% include_products "Widgets/featured-product/featured-product" with productCodes=model.config.product as_parameter %}
+</div>
+{% endif %}
+{% require_script "widgets/featured-product-only/slider" %}
+{% require_script "widgets/featured-product-only/product" %}
