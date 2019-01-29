@@ -145,7 +145,8 @@
             <span class="mz-validationmessage" data-mz-validationmessage-for="{{ cardcontext }}cardNumberPartOrMask"></span>
         </div>
     </div>
-    <div class="mz-l-formfieldgroup-row mz-payment-credit-card-name-row form-row hidden">
+    <!-- Removed hidden class temporary -->
+    <div class="mz-l-formfieldgroup-row mz-payment-credit-card-name-row form-row">
         {% comment %}
         <div class="mz-l-formfieldgroup-cell">
             <label for="mz-payment-credit-card-name">{{ labels.nameOnCard }}<span class="is-required"> *</span>:</label>
