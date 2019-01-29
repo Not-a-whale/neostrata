@@ -161,7 +161,11 @@ define([
                              $('#filter-'+filterKeyFormat).find('.mz-clear-facet-section').removeClass('hide');
                         }
                         //if(facetKey === 'tenant~size'){
-                             displayValue=$('#'+facetVal).attr('data-mz-text-value');
+                            if (facetKey === 'price') {
+                                displayValue = facetValue[j].split(":")[1];
+                            } else {
+                                displayValue=$('#'+facetVal).attr('data-mz-text-value');
+                            }
                         //}
                         available_facets += '<li><i class="fa fa-times-circle remove-facet" data-mz-facet="' + facetKey + '" data-mz-facet-value="' + facetValue[j].split(":")[1] + '" data-mz-purpose="remove" data-mz-action="clearFacet"></i> <u>' + displayValue + '</u></li>';
                     }

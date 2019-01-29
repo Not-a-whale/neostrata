@@ -852,12 +852,6 @@
     }
 }
 .search-results{
-    .facets-block{
-        height: 7rem;
-    }
-    #filter-tab-li{
-        visibility: hidden;
-    }
     .mz-productlist #product-list-ul{
         margin: 0;
     }
@@ -2328,17 +2322,28 @@ ul.tabs {
     padding: 0 1px 0 0;
     overflow: hidden;
     margin: 0;
-    li{
+
+    @media (max-width: 991px) {
+        padding: 1rem;
+    }
+
+    li {
         font-size: @fontSizeLarger;
         color: @colorMediumGray;
         padding-left: 1rem;
         float: left;
-        i{
+
+        @media (max-width: 991px) {
+            font-size: 2rem;
+        }
+
+        i {
             font-size: @fontSize;
             color: @colorMediumGray;
             cursor: pointer;
         }
-        u{
+
+        u {
             text-transform: capitalize;
             text-decoration: none;
         }
@@ -2370,12 +2375,34 @@ ul.tabs {
     position: relative;
     margin: 1rem 0;
     text-align: center;
+
     .mz-facetingform-clearall{
         padding: 1rem 0;
         color: @colorGray;
-        i{
-            color: @colorMediumGray;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 1em;
+
+        @media (max-width: 991px) {
+            font-size: 2rem;
         }
+        
+
+        span {
+            font-size: 1rem;
+            color: @colorMediumGray;
+            
+            @media (max-width: 991px) {
+                font-size: 2rem;
+            }
+        }
+
+        i {
+            color: @colorMediumGray;
+            margin-left: 1rem;
+        }
+
     }
 }
 
@@ -2392,6 +2419,8 @@ ul.tabs {
         }
         .dropdown-select-list{
             position: relative;
+            max-height: 30rem;
+            overflow-y: auto;
         }
     }
     .faceting-header{

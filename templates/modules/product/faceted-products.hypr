@@ -35,8 +35,8 @@
         <button class="btn-transparent text-uppercase mz-facetingform-clearall" data-mz-action="clearFacets" data-mz-url="{% make_url "facet" "clear"  %}">{{ labels.clearAllFilters }} <i data-mz-action="clearFacets" data-mz-url="{% make_url "facet" "clear"  %}" class="fa fa-times-circle" aria-hidden="true"></i></button>
     </div>
 {% endif %}
-<div class="facets-block">
-    <div class="facet-headers">
+<div class="facets-block clearfix">
+    <div class="facet-headers clearfix">
     <ul class="nav nav-tabs responsive col-sm-12 correct" id="sort-facet-tab">
         {% if model.facets %}
             <li class="first-tab col-sm-6 text-center dropdown-select" rel="filter-tab" id="filter-tab-li">{{ labels.filter }}<i class="dropdown-icon"></i></li>
