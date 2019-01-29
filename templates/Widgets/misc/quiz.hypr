@@ -88,7 +88,7 @@
           SUGGESTED RETAIL PRICE
         </div>
       </div>
-      <button type="button">
+      <button type="button" data-product-code="<%= productCode %>" data-action="add-to-cart">
         ADD TO CART
       </button>
     </div>
