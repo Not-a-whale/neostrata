@@ -197,7 +197,6 @@ require(["modules/jquery-mozu",
             'isSameBillingShippingAddress',
             'usingSavedCard',
             'savedPaymentMethodId',
-            'card.nameOnCard',
             'billingContact.email'
             
         ],
