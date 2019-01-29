@@ -1973,6 +1973,9 @@ ul.tabs {
                 }
             }
         }
+        .mz-productlisting {
+            padding-bottom: 3rem;
+          }
         .bottom-details {
             position: absolute;
             bottom: 1rem;
@@ -1989,20 +1992,29 @@ ul.tabs {
                 float: left;
             }
         }
+        @media (max-width: 500px) {
+            .bottom-details {
+                bottom: 0;
+            }
+        }
+        
         .mz-productdetail-conversion-buttons {
             position: absolute;
             right: .5rem;
             bottom: 0;
             left: .5rem;
             height: 0px;
-            .primary-btn {
-                height: 3rem;
-                line-height: 1.5rem;
-                font-size: 1rem;
-                min-width: 18.25rem;
+            .add-to-cart-container {
+                padding: 0;
+                .primary-btn {
+                    height: 3rem;
+                    line-height: 1.5rem;
+                    font-size: 1rem;
+                    min-width: 18.25rem;
+                }
             }
             .add-to-wishlist-container{
-                padding: 5px;
+                padding: 0.5rem;
                 .mz-productdetail-addtowishlist{
                     text-decoration: none;
                     text-align:center;
