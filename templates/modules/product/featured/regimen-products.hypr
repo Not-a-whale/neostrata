@@ -1,0 +1,62 @@
+<li
+  class="mz-productlist-item product-item col-xs-12 col-sm-6 col-md-6 regimenProducts"
+  data-mz-product="F30095D"
+>
+  <div class="product-listing-container">
+    <div
+      class="mz-productlisting mz-productlist-tiled featuredBlock row defend"
+      data-mz-product="F30095D"
+    >
+      <div class="mz-productlisting-info col-xs-12">
+        <div class="slashHeading col-xs-8"><span>RECOMMENDED REGIMEN</span></div>
+        <div class="col-xs-4 countProd">6 PRODUCTS - $175.00</div>
+        <a
+          class="mz-productlisting-title pdp2 col-xs-3"
+          href="/product/skin-active-repair-comprehensive-antiaging-system/F30095D"
+          >Clarify</a
+        >
+
+        <div class="mz-productlisting-shortdesc pdp3 col-xs-9">
+          Targets the visible signs of photodamage
+        </div>
+      </div>
+      <div class="mz-productlisting-image col-xs-12">
+        <div class="zoom-container-listing">
+          <a
+            href="/product/skin-active-repair-comprehensive-antiaging-system/F30095D"
+          >
+            <img
+              src="//cdn-sb.mozu.com/26425-41093/cms/41093/files/7cf610e7-2479-4137-816f-abdd6bc68e4f?max=800"
+              data-zoom-image="//cdn-sb.mozu.com/26425-41093/cms/41093/files/7cf610e7-2479-4137-816f-abdd6bc68e4f?max=700"
+              alt="Targets the visible signs of photodamage"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+    <div
+      class="mz-productdetail-conversion-buttons featuredBlockButton col-xs-12"
+    >
+      <div class="col-xs-6 add-to-cart-container">
+        <button
+          id="add-to-cart-F30095D"
+          class="primary-btn mz-productdetail-addtocart font-large button_primary pull-right "
+          data-mz-action="directoryAddToCart"
+          data-mz-product-code="F30095D"
+        >
+          VIEW REGIMEN
+        </button>
+      </div>
+      <div class="col-xs-6 add-to-cart-container">
+        <button
+          id="add-to-cart-F30095D"
+          class="primary-btn mz-productdetail-addtocart font-large button_primary pull-right "
+          data-mz-action="directoryAddToCart"
+          data-mz-product-code="F30095D"
+        >
+          ADD ALL TO CART
+        </button>
+      </div>
+    </div>
+  </div>
+</li>

@@ -80,7 +80,9 @@
         <div class="col-xs-3 col-sm-3 cart-item-qty">  
           <span class="label-qty">{{ labels.qty }}</span>
           <div class="mz-carttable-item-qty mz-cart-qty-box">
-            <input class="mz-carttable-qty-field text-center" type="number" {% if model.isLoading %}disabled="disabled"{% endif %} data-mz-cart-item="{{ item.id }}" data-mz-value="quantity" value="{{ item.quantity }}" min="1"/>
+              {% with item.product.categories|findwhere('id', themeSettings.freeSampleCategoryId) as sampleProducts %}
+                  <input class="mz-carttable-qty-field text-center" type="number" {% if sampleProducts %}disabled="disabled"{% endif %} {% if model.isLoading %}disabled="disabled"{% endif %} data-mz-cart-item="{{ item.id }}" data-mz-value="quantity" value="{{ item.quantity }}" min="1"/>
+              {% endwith %}
           </div>
         </div>
         <div class="col-xs-3 col-sm-3 mz-price-total-container">

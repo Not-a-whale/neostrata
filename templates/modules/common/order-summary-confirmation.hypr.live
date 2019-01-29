@@ -1,0 +1,90 @@
+﻿<div class="mz-ordersummary mz-reset-padding ">
+    <div class="clearfix visible-xs"></div>
+         <div class="text-right mz-reset-padding order-summary-confirmation-info">
+            <div class="mz-ordersummary-subtotal">
+              <div class="mz-checkout-total-row">
+                <span class="mz-ordersummary-totalname text-right">{{ labels.subtotal }}:</span>
+                <span class="mz-ordersummary-totalvalue">{{ model.discountedSubtotal|currency }}</span>
+              </div>
+            </div>
+          {% for discount in model.orderDiscounts %}
+          {% if not discount.excluded %}
+          <div class="mz-ordersummary-discount">
+            <div class="mz-checkout-total-row mz-checkout-discount-row-container">
+              <span class="mz-ordersummary-discountname text-right">{{ discount.discount.name }}:</span>
+              <span class="mz-ordersummary-discountamt">-{{ discount.impact|currency }}</span>
+            </div>
+          </div>
+          {% endif %}
+          {% endfor %}
+          
+          {% if model.dutyTotal > 0 %}
+          <div class="mz-ordersummary-tax">
+            <div class="mz-checkout-total-row">
+              <span class="mz-ordersummary-totalname text-right">{{ labels.taxDuty }}:</span>
+              <span class="mz-ordersummary-totalvalue">{% filter currency %} {{ model.dutyTotal|add(model.taxTotal)}} {% endfilter %}</span>
+            </div>
+          </div>
+          {% else %}
+          {% if model.taxTotal %}
+          <div class="mz-ordersummary-tax">
+              <div class="mz-checkout-total-row">
+                  <span class="mz-ordersummary-totalname text-right">{{ labels.tax }}:</span>
+                  <span class="mz-ordersummary-totalvalue">{{ model.taxTotal|currency }}</span>
+              </div>
+          </div>
+          {% endif %}
+          {% endif %}
+
+          <div class="mz-ordersummary-shippingtotal">
+              <div class="mz-checkout-total-row">
+                <span class="mz-ordersummary-totalname text-right">{{ labels.shippingHandling }}:</span>
+                <span class="mz-ordersummary-totalvalue">{{ model.shippingSubTotal|currency }}</span>
+              </div>
+            </div>
+            {% for shippingDiscount in model.shippingDiscounts %}
+            <div class="mz-ordersummary-shippingdiscount">
+              <div class="mz-checkout-total-row">
+                <span class="mz-ordersummary-totalname text-right">{{ shippingDiscount.discount.discount.name }}:</span>
+                <span class="mz-ordersummary-totalvalue">-{{ shippingDiscount.discount.impact|currency }}</span>
+              </div>
+            </div>
+            {% endfor %}
+            {% if model.handlingTotal %}
+            <div class="mz-ordersummary-additionalhandling">
+                <div class="mz-checkout-total-row">
+                  <span class="mz-ordersummary-totalname text-right">{{ labels.additionalHandling }}{% if model.handlingAmount > model.handlingTotal  %}<span class="is-crossedout" {% block crossedout-inline-style %}{% endblock crossedout-inline-style %}> ( {{ model.handlingAmount|currency }} )</span>{% endif %}</span>
+                  <span class="mz-ordersummary-totalvalue">{{ model.handlingTotal|currency }}</span>
+                </div>
+            </div>
+            {% endif %}
+
+          <div class="mz-ordersummary-grandtotal">
+                <div class="mz-checkout-total-row">
+                    <span class="mz-ordersummary-totalname text-right">{{ labels.total }}:</span>
+                    <span class="mz-ordersummary-totalvalue">{{ model.total|currency }}</span>
+                </div>
+            </div>
+        {% if model.billingInfo and model.billingInfo.digitalCreditPaymentTotal %}
+          <div class="mz-ordersummary-digitalcreditpayment">
+            <div class="mz-checkout-total-row">
+              <span class="mz-ordersummary-totalname text-right">{{ labels.digitalCreditTotal }}</span>
+              <span class="mz-ordersummary-totalvalue">{{ labels.digitalCreditSubtractFromOrderPrefix }}{{ model.billingInfo.digitalCreditPaymentTotal|currency }}{{ labels.digitalCreditSubtractFromOrderSuffix }}</span>
+            </div>
+          </div>
+          <div class="mz-ordersummary-grandtotal">
+                <div class="mz-checkout-total-row">
+                    <span class="mz-ordersummary-totalname text-right">{{ labels.remainingBalance }}:</span>
+                    <span class="mz-ordersummary-totalvalue">{{ model.billingInfo.nonStoreCreditTotal|currency }}</span>
+                </div>
+            </div>
+       {% endif %}
+          <div class="order-summary-links">
+            <div class="mz-checkout-total-row">
+              <a href="#">Track & Manage Order</a>
+              <a href="#">Print Receipt</a>
+            </div>
+          </div>
+        </div>
+        
+    </div>

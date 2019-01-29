@@ -41,7 +41,53 @@
       border: 1px solid #999;
       color: black;
     }
+    
+    input[type="checkbox"],
+    input[type="radio"] {
+        left: -9999rem;
+        opacity: 0;
+    }
+    .form-row {
+        .two-rows-checkbox {
+            padding-top: 0;
+            font-size: 1.25rem;
+            line-height: 1.5em !important;
+    
+            strong {
+                font-weight: 500;
+            }
+    
+            &:after {
+                top: 18px;
+            } 
+            &:before {
+                top: 20px;
+                left: 3px;
+                line-height: 18px;
+                width: 18px;
+                font-size: 1.1rem;
+            }
+        }
 
+        .terms-conditions-label {
+            font-size: 1.25rem;
+
+            &:before {
+                font-size: 1.1rem;
+            }
+        }
+    }
+
+    &.mz-create-account-fields {
+        p {
+            font-size: 1.25rem;
+            line-height: 1.5em;
+
+            strong {
+                font-weight: 500;
+            }
+        }
+    }
 }
 
 .mz-checkoutform-shipping {
@@ -286,6 +332,14 @@
     flex-direction: row-reverse;
     justify-content: space-between;
 
+    &:after {
+        display: none;
+    }
+    
+    .mz-messagebar {
+        width: 100%;
+    }
+
     h5 {
         margin: 0 0 3.5625rem;
         font-weight: 500;
@@ -321,10 +375,45 @@
                 text-decoration: underline;
             }
         }
+        &.checkout-fields-title {
+            width: 100%;
+            border: 0px;
+            color: @charcoal;
+            margin: 0;
+            span {
+                font-weight: 500;
+                font-size: 1.5rem;
+                line-height: 1.25em;
+            }
+            a {
+                font-size: 1.5rem;
+                text-decoration: none;
+                position: static;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+            .mz-formstep-summary{
+                display: flex;
+            }
+        }
     }
 
+    .mz-checkout-payment-change {
+        font-size: 1.5rem;
+        text-decoration: none;
+        position: static;
+        text-transform: capitalize;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    
     input[type="text"],
-    input[type="tel"] {
+    input[type="tel"],
+    input[type="password"] {
         width: 100%;
         height: 4.375rem;
         border: 0.1875rem solid @charcoal;
@@ -340,6 +429,7 @@
     }
     .form-row {
         padding: 0 0 3rem;
+        position: relative;
     }
 
     .checkout-twocolumn-row {
@@ -480,7 +570,9 @@
 
     input[type="radio"] + label {
         .icon (before, @icon-dot-single);
-            font-family: @fontFamily !important;
+        
+        font-family: @fontFamily !important;
+
         &:before, &:after{
             font-family: 'icomoon' !important;
         }
@@ -576,13 +668,14 @@
 
     .mz-formstep-edit{
         @media (max-width: 800px) {
-            display: none;
+            //display: none;
         }
     }
 }
 
 #checkout-form .checkout-leftcolumn .mz-formstep {
-    margin-bottom: 8.25rem;
+    margin-bottom: 6.25rem;
+    float: none;
 }
 
 .checkout-fields-title {
@@ -606,6 +699,11 @@
             span {
                 font-weight: 500;
             }
+        }
+        input[type="checkbox"],
+        input[type="radio"] {
+            left: -9999rem;
+            opacity: 0;
         }
     }
 }
@@ -652,5 +750,108 @@
 .coupon-code-wrapper {
     .primary-btn {
         margin-top: 2rem;
+    }
+}
+
+.filled-credit-card-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    img {
+        display: block;
+        margin-right: 2rem;
+    }
+
+    .card-info {
+        display: flex;
+        flex-direction: column;
+
+        span {
+            font-size: 1.485rem;
+            line-height: 1.5em;
+        }
+    }
+}
+
+.mz-checkoutform-couponcode {
+    margin-bottom: 4rem;
+
+    .coupon-code-wrapper {
+        margin-bottom: 1rem !important;
+    }
+
+    .btn-add-promo-code {
+        text-decoration: none;
+        font-size: 1.25rem;
+        line-height: 1em;
+        font-weight: 500;
+    }
+}
+
+.mz-paymentselector-label-savedcreditcard,
+.mz-paymentselector-label-newcreditcard {
+    strong {
+        font-weight: 500;
+    }
+}
+
+.paymentselector-savedcreditcard-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .filter-option-inner-inner {
+        white-space: normal;
+        padding-left: 2.875rem;
+    }
+    
+    .dropdown-toggle {
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.2rem;
+    }
+}
+
+.contactselector-savedcontact-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media (max-width: 800px) {
+        flex-wrap: wrap;
+    }
+
+    .secondary-button {
+        .primary-btn(@mutedBlue);
+    
+        font-size: 1rem;
+        line-height: 2.5rem;
+        height: 2.8125rem;
+        white-space: nowrap;
+        padding: 0 1.6875rem;
+        cursor: pointer;
+
+        @media (max-width: 800px) {
+            margin-top: 2rem;
+        }
+    }
+
+    .filter-option-inner-inner {
+        white-space: normal;
+        padding-left: 2.875rem;
+    }
+
+    .custom-select-wrapper {
+        width: 70%;
+
+        @media (max-width: 800px) {
+            width: 100%;
+        }
+    }
+    .dropdown-toggle {
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.2rem;
     }
 }

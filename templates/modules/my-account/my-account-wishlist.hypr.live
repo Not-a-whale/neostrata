@@ -1,12 +1,26 @@
-﻿<h3 class="mz-l-stack-sectiontitle">{{ labels.accountYourWishlist }}
-{% if not editing.wishlist %}<a href class="mz-link-edit-accountyourwishlist" data-mz-action="startEditWishlist">{{ labels.edit }}</a>{% endif %}</h3>
-</h3>
-<div class="mz-accountwishlist-list">
+﻿<h1 class="mz-l-stack-sectiontitle">{{ labels.accountYourWishlist }}
+{% if not editing.wishlist %}<a href class="dl-link-edit mz-link-edit-accountyourwishlist mz-link-edit-accountyourwishlist" data-mz-action="startEditWishlist">{{ labels.edit }}</a>{% endif %}</h3>
+</h1>
+{% if not editing.wishlist && model.hasItems %}
+<div class="dl-view-wrapper">
+  <div class="dl-info-message">{{ labels.wishlistViewInfo }}</div>
+  <div class="dl-info-count">{{ model.items.length }} {{ labels.wishlistsCount }}</div>
+{% endif %}
+
+{% if editing.wishlist %}
   {% if model.hasItems %}
-    {% for item in model.items %}
-      {% include "modules/my-account/my-account-wishlist-item-listing" with model=item %}
-    {% endfor %}
-  {% else %}
-    {{ labels.accountNoWishlists }}
+  <h5 class="mz-l-stack-sectionsubtitle">{{ labels.youHaveWishlist|string_format(model.items.length) }}</h5>
   {% endif %}
-</div>
+
+  <div class="mz-accountwishlist-list">
+    {% if model.hasItems %}
+      {% for item in model.items %}
+        {% include "modules/my-account/my-account-wishlist-item-listing" with model=item %}
+      {% endfor %}
+    {% else %}
+      {{ labels.accountNoWishlists }}
+    {% endif %}
+  </div>
+
+  <button class="dz-backtodashboard" data-mz-action="cancelEditWishlist">{{ labels.accountDashboardBack }}</button>
+{% endif %}

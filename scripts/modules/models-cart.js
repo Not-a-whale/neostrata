@@ -123,7 +123,11 @@ define(['underscore', 'modules/backbone-mozu', 'hyprlive', "modules/api", "modul
             });
         },
         removeItem: function (id) {
-            return this.get('items').get(id).apiModel.del();
+            var me = this;
+            return this.get('items').get(id).apiModel.del().then(function(){
+                var cartItem = me.get('items').get(id);
+                me.trigger('itemremoved', cartItem);
+            });
         },
         addCoupon: function () {
             var me = this;

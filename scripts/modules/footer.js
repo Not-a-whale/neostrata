@@ -1,6 +1,7 @@
-require(["modules/jquery-mozu"], function($) {
+require(["modules/jquery-mozu", "hyprlivecontext"], function($, HyprLiveContext) {
 
 	$(document).ready(function() {
+            if(!HyprLiveContext.locals.themeSettings.commerceEnabled){
 		if ($.cookie("cookies_notice_accepted") === "true") {
 			$("#cookies-notice").hide();
 		} else {
@@ -10,7 +11,7 @@ require(["modules/jquery-mozu"], function($) {
 			$.cookie("cookies_notice_accepted", "true");
 			$("#cookies-notice").hide();
 		});
-
+            }
 	});
 
 });

@@ -8,7 +8,7 @@
             {% if themeSettings.commerceEnabled %}
             <div class="site-link">
                 {% if themeSettings.sitesURLs && themeSettings.sitesURLs.length > 0 %}
-                    <a href="{{ themeSettings.sitesURLs.en-ca }}">CA</a>
+                    <a href="{{ themeSettings.sitesURLs.en-us }}">US</a>
                     <i class="flag"></i>
                 {% endif %}
             </div>

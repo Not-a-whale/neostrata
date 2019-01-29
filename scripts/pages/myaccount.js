@@ -48,6 +48,8 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             $('.mz-l-stack-section.mz-accountsettings').removeClass('no-editing').addClass('is-editing');
             $('.mz-l-stack-section.mz-passwordsection').removeClass('is-dashboard').addClass('no-dashboard');
             $('.dl-maintitle').hide();
+            $('.mz-scrollnav-item').removeClass('active');
+            $('.mz-scrollnav-item.dl-personalInfo').addClass('active');
             this.editing = true;
             this.render();
         },
@@ -59,6 +61,8 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             $('.mz-l-stack-section.mz-passwordsection').removeClass('no-dashboard').addClass('is-dashboard');
             $('.mz-l-stack-section').show();
             $('.dl-maintitle').show();
+            $('.mz-scrollnav-item').removeClass('active');
+            $('.mz-scrollnav-item.dl-accountDashboard').addClass('active');
             
         },
         finishEdit: function() {
@@ -67,7 +71,9 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             $('.mz-l-stack-section').removeClass('is-editing').addClass('no-editing');
             $('.mz-l-stack-section.mz-passwordsection').removeClass('no-dashboard').addClass('is-dashboard');
             $('.mz-l-stack-section').show();
-            $('.dl-maintitle').show();
+            $('.dl-maintitle').show();            
+            $('.mz-scrollnav-item').removeClass('active');
+            $('.mz-scrollnav-item.dl-accountDashboard').addClass('active');
 
             this.doModelAction('apiUpdate').then(function() {
                 self.editing = false;
@@ -144,6 +150,8 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             $('.mz-l-stack-section.mz-accountwishlist').show();
             $('.mz-l-stack-section.mz-accountwishlist').removeClass('no-editing').addClass('is-editing');
             $('.dl-maintitle').hide();
+            $('.mz-scrollnav-item').removeClass('active');
+            $('.mz-scrollnav-item.dl-accountwishlist').addClass('active');
             this.editing.wishlist = true;
             this.render();
         },
@@ -160,7 +168,13 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
         },
         cancelEditWishlist: function() {
             this.editing.wishlist = false;
-            //this.render();
+            
+            $('.mz-l-stack-section').removeClass('is-editing').addClass('no-editing');
+            $('.mz-l-stack-section').show();
+            $('.dl-maintitle').show();            
+            $('.mz-scrollnav-item').removeClass('active');
+            $('.mz-scrollnav-item.dl-accountDashboard').addClass('active');
+            this.render();
         },
         doNotRemove: function() {
             this.editing.added = false;
@@ -626,8 +640,22 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
                 this.model.set('editingCard.paymentOrCardType',null);    
             }
 
-        },             
+        },
+        viewPayments: function () {
+            this.editing.card = "view";
+            this.startEditPayments();
+            this.render();
+        }, 
+        startEditPayments: function () {
+            $('.mz-l-stack-section').hide();
+            $('.mz-l-stack-section.mz-accountpaymentmethods').show();
+            $('.mz-l-stack-section.mz-accountpaymentmethods').removeClass('no-editing').addClass('is-editing');
+            $('.dl-maintitle').hide();
+            $('.mz-scrollnav-item').removeClass('active');
+            $('.mz-scrollnav-item.dl-paymentmethods').addClass('active');
+        },                  
         beginEditCard: function (e) {
+            this.startEditPayments();
             var id = this.editing.card = e.currentTarget.getAttribute('data-mz-card');
             this.model.beginEditCard(id);
             this.render();
@@ -643,13 +671,23 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
                 operation.otherwise(function() {
                     self.editing.card = true;
                 });
-                this.editing.card = false;
+                this.editing.card = "view";
             }
         },
         cancelEditCard: function () {
-            this.editing.card = false;
+            this.editing.card = "view";
             this.model.endEditCard();
             this.render();
+        },
+        cancelViewCard: function () {
+            this.editing.card = false;
+            this.render();
+
+            $('.mz-l-stack-section').removeClass('is-editing').addClass('no-editing');
+            $('.mz-l-stack-section').show();
+            $('.dl-maintitle').show();
+            $('.mz-scrollnav-item').removeClass('active');
+            $('.mz-scrollnav-item.dl-accountDashboard').addClass('active');
         },
         beginDeleteCard: function (e) {
             var self = this,
@@ -716,6 +754,8 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             $('.mz-l-stack-section.mz-accountaddressbook').show();
             $('.mz-l-stack-section.mz-accountaddressbook').removeClass('no-editing').addClass('is-editing');
             $('.dl-maintitle').hide();
+            $('.mz-scrollnav-item').removeClass('active');
+            $('.mz-scrollnav-item.dl-addressbook').addClass('active');
         },        
         beginAddContact: function () {
             this.startEditAddressBook();
@@ -732,25 +772,34 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             this.render();
         },
         finishEditContact: function () {
+            
             var self = this,
                 isAddressValidationEnabled = HyprLiveContext.locals.siteContext.generalSettings.isAddressValidationEnabled;
-            var operation = this.doModelAction('saveContact', { forceIsValid: isAddressValidationEnabled, editingView: self }); // hack in advance of doing real validation in the myaccount page, tells the model to add isValidated: true
+            self.model.set('editingContact.isShippingContact', true);
+
+                var operation = this.doModelAction('saveContact', { forceIsValid: isAddressValidationEnabled, editingView: self }); // hack in advance of doing real validation in the myaccount page, tells the model to add isValidated: true
             if (operation) {
                 blockUiLoader.unblockUi();
                 operation.otherwise(function() {
                     self.editing.contact = true;
                 });
-                this.editing.contact = false;
+                this.editing.contact = "view";
             }
         },
         cancelEditContact: function () {
-            this.editing.contact = false;
+            this.editing.contact = "view";
             this.model.endEditContact();
+            this.render();
+        },
+        cancelViewContact: function () {
+            this.editing.contact = false;
             this.render();
 
             $('.mz-l-stack-section').removeClass('is-editing').addClass('no-editing');
             $('.mz-l-stack-section').show();
             $('.dl-maintitle').show();
+            $('.mz-scrollnav-item').removeClass('active');
+            $('.mz-scrollnav-item.dl-accountDashboard').addClass('active');
 
         },
         beginDeleteContact: function (e) {
@@ -883,9 +932,44 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             messagesEl: $messagesEl
         });
 
-        $('.mz-myaccount-nav .dl-personalInfo').on('click', function (e) {accountViews.settings.startEdit(e);});
-        $('.mz-myaccount-nav .dl-accountwishlist').on('click', function (e) {accountViews.wishList.startEditWishlist(e);});
-
+        $('.mz-myaccount-nav .dl-accountDashboard').on('click', function (e) {
+            $('.mz-scrollnav-item').removeClass('active');
+            $(this).addClass('active');
+            accountViews.settings.cancelEdit();
+            accountViews.addressBook.cancelViewContact();
+            accountViews.paymentMethods.cancelViewCard();
+            accountViews.wishList.cancelEditWishlist();
+        });
+        $('.mz-myaccount-nav .dl-personalInfo').on('click', function (e) {
+            accountViews.settings.cancelEdit();
+            accountViews.addressBook.cancelViewContact();
+            accountViews.paymentMethods.cancelViewCard();
+            accountViews.wishList.cancelEditWishlist();
+            accountViews.settings.startEdit(e);});
+        $('.mz-myaccount-nav .dl-addressbook').on('click', function (e) {
+            accountViews.settings.cancelEdit();
+            accountViews.addressBook.cancelViewContact();
+            accountViews.paymentMethods.cancelViewCard();
+            accountViews.wishList.cancelEditWishlist();
+            accountViews.addressBook.viewAddressBook(e);});
+        $('.mz-myaccount-nav .dl-paymentmethods').on('click', function (e) {
+            accountViews.settings.cancelEdit();
+            accountViews.addressBook.cancelViewContact();
+            accountViews.paymentMethods.cancelViewCard();
+            accountViews.wishList.cancelEditWishlist();
+            accountViews.paymentMethods.viewPayments(e);});
+        $('.mz-myaccount-nav .dl-orderhistory').on('click', function (e) {
+            accountViews.settings.cancelEdit();
+            accountViews.addressBook.cancelViewContact();
+            accountViews.paymentMethods.cancelViewCard();
+            accountViews.wishList.cancelEditWishlist();
+        });
+        $('.mz-myaccount-nav .dl-accountwishlist').on('click', function (e) {
+            accountViews.settings.cancelEdit();
+            accountViews.addressBook.cancelViewContact();
+            accountViews.paymentMethods.cancelViewCard();
+            accountViews.wishList.cancelEditWishlist();
+            accountViews.wishList.startEditWishlist(e);});
 
         // TODO: upgrade server-side models enough that there's no delta between server output and this render,
         // thus making an up-front render unnecessary.

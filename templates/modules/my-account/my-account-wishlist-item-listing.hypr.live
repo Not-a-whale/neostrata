@@ -1,16 +1,18 @@
-﻿{% extends "modules/common/item-listing" %}
+﻿{% extends "modules/common/item-listing-wishlist" %}
 
 {% block item-details %}
   {% parent %}
-  <div class="mz-itemlisting-quantity">{{ labels.qty }}: {{ model.quantity }}</div>
+  <div class="mz-itemlisting-quantity"><span>{{ labels.qty }}</span><span>{{ model.quantity }}</span></div>
 {% endblock %}
 
 {% block item-listing-actions %}
-    <a class="mz-itemlisting-action" href="javascript:;" data-mz-action="addItemToCart" data-mz-item-id="{{ model.id }}">{{ labels.addToCart }}</a>
-    <a class="mz-itemlisting-action" href="javascript:;" data-mz-action="beginRemoveItem" data-mz-item-id="{{ model.id }}">{{ labels.removeFromWishlist }}</a>
+    <a class="mz-button primary-btn mz-itemlisting-action add" href="javascript:;" data-mz-action="addItemToCart" data-mz-item-id="{{ model.id }}">{{ labels.addToCart }}</a>
+    <a class="mz-itemlisting-action remove" href="javascript:;" data-mz-action="beginRemoveItem" data-mz-item-id="{{ model.id }}">{{ labels.removeFromWishlist }}</a>
 {% endblock item-listing-actions %}
 
 {% block item-listing-extras %}
+
+
 {% if model.id %}
 {% if editing.added == model.id %}
 <p class="mz-itemlisting-prompt is-success">{{ labels.addedToCart|string_format(model.product.name) }} <a href="javascript:;" class="mz-action" data-mz-action="finishRemoveItem" data-mz-item-id="{{ model.id }}">{{ labels.removeFromWishlist }}</a> <a href="javascript:;" data-mz-action="doNotRemove">{{ labels.leaveOnWishlist }}</a></p>

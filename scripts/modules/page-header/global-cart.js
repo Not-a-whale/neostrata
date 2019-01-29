@@ -38,13 +38,13 @@ define([
                     }
                 }
             }
-            console.log("productCodes", productCodes);
+            //console.log("productCodes", productCodes);
             var filter = _.map(productCodes, function(c) {
                 return "ProductCode eq " + c;
             }).join(' or ');
-            console.log("filter", filter);
+            //console.log("filter", filter);
             Api.get("search", { filter: filter, pageSize : globalCartRelatedProductsSize}).then(function(collection) {
-                console.log("collection.data",collection.data);
+                //console.log("collection.data",collection.data);
                 var template = 'Widgets/misc/product-related-listing';
                 var RelatedProductsView = Backbone.MozuView.extend({
                     templateName: template
@@ -70,6 +70,9 @@ define([
             $(".second-tab").hide();
             $(".third-tab").show();
             $('#liteRegistrationModal').modal('show');
+        },
+        getItemsCache: function(){
+            return this.model.get( 'items' );
         },
         update: function(showGlobalCart) {
             var me = this;
@@ -107,6 +110,9 @@ define([
     var GlobalCart = {
         update: function(showGlobalCart) {
             globalCartView.update(showGlobalCart);
+        },
+        getItemsCache: function(){
+            return globalCartView.getItemsCache();
         }
     };
     return GlobalCart;

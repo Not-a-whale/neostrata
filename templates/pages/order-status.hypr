@@ -58,7 +58,7 @@
             </div> -->
 <!--            <div class="mz-l-column">    -->
                 <h1 class="mz-pagetitle">{{ labels.orderStatus }}</h1>
-                <p>Orders placed as a guest or single order lookup</p>
+                <p>{{ labels.orderStatusTitle }}</p>
                 <form method="post" class="mz-loginform mz-loginform-page" name="mz-anonymousorder">
                     <section data-mz-role="popover-message" class="mz-popover-message"></section>
                     <input type="hidden" name="order-returnUrl" value="{{ model.returnUrl }}"/>

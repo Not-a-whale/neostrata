@@ -121,6 +121,16 @@
                     "xtype": "mz-input-number",
                     "name": "allProductsCategoryId",
                     "fieldLabel": "Enter CategoryId which is having all products"
+                },
+                {
+                    "xtype": "mz-input-image",
+                    "name": "searchBannerSM",
+                    "fieldLabel": "Search Banner SM"
+                },
+                {
+                    "xtype": "mz-input-image",
+                    "name": "searchBannerXS",
+                    "fieldLabel": "Search Banner XS"
                 }
             ]
         },
@@ -721,6 +731,50 @@
                     "xtype": "mz-input-text",
                     "name": "oneSizeProductType",
                     "fieldLabel": "One Size Product Type"
+                }
+            ]
+        },
+        {
+          "xtype": "panel",
+          "title": "Free Sample Products",
+          "collapsed": false,
+          "items": [
+            {
+              "xtype": "mz-input-text",
+              "name": "freeSampleCategoryId",
+              "fieldLabel": "Free Sample Category ID"
+            },
+            {
+              "xtype": "mz-input-text",
+              "name": "freeSamplePagePath",
+              "fieldLabel": "Free Sample Page Path"
+            },
+            {
+              "xtype": "mz-input-text",
+              "name": "freeSampleQty",
+              "fieldLabel": "Quantity of sample product allowed per sample page"
+            },
+            {
+              "xtype": "mz-input-text",
+              "name": "freeSampleOrderTotalThreshold",
+              "fieldLabel": "Cart Total threshold"
+            }
+          ]
+        },
+        {
+            "xtype": "panel",
+            "title": "Integrations",
+            "collapsed": false,
+            "items": [
+                {
+                    "xtype": "mz-input-checkbox",
+                    "name": "googleTagManagerEnabled",
+                    "fieldLabel": "Enable Google Tag Manager"
+                },
+                {
+                    "xtype": "mz-input-text",
+                    "name": "googleTagManagerKey",
+                    "fieldLabel": "Google Tag Manager Key"
                 }
             ]
         }

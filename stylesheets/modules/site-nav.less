@@ -5,7 +5,7 @@
     overflow: visible;height: @navHeight;
     .clearfix();
 
-    
+
     > .mz-sitenav-list {
         display: table-row;
         > .mz-sitenav-item:first-child {
@@ -108,8 +108,10 @@
         display: none;
     }
     .commerce-enabled-true & {
-        .user-login {
-            display: none;                                    
+        @media (max-width: 991px) {
+          .user-login {
+              display: none;
+          }
         }
     }
     .container {
@@ -331,7 +333,7 @@
                             }
                         }
                     }
-                }                            
+                }
             }
         }
         .mz-sitenav-list{
@@ -477,10 +479,6 @@
         }
     }
 }
-@media (min-width: 768px) {
-    .mz-sitenav{
-    }
-}
 
 @media (min-width: 992px) {
 
@@ -524,7 +522,7 @@
         }
     }
 
-  #nav-header-container{
+  #nav-header-container {
       position: fixed;
       width: 100%;
       top: 0;
@@ -534,71 +532,36 @@
 
       .mz-pageheader {
           .ml-header-content {
-                .commerce-enabled-true & {
+              .commerce-enabled-true & {
                     .flex-display(flex);
                     .flex-direction(row-reverse);
                 }
-              .ml-header-search-wrapper {
+              .ecommerce-enabled-false & .ml-header-search-wrapper {
                   font-size: 2.5rem;
                   right: 12%;
                   top: 46%;
-                  .commerce-enabled-true & {
-                    right: unset;
-                    position: relative;
-                    left: unset;
-                    .flex-display(flex);
-                    height: 1rem;
-                    .flex-order(2);
-                    margin-right: 2rem;
-                    top: 30%;
-                      span {
-                        text-transform: uppercase;
-                        padding-left: 3.5rem;
-                        font-size: 1rem;
-                        display: inline-block;
-                        font-weight: bold;
-                    }
-                }
               }
-            .commerce-enabled-true & {
-              .site-link {
-                top: 25%;
-                position: absolute;
-                left: 1.7rem;
-                display: block;
-                a {
-                    text-decoration: none;
-                    font-weight: bold;
-                }
-                .flag {
-                    background: url(../resources/images/canadian_flag.svg) no-repeat bottom center;
-                    width: 26px;
-                    height: 14px;
-                    display: inline-block;
-                    margin-left: 10px;
-                }
-              }
-            }
+
 
               .ml-header-global-cart-wrapper {
-                  position: absolute;
-                  top: auto;
-                  right: 2px;
-                  bottom: 15px;
-                  left: auto;
-                  background: inherit;
-                  border: 0;
-                  padding: 2px 0 5px 5px;
+                  .commerce-enabled-false & {
+                    position: absolute;
+                    top: auto;
+                    right: 2px;
+                    bottom: 15px;
+                    left: auto;
+                    background: inherit;
+                    border: 0;
+                    padding: 2px 0 5px 5px;
+                  }
+
                   .commerce-enabled-true & {
-                    bottom: -2.5rem;
-                    right: 1.7rem;
-                    padding: 0;
-                    transform: none;
                     .ml-header-global-cart-text {
                         margin-left: 4.5rem;
                         text-transform: uppercase;
                         font-size: 1rem;
                     }
+
                     .ml-header-global-cart-count {
                         position: absolute;
                         margin-top: -13px;
@@ -613,16 +576,13 @@
                             .mz-cartmonitor {
                                 font-size: .8rem;
                             }
-                        }        
+                        }
                     }
                     .icon-cart {
-                        position: absolute;
-                        font-size: 2.5rem;
-                        top: -0.4rem;
-                        left: 0.7rem;
-                        }
-                    .ml-header-global-cart-text {
-                        display: block;
+                      position: absolute;
+                      top: 0;
+                      left: 0;
+                      font-size: 2.125rem;
                     }
                   }
                 .ml-header-global-cart-label {
@@ -633,12 +593,6 @@
               }
 
               .ml-header-links-wrapper {
-                .commerce-enabled-true & {
-                        .flex-order(1);
-                        height: 1rem;
-                        position: relative;
-                        top: 19%;
-                    }
                   .mz-utilitynav-item{
                       padding: 0 0px 0 15px;
                       &.site-msg{
@@ -652,7 +606,7 @@
                           .popover-content{
                               .my-account-details{
                                   a{
-                                      p {display: block; 
+                                      p {display: block;
                                         .commerce-enabled-true & {
                                             display: none;
                                         }
@@ -670,30 +624,6 @@
                           }
                       }
                      .commerce-enabled-true & {
-                        &.user-login {
-                            top: unset;
-                            position: relative;
-                            right: unset;
-                            display: inline-block;
-                            .icon-user {
-                                .icon(before, @icon-user);
-                                font-size: 2.3rem;
-                                float: left;
-                            }
-                            .login-link-text {
-                                text-transform: uppercase;
-                                color: #4e5458;
-                                font-size: 1rem;
-                                line-height: 2.5;
-                                display: inline-block;
-                                vertical-align: middle;
-                                font-weight: bold;
-                                margin-left: 1rem;
-                                span {
-                                    font-weight: normal;
-                                }
-                            }                            
-                        }
                         #mz-logged-in-notice {
                             .icon-user {
                                 padding-right: 1rem;
@@ -773,10 +703,9 @@
       .mz-sitenav {
 
           display: block;
-          
+
             .commerce-enabled-true & {
                 @navHeight: 3.75rem;
-                height: @navHeight;
             }
 
           // tuck in menu items to left and right of the logo
@@ -931,6 +860,7 @@
                   // position elements around logo when commerce-enabled-false
                   .commerce-enabled-true & {
                     margin-top: 1.5rem;
+
                     &:nth-of-type(1) {
                         margin-left: 23%;
                     }
@@ -955,6 +885,25 @@
       }
   }
 
+  .mz-sitenav .mz-sitenav-list > .mz-sitenav-item {
+    .commerce-enabled-true #nav-header-container.sticky-nav & {
+      margin-top: 2.75rem;
+      width: 12%;
+
+      &:nth-of-type(1) {
+          margin-left: 18%;
+      }
+
+      &:nth-of-type(3) {
+          margin-left: 14%;
+      }
+
+      &:nth-of-type(4) {
+          width: 9%;
+      }
+    }
+  }
+
   // height of nav and margin top of page change together
   .commerce-enabled-false {
     #nav-header-container.sticky-nav {
@@ -975,35 +924,43 @@
   }
 
   .commerce-enabled-true {
-    #nav-header-container.sticky-nav {
-      .mz-pageheader {
-        height: 9rem;
-        .ml-header-content {
-          height: 9rem;
-        }
-      }
-    }
-
     #page-content{
-        margin-top: 12.75rem;
+        margin-top: 8.75rem;
+
         &.sticky-nav-present{
-            margin-top: 12.75rem;
+            margin-top: 8.75rem;
         }
     }
   }
+
 }
 
 // Account Dashboard
 .mz-myaccount {
-    @leftPosition: 21.40625%; 
+    @leftPosition: 19.5%;
     .mz-l-container {
         margin: 10rem auto 0;
         max-width: 83.33%;
+        font-size: 1.6875rem;
+        display: flex;
+        flex-direction: column;
+        .h1, h1 {
+            margin-top: 1.25rem;
+            margin-bottom: 0.625rem;
+        }
+        .h5, h5 {
+            margin-top: 0.625rem;
+            margin-bottom: 0.625rem;
+        }
 
         .dl-maintitle {
-            margin-left: @leftPosition;
             position: absolute;
             top: -10rem;
+            left: 50%;
+            transform: translate(-50%,0);
+            order: 1;
+            width: 100%;
+            text-align: center;
             .mz-pagetitle {
                 font-size: 3.375rem;
             }
@@ -1013,30 +970,88 @@
             }
         }
         .mz-myaccount-nav {
-            width: @leftPosition;
+            width: 100%;
+            padding-right: 0;
+            order: 3;
+            text-align: center;
+            .mz-scrollnav-item {
+                float: unset;
+            }
+            .mz-scrollnav-list.nav {
+                .mz-scrollnav-link {
+                    font-size: 1.875rem;
+                    color: #4e5458;
+                    padding: 0;
+                    line-height: 1.5;
+                    padding-bottom: 1.875rem;
+                    &:hover, &:focus {
+                        background: none;
+                        outline: none;
+                        text-decoration: none;
+                        font-weight: bold;
+                    }
+                    .active {
+                        font-weight: 700;
+                    }
+                }
+            }
         }
         .mz-myaccount-panels {
-            margin-left: @leftPosition;
+            padding-left: 0;
+            order: 2;
+            margin: 3rem 0;
             .mz-l-stack-section {
                 &.no-editing {
                     display: inline-block;
-                    width: 49%;
+                    width: 100%;
                     vertical-align: top;
-                    padding: 0 15px 15px;
-                    margin-left: -15px;
+                    padding: 0 0 4rem;
+                    margin-left: 0;
                     margin-right: auto;
+                    position: relative;
+
+                    .dl-view-wrapper {
+                        display: flex;
+                        width: 100%;
+                        flex-flow: row nowrap;
+                        place-content: center flex-start;
+                        align-items: flex-start;
+                        .dl-info-count {
+                            text-align: right;
+                            color: #9e9e9e;
+                            line-height: 1.4;
+                            order: 2;
+                            flex: 1 1 auto;
+                            align-self: auto;
+                            margin-top: 0.5rem;
+                        }
+                        .dl-info-message {
+                            order: 1;
+                            flex: 2 1 auto;
+                            align-self: auto;
+                            margin-top: 0.5rem;
+                        }
+                    }
+
+                    .dl-info-count {
+                        text-align: right;
+                        color: @colorLighterGray;
+                        line-height: 1.8;
+                    }
+
                     .mz-accountsettings-section {
                         min-height: unset;
                         padding: 0;
                     }
                     .mz-l-stack-sectiontitle {
-                        font-size: 1.375rem;
+                        font-size: 1.875rem;
                         line-height: 1.5;
+                        border-bottom: 2px solid #eee;
                     }
                     .dl-link-edit {
                         float: right;
                         line-height: 1.5;
-                        font-size: 1.375rem;
+                        font-size: 1.875rem;
                     }
                     .mz-accountsettings-label {
                         display: none;
@@ -1052,15 +1067,18 @@
                     .mz-l-stack-sectiontitle {
                         font-size: 3.375rem;
                         border-bottom: none;
-                        margin-top: 20px;
-                        margin-bottom: 10px;
+                        margin-bottom: 0;
+                        margin-top: 0;
+                        text-align: center;
                     }
                     .mz-l-stack-sectionsubtitle {
                         font-size: 1.6875rem;
                         font-weight: normal;
-                        margin-bottom: 2rem;
+                        margin-bottom: 4rem;
+                        margin-top: 0;
+                        text-align: center;
                     }
-                    
+
                     input[type=text], input[type=email], select, input[type=tel] {
                         border-radius: 0;
                         border: 2px solid #4e5458;
@@ -1070,24 +1088,32 @@
                         padding: 0 0 0 2rem;
                         margin-top: 0.5rem;
                         width: 100%;
+                        text-transform: uppercase;
                         &.mz-accountsettings-firstname {
                             width: 50%;
                             float: left;
                         }
-                        @leftInputMargin: 1.5rem; 
+                        @leftInputMargin: 1.5rem;
                         &.mz-accountsettings-lastname {
                             width: calc(50% ~"-" @leftInputMargin);
                             margin-left: @leftInputMargin;
                         }
                     }
-                    
-                    .mz-accountsettings-label {
+
+                    .mz-accountsettings-label, label {
                         display: block;
                         color: #4e5458 !important;
+                        font-size: 1.5rem;
+                        font-weight: normal;
+                        margin-bottom: 0;
+                    }
+
+                    .mz-accountsettings-label {
+                        padding-bottom: 0.5rem;
                     }
 
                     .mz-accountsettings-acceptsmarketing label {
-                        font-weight: normal;
+                        display: inline;
                     }
 
                     .dz-backtodashboard {
@@ -1095,21 +1121,27 @@
                         background: none;
                         text-decoration: underline;
                         display: block;
-                        margin: 2rem 0;
+                        margin: 2rem auto;
                         padding: 0;
                     }
 
-                    button.mz-button {
-                        height: 3rem !important;
-                        line-height: 3rem !important;
-                        border-width: 2px !important;
-                        border-radius: 0;
-                        font-size: 1rem;
-                        padding: 0 3rem;
-                        text-transform: uppercase;
+                    .mz-accountsettings-editdone {
+                        .my-account-button();
+                        text-align: center;
+                        margin: 3rem auto;
+                        left: 50%;
+                        transform: translate(-50%, 0);
+                        width: 100%;
+                        max-width: 420px;
+                        position: relative;
+                        font-size: 1.8rem;
                     }
 
-                    //Address Book
+                    .mz-empty {
+                        margin: 4rem 0;
+                    }
+
+                    //Address Book Info
                     .mz-accountaddressbook-form {
                         width: 100%;
                         .mz-addressform-firstname, .mz-addressform-lastname, .mz-addressform-city, .mz-addressform-state {
@@ -1128,91 +1160,304 @@
                                 display: block;
                             }
                         }
-                        .mz-contact-actions {
-                            margin: 0 auto;
-                            text-align: center;
-                        }
                         .mz-contact-cancel {
-                            float: right;
                             border: none;
-                            text-transform: none;
+                            text-transform: none !important;
                         }
                     }
-                    
-                }                
+
+                }
                 &.mz-accountaddressbook {
                     &.no-editing {
-                        .mz-accountaddressbook-contact {
-                            width: 100%;
-                            border-right: none;
-                            display: none;
-                            min-height: auto;
-                            &:first-of-type {
-                                display: block;
+                        .mz-accountaddressbook-list {
+                            display: flex;
+                            flex-direction: column;
+                            max-height: 12rem;
+                            overflow: hidden;
+
+                            .mz-accountaddressbook-contact {
+                                width: 100%;
+                                border-right: none;
+                                display: none;
+                                min-height: auto;
+                                order: 2;
+                                &:first-of-type {
+                                    display: flex;
+                                }
+                                &.dl-isPrimaryShippingContact {
+                                    display: flex;
+                                    order: 1;
+                                }
                             }
                         }
                         .dl-link-newaddress, .dz-backtodashboard, .mz-accountaddressbook-actions {
                             display: none;
                         }
+
                     }
                     &.is-editing {
                         .mz-accountaddressbook-list {
                             width: 100%;
                             float: left;
+                            margin: 3rem 0;
                         }
                         .dl-link-editaddress {
                             display: none;
                         }
+                        .dl-infoaddress {
+                            margin-top: -1rem;
+                            margin-bottom: 1rem;
+                            span {
+                                font-size: 1.25rem;
+                                font-style: italic;
+                            }
+                        }
                         .mz-accountaddressbook-contact:not(.mz-accountaddressbook-form) {
-                            width: 50%;
+                            width: 100%;
                             display: inline-block;
                             float: left;
                             margin: 0;
                             border: none;
-                            padding: 0 4% 0 0;
+                            padding: 0 2rem 2rem 2rem;
+                            min-height: auto;
+                            .mz-accountaddressbook-actions {
+                                float: none;
+                                text-align: right;
+                                margin-bottom: 0.5rem;
+                            }
+                            .mz-accountaddressbook-contactdetails {
+                                float: none;
+                                padding-top: 0.5rem;
+                                border-top: 2px solid #eee;
+                            }
                         }
-                        .mz-accountaddressbook-empty {
-                            margin: 4rem 0;
-                        }
-                        .mz-contact-actions .mz-button {
+                        .mz-contact-actions .mz-button, .dl-link-newaddress {
                             background: none;
+                            .my-account-button();
+                            text-align: center;
+                            margin: 3rem auto;
+                            left: 50%;
+                            transform: translate(-50%, 0);
+                            width: 100%;
+                            max-width: 420px;
+                            position: relative;
+                            font-size: 1.8rem;
                         }
-                    }
-                }
-                &.mz-accountsettings {
-                    &.is-editing {
-                        button.mz-accountsettings-editdone {
-                            margin-top: 7rem;
-                        }
-                        &.is-editing-password button.mz-accountsettings-editdone {
-                            margin-top: 12rem;
+                        input, select {
+                            margin-bottom: 0.8rem;
                         }
                     }
                 }
                 &.mz-passwordsection {
                     label {
-                        font-weight: normal;
-                        display: inline-block;
-                        width: 175px;
-                        margin-bottom: 1rem;
+                        padding-bottom: 0.5rem;
                     }
                     input {
-                        border: 1px solid #4e5458;
+                        border-radius: 0;
+                        border: 2px solid #4e5458;
+                        height: 4rem;
+                        font-size: 1rem;
+                        color: #4e5458;
+                        padding: 0 0 0 2rem;
+                        margin: 0.5rem 0 1.5rem;
+                        width: 100%;
                     }
                     &.is-dashboard {
                         display: none !important;
                     }
                     &.no-dashboard {
                         display: block;
-                    }
-                    &#password-section {
-                        bottom: 9rem;
-                        position: absolute;
-                        &.is-editing {
-                            bottom: 10rem;
-                        }        
+                        margin: 3rem 0;
+                        padding: 0;
                     }
                 }
+
+                .mz-accountpaymentmethods-form {
+                    width: 100%;
+                    .checkout-fields-title {
+                        display: block;
+                        color: #4e5458;
+                        font-size: 1.5rem;
+                        font-weight: normal;
+                        margin-bottom: 0;
+                        padding-bottom: 0.5rem;
+                    }
+                    .mz-l-formfieldgroup-halfsize {
+                        float: left;
+                        display: block;
+                        margin-left: 0;
+                        margin-right: 0;
+                        &.expiry-month {
+                            width: 50% !important;
+                            margin-left: 0 !important;
+                        }
+                        @leftInputMargin: 1.5rem;
+                        &:last-of-type {
+                            width: calc(50% ~"-" @leftInputMargin);
+                            margin-left: @leftInputMargin;
+                        }
+                    }
+                    .mz-l-formfieldgroup {
+                        display: block;
+                        .mz-l-formfieldgroup-row {
+                            display: block;
+                            padding: 0;
+                        }
+                        .mz-l-formfieldgroup-cell {
+                            display: block;
+                            padding: 0;
+                        }
+                    }
+                    .mz-creditcard-actions {
+                        margin: 0 auto;
+                        text-align: center;
+                    }
+                    .mz-creditcard-cancel {
+                        float: right;
+                        border: none;
+                        text-transform: none !important;
+                    }
+                    input, select {
+                        margin-bottom: 0.8rem;
+                        text-transform: uppercase;
+                    }
+                    input[type="radio"] {
+                        margin-bottom: 0;
+                    }
+                    .mz-contactselector-contact {
+                        margin: 2rem 1rem;
+                        .flex-display(flex);
+                        width: 100%;
+                        min-height: auto;
+                        &.mz-contactselector-new {
+                            span {
+                                display: inline-block;
+                            }
+                            .mz-contactselector-inputwrapper {
+                                vertical-align: top;
+                            }
+                            .mz-contactselector-summarywrapper {
+                                padding: 0;
+                                width: 100%;
+                            }
+                            label {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+
+                &.mz-accountpaymentmethods {
+                    &.is-editing {
+                        .mz-accountpaymentmethods-list {
+                            width: 100%;
+                            float: left;
+                        }
+                        .dl-link-editpayment {
+                            display: none;
+                        }
+                        .mz-creditcard-actions .mz-button {
+                            background: none;
+                        }
+                        .dl-link-newpayments {
+                            .my-account-button();
+                            text-align: center;
+                            margin: 3rem auto;
+                            left: 50%;
+                            transform: translate(-50%, 0);
+                            width: 100%;
+                            max-width: 420px;
+                            position: relative;
+                            font-size: 1.8rem;
+                        }
+                    }
+                }
+
+                &.mz-accountwishlist  {
+                    &.is-editing {
+                        margin-bottom: 4rem;
+                        .mz-itemlisting-actions {
+                            display: block;
+                            width: 100%;
+                            margin: 2.5rem 0;
+                            .remove {
+                                float: left;
+                                text-decoration: none;
+                                text-transform: uppercase;
+                                font-weight: 700;
+                                display: inline-block;
+                                line-height: 3rem;
+                            }
+                            .add {
+                                display: inline-block;
+                                float: right;
+                                .my-account-button();
+                            }
+                        }
+                        .mz-itemlisting {
+                                border-bottom: 2px solid #c2c2c2;
+                                padding: 2.5rem 0;
+                            .mz-itemlisting-title-wrapper {
+                                text-decoration: none;
+                                text-transform: uppercase;
+                                margin-bottom: 3rem;
+                                display: inline-block;
+                                width: 47%;
+                                .mz-itemlisting-title {
+                                    margin-bottom: 2.5rem;
+                                    display: block;
+                                }
+                            }
+                            .mz-itemlisting-thumb {
+                                float: left;
+                                width: 16%;
+                                margin-right: 3%;
+                                .mz-itemlisting-thumb-img {
+                                    width: auto;
+                                    max-width: 100%;
+                                }
+                            }
+                            .mz-itemlisting-details {
+                                width: 81%;
+                                margin: 0;
+                                display: inline-block;
+
+                                .mz-itemlisting-price {
+                                    display: inline-block;
+                                    float: right;
+                                    width: 33%;
+                                    text-align: right;
+                                    .mz-itemlisting-price-title {
+                                        margin-bottom: 2.5rem;
+                                    }
+                                }
+                                .mz-itemlisting-quantity {
+                                    display: inline-block;
+                                    float: right;
+                                    text-align: center;
+                                    width: 20%;
+                                    span {
+                                        display: block;
+                                        text-transform: uppercase;
+                                        &:first-of-type {
+                                            font-weight: 700;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    &.no-editing {
+                        .mz-accountwishlist-list {
+                            display: none;
+                        }
+                    }
+                }
+
+                &.mz-accountstorecredit {
+                    display: none !important;
+                }
+
             }
         }
     }

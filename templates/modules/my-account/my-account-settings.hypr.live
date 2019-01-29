@@ -1,5 +1,6 @@
 ﻿<h1 class="mz-l-stack-sectiontitle">{{ labels.accountSettings }}{% if not editing %}<a href class="dl-link-edit mz-link-edit-accountsettings" data-mz-action="startEdit">{{ labels.edit }}</a>{% endif %}</h1>
 {% if editing %}<h5 class="mz-l-stack-sectionsubtitle">{{ labels.accountSettingsInfo }}</h5>{% endif %}
+
 <div class="mz-accountsettings-section mz-accountsettings-name {% if editing %} is-editing {% endif %}">
   <span class="mz-accountsettings-label mz-account-settings-label-name">{{ labels.firstName }} / {{ labels.lastName }}</span>
   {% if editing %}
@@ -87,6 +88,6 @@
 </div>
 
 {% if editing %}
-<button class="mz-button primary-btn mz-accountsettings-editdone" data-mz-action="finishEdit">{{ labels.save }}</button>
+<button class="mz-button primary-btn mz-accountsettings-editdone" data-mz-action="finishEdit">{{ labels.savePersonalInfo }}</button>
 <button class="dz-backtodashboard" data-mz-action="cancelEdit">{{ labels.accountDashboardBack }}</button>
 {% endif %}

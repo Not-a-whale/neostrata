@@ -1,68 +1,102 @@
-﻿{% extends "email/email" %}
-
+﻿{% extends "email/order_email" %}
 {% block body-content %}
-    <br>
-    <p>{{ labels.orderWelcome }} {{ model.billingInfo.billingContact.firstName }} {{ model.billingInfo.billingContact.lastNameOrSurname }}!</p>
-    <br>
-    <p>{{ labels.orderConfirmationBlob1|string_format(siteContext.generalSettings.websiteName, domainName)|safe }}</p>
-
-    <table width="100%" cellpadding="1" width="100%">
-        <thead>
-            <tr>
-                <td bgcolor="#666666">
-                    <font color="#FFFFFF">{{ labels.orderDetails }}</font>
-                </td>
-            </tr>
-        </thead>
-
+    <div class="header" style="text-align:center;">
+        <picture style="position: relative;width: 100%;">
+            <!-- IMAGE FOR LARGE VIEWPORTS --> 
+            <source srcset="http://{{domainName}}/cms/files/email_order_header.png" media="(min-width: 992px)"/>
+            <!-- IMAGE FOR SMALL VIEWPORTS -->   
+            <img src="http://{{domainName}}/cms/files/email_order_header.png" style="width:100%;"/>
+        </picture>
+        <h1 style="padding:15px 15px 0;font-size: 2.0rem;margin-bottom: 2px;line-height: 1.15em;font-weight:700;">{{ labels.emailThankYou }} </h1>
+        <h2 style="font-size: 1.5rem;margin:0;line-height: 2.5rem;font-weight:400;">{{ labels.emailYourOrderNumber }} <strong>{{ model.orderNumber }}</strong>.</h2>
+        <h3 style="font-style:italic;font-weight:400;font-size: 1rem;margin-top: 0.4em;margin-bottom: 1.5rem;">{{ labels.emailPleaseKeepNote }}</h3>
+    </div>
+    {% include "modules/common/email-order-items" %}
+    <table width="100%" cellpadding="1" width="100%" class="main-content">
         <tbody>
+            <tr class="title">
+                <td style="width: 80%;float: left;">
+                    <span>{{ labels.emailShippingInfo }}</span>
+                </td>
+                <td style="width: 40%;">
+                    <span>{{ labels.emailOrderSummary }}</span>
+                </td>
+            </tr>
             <tr>
-                <td>
-                    <b>{{ labels.orderNo }}</b>: {{ model.orderNumber }} <a href="http://{{ domainName }}/user/order-status">{{ labels.checkOrderStatus }}</a><br/><br/>
-                    <b>{{ labels.shipTo }}</b>:<br><br>{% include "modules/common/email-address-summary" with model=model.fulfillmentInfo.fulfillmentContact %}<br><br>
-                    <b>{{ labels.shippingMethod }}</b>: {{ model.fulfillmentInfo.shippingMethodName }}<br>
+                <td style="padding-bottom:1em;font-size:1rem;line-height: 1.45rem;padding-top: 0.4rem;margin-top:0;">
+                    {% include "modules/common/email-address-summary" with model=model.fulfillmentInfo.fulfillmentContact %}
+                    <b> {{ model.fulfillmentInfo.shippingMethodName }}</b><br>
+                </td>
+                <td style="padding-bottom:1em;font-size:1rem;line-height: 1.45rem;padding-top: 0.4rem;margin-top:0;">
+                    {% include "modules/common/email-order-summary" %}
                 </td>
             </tr>
-
-			{% ifnotequal model.total 0 %}
-           <tr>
-
-                <td>
-                    <b>{{ labels.billingInformation }}</b>:<br><br>{% include "modules/common/email-address-summary" with model=model.billingInfo.billingContact %}<br><br>
-                        {% if model.billingInfo.paymentType == "CreditCard" %}
-                            <b>{{ labels.paymentMethod }}</b>: {{ model.billingInfo.card.paymentOrCardType }} {{ model.billingInfo.card.cardNumberPartOrMask }}<br>
-                        {% endif %}
-                        {% if model.billingInfo.paymentType == "PurchaseOrder" %}
-                            <b>{{ labels.paymentMethod }}</b>: {{ label.purchaseOrder }}<br>
-                            <b>{{ labels.purchaseOrderNumber }}</b>: {{ model.billingInfo.purchaseOrder.purchaseOrderNumber }}<br>
-                            {% if model.billingInfo.purchaseOrder.customFields.length > 0 %}
-                                {% for field in model.billingInfo.purchaseOrder.customFields %}
-                                    <b>{{ field.label }}</b>: {{ field.value }}<br>
-                                {% endfor %}
-                            {% endif %}
-                            <b>{{ labels.purchaseOrderPaymentTerms }}</b>: {{ model.billingInfo.purchaseOrder.paymentTerm.description }}
-                        {% endif %}
-                        {% if  model.billingInfo.paymentType|lower == "paypalexpress2"  %}
-                            <b>{{ labels.paymentMethod }}</b>: {{ labels.paypalExpress }}
-                        {% endif %}
+            <tr class="title">
+                <td style="width: 80%;float: left;" colspan="2">
+                    <span>{{ labels.emailPaymentInfo }}</span>
                 </td>
             </tr>
-
-			{% endifnotequal %}
+            <tr>
+            {% ifnotequal model.total 0 %}
+                <td style="padding-bottom:1em;font-size:1rem;line-height: 1.45rem;padding-top: 0.4rem;margin-top:0;vertical-align: top;">
+                    <b>{{ labels.emailBillingAddress }}</b>:<br>
+                    {% include "modules/common/email-address-summary" with model=model.billingInfo.billingContact %}<br>
+                    {% if model.billingInfo.paymentType == "CreditCard" %}
+                        <b>{{ labels.paymentMethod }}</b>: {{ model.billingInfo.card.paymentOrCardType }} {{ model.billingInfo.card.cardNumberPartOrMask }}<br>
+                    {% endif %}
+                    {% if model.billingInfo.paymentType == "PurchaseOrder" %}
+                        <b>{{ labels.paymentMethod }}</b>: {{ label.purchaseOrder }}<br>
+                        <b>{{ labels.purchaseOrderNumber }}</b>: {{ model.billingInfo.purchaseOrder.purchaseOrderNumber }}<br>
+                        {% if model.billingInfo.purchaseOrder.customFields.length > 0 %}
+                            {% for field in model.billingInfo.purchaseOrder.customFields %}
+                                <b>{{ field.label }}</b>: {{ field.value }}<br>
+                            {% endfor %}
+                        {% endif %}
+                        <b>{{ labels.purchaseOrderPaymentTerms }}</b>: {{ model.billingInfo.purchaseOrder.paymentTerm.description }}
+                    {% endif %}
+                    {% if  model.billingInfo.paymentType|lower == "paypalexpress2"  %}
+                        <b>{{ labels.paymentMethod }}</b>: {{ labels.paypalExpress }}
+                    {% endif %}
+                </td>
+            {% endifnotequal %}
+                <td style="padding-bottom:1em;font-size:1rem;line-height: 1.45rem;padding-top: 0.4rem;margin-top:0;text-align:center;">
+                    <a class="primary-btn" href="http://{{domainName}}/checkout/{{model.id}}/confirmation">{{ labels.emailTrackAndManage }}</a>
+                    {% if model.shopperNotes.comments %}
+                    <div>
+                        <h5>{{ labels.comments }}</h5>
+                        <br><p>{{ model.shopperNotes.comments }}</p>
+                    </div>
+                    {% endif %}
+                    {% if model.shopperNotes.giftMessage %}
+                    <div>
+                        <h5>{{ labels.giftMessage }}</h5>
+                        <br><p>{{ model.shopperNotes.giftMessage }}</p>
+                    </div>
+                    {% endif %}
+                    {% if not user.isAuthenticated %}
+                    <div style="font-weight:bold;margin-top: 2.8rem;margin-bottom: 1rem;">{{ labels.emailBottomMessage }}</div>
+                    {% endif %}
+                    {% if user.isAnonymus %}
+                    <div style="margin-bottom: 1.7rem;">{{ labels.emailCreateAccountMessage }}</div>
+                    <a class="primary-btn" href="http://{{domainName}}/customer/login">{{ labels.emailCreateAnAccount }}</a>
+                    {% endif %}
+                </td>
+            </tr>
         </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2">
+                    <div class="footer" style="text-align:center;">
+                        <div style="text-align:left;margin-bottom: 3rem;">
+                            <span class="carousel-title" style="font-weight: 500;font-size: 1rem;">{{ labels.emailAddMoreProducts }}</span>
+                            {% require_script "modules/product/product-carousel" %}
+                        </div>
+{% comment %}{{ labels.emailClosing|string_format(siteContext.generalSettings.websiteName)|safe }}{% endcomment %}
+                        <a class="primary-btn" href="http://{{domainName}}/all-products">{{ labels.emailShopAll }}</a>
+                        <div style="margin-top: 1.7rem;">{{ labels.emailLegalNotice }}</div>
+                    </div>
+                </td>
+            </tr>
+        </tfoot>
     </table>
-
-    {% include "modules/common/email-order-summary" %}
-
-    {% if model.shopperNotes.comments %}
-        <h5>{{ labels.comments }}</h5>
-        <br><p>{{ model.shopperNotes.comments }}</p>
-    {% endif %}
-
-    {% if model.shopperNotes.giftMessage %}
-        <h5>{{ labels.giftMessage }}</h5>
-        <br><p>{{ model.shopperNotes.giftMessage }}</p>
-    {% endif %}
-
-    {{ labels.emailClosing|string_format(siteContext.generalSettings.websiteName)|safe }}
 {% endblock body-content %}

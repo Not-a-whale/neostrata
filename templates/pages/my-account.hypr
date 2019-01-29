@@ -52,13 +52,6 @@
             {% include "modules/my-account/my-account-paymentmethods" %}
         </div>
 
-        {% if siteContext.generalSettings.isWishlistCreationEnabled %}
-        <a id="wishlist"></a>
-        <div class="mz-l-stack-section mz-accountwishlist no-editing" id="account-wishlist">
-            {% include "modules/my-account/my-account-wishlist" with model=model.wishlist %}
-        </div>
-        {% endif %}
-
         <a id="orderhistory"></a>
         <div class="mz-l-stack-section mz-accountorderhistory no-editing" id="account-orderhistory">
             {% include "modules/my-account/my-account-orderhistory" with model=model.orderHistory showPaging=true %}
@@ -68,6 +61,13 @@
         <div class="mz-l-stack-section mz-accountreturnhistory no-editing" id="account-returnhistory">
             {% include "modules/my-account/my-account-returnhistory" with model=model.returnHistory %}
         </div>
+
+        {% if siteContext.generalSettings.isWishlistCreationEnabled %}
+        <a id="wishlist"></a>
+        <div class="mz-l-stack-section mz-accountwishlist no-editing" id="account-wishlist">
+            {% include "modules/my-account/my-account-wishlist" with model=model.wishlist %}
+        </div>
+        {% endif %}
 
         <a id="{{ labels.digitalCreditsAnchor }}"></a>
         <div class="mz-l-stack-section mz-accountstorecredit no-editing" id="account-storecredit">

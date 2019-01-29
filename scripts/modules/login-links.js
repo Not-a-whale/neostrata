@@ -499,6 +499,8 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
                 account: {
                     emailAddress: email,
                     userName: email,
+                    firstName: firstName,
+                    lastName: lastName,
                     acceptsMarketing: accMarketing,
                     contacts: [{
                         email: email

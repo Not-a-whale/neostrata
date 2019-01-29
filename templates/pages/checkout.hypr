@@ -36,6 +36,15 @@
       <div class="mz-formstep mz-checkoutform-ordersummary" id="order-summary">
         {% include "modules/checkout/checkout-order-summary" %}
       </div>
+      <div class="mz-l-formfieldgroup">
+
+          {% if themeSettings.showCheckoutCommentsField %}
+          <div class="mz-checkoutform-comments mz-l-formfieldgroup-row" id="comments-field" >
+              {% include "modules/checkout/comments-field" %}
+          </div>
+          {% endif %}
+      </div>
+
 
     </div>
 
@@ -56,7 +65,9 @@
         <div class="mz-formstep mz-checkoutform-paymentinfo" id="step-payment-info">
             {% include "modules/checkout/step-payment-info" %}
         </div>
-        <!-- TODO Can be removed if not needed -->
+        <div class="mz-checkoutform-couponcode mz-l-formfieldgroup-row" id="coupon-code-field" >
+            {% include "modules/checkout/coupon-code-field" %}
+        </div>
         <div class="mz-formstep mz-checkoutform-review" id="step-review">
             {% include "modules/checkout/step-review" %}
         </div>

@@ -8,8 +8,9 @@ define(['modules/api',
         'hyprlive',
         'modules/preserve-element-through-render',
         'modules/modal-dialog',
-        'modules/xpress-paypal'
-      ], function (api, Backbone, _, $, CartModels, CartMonitor, HyprLiveContext, Hypr, preserveElement, modalDialog, paypal) {
+        'modules/xpress-paypal',
+        "modules/metrics"
+    ], function (api, Backbone, _, $, CartModels, CartMonitor, HyprLiveContext, Hypr, preserveElement, modalDialog, paypal, MetricsEngine) {
 
 
     var CartView = Backbone.MozuView.extend({
@@ -509,6 +510,10 @@ define(['modules/api',
         cartModel.on('ordercreated', function (order) {
             cartModel.isLoading(true);
             window.location = (HyprLiveContext.locals.siteContext.siteSubdirectory||'') + '/checkout/' + order.prop('id');
+        });
+
+        cartModel.on('itemremoved', function (cartItem) {
+            MetricsEngine.trackRemovedFromCart(cartItem);
         });
 
         cartModel.on('sync', function() {

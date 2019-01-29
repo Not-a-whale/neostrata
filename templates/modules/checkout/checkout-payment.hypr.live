@@ -1,12 +1,46 @@
 ﻿<div class="mz-checkout-payment">
-    <h4 class="mz-checkout-paymenttitle"><strong>{% if model.amountCollected > 0 %}{{ model.amountCollected|currency }}{% else %}{{ model.amountRequested|currency }}{% endif %}</strong> &mdash; {% if model.billingInfo.paymentType == "Check" %}{{ labels.checkByMail }} {% endif %}{% if model.billingInfo.paymentType == "CreditCard" %}{{ labels.creditCard }}{% endif %}{% if model.billingInfo.paymentType == "StoreCredit" or model.billingInfo.paymentType == "GiftCard" %}{{ labels.digitalCredit }}{% endif %}{% if model.billingInfo.paymentType == "PurchaseOrder" %}{{ labels.purchaseOrder }} - {{ model.billingInfo.purchaseOrder.purchaseOrderNumber }}{% endif %}</h4>
+    <h4 class="mz-checkout-paymenttitle">
+        <strong>{% if model.amountCollected > 0 %}
+                {{ model.amountCollected|currency }}
+                {% else %}
+                {{ model.amountRequested|currency }}
+                {% endif %}
+                {{ labels.confirmationBillingApplied }}
+        </strong>
+        
+        <span>{{ model.billingInfo.billingContact.firstName }} {{ model.billingInfo.billingContact.lastNameOrSurname }}</span>
 
+        <!-- TODO Remove if no need -->
+        {% comment %}
+        &mdash; {% if model.billingInfo.paymentType == "Check" %}{{ labels.checkByMail }} {% endif %}{% if model.billingInfo.paymentType == "CreditCard" %}{{ labels.creditCard }}{% endif %}{% if model.billingInfo.paymentType == "StoreCredit" or model.billingInfo.paymentType == "GiftCard" %}{{ labels.digitalCredit }}{% endif %}{% if model.billingInfo.paymentType == "PurchaseOrder" %}{{ labels.purchaseOrder }} - {{ model.billingInfo.purchaseOrder.purchaseOrderNumber }}{% endif %}
+        {% endcomment %}
+        <!-- END TODO -->
+    </h4>
+    <!-- TODO Remove if no need -->
+    {% comment %}
     {% if model.billingInfo.billingContact.email %}
         <div class="mz-l-stack-item">
             <small>{{ labels.billingEmail }}</small>
             <div>{{ model.billingInfo.billingContact.email }}</div>
         </div>
     {% endif %}
+    {% endcomment %}
+    <!-- END TODO -->
+    
+    {% if model.billingInfo.paymentType == "CreditCard" %}
+    <!-- TODO Add Card Image  -->
+    <div class="card-type-confirmation">
+        <img src="/resources/images/icons/payment/visa-confirmation.png" alt="VISA">
+        <div class="mz-l-stack-item card-type-confirmation-cardinfo">
+            <!-- TODO Remove ***** from card number  -->
+            <strong>{{ labels.endingIn }} {{ model.billingInfo.card.cardNumberPartOrMask|default("****************") }}</strong>
+            <!-- ENDTODO Remove ***** from card number  -->
+            <span>{{ labels.expires }}: {{ model.billingInfo.card.expireMonth }}/{{ model.billingInfo.card.expireYear }}</span>
+        </div>
+    </div>
+    <!-- ENDTODO -->
+    {% endif %}
+    
     {% if model.billingInfo.paymentType == "StoreCredit" or model.billingInfo.paymentType == "GiftCard" or  model.billingInfo.paymentType|lower == "paypalexpress2"%}
         <dt>Payment Method</dt>
         {% if model.billingInfo.paymentType|lower == "paypalexpress2" %}
@@ -18,23 +52,18 @@
             <dd>{{ model.billingInfo.storeCreditCode }}</dd>
         {%endif%}
         {% else %}
+
+        <!-- TODO Remove if no need -->
+        {% comment %}
         <div class="mz-l-stack-item">
             <small>{{ labels.billingName }}</small>
             <div>{{ model.billingInfo.billingContact.firstName }} {{ model.billingInfo.billingContact.lastNameOrSurname }}</div>
         </div>
-        <div class="mz-l-stack-item">
-            <small>{{ labels.billingAddress }}</small>
+        {% endcomment %}
+        <!-- END TODO -->
+        <div class="mz-l-stack-item mz-checkout-payment-billingAddress">
+            <small>{{ labels.billingAddress }} :</small>
             <div class="mz-addresssummary">{% include "modules/common/address-summary" with model=model.billingInfo.billingContact %}</div>
-        </div>
-        {% endif %}
-        {% if model.billingInfo.paymentType == "CreditCard" %}
-        <div class="mz-l-stack-item">
-            <small>{{ labels.cardtype }}</small>
-            <div>{{ model.billingInfo.card.paymentOrCardtype }}</div>
-        </div>
-        <div class="mz-l-stack-item">
-            <small>{{ labels.cardNumber }}</small>
-            <div>{{ model.billingInfo.card.cardNumberPartOrMask|default("****************") }}</div>
         </div>
         {% endif %}
         {% if model.billingInfo.paymentType == "Check" %}

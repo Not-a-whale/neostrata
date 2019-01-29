@@ -13,6 +13,13 @@
   font-family: sans-serif;
   color: @secondary-text-color;
 
+  @media (min-width: 992px) {
+    margin-bottom: 13.75rem;
+  }
+  @media (max-width: 991px) {
+    margin-bottom: 9.938rem;
+  }
+
   button {
     display: block;
     margin: 0 auto;
@@ -565,10 +572,22 @@
       margin-bottom: 3.248rem;
     }
 
+    [data-section="about-you"] & {
+      @media (max-width: 991px) {
+        margin-bottom: 0;
+      }
+    }
+
     &::after {
       content: "";
       display: table;
       clear: both;
+    }
+  }
+
+  [data-option-group="expertise"] {
+    @media (max-width: 991px) {
+      margin-bottom: 0;
     }
   }
 

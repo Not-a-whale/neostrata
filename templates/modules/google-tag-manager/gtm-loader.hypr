@@ -1,0 +1,118 @@
+<!-- Begin Tag Manager Data Layer -->
+
+  {% if PageContext.PageType == "confirmation" %}
+    <script type="text/javascript">
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+        "event": "DEPLabs",
+          "depData": {
+            "purchase": {
+              "actionField": {
+                "id": "{{ model.orderNumber }}",                        
+                "affiliation": "{{siteContext.generalSettings.websiteName}}",
+                "subtotalRevenue": "{{model.subtotal}}",
+                "revenue": "{{model.total}}",                    
+                "tax":"{{model.taxTotal}}",
+                "shipping": "{{model.shippingTotal}}",
+                "coupon": "{% for coupon in model.couponCodes %}{{coupon|safe}}{% if not forloop.last %}|{% endif %}{% endfor %}"
+              },
+            "products": [
+            {% for orderItem in model.items %}
+                {
+                    "name": "{{orderItem.product.name|safe}}",
+                    "id": "{{orderItem.product.productCode}}",
+                    "sku": "{{orderItem.product.variationProductCode}}",
+                    "price": "{{orderItem.unitPrice.saleAmount}}",
+                    "originalPrice": "{{orderItem.unitPrice.listAmount}}",
+                    "brand": "",
+                    "category": "{% with categories|find(orderItem.product.categories.0.id) as category %}{{category.content.name|safe}}{% endwith %}",
+                    "variant": "{% for option in orderItem.product.options %}{{option.value}}{% if not forloop.last %},{% endif %}{% endfor %}",
+                    "quantity": {{orderItem.quantity}},
+                    "list": "Directory: ",
+                    "coupon": ""
+                }{% if not forloop.last %},{% endif %}
+            {% endfor %}
+            ]
+          }
+         }
+        });
+    </script>
+  {% endif %}
+
+{% if PageContext.PageType == "product" %}
+<script type="text/javascript">
+  window.dataLayer = window.dataLayer || [];
+  dataLayer.push({
+  "event": "DEPLabs",
+  "depData": {
+    "detail": {
+      "actionField": {"list": "Directory: {% for crumb in navigation.breadcrumbs %}{% if not crumb.isHidden %}{% if not forloop.last %}{{crumb.name|safe}}/{% else %}{{ crumb.name|safe }}{% endif %}{% endif %}{% endfor %}"},    
+      "products": [{
+        "name": "{{ model.content.productName }}",        
+        "id": "{{ model.productCode }}",
+        "price": "{% if model.priceRange %}{{model.priceRange.lower.salePrice}} - {{model.priceRange.upper.salePrice}}{% else %}{% if model.price.salePrice %}{{model.price.salePrice}}{% else %}{{model.price.price}}{% endif %}{% endif %}",
+        "originalPrice" : "{% if model.priceRange %}{{model.priceRange.lower.price}} - {{model.priceRange.upper.price}}{% else %}{% if model.price.price %}{{model.price.price}}{% else %}"{% endif %}{% endif %}",
+        "brand": "",
+        "category": "{% for crumb in navigation.breadcrumbs %}{% if not forloop.last %}{{crumb.name|safe}}/{% else %}{{ crumb.name|safe }}{% endif %}{% endfor %}",
+        "variant": ""
+       }]
+     }{% if globalCart.items.length > 0 %},
+    "cart": {
+      "coupon": "{% for coupon in globalCart.couponCodes %}{{coupon}}{% if not forloop.last %},{% endif %}{% endfor %}",
+      "products": [
+      {% for orderItem in globalCart.items %}
+          {
+              "name": "{{orderItem.product.name|safe}}",
+              "id": "{{orderItem.product.productCode}}",
+              "sku": "{{orderItem.product.variationProductCode}}",
+              "price": "{{orderItem.unitPrice.extendedAmount}}",
+              "originalPrice": "{{orderItem.unitPrice.listAmount}}",
+              "brand": "",
+              "category": "{% with categories|find(orderItem.product.categories.0.id) as category %}{{category.content.name|safe}}{% endwith %}",
+              "variant": "{% for option in orderItem.product.options %}{{option.value}}{% if not forloop.last %},{% endif %}{% endfor %}",
+              "quantity": {{orderItem.quantity}}
+          }{% if not forloop.last %},{% endif %}
+      {% endfor %}
+      ]
+    }
+    {% endif %}
+   }
+});
+</script>
+{% endif %}
+
+{% if PageContext.PageType != "product" and PageContext.PageType != "category" and PageContext.PageType != "search" and globalCart.items.length > 0 %}
+<script type="text/javascript">
+  window.dataLayer = window.dataLayer || [];
+  dataLayer.push({
+  "event": "DEPLabs",
+  "depData": {
+    "cart": {
+      "coupon": "{% for coupon in globalCart.couponCodes %}{{coupon}}{% if not forloop.last %},{% endif %}{% endfor %}",
+      "products": [
+      {% for orderItem in globalCart.items %}
+          {
+              "name": "{{orderItem.product.name|safe}}",
+              "id": "{{orderItem.product.productCode}}",
+              "sku": "{{orderItem.product.variationProductCode}}",
+              "price": "{{orderItem.unitPrice.saleAmount}}",
+              "originalPrice": "{{orderItem.unitPrice.listAmount}}",
+              "brand": "",
+              "category": "{% with categories|find(orderItem.product.categories.0.id) as category %}{{category.content.name|safe}}{% endwith %}",
+              "variant": "{% for option in orderItem.product.options %}{{option.value}}{% if not forloop.last %},{% endif %}{% endfor %}",
+              "quantity": {{orderItem.quantity}}
+          }{% if not forloop.last %},{% endif %}
+      {% endfor %}
+      ]
+    }
+   }
+});
+</script>
+{% endif %}
+
+<!-- End Tag Manager Data Layer -->
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{themeSettings.googleTagManagerKey}}"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->

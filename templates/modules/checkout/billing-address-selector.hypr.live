@@ -1,6 +1,6 @@
 {% if model.requiresFulfillmentInfo and not model.usingSavedCard %}
 <div class="mz-l-formfieldgroup mz-l-formfieldgroup-norows form-row">
-    <input type="checkbox" id="isSameBillingShippingAddress" data-mz-value="isSameBillingShippingAddress" value="true" {% if model.isSameBillingShippingAddress %}checked="checked"{% endif %}>
+    <input type="checkbox" class="hide" id="isSameBillingShippingAddress" data-mz-value="isSameBillingShippingAddress" value="true" {% if model.isSameBillingShippingAddress %}checked="checked"{% endif %}>
     <label for="isSameBillingShippingAddress" class="icon-check form-element">{{ labels.useShippingAddress }}</label>
 </div>
 {% endif %}

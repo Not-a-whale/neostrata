@@ -11,48 +11,47 @@
             </div>
 
             {% if themeSettings.requireCheckoutAgreeToTerms %}
-            <div class="mz-l-formfieldgroup mz-l-formfieldgroup-norows mz-checkoutform">
-            <label class='inline'>
-                <input type="checkbox" name="terms-and-conditions" id="mz-terms-and-conditions" data-mz-value="agreeToTerms" {% if model.agreeToTerms %} checked="checked"{% endif %}> {{ labels.agreeToTerms }}
-            </label>
-            <span class="mz-validationmessage" data-mz-validationmessage-for="agreeToTerms"></span>
+            <div class="mz-l-formfieldgroup mz-l-formfieldgroup-norows mz-checkoutform form-row">
+                <input type="checkbox" name="terms-and-conditions" id="mz-terms-and-conditions" data-mz-value="agreeToTerms" {% if model.agreeToTerms %} checked="checked"{% endif %}> 
+                <label class='icon-check form-element terms-conditions-label' for="mz-terms-and-conditions">{{ labels.agreeToTerms }}</label>
+                <span class="mz-validationmessage" data-mz-validationmessage-for="agreeToTerms"></span>
             </div>
             {% endif %}
 
             {% if not user or user.isAnonymous %}
-            <div class="mz-l-formfieldgroup mz-l-formfieldgroup-norows mz-checkoutform">
-                <label class='inline'>
-                    <input type="checkbox" name="create-new-account" data-mz-value="createAccount" {% if model.createAccount %} checked="checked"{% endif %} > {{ labels.createAccount }}
-                </label>
+            <div class="mz-l-formfieldgroup mz-l-formfieldgroup-norows mz-checkoutform form-row">
+                <input type="checkbox" name="create-new-account" id="mz-create-new-account" data-mz-value="createAccount" {% if model.createAccount %} checked="checked"{% endif %} >
+                <label class='icon-check form-element two-rows-checkbox' for="mz-create-new-account">{{ labels.createAccount|safe }}</label>
             </div>
 
                 {% if model.createAccount %}
                 <div class="mz-l-formfieldgroup mz-create-account-fields mz-checkoutform mz-checkoutform-active">
-                    <div class="mz-l-formfieldgroup-row">
+                    <div class="mz-l-formfieldgroup-row form-row">
                       <div class="mz-l-formfieldgroup-cell">
-                    <label for="new-account-email"> {{ labels.email }}<span class="is-required"> *</span>: </label>
+                        <h5 for="new-account-email"> {{ labels.email }}<span class="is-required"> *</span>: </h5>
                       </div>
                       <div class="mz-l-formfieldgroup-cell">
                         <input type="text" name="new-account-email" data-mz-value="emailAddress" value="{{ model.emailAddress|default(model.billingInfo.billingContact.email) }}" maxlength="{{themeSettings.emailLength}}">
                         <span class="mz-validationmessage" data-mz-validationmessage-for="emailAddress"></span>
                        </div>
                     </div>
-                  <div class="mz-l-formfieldgroup-row">
+                  <div class="mz-l-formfieldgroup-row form-row">
                       <div class="mz-l-formfieldgroup-cell">
-                    <label for="new-account-password"> {{ labels.password }}<span class="is-required"> *</span>: </label>
+                    <h5 for="new-account-password"> {{ labels.password }}<span class="is-required"> *</span>: </h5>
                       </div>
                       <div class="mz-l-formfieldgroup-cell">
-                        <input type="password" name="new-account-password" data-mz-value="password" value="{{ model.password }}" maxlength="{{themeSettings.passwordMaxLength}}">
+                        <input type="password" name="new-account-password" data-mz-value="password" placeholder="{{ labels.enterPassword }}" value="{{ model.password }}" maxlength="{{themeSettings.passwordMaxLength}}">
                         <span class="mz-validationmessage" data-mz-validationmessage-for="password"></span>
+
+                        <p>{{ labels.minimumCharecters }}</p>
                        </div>
                     </div>
-                  <div class="mz-l-formfieldgroup-row">
+                  <div class="mz-l-formfieldgroup-row form-row">
                       <div class="mz-l-formfieldgroup-cell">
-                    <label for="new-account-password"> {{ labels.confirmPassword }}<span class="is-required"> *</span>: </label>
-                      </div>
-                      <div class="mz-l-formfieldgroup-cell">
-                        <input type="password" name="new-account-confirm" data-mz-value="confirmPassword" value="{{ model.confirmPassword }}" maxlength="{{themeSettings.passwordMaxLength}}">
+                        <input type="password" name="new-account-confirm" data-mz-value="confirmPassword" placeholder="{{ labels.reEnterPassword }}" value="{{ model.confirmPassword }}" maxlength="{{themeSettings.passwordMaxLength}}">
                         <span class="mz-validationmessage" data-mz-validationmessage-for="confirmPassword"></span>
+
+                        <p>{{ labels.createAccountPP|safe }}</p>
                        </div>
                     </div>
                 </div>
