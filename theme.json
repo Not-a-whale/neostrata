@@ -2114,6 +2114,23 @@
       ]
     },
     {
+      "displayName": "Featured Product only",
+      "displayTemplate": "featured-product/product",
+      "editViewFields": [
+        {
+          "anchor": "100%",
+          "fieldLabel": "Select Featured Product",
+          "name": "product",
+          "xtype": "mz-input-product"
+        }
+      ],
+      "icon": "/resources/admin/widgets/01_photo_text.png",
+      "id": "featured-product-only",
+      "validPageTypes": [
+        "*"
+      ]
+    },
+    {
       "defaultConfig": {},
       "displayName": "Product carousel",
       "displayTemplate": "misc/product-carousel",
