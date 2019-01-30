@@ -312,17 +312,19 @@
 
       .login-link-text {
           font-size: 1rem;
-      }
-
-      .login-link-text span {
-          font-weight: normal;
+          span {
+            font-weight: bold;
+            b {
+                font-weight: normal;
+            }
+        }
       }
     }
 
     .commerce-enabled-true .sticky-nav & {
       left: 91%;
 
-      .login-link-text {
+      .login-link-text span {
         display: none;
       }
     }
@@ -375,7 +377,7 @@
 
   .flag {
     display: inline-block;
-    background-image: url(../resources/images/flag-us-small.png);
+    background-image: url(../resources/images/canadian_flag.svg);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: contain;
