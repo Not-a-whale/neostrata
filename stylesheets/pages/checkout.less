@@ -399,7 +399,26 @@
             }
         }
     }
+    .checkout-leftcolumn {
+        .mz-formstep.mz-checkoutform-paymentinfo {
+            margin-bottom: 13rem ;
+            position: relative;
 
+            #btn_xpressPaypal {
+                min-width:320px;  
+                height:auto; 
+                margin:0 auto; 
+                position: absolute; 
+                bottom: -10rem;
+                left: ~'calc((100% - 320px) / 2)'; 
+                left: ~'-webkit-calc((100% - 320px) / 2)';
+                left: ~'-moz-calc((100% - 320px) / 2)';
+                /*@media (max-width: 800px) {
+                    bottom: -8rem;
+                } */
+            }
+        }
+    }
     .mz-checkout-payment-change {
         font-size: 1.5rem;
         text-decoration: none;
