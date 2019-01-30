@@ -1,0 +1,46 @@
+<div class="product-listing-container">
+    <div class="mz-productlisting {% block module-classes %}{% endblock module-classes %}" data-mz-product="{{ model.productCode }}">
+        <div class="mz-productlisting-image">
+            <div class="zoom-container-listing">
+        {% block product-image %}
+            {% if model.mainImage.imageUrl %}
+                <img src="{{model.mainImage.imageUrl}}?max={% block thumbnail-size %}{{ themeSettings.listProductThumbSize }}{% endblock thumbnail-size %}" data-zoom-image="{{model.mainImage.imageUrl}}?max={% block thumbnail-size %}{{ themeSettings.productZoomImageMaxWidth }}{% endblock thumbnail-size %}" alt="{{ model.content.productShortDescription|striptags|truncatewords(themeSettings.maxProductSummaryWords) }}" />
+            {% else %}
+                <span class="mz-productlisting-imageplaceholder"><span class="mz-productlisting-imageplaceholdertext">{{ labels.productImagePlaceholder }}</span></span>
+            {% endif %}
+        {% endblock product-image %}
+            </div>
+        </div>
+        <div class="pdp1">
+          &nbsp;
+          {% comment %}
+          {% with model|get_product_attribute("tenant~product-type") as productType %}
+            {% for v in productType.values %}
+              {% if v.stringValue %}
+                  {{ v.stringValue|safe }}{% if not forloop.last %},{% endif %}
+              {% endif %}
+            {% endfor %}
+          {% endwith %}
+          {% endcomment %}
+        </div>
+        <div class="mz-productlisting-info pdp2">
+          {{model.content.productName}}
+          {% if model.content.productShortDescription and themeSettings.listProductShortDesc %}
+              <div class="mz-productlisting-shortdesc pdp3">{{ model.content.productShortDescription|striptags|truncatewords(themeSettings.maxProductSummaryWords) }}</div>
+          {% endif %}
+
+        </div>
+    </div>
+    <div class="bottom-details">
+        <div id="BVRRInlineRating-{{model.productCode}}" class="pdp5 bvr-inline-rating" data-mz-product-code="{{ model.productCode }}" data-mz-product-url="{{ model.url }}"></div>
+    </div>
+    <div class="mz-productdetail-conversion-buttons col-xs-12">
+      <div class="add-to-sample-container">
+        {% if inCart %}
+          <span class="added-message"><span class="check">&nbsp;</span>Added to cart!</span>
+        {% else %}
+          <button id="add-to-cart-{{ model.productCode }}" class="primary-btn mz-productdetail-addtocart font-large button_primary {% if not model.purchasableState.isPurchasable %}button_disabled{% endif %}" data-mz-action="directoryAddToCart" data-mz-product-code="{{ model.productCode }}">{{ labels.addToCart }}</button>
+        {% endif %}
+      </div>
+    </div>
+</div>

@@ -26,7 +26,6 @@ define(['underscore', 'modules/backbone-mozu', 'hyprlive', "modules/api", "modul
     CartItem = Backbone.MozuModel.extend({
         relations: {
             product: CartItemProduct
-
         },
         validation: {
             quantity: {
