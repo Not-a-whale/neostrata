@@ -1,3 +1,6 @@
+<div class="message">
+  {{ model.message }}
+</div>
 <div class="mz-productlist mz-productlist-tiled">
     {% if model.freeSamples %}
     <ul id="product-list-ul" class="mz-productlist-list row ml-list-view-toggle grid-view mz-l-tiles">
