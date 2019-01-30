@@ -271,22 +271,35 @@ define([
                         api.get('product', productCode).then(function(productResponse){
                             var product = new ProductModels.Product(productResponse.data);
                             product.addToWishlist();
-                            $('#wishlist-'+productCode).attr("data-mz-action", "directoryRemoveFromWishlist");
-                            if($('#addToWishListPopUp').length === 1){
-                                $('#addToWishListPopUp').remove();
-                            }
-                            $( '<div id="addToWishListPopUp" class="row alert" role="alert"><div class="col-xs-6 text-right">Item added to wishlist.</div><div class="col-xs-6 text-left"><a href="/myaccount#wishlist">View Wishlist</a></div></div>' ).insertAfter('#nav-header-container > #ml-nav');
                             setTimeout(function(){
-                                $('#addToWishListPopUp').fadeOut(function(){$(this).remove();});
-                            }, 5000);
-                            return $('#wishlist-'+productCode+' span').removeClass("blank-heart").addClass("filled-heart");
+                                api.createSync('wishlist').getOrCreate(user.accountId).then(function(wishlist) {
+                                    return wishlist.data;
+                                }).then(function(wishlistItems) {
+                                    for (var i = 0; i < wishlistItems.items.length; i++) {
+                                        if(wishlistItems.items[i].product.productCode === productCode){
+                                            $(_e.currentTarget).data('mz-item-id', wishlistItems.items[i].id);
+                                        }
+                                    }
+                                    $(_e.currentTarget).data('mz-wishlist-id', wishlistItems.id);
+                                    $(_e.currentTarget).data("mz-action", "directoryRemoveFromWishlist");
+                                    if($('#addToWishListPopUp').length === 1){
+                                        $('#addToWishListPopUp').remove();
+                                    }
+                                    $( '<div id="addToWishListPopUp" class="row alert" role="alert"><div class="col-xs-6 text-right">Item added to wishlist.</div><div class="col-xs-6 text-left"><a href="/myaccount#wishlist">View Wishlist</a></div></div>' ).insertAfter('#nav-header-container > #ml-nav');
+                                    setTimeout(function(){
+                                        $('#addToWishListPopUp').fadeOut(function(){$(this).remove();});
+                                    }, 5000);
+                                    return $('#wishlist-'+productCode+' span').removeClass("blank-heart").addClass("filled-heart");
+                                });
+                            }, 1000);
+                           
                         });
                     }else if(action == 'directoryRemoveFromWishlist'){
                         var finishRemoveItemId = $(_e.currentTarget).data('mz-item-id');
                         var wishlistId = $(_e.currentTarget).data('mz-wishlist-id');
                         var serviceurl = '/api/commerce/wishlists/'+ wishlistId +'/items/' + finishRemoveItemId;
                         api.request('DELETE', serviceurl).then(function(res) {
-                            $('#wishlist-'+productCode).attr("data-mz-action", "directoryAddToWishlist");
+                            $(_e.currentTarget).data("mz-action", "directoryAddToWishlist");
                             if($('#addToWishListPopUp').length === 1){
                                 $('#addToWishListPopUp').remove();
                             }
