@@ -1,4 +1,4 @@
-﻿define(['shim!vendor/typeahead.js/typeahead.bundle[modules/jquery-mozu=jQuery]>jQuery', 'swiper'], function($, Swiper) {
+﻿define(['shim!vendor/typeahead.js/typeahead.bundle[modules/jquery-mozu=jQuery]>jQuery', 'swiper', "modules/api", "modules/models-product", "modules/cart-monitor"], function($, Swiper, api, ProductModels, CartMonitor) {
     var swiper = new Swiper('.swiper-container', {
         slidesPerView: 3,
         spaceBetween: 0,
@@ -35,6 +35,20 @@
     }
     $(document).ready(function() {
         window_resize();
+        setTimeout(function(){
+            $('.product-carousel-listing .mz-productdetail-addtocart').click(function(){
+                var productCode = $(this).data('mzProductCode');
+                if(productCode && productCode !== ''){
+                    api.get('product', productCode).then(function(productResponse){
+                        var product = new ProductModels.Product(productResponse.data);
+                        product.addToCart();
+                        setTimeout(function(){
+                            CartMonitor.update('showGlobalCart');
+                        }, 1000);
+                    });
+                }
+            });
+        }, 1000);
     });
     $(window).resize(function() {
         window_resize();
