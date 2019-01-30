@@ -1,3 +1,11 @@
-﻿{% extends "modules/product/free-sample-widget/product-list" %}
-{% block module-classes %}mz-productlist-tiled{% endblock module-classes %}
-{% block list-classes %}mz-l-tiles{% endblock list-classes %}
+<div class="mz-productlist mz-productlist-tiled">
+    {% if model.freeSamples %}
+    <ul id="product-list-ul" class="mz-productlist-list row ml-list-view-toggle grid-view mz-l-tiles">
+        {% for freeSample in model.freeSamples %}
+        <li class="mz-productlist-item product-item col-xs-12 col-sm-4 col-md-3" data-mz-product="{{ freeSample.productCode }}">
+          {% include "modules/product/free-sample-widget/product-listing" with model=freeSample.product inCart=freeSample.inCart %}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>

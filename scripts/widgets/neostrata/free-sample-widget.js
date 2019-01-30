@@ -1,10 +1,10 @@
 define([
     'modules/jquery-mozu',
-    "modules/free-samples/views-collections"], function($, CollectionViewFactory) {
+    "modules/free-samples/free-samples"], function($, FreeSamplesViewFactory) {
     $(document).ready(function() {
-        window.facetingViews = CollectionViewFactory.createFacetedCollectionViews({
-            $body: $('[data-mz-free-samples]'),
-            template: "category-interior"
+        console.log('Setting freeSamples on window');
+        window.freeSamplesView = FreeSamplesViewFactory.createFreeSamplesViews({
+            $body: $('[data-mz-free-samples]')
         });
     });
 });
