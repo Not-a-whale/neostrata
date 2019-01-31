@@ -104,7 +104,7 @@ require([
                         var hash = {};
                         $('.bvr-inline-rating').each(function() {
                                 var $this = $(this);
-                                var productCode = $this.data('mzProductCode');
+                                var productCode = $this.data('bvProductCode');
                                 hash[productCode] = {
                                     url: $this.data('mzProductUrl'),
                                     containerId: $this.attr('id')
