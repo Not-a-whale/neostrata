@@ -380,6 +380,19 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
                 orderHistoryListingView.render();
             });
         },
+        viewOMXOrderHistory: function () {
+            this.startViewOMXOrderHistory(); 
+            this.render();
+        },
+
+        startViewOMXOrderHistory: function () {
+            $('.mz-l-stack-section').hide();
+            $('.mz-l-stack-section.mz-accountorderhistory').show();
+            $('.mz-l-stack-section.mz-accountorderhistory').removeClass('no-editing').addClass('is-editing');
+            $('.dl-maintitle').hide();
+            $('.mz-scrollnav-item').removeClass('active');
+            $('.mz-scrollnav-item.dl-orderhistory').addClass('active');
+        },
     });
 
     var OmxOrderHistoryListingView = Backbone.MozuView.extend({
@@ -1002,7 +1015,7 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
         $('.mz-myaccount-nav .dl-personalInfo').on('click', function (e) {accountViews.settings.startEdit(e);});
         $('.mz-myaccount-nav .dl-addressbook').on('click', function (e) {accountViews.addressBook.viewAddressBook(e);});
         $('.mz-myaccount-nav .dl-paymentmethods').on('click', function (e) {accountViews.paymentMethods.viewPayments(e);});
-        $('.mz-myaccount-nav .dl-orderhistory').on('click', function (e) {});
+        $('.mz-myaccount-nav .dl-orderhistory').on('click', function (e) {accountViews.omxOrderHistory.viewOMXOrderHistory(e);});
         $('.mz-myaccount-nav .dl-accountwishlist').on('click', function (e) {accountViews.wishList.startEditWishlist(e);});
 
         // TODO: upgrade server-side models enough that there's no delta between server output and this render,

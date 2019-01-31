@@ -39,6 +39,7 @@ require([
     if(params && params.order) {
       blockUiLoader.globalLoader();
       OrderStatusApi.OrderStatusDetail.getOrderStatusDetail( { orderId: params.order }).then( function( data ){
+          console.log('Data in then ', data); 
        if( data  ){
            var orderStatusModel = new OrderStatusModels.OmxOrderStatus(data);
            console.log('OmxOrderStatus ', orderStatusModel);
@@ -56,7 +57,7 @@ require([
            blockUiLoader.unblockUi();
         }
     },function(error){
-      console.log('error ', error);
+      console.log('error during the api call', error);
        $('[data-mz-message-bar]').html(error.responseJSON.message);
       blockUiLoader.unblockUi();
     });

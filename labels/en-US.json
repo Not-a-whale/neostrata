@@ -667,5 +667,21 @@
   "orderHistoryDate": "Date",
   "orderHistoryStatus": "Status",
   "orderHistoryTotal": "Total",
-  "orderHistoryNumber": "Order #"
+  "orderHistoryNumber": "Order #", 
+
+  "orderDetailNumber": "Order # {0}",
+  "orderDetailDate" : "Placed ", 
+  "orderDetailStatus" : "Status: ", 
+  "orderDetailShippingInfo" : "Shipping Info", 
+  "orderStatusPaymentTotal" : "${0} applied to: ", 
+  "orderStatusPaymentCCEnding" : "Ending in {0}", 
+  "orderStatusPaymentCCExpires" : "Expires: {0}", 
+  "orderDetailItems" : "Items in Order", 
+
+  "orderDetailItems" : "Items in Order", 
+  "orderDetailItems" : "Items in Order", 
+  "orderDetailItems" : "Items in Order", 
+  
+  
+  "orderDetailPaymentInfo" : "Payment Info" 
 }
