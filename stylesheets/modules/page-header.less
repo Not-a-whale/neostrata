@@ -314,6 +314,10 @@
           font-size: 1rem;
           span {
             font-weight: bold;
+            &:hover {
+              color: @mutedBlue;
+              text-decoration: underline;
+            }
             b {
                 font-weight: normal;
             }
@@ -383,6 +387,38 @@
     background-size: contain;
     width: 26px;
     height: 14px;
+    margin-left: .3rem;
+  }
+  .flagUs {
+    background-image: url(../resources/images/american-flag.svg);
+  }
+  .dropdown-select {
+      border: none;
+      font-size: 1.2rem;
+      font-weight: bold;
+      padding: .5rem;
+      height: 100%;
+      line-height: 100%;
+      .dropdown-icon{
+        margin: 0 3.125rem 0 0.5rem;
+        &:before{
+          font-size: 1.5rem;
+        }
+      }
+  }
+  .country-selector{
+    min-width: 100px;
+    li{
+      cursor: pointer;
+      font-size: 1.2rem;
+      a{
+        font-weight: 400;
+        padding: 0;
+        &:hover{
+          background-color: @mutedBlue;
+        }
+      }
+    }
   }
 }
 

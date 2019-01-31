@@ -1,0 +1,9 @@
+<div>
+    <button type="button" class="dropdown-select dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span>US<span class="flag flagUs"></span></span><i class="dropdown-icon"></i>
+    </button>
+    <ul class="dropdown-menu dropdown-select-list country-selector" title="Country Selector">
+        <li data-value="us">US<i class="flag flagUs"></i></li>
+        <li data-value="ca"><a href="{{ themeSettings.sitesURLs.en-ca }}">CA<i class="flag"></i><a></a></li>
+    </ul>
+</div>

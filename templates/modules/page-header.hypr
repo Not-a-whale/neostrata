@@ -8,8 +8,11 @@
             {% if themeSettings.commerceEnabled %}
             <div class="site-link">
                 {% if themeSettings.sitesURLs && themeSettings.sitesURLs.length > 0 %}
-                    <a href="{{ themeSettings.sitesURLs.en-ca }}">CA</a>
-                    <i class="flag"></i>
+                {% block country-selector %}
+                    {% include "modules/page-header/country-selector" %}
+                {% endblock country-selector %}
+                    <!-- <a href="{{ themeSettings.sitesURLs.en-ca }}">CA</a>
+                    <i class="flag"></i> -->
                 {% endif %}
             </div>
             {% endif %}
