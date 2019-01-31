@@ -102,9 +102,9 @@ define([
                 me.render();
                 if (showGlobalCart) {
                     me.$el.show();
-                    setTimeout(function() {
-                        me.$el.attr('style', '');
-                    }, 5000);
+                    // setTimeout(function() {
+                    //     me.$el.attr('style', '');
+                    // }, 5000);
                 }
                 if (globalCartRelatedProducts) {
                     me.showRelatedProducts(resp.data.items);
