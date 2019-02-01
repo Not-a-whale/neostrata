@@ -4,7 +4,7 @@
     <div>
         <div>
           <div class="mz-product-top-content">
-            <h2 class="slashHeading"><span>{{ skinCareSystem }}</span></h2>
+            <div class="slashHeading"><span>FEATURED PRODUCT</span></div>
             <h1 class="mz-pagetitle center-mobile" itemprop="name">{{ prod.content.productName|replace("'","&rsquo;")|safe }}</h1>
             <h2 class="mz-pagesubtitle center-mobile" >
               <span itemscope itemprop="description">{{ prod.content.productShortDescription|safe }}</span>

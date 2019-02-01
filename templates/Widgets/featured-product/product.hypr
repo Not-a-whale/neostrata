@@ -1,6 +1,10 @@
 {% if model.config.product %}
-<div class="featured-product-only-widget" data-widget="featured-product-only">
-    {% include_products "Widgets/featured-product/featured-product" with productCodes=model.config.product as_parameter %}
+<div class="row">
+    <div class="col-xs-2"></div>
+    <div class="featured-product-only-widget col-xs-12 col-sm-8 col-md-8" data-widget="featured-product-only">
+        {% include_products "Widgets/featured-product/featured-product" with productCodes=model.config.product as_parameter %}
+    </div>
+    <div class="col-xs-2"></div>
 </div>
 {% endif %}
 {% require_script "widgets/featured-product-only/slider" %}
