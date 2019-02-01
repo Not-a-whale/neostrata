@@ -14,7 +14,7 @@ define(['modules/jquery-mozu', 'modules/api', 'bootstrap', 'modules/page-header/
                 var localAmount = Hypr.engine.render("{{price|currency}}",{ locals: { price: amount }});
                 this.$amountEl.text(localAmount);
                 cartTotal = amount;
-            },           
+            },
             setCount: function(count) {
                 this.$el.text(count);
                 if(savedCart.totalQuantity === 0) {
@@ -40,6 +40,7 @@ define(['modules/jquery-mozu', 'modules/api', 'bootstrap', 'modules/page-header/
                     $.cookie('mozucart', JSON.stringify(summary.data), { path: '/' });
                     savedCarts[userId] = summary.data;
                     //console.log(summary);
+                    /*
                     if( offerSampleProducts  && summary.data.total && summary.data.total > Hypr.getThemeSetting('freeSampleOrderTotalThreshold') ){
                         $document.ready(function() {
                             CartMonitor.setCount(summary.data.totalQuantity);
@@ -47,16 +48,16 @@ define(['modules/jquery-mozu', 'modules/api', 'bootstrap', 'modules/page-header/
                             window.location.href = Hypr.getThemeSetting('freeSamplePagePath') || "/c/" + Hypr.getThemeSetting('freeSampleCategoryId');
                         });
                     }
-                    else{
+                    else{*/
                         $document.ready(function() {
                             $('.ml-header-global-cart-wrapper').css('display', 'block');
                             CartMonitor.setCount(summary.data.totalQuantity);
                             CartMonitor.setAmount(summary.data.total);
                             GlobalCart.update( showGlobalCart );
                         });
-                    }
+                    /* } */
                 });
-                
+
             }
         },
         savedCarts,
@@ -78,7 +79,7 @@ define(['modules/jquery-mozu', 'modules/api', 'bootstrap', 'modules/page-header/
             $('.ml-header-global-cart-count').addClass('emptyCart');
         } else {
             $('.ml-header-global-cart-count').removeClass('emptyCart');
-        }       
+        }
         CartMonitor.$el = $('[data-mz-role="cartcount"]').text(savedCart.totalQuantity || 0);
         CartMonitor.$amountEl = $('[data-mz-role="cartamount"]').text(savedCart.total || 0);
     });

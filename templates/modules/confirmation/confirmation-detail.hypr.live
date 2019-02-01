@@ -12,11 +12,12 @@
         <div class="mz-l-stack-section thankyou-order-block">
             <div class="mz-l-stack-section-title">
                 <h1 class="mz-pagetitle">{{ labels.confirmationText }}</h1>
+                
                 {% for orderAttribute in model.attributes %}
                     {% if orderAttribute.fullyQualifiedName == "tenant~omx_order_number" and orderAttribute.values.length != 0 %}
-                        <p class="mz-pagesubtitle">{{ labels.yourOrderNumber|string_format(orderAttribute.values|first)|safe }}</p>
+                        <p class="mz-pagesubtitle">{{ labels.yourOrderNumber|string_format(orderAttribute.values.0)|safe }}</p>
                     {% endif %}
-                {% endfor %}~
+                {% endfor %}
             </div>
             <div class="mz-l-stack-item">
                 <p class="confirmation-title">{{ labels.confirmationCreateAccTitle|safe }}</p>

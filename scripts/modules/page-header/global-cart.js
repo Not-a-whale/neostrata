@@ -56,6 +56,23 @@ define([
                 });
                 relatedProductsView.render();
                 relatedProductsView.$el.find('img').height(150);
+                setTimeout(function(){
+                    $('#global-cart .related-products .product-listing-container .mz-productdetail-conversion-buttons .add-to-cart-container .mz-productdetail-addtocart').click(function(){
+                        var productCode = $(this).data('mzProductCode');
+                        if(productCode && productCode !== ''){
+                            Api.get('product', productCode).then(function(productResponse){
+                                var product = new ProductModels.Product(productResponse.data);
+                                product.addToCart();
+                                setTimeout(function(){
+                                    Api.get("cart").then(function(resp) {
+                                        $('.ml-header-global-cart-count .mz-cartmonitor').html(resp.data.items.length);
+                                        me.update('showGlobalCart');
+                                    });
+                                }, 1000);
+                            });
+                        }
+                    });
+                }, 1000);
             }, function() {
                 console.log("Got some error at cross sell in Global Cart");
             });
@@ -85,9 +102,9 @@ define([
                 me.render();
                 if (showGlobalCart) {
                     me.$el.show();
-                    setTimeout(function() {
-                        me.$el.attr('style', '');
-                    }, 5000);
+                    // setTimeout(function() {
+                    //     me.$el.attr('style', '');
+                    // }, 5000);
                 }
                 if (globalCartRelatedProducts) {
                     me.showRelatedProducts(resp.data.items);

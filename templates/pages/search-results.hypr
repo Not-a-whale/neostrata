@@ -10,19 +10,20 @@
 <div class="mz-cms-block">
     <div class="mz-cms-content">
         <div class="mz-content-widget-wrap">
-            <div class="mz-content-widget-inner-wrap">
+            <div class="mz-content-widget-inner-wrap category-hero-module saerch-hero-banner">
                     <picture class="background-full-image">
                         <!-- IMAGE FOR LARGE VIEWPORTS --> 
-                        <source srcset="{% if themeSettings.searchBannerXS %}{{ themeSettings.searchBannerXS }}{% else %}/cms/files/homepagemodule1-v4-d.png{% endif %}" media="(min-width: 769px)">
+                        <source srcset="{% if themeSettings.searchBannerXS %}{{ themeSettings.searchBannerXS }}{% else %}/cms/files/search-bg-d.png{% endif %}" media="(min-width: 769px)">
                         <!-- IMAGE FOR SMALL VIEWPORTS -->   
-                        <img src="{% if themeSettings.searchBannerSM %}{{ themeSettings.searchBannerSM }}{% else %}/cms/files/homepagemodule1-v4-m.png{% endif %}" alt="NEOSTRATA® - Rejuvenated products to better rejuvenate your skin">
+                        <img src="{% if themeSettings.searchBannerSM %}{{ themeSettings.searchBannerSM }}{% else %}/cms/files/search-bg-m.png{% endif %}" alt="NEOSTRATA® - Rejuvenated products to better rejuvenate your skin">
                     </picture>
+                    <div class="banner-text search-banner-text">
+                        <strong class="search-result-title">{{ labels.searchResults }}: </strong>
+                        <h1 class="search-query">{{ pageContext.search.query }}</h1>
+                        <span class="search-totalCount-result">{{model.totalCount}} Results</span>
+                    </div>
             </div>
         </div>
-    </div>
-    <div class="home-main-content text-center">
-        <h1 class="h3">{{ labels.searchResults }}: <span class="mz-searchresults-query">{{ pageContext.search.query }}</span></h1>
-        <div class="text-center countResults">{{model.totalCount}} Results</div>
     </div>
 </div>
 <div {% if pageContext.categoryId %}data-mz-category="{{ pageContext.categoryId }}" {% endif %}data-mz-search="{{ pageContext.search.query }}" class="mz-l-container container search-results">

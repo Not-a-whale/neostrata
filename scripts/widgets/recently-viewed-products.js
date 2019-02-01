@@ -1,5 +1,5 @@
-define(['modules/jquery-mozu', 'underscore', "modules/api", "modules/backbone-mozu", "modules/models-product", "hyprlivecontext", "bxslider"],
-    function ($, _, api, Backbone, ProductModels, HyprLiveContext, bxslider) {
+define(['modules/jquery-mozu', 'underscore', "modules/api", "modules/backbone-mozu", "modules/models-product", "hyprlivecontext", "bxslider",  "modules/cart-monitor"],
+    function ($, _, api, Backbone, ProductModels, HyprLiveContext, bxslider, CartMonitor) {
         var sitecontext = HyprLiveContext.locals.siteContext;
         var cdn = sitecontext.cdnPrefix;
         var siteID = cdn.substring(cdn.lastIndexOf('-') + 1);
@@ -8,6 +8,20 @@ define(['modules/jquery-mozu', 'underscore', "modules/api", "modules/backbone-mo
         var pageContext = require.mozuData('pagecontext');
 
         $(document).ready(function() {
+            setTimeout(function(){
+                $('.mz-recently-viewed-products .bxslider .mz-productdetail-addtocart').click(function(){
+                    var productCode = $(this).data('mzProductCode');
+                    if(productCode && productCode !== ''){
+                        api.get('product', productCode).then(function(productResponse){
+                            var product = new ProductModels.Product(productResponse.data);
+                            product.addToCart();
+                            setTimeout(function(){
+                                CartMonitor.update('showGlobalCart');
+                            }, 1000);
+                        });
+                    }
+                });
+            }, 1000);
             var productCollection = [];
             
             $('[data-mz-recently-viewed-products]').each(function (index, rp) {

@@ -256,7 +256,7 @@
             }
         }
         .mz-sitenav-sub-container{
-            top: 3.9rem;
+            top: 6rem;
         }
     }
 }
@@ -306,7 +306,10 @@
                     font-weight: bold;
                     margin-left: 1rem;
                     span {
-                        font-weight: normal;
+                        font-weight: bold;
+                        b {
+                            font-weight: normal;
+                        }
                     }
                 }
                 #mz-logged-in-notice #my-account {
@@ -530,6 +533,17 @@
       border-bottom: 1px solid #e0e0e0;
       background-color: #ffffff;
 
+      .commerce-enabled-true & {
+        &.sticky-nav {
+            .popover {
+                top: 3rem !important;
+                .arrow {
+                    left: 38% !important;
+                }
+            }
+        }
+    }
+
       .mz-pageheader {
           .ml-header-content {
               .commerce-enabled-true & {
@@ -565,8 +579,8 @@
                     .ml-header-global-cart-count {
                         position: absolute;
                         margin-top: -13px;
-                        left: 3rem;
-                        padding: 1% 4%;
+                        left: 2rem;
+                        padding: .1rem .4rem;
                         min-width: 1.2rem;
                         .mz-cartmonitor {
                             font-size: 1rem;
@@ -603,6 +617,7 @@
                       }
                       .popover{
                           top: -10px;
+                          
                           .popover-content{
                               .my-account-details{
                                   a{
@@ -633,11 +648,11 @@
                                 color: #4e5458;
                                 font-size: 1rem;
                                 line-height: 2.5;
-                                display: inline-block;
                                 vertical-align: middle;
                                 font-weight: bold;
                                 margin-left: 0;
                             }
+                            
                         }
                         #my-account-content {
                             position: absolute;

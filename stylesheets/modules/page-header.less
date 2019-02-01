@@ -188,6 +188,10 @@
       display: block;
       position: relative;
       height: auto;
+
+      &.dl-search-account {
+        position: absolute;
+      }
     }
 
     .commerce-enabled-true .sticky-nav & {
@@ -247,13 +251,13 @@
 .mz-pageheader .ml-header-content .ml-header-search-wrapper {
   @media (min-width: 992px) {
     .commerce-enabled-true & {
-      position: absolute;
+      position: relative;
       left: unset;
       top: 0;
-      right: 28rem;
+      right: unset;
       height: 2.875rem;
       padding-left: 3.375rem;
-
+      padding-right: 3.375rem;
       transform: none;
 
       text-transform: uppercase;
@@ -283,10 +287,10 @@
 .mz-pageheader .ml-header-content .ml-header-links-wrapper {
   @media (min-width: 992px) {
     .commerce-enabled-true & {
-      position: absolute;
+      position: relative;
       left: unset;
       top: 0;
-      right: 0;
+      right: unset;
       height: 2.875rem;
       padding-left: 3.375rem;
 
@@ -312,17 +316,23 @@
 
       .login-link-text {
           font-size: 1rem;
-      }
-
-      .login-link-text span {
-          font-weight: normal;
+          span {
+            font-weight: bold;
+            &:hover {
+              color: @mutedBlue;
+              text-decoration: underline;
+            }
+            b {
+                font-weight: normal;
+            }
+        }
       }
     }
 
     .commerce-enabled-true .sticky-nav & {
       left: 91%;
 
-      .login-link-text {
+      .login-link-text span {
         display: none;
       }
     }
@@ -375,12 +385,44 @@
 
   .flag {
     display: inline-block;
-    background-image: url(../resources/images/flag-us-small.png);
+    background-image: url(../resources/images/canadian_flag.svg);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: contain;
     width: 26px;
     height: 14px;
+    margin-left: .3rem;
+  }
+  .flagUs {
+    background-image: url(../resources/images/american-flag.svg);
+  }
+  .dropdown-select {
+      border: none;
+      font-size: 1.2rem;
+      font-weight: bold;
+      padding: .5rem;
+      height: 100%;
+      line-height: 100%;
+      .dropdown-icon{
+        margin: 0 3.125rem 0 0.5rem;
+        &:before{
+          font-size: 1.5rem;
+        }
+      }
+  }
+  .country-selector{
+    min-width: 100px;
+    li{
+      cursor: pointer;
+      font-size: 1.2rem;
+      a{
+        font-weight: 400;
+        padding: 0;
+        &:hover{
+          background-color: @mutedBlue;
+        }
+      }
+    }
   }
 }
 

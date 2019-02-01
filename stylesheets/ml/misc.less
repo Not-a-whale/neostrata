@@ -105,6 +105,10 @@
         height: 9rem;
         position: relative;
         width: 100%;
+
+        &.dl-search-account {
+            position: absolute;
+        }
         .ml-header-logo-wrapper {
             position: absolute;
             right: auto;
@@ -114,7 +118,7 @@
             transform: translate(-50%, -50%);
             z-index: 1;
             .commerce-enabled-true & {
-                left: 50%;
+                left: 48.5%;
             }
             .logo {
                 .hide-anchor-text();
@@ -257,7 +261,7 @@
                         right: 2.2rem;
                     }
                     .commerce-enabled-true & {
-                        right: 0;
+                        right: 3rem;
                         padding-right: 0 !important;
                     }
                 }
@@ -852,12 +856,6 @@
     }
 }
 .search-results{
-    .facets-block{
-        height: 7rem;
-    }
-    #filter-tab-li{
-        visibility: hidden;
-    }
     .mz-productlist #product-list-ul{
         margin: 0;
     }
@@ -2328,17 +2326,28 @@ ul.tabs {
     padding: 0 1px 0 0;
     overflow: hidden;
     margin: 0;
-    li{
+
+    @media (max-width: 991px) {
+        padding: 1rem;
+    }
+
+    li {
         font-size: @fontSizeLarger;
         color: @colorMediumGray;
         padding-left: 1rem;
         float: left;
-        i{
+
+        @media (max-width: 991px) {
+            font-size: 2rem;
+        }
+
+        i {
             font-size: @fontSize;
             color: @colorMediumGray;
             cursor: pointer;
         }
-        u{
+
+        u {
             text-transform: capitalize;
             text-decoration: none;
         }
@@ -2370,12 +2379,34 @@ ul.tabs {
     position: relative;
     margin: 1rem 0;
     text-align: center;
+
     .mz-facetingform-clearall{
         padding: 1rem 0;
         color: @colorGray;
-        i{
-            color: @colorMediumGray;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 1em;
+
+        @media (max-width: 991px) {
+            font-size: 2rem;
         }
+        
+
+        span {
+            font-size: 1rem;
+            color: @colorMediumGray;
+            
+            @media (max-width: 991px) {
+                font-size: 2rem;
+            }
+        }
+
+        i {
+            color: @colorMediumGray;
+            margin-left: 1rem;
+        }
+
     }
 }
 
@@ -2392,6 +2423,8 @@ ul.tabs {
         }
         .dropdown-select-list{
             position: relative;
+            max-height: 30rem;
+            overflow-y: auto;
         }
     }
     .faceting-header{
@@ -2692,6 +2725,40 @@ ul.tabs {
   .tab-content-2, .tab-content-3 {
     font-size: 1.25rem;
     line-height: 1.5;
+  }
+  .tab-content-3 {
+    display: flex;
+    
+    @media (max-width: 991px) {
+        flex-direction: column;
+    }
+
+    div {
+        width: 100%;
+        height: 0;
+        padding-top: 0;
+        padding-bottom: 56.25%;
+        position: relative;
+        margin-bottom: 2rem;
+    }
+
+    iframe {
+        flex-shrink: 0;
+        margin-right: 23px;
+        
+        @media (max-width: 991px) {
+            margin-right: 0;
+            margin-bottom: 50px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 1;
+        }
+    }
   }
 
 .mz-productimages {
@@ -2998,6 +3065,7 @@ body.mz-product {
     width: fit-content;
     img{
         max-height: 25rem;
+        width: 100%;
     }
     .product-carousel-listing {
         min-height: 29rem;
@@ -3334,6 +3402,47 @@ body.mz-product {
     font-size: 16px;
 }
 
+/* Search hero banner */
+.saerch-hero-banner {
+    margin-bottom: 6.3125rem;
+
+    .search-banner-text {
+
+        @media (max-width: 991px) {
+            padding: 3rem 0 0;
+            text-align: center;
+        }
+
+        .search-result-title {
+            text-transform: uppercase;
+            font-style: italic;
+            font-size: 2.1875rem;
+            font-weight: bold;
+            line-height: 1.25em;
+            display: block;
+            margin-bottom: 1rem;
+        }
+    
+        .search-query {
+            font-size: 3.8125rem;
+            font-weight: 500;
+            line-height: 1em;
+
+            @media (max-width: 991px) {
+                margin: 0 auto;
+            }
+        }
+    
+        .search-totalCount-result {
+            display: block;
+            font-size: 3.125rem;
+            font-weight: 400;
+            color: #a6a6a6;
+        }
+    }
+}
+
+/* END Search hero banner */
 
 .mz-table-cart-items{
   .cart-noimage{

@@ -392,12 +392,9 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
         };
         this.bindListeners =  function (on) {
             var onOrOff = on ? "on" : "off";
-            //$(this).parent()[onOrOff]('mouseover', '[data-mz-action="my-account"]', self.openPopover);
             $(this).parent()[onOrOff]('click', '[data-mz-action="my-account"]', self.openPopover);
-            // bind other events
         };
         this.openPopover = function(e){
-            //self.popoverEl.popover('show');
             e.preventDefault();
             var a = self.popoverEl.html();
             $("#my-account").popover({
@@ -406,7 +403,7 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
                 content: function() {
                   return self.popoverEl.html();
                 }
-            }); //.popover('show');
+            }); 
             
         };
     };
