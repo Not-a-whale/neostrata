@@ -1,4 +1,4 @@
-define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', 'modules/jquery-mozu', 'underscore', 'modules/models-customer', 'modules/views-paging', 'modules/editable-view','modules/block-ui', 'vendor/bootstrap-select/dist/js/bootstrap-select'], function(Backbone, Api, Hypr, HyprLiveContext, $, _, CustomerModels, PagingViews, EditableView,blockUiLoader) {
+define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', 'modules/jquery-mozu', 'underscore', 'modules/models-customer', 'modules/views-paging', 'modules/editable-view','modules/block-ui', 'vendor/bootstrap-select/dist/js/bootstrap-select','modules/models-omxorders'], function(Backbone, Api, Hypr, HyprLiveContext, $, _, CustomerModels, PagingViews, EditableView,blockUiLoader) {
     var AccountSettingsView = EditableView.extend({
         templateName: 'modules/my-account/my-account-settings',
         autoUpdate: [
@@ -65,7 +65,7 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             $('.dl-maintitle').show();
             $('.mz-scrollnav-item').removeClass('active');
             $('.mz-scrollnav-item.dl-accountDashboard').addClass('active');
-            
+
         },
         finishEdit: function() {
             var self = this;
@@ -73,7 +73,7 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             $('.mz-l-stack-section').removeClass('is-editing').addClass('no-editing');
             $('.mz-l-stack-section.mz-passwordsection').removeClass('no-dashboard').addClass('is-dashboard');
             $('.mz-l-stack-section').show();
-            $('.dl-maintitle').show();            
+            $('.dl-maintitle').show();
             $('.mz-scrollnav-item').removeClass('active');
             $('.mz-scrollnav-item.dl-accountDashboard').addClass('active');
 
@@ -90,7 +90,7 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             self.initialize().ensure(function() {
                 self.render();
             });
-            
+
         }
     });
 
@@ -172,10 +172,10 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
         },
         cancelEditWishlist: function() {
             this.editing.wishlist = false;
-            
+
             $('.mz-l-stack-section').removeClass('is-editing').addClass('no-editing');
             $('.mz-l-stack-section').show();
-            $('.dl-maintitle').show();            
+            $('.dl-maintitle').show();
             $('.mz-scrollnav-item').removeClass('active');
             $('.mz-scrollnav-item.dl-accountDashboard').addClass('active');
             this.render();
@@ -359,6 +359,76 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             this.views().returnView.render();
         }
     });
+
+    var OmxOrderHistoryView = Backbone.MozuView.extend({
+        templateName: "modules/my-account/omx-order-history-list",
+        getRenderContext: function() {
+            var context = Backbone.MozuView.prototype.getRenderContext.apply(this, arguments);
+            return context;
+        },
+        render: function() {
+            var self = this;
+            Backbone.MozuView.prototype.render.apply(this, arguments);
+
+            $.each(this.$el.find('[data-mz-omx-order-history-listing]'), function(index, val) {
+
+                var orderId = $(this).data('mzOrderId');
+                var myOrder = _.find(self.model.models, function(model) {
+                    return model.attributes.orderId == orderId;
+                });
+                var orderHistoryListingView = new OmxOrderHistoryListingView({
+                    el: $(this).find('.mz-omx-orderlisting'),
+                    model: myOrder,
+                    messagesEl: $(this).find('[data-order-message-bar]')
+                });
+                orderHistoryListingView.render();
+            });
+        },
+        viewOMXOrderHistory: function () {
+            this.startViewOMXOrderHistory(); 
+            this.render();
+        },
+
+        startViewOMXOrderHistory: function () {
+            $('.mz-l-stack-section').hide();
+            $('.mz-l-stack-section.mz-accountorderhistory').show();
+            $('.mz-l-stack-section.mz-accountorderhistory').removeClass('no-editing').addClass('is-editing');
+            $('.dl-maintitle').hide();
+            $('.mz-scrollnav-item').removeClass('active');
+            $('.mz-scrollnav-item.dl-orderhistory').addClass('active');
+        },
+    });
+
+    var OmxOrderHistoryListingView = Backbone.MozuView.extend({
+        templateName: "modules/my-account/omx-order-history-listing",
+        additionalEvents: {
+          'click a.mz-order-code' : 'getOrderDetail'
+        },
+        initialize: function() {
+            this._views = {
+                standardView: this,
+                returnView: null
+            };
+        },
+        getOrderDetail: function(event) {
+          var orderCode = $(event.currentTarget).data('mzOrderCode');
+          if (!require.mozuData('pagecontext').isEditMode) {
+              window.location.href = (HyprLiveContext.locals.siteContext.siteSubdirectory || '') + '/order-status-detail?order='+orderCode;
+          }
+        },
+        views: function() {
+            return this._views;
+        },
+        getRenderContext: function() {
+            var context = Backbone.MozuView.prototype.getRenderContext.apply(this, arguments);
+            return context;
+        },
+        render: function() {
+            var self = this;
+            //self.updateCircleCommerceOrderItemAttributes();
+            Backbone.MozuView.prototype.render.apply(this, arguments);
+          }
+      });
 
     var ReturnOrderListingView = Backbone.MozuView.extend({
         templateName: "modules/my-account/order-history-listing-return",
@@ -590,7 +660,7 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
         },
         allowDigit:function(e){
             e.target.value= e.target.value.replace(/[^\d]/g,'');
-        },         
+        },
         changeCardType:function(e){
             window.checkoutModel = this.model;
             var number = e.target.value;
@@ -602,9 +672,9 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
                 cardType = "VISA";
             }
 
-            // Mastercard 
+            // Mastercard
             // Updated for Mastercard 2017 BINs expansion
-             if (/^(5[1-5][0-9]{14}|2(22[1-9][0-9]{12}|2[3-9][0-9]{13}|[3-6][0-9]{14}|7[0-1][0-9]{13}|720[0-9]{12}))$/.test(number)) 
+             if (/^(5[1-5][0-9]{14}|2(22[1-9][0-9]{12}|2[3-9][0-9]{13}|[3-6][0-9]{14}|7[0-1][0-9]{13}|720[0-9]{12}))$/.test(number))
                 cardType = "MC";
 
             // AMEX
@@ -616,14 +686,14 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             re = new RegExp("^(6011|622(12[6-9]|1[3-9][0-9]|[2-8][0-9]{2}|9[0-1][0-9]|92[0-5]|64[4-9])|65)");
             if (number.match(re) !== null)
                 cardType = "DISCOVER";
-            
+
             $('.mz-card-type-images').find('span').removeClass('active');
             if(cardType){
                 this.model.set('editingCard.paymentOrCardType',cardType);
                 $('.mz-card-type-images').find('span[data-mz-card-type-image="'+cardType+'"]').addClass('active');
             }
             else{
-                this.model.set('editingCard.paymentOrCardType',null);    
+                this.model.set('editingCard.paymentOrCardType',null);
             }
 
         },
@@ -631,7 +701,7 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             this.editing.card = "view";
             this.startEditPayments();
             this.render();
-        }, 
+        },
         startEditPayments: function () {
             $('.mz-l-stack-section').hide();
             $('.mz-l-stack-section.mz-accountpaymentmethods').show();
@@ -639,7 +709,7 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             $('.dl-maintitle').hide();
             $('.mz-scrollnav-item').removeClass('active');
             $('.mz-scrollnav-item.dl-paymentmethods').addClass('active');
-        },                  
+        },
         beginEditCard: function (e) {
             this.startEditPayments();
             var id = this.editing.card = e.currentTarget.getAttribute('data-mz-card');
@@ -704,8 +774,8 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             'editingContact.isShippingContact',
             'editingContact.isPrimaryShippingContact'
             ],
-        renderOnChange: [    
-            'editingContact.address.countryCode',              
+        renderOnChange: [
+            'editingContact.address.countryCode',
             'editingContact.address.candidateValidatedAddresses',
             'editingContact.isBillingContact',
             'editingContact.isShippingContact'
@@ -734,7 +804,7 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             this.editing.contact = "view";
             this.startEditAddressBook();
             this.render();
-        }, 
+        },
         startEditAddressBook: function () {
             $('.mz-l-stack-section').hide();
             $('.mz-l-stack-section.mz-accountaddressbook').show();
@@ -742,7 +812,7 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             $('.dl-maintitle').hide();
             $('.mz-scrollnav-item').removeClass('active');
             $('.mz-scrollnav-item.dl-addressbook').addClass('active');
-        },        
+        },
         beginAddContact: function () {
             this.startEditAddressBook();
             this.editing.contact = false;
@@ -804,7 +874,7 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
                 go = function() {
                     return self.doModelAction('deleteMultipleCards', _.pluck(associatedCards, 'id')).then(doDeleteContact);
                 };
-               
+
             }
 
             if (window.confirm(windowMessage)) {
@@ -844,14 +914,16 @@ function getQueryVariable(variable)
         var $accountSettingsEl = $('#account-settings'),
             $passwordEl = $('#password-section'),
             $orderHistoryEl = $('#account-orderhistory'),
+            $omxOrderHistoryEl = $('#account-omx-orderhistory'),
             $returnHistoryEl = $('#account-returnhistory'),
             $paymentMethodsEl = $('#account-paymentmethods'),
             $addressBookEl = $('#account-addressbook'),
             $wishListEl = $('#account-wishlist'),
             $messagesEl = $('#account-messages'),
-            $storeCreditEl = $('#account-storecredit'),            
+            $storeCreditEl = $('#account-storecredit'),
             orderHistory = accountModel.get('orderHistory'),
-            returnHistory = accountModel.get('returnHistory');
+            returnHistory = accountModel.get('returnHistory'),
+            omxOrderHistoryModel = accountModel.get('omxOrderHistory');
             //$parentEl = $('.mz-myaccount .mz-l-container');
 
         var accountViews = window.accountViews = {
@@ -871,8 +943,11 @@ function getQueryVariable(variable)
                 model: accountModel,
                 messagesEl: $messagesEl
             }),
-
-            orderHistory: new OrderHistoryView({
+            omxOrderHistory: new OmxOrderHistoryView({
+              el: $omxOrderHistoryEl.find('[data-mz-omx-orderlist]'),
+              model: omxOrderHistoryModel
+            }),
+            /*orderHistory: new OrderHistoryView({
                 el: $orderHistoryEl.find('[data-mz-orderlist]'),
                 model: orderHistory
             }),
@@ -884,7 +959,7 @@ function getQueryVariable(variable)
             orderHistoryPageNumbers: new PagingViews.PageNumbers({
                 el: $orderHistoryEl.find('[data-mz-pagenumbers]'),
                 model: orderHistory
-            }),
+            }),*/
             returnHistory: new ReturnHistoryView({
                 el: $returnHistoryEl.find('[data-mz-orderlist]'),
                 model: returnHistory
@@ -930,6 +1005,7 @@ function getQueryVariable(variable)
             accountViews.addressBook.cancelViewContact();
             accountViews.paymentMethods.cancelViewCard();
             accountViews.wishList.cancelEditWishlist();
+            
         });
         $('.mz-myaccount-nav .dl-personalInfo').on('click', function (e) {
             e.preventDefault();
@@ -958,6 +1034,7 @@ function getQueryVariable(variable)
             accountViews.addressBook.cancelViewContact();
             accountViews.paymentMethods.cancelViewCard();
             accountViews.wishList.cancelEditWishlist();
+            accountViews.omxOrderHistory.viewOMXOrderHistory(e);
         });
         $('.mz-myaccount-nav .dl-accountwishlist').on('click', function (e) {
             e.preventDefault();

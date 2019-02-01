@@ -1,4 +1,4 @@
-﻿define(['modules/backbone-mozu', 'underscore', 'modules/models-address', 'modules/models-orders', 'modules/models-paymentmethods', 'modules/models-product', 'modules/models-returns', 'hyprlive','hyprlivecontext','modules/block-ui','modules/backbone-mozu'], function (Backbone, _, AddressModels, OrderModels, PaymentMethods, ProductModels, ReturnModels, Hypr,HyprLiveContext,blockUiLoader,$) {
+define(['modules/backbone-mozu', 'underscore', 'modules/models-address', 'modules/models-orders', 'modules/models-paymentmethods', 'modules/models-product', 'modules/models-returns', 'hyprlive','hyprlivecontext','modules/block-ui','modules/backbone-mozu','modules/models-omxorders'], function (Backbone, _, AddressModels, OrderModels, PaymentMethods, ProductModels, ReturnModels, Hypr,HyprLiveContext,blockUiLoader,$,OmxOrderHistoryModels) {
 
 
     var pageContext = require.mozuData('pagecontext'),
@@ -186,7 +186,7 @@
             var self = this,
                 editingContact = this,
                 apiContact;
-            
+
             if (options && options.forceIsValid) {
                 editingContact.set('address.isValidated', true);
             }
@@ -227,11 +227,11 @@
                                         headers: apiData.headers,
                                         method: 'PUT',
                                         data:data
-                                    }); 
+                                    });
 
                                 }
                             }
-                        });                        
+                        });
                     }
                     return $.ajax({
                         url: '/api/platform/entitylists/requestCatalog%40ng/entities/?responseFields=',
@@ -272,11 +272,11 @@
                         //console.log("Show API error", error);
                     });
                     // Return the Promise so caller can't change the Deferred
-                    return dfd.promise();     
+                    return dfd.promise();
 
                 }
             }
-        } 
+        }
     }),
 
     WishlistItem = Backbone.MozuModel.extend({
@@ -426,14 +426,15 @@
     }),
 
     EditableCustomer = Customer.extend({
-        
+
         handlesMessages: true,
         relations: _.extend({
             editingCard: CustomerCardWithContact,
             editingContact: CustomerContact,
             wishlist: Wishlist,
             orderHistory: OrderModels.OrderCollection,
-            returnHistory: ReturnModels.RMACollection
+            returnHistory: ReturnModels.RMACollection,
+            omxOrderHistory: OmxOrderHistoryModels.OmxOrderHistoryList
         }, Customer.prototype.relations),
         validation: {
             password: {
@@ -572,7 +573,7 @@
                 addr = editingContact.get("address");
             if (!this.validate("editingContact")) {
                 if(isAddressValidationEnabled && !addr.get('isValidated')){
-                    if(typeof(addr.apiModel.data.address1) === "undefined"){ 
+                    if(typeof(addr.apiModel.data.address1) === "undefined"){
                         addr.apiModel.data = addr.attributes;
                     }
                     if (!addr.get('candidateValidatedAddresses')) {
@@ -591,11 +592,11 @@
                                     }).then(function () {
                                         blockUiLoader.unblockUi();
                                         return apiContact;
-                                    }); 
+                                    });
                                 }
-                                else{                                
-                                    addr.set('candidateValidatedAddresses', resp.data.addressCandidates); 
-                                    blockUiLoader.unblockUi();                               
+                                else{
+                                    addr.set('candidateValidatedAddresses', resp.data.addressCandidates);
+                                    blockUiLoader.unblockUi();
                                 }
                             }
                         }, function (e) {
@@ -644,7 +645,7 @@
                     }).then(function() {
                         blockUiLoader.unblockUi();
                         return apiContact;
-                    });              
+                    });
                 }
             } else blockUiLoader.unblockUi();
         },

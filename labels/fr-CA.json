@@ -656,6 +656,23 @@
   "wishlistsCount": "[fr-CA]Items[fr-CA]",
   "defaultAddress": "[fr-CA]Default Address[fr-CA]",
   "primaryShippingContact": "[fr-CA]Make this my default shipping address[fr-CA]",
-  "infoAddress": "We are unable to ship to P.O. Boxes. A physical street address is required."
+  "infoAddress": "We are unable to ship to P.O. Boxes. A physical street address is required.",
 
+
+  "orderDetailNumber": "[fr-CA]Order # {0}[fr-CA]",
+  "orderDetailDate" : "[fr-CA]Placed [fr-CA]", 
+  "orderDetailStatus" : "[fr-CA]Status: [fr-CA]", 
+  "orderDetailShippingInfo" : "[fr-CA]Shipping Info[fr-CA]", 
+  "orderStatusPaymentTotal" : "[fr-CA]${0} applied to: [fr-CA]", 
+  "orderStatusPaymentCCEnding" : "[fr-CA]Ending in {0} [fr-CA]", 
+  "orderStatusPaymentCCExpires" : "[fr-CA] Expires: {0} [fr-CA]", 
+  "orderDetailItems" : "[fr-CA]Items in Order [fr-CA]", 
+  "totalQty" : "[fr-CA]{0} Items: [fr-CA]",
+  "orderDetailShipping" : "[fr-CA]Shipping: [fr-CA]",
+  "orderStatusBillingAddress": "[fr-CA]Billing Address [fr-CA]", 
+  "orderStatusSameBillingAddress": "[fr-CA]same as shipping [fr-CA]", 
+  "orderStatusPaypal": "[fr-CA]PayPal [fr-CA]",
+  "orderDiscountTotal" : "[fr-CA]You Saved: [fr-CA]", 
+  "orderStatusbuyAgain" : "[fr-CA]Buy Again [fr-CA]",
+  "orderDetailPaymentInfo" : "[fr-CA]Payment Info [fr-CA]" 
 }
