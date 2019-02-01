@@ -21,15 +21,20 @@
                     {% endwith %}
                 </div> <!-- shipping Info END --> 
                 <div class="mz-billTo-wrapper"> <!-- billing Info Start --> 
-                    {% comment %}
-                    <h3 class="mz-l-stack-sectiontitle">{{ labels.orderDetailShippingInfo }}</h3> 
-                    {% with model.ShippingInformation|first as shippingInfo %}
-                        <div class="mz-addresssummary">{% include "modules/order/omx-order-status-shipping-summary" with model=shippingInfo  %}</div>
-                        <div class="mz-shipping-method">
-                            {{ model.omxOrderShippingMethodName }}
-                        </div>
+                    {% with model.Customer|first as customerInfo %}
+                        {% with customerInfo.Address|first as customerInfoAddress %}
+                            {% if customerInfo.omxSameAddress %}
+                                <div class="mz-billTo-wrapper-same-shipping">
+                                    <span class="mz-l-stack-sectiontitle mz-billTo-wrapper-same-shipping-title">{{ labels.orderStatusBillingAddress }} </span>
+                                    <span class="mz-l-stack-sectiontitle ">{{ labels.orderStatusSameBillingAddress }} </span>
+                                </div>                            
+                            {% else %}
+                                <h3 class="mz-l-stack-sectiontitle">{{ labels.orderStatusBillingAddress }}</h3> 
+                                <div class="mz-addresssummary">{% include "modules/order/omx-order-status-shipping-summary" with model=customerInfo  %}</div>
+                            {% endif %}
+                        {% endwith %}
                     {% endwith %}
-                    {% endcomment %}
+                   
                 </div> <!-- billing Info END --> 
             </div>
             <div class="col-sm-6 mz-payment-wrapper"> <!-- Payment Info Start --> 
@@ -51,16 +56,17 @@
 
         <div class="col-sm-12 mz-order-status-section">
             <h3 class="mz-l-stack-sectiontitle">{{ labels.orderDetailItems }}</h3> 
-                    
+            
+            {% with model.OrderDetail|first as orderItems %}
+                {% for item in orderItems.LineItem %}
+                    {% include "modules/order/omx-order-status-lineitem"  %}
+                {% endfor %}                    
+            {% endwith %}
         </div>
-
-  <div class="mz-l-stack-section mz-order-status-section">
-      {% include "modules/order/order-status-order-summary" %}
-  </div>
-  <div class="col-sm-12 text-right mz-reset-padding mz-order-status-totals-container">
-     {% include "modules/order/order-status-totals" %}
-  </div>
-  {% endwith %}
+        <div class="col-sm-12 text-right mz-reset-padding mz-order-status-totals-container">
+            {% include "modules/order/omx-order-status-totals"  %}
+        </div>
+    {% endwith %}
 {% else %}
   <div>there was an error processing your request.</div>
 {% endif %}

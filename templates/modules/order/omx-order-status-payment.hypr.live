@@ -4,5 +4,7 @@
 		<div class="mz-payment-type"> {{labels.orderStatusPaymentCCExpires|string_format(model.CreditCardExpDate|first|date("m/Y")) }}</div>
 {% else  %}
 	{% if model.$.type == 13 %}
+		<div class="mz-payment-type"> {{ model.$.description }}</div>
+
 	{% endif %}
 {% endif %}

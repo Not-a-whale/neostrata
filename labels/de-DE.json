@@ -553,5 +553,21 @@
     "selectFreeSample": "Select this sample",
     "selectFreeSampleCartButton": "Add Free Sample to Cart",
     "selectFreeSampleCancelButton": "No Thanks",
-    "selectFreeSampleLimit": "You have reached your limit, please hit the Add to Bag button to continue"
+    "selectFreeSampleLimit": "You have reached your limit, please hit the Add to Bag button to continue",
+    "orderDetailNumber": "Order # {0}",
+    "orderDetailDate" : "Placed ", 
+    "orderDetailStatus" : "Status: ", 
+    "orderDetailShippingInfo" : "Shipping Info", 
+    "orderStatusPaymentTotal" : "${0} applied to: ", 
+    "orderStatusPaymentCCEnding" : "Ending in {0}", 
+    "orderStatusPaymentCCExpires" : "Expires: {0}", 
+    "orderDetailItems" : "Items in Order", 
+    "totalQty" : "{0} Items: ",
+    "orderDetailShipping" : "Shipping: ",
+    "orderStatusBillingAddress": "Billing Address", 
+    "orderStatusSameBillingAddress": "same as shipping", 
+    "orderStatusPaypal": "PayPal",
+    "orderDiscountTotal" : "You Saved: ", 
+    "orderStatusbuyAgain" : "Buy Again",
+    "orderDetailPaymentInfo" : "Payment Info" 
 }

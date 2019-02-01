@@ -677,11 +677,12 @@
   "orderStatusPaymentCCEnding" : "Ending in {0}", 
   "orderStatusPaymentCCExpires" : "Expires: {0}", 
   "orderDetailItems" : "Items in Order", 
-
-  "orderDetailItems" : "Items in Order", 
-  "orderDetailItems" : "Items in Order", 
-  "orderDetailItems" : "Items in Order", 
-  
-  
+  "totalQty" : "{0} Items: ",
+  "orderDetailShipping" : "Shipping: ",
+  "orderStatusBillingAddress": "Billing Address", 
+  "orderStatusSameBillingAddress": "same as shipping", 
+  "orderStatusPaypal": "PayPal",
+  "orderDiscountTotal" : "You Saved: ", 
+  "orderStatusbuyAgain" : "Buy Again",
   "orderDetailPaymentInfo" : "Payment Info" 
 }

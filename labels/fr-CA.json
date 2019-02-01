@@ -651,5 +651,22 @@
   "selectFreeSample": "[fr-CA]Select this sample[fr-CA]",
   "selectFreeSampleCartButton": "[fr-CA]Add Free Sample to Cart[fr-CA]",
   "selectFreeSampleCancelButton": "[fr-CA]No Thanks[fr-CA]",
-  "selectFreeSampleLimit": "[fr-CA]You have reached your limit, please hit the Add to Bag button to continue[fr-CA]"
+  "selectFreeSampleLimit": "[fr-CA]You have reached your limit, please hit the Add to Bag button to continue[fr-CA]",
+
+  "orderDetailNumber": "[fr-CA]Order # {0}[fr-CA]",
+  "orderDetailDate" : "[fr-CA]Placed [fr-CA]", 
+  "orderDetailStatus" : "[fr-CA]Status: [fr-CA]", 
+  "orderDetailShippingInfo" : "[fr-CA]Shipping Info[fr-CA]", 
+  "orderStatusPaymentTotal" : "[fr-CA]${0} applied to: [fr-CA]", 
+  "orderStatusPaymentCCEnding" : "[fr-CA]Ending in {0} [fr-CA]", 
+  "orderStatusPaymentCCExpires" : "[fr-CA] Expires: {0} [fr-CA]", 
+  "orderDetailItems" : "[fr-CA]Items in Order [fr-CA]", 
+  "totalQty" : "[fr-CA]{0} Items: [fr-CA]",
+  "orderDetailShipping" : "[fr-CA]Shipping: [fr-CA]",
+  "orderStatusBillingAddress": "[fr-CA]Billing Address [fr-CA]", 
+  "orderStatusSameBillingAddress": "[fr-CA]same as shipping [fr-CA]", 
+  "orderStatusPaypal": "[fr-CA]PayPal [fr-CA]",
+  "orderDiscountTotal" : "[fr-CA]You Saved: [fr-CA]", 
+  "orderStatusbuyAgain" : "[fr-CA]Buy Again [fr-CA]",
+  "orderDetailPaymentInfo" : "[fr-CA]Payment Info [fr-CA]" 
 }
