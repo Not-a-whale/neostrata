@@ -13,7 +13,7 @@
     <div class="col-xs-2 col-sm-2 mz-orderstatus-item-price">  
       <span class="label-price">{{ labels.price }}</span>
       <div class="mz-orderstatus-item-price">
-	  	  {{ item.omxPrice }}
+	  	  {{ item.EffectiveUnitPrice|first|safe  }}
 		
       </div>
     </div>
