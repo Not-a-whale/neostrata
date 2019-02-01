@@ -482,6 +482,9 @@
   "settings": {
     "commerceEnabled": false,
     "canonicalUrlPrefix": "",
+    "instalUrl": "https://www.instagram.com/neostrata/",
+    "facebookUrl": "https://www.facebook.com/neostrata/",
+    "youtubeUrl": "https://www.youtube.com/neostrata",
     "sitesURLs": {
       "en-ca": "//www.neostrata.ca",
       "fr-ca": "//fr.neostrata.ca"
@@ -1876,6 +1879,23 @@
     },
     {
         "category" : "catalog",
+        "id":"free-samples-widget",
+        "displayName":"Free Samples",
+        "displayTemplate":"neostrata/free-samples",
+        "editViewFields":[
+          {"name":"freeSampleCategory", "fieldLabel":"Free Sample Category", "xtype": "mz-input-category"},
+          {"name":"freeSampleProducts", "fieldLabel":"Free Sample Products", "xtype": "mz-input-productmulti"},
+          {"name":"system", "fieldLabel":"System"},
+          {"name":"imagePath", "fieldLabel":"Image Path"},
+          {"name":"description", "fieldLabel":"Description"},
+          {"name":"linkPath", "fieldLabel":"Link Path"},
+          {"name":"linkTitle", "fieldLabel":"Link Title"}
+        ],
+        "icon":"/resources/admin/widgets/26_related_products.png",
+        "validPageTypes":["*"]
+    },
+    {
+        "category" : "catalog",
         "id":"bv-conversations-ratings",
         "displayName":"BazaarVoice Conversations Ratings",
         "displayTemplate":"BVConversations/bv-conversations-ratings",
@@ -1984,6 +2004,42 @@
       ],
       "icon": "/resources/admin/widgets/city-carousel-icon.png",
       "id": "product-carousel-widget",
+      "validPageTypes": [
+        "*"
+      ]
+    },
+    {
+      "defaultConfig": {},
+      "displayName": "Product carousel 4 products",
+      "displayTemplate": "misc/product-carousel-4products",
+      "editViewFields": [
+        {
+          "anchor": "100%",
+          "fieldLabel": "Select Products",
+          "name": "products",
+          "xtype": "mz-input-productmulti"
+        }
+      ],
+      "icon": "/resources/admin/widgets/city-carousel-icon.png",
+      "id": "product-carousel-4-widget",
+      "validPageTypes": [
+        "*"
+      ]
+    },
+    {
+      "defaultConfig": {},
+      "displayName": "Product carousel 4 products Dark",
+      "displayTemplate": "misc/product-carousel-4products-dark",
+      "editViewFields": [
+        {
+          "anchor": "100%",
+          "fieldLabel": "Select Products",
+          "name": "products",
+          "xtype": "mz-input-productmulti"
+        }
+      ],
+      "icon": "/resources/admin/widgets/city-carousel-icon.png",
+      "id": "product-carousel-4-dark-widget",
       "validPageTypes": [
         "*"
       ]

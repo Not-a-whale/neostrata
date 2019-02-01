@@ -288,6 +288,9 @@
             }
         }
     }
+    .mz-formstep-next{
+        margin-top:16rem;
+    }
 }
 .mz-l-formfieldgroup-full{
       display: block;
@@ -399,7 +402,37 @@
             }
         }
     }
+    .checkout-leftcolumn {
+        .mz-formstep.mz-checkoutform-paymentinfo {
+            margin-bottom: 13rem ;
+            position: relative;
 
+            #btn_xpressPaypal {
+                min-width:320px;  
+                height:auto; 
+                margin:0 auto; 
+                position: absolute; 
+                bottom: -10rem;
+                left: ~'calc((100% - 320px) / 2)'; 
+                left: ~'-webkit-calc((100% - 320px) / 2)';
+                left: ~'-moz-calc((100% - 320px) / 2)';
+                /*@media (max-width: 800px) {
+                    bottom: -8rem;
+                } */
+            }
+        }
+    }
+    .mz-checkout-payment-change {
+        font-size: 1.5rem;
+        text-decoration: none;
+        position: static;
+        text-transform: capitalize;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    
     input[type="text"],
     input[type="tel"],
     input[type="password"] {
@@ -445,6 +478,20 @@
 
             .mz-validationmessage {
                 position: absolute;
+            }
+        }
+        .mz-addressform-state{
+            .custom-select-wrapper {    
+                .dropdown-toggle{
+                    .filter-option{
+                        .filter-option-inner{
+                            .filter-option-inner-inner{
+                                max-width: 200px;
+                                text-overflow: ellipsis;
+                            }
+                        }
+                    } 
+                } 
             }
         }
         .mz-addressform-firstname,
@@ -580,6 +627,7 @@
         }
         .dropdown-menu {
             overflow-x: hidden !important;
+            top:37px;
         }
         .dropdown-toggle {
             text-align: center;
@@ -599,7 +647,7 @@
 
                 .filter-option-inner,
                 .filter-option-inner-inner {
-                    display: inline;
+                    display: inline-block;
                 }
             }
             .caret {
@@ -665,6 +713,37 @@
 #checkout-form .checkout-leftcolumn .mz-formstep {
     margin-bottom: 6.25rem;
     float: none;
+    &.is-partial{
+        .mz-formstep-edit{
+            display:none;
+        }
+    }
+    &.is-complete{
+        .mz-formstep-body{
+            display:block;
+        }
+        .icon-check{
+            opacity:0.5;
+        }
+        .mz-formstep-next{
+            display:none !important;
+        }
+    }
+    &.is-current{
+        .mz-formstep-body{
+            display:block;
+        }        
+    }
+    &.mz-checkoutform-review.is-current,
+    &.mz-checkoutform-shippingmethod.is-complete,
+    &.mz-checkoutform-shippingmethod.is-current{
+        display:block;
+    }
+    &.mz-checkoutform-review,
+    &.mz-checkoutform-shippingmethod,
+    .mz-formstep-body{
+        display:none;
+    }
 }
 
 .checkout-fields-title {
@@ -736,11 +815,28 @@
         }
     }
 }
-.coupon-code-wrapper {
-    .primary-btn {
-        margin-top: 2rem;
+#coupon-code-field{
+    position: relative;
+    top: -35rem;
+    .coupon-code-wrapper {
+        #coupon-code{
+            width:62%;
+            @media (max-width: 992px) {
+                width:60%;
+            }
+        }
+        .primary-btn {
+            height: 4.375rem;
+            line-height: normal;
+        }
+    }
+    &.is-complete{
+        top: -13rem;
+        opacity: 0.5;
     }
 }
+
+
 
 .filled-credit-card-wrapper {
     display: flex;
@@ -775,5 +871,74 @@
         font-size: 1.25rem;
         line-height: 1em;
         font-weight: 500;
+        float: left;
+        clear: both;
+    }
+}
+
+.mz-paymentselector-label-savedcreditcard,
+.mz-paymentselector-label-newcreditcard {
+    strong {
+        font-weight: 500;
+    }
+}
+
+.paymentselector-savedcreditcard-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .filter-option-inner-inner {
+        white-space: normal;
+        padding-left: 2.875rem;
+    }
+    
+    .dropdown-toggle {
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.2rem;
+    }
+}
+
+.contactselector-savedcontact-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media (max-width: 800px) {
+        flex-wrap: wrap;
+    }
+
+    .secondary-button {
+        .primary-btn(@mutedBlue);
+    
+        font-size: 1rem;
+        line-height: 2.5rem;
+        height: 2.8125rem;
+        white-space: nowrap;
+        padding: 0 1.6875rem;
+        cursor: pointer;
+
+        @media (max-width: 800px) {
+            margin-top: 2rem;
+        }
+    }
+
+    .filter-option-inner-inner {
+        white-space: normal;
+        padding-left: 2.875rem;
+    }
+
+    .custom-select-wrapper {
+        width: 70%;
+
+        @media (max-width: 800px) {
+            width: 100%;
+        }
+    }
+    .dropdown-toggle {
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.2rem;
     }
 }

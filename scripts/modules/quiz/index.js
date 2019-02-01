@@ -4,15 +4,19 @@ define([
   'underscore',
   'modules/backbone-mozu',
   'modules/api',
+  'modules/models-product',
+  'modules/cart-monitor',
   'hyprlive'
 ], function(
   $,
   _,
   Backbone,
   API,
+  ProductModel,
+  CartMonitor,
   Hypr
 ) {
-  var DEBUG = true;
+  var DEBUG = false;
 
   var EXPERTISE_OPTIONS = [
     {
@@ -863,6 +867,25 @@ define([
   var ResultsSectionView = Backbone.View.extend({
     template: _.template($('#template-results-section').html()),
 
+    events: {
+      'click [data-action="add-to-cart"]': function(evt) {
+        var productCode = $(evt.currentTarget).data('product-code');
+
+        API.get('product', productCode)
+          .then(function(productResponse) {
+            var product = new ProductModel.Product(productResponse.data);
+
+            var res = product.addToCart();
+
+            // TODO: It would be worth investigating whether the addToCart method
+            // could be adapted to return a promise.
+            setTimeout(function() {
+              CartMonitor.update('showGlobalCart');
+            }, 1000);
+          });
+      }
+    },
+
     initialize: function() {
       this.sectionNumber = 6;
       this.sectionLabel = 'RESULTS';
@@ -969,7 +992,7 @@ define([
   });
 
   CATALOG = scrapeCatalog();
-  console.log('Catalog', CATALOG);
+  if (DEBUG) console.log('Catalog', CATALOG);
   addRegimensProducts();
 
   function setPath(target, path, value) {
@@ -1055,7 +1078,7 @@ define([
   function addRegimensProducts() {
     var CONFIG = loadConfig();
 
-    console.log('CONFIG', CONFIG);
+    if (DEBUG) console.log('CONFIG', CONFIG);
 
     Object.keys(REGIMENS).forEach(function(regimenKey) {
       var slug = REGIMENS[regimenKey].slug;
@@ -1063,13 +1086,11 @@ define([
       Object.keys(REGIMENS[regimenKey].products).forEach(function(stepKey) {
         var configKey = slug + stepKey.charAt(0).toUpperCase() + stepKey.substr(1);
 
-        console.log(configKey, CONFIG[configKey]);
-
         REGIMENS[regimenKey].products[stepKey] = CONFIG[configKey] && CATALOG[CONFIG[configKey]];
       });
     });
 
-    console.log('REGIMENS', REGIMENS);
+    if (DEBUG) console.log('REGIMENS', REGIMENS);
   }
 
   function loadConfig() {

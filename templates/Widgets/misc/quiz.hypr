@@ -88,7 +88,7 @@
           SUGGESTED RETAIL PRICE
         </div>
       </div>
-      <button type="button">
+      <button type="button" data-product-code="<%= productCode %>" data-action="add-to-cart">
         ADD TO CART
       </button>
     </div>
@@ -159,7 +159,7 @@
     </div>
     <div class="quiz-section-body">
       <div class="quiz-prompt">
-        What is your skin type?
+        How would you describe your type of skin?
       </div>
       <div class="quiz-context">
         Not sure what skin type you have? Wash your face and let your skin dry without product then wait for a couple of hours to see how your skin matches the following skin type descriptions.
@@ -301,7 +301,7 @@
   </div>
 
   <div class="quiz-section" data-section-sub="regimen">
-    <%= _sectionBulletPart({ label: 'FOR LASTING RESULTS' }) %>
+    <%= _sectionBulletPart({ label: 'FOR THE MOST LASTING RESULTS' }) %>
     <div class="quiz-section-main">
       <div class="quiz-section-body">
         <div class="quiz-content">

@@ -5,8 +5,11 @@ Use require_script to load AMD modules that are wrapped in define() or require()
 {% require_script "modules/login-links" %}
 {% if not user.isAnonymous %}
     <div id="mz-logged-in-notice">
-    <a href="/myaccount" tabindex="0" data-mz-action="my-account" id="my-account" role="button" data-trigger="click" data-toggle="popover" data-content="" class="mz-utilitynav-link">Hi, {{user.firstName|default(user.email)}}
-    <i class="icon-user"></i>
+    <a href="/myaccount" tabindex="0" id="my-account" class="mz-utilitynav-link login-link-text">
+        <span data-mz-action="my-account" role="button" data-trigger="click" data-toggle="popover" data-content="">
+            HI, {{user.firstName|default(user.email)}}
+        </span>
+        <i class="icon-user" data-mz-action="my-account" role="button" data-trigger="click" data-toggle="popover" data-content=""></i>
     </a>
 
     <!-- ! (<a href="/logout" data-mz-action="logout" class="mz-utilitynav-link">{{ labels.logOut }}</a>)-->
@@ -68,9 +71,9 @@ Use require_script to load AMD modules that are wrapped in define() or require()
   {% if themeSettings.commerceEnabled %}
         <!-- Button trigger modal -->
         <a type="button" class="login-link-text" data-toggle="modal" data-mz-action="lite-registration" >
-          sign in <span>or</span> create account
+          <span>sign in <b>or</b> create account</span>
+          <i class="icon-user"></i>
         </a>
-        <i class="icon-user"></i>
   {% endif %}
 {% endif %}
         

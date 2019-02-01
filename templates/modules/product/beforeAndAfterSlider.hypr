@@ -4,9 +4,13 @@
   <div class="swiper-container" id="swiper-b-and-f">
     <div class="swiper-wrapper">
     {% for image in images|split(' ') %}
-        <div class="swiper-slide product-item">
-            <img class="image" src="/cms/files/{{ image }}" onerror="this.setAttribute('src','/cms/files/{{ image }}')">
-        </div>
+        {% with image|split('.') as imageArr %}
+            {% if imageArr.length > 1  %}
+                <div class="swiper-slide product-item">
+                    <img class="image" src="/cms/files/{{ image }}" onerror="this.setAttribute('src','/cms/files/{{ image }}')">
+                </div>
+            {% endif %}
+        {% endwith %}
     {% endfor %}
     </div>
   </div>

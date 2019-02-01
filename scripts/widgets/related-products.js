@@ -1,5 +1,5 @@
-﻿define(['modules/jquery-mozu', 'underscore', "modules/api", "modules/backbone-mozu", "modules/models-product"],
-    function ($, _, api, Backbone, ProductModels) {
+﻿define(['modules/jquery-mozu', 'underscore', "modules/api", "modules/backbone-mozu", "modules/models-product", "modules/cart-monitor"],
+    function ($, _, api, Backbone, ProductModels, CartMonitor) {
 
         var getRelatedProducts = function(pageType, codes, pageSize) {
             var filter = _.map(codes, function(c) { return "ProductCode eq " + c; }).join(' or ');
@@ -89,6 +89,20 @@
 
                 
             });
+            setTimeout(function(){
+                $('.mz-related-products .mz-productdetail-addtocart').click(function(){
+                    var productCode = $(this).data('mzProductCode');
+                    if(productCode && productCode !== ''){
+                        api.get('product', productCode).then(function(productResponse){
+                            var product = new ProductModels.Product(productResponse.data);
+                            product.addToCart();
+                            setTimeout(function(){
+                                CartMonitor.update('showGlobalCart');
+                            }, 1000);
+                        });
+                    }
+                });
+            }, 1000);
         });
 
     });

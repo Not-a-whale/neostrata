@@ -49,6 +49,21 @@
                     "xtype": "mz-input-text",
                     "name": "canonicalUrlPrefix",
                     "fieldLabel": "Canonical URL Prefix"
+                },
+                {
+                    "xtype": "mz-input-text",
+                    "name": "instalUrl",
+                    "fieldLabel": "Instagram URL"
+                },
+                {
+                    "xtype": "mz-input-text",
+                    "name": "facebookUrl",
+                    "fieldLabel": "Facebook URL"
+                },
+                {
+                    "xtype": "mz-input-text",
+                    "name": "youtubeUrl",
+                    "fieldLabel": "Youtube URL"
                 }
             ]
         },

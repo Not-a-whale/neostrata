@@ -30,8 +30,8 @@
     {% if themeSettings.commerceEnabled %}
         {% if model.quantityNull === 0 or model.quantity == 0 %}
             <div class="itemOutOfStock">{{ labels.outOfStock }}</div>
-        {% endif %}        
-    {% endif %}   
+        {% endif %}
+    {% endif %}
 {% block product-extrainfo %}
     {% if dealOfTheDay %}
         {% if dealOfTheDay.savings %}
@@ -50,7 +50,7 @@
     </div>
     <div class="bottom-details">
         {% include "modules/product/listing-price-stack" %}
-        <div id="BVRRInlineRating-{{model.productCode}}" class="pdp5 bvr-inline-rating" data-mz-product-code="{{ model.productCode }}" data-mz-product-url="{{ model.url }}"></div>
+        <div id="BVRRInlineRating-{{model.productCode}}" class="pdp5 bvr-inline-rating" data-mz-product-code="{{ model.productCode }}" data-bv-product-code="{{apicontext.headers.x-vol-locale}}-{{ model.productCode }}" data-mz-product-url="{{ model.url }}"></div>
     </div>
 {% if themeSettings.commerceEnabled %}
     <div class="mz-productdetail-conversion-buttons col-xs-12">
@@ -61,7 +61,7 @@
                         <span class="blank-heart"></span>
                     </a>
                 {% endif %}
-            {% endif %}            
+            {% endif %}
         </div>
         <div class="col-xs-10 add-to-cart-container">
         {% if model.quantityNull === 0 or model.quantity == 0%}
