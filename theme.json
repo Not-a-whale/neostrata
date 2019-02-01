@@ -482,6 +482,9 @@
   "settings": {
     "commerceEnabled": false,
     "canonicalUrlPrefix": "",
+    "instalUrl": "https://www.instagram.com/neostrata/",
+    "facebookUrl": "https://www.facebook.com/neostrata/",
+    "youtubeUrl": "https://www.youtube.com/neostrata",
     "sitesURLs": {
       "en-ca": "//www.neostrata.ca",
       "fr-ca": "//fr.neostrata.ca"
