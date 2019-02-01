@@ -1144,6 +1144,7 @@
     "freeSamplePagePath": "/product/free-sample",
     "freeSampleQty": 3,
     "freeSampleOrderTotalThreshold": 75,
+    "omxOrderNumberAttribute":"tenant~omx_order_number",
     "megaMenu": {
       "parentCategoryCode": "browse-product",
       "firstLevel": [

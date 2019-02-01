@@ -8,7 +8,7 @@
           "depData": {
             "purchase": {
               "actionField": {
-                "id": "{{ model.orderNumber }}",                        
+                "id": "{% for attribute in model.attributes %}{% if attribute.fullyQualifiedName == themeSettings.omxOrderNumberAttribute %}{% with attribute.values|first as omxOrderNumber %}{{omxOrderNumber}}{% set_var isOMXOrderNumber=true %}{% endwith %}{% endif %}{% endfor %}{% if not isOMXOrderNumber %}{{ model.orderNumber }}{% endif %}",                        
                 "affiliation": "{{siteContext.generalSettings.websiteName}}",
                 "subtotalRevenue": "{{model.subtotal}}",
                 "revenue": "{{model.total}}",                    
