@@ -19,6 +19,8 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
                 });
                 return customer;
             });
+
+            
         },
         updateAttribute: function(e) {
             var self = this;
@@ -145,7 +147,9 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             }
         },
         startEditWishlist: function(event) {
-            event.preventDefault();
+            if(event)
+                event.preventDefault();
+
             $('.mz-l-stack-section').hide();
             $('.mz-l-stack-section.mz-accountwishlist').show();
             $('.mz-l-stack-section.mz-accountwishlist').removeClass('no-editing').addClass('is-editing');
@@ -541,24 +545,6 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
         }
     });
 
-    //var scrollBackUp = _.debounce(function () {
-    //    $('#orderhistory').ScrollTo({ axis: 'y', offsetTop: Hypr.getThemeSetting('gutterWidth') });
-    //}, 100);
-    //var OrderHistoryPageNumbers = PagingViews.PageNumbers.extend({
-    //    previous: function () {
-    //        var op = PagingViews.PageNumbers.prototype.previous.apply(this, arguments);
-    //        if (op) op.then(scrollBackUp);
-    //    },
-    //    next: function () {
-    //        var op = PagingViews.PageNumbers.prototype.next.apply(this, arguments);
-    //        if (op) op.then(scrollBackUp);
-    //    },
-    //    page: function () {
-    //        var op = PagingViews.PageNumbers.prototype.page.apply(this, arguments);
-    //        if (op) op.then(scrollBackUp);
-    //    }
-    //});
-
     var PaymentMethodsView = EditableView.extend({
         templateName: "modules/my-account/my-account-paymentmethods",
         autoUpdate: [
@@ -837,14 +823,18 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             });
         }
     });
-/*
-    var ParentView = Backbone.MozuView.extend({
-        templateName: 'pages/my-account',
-        constructor: function() {
-            this.activeSection = "Account Dashboard";
-        }
-    });
-*/
+
+function getQueryVariable(variable)
+{
+       var query = window.location.search.substring(1);
+       var vars = query.split("&");
+       for (var i=0;i<vars.length;i++) {
+               var pair = vars[i].split("=");
+               if(pair[0] == variable){return pair[1];}
+       }
+       return(false);
+}
+
     $(document).ready(function() {
 
         var accountModel = window.accountModel = CustomerModels.EditableCustomer.fromCurrent();
@@ -933,6 +923,7 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
         });
 
         $('.mz-myaccount-nav .dl-accountDashboard').on('click', function (e) {
+            e.preventDefault();
             $('.mz-scrollnav-item').removeClass('active');
             $(this).addClass('active');
             accountViews.settings.cancelEdit();
@@ -941,35 +932,81 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             accountViews.wishList.cancelEditWishlist();
         });
         $('.mz-myaccount-nav .dl-personalInfo').on('click', function (e) {
+            e.preventDefault();
             accountViews.settings.cancelEdit();
             accountViews.addressBook.cancelViewContact();
             accountViews.paymentMethods.cancelViewCard();
             accountViews.wishList.cancelEditWishlist();
             accountViews.settings.startEdit(e);});
         $('.mz-myaccount-nav .dl-addressbook').on('click', function (e) {
+            e.preventDefault();
             accountViews.settings.cancelEdit();
             accountViews.addressBook.cancelViewContact();
             accountViews.paymentMethods.cancelViewCard();
             accountViews.wishList.cancelEditWishlist();
             accountViews.addressBook.viewAddressBook(e);});
         $('.mz-myaccount-nav .dl-paymentmethods').on('click', function (e) {
+            e.preventDefault();
             accountViews.settings.cancelEdit();
             accountViews.addressBook.cancelViewContact();
             accountViews.paymentMethods.cancelViewCard();
             accountViews.wishList.cancelEditWishlist();
             accountViews.paymentMethods.viewPayments(e);});
         $('.mz-myaccount-nav .dl-orderhistory').on('click', function (e) {
+            e.preventDefault();
             accountViews.settings.cancelEdit();
             accountViews.addressBook.cancelViewContact();
             accountViews.paymentMethods.cancelViewCard();
             accountViews.wishList.cancelEditWishlist();
         });
         $('.mz-myaccount-nav .dl-accountwishlist').on('click', function (e) {
+            e.preventDefault();
             accountViews.settings.cancelEdit();
             accountViews.addressBook.cancelViewContact();
             accountViews.paymentMethods.cancelViewCard();
             accountViews.wishList.cancelEditWishlist();
             accountViews.wishList.startEditWishlist(e);});
+
+            var urlParams = getQueryVariable("sec");
+            if(urlParams.length){
+                switch(urlParams) {
+                    case "accountsettings":
+                        accountViews.settings.cancelEdit();
+                        accountViews.addressBook.cancelViewContact();
+                        accountViews.paymentMethods.cancelViewCard();
+                        accountViews.wishList.cancelEditWishlist();
+                        accountViews.settings.startEdit(null);
+                        break;
+                    case "wishlist":
+                        accountViews.settings.cancelEdit();
+                        accountViews.addressBook.cancelViewContact();
+                        accountViews.paymentMethods.cancelViewCard();
+                        accountViews.wishList.cancelEditWishlist();
+                        accountViews.wishList.startEditWishlist(null);
+                        break;
+                    case "orderhistory":
+                        accountViews.settings.cancelEdit();
+                        accountViews.addressBook.cancelViewContact();
+                        accountViews.paymentMethods.cancelViewCard();
+                        accountViews.wishList.cancelEditWishlist();
+                        break;
+                    case "paymentmethods":
+                        accountViews.settings.cancelEdit();
+                        accountViews.addressBook.cancelViewContact();
+                        accountViews.paymentMethods.cancelViewCard();
+                        accountViews.wishList.cancelEditWishlist();
+                        accountViews.paymentMethods.viewPayments(null);
+                        break;
+                    case "addressbook":
+                        accountViews.settings.cancelEdit();
+                        accountViews.addressBook.cancelViewContact();
+                        accountViews.paymentMethods.cancelViewCard();
+                        accountViews.wishList.cancelEditWishlist();
+                        accountViews.addressBook.viewAddressBook(null);
+                        break;
+                    default:
+                  } 
+            }
 
         // TODO: upgrade server-side models enough that there's no delta between server output and this render,
         // thus making an up-front render unnecessary.

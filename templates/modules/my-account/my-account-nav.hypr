@@ -1,4 +1,4 @@
-﻿<nav class="mz-scrollnav" id="account-nav" data-mz-scrollnav="{{ navtarget }}">
+﻿<nav class="mz-scrollnav" id="account-nav">
     <ul class="mz-scrollnav-list nav">
         <li class="mz-scrollnav-item dl-accountDashboard active">
                 <a class="mz-scrollnav-link" href="/myaccount">
@@ -25,6 +25,11 @@
                 {{ labels.orderHistory }}
             </a>
         </li>
+        <li class="mz-scrollnav-item dl-returns">
+            <a class="mz-scrollnav-link" href="">
+                {{ labels.returns }}
+            </a>
+        </li>
         {% if siteContext.generalSettings.isWishlistCreationEnabled %}
         <li class="mz-scrollnav-item dl-accountwishlist">
             <a class="mz-scrollnav-link" href>
@@ -33,12 +38,7 @@
         </li>
         {% endif %}
         
-        {% comment %}
-        <li class="mz-scrollnav-item">
-            <a class="mz-scrollnav-link" href="#returnhistory">
-                {{ labels.returns }}
-            </a>
-        </li>
+        {% comment %}        
         <li class="mz-scrollnav-item">
             <a class="mz-scrollnav-link" href="#{{ labels.digitalCreditsAnchor }}">
                 {{ labels.digitalCredit }}
