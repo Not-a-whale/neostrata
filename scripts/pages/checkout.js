@@ -14,7 +14,11 @@ require(["modules/jquery-mozu",
 
     var CheckoutStepView = EditableView.extend({
         edit: function () {
-            this.model.edit();
+            this.model.edit();            
+            /*sets which is current step for styling purposes*/
+            this.$el.siblings().removeClass('is-current');
+            this.$el.addClass('is-current');
+            /*sets which is current step for styling purposes*/
             $('.selectpicker').selectpicker();
         },
         next: function () {
@@ -52,6 +56,41 @@ require(["modules/jquery-mozu",
         },
         render: function () {
             this.$el.removeClass('is-new is-incomplete is-complete is-invalid').addClass('is-' + this.model.stepStatus());
+        /*sets which is current step for styling purposes*/            
+            if(this.$el.prop('id') == 'step-customer-info'){ //let's initialize, at least first element is-current
+                this.$el.addClass('is-current');
+            }else{ // checking for previous steps status
+                if(this.$el.prev().hasClass('is-current') || this.$el.prev().hasClass('is-incomplete')){ //prev elements not complete? then neither this
+                    this.$el.removeClass('is-complete').addClass('is-incomplete');
+                    this.model._stepStatus = 'incomplete'; //set by using stepStatus() method fires an infinite bucle in this logic.
+                }
+                if(this.$el.prev().hasClass('is-complete') && !this.$el.hasClass('is-complete')) this.$el.addClass('is-current');  //previous complete and this not? let's focus on this step
+            }           
+            
+            if(this.$el.hasClass('is-current')){ //is current element 
+                this.$el.removeClass('is-incomplete');
+                if(this.$el.prop('id') == 'step-shipping-address'){ //shipping-step must always set shipments visibility
+                    this.$el.next().addClass('is-current');
+                }
+                if(this.$el.prop('id') == 'step-payment-info'){ //payment-step must always set coupon-code visibility
+                    this.$el.next().removeClass('is-complete').addClass('is-current');
+                    $('#step-review').removeClass('is-current');
+                }       
+            }                        
+            
+            if(this.model.stepStatus() == 'complete'){ //all is OK, let set next setp as is-current
+                this.$el.removeClass('is-current is-incomplete');    
+                this.$el.next().addClass('is-current');
+                if(this.$el.prop('id') == 'step-payment-info'){ //payment-step is ok? lets show the review section
+                    this.$el.next().removeClass('is-current').addClass('is-complete');
+                    $('#step-review').addClass('is-current');    
+                }                                
+            } 
+            if(this.$el.prop('id') == 'step-shipping-address' && $('#step-customer-info').hasClass('is-current')){ //we are on the last step but fist is-current? let's adjust all steps 
+                this.$el.siblings().removeClass('is-current');
+                $('#step-customer-info').addClass('is-current');
+            }
+        /*sets which is current step for styling purposes*/
             EditableView.prototype.render.apply(this, arguments);
             this.resize();
         },
@@ -59,7 +98,7 @@ require(["modules/jquery-mozu",
             this.$('.mz-panel-wrap').animate({'height': this.$('.mz-inner-panel').outerHeight() });
         },200)
     });
-
+    
     var OrderSummaryView = Backbone.MozuView.extend({
         templateName: 'modules/checkout/checkout-order-summary',
 

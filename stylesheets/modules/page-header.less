@@ -188,6 +188,10 @@
       display: block;
       position: relative;
       height: auto;
+
+      &.dl-search-account {
+        position: absolute;
+      }
     }
 
     .commerce-enabled-true .sticky-nav & {
@@ -247,13 +251,13 @@
 .mz-pageheader .ml-header-content .ml-header-search-wrapper {
   @media (min-width: 992px) {
     .commerce-enabled-true & {
-      position: absolute;
+      position: relative;
       left: unset;
       top: 0;
-      right: 28rem;
+      right: unset;
       height: 2.875rem;
       padding-left: 3.375rem;
-
+      padding-right: 3.375rem;
       transform: none;
 
       text-transform: uppercase;
@@ -283,10 +287,10 @@
 .mz-pageheader .ml-header-content .ml-header-links-wrapper {
   @media (min-width: 992px) {
     .commerce-enabled-true & {
-      position: absolute;
+      position: relative;
       left: unset;
       top: 0;
-      right: 0;
+      right: unset;
       height: 2.875rem;
       padding-left: 3.375rem;
 

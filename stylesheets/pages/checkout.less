@@ -288,6 +288,9 @@
             }
         }
     }
+    .mz-formstep-next{
+        margin-top:16rem;
+    }
 }
 .mz-l-formfieldgroup-full{
       display: block;
@@ -477,6 +480,20 @@
                 position: absolute;
             }
         }
+        .mz-addressform-state{
+            .custom-select-wrapper {    
+                .dropdown-toggle{
+                    .filter-option{
+                        .filter-option-inner{
+                            .filter-option-inner-inner{
+                                max-width: 200px;
+                                text-overflow: ellipsis;
+                            }
+                        }
+                    } 
+                } 
+            }
+        }
         .mz-addressform-firstname,
         .mz-addressform-city {
             @media (max-width: 800px) {
@@ -610,6 +627,7 @@
         }
         .dropdown-menu {
             overflow-x: hidden !important;
+            top:37px;
         }
         .dropdown-toggle {
             text-align: center;
@@ -629,7 +647,7 @@
 
                 .filter-option-inner,
                 .filter-option-inner-inner {
-                    display: inline;
+                    display: inline-block;
                 }
             }
             .caret {
@@ -695,6 +713,37 @@
 #checkout-form .checkout-leftcolumn .mz-formstep {
     margin-bottom: 6.25rem;
     float: none;
+    &.is-partial{
+        .mz-formstep-edit{
+            display:none;
+        }
+    }
+    &.is-complete{
+        .mz-formstep-body{
+            display:block;
+        }
+        .icon-check{
+            opacity:0.5;
+        }
+        .mz-formstep-next{
+            display:none !important;
+        }
+    }
+    &.is-current{
+        .mz-formstep-body{
+            display:block;
+        }        
+    }
+    &.mz-checkoutform-review.is-current,
+    &.mz-checkoutform-shippingmethod.is-complete,
+    &.mz-checkoutform-shippingmethod.is-current{
+        display:block;
+    }
+    &.mz-checkoutform-review,
+    &.mz-checkoutform-shippingmethod,
+    .mz-formstep-body{
+        display:none;
+    }
 }
 
 .checkout-fields-title {
@@ -766,11 +815,28 @@
         }
     }
 }
-.coupon-code-wrapper {
-    .primary-btn {
-        margin-top: 2rem;
+#coupon-code-field{
+    position: relative;
+    top: -35rem;
+    .coupon-code-wrapper {
+        #coupon-code{
+            width:62%;
+            @media (max-width: 992px) {
+                width:60%;
+            }
+        }
+        .primary-btn {
+            height: 4.375rem;
+            line-height: normal;
+        }
+    }
+    &.is-complete{
+        top: -13rem;
+        opacity: 0.5;
     }
 }
+
+
 
 .filled-credit-card-wrapper {
     display: flex;
@@ -805,6 +871,8 @@
         font-size: 1.25rem;
         line-height: 1em;
         font-weight: 500;
+        float: left;
+        clear: both;
     }
 }
 
