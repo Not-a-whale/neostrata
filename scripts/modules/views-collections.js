@@ -285,7 +285,7 @@ define([
                                     if($('#addToWishListPopUp').length === 1){
                                         $('#addToWishListPopUp').remove();
                                     }
-                                    $( '<div id="addToWishListPopUp" class="row alert" role="alert"><div class="col-xs-6 text-right">Item added to wishlist.</div><div class="col-xs-6 text-left"><a href="/myaccount#wishlist">View Wishlist</a></div></div>' ).insertAfter('#nav-header-container > #ml-nav');
+                                    $( '<div id="addToWishListPopUp" class="row alert" role="alert"><div class="col-xs-6 text-right">Item added to wishlist.</div><div class="col-xs-6 text-left"><a href="/myaccount?sec=wishlist">View Wishlist</a></div></div>' ).insertAfter('#nav-header-container > #ml-nav');
                                     setTimeout(function(){
                                         $('#addToWishListPopUp').fadeOut(function(){$(this).remove();});
                                     }, 5000);
@@ -303,7 +303,7 @@ define([
                             if($('#addToWishListPopUp').length === 1){
                                 $('#addToWishListPopUp').remove();
                             }
-                            $( '<div id="addToWishListPopUp" class="row alert" role="alert"><div class="col-xs-6 text-right">Item removed from wishlist.</div><div class="col-xs-6 text-left"><a href="/myaccount#wishlist">View Wishlist</a></div></div>' ).insertAfter('#nav-header-container > #ml-nav');
+                            $( '<div id="addToWishListPopUp" class="row alert" role="alert"><div class="col-xs-6 text-right">Item removed from wishlist.</div><div class="col-xs-6 text-left"><a href="/myaccount?sec=wishlist">View Wishlist</a></div></div>' ).insertAfter('#nav-header-container > #ml-nav');
                             setTimeout(function(){
                                 $('#addToWishListPopUp').fadeOut(function(){$(this).remove();});
                             }, 5000);
@@ -580,7 +580,7 @@ define([
                     if($('#addToWishListPopUp').length === 1){
                         $('#addToWishListPopUp').remove();
                     }
-                    $( '<div id="addToWishListPopUp" class="row alert" role="alert"><div class="col-xs-6 text-right">Item added to wishlist.</div><div class="col-xs-6 text-left"><a href="/myaccount#wishlist">View Wishlist</a></div></div>' ).insertAfter('#nav-header-container > #ml-nav');
+                    $( '<div id="addToWishListPopUp" class="row alert" role="alert"><div class="col-xs-6 text-right">Item added to wishlist.</div><div class="col-xs-6 text-left"><a href="/myaccount?sec=wishlist">View Wishlist</a></div></div>' ).insertAfter('#nav-header-container > #ml-nav');
                     setTimeout(function(){
                         $('#addToWishListPopUp').fadeOut(function(){$(this).remove();});
                     }, 5000);
