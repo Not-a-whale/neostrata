@@ -25,9 +25,11 @@
     </div>
   </div>
 
-	<div class="mz-orderstatus-buttons col-xs-12">
+
+	<div class="mz-orderstatus-actions col-xs-12">
         <div class="col-xs-12 add-to-cart-container text-left">
-          <a href="" id="add-to-cart" class="primary-btn mz-button mz-orderstatus-addtocart font-large button_primary " data-mz-action="addToCart">
+          <a class="mz-button primary-btn mz-orderstatus-action add" href="javascript:;" data-mz-action="addItemToCart" data-mz-item-id="{{item.WarehouseReference|first}}">
+    
               {{labels.orderStatusbuyAgain}}
           </a>
         </div>

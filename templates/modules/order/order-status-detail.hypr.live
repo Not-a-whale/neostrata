@@ -70,5 +70,8 @@
 {% else %}
   <div>there was an error processing your request.</div>
 {% endif %}
+<div class="mz-orderstatus-buttons">
+    <a class='mz-orderstatus-button' >{{labels.orderDetailReturnButton}}</a>
+</div>
 
 </div>

@@ -1066,6 +1066,7 @@ function getQueryVariable(variable)
                         accountViews.addressBook.cancelViewContact();
                         accountViews.paymentMethods.cancelViewCard();
                         accountViews.wishList.cancelEditWishlist();
+                        accountViews.omxOrderHistory.viewOMXOrderHistory(null);
                         break;
                     case "paymentmethods":
                         accountViews.settings.cancelEdit();
