@@ -674,5 +674,7 @@
   "orderStatusPaypal": "[fr-CA]PayPal [fr-CA]",
   "orderDiscountTotal" : "[fr-CA]You Saved: [fr-CA]", 
   "orderStatusbuyAgain" : "[fr-CA]Buy Again [fr-CA]",
-  "orderDetailPaymentInfo" : "[fr-CA]Payment Info [fr-CA]" 
+  "orderDetailPaymentInfo" : "[fr-CA]Payment Info [fr-CA]", 
+  "orderDetailReturnButton" : "[fr-CA]Back to Order History[fr-CA]" 
+
 }
