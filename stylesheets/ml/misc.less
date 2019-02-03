@@ -164,8 +164,8 @@
             .commerce-enabled-true & {
               @media (max-width: 991px) {
                 position: absolute;
-                right: auto;
-                left: 6rem;
+                right: 9.3rem; //changed 020319
+                left: unset; //changed 020319
                 top: 51%;
                 .ml-header-search-label {
                     display: none;
@@ -263,12 +263,19 @@
                     .commerce-enabled-true & {
                         right: 3rem;
                         padding-right: 0 !important;
+
+                        @media screen and (max-width: 991px) { //added 020319
+                            display: none;
+                        }
                     }
                 }
                 .commerce-enabled-true & {
                     &.user-login {
                         @media (max-width: 991px) {
-                          display: none;
+                            display: block; // changed 020319
+                            position: absolute; // added 020319
+                            top: 36%; // added 020319
+                            left: 6.2rem; // added 020319 
                         }
                     }
                 }
@@ -286,7 +293,7 @@
             padding: 0 5px;
             .commerce-enabled-true & {
                 @media (max-width: 991px) {
-                  right: 5.5rem;
+                  right: .5rem; //changed from 5.5 020319
                   top: 58%;
                   transform: translateY(-58%);
                   padding: 0;
