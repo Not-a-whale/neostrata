@@ -6,7 +6,9 @@
 		navigation: {
 			nextEl: '.swiper-button-next',
 			prevEl: '.swiper-button-prev'
-		},
+        },
+        preventClicks: false,
+        preventClicksPropagation: false,
         breakpoints: {
             1024: {
                 slidesPerView: 3
@@ -57,6 +59,7 @@
                         product.addToCart();
                         setTimeout(function(){
                             CartMonitor.update('showGlobalCart');
+                            $('html, body').animate({ scrollTop: 0 }, 'normal');
                         }, 1000);
                     });
                 }
