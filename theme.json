@@ -477,11 +477,22 @@
       "template": "customer-service",
       "title": "Customer Service",
       "userCreatable": true
+    },
+    {
+      "documentType": "web_page",
+      "entityType": "webpage",
+      "id": "order-status-detail",
+      "template": "order-status-detail",
+      "title": "Order Status Detail",
+      "userCreatable": true
     }
   ],
   "settings": {
     "commerceEnabled": false,
     "canonicalUrlPrefix": "",
+    "instalUrl": "https://www.instagram.com/neostrata/",
+    "facebookUrl": "https://www.facebook.com/neostrata/",
+    "youtubeUrl": "https://www.youtube.com/neostrata",
     "sitesURLs": {
       "en-ca": "//www.neostrata.ca",
       "fr-ca": "//fr.neostrata.ca"
@@ -1141,6 +1152,7 @@
     "freeSamplePagePath": "/product/free-sample",
     "freeSampleQty": 3,
     "freeSampleOrderTotalThreshold": 75,
+    "omxOrderNumberAttribute":"tenant~omx_order_number",
     "megaMenu": {
       "parentCategoryCode": "browse-product",
       "firstLevel": [

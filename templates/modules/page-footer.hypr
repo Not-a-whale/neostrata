@@ -31,9 +31,9 @@
 			<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 pull-right">
 				<div class="social-links">
 					<div>
-						<a title="Instagram" target="_blank" href="https://www.instagram.com/neostratacanada/" class="icon-instagram"><span class="hide-anchor-text">Instagram</span>&nbsp;</a>
-						<a title="Facebook" target="_blank" href="https://www.facebook.com/neostrata.canada/" class="icon-facebook hide-anchor-text"><span class="hide-anchor-text">Facebook</span>&nbsp;</a>
-						<a title="YouTube" target="_blank" href="https://www.youtube.com/channel/UCgS37O70kh1dRgBfmMjTBvw" class="icon-youtube hide-anchor-text"><span class="hide-anchor-text">YouTube</span></a>
+						<a title="Instagram" target="_blank" href="{{ themeSettings.instalUrl }}" class="icon-instagram"><span class="hide-anchor-text">Instagram</span>&nbsp;</a>
+						<a title="Facebook" target="_blank" href="{{ themeSettings.facebookUrl }}" class="icon-facebook hide-anchor-text"><span class="hide-anchor-text">Facebook</span>&nbsp;</a>
+						<a title="YouTube" target="_blank" href="{{ themeSettings.youtubeUrl }}" class="icon-youtube hide-anchor-text"><span class="hide-anchor-text">YouTube</span></a>
 					</div>
 				</div>
 				<div class="ml-footer-phone-number">

@@ -558,5 +558,21 @@
     "wishlistsCount": "Items",
     "defaultAddress": "Default Address",
     "primaryShippingContact": "Make this my default shipping address",
-    "infoAddress": "We are unable to ship to P.O. Boxes. A physical street address is required."
+    "infoAddress": "We are unable to ship to P.O. Boxes. A physical street address is required.",
+    "orderDetailNumber": "Order # {0}",
+    "orderDetailDate" : "Placed ", 
+    "orderDetailStatus" : "Status: ", 
+    "orderDetailShippingInfo" : "Shipping Info", 
+    "orderStatusPaymentTotal" : "${0} applied to: ", 
+    "orderStatusPaymentCCEnding" : "Ending in {0}", 
+    "orderStatusPaymentCCExpires" : "Expires: {0}", 
+    "orderDetailItems" : "Items in Order", 
+    "totalQty" : "{0} Items: ",
+    "orderDetailShipping" : "Shipping: ",
+    "orderStatusBillingAddress": "Billing Address", 
+    "orderStatusSameBillingAddress": "same as shipping", 
+    "orderStatusPaypal": "PayPal",
+    "orderDiscountTotal" : "You Saved: ", 
+    "orderStatusbuyAgain" : "Buy Again",
+    "orderDetailPaymentInfo" : "Payment Info" 
 }

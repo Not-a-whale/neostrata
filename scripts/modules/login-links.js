@@ -443,6 +443,17 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
                 $(".second-tab").show();
                 $(".third-tab").hide();
             }
+
+            $('.nav-tabs > li').removeClass('active');
+            $('.tab-content .tab-pane').removeClass('active');
+            if($(this).find('[data-mz-param]').context.attributes[2].value == "signup"){
+                $('.nav-tabs > li.second-tab').addClass('active');
+                $('.tab-content #newshopper').addClass('active');
+            }
+            else {
+                $('.nav-tabs > li.first-tab').addClass('active');
+                $('.tab-content #login').addClass('active');
+            }
             self.modalEl.modal('show');
         };
 

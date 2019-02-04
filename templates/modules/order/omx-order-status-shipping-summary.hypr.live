@@ -1,0 +1,13 @@
+
+    {% with model.Address|first as model %}
+        <div class="mz-address-name">{{ model.FullName|first }} </div>
+        <div class="mz-address-address">{{ model.Address1|first }}</div>
+        {% if model.Address2 %}
+            <div class="mz-address-address">{{ model.Address2|first }}</div>
+        {% endif %}
+        <div class="mz-address-location">{{ model.City|first }}, {{ model.State|first }} {{ model.ZIP|first }}</div>
+        {% if model.FullPhone %}
+            <div class="mz-adress-phone">{{ model.FullPhone|first }}</div>
+        {% endif %}
+        <div class="mz-address-email">{{ model.Email|first }} </div>
+    {% endwith %}
