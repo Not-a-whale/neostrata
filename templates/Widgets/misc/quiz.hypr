@@ -226,11 +226,6 @@
     </div>
     <div class="quiz-section-body">
       <div class="quiz-prompt">
-        What climate do you spend most of your time in?
-      </div>
-      <%= _spectrumPart({ name: 'climate', options: climate.options, value: climate.value }) %>
-
-      <div class="quiz-prompt">
         How much of a routine is realistic for you?
       </div>
       <%= _spectrumPart({ name: 'routine', options: routine.options, value: routine.value }) %>

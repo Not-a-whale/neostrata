@@ -877,12 +877,11 @@ define([
     },
 
     validate: function() {
-      var climate = this.model.getPath('inputs.climate');
       var gender = this.model.getPath('inputs.gender');
       var age = this.model.getPath('inputs.age');
       var routine = this.model.getPath('inputs.routine');
 
-      return ( age && gender && climate && routine );
+      return ( age && gender && routine );
     }
   });
 
