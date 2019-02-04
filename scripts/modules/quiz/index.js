@@ -772,32 +772,11 @@ define([
 
     locals: function() {
       return {
-        climate: {
-          options: [
-            {
-              value: 'humid',
-              label: 'HUMID'
-            },
-            {
-              value: 'mild',
-              label: 'MILD'
-            },
-            {
-              value: 'dry',
-              label: 'DRY'
-            }
-          ],
-          value: this.model.getPath('inputs.climate')
-        },
         routine: {
           options: [
             {
               value: 1,
-              label: '1 PRODUCT'
-            },
-            {
-              value: 2,
-              label: '2 PRODUCTS'
+              label: '1-2 PRODUCTS'
             },
             {
               value: 3,
