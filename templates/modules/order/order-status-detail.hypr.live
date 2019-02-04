@@ -52,6 +52,12 @@
                     {% endwith %}
                 {% endif %}
             </div>
+            <div class="col-sm-6 mz-tracking-wrapper"> <!-- Tracking Info Start --> 
+                <h3 class="mz-l-stack-sectiontitle">{{ labels.orderStatusTrackings }}</h3> 
+                {% with model.ShippingInformation|first as shippingInfo %}
+                    {% include "modules/order/omx-order-status-tracking" with model=shippingInfo %}  
+                {% endwith %}
+            </div>
         </div>
 
         <div class="col-sm-12 mz-order-status-section">
@@ -70,5 +76,8 @@
 {% else %}
   <div>there was an error processing your request.</div>
 {% endif %}
+<div class="mz-orderstatus-buttons">
+    <a class='mz-orderstatus-button' >{{labels.orderDetailReturnButton}}</a>
+</div>
 
 </div>

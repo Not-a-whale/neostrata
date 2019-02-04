@@ -385,11 +385,13 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             });
         },
         viewOMXOrderHistory: function () {
+           // this.editing.omxList = true; 
             this.startViewOMXOrderHistory(); 
             this.render();
         },
 
         startViewOMXOrderHistory: function () {
+            $('.dz-backtodashboard.mz-back-to-dash').show(); 
             $('.mz-l-stack-section').hide();
             $('.mz-l-stack-section.mz-accountorderhistory').show();
             $('.mz-l-stack-section.mz-accountorderhistory').removeClass('no-editing').addClass('is-editing');
@@ -397,6 +399,21 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             $('.mz-scrollnav-item').removeClass('active');
             $('.mz-scrollnav-item.dl-orderhistory').addClass('active');
         },
+        cancelViewOMXOrder: function () {
+            //this.editing.omxList = false; 
+            $('.dz-backtodashboard.mz-back-to-dash').hide(); 
+            
+
+            $('.mz-l-stack-section').removeClass('is-editing').addClass('no-editing');
+            $('.mz-l-stack-section').show();
+            $('.dl-maintitle').show();
+            $('.mz-scrollnav-item').removeClass('active');
+            $('.mz-scrollnav-item.dl-accountDashboard').addClass('active');
+
+            this.render();
+          
+        }
+        
     });
 
     var OmxOrderHistoryListingView = Backbone.MozuView.extend({
@@ -1066,6 +1083,7 @@ function getQueryVariable(variable)
                         accountViews.addressBook.cancelViewContact();
                         accountViews.paymentMethods.cancelViewCard();
                         accountViews.wishList.cancelEditWishlist();
+                        accountViews.omxOrderHistory.viewOMXOrderHistory(null);
                         break;
                     case "paymentmethods":
                         accountViews.settings.cancelEdit();
