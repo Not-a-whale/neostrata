@@ -284,6 +284,19 @@
   }
 }
 
+.sticky-nav .mz-pageheader .ml-header-content .ml-header-search-wrapper,
+.sticky-nav .mz-pageheader .ml-header-content .ml-header-links-wrapper { 
+  @media (min-width: 992px) {
+    .commerce-enabled-true & {
+      position: absolute;
+
+      .user-login b {
+        display: none;
+      }
+    }
+  }
+}
+
 .mz-pageheader .ml-header-content .ml-header-links-wrapper {
   @media (min-width: 992px) {
     .commerce-enabled-true & {

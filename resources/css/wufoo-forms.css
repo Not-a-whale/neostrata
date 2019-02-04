@@ -1,0 +1,41 @@
+@import "https://cloud.typography.com/7074216/7126592/css/fonts.css";
+
+
+.redesigned-theme-2018 * {
+	font-family: "Gotham A","Gotham B",sans-serif !important;
+    color: #4e5458 !important;
+}
+
+@media (min-width: 1901px) {
+    html, body {font-size: 16px !important}
+}
+@media (max-width: 1900px) {
+    html, body {font-size: 13px !important}
+}
+@media (max-width: 1700px) {
+    html, body {font-size: 12px !important}
+}
+@media (max-width: 1450px) {
+    html, body {font-size: 11px !important}
+}
+@media (max-width: 1250px) {
+    html, body {font-size: 9px !important}
+}
+@media (max-width: 992px) {
+    html, body {font-size: 9px !important}
+}
+@media (max-width: 767px) and (min-width: 500px) {
+    html, body {font-size: 12px !important}
+}
+@media (max-width: 499px) {
+    html, body {font-size: 8px !important}
+}
+
+
+.redesigned-theme-2018 .wufoo #header.info h2 {
+	line-height: 1.36em !important;
+    font-weight: 500 !important;
+    font-size: 4.6rem !important;
+    margin-top: 10.8rem !important;
+    text-align: center !important;
+}
