@@ -1,10 +1,17 @@
-<h3 class="mz-l-stack-sectiontitle">{{ labels.orderHistory }}</h3>
-<div class="mz-orderhistory-section mz-l-paginatedlist">
-    {% if model %}
-      <div data-mz-omx-orderlist class="mz-l-paginatedlist-list">
-        {% include "modules/my-account/omx-order-history-list" %}
-      </div>
-  {% else %}
-    {{ labels.accountNoOrders }}
+<h3 class="mz-l-stack-sectiontitle">{{ labels.orderHistory }} {% if not editing.order %}
+  <a href class="dl-link-edit mz-link-edit-order" data-mz-action="startEditOrders">{{ labels.edit }}</a>{% endif %}
+</h3>
+
+{% if not editing.order && model %}
+<div class="dl-view-wrapper">
+  <div class="dl-info-message">{{ labels.ordersViewInfo }}</div>
+  <div class="dl-info-count">{{ model.items.length }} {{ labels.ordersCount }}</div>
   {% endif %}
-</div>
+
+  <div class="mz-orderhistory-section mz-l-paginatedlist">
+    {% if model %}
+    <div data-mz-omx-orderlist class="mz-l-paginatedlist-list">
+      {% include "modules/my-account/omx-order-history-list" %}
+    </div>
+    {% else %} {{ labels.accountNoOrders }} {% endif %}
+  </div>

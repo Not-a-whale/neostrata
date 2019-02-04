@@ -8,15 +8,34 @@ require([
     "modules/api",
     "async",
     'modules/my-account-order-status',
-    'modules/models-order-status'
-], function($, _, blockUiLoader, Hypr, Backbone, HyprLiveContext, api, async, OrderStatusApi, OrderStatusModels) {
+    'modules/models-order-status',
+    'modules/editable-view'
+], function($, _, blockUiLoader, Hypr, Backbone, HyprLiveContext, api, async, OrderStatusApi, OrderStatusModels, EditableView) {
 
-  var OrderStatusView = Backbone.MozuView.extend({
-     templateName: "modules/order/order-status-detail",
-     render: function() {
+
+    var OrderStatusView =  EditableView.extend({ //Backbone.MozuView.extend({
+    templateName: "modules/order/order-status-detail",
+    render: function() {
          Backbone.MozuView.prototype.render.apply(this);
          return this;
-     }
+     },  
+    additionalEvents: {
+        'click a.mz-orderstatus-button' : 'returnToOrderList'
+    }, 
+    returnToOrderList: function(event) {
+        if (!require.mozuData('pagecontext').isEditMode) {
+            window.location.href = (HyprLiveContext.locals.siteContext.siteSubdirectory || '') + '/myaccount?sec=orderhistory';
+        }
+    },
+    addItemToCart: function(e) {
+        var self = this,
+            $target = $(e.currentTarget),
+            id = $target.data('mzItemId');
+        if (id) {
+            
+            return this.doModelAction('addItemToCart', id);
+        }
+    }
   });
 
   function getParams() {

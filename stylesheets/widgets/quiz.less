@@ -125,9 +125,9 @@
     font-size: 1.945rem;
   }
   @media (min-width: 992px) {
-    background-image: url(../resources/images/quiz/quiz-background-main-desktop.jpg);
+    background-image: url(../resources/images/quiz/quiz-background-main-desktop.jpg?v=2);
     background-position: top -6.968vw center;
-    padding-top: 28.4vw;
+    padding-top: 13.85vw;
 
     font-size: 1.25rem;
   }
@@ -318,6 +318,15 @@
 
     [data-section].active & {
       display: block;
+    }
+  }
+  @media (min-width: 992px) {
+    &.visited {
+      cursor: pointer;
+    }
+
+    &.visited:hover {
+      color: @tab-text-color-active;
     }
   }
 }

@@ -673,5 +673,10 @@
   "orderStatusPaypal": "PayPal",
   "orderDiscountTotal" : "You Saved: ", 
   "orderStatusbuyAgain" : "Buy Again",
-  "orderDetailPaymentInfo" : "Payment Info" 
+  "orderDetailPaymentInfo" : "Payment Info", 
+  "orderDetailReturnButton" : "Back to Order History",
+  "noTrackings" : "No tracking information available", 
+  "orderStatusTrackings" : "Tracking Info" ,
+  "ordersViewInfo": "Track, Return or Buy Again",
+  "ordersCount": "Orders"  
 }
