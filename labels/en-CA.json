@@ -674,6 +674,8 @@
   "orderDiscountTotal" : "You Saved: ", 
   "orderStatusbuyAgain" : "Buy Again",
   "orderDetailPaymentInfo" : "Payment Info", 
-  "orderDetailReturnButton" : "Back to Order History" 
+  "orderDetailReturnButton" : "Back to Order History",
+  "noTrackings" : "No tracking information available", 
+  "orderStatusTrackings" : "Tracking Info" 
 
 }

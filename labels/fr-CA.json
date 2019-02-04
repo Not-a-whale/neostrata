@@ -675,6 +675,8 @@
   "orderDiscountTotal" : "[fr-CA]You Saved: [fr-CA]", 
   "orderStatusbuyAgain" : "[fr-CA]Buy Again [fr-CA]",
   "orderDetailPaymentInfo" : "[fr-CA]Payment Info [fr-CA]", 
-  "orderDetailReturnButton" : "[fr-CA]Back to Order History[fr-CA]" 
+  "orderDetailReturnButton" : "[fr-CA]Back to Order History[fr-CA]",
+  "noTrackings" : "[fr-CA]No tracking information available[fr-CA]", 
+  "orderStatusTrackings" : "[fr-CA]Tracking Info[fr-CA]"
 
 }
