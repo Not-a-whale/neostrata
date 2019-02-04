@@ -677,6 +677,7 @@
   "orderDetailPaymentInfo" : "[fr-CA]Payment Info [fr-CA]", 
   "orderDetailReturnButton" : "[fr-CA]Back to Order History[fr-CA]",
   "noTrackings" : "[fr-CA]No tracking information available[fr-CA]", 
-  "orderStatusTrackings" : "[fr-CA]Tracking Info[fr-CA]"
-
+  "orderStatusTrackings" : "[fr-CA]Tracking Info[fr-CA]",
+  "ordersViewInfo": "[fr-CA]Track, Return or Buy Again[fr-CA]",
+  "ordersCount": "Orders"  
 }

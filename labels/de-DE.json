@@ -577,6 +577,7 @@
     "orderDetailPaymentInfo" : "Payment Info", 
     "orderDetailReturnButton" : "Back to Order History",
     "noTrackings" : "No tracking information available", 
-    "orderStatusTrackings" : "Tracking Info" 
-
+    "orderStatusTrackings" : "Tracking Info", 
+    "ordersViewInfo": "Track, Return or Buy Again",
+    "ordersCount": "Orders" 
 }
