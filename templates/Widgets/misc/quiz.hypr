@@ -38,7 +38,7 @@
 <script type="text/x-template" id="template-section-tab">
   <div class="quiz-section-tab <%= summary ? 'answered' : '' %>">
     <div class="quiz-section-tab-label">
-      <div class="quiz-label-text">
+      <div class="quiz-label-text <%= visited ? 'visited' : '' %>" data-role="anchor">
         <%= label %>
       </div>
       <div class="quiz-section-number">
@@ -225,11 +225,6 @@
       <%= section.summary %>
     </div>
     <div class="quiz-section-body">
-      <div class="quiz-prompt">
-        What climate do you spend most of your time in?
-      </div>
-      <%= _spectrumPart({ name: 'climate', options: climate.options, value: climate.value }) %>
-
       <div class="quiz-prompt">
         How much of a routine is realistic for you?
       </div>

@@ -16,7 +16,7 @@ define([
   CartMonitor,
   Hypr
 ) {
-  var DEBUG = false;
+  var DEBUG = true;
 
   var EXPERTISE_OPTIONS = [
     {
@@ -503,7 +503,15 @@ define([
         var target = this.$el.offset().top - this.$el.parents('.quiz-widget').offset().top;
         $(document).scrollTop(target);
 
-        this.model.set('currentSection', this.nextSection || (this.sectionNumber + 1));
+        this.model.set('currentSection', this.nextSection);
+        pushState({ currentSection: this.nextSection }, '', this.nextSection);
+      },
+
+      'click [data-role="anchor"]': function(evt) {
+        if (this.visited) {
+          this.model.set('currentSection', this.sectionHash);
+          pushState({ currentSection: this.sectionHash }, '', this.sectionHash);
+        }
       }
     },
 
@@ -523,8 +531,10 @@ define([
       var section = {
         label: this.sectionLabel || '',
         number: this.sectionNumber || null,
+        hash: this.sectionHash || '',
         summary: this.summary() || '',
-        validated: this.validate()
+        validated: this.validate(),
+        visited: !!this.visited
       };
 
       var locals = _.extend({ section: section }, this.locals(), templateHelpers);
@@ -534,7 +544,9 @@ define([
     },
 
     updateActiveState: function() {
-      this.$el.toggleClass('active', this.model.get('currentSection') === this.sectionNumber);
+      var active = this.model.get('currentSection') === this.sectionHash;
+      this.$el.toggleClass('active', active);
+      this.visited = this.visited || active;
     }
   });
 
@@ -544,6 +556,8 @@ define([
     initialize: function() {
       this.sectionNumber = 1;
       this.sectionLabel = 'EXPERTISE';
+      this.sectionHash = '#expertise';
+      this.nextSection = '#skin-concerns';
 
       this.model.on('change:currentSection', this.updateActiveState, this);
 
@@ -580,6 +594,8 @@ define([
     initialize: function() {
       this.sectionNumber = 2;
       this.sectionLabel = 'SKIN CONCERNS';
+      this.sectionHash = '#skin-concerns';
+      this.nextSection = '#skin-type';
 
       this.model.on('change:currentSection', this.updateActiveState, this);
 
@@ -617,6 +633,8 @@ define([
     initialize: function() {
       this.sectionNumber = 3;
       this.sectionLabel = 'SKIN TYPE';
+      this.sectionHash = '#skin-type';
+      this.nextSection = '#current-products';
 
       this.model.on('change:currentSection', this.updateActiveState, this);
 
@@ -686,6 +704,8 @@ define([
     initialize: function() {
       this.sectionNumber = 4;
       this.sectionLabel = 'CURRENT PRODUCT';
+      this.sectionHash = '#current-products';
+      this.nextSection = '#about-you';
 
       this.focus = null;
 
@@ -742,6 +762,8 @@ define([
     initialize: function() {
       this.sectionNumber = 5;
       this.sectionLabel = 'ABOUT YOU';
+      this.sectionHash = '#about-you';
+      this.nextSection = '#results';
 
       this.model.on('change:currentSection', this.updateActiveState, this);
 
@@ -750,32 +772,11 @@ define([
 
     locals: function() {
       return {
-        climate: {
-          options: [
-            {
-              value: 'humid',
-              label: 'HUMID'
-            },
-            {
-              value: 'mild',
-              label: 'MILD'
-            },
-            {
-              value: 'dry',
-              label: 'DRY'
-            }
-          ],
-          value: this.model.getPath('inputs.climate')
-        },
         routine: {
           options: [
             {
               value: 1,
-              label: '1 PRODUCT'
-            },
-            {
-              value: 2,
-              label: '2 PRODUCTS'
+              label: '1-2 PRODUCTS'
             },
             {
               value: 3,
@@ -855,12 +856,11 @@ define([
     },
 
     validate: function() {
-      var climate = this.model.getPath('inputs.climate');
       var gender = this.model.getPath('inputs.gender');
       var age = this.model.getPath('inputs.age');
       var routine = this.model.getPath('inputs.routine');
 
-      return ( age && gender && climate && routine );
+      return ( age && gender && routine );
     }
   });
 
@@ -889,6 +889,7 @@ define([
     initialize: function() {
       this.sectionNumber = 6;
       this.sectionLabel = 'RESULTS';
+      this.sectionHash = '#results';
 
       this.model.on('change:currentSection', this.updateActiveState, this);
       this.model.on('change:inputs', this.render, this);
@@ -903,7 +904,8 @@ define([
         section: {
           label: this.sectionLabel,
           number: this.sectionNumber,
-          summary: null
+          summary: null,
+          visited: !!this.visited
         },
         product: this.generateRecommendation(),
         regimen: regimen,
@@ -919,7 +921,9 @@ define([
     },
 
     updateActiveState: function() {
-      this.$el.toggleClass('active', this.model.get('currentSection') === this.sectionNumber);
+      var active = this.model.get('currentSection') === this.sectionHash;
+      this.$el.toggleClass('active', active);
+      this.visited = this.visited || active;
     },
 
     selectRegimen: function() {
@@ -960,7 +964,8 @@ define([
   var App = Backbone.View.extend({
     events: {
       'click [data-role="open"]': function() {
-        this.$el.addClass('open');
+        this.model.set('currentSection', '#expertise');
+        pushState({ currentSection: '#expertise' }, '', '#expertise');
       }
     },
 
@@ -969,11 +974,14 @@ define([
 
       var state = this.model = new State();
 
-      if (DEBUG) {
-        state.on('change', function() {
+
+      state.on('change', function() {
+        if (DEBUG) {
           console.log('State Changed:', state.attributes);
-        });
-      }
+        }
+
+        self.$el.toggleClass('open', state.get('currentSection') !== '#intro');
+      });
 
       new ExpertiseSectionView({ el: this.$('[data-section="expertise"]'), model: state });
       new SkinConcernsSectionView({ el: this.$('[data-section="skin-concerns"]'), model: state });
@@ -983,7 +991,11 @@ define([
 
       new ResultsSectionView({ el: this.$('[data-section="results"]'), model: state });
 
-      state.set('currentSection', 1);
+      $(window).on('popstate', function(evt) {
+        state.set(_.extend({ currentSection: '#intro' }, evt.originalEvent.state));
+      });
+
+      state.set('currentSection', '#intro');
     }
   });
 
@@ -994,6 +1006,13 @@ define([
   CATALOG = scrapeCatalog();
   if (DEBUG) console.log('Catalog', CATALOG);
   addRegimensProducts();
+
+  var SUPPORTS_HISTORY = window.history && typeof window.history.pushState === 'function';
+  function pushState(state, title, url) {
+    if (SUPPORTS_HISTORY) {
+      history.pushState(state, title, url);
+    }
+  }
 
   function setPath(target, path, value) {
     if (typeof path === 'string') {
