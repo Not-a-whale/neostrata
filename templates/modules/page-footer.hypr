@@ -28,6 +28,7 @@
     </div>
 	<div class="container-fluid">
 		<div class="row ">
+			{% if not themeSettings.commerceEnabled %}    
 			<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 pull-right">
 				<div class="social-links">
 					<div>
@@ -40,6 +41,11 @@
 					{% dropzone "ml-footer-phone-number" scope="site" %}
 				</div>
 			</div>
+			{% else %}
+			<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+				{% dropzone "ml-footer-affiliate" scope="site" %}
+			</div>
+			 {% endif %}
 			<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 regular-footer {% if themeSettings.footerEnableMini %}mini-footer-on{% else %}mini-footer-off{% endif %}">
 				<div class="row">
 					<div class="col-xs-12 col-sm-12 col-md-6">
