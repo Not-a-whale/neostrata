@@ -6,9 +6,11 @@
     {% for image in images|split(' ') %}
         {% with image|split('.') as imageArr %}
             {% if imageArr.length > 1  %}
+            {% if imageArr.1 == 'jpg' or  imageArr.1 == 'png' %}
                 <div class="swiper-slide product-item">
                     <img class="image" src="/cms/files/{{ image }}" onerror="this.setAttribute('src','/cms/files/{{ image }}')">
                 </div>
+            {% endif %}
             {% endif %}
         {% endwith %}
     {% endfor %}
