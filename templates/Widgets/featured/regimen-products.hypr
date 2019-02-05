@@ -4,7 +4,7 @@
 <div
   class="mz-productlist-item product-item regimenProducts" data-mz-category-regimen="{{model.config.category}}"
 >
-  <div class="product-listing-container">
+  <div class="product-listing-container desctWidget">
     <div
       class="mz-productlisting mz-productlist-tiled featuredBlock row defend"
     >
@@ -31,12 +31,54 @@
     <div
       class="mz-productdetail-conversion-buttons featuredBlockButton col-xs-12"
     >
-      <div class="col-xs-6 add-to-cart-container">
+      <div class="col-xs-6 add-to-cart-container addRegimen">
           <a
           href="{{ cat.url }}"
         > 
         <button
+          class="primary-btn mz-productdetail-addtocart font-large button_primary pull-left "
+        >
+          VIEW REGIMEN
+        </button>
+      </a>
+      </div>
+      <div class="col-xs-6 add-to-cart-container">
+        <button
+          id="add-to-cart-regimen"
           class="primary-btn mz-productdetail-addtocart font-large button_primary pull-right "
+        >
+          ADD ALL TO CART
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="product-listing-container mobileWidget">
+    <div
+      class="mz-productlisting mz-productlist-tiled featuredBlock row defend"
+    >
+      <div class="col-xs-12 text-left"><h5>RECOMMENDED REGIMEN</h5></div>
+      <div class="col-xs-12 text-left regimenProductsInfo"><a
+        class="mz-productlisting-title pdp2"
+        href="{{ cat.url }}"
+        >{{ cat.name }} - {{ model.config.descr }}</a>
+    </div>
+      <div class="mz-productlisting-image col-xs-12">
+      <div class="featuredImg" style="
+          background-image: url('{{model.config.image}}?max={% block thumbnail-size %}{{ themeSettings.listProductThumbSize }}{% endblock thumbnail-size %}');
+      ">
+        </div>
+      </div>
+      <div class="col-xs-12 text-right"><h5 class="countProd"></h5></div>
+    </div>
+    <div
+      class="mz-productdetail-conversion-buttons featuredBlockButton col-xs-12"
+    >
+      <div class="col-xs-6 add-to-cart-container addRegimen">
+          <a
+          href="{{ cat.url }}"
+        > 
+        <button
+          class="primary-btn mz-productdetail-addtocart font-large button_primary pull-left "
         >
           VIEW REGIMEN
         </button>
