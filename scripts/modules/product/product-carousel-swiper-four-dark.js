@@ -1,11 +1,11 @@
 ﻿define(['shim!vendor/typeahead.js/typeahead.bundle[modules/jquery-mozu=jQuery]>jQuery', 'swiper', "modules/api", "modules/models-product", "modules/cart-monitor"], function($, Swiper, api, ProductModels, CartMonitor) {
-    var swiper = new Swiper('.swiper-container-4', {
+    var swiper = new Swiper('.swiper-container-4-dark', {
         slidesPerView: 4,
         spaceBetween: 0,
         loop: true,
 		navigation: {
-			nextEl: '.swiper-button-next',
-			prevEl: '.swiper-button-prev'
+			nextEl: '.swiper-btn-next',
+			prevEl: '.swiper-btn-prev'
         },
         preventClicks: false,
         preventClicksPropagation: false,
@@ -42,7 +42,7 @@
                     }
                 }
             });
-            $('.swiper-container-4 .mz-productdetail-addtocart').click(function(){
+            $('.swiper-container-4-dark .mz-productdetail-addtocart').click(function(){
                 var productCode = $(this).data('mzProductCode');
                 if(productCode && productCode !== ''){
                     api.get('product', productCode).then(function(productResponse){
@@ -55,7 +55,7 @@
                     });
                 }
             });
-            $('.swiper-container-4 .mz-productdetail-addtowishlist').click(function(){
+            $('.swiper-container-4-dark .mz-productdetail-addtowishlist').click(function(){
                 var productCode = $(this).data('mzProductCode');
                 var _e = this;
                 if(productCode && productCode !== ''){
