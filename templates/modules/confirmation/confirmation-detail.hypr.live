@@ -8,7 +8,6 @@
         {% endif %}
     </div>
     <div class="mz-l-stack">
-        <!-- TODO Create Account -->
         <div class="mz-l-stack-section thankyou-order-block">
             <div class="mz-l-stack-section-title">
                 <h1 class="mz-pagetitle">{{ labels.confirmationText }}</h1>
@@ -19,15 +18,13 @@
                     {% endif %}
                 {% endfor %}
             </div>
-            <div class="mz-l-stack-item">
-                <p class="confirmation-title">{{ labels.confirmationCreateAccTitle|safe }}</p>
-                <p class="confirmation-text">{{ labels.confirmationCreateAccText }}</p>
+            <div class="mz-l-stack-item quiz-stack-item">
+                <p class="quiz-title">{{ labels.checkoutQuizTitle }}</p>
+                <p class="quiz-text">{{ labels.checkoutQuizText }}</p>
+                <a href="/skin-care-quiz" class="primary-btn">{{ labels.checkoutQuizTakeBtn }}</a>
             </div>
-            <div class="mz-l-stack-item">
-                <a href="#" class="primary-btn">{{ labels.signUpLink }}</a>
-            </div>
+
         </div>
-        <!-- END TODO Create Account -->
 
         <div class="mz-l-stack-section ordersummary-confirmation">
             <h4 class="mz-l-stack-sectiontitle order-summary-title">{{ labels.orderSummary }} </h4>

@@ -446,7 +446,7 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
 
             $('.nav-tabs > li').removeClass('active');
             $('.tab-content .tab-pane').removeClass('active');
-            if($(this).find('[data-mz-param]').context.attributes[2].value == "signup"){
+            if($(this).context.attributes["data-mz-param"].value == "signup"){
                 $('.nav-tabs > li.second-tab').addClass('active');
                 $('.tab-content #newshopper').addClass('active');
             }
