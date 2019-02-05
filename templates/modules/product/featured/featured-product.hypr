@@ -52,7 +52,7 @@
                   <span itemprop="price" class="mz-price">
                     $33.00
 
-                    <span class="price-small-srp">SRP</span>
+                    <!-- <span class="price-small-srp">SRP</span> -->
                   </span>
                 </span>
                 {% if not themeSettings.commerceEnabled %}<div class="price-msrp">{{ labels.suggestedRetailPrice }}</div>{% endif %}

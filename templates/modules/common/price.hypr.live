@@ -14,7 +14,8 @@
 {% else %}
 <span itemprop="price" class="mz-price">
 
-{% include "modules/common/localized-currency" with amount=model.price %}<span class="price-small-srp">{{ labels.msrp }}</span>
+{% include "modules/common/localized-currency" with amount=model.price %}
+<!-- <span class="price-small-srp">{{ labels.msrp }}</span> -->
     {% if model.priceType == "MAP" %}
     <div>add to cart to see final price</div>
     {% endif %}
