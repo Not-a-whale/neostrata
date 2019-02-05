@@ -239,6 +239,14 @@
     {
       "documentType": "web_page",
       "entityType": "webpage",
+      "id": "forms-page",
+      "template": "forms-page",
+      "title": "Forms Page",
+      "userCreatable": true
+    },
+    {
+      "documentType": "web_page",
+      "entityType": "webpage",
       "id": "ancillary-page",
       "template": "ancillary-page",
       "title": "Ancillary Page",
