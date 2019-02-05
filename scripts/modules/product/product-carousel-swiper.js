@@ -28,12 +28,14 @@
         }
     });
     function window_resize(){
+      /*
         $('.product-listing-container').css('height', '');
         var maxHeight = Math.max.apply(null, $(".product-listing-container").map(function ()
         {
             return $(this).height() + parseFloat($(this).css("padding-top")) + parseFloat($(this).css("padding-bottom"));
         }).get());
         $('.product-listing-container').css('height', maxHeight);
+        */
     }
     $(document).ready(function() {
         window_resize();
@@ -96,7 +98,7 @@
                                         return $('#wishlist-'+productCode+' span').removeClass("blank-heart").addClass("filled-heart");
                                     });
                                 }, 1000);
-                               
+
                             });
                         }else if(action == 'directoryRemoveFromWishlist'){
                             var finishRemoveItemId = $(_e).data('mz-item-id');
