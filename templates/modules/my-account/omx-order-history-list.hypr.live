@@ -1,32 +1,30 @@
-<div class="mz-orderlist">
-    <div class="row omx-orderhistory-header">
-        <div class="mz-orderlist">
-            <div class="mz-orderlisting-details-item col-xs-3">
-                {{ labels.orderHistoryDate }}
-            </div>
-            <div class="mz-orderlisting-details-item col-xs-3">
-                {{ labels.orderHistoryNumber }}
-            </div>
-            <div class="mz-orderlisting-details-item dl-total col-xs-3">
-                {{ labels.orderHistoryTotal }}
-            </div>
-            <div class="mz-orderlisting-details-item dl-status col-xs-3">
-                {{ labels.orderHistoryStatus }}
-            </div>
-        </div>
-    </div>
-    <div class="row omx-orderhistory-list">
-        <div class="mz-orderlist">
-            {% for order in model %}
-            <div data-mz-order-id="{{order.orderId}}" data-mz-omx-order-history-listing>
-                <div data-order-message-bar class="order-message-bar"></div>
-                <div class="listing">
-                    {% include "modules/my-account/omx-order-history-listing" with model=order %}
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</div>
-
-<button class="dz-backtodashboard mz-back-to-dash" data-mz-action="cancelViewOMXOrder">{{ labels.accountDashboardBack }}</button> 
+<ul class="mz-orderlist">
+   <li class="omx-orderhistory-header">
+       <div class="mz-orderlist">
+         <div class="mz-orderlisting-details-item">
+             {{ labels.orderHistoryDate }}
+         </div>
+         <div class="mz-orderlisting-details-item">
+             {{ labels.orderHistoryNumber }}
+         </div>
+         <div class="mz-orderlisting-details-item">
+             {{ labels.orderHistoryTotal }}
+         </div>
+         <div class="mz-orderlisting-details-item">
+             {{ labels.orderHistoryStatus }}
+         </div>
+      </div>
+   </li>
+   <li class="omx-orderhistory-list">
+     <ul class="mz-orderlist">
+      {% for order in model %}
+      <li data-mz-order-id="{{order.orderId}}" data-mz-omx-order-history-listing>
+      	<div data-order-message-bar class="order-message-bar"></div>
+      	<div class="listing">
+      	{% include "modules/my-account/omx-order-history-listing" with model=order %}
+      	</div>
+      </li>
+      {% endfor %}
+     </ul>
+   </li>
+  </ul>

@@ -55,8 +55,7 @@
                     <span class="price-small-srp">SRP</span>
                   </span>
                 </span>
-
-                <div class="price-msrp">Suggested Retail Price</div>
+                {% if not themeSettings.commerceEnabled %}<div class="price-msrp">{{ labels.suggestedRetailPrice }}</div>{% endif %}
               </div>
             </div>
           </div>

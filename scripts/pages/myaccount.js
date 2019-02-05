@@ -43,7 +43,8 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             });
         },
         startEdit: function(event) {
-            event.preventDefault();
+            if(event)
+                event.preventDefault();
             $('.mz-l-stack-section').hide();
             $('.mz-l-stack-section.mz-accountsettings').show();
             $('.mz-l-stack-section.mz-passwordsection').show();
@@ -361,33 +362,50 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
     });
 
     var OmxOrderHistoryView = Backbone.MozuView.extend({
-        templateName: "modules/my-account/omx-order-history-list",
+        //templateName: "modules/my-account/omx-order-history-list",
+        templateName: "modules/my-account/my-account-omx-orderhistory",  
+        
+        constructor: function() {
+            EditableView.apply(this, arguments);
+            this.editing.order = false;
+            this.invalidFields = {};
+        },
+
         getRenderContext: function() {
             var context = Backbone.MozuView.prototype.getRenderContext.apply(this, arguments);
             return context;
         },
         render: function() {
             var self = this;
-            Backbone.MozuView.prototype.render.apply(this, arguments);
+           
+                Backbone.MozuView.prototype.render.apply(this, arguments);
 
-            $.each(this.$el.find('[data-mz-omx-order-history-listing]'), function(index, val) {
-
-                var orderId = $(this).data('mzOrderId');
-                var myOrder = _.find(self.model.models, function(model) {
-                    return model.attributes.orderId == orderId;
+                $.each(this.$el.find('[data-mz-omx-order-history-listing]'), function(index, val) {
+    
+                    var orderId = $(this).data('mzOrderId');
+                    var myOrder = _.find(self.model.models, function(model) {
+                        return model.attributes.orderId == orderId;
+                    });
+                    var orderHistoryListingView = new OmxOrderHistoryListingView({
+                        el: $(this).find('.mz-omx-orderlisting'),
+                        model: myOrder,
+                        messagesEl: $(this).find('[data-order-message-bar]')
+                    });
+                    orderHistoryListingView.render();
                 });
-                var orderHistoryListingView = new OmxOrderHistoryListingView({
-                    el: $(this).find('.mz-omx-orderlisting'),
-                    model: myOrder,
-                    messagesEl: $(this).find('[data-order-message-bar]')
-                });
-                orderHistoryListingView.render();
-            });
+            if (this.editing.order) {
+                this.startViewOMXOrderHistory();
+            } else {
+                this.cancelViewOMXOrder(); 
+            }
         },
-        viewOMXOrderHistory: function () {
-           // this.editing.omxList = true; 
+        viewOMXOrderHistory: function (event) {
+            if(event)
+                event.preventDefault();
+
+            this.editing.order = true; 
+           /* this.render();  */
             this.startViewOMXOrderHistory(); 
-            this.render();
         },
 
         startViewOMXOrderHistory: function () {
@@ -398,20 +416,24 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             $('.dl-maintitle').hide();
             $('.mz-scrollnav-item').removeClass('active');
             $('.mz-scrollnav-item.dl-orderhistory').addClass('active');
+            $('.mz-accountorderhistory .dl-view-wrapper').addClass('hidden'); 
+            $('.mz-accountorderhistory .dl-link-edit.mz-link-edit-order').addClass('hidden'); 
+            $('.mz-accountorderhistory .mz-orderhistory-section-wrapper').removeClass('hidden'); 
         },
         cancelViewOMXOrder: function () {
-            //this.editing.omxList = false; 
+            this.editing.order = false; 
             $('.dz-backtodashboard.mz-back-to-dash').hide(); 
             
-
             $('.mz-l-stack-section').removeClass('is-editing').addClass('no-editing');
             $('.mz-l-stack-section').show();
             $('.dl-maintitle').show();
             $('.mz-scrollnav-item').removeClass('active');
             $('.mz-scrollnav-item.dl-accountDashboard').addClass('active');
+            $('.mz-accountorderhistory .dl-view-wrapper').removeClass('hidden'); 
+            $('.mz-accountorderhistory .mz-orderhistory-section-wrapper').addClass('hidden'); 
+            $('.mz-accountorderhistory .dl-link-edit.mz-link-edit-order').removeClass('hidden'); 
 
-            this.render();
-          
+            /*this.render(); */
         }
         
     });
@@ -429,6 +451,8 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
         },
         getOrderDetail: function(event) {
           var orderCode = $(event.currentTarget).data('mzOrderCode');
+
+         // api...$.
           if (!require.mozuData('pagecontext').isEditMode) {
               window.location.href = (HyprLiveContext.locals.siteContext.siteSubdirectory || '') + '/order-status-detail?order='+orderCode;
           }
@@ -943,6 +967,7 @@ function getQueryVariable(variable)
             omxOrderHistoryModel = accountModel.get('omxOrderHistory');
             //$parentEl = $('.mz-myaccount .mz-l-container');
 
+            console.log('accountModel ', accountModel); 
         var accountViews = window.accountViews = {
             /*
             parent: new ParentView({
@@ -961,7 +986,7 @@ function getQueryVariable(variable)
                 messagesEl: $messagesEl
             }),
             omxOrderHistory: new OmxOrderHistoryView({
-              el: $omxOrderHistoryEl.find('[data-mz-omx-orderlist]'),
+              el: $omxOrderHistoryEl, //.find('[data-mz-omx-orderlist]'),
               model: omxOrderHistoryModel
             }),
             /*orderHistory: new OrderHistoryView({
@@ -1022,6 +1047,7 @@ function getQueryVariable(variable)
             accountViews.addressBook.cancelViewContact();
             accountViews.paymentMethods.cancelViewCard();
             accountViews.wishList.cancelEditWishlist();
+            accountViews.omxOrderHistory.cancelViewOMXOrder();
             
         });
         $('.mz-myaccount-nav .dl-personalInfo').on('click', function (e) {
@@ -1030,6 +1056,7 @@ function getQueryVariable(variable)
             accountViews.addressBook.cancelViewContact();
             accountViews.paymentMethods.cancelViewCard();
             accountViews.wishList.cancelEditWishlist();
+            accountViews.omxOrderHistory.cancelViewOMXOrder();
             accountViews.settings.startEdit(e);});
         $('.mz-myaccount-nav .dl-addressbook').on('click', function (e) {
             e.preventDefault();
@@ -1037,6 +1064,7 @@ function getQueryVariable(variable)
             accountViews.addressBook.cancelViewContact();
             accountViews.paymentMethods.cancelViewCard();
             accountViews.wishList.cancelEditWishlist();
+            accountViews.omxOrderHistory.cancelViewOMXOrder();
             accountViews.addressBook.viewAddressBook(e);});
         $('.mz-myaccount-nav .dl-paymentmethods').on('click', function (e) {
             e.preventDefault();
@@ -1044,6 +1072,7 @@ function getQueryVariable(variable)
             accountViews.addressBook.cancelViewContact();
             accountViews.paymentMethods.cancelViewCard();
             accountViews.wishList.cancelEditWishlist();
+            accountViews.omxOrderHistory.cancelViewOMXOrder();
             accountViews.paymentMethods.viewPayments(e);});
         $('.mz-myaccount-nav .dl-orderhistory').on('click', function (e) {
             e.preventDefault();
@@ -1059,6 +1088,7 @@ function getQueryVariable(variable)
             accountViews.addressBook.cancelViewContact();
             accountViews.paymentMethods.cancelViewCard();
             accountViews.wishList.cancelEditWishlist();
+            accountViews.omxOrderHistory.cancelViewOMXOrder();
             accountViews.wishList.startEditWishlist(e);});
 
             var urlParams = getQueryVariable("sec");
@@ -1069,6 +1099,7 @@ function getQueryVariable(variable)
                         accountViews.addressBook.cancelViewContact();
                         accountViews.paymentMethods.cancelViewCard();
                         accountViews.wishList.cancelEditWishlist();
+                        accountViews.omxOrderHistory.cancelViewOMXOrder();
                         accountViews.settings.startEdit(null);
                         break;
                     case "wishlist":
@@ -1076,6 +1107,7 @@ function getQueryVariable(variable)
                         accountViews.addressBook.cancelViewContact();
                         accountViews.paymentMethods.cancelViewCard();
                         accountViews.wishList.cancelEditWishlist();
+                        accountViews.omxOrderHistory.cancelViewOMXOrder();
                         accountViews.wishList.startEditWishlist(null);
                         break;
                     case "orderhistory":
@@ -1083,6 +1115,7 @@ function getQueryVariable(variable)
                         accountViews.addressBook.cancelViewContact();
                         accountViews.paymentMethods.cancelViewCard();
                         accountViews.wishList.cancelEditWishlist();
+                        accountViews.omxOrderHistory.cancelViewOMXOrder();
                         accountViews.omxOrderHistory.viewOMXOrderHistory(null);
                         break;
                     case "paymentmethods":
@@ -1090,6 +1123,7 @@ function getQueryVariable(variable)
                         accountViews.addressBook.cancelViewContact();
                         accountViews.paymentMethods.cancelViewCard();
                         accountViews.wishList.cancelEditWishlist();
+                        accountViews.omxOrderHistory.cancelViewOMXOrder();
                         accountViews.paymentMethods.viewPayments(null);
                         break;
                     case "addressbook":
@@ -1097,6 +1131,7 @@ function getQueryVariable(variable)
                         accountViews.addressBook.cancelViewContact();
                         accountViews.paymentMethods.cancelViewCard();
                         accountViews.wishList.cancelEditWishlist();
+                        accountViews.omxOrderHistory.cancelViewOMXOrder();
                         accountViews.addressBook.viewAddressBook(null);
                         break;
                     default:

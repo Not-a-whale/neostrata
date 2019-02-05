@@ -12,7 +12,7 @@
         <div class="mz-l-stack-section thankyou-order-block">
             <div class="mz-l-stack-section-title">
                 <h1 class="mz-pagetitle">{{ labels.confirmationText }}</h1>
-                
+
                 {% for orderAttribute in model.attributes %}
                     {% if orderAttribute.fullyQualifiedName == "tenant~omx_order_number" and orderAttribute.values.length != 0 %}
                         <p class="mz-pagesubtitle">{{ labels.yourOrderNumber|string_format(orderAttribute.values.0)|safe }}</p>
@@ -45,7 +45,7 @@
             </div>
             {% endif %}
         </div>
-        
+
         {% if model.hasDirectShip %}
         <div class="mz-l-stack-section shipping-information-section">
             <h4 class="mz-l-stack-sectiontitle">{{ labels.shippingInformation }}</h4>
@@ -131,18 +131,18 @@
 
         <div class="mz-l-stack-section confirmation-cart-items-wrapper">
             <h4 class="mz-l-stack-sectiontitle">{{ labels.confirmationCartTitle }}</h4>
-    
+
           {% for item in model.items %}
               <div class="mz-ordersummary-lineitems mz-carttable-item clearfix">
                 <div class="mz-ordersummary-line mz-ordersummary-line-item {% if item.discountTotal > 0 %}is-discounted{% endif %} clearfix">
                     <div class="mz-ordersummary-item-product mz-order-content-container mz-reset-padding">
                         <div class="pull-left mz-order-summary-image">
-                          {% with item.product|get_product_attribute("tenant~color") as colorAttr %}  
+                          {% with item.product|get_product_attribute("tenant~color") as colorAttr %}
                             {% if colorAttr %}
                               {% with colorAttr.value|replace(" ","_") as colorValue %}
                                 {% with "/cms/files/{0}_{1}_v1.jpg"|string_format(item.product.productCode, colorValue) as fileName %}
                                     <img class="mz-carttable-item-image" src="https:{% make_url "cdn" fileName with maxWidth=themeSettings.globalCartItemImageMaxWidth as_parameter %}" {% if item.product.imageAlternateText %}alt="{{ item.product.imageAlternateText }}"{% endif %} onerror="this.setAttribute('src','{% if item.product.imageUrl %}{% make_url 'image' item.product with maxWidth=themeSettings.globalCartItemImageMaxWidth as_parameters %}{% else %}https:{% make_url 'cdn' '/cms/files/No_image_available.png' with maxWidth=themeSettings.globalCartItemImageMaxWidth as_parameter %}{% endif %}')"/>
-                                {% endwith %}     
+                                {% endwith %}
                               {% endwith %}
                             {% else %}
                               {% if item.product.imageUrl %}
@@ -151,9 +151,9 @@
                                   <span class="mz-carttable-item-image mz-product-image-placeholder pull-left">
                                     <span class="mz-productlisting-imageplaceholdertext">{{ labels.productImagePlaceholder }}</span>
                                   </span>
-                              {% endif %}    
-                            {% endif %}  
-                          {% endwith %}                       
+                              {% endif %}
+                            {% endif %}
+                          {% endwith %}
                         </div>
                         <div class="mz-carttable-item-info-wrap mz-reset-padding-right">
                           <div class="mz-carttable-item-title" >{{ item.product.name |safe }}</div>
@@ -178,7 +178,7 @@
 
     <!-- TODO Recommendations -->
     {% if model.items %}
-    
+
     <div class="recommendation-wrapper">
         <h3>Add these prodcuts for a more complete skin care regimen.</h3>
         <div class="product-carousel-listing">
@@ -193,7 +193,7 @@
                                         <a href="/product/skin-active-repair-matrix-support-wrinkle-repair-spf-30/F30149D">
                                             <img src="//cdn-sb.mozu.com/26439-41130/cms/41130/files/d023f219-53c5-41e8-8c78-54b4ffedbff0?max=800" data-zoom-image="//cdn-sb.mozu.com/26439-41130/cms/41130/files/d023f219-53c5-41e8-8c78-54b4ffedbff0?max=700" alt="with Sunscreen Broad Spectrum SPF 30">
                                         </a>
-                                    </div> 
+                                    </div>
                                 </div>
                                 <div class="mz-productlisting-info">
                                     <div class="pdp1">Moisturizers, Sun Care</div>
@@ -206,7 +206,7 @@
                                     <span class="not-range">
                                         <span itemprop="price" class="mz-price">$75.00</span>
                                     </span>
-                                    <div class="price-msrp">Suggested Retail Price</div>
+                                    {% if not themeSettings.commerceEnabled %}<div class="price-msrp">Suggested Retail Price</div>{% endif %}
                                 </div>
                                 <div id="BVRRInlineRating-F30149D" class="pdp5 bvr-inline-rating" data-mz-product-code="F30149D" data-mz-product-url="/skin-active-repair-matrix-support-wrinkle-repair-spf-30/p/F30149D"></div>
                             </div>
@@ -230,7 +230,7 @@
                                         <a href="/product/skin-active-repair-matrix-support-wrinkle-repair-spf-30/F30149D">
                                             <img src="//cdn-sb.mozu.com/26439-41130/cms/41130/files/d023f219-53c5-41e8-8c78-54b4ffedbff0?max=800" data-zoom-image="//cdn-sb.mozu.com/26439-41130/cms/41130/files/d023f219-53c5-41e8-8c78-54b4ffedbff0?max=700" alt="with Sunscreen Broad Spectrum SPF 30">
                                         </a>
-                                    </div> 
+                                    </div>
                                 </div>
                                 <div class="mz-productlisting-info">
                                     <div class="pdp1">Moisturizers, Sun Care</div>
@@ -243,7 +243,7 @@
                                     <span class="not-range">
                                         <span itemprop="price" class="mz-price">$75.00</span>
                                     </span>
-                                    <div class="price-msrp">Suggested Retail Price</div>
+                                    {% if not themeSettings.commerceEnabled %}<div class="price-msrp">Suggested Retail Price</div>{% endif %}
                                 </div>
                                 <div id="BVRRInlineRating-F30149D" class="pdp5 bvr-inline-rating" data-mz-product-code="F30149D" data-mz-product-url="/skin-active-repair-matrix-support-wrinkle-repair-spf-30/p/F30149D"></div>
                             </div>
@@ -267,7 +267,7 @@
                                         <a href="/product/skin-active-repair-matrix-support-wrinkle-repair-spf-30/F30149D">
                                             <img src="//cdn-sb.mozu.com/26439-41130/cms/41130/files/d023f219-53c5-41e8-8c78-54b4ffedbff0?max=800" data-zoom-image="//cdn-sb.mozu.com/26439-41130/cms/41130/files/d023f219-53c5-41e8-8c78-54b4ffedbff0?max=700" alt="with Sunscreen Broad Spectrum SPF 30">
                                         </a>
-                                    </div> 
+                                    </div>
                                 </div>
                                 <div class="mz-productlisting-info">
                                     <div class="pdp1">Moisturizers, Sun Care</div>
@@ -280,7 +280,7 @@
                                     <span class="not-range">
                                         <span itemprop="price" class="mz-price">$75.00</span>
                                     </span>
-                                    <div class="price-msrp">Suggested Retail Price</div>
+                                    {% if not themeSettings.commerceEnabled %}<div class="price-msrp">Suggested Retail Price</div>{% endif %}
                                 </div>
                                 <div id="BVRRInlineRating-F30149D" class="pdp5 bvr-inline-rating" data-mz-product-code="F30149D" data-mz-product-url="/skin-active-repair-matrix-support-wrinkle-repair-spf-30/p/F30149D"></div>
                             </div>
@@ -304,7 +304,7 @@
                                         <a href="/product/skin-active-repair-matrix-support-wrinkle-repair-spf-30/F30149D">
                                             <img src="//cdn-sb.mozu.com/26439-41130/cms/41130/files/d023f219-53c5-41e8-8c78-54b4ffedbff0?max=800" data-zoom-image="//cdn-sb.mozu.com/26439-41130/cms/41130/files/d023f219-53c5-41e8-8c78-54b4ffedbff0?max=700" alt="with Sunscreen Broad Spectrum SPF 30">
                                         </a>
-                                    </div> 
+                                    </div>
                                 </div>
                                 <div class="mz-productlisting-info">
                                     <div class="pdp1">Moisturizers, Sun Care</div>
@@ -317,7 +317,7 @@
                                     <span class="not-range">
                                         <span itemprop="price" class="mz-price">$75.00</span>
                                     </span>
-                                    <div class="price-msrp">Suggested Retail Price</div>
+                                    {% if not themeSettings.commerceEnabled %}<div class="price-msrp">Suggested Retail Price</div>{% endif %}
                                 </div>
                                 <div id="BVRRInlineRating-F30149D" class="pdp5 bvr-inline-rating" data-mz-product-code="F30149D" data-mz-product-url="/skin-active-repair-matrix-support-wrinkle-repair-spf-30/p/F30149D"></div>
                             </div>
