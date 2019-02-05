@@ -28,4 +28,3 @@
      </ul>
    </li>
   </ul>
-<button class="dz-backtodashboard mz-back-to-dash" data-mz-action="cancelViewOMXOrder">{{ labels.accountDashboardBack }}</button>  
