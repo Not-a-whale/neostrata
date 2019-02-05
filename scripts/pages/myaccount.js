@@ -966,8 +966,6 @@ function getQueryVariable(variable)
             returnHistory = accountModel.get('returnHistory'),
             omxOrderHistoryModel = accountModel.get('omxOrderHistory');
             //$parentEl = $('.mz-myaccount .mz-l-container');
-
-            console.log('accountModel ', accountModel); 
         var accountViews = window.accountViews = {
             /*
             parent: new ParentView({

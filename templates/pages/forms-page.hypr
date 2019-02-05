@@ -1,0 +1,12 @@
+﻿{% extends "page" %}
+{% block title-tag-content %}{% firstof pageContext.metaTitle model.name %} - {% parent %}{% endblock title-tag-content %}
+
+{% block body-tag-classes %} mz-formspagegru {% endblock body-tag-classes %}
+
+{% block body-content %}
+    {% dropzone "forms" scope="page" %}
+    {% dropzone "forms2" scope="page" %}
+{% endblock body-content %}
+
+{% block body-below-content %}
+{% endblock body-below-content %}

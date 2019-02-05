@@ -1,7 +1,11 @@
 <div class="col-xs-12 mz-row-orderstatus-item">
   <div class="mz-orderstatus-item">
     <div class="mz-orderstatus-item-image col-xs-2 col-sm-2">
-      [{{ labels.noImages }}]
+      {% if item.image %}
+        <img class="media-object" src="https:{{item.image}}?maxWidth=105&as_parameters&_mzcb=undefined" />   
+			{% else %}
+				[{{ labels.noImages }}]
+      {% endif %}
     </div>
     <div class="mz-orderstatus-item-title col-xs-4 col-sm-4" >{{ item.ProductName|safe }}</div>
     <div class="col-xs-2 col-sm-2 mz-orderstatus-item-qty">  
@@ -28,10 +32,11 @@
 
 	<div class="mz-orderstatus-actions col-xs-12">
         <div class="col-xs-12 add-to-cart-container text-left">
-          <a class="mz-button primary-btn mz-orderstatus-action add" href="javascript:;" data-mz-action="addItemToCart" data-mz-item-id="{{item.WarehouseReference|first}}">
-    
-              {{labels.orderStatusbuyAgain}}
-          </a>
+          {% if item.WarehouseReference|first != "MLCOUPON" %}
+            <a class="mz-button primary-btn mz-orderstatus-action add" href="{{item.url}}" > 
+                {{labels.orderStatusbuyAgain}}
+            </a>
+          {% endif %}
         </div>
     </div>
 </div>
