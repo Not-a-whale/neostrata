@@ -78,7 +78,11 @@
     color: #4e5458 !important;
 }
 .redesigned-theme-2018 form.wufoo span.req {
-    display: none !important;
+    position: static !important;
+    color: #4e5458 !important;
+    font-weight: 500 !important;
+    font-size: 1.5rem !important;
+    line-height: 1.25em !important;
 }
 .redesigned-theme-2018 .wufoo ul li label,
 .redesigned-theme-2018 .wufoo ul li label.desc {
