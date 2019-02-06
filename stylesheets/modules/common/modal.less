@@ -71,6 +71,9 @@
 .modal-backdrop.in {
   opacity: 0.5;
   filter: alpha(opacity=50);
+  @media (max-width: 768px) {
+    z-index: -1;
+  }
 }
 .modal-header {
   padding: 15px;

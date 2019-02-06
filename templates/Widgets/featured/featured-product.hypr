@@ -78,7 +78,7 @@
       class="mz-productlisting mz-productlist-tiled featuredBlock row defend"
       data-mz-product="{{prod.productCode}}"
     >
-    <div class="col-xs-12 text-left"><h4>FEATURED PRODUCT</h4></div>
+    <div class="col-xs-12 text-left"><h5>FEATURED PRODUCT</h5></div>
       <div class="mz-productlisting-image col-xs-5">
             {% if prod.mainImage.imageUrl %}
               <a href="{% make_url "product" prod %}">
