@@ -1087,58 +1087,59 @@ function getQueryVariable(variable)
             accountViews.paymentMethods.cancelViewCard();
             accountViews.wishList.cancelEditWishlist();
             accountViews.omxOrderHistory.cancelViewOMXOrder();
-            accountViews.wishList.startEditWishlist(e);});
-
-            var urlParams = getQueryVariable("sec");
-            if(urlParams.length){
-                switch(urlParams) {
-                    case "accountsettings":
-                        accountViews.settings.cancelEdit();
-                        accountViews.addressBook.cancelViewContact();
-                        accountViews.paymentMethods.cancelViewCard();
-                        accountViews.wishList.cancelEditWishlist();
-                        accountViews.omxOrderHistory.cancelViewOMXOrder();
-                        accountViews.settings.startEdit(null);
-                        break;
-                    case "wishlist":
-                        accountViews.settings.cancelEdit();
-                        accountViews.addressBook.cancelViewContact();
-                        accountViews.paymentMethods.cancelViewCard();
-                        accountViews.wishList.cancelEditWishlist();
-                        accountViews.omxOrderHistory.cancelViewOMXOrder();
-                        accountViews.wishList.startEditWishlist(null);
-                        break;
-                    case "orderhistory":
-                        accountViews.settings.cancelEdit();
-                        accountViews.addressBook.cancelViewContact();
-                        accountViews.paymentMethods.cancelViewCard();
-                        accountViews.wishList.cancelEditWishlist();
-                        accountViews.omxOrderHistory.cancelViewOMXOrder();
-                        accountViews.omxOrderHistory.viewOMXOrderHistory(null);
-                        break;
-                    case "paymentmethods":
-                        accountViews.settings.cancelEdit();
-                        accountViews.addressBook.cancelViewContact();
-                        accountViews.paymentMethods.cancelViewCard();
-                        accountViews.wishList.cancelEditWishlist();
-                        accountViews.omxOrderHistory.cancelViewOMXOrder();
-                        accountViews.paymentMethods.viewPayments(null);
-                        break;
-                    case "addressbook":
-                        accountViews.settings.cancelEdit();
-                        accountViews.addressBook.cancelViewContact();
-                        accountViews.paymentMethods.cancelViewCard();
-                        accountViews.wishList.cancelEditWishlist();
-                        accountViews.omxOrderHistory.cancelViewOMXOrder();
-                        accountViews.addressBook.viewAddressBook(null);
-                        break;
-                    default:
-                  } 
-            }
+            accountViews.wishList.startEditWishlist(e);
+        });
 
         // TODO: upgrade server-side models enough that there's no delta between server output and this render,
         // thus making an up-front render unnecessary.
         _.invoke(window.accountViews, 'render');
+
+        var urlParams = getQueryVariable("sec");
+        if(urlParams.length){
+            switch(urlParams) {
+                case "accountsettings":
+                    accountViews.settings.cancelEdit();
+                    accountViews.addressBook.cancelViewContact();
+                    accountViews.paymentMethods.cancelViewCard();
+                    accountViews.wishList.cancelEditWishlist();
+                    accountViews.omxOrderHistory.cancelViewOMXOrder();
+                    accountViews.settings.startEdit(null);
+                    break;
+                case "wishlist":
+                    accountViews.settings.cancelEdit();
+                    accountViews.addressBook.cancelViewContact();
+                    accountViews.paymentMethods.cancelViewCard();
+                    accountViews.wishList.cancelEditWishlist();
+                    accountViews.omxOrderHistory.cancelViewOMXOrder();
+                    accountViews.wishList.startEditWishlist(null);
+                    break;
+                case "orderhistory":
+                    accountViews.settings.cancelEdit();
+                    accountViews.addressBook.cancelViewContact();
+                    accountViews.paymentMethods.cancelViewCard();
+                    accountViews.wishList.cancelEditWishlist();
+                    accountViews.omxOrderHistory.cancelViewOMXOrder();
+                    accountViews.omxOrderHistory.viewOMXOrderHistory(null);
+                    break;
+                case "paymentmethods":
+                    accountViews.settings.cancelEdit();
+                    accountViews.addressBook.cancelViewContact();
+                    accountViews.paymentMethods.cancelViewCard();
+                    accountViews.wishList.cancelEditWishlist();
+                    accountViews.omxOrderHistory.cancelViewOMXOrder();
+                    accountViews.paymentMethods.viewPayments(null);
+                    break;
+                case "addressbook":
+                    accountViews.settings.cancelEdit();
+                    accountViews.addressBook.cancelViewContact();
+                    accountViews.paymentMethods.cancelViewCard();
+                    accountViews.wishList.cancelEditWishlist();
+                    accountViews.omxOrderHistory.cancelViewOMXOrder();
+                    accountViews.addressBook.viewAddressBook(null);
+                    break;
+                default:
+              } 
+        }
 
     });
 });
