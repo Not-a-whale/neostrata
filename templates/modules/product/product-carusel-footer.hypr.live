@@ -13,8 +13,13 @@
 <div class="mz-pagesubtitle text-left" >
     <span>{{ prod.content.productShortDescription|safe }}</span>
 </div>
-<div class="mz-productlisting-title mz-productlisting-price text-right">
-    {% include "modules/product/price-stack" with model=prod %}
+<div class="mz-productlisting-title mz-productlisting-price">
+    <div class="text-left col-xs-6">
+        <div id="BVRRInlineRating-{{prod.productCode}}" class="pdp5 bvr-inline-rating" data-mz-product-code="{{ prod.productCode }}" data-bv-product-code="{{apicontext.headers.x-vol-locale}}-{{ prod.productCode }}" data-mz-product-url="{{ prod.url }}"></div>
+    </div>
+    <div class="text-right col-xs-6">
+        {% include "modules/product/price-stack" with model=prod %}
+    </div>
 </div>
 <span class="mz-favorites mz-slider-favorites" data-mz-product-code="{{ prod.productCode }}" data-mz-action="directoryAddToWishlist">
     <span class="heart-outline"></span>

@@ -502,6 +502,8 @@
     "newsletterBirthday" : "Birthday (must be 13 years of age or older)",
     "newsletterThanksHeader" : "Thanks for signing up!",
     "newsletterThanksText" : "You can unsubscribe at any time using the Unsubscribe link at the bottom of every email.",        
+    "newsletterSelectMonth": "Select Month",
+    "newsletterSelectYear": "Select Year",    
     "skinType" : "Skin Type",
     "normalSkin" : "Normal Skin",
     "drySkin" : "Dry Skin",

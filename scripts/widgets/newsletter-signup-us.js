@@ -1,31 +1,21 @@
-require([
-  'modules/jquery-mozu',
-  'underscore',
-  'hyprlive'
-], function(
-  $,
-  _,
-  Hypr
-) {
-  var config = {
-    attributes: true,
-    childList: true,
-    characterData: true
-  };
+require(['modules/jquery-mozu', 'underscore', 'hyprlive'], function($,  _,  Hypr) {
+    var config = {attributes: true,
+                childList: true,
+                characterData: true};
 
-  var observer = new MutationObserver( function( mutations ) {
-    if ( $( "#newsletter-form" ).has( $('.ctct-form-element') ).length ) {
-      initOnce();
-    }
+    var observer = new MutationObserver( function( mutations ) {
+        if ( $( "#newsletter-form" ).has( $('.ctct-form-element') ).length ) {
+          initOnce();
+        }
 
-    var successMessage = '#success_message_'+getFormId();
-    if($(successMessage).is( ':visible' ) ) {
-      $('.required-fields').hide();
-      $('#newsletter-disclaimer').hide();
-      $('.newsletter-confirmation').hide();
-      observer.disconnect();
-    }
-  });
+        var successMessage = '#success_message_'+getFormId();
+        if($(successMessage).is( ':visible' ) ) {
+          $('.required-fields').hide();
+          $('#newsletter-disclaimer').hide();
+          $('.newsletter-confirmation').hide();
+          observer.disconnect();
+        }
+    });
 
   observer.observe( document.body, config );
 
@@ -40,60 +30,42 @@ require([
 
       // Reorder fields.
       $('#email_address_field_'+getFormId()).insertAfter($('#last_name_field_'+getFormId()));
-      $('#custom_field_string_user_type_field_'+getFormId()).insertAfter($('#email_address_field'+getFormId()));
-
-      // Customize user-type field.
-      $( '#custom_field_string_user_type_'+getFormId()).prop( 'type', 'hidden' );
-      $( '#custom_field_string_user_type_field_'+getFormId()).append( $( '#template-newsletter-usertype').html() );
-
-      // Customize user-type label
-      $( '#custom_field_string_user_type_label_'+getFormId()).html( Hypr.getLabel('userType') );
 
       // Customize brith-date field.
-      $( '#custom_field_date_b-day_label_'+getFormId()).html( Hypr.getLabel('newsletterBirthday')+ ' *' );
-
-      $('#custom_field_date_b-day_month_'+getFormId()).addClass( 'input_age' );
-      $('#custom_field_date_b-day_day_'+getFormId()).addClass( 'input_age' );
-      $('#custom_field_date_b-day_year_'+getFormId()).addClass( 'input_age' );
+      $('#custom_field_string_custom_field_2_'+getFormId() ).prop( 'type', 'hidden' );
+      $('#custom_field_string_custom_field_2_label_'+getFormId()).html( Hypr.getLabel('newsletterBirthday')+ ' *' );
+      $('#custom_field_string_custom_field_2_field_'+getFormId() ).append( $( '#template-newsletter-dob' ).html() );
+      var currentYear = (new Date()).getFullYear();
+      var fromYear = currentYear-101;
+      for (fromYear; fromYear<currentYear; fromYear++){
+        $('<option/>').val(fromYear).html(fromYear).appendTo('#input_dob_year');
+      }
 
       // Customize skin-type field.
-      $( '#custom_field_string_skin_type_label_'+getFormId() ).html( Hypr.getLabel( 'skinType' ) + ' *' );
-      $( '#custom_field_string_skin_type_'+getFormId() ).prop( 'type', 'hidden' );
-
-      $( '#custom_field_string_skin_type_field_'+getFormId() ).append( $( '#template-newsletter-skintype' ).html() );
+      $( '#custom_field_string_custom_field_1_label_'+getFormId() ).html( Hypr.getLabel( 'skinType' ) + ' *' );
+      $( '#custom_field_string_custom_field_1_'+getFormId() ).prop( 'type', 'hidden' );
+      $( '#custom_field_string_custom_field_1_field_'+getFormId() ).append( $( '#template-newsletter-skintype' ).html() );
 
       // Setup consumer-dependent fields (group)
-      $( '#custom_field_string_user_type_field_'+getFormId() ).after( $( '#template-newsletter-consumer-group' ).html() );
-      $( '#consumer-field' )
-        .append(
-          $( '#custom_field_date_b-day_field_'+getFormId() ),
-          $( '#custom_field_string_skin_type_field_'+getFormId() )
+      $( '#consumer-field' ).append(
+                                $( '#custom_field_string_custom_field_2_field_'+getFormId() ),
+                                $( '#custom_field_string_custom_field_1_field_'+getFormId() )
         );
 
       // Insert disclaimer.
       $( '#newsletter-form' ).before( $( '#template-newsletter-disclaimer' ).html() );
 
-      // Handle user type changes.
-      $( '.input_usertype' ).change( function() {
-          $( '.input_usertype' ).removeClass( 'is-error' ).prop( 'checked', false );
-
-          $( this ).prop( 'checked', true );
-
-          var value = $(this).prop('value');
-          $( '#custom_field_string_user_type_'+getFormId() ).prop( 'value', value );
-
-          if(value == 'Advisor' || value == 'Conseiller') {
-              $( '#consumer-field' ).hide( 'slow' );
-          }else if(value == 'Consumer' || value == 'Consommateur'){
-              $( '#consumer-field' ).show( 'slow' );
-          }
-
-          //$('.ctct-form-button').prop('disabled',true);
-      });
 
       // Handle skin-type changes.
       $( '#input_skintype' ).change( function() {
-          $( '#custom_field_string_skin_type_'+getFormId() ).prop( 'value', $( this ).prop( 'value' ) );
+          $( '#custom_field_string_custom_field_1_'+getFormId() ).prop( 'value', $( this ).prop( 'value' ) );
+      });
+      
+      $( '#input_dob_month' ).change( function() {
+          $( '#custom_field_string_custom_field_2_'+getFormId() ).prop( 'value', $( this ).prop( 'value' ) +" "+ $( '#input_dob_year' ).prop( 'value' ) );
+      });
+      $( '#input_dob_year' ).change( function() {
+          $( '#custom_field_string_custom_field_2_'+getFormId() ).prop( 'value', $( '#input_dob_month' ).prop( 'value' ) +" "+ $( this ).prop( 'value' ) );
       });
 
       $( '#input_newsletter_confirmation' ).change( function() {
@@ -136,23 +108,15 @@ require([
           $('html, body').animate({scrollTop: $( '#input_newsletter_confirmation' ).offset().top}, 1500);
         }
 
-        // User Type
-        $( '.input_usertype' ).removeClass( 'is-error' );
-        if ( $( '#custom_field_string_user_type_'+getFormId() ).val() === '' ) {
-          $( '.input_usertype' ).addClass( 'is-error' );
-          valid = false;
-        }
-
         // Date
         $( '.input_age' ).removeClass( 'is-error' );
-        if ( $( '#custom_field_string_user_type_'+getFormId() ).val() === 'Consumer' && !checkDate() ) {
-          $( '.input_age' ).addClass( 'is-error' );
+        if (!checkDate() ) {
           valid = false;
         }
 
         // Skin Type
-        $( '.input_skintype' ).removeClass( 'is-error' );
-        if ( $( '#custom_field_string_user_type_'+getFormId() ).val() === 'Consumer' && $( '#custom_field_string_skin_type_'+getFormId() ).val() === '' ) {
+        $('.input_skintype' ).removeClass( 'is-error' );
+        if($( '#custom_field_string_custom_field_1_'+getFormId() ).val() === '' ) {
           $( '.input_skintype' ).addClass( 'is-error' );
           valid = false;
         }
@@ -178,15 +142,22 @@ require([
   }
 
   function checkDate() {
-    var month = $( '#custom_field_date_b-day_month_0' ).val();
-    if ( month === '' ) return false;
-
+      
+    var month = $( '#input_dob_month' ).prop( 'value' );
+    if ( month === '' ){
+        $( '#input_dob_month' ).addClass( 'is-error' );
+        return false;
+    }
+/*
     var day = $( '#custom_field_date_b-day_day_0' ).val();
     if ( day === '' ) return false;
-
-    var year = $( '#custom_field_date_b-day_year_0' ).val();
-    if ( year === '' ) return false;
-
+*/
+    var year = $( '#input_dob_year' ).prop( 'value' );
+    if ( year === '' ){
+        $( '#input_dob_year' ).addClass( 'is-error' );
+        return false;
+    }
+/*
     var input = Date.parse( month + '/' + day + '/' + year );
     var today = new Date();
 
@@ -198,7 +169,7 @@ require([
     if( diff < 13 ) {
       return false;
     }
-
+*/
     return true;
   }
 

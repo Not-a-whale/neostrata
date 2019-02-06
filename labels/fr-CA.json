@@ -595,6 +595,8 @@
   "newsletterBirthday" : "[fr-CA]Birthday (must be 13 years of age or older)[fr-CA]",
   "newsletterThanksHeader" : "Merci pour votre inscription!",
   "newsletterThanksText" : "Vous pouvez vous désabonner à tout moment en utilisant le lien Se désabonner situé au bas de chaque courrier électronique.",
+  "newsletterSelectMonth": "[fr-CA]Select Month[fr-CA]",
+  "newsletterSelectYear": "[fr-CA]Select Year[fr-CA]",    
   "skinType" : "Choisir type de peau",
   "normalSkin" : "Peau normale",
   "drySkin" : "Peau sèche",
