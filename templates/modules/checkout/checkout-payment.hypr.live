@@ -28,9 +28,8 @@
     <!-- END TODO -->
     
     {% if model.billingInfo.paymentType == "CreditCard" %}
-    <!-- TODO Add Card Image  -->
     <div class="card-type-confirmation">
-        <img src="/resources/images/icons/payment/visa-confirmation.png" alt="VISA">
+        <img src="/resources/images/icons/payment/CC-icons_{{model.billingInfo.card.paymentOrCardType}}.png" alt="VISA">
         <div class="mz-l-stack-item card-type-confirmation-cardinfo">
             <!-- TODO Remove ***** from card number  -->
             <strong>{{ labels.endingIn }} {{ model.billingInfo.card.cardNumberPartOrMask|default("****************") }}</strong>
@@ -38,7 +37,6 @@
             <span>{{ labels.expires }}: {{ model.billingInfo.card.expireMonth }}/{{ model.billingInfo.card.expireYear }}</span>
         </div>
     </div>
-    <!-- ENDTODO -->
     {% endif %}
     
     {% if model.billingInfo.paymentType == "StoreCredit" or model.billingInfo.paymentType == "GiftCard" or  model.billingInfo.paymentType|lower == "paypalexpress2"%}
