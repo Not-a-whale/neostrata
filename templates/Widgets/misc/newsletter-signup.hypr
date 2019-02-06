@@ -37,6 +37,27 @@
   </select>
 </script>
 
+<script type="text/template" id="template-newsletter-dob">
+    <select name="input_dob_month" id="input_dob_month" class="input_dob_month input_age" >
+        <option value="">{{ labels.newsletterSelectMonth }}</option>
+        <option value="January">January</option>
+        <option value="February">February</option>
+        <option value="March">March</option>
+        <option value="April">April</option>
+        <option value="May">May</option>
+        <option value="June">June</option>
+        <option value="July">July</option>
+        <option value="August">August</option>
+        <option value="September">September</option>
+        <option value="October">October</option>
+        <option value="November">November</option>
+        <option value="December">December</option>
+    </select>
+    <select name="input_dob_year" id="input_dob_year" class="input_dob_year input_age" >
+        <option value="">{{ labels.newsletterSelectYear }}</option>
+    </select>
+</script>
+
 <script type="text/template" id="template-newsletter-consumer-group">
   <div id="consumer-field" class="consumer-field"></div>
 </script>
