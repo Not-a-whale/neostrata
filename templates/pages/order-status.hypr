@@ -106,4 +106,5 @@
             </div>
         <!-- </div>   -->
     </div>
+    {% require_script "pages/order-status" %}
 {% endblock body-content %}

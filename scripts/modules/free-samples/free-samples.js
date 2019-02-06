@@ -101,9 +101,9 @@ define([
         $(document).ready(function() {
           var cart = CartModels.Cart.fromCurrent();
           var freeSamplesCollection = new FreeSamplesCollection();
-          console.log('Cart is', cart);
+          //console.log('Cart is', cart);
           var cartTotal = cart.attributes.subtotal;
-          console.log('Subtotal is' +  cartTotal);
+          //console.log('Subtotal is' +  cartTotal);
 
 
           api.get('products', "categoryId req " + categoryId).then( function( categoryResponse ) {

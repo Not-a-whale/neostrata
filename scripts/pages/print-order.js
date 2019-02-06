@@ -6,7 +6,7 @@ require(["modules/jquery-mozu", "hyprlive", "modules/backbone-mozu", "modules/ap
         },
         initialize : function(){
             var self = this;
-            console.log("HERE");
+            //console.log("HERE");
             var custid = require.mozuData('user');
             var ordid = location.hash.substring(1);
             var categorydetailsurl = '/api/commerce/orders/' + ordid;
@@ -34,6 +34,6 @@ require(["modules/jquery-mozu", "hyprlive", "modules/backbone-mozu", "modules/ap
                 el: $('#print'),
                 model: printModel
             });
-            printOrderView.render(); 
+            printOrderView.render();
     });
 });

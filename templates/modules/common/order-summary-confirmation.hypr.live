@@ -81,8 +81,10 @@
        {% endif %}
           <div class="order-summary-links">
             <div class="mz-checkout-total-row">
-              <a href="#">Track & Manage Order</a>
-              <a href="#">Print Receipt</a>
+                {% with "orderNumber={0}&zip={1}" as urlText %}
+                  <a href="/user/order-status?{{ urlText|string_format(model.orderNumber, model.billingInfo.billingContact.address.postalOrZipCode)|urlencode}}">Track & Manage Order</a>
+                {% endwith %}
+              <a href="#" id="printReceipt">Print Receipt</a>
             </div>
           </div>
         </div>
