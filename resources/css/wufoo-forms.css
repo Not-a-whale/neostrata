@@ -78,31 +78,39 @@
     color: #4e5458 !important;
 }
 .redesigned-theme-2018 form.wufoo span.req {
-    display: none !important;
+    position: static !important;
+    color: #4e5458 !important;
+    font-weight: 500 !important;
+    font-size: 1.5rem !important;
+    line-height: 1.25em !important;
 }
 .redesigned-theme-2018 .wufoo ul li label,
 .redesigned-theme-2018 .wufoo ul li label.desc {
     color: #4e5458 !important;
-    margin: 0 0 3.5625rem !important;
+    margin: 0 0 1rem !important;
     font-weight: 500 !important;
     font-size: 1.5rem !important;
     line-height: 1.25em !important;
 }
 
-.redesigned-theme-2018 .wufoo ul li#fo1li1 {
-    display: flex;
+.redesigned-theme-2018 .wufoo ul li#fo1li1,
+.redesigned-theme-2018 .wufoo ul li#fo2li1 {
+    display: flex !important;
     justify-content: space-between;
 }
 
-.redesigned-theme-2018 .wufoo ul li#fo1li1 label {
+.redesigned-theme-2018 .wufoo ul li#fo1li1 label,
+.redesigned-theme-2018 .wufoo ul li#fo2li1 label {
     display: none;
 }
 
-.redesigned-theme-2018 .wufoo ul li#fo1li1:after {
+.redesigned-theme-2018 .wufoo ul li#fo1li1:after,
+.redesigned-theme-2018 .wufoo ul li#fo2li1:after {
     display: none;
 }
 
-.redesigned-theme-2018 .wufoo ul li#fo1li1 span {
+.redesigned-theme-2018 .wufoo ul li#fo1li1 span,
+.redesigned-theme-2018 .wufoo ul li#fo2li1 span {
     width: 49%;
     margin: 0 !important;
     font: none !important;
@@ -291,3 +299,41 @@
 .redesigned-theme-2018 .wufoo .wufoo-dropdown-menu li:hover {
 	background-color: #fff !important;
 }
+
+/* Affilate Start */
+.redesigned-theme-2018 .wufoo ul li.phone {
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.redesigned-theme-2018 .wufoo ul li.phone:after {
+    display: none;
+}
+.redesigned-theme-2018 .wufoo ul li.phone > label {
+    width: 100%;
+}
+.redesigned-theme-2018 .wufoo ul li.phone > span {
+    width: 30%;
+    margin: 0;
+}
+.redesigned-theme-2018 .wufoo ul li.phone > span.symbol {
+    width: auto;
+    padding-top: 0;
+}
+.nameFieldAffiliate {
+    flex-wrap: wrap;
+}
+.nameFieldAffiliate > label {
+    width: 100%;
+    display: block !important;
+}
+
+.redesigned-theme-2018 .wufoo #header.info h2 .affiliateTitle {
+    margin-top: -18.8rem !important;
+    display: block;
+    visibility: hidden;
+    text-indent: -9999rem;
+}
+
+/* Affilate END */
