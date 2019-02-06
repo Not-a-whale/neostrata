@@ -53,7 +53,7 @@ require(['modules/jquery-mozu', 'underscore', 'hyprlive'], function($,  _,  Hypr
         );
 
       // Insert disclaimer.
-      $( '#newsletter-form' ).before( $( '#template-newsletter-disclaimer' ).html() );
+      $( '#newsletter-form' ).after( $( '#template-newsletter-disclaimer' ).html() );
 
 
       // Handle skin-type changes.
@@ -64,6 +64,9 @@ require(['modules/jquery-mozu', 'underscore', 'hyprlive'], function($,  _,  Hypr
       $( '#input_dob_month' ).change( function() {
           $( '#custom_field_string_custom_field_2_'+getFormId() ).prop( 'value', $( this ).prop( 'value' ) +" "+ $( '#input_dob_year' ).prop( 'value' ) );
       });
+      $( '#input_dob_day' ).change( function() {
+        $( '#custom_field_string_custom_field_2_'+getFormId() ).prop( 'value', $( this ).prop( 'value' ) +" "+ $( '#input_dob_year' ).prop( 'value' ) );
+    });
       $( '#input_dob_year' ).change( function() {
           $( '#custom_field_string_custom_field_2_'+getFormId() ).prop( 'value', $( '#input_dob_month' ).prop( 'value' ) +" "+ $( this ).prop( 'value' ) );
       });
@@ -155,6 +158,11 @@ require(['modules/jquery-mozu', 'underscore', 'hyprlive'], function($,  _,  Hypr
     var year = $( '#input_dob_year' ).prop( 'value' );
     if ( year === '' ){
         $( '#input_dob_year' ).addClass( 'is-error' );
+        return false;
+    }
+    var day = $( '#iinput_dob_day' ).prop( 'value' );
+    if ( day === '' ){
+        $( '#input_dob_day' ).addClass( 'is-error' );
         return false;
     }
 /*
