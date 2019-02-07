@@ -701,5 +701,7 @@
   "ordersCount": "Orders",
   "checkoutQuizTitle": "You're unique. So your skin care regimen should be too.",
   "checkoutQuizText": "Take our online skin consultation quiz to recieve cutomized recommendations for your skin care needs.",
-  "checkoutQuizTakeBtn": "Take Quiz"  
+  "checkoutQuizTakeBtn": "Take Quiz",
+  "makeDefault": "Make Default",
+  "defaultPayment": "Default Payment"  
 }

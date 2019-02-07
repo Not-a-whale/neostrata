@@ -1302,6 +1302,7 @@
                         display: block;
                         margin-left: 0;
                         margin-right: 0;
+                        margin-bottom: 2rem;
                         &.expiry-month {
                             width: 50% !important;
                             margin-left: 0 !important;
@@ -1323,12 +1324,7 @@
                             padding: 0;
                         }
                     }
-                    .mz-creditcard-actions {
-                        margin: 0 auto;
-                        text-align: center;
-                    }
                     .mz-creditcard-cancel {
-                        float: right;
                         border: none;
                         text-transform: none !important;
                     }
@@ -1363,10 +1359,93 @@
                 }
 
                 &.mz-accountpaymentmethods {
+                    &.no-editing {
+                        .mz-accountpaymentmethods-list {
+                            display: flex;
+                            flex-direction: column;
+                            max-height: 8.5rem;
+                            overflow: hidden;
+                            margin-top: -2.375rem;
+                            .mz-paymentmethod.mz-paymentmethod-myaccount {
+                                width: 100%;
+                                border-right: none;
+                                display: none;
+                                min-height: auto;
+                                order: 2;
+                                &:first-of-type {
+                                    display: flex;
+                                }
+                                &.dl-isPrimary {
+                                    display: flex;
+                                    order: 1;
+                                }
+                            }
+                        }
+                        .dl-link-newaddress, .dz-backtodashboard, .mz-paymentmethod-actions {
+                            display: none;
+                        }
+
+                    }
                     &.is-editing {
+                        &.is-form .mz-accountpaymentmethods-list .mz-paymentmethod-myaccount {
+                            display: none;
+                        }
                         .mz-accountpaymentmethods-list {
                             width: 100%;
                             float: left;
+                            margin: 3rem 0;
+
+                            label {
+                                margin-top: 1rem;
+                            }
+                            .mz-creditcard-actions .mz-button {
+                                background: none;
+                                .my-account-button();
+                                text-align: center;
+                                margin: 3rem auto;
+                                left: 50%;
+                                transform: translate(-50%, 0);
+                                width: 100%;
+                                max-width: 420px;
+                                position: relative;
+                                font-size: 1.8rem;
+                            }
+                            
+
+                            
+                            .mz-paymentmethod-myaccount {
+                                width: 100%;
+                                display: inline-block;
+                                float: left;
+                                margin: 0;
+                                border: none;
+                                padding: 0 2rem 2rem 2rem;
+                                min-height: auto;
+                            }
+                            .mz-paymentmethod-actions {
+                                float: none;
+                                text-align: right;
+                                margin-bottom: 0.5rem;
+                            }
+                            .mz-paymentmethod-methoddetails {
+                                margin-top: 0;
+                                width: 100%;
+                                border-top: 2px solid @gray-lighter;
+                                padding-top: 0.5rem;
+                            }
+
+                        }
+                        .dl-link-newpayments {
+                            background: none;
+                            .my-account-button();
+                            text-align: center;
+                            margin: 3rem auto;
+                            left: 50%;
+                            transform: translate(-50%,0);
+                            width: 100%;
+                            max-width: 420px;
+                            position: relative;
+                            font-size: 1.8rem;
                         }
                         .dl-link-editpayment {
                             display: none;
@@ -1374,18 +1453,29 @@
                         .mz-creditcard-actions .mz-button {
                             background: none;
                         }
-                        .dl-link-newpayments {
-                            .my-account-button();
-                            text-align: center;
-                            margin: 3rem auto;
-                            left: 50%;
-                            transform: translate(-50%, 0);
-                            width: 100%;
-                            max-width: 420px;
-                            position: relative;
-                            font-size: 1.8rem;
+                    }
+                    .mz-creditcard-cancel {
+                        border: none;
+                        text-transform: none !important;
+                    }
+                    .mz-accountpaymentmethods-list {
+                        .mz-paymentmethod-methoddetails {
+                            .row {
+                                margin-top: 1rem;
+                            }
+                            .mz-paymentmethod-methodtype img {
+                                max-width: 100%;
+                            }
+                            .make-primary {
+                                color: @colorLighterGray;
+                            }
+                            
+                            .mz-paymentmethod-cardnumber {
+                                font-weight: 600;
+                            }
                         }
                     }
+                    
                 }
 
                 &.mz-accountwishlist  {
