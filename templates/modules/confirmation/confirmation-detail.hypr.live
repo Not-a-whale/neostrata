@@ -344,3 +344,6 @@
 <style>
     {% inline_style "print-order.less" %}
 </style>
+<div class="modal fade" id="printModalWindow" tabindex="-1" role="dialog">
+{% include "modules/confirmation/modal" %}
+</div>
