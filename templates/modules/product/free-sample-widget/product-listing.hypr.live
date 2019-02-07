@@ -31,9 +31,6 @@
 
         </div>
     </div>
-    <div class="bottom-details">
-        <div id="BVRRInlineRating-{{model.productCode}}" class="pdp5 bvr-inline-rating" data-mz-product-code="{{ model.productCode }}" data-bv-product-code="{{apicontext.headers.x-vol-locale}}-{{ model.productCode }}" data-mz-product-url="{{ model.url }}"></div>
-    </div>
     <div class="mz-productdetail-conversion-buttons col-xs-12">
       <div class="add-to-sample-container">
         {% if inCart %}
