@@ -84,7 +84,7 @@
                 {% with "orderNumber={0}&zip={1}" as urlText %}
                   <a href="/user/order-status?{{ urlText|string_format(model.orderNumber, model.billingInfo.billingContact.address.postalOrZipCode)|urlencode}}">Track & Manage Order</a>
                 {% endwith %}
-              <a data-toggle="modal" href="#printModalWindow" id="printReceipt">Print Receipt</a>
+              <!--<a data-toggle="modal" href="#printModalWindow" id="printReceipt">Print Receipt</a>-->
             </div>
           </div>
         </div>
