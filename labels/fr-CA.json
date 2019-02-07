@@ -704,5 +704,6 @@
   "checkoutQuizText": "[fr-CA]Take our online skin consultation quiz to recieve cutomized recommendations for your skin care needs.[fr-CA]",
   "checkoutQuizTakeBtn": "[fr-CA]Take Quiz[fr-CA]",
   "makeDefault": "[fr-CA]Make Default[fr-CA]",
-  "defaultPayment": "Default Payment"  
+  "defaultPayment": "[fr-CA]Default Payment[fr-CA]",
+  "ordersViewSubTitle": "[fr-CA]View and manage your orders.[fr-CA]"  
 }
