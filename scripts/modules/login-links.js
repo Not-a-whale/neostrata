@@ -501,6 +501,10 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
             var email = $(this).parents('#newshopper').find('[data-mz-signup-emailaddress]').val().trim();
             var firstName = $(this).parents('#newshopper').find('[data-mz-signup-firstname]').val().trim();
             var lastName = $(this).parents('#newshopper').find('[data-mz-signup-lastname]').val().trim();
+            var skinType = $(this).parents('#newshopper').find('[data-mz-signup-skintype]').val().trim();
+            var birthMonth = $(this).parents('#newshopper').find('[data-mz-signup-birthmonth]').val().trim();
+            var birthDay = $(this).parents('#newshopper').find('[data-mz-signup-birthday]').val().trim();
+            var birthYear = $(this).parents('#newshopper').find('[data-mz-signup-birthyear]').val().trim();
             //var recoveryquestion = $(this).parents('#newshopper').find('[data-mz-signup-recoveryquestion]').val();
             //var recoveryanswer = $(this).parents('#newshopper').find('[data-mz-signup-recoveryanswer]').val().trim();
             var payload = {
@@ -509,6 +513,10 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
                     userName: email,
                     firstName: firstName,
                     lastName: lastName,
+                    skinType: skinType,
+                    birthMonth: birthMonth,
+                    birthDay: birthDay,
+                    birthYear: birthYear,
                     acceptsMarketing: accMarketing,
                     contacts: [{
                         email: email
@@ -561,8 +569,11 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
             }
             return true;
         };
-        this.validateSignup = function (el, payload) {
+        this.validateSignup = function (el, payload) {                  
             if (!payload.account.emailAddress) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('emailMissing')), false;
+            if (!payload.account.firstName) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('firstNameMissing')), false;
+            if (!payload.account.lastName) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('lastNameMissing')), false;            
+            if (!payload.account.birthMonth || !payload.account.birthDay || !payload.account.birthYear) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('birthMissing')), false;
             if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(payload.account.emailAddress))) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('emailwrongpattern')), false;
             if (payload.password !== $(el).parents('#newshopper').find('[data-mz-signup-confirmpassword]').val()) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('passwordsDoNotMatch')), false;
             //if (payload.account.attributes.recoveryquestion === "0") return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('chooseRecoveryQuestion')), false;
@@ -573,6 +584,12 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
     };
     $(document).ready(function() {
         $docBody = $(document.body);
+
+        var currentYear = (new Date()).getFullYear();
+        var fromYear = currentYear-101;
+        for (fromYear; fromYear<currentYear; fromYear++){
+            $('<option/>').val(fromYear).html(fromYear).appendTo('#signup_input_dob_year');
+        }
 
         $('[data-mz-action="lite-registration"]').each(function() {
             var modal = new LoginRegistrationModal();
