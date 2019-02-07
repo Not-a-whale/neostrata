@@ -1,12 +1,6 @@
 ﻿{% extends "email/order_email" %}
 {% block body-content %}
     <div class="header" style="text-align:center;">
-        <picture style="position: relative;width: 100%;">
-            <!-- IMAGE FOR LARGE VIEWPORTS --> 
-            <source srcset="http://{{domainName}}/cms/files/email_order_header.png" media="(min-width: 992px)"/>
-            <!-- IMAGE FOR SMALL VIEWPORTS -->   
-            <img src="http://{{domainName}}/cms/files/email_order_header.png" style="width:100%;"/>
-        </picture>
         <h1 style="padding:15px 15px 0;font-size: 2.0rem;margin-bottom: 2px;line-height: 1.15em;font-weight:700;">{{ labels.emailThankYou }} </h1>
         <h2 style="font-size: 1.5rem;margin:0;line-height: 2.5rem;font-weight:400;">{{ labels.emailYourOrderNumber }} <strong>{{ model.orderNumber }}</strong>.</h2>
         <h3 style="font-style:italic;font-weight:400;font-size: 1rem;margin-top: 0.4em;margin-bottom: 1.5rem;">{{ labels.emailPleaseKeepNote }}</h3>
