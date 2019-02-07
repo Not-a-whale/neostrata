@@ -12,7 +12,7 @@
 
 <div class="mz-orderhistory-section-wrapper {% if not editing.order %} hidden {% endif %}">
   {% if model.length > 0 %}
-    <h5 class="mz-l-stack-sectionsubtitle">{{ labels.youHaveWishlist|string_format(model.length) }}</h5>
+    <h5 class="mz-l-stack-sectionsubtitle">{{ labels.ordersViewSubTitle }}</h5>
     <div class="mz-orderhistory-section mz-l-paginatedlist ">
         <div data-mz-omx-orderlist class="mz-l-paginatedlist-list">
           {% include "modules/my-account/omx-order-history-list" %}
@@ -25,4 +25,5 @@
   <button class="dz-backtodashboard" data-mz-action="cancelViewOMXOrder">{{ labels.accountDashboardBack }}</button>
 
 </div>
+
 

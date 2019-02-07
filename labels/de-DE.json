@@ -588,5 +588,6 @@
     "checkoutQuizTakeBtn": "Take Quiz",
     "makeDefault": "Make Default",
     "defaultPayment": "Default Payment",
-    "endingIn"             : "Ending in "
+    "endingIn"             : "Ending in ",
+    "ordersViewSubTitle": "View and manage your orders."
 }

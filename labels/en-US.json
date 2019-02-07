@@ -719,5 +719,6 @@
   "checkoutQuizText": "Take our online skin consultation quiz to recieve cutomized recommendations for your skin care needs.",
   "checkoutQuizTakeBtn": "Take Quiz",
   "makeDefault": "Make Default",
-  "defaultPayment": "Default Payment"  
+  "defaultPayment": "Default Payment",
+  "ordersViewSubTitle": "View and manage your orders." 
 }
