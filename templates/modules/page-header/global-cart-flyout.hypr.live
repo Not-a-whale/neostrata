@@ -135,9 +135,11 @@
 		  </a>
 		{% endif %}		
 	</div>
+	{% comment %}
 	<div class="row text-center" style="padding-top: 15px;">
 		<h5 class="full-recommended"><a href="#">View Full Recommended Regimen ></a></h5>
 	</div>
+	{% endcomment %}
 
 {% else %}
 	<div class="text-center">
