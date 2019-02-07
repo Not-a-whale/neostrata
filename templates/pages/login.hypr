@@ -12,7 +12,7 @@
                 <h1 class="mz-pagetitle">{{ labels.loginNoAccount }}</h1>
                  <div class="mz-l-formfieldgroup-row">
                     <div class="mz-l-formfieldgroup-cell">
-                        <button class="mz-button primary-btn mz-login-button" data-mz-action="signup">
+                        <button class="mz-button primary-btn mz-login-button btn-signup">
                             {{ labels.signUpLink }}
                         </button>
                         <div class="mz-l-formfieldgroup-cell">
