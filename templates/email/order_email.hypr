@@ -263,7 +263,7 @@
                         <td valign="middle" style="padding-bottom:1em;font-size:0.625rem;padding-top:0.4rem;margin-top:0;text-align: center;">
                             <p>{{ labels.emailFooterSentTo|string_format(user.email)|safe }}</p>
                             <p>{{ labels.emailFooterAddress|safe }}</p>
-                            <p><a href="#">{{ labels.emailFooterManagePreferences|safe }}</a> | <a href="#">{{ labels.emailFooterUnsubscribe|safe }}</a></p>
+                            <!--<p><a href="#" style="font-weight: bold">{{ labels.emailFooterManagePreferences|safe }}</a> | <a href="#" style="font-weight: bold">{{ labels.emailFooterUnsubscribe|safe }}</a></p>-->
                         </td>
                       </tr>
                       <tr>
