@@ -52,12 +52,15 @@
 }
 
 .redesigned-theme-2018 .wufoo #header.info h2 {
-	line-height: 1.36em !important;
+	/*
+    line-height: 1.36em !important;
     font-weight: 500 !important;
     font-size: 4.6rem !important;
     margin-top: 10.8rem !important;
     text-align: center !important;
     color: #4e5458 !important;
+    */
+    display: none !important;
 }
 
 .redesigned-theme-2018 .wufoo #header.info div {
