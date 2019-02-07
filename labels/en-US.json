@@ -65,6 +65,7 @@
   "status"               : "Status",
   "useThisInfo"          : "USE THIS INFO",
   "useThisShippingInfo"  : "USE THIS SHIPPING INFO",
+  "useThisShippingMethod": "USE THIS SHIPPING METHOD",
   "useThisPaymentInfo"   : "USE THIS PAYMENT INFO",
   "shippingFree"         : "FREE",
   "comments"             : "Comments",
