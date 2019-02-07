@@ -14,18 +14,29 @@
         </div>
     </div>
 {% else %}
-    <div class="mz-paymentmethod {% block module-classes %}{% endblock module-classes %}">
+    <div class="mz-paymentmethod {% block module-classes %}{% endblock module-classes %} {% if model.isDefaultPayMethod %} dl-isPrimary {% endif %}">
         <div class="mz-paymentmethod-actions">
             {% block payment-method-actions %}
             {% endblock payment-method-actions %}
         </div>
         <div class="mz-paymentmethod-methoddetails">
             {% block payment-method-details %}
-
-                <strong class="mz-paymentmethod-methodtype">{{ model.cardType }}</strong>
-                <div class="mz-paymentmethod-cardnumber">{{ model.cardNumberPart }}</div>
-                <div class="mz-paymentmethod-cardexp">{{ labels.expires }} {{ model.expireMonth }}/{{model.expireYear }}</div>
-                {% if model.isDefaultPayMethod %}<em class="is-primary">({{ labels.primary }})</em>{% endif %}
+                {% if model.isDefaultPayMethod %}
+                    <div class="is-primary">{{ labels.defaultPayment }}</div>
+                {% else %}
+                    <div class="make-primary">{{ labels.makeDefault }}</div>
+                {% endif %}
+                <div class="row">
+                    <div class="col-xs-4">
+                        <strong class="mz-paymentmethod-methodtype">
+                        <img src="/resources/images/icons/payment/CC-icons_{{model.cardType}}.png" alt="{{ model.cardType }}">
+                        </strong>
+                    </div>
+                    <div class="col-xs-8">
+                        <div class="mz-paymentmethod-cardnumber">{{ labels.endingIn }} {{ model.cardNumberPart|replace("*") }}</div>
+                        <div class="mz-paymentmethod-cardexp">{{ labels.expires }} {{ model.expireMonth }}/{{model.expireYear }}</div>
+                    </div>
+                </div>
 
             {% endblock payment-method-details %}
         </div>

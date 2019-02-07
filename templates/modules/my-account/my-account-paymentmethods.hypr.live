@@ -1,6 +1,14 @@
 ﻿<h1 class="mz-l-stack-sectiontitle">{{ labels.payments }} 
     {% if not editing.card %}<a class="dl-link-edit dl-link-editpayment" href="javascript:;" data-mz-card="new" data-mz-action="viewPayments">{{ labels.edit }}</a>{% endif %} 
 </h1>
+
+{% if not editing.card && model.cards %}
+<div class="dl-view-wrapper">
+  <div class="dl-info-message">{{ labels.defaultPayment }}</div>
+  <div class="dl-info-count">{{ model.cards.length }} {{ labels.payments }}</div>
+</div>
+{% endif %}
+
 {% if (editing.card || editing.card == "new") && editing.card != "view" %}<h5 class="mz-l-stack-sectionsubtitle">{{ labels.paymentMethodsInfo }}</h5>{% endif %}
 {% if editing.card == "view" %}<h5 class="mz-l-stack-sectionsubtitle">{{ labels.paymentMethodsInfoView }}</h5>{% endif %}
 
@@ -12,14 +20,14 @@
 
     {% for card in model.cards %}
     {% if editing.card == card.id %}
-    {% include "modules/my-account/my-account-credit-card-form" with model=model.editingCard editingContact=model.editingContact isWishlistView="true" %}
+    {% include "modules/my-account/my-account-credit-card-form" with model=model.editingCard editingContact=model.editingContact isMyAccount="true" %}
     {% else %}
     {% include "modules/my-account/my-account-paymentmethod" with model=card %}
 
     {% endif %}
     {% endfor %}
     {% if editing.card == "new" %}
-    {% include "modules/my-account/my-account-credit-card-form" with model=model.editingCard editingContact=model.editingContact isWishlistView="true" %}
+    {% include "modules/my-account/my-account-credit-card-form" with model=model.editingCard editingContact=model.editingContact isMyAccount="true" %}
     {% endif %}
 </ul>
 {% else %}

@@ -78,6 +78,7 @@
   "cardNumber"           : "[fr-CA]Card Number[fr-CA]",
   "nameOnCard"           : "[fr-CA]Name On Card[fr-CA]",
   "expires"              : "[fr-CA]Expiration[fr-CA]",
+  "expiration"           : "[fr-CA]Expiration[fr-CA]",
   "securityCode"         : "[fr-CA]CVV[fr-CA]",
   "phone"                : "[fr-CA]Phone[fr-CA]",
   "purchaseOrder"                         : "[fr-CA]Purchase Order[fr-CA]",
@@ -684,5 +685,7 @@
   "ordersCount": "Orders",
   "checkoutQuizTitle": "[fr-CA]You're unique. So your skin care regimen should be too.[fr-CA]",
   "checkoutQuizText": "[fr-CA]Take our online skin consultation quiz to recieve cutomized recommendations for your skin care needs.[fr-CA]",
-  "checkoutQuizTakeBtn": "[fr-CA]Take Quiz[fr-CA]"  
+  "checkoutQuizTakeBtn": "[fr-CA]Take Quiz[fr-CA]",
+  "makeDefault": "[fr-CA]Make Default[fr-CA]",
+  "defaultPayment": "Default Payment"  
 }

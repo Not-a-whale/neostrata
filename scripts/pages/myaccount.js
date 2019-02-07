@@ -757,6 +757,7 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             this.model.beginEditCard(id);
             this.render();
             $("input[name='credit-card-number']").focus();
+            $('.mz-l-stack-section.mz-accountpaymentmethods').removeClass('no-form').addClass('is-form');
         },
         finishEditCard: function() {
             var self = this;
@@ -770,11 +771,13 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
                 });
                 this.editing.card = "view";
             }
+            $('.mz-l-stack-section.mz-accountpaymentmethods').removeClass('is-form').addClass('no-form');
         },
         cancelEditCard: function () {
             this.editing.card = "view";
             this.model.endEditCard();
             this.render();
+            $('.mz-l-stack-section.mz-accountpaymentmethods').removeClass('is-form').addClass('no-form');
         },
         cancelViewCard: function () {
             this.editing.card = false;
