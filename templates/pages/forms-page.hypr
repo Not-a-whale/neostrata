@@ -4,6 +4,7 @@
 {% block body-tag-classes %} mz-formspagegru {% endblock body-tag-classes %}
 
 {% block body-content %}
+    {% dropzone "forms3" scope="page" %}
     {% dropzone "forms" scope="page" %}
     {% dropzone "forms2" scope="page" %}
 {% endblock body-content %}

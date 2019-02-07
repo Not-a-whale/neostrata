@@ -34,9 +34,18 @@
 
         {% if themeSettings.commerceEnabled %}
 
-            {% if pageContext.isMobile %}
             <div class="ml-header-content">
-                <div class="browser-detection-wrapper col-xs-12 {% if pageContext.isEditMode %}show{% endif %}">
+                {% if themeSettings.commerceEnabled %}
+                <div class="ml-header-links-wrapper">
+                    {% block utility-nav %}
+                        {% include "modules/page-header/utility-nav" %}
+                    {% endblock utility-nav %}
+                </div>
+                {% endif %}
+                <div class="ml-header-search-wrapper">
+                    <i class="search-button"></i>
+                    <span class="ml-header-search-label">{{ labels.search }}</span>
+                </div>                <div class="browser-detection-wrapper col-xs-12 {% if pageContext.isEditMode %}show{% endif %}">
                     {% dropzone "browser-detection" scope="site" %}
                 </div>
                 {% require_script "modules/browser-detect" %}
@@ -61,68 +70,17 @@
                     {% endblock lang-selector %}
                 </div>
                 {% endif %}
-                  <div class="ml-header-global-cart-wrapper" style="display:none;">
+                {% if themeSettings.commerceEnabled %}
+                 <div class="ml-header-global-cart-wrapper" style="display:none;">
                       {% block global-cart-container %}
                           {% include "modules/page-header/global-cart-container" %}
                       {% endblock global-cart-container %}
                   </div>
-                <div class="ml-header-links-wrapper">
-                    {% block utility-nav %}
-                        {% include "modules/page-header/utility-nav" %}
-                    {% endblock utility-nav %}
-                </div>
-                <div class="ml-header-search-wrapper">
-                    <i class="search-button"></i>
-                    <span class="ml-header-search-label">{{ labels.search }}</span>
-                </div>
-            </div>
-            {% else %}
-            <div class="ml-header-content dl-search-account">
-                <div class="ml-header-links-wrapper">
-                    {% block utility-nav %}
-                        {% include "modules/page-header/utility-nav" %}
-                    {% endblock utility-nav %}
-                </div>
-                <div class="ml-header-search-wrapper">
-                    <i class="search-button"></i>
-                    <span class="ml-header-search-label">{{ labels.search }}</span>
-                </div>
-            </div>
-            <div class="ml-header-content">
-                <div class="browser-detection-wrapper col-xs-12 {% if pageContext.isEditMode %}show{% endif %}">
-                    {% dropzone "browser-detection" scope="site" %}
-                </div>
-                {% require_script "modules/browser-detect" %}
-                <div class="site-link">
-                    {% if themeSettings.sitesURLs && themeSettings.sitesURLs.length > 0 %}
-                    {% block country-selector %}
-                        {% include "modules/page-header/country-selector" %}
-                    {% endblock country-selector %}
-                        <!-- <a href="{{ themeSettings.sitesURLs.en-ca }}">CA</a>
-                        <i class="flag"></i> -->
-                    {% endif %}
-                </div>
-                <div class="ml-header-logo-wrapper">
-                    {% block store-branding %}
-                        {% include "modules/page-header/store-branding" %}
-                    {% endblock store-branding %}
-                </div>
-                {% if themeSettings.showSiteSelector %}
-                <div class="ml-header-lang-wrapper">
-                    {% block lang-selector %}
-                        {% include "modules/page-header/lang-selector" %}
-                    {% endblock lang-selector %}
-                </div>
                 {% endif %}
-                  <div class="ml-header-global-cart-wrapper" style="display:none;">
-                      {% block global-cart-container %}
-                          {% include "modules/page-header/global-cart-container" %}
-                      {% endblock global-cart-container %}
-                  </div>
             </div>
-            {% endif %}
-
         {% endif %}
+
+        
 
     </div>
     {% block search-box %}
