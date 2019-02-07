@@ -54,7 +54,7 @@
     </div>
 {% if themeSettings.commerceEnabled %}
     <div class="mz-productdetail-conversion-buttons col-xs-12">
-        <div class="col-xs-2 add-to-wishlist-container">
+        <div class="add-to-wishlist-container">
             {% if siteContext.generalSettings.isWishlistCreationEnabled %}
                 {% if model.purchasableState.isPurchasable and model.options.length < 1 %}
                     <a id="wishlist-{{ model.productCode }}" class="mz-productdetail-addtowishlist wishlistHeart" data-mz-action="directoryAddToWishlist" data-mz-product-code="{{ model.productCode }}">
@@ -63,7 +63,7 @@
                 {% endif %}
             {% endif %}
         </div>
-        <div class="col-xs-10 add-to-cart-container">
+        <div class="add-to-cart-container">
         {% if model.quantityNull === 0 or model.quantity == 0%}
             {% if not user.isAnonymous %}
                 <button id="email-me-{{ model.productCode }}" class="primary-btn mz-productdetail-emailme pull-right" data-mz-action="directoryEmailMe" data-mz-product-code="{{ model.productCode }}" data-mz-location-code="{{ model.productCode }}">{{ labels.notifyWidgetButton }}</button>
