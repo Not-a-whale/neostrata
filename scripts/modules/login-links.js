@@ -99,9 +99,9 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
         },
         customRetrieveErrorLabel: function (xhr) {
             if (xhr.message === "Verification field required.") {
-                xhr.message =  Hypr.getLabel("billingRequiredMsg"); 
-            } 
-            this.retrieveErrorLabel(xhr); 
+                xhr.message =  Hypr.getLabel("billingRequiredMsg");
+            }
+            this.retrieveErrorLabel(xhr);
         },
         retrieveErrorLabel: function (xhr) {
             var message = "";
@@ -403,8 +403,8 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
                 content: function() {
                   return self.popoverEl.html();
                 }
-            }); 
-            
+            });
+
         };
     };
 
@@ -416,7 +416,7 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
             self.doLogin = _.debounce(self.doLogin, 150);
             self.doSignup = _.debounce(self.doSignup, 150);
             api.get('attributedefinition').then(function(attribute) {
-                console.log(attribute.data.items);
+                //console.log(attribute.data.items);
                 for(var i=0; i< attribute.data.items.length; i++){
                     if(attribute.data.items[i].attributeCode === "recovery-question"){
                         var recVals = attribute.data.items[i].vocabularyValues;

@@ -1938,10 +1938,10 @@ ul.tabs {
         width: 100%;
         height: 100%;
         .mz-productlisting {
-            padding-bottom: 2rem;
             .mz-productlisting-info {
                 text-align: left;
                 overflow-wrap: break-word;
+                min-height: 8em;
                 .pdp1{
                     margin-top: 1.2rem;
                 }
@@ -1978,20 +1978,13 @@ ul.tabs {
                 }
             }
         }
-        .mz-productlisting {
-            padding-bottom: 3rem;
-          }
         .bottom-details {
-            position: absolute;
             bottom: 1rem;
             right: .5rem;
             left: .5rem;
             .mz-pricestack {
                 float: right;
                 margin-right: 1.125rem;
-                .price-msrp{
-                    display: none;
-                }
             }
             .bvr-inline-rating {
                 float: left;
@@ -2004,11 +1997,7 @@ ul.tabs {
         }
 
         .mz-productdetail-conversion-buttons {
-            position: absolute;
-            right: .5rem;
-            bottom: 0;
-            left: .5rem;
-            height: 0px;
+            margin-top: .8rem;
             .add-to-cart-container {
                 padding: 0;
                 .primary-btn {
@@ -4228,10 +4217,82 @@ body.mz-product {
                 }
 
                 &.mz-accountpaymentmethods {
+                    &.no-editing {
+                        .mz-accountpaymentmethods-list {
+                            display: flex;
+                            flex-direction: column;
+                            max-height: 8.5rem;
+                            overflow: hidden;
+                            margin-top: -2.375rem;
+                            .mz-paymentmethod.mz-paymentmethod-myaccount {
+                                width: 100%;
+                                border-right: none;
+                                display: none;
+                                min-height: auto;
+                                order: 2;
+                                &:first-of-type {
+                                    display: flex;
+                                }
+                                &.dl-isPrimary {
+                                    display: flex;
+                                    order: 1;
+                                }
+                            }
+                        }
+                        .dl-link-newaddress, .dz-backtodashboard, .mz-paymentmethod-actions {
+                            display: none;
+                        }
+
+                    }
                     &.is-editing {
+                        &.is-form .mz-accountpaymentmethods-list .mz-paymentmethod-myaccount {
+                            display: none;
+                        }
                         .mz-accountpaymentmethods-list {
                             width: 100%;
                             float: left;
+                            margin: 3rem 0;
+
+                            label {
+                                margin-top: 1rem;
+                            }
+                            .mz-creditcard-actions .mz-button {
+                                margin: 0 auto;
+                                left: unset;
+                                transform: none;
+                                width: auto;
+                                font-size: 1rem;
+                            }
+                            
+
+                            
+                            .mz-paymentmethod-myaccount {
+                                width: 50%;
+                                margin: 0 0 0 -4rem;
+                                padding: 0 4rem 4rem 4rem;
+                                display: inline-block;
+                                float: left;
+                                border: none;
+                            }
+                            .mz-paymentmethod-actions {
+                                float: none;
+                                text-align: right;
+                                margin-bottom: 0.5rem;
+                            }
+                            .mz-paymentmethod-methoddetails {
+                                margin-top: 0;
+                                width: 100%;
+                                border-top: 2px solid @gray-lighter;
+                                padding-top: 0.5rem;
+                            }
+
+                        }
+                        .dl-link-newpayments {
+                            margin: 0 auto;
+                            left: unset;
+                            transform: none;
+                            width: auto;
+                            font-size: 1rem;
                         }
                         .dl-link-editpayment {
                             display: none;
@@ -4239,13 +4300,29 @@ body.mz-product {
                         .mz-creditcard-actions .mz-button {
                             background: none;
                         }
-                        .dl-link-newpayments {
-                            .my-account-button();
-                            margin: 0 auto;
-                            left: unset;
-                            transform: none;
+                    }
+                    .mz-creditcard-cancel {
+                        border: none;
+                        text-transform: none !important;
+                    }
+                    .mz-accountpaymentmethods-list {
+                        .mz-paymentmethod-methoddetails {
+                            .row {
+                                margin-top: 1rem;
+                            }
+                            .mz-paymentmethod-methodtype img {
+                                max-width: 100%;
+                            }
+                            .make-primary {
+                                color: @colorLighterGray;
+                            }
+                            
+                            .mz-paymentmethod-cardnumber {
+                                font-weight: 600;
+                            }
                         }
                     }
+                    
                 }
 
                 &.mz-accountwishlist  {

@@ -70,6 +70,7 @@
     "cardNumber": "Kartennummer",
     "nameOnCard": "Name auf der Karte",
     "expires": "Verfällt",
+    "expiration"           : "Expiration",
     "securityCode": "Sicherheitscode",
     "phone": "Telefon",
     "purchaseOrder": "Bestellung",
@@ -584,5 +585,8 @@
     "ordersCount": "Orders",
     "checkoutQuizTitle": "You're unique. So your skin care regimen should be too.",
     "checkoutQuizText": "Take our online skin consultation quiz to recieve cutomized recommendations for your skin care needs.",
-    "checkoutQuizTakeBtn": "Take Quiz"
+    "checkoutQuizTakeBtn": "Take Quiz",
+    "makeDefault": "Make Default",
+    "defaultPayment": "Default Payment",
+    "endingIn"             : "Ending in "
 }
