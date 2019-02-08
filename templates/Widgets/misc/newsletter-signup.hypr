@@ -3,10 +3,10 @@
     <p>{{ labels.newsletterSubtitle }}</p>
 </div>
 <div class="newsletter-confirmation">
-{% comment %}
 {% if themeSettings.commerceEnabled %}
-    <input class="input-newsletter-confirmation" name="input_newsletter_confirmation" type="checkbox" id="input_newsletter_confirmation" value="true">
+    <input class="input-newsletter-confirmation" name="input_newsletter_confirmation" type="checkbox" id="input_newsletter_confirmation" value="true" style="display:none;">
 {% endif %}
+{% comment %}
     <label for="input_newsletter_confirmation">{{ labels.newsletterConfirmation }}</label>
 {% endcomment %}
 <p>{{ labels.newsletterConfirmation|safe }}</p>
