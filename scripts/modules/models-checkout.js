@@ -1335,7 +1335,28 @@
             },
             'password': {
                 fn: function (value) {
-                    if (this.attributes.createAccount && !value) return Hypr.getLabel('passwordMissing');
+                    if (this.attributes.createAccount){
+                        var minMaxLength = /^[\s\S]{6,50}$/,
+                        upper = /[A-Z]/,
+                        lower = /[a-z]/,
+                        number = /[0-9]/,
+                        special = /[^A-Za-z0-9]/,
+                        count = 0;
+            
+                        if (!value) {
+                            return Hypr.getLabel('passwordMissing');
+                        } else if (!minMaxLength.test(value)) {
+                            return Hypr.getLabel('passwordlength');
+                        } else {
+                            if (upper.test(value)) count++;
+                            if (lower.test(value)) count++;
+                            if (number.test(value)) count++;
+                            if (special.test(value)) count++;
+                            
+                            if(count < 3)
+                                return Hypr.getLabel('passwordStrong');
+                        }
+                    }
                 }
             },
             'confirmPassword': {
