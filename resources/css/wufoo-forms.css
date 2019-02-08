@@ -132,7 +132,7 @@
     border-radius: 0 !important;
     font-family: "Gotham A","Gotham B",sans-serif !important;
     font-size: 1.31em !important;
-    line-height: 3.33em !important;
+    line-height: 1.31em !important;
     width: 100% !important;
 }
 
@@ -304,7 +304,7 @@
 	background-color: #fff !important;
 }
 
-/* Affilate Start */
+/* Affiliate Start */
 .redesigned-theme-2018 .wufoo ul li.phone {
     display: flex !important;
     flex-wrap: wrap;
@@ -340,4 +340,4 @@
     text-indent: -9999rem;
 }
 
-/* Affilate END */
+/* Affiliate END */
