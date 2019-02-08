@@ -265,7 +265,7 @@
   "emailShopAll"         : "Shop All Neostrata",
   "emailLegalNotice"     : "Legal Copy",
   "emailOpening"         : "<p>Hi {0}!</p>",
-  "emailOpeningAlternative" : "<p>Hello!</p>",
+  "emailOpeningAlternative" : "<p>Hi!</p>",
   "emailClosing"         : "<p>Thanks,<br />The {0} Team.</p>",
   "inStockBlob1"         : "We are writing to let you know the following product is back in stock and ready to be ordered:",
   "inStockBlob2"         : "Click <a href=\"http://{0}/p/{1}\">here</a> to be taken to the product page.",
