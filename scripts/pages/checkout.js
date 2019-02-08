@@ -60,11 +60,6 @@ require(["modules/jquery-mozu",
         render: function () {
             this.$el.removeClass('is-new is-incomplete is-complete is-invalid').addClass('is-' + this.model.stepStatus());
         /*sets which is current step for styling purposes*/            
-            if(this.lastStep == 'step-shipping-address'){
-                $('#step-shipping-method').addClass('force-view');
-            }else if(this.lastStep == 'step-shipping-method'){
-                $('#step-shipping-method').removeClass('force-view');
-            }else{
                 if(this.$el.prop('id') == 'step-customer-info'){ //let's initialize, at least first element is-current
                     this.$el.addClass('is-current');
                 }else{ // checking for previous steps status
@@ -76,11 +71,6 @@ require(["modules/jquery-mozu",
                 }           
                 if(this.$el.hasClass('is-current')){ //is current element 
                     this.$el.removeClass('is-incomplete');
-                    if(this.$el.prop('id') == 'step-shipping-method' && this.$el.hasClass('force-view')){
-                        this.$el.siblings().removeClass('is-current');
-                        this.$el.removeClass('is-complete').addClass('is-incomplete');
-                        this.model._stepStatus = 'incomplete'; //set by using stepStatus() method fires an infinite bucle in this logic.
-                    }
                     if(this.$el.prop('id') == 'step-payment-info'){ //payment-step must always set coupon-code visibility
                         this.$el.next().removeClass('is-complete').addClass('is-current');
                         $('#step-review').removeClass('is-current');
@@ -97,8 +87,14 @@ require(["modules/jquery-mozu",
                 if(this.$el.prop('id') == 'step-shipping-address' && $('#step-customer-info').hasClass('is-current')){ //we are on the last step but fist is-current? let's adjust all steps 
                     this.$el.siblings().removeClass('is-current');
                     $('#step-customer-info').addClass('is-current');
-                }                
-            }
+                }    
+                if(this.lastStep && this.lastStep == 'step-shipping-address'){
+                    this.lastStep = false;
+                    $('#step-shipping-method').removeClass('is-complete').addClass('is-current');
+                    $('#step-shipping-method').siblings().removeClass('is-current');
+                    this.model._stepStatus = 'incomplete'; //set by using stepStatus() method fires an infinite bucle in this logic.
+                }
+            //}
         /*sets which is current step for styling purposes*/
             $('#order-summary button').html($('.is-current').find('.primary-btn').html()); //updates right box area button with current step button text        
             EditableView.prototype.render.apply(this, arguments);
