@@ -176,7 +176,7 @@ require(['modules/jquery-mozu', 'underscore', 'hyprlive'], function($,  _,  Hypr
         $( '#input_dob_day' ).addClass( 'is-error' );
         return false;
     }
-/*
+
     var input = Date.parse( month + '/' + day + '/' + year );
     var today = new Date();
 
@@ -186,9 +186,13 @@ require(['modules/jquery-mozu', 'underscore', 'hyprlive'], function($,  _,  Hypr
 
     var diff = ( today - input ) / ( 1000 * 60 * 60 * 24 * 365 );
     if( diff < 13 ) {
+      $('.lessYears').remove();
+      $( "#ctct_form_" + getFormId() ).append('<div class="is-error lessYears">'+ $('#thirteenError').html() +'</div>');
       return false;
+    }else{
+      $('.lessYears').remove();
     }
-*/
+
     return true;
   }
 
