@@ -19,7 +19,8 @@
     margin-bottom: 9.938rem;
   }
 
-  button {
+  button,
+  .quiz-link-button {
     display: block;
     margin: 0 auto;
 
@@ -44,6 +45,19 @@
       height: 5.625rem;
 
       font-size: 1.5rem;
+    }
+  }
+
+
+  .quiz-link-button {
+    text-decoration: none;
+    text-align: center;
+
+    @media (min-width: 992px) {
+      line-height: 5.5rem;
+    }
+    @media (max-width: 991px) {
+      line-height: 5rem;
     }
   }
 }
@@ -91,7 +105,8 @@
     }
   }
 
-  button {
+  button,
+  .quiz-link-button {
     border-color: @tab-secondary-color;
     background-color: #fff;
 
@@ -680,7 +695,8 @@
     margin-bottom: 2.75rem;
   }
 
-  button {
+  button,
+  .quiz-link-button {
     @media (min-width: 992px) {
       margin-left: 0;
       border-color: @tab-color-active;
@@ -871,7 +887,8 @@
     }
   }
 
-  button {
+  button,
+  .quiz-link-button {
     border-color: @tab-secondary-color;
     width: 100%;
   }

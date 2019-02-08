@@ -302,20 +302,17 @@
         <% if (regimen) { %>
           <div class="quiz-regimen-description">
             <div class="regimen-image-container">
-              <div class="fpo-regimen-image">
-                <div>PLACEHOLDER</div>
-                <%= regimen.name %>
-              </div>
+              <img src="<%= regimen.hero %>" />
             </div>
             <div class="quiz-content">
               <%= regimen.description %>
             </div>
           </div>
+          <a class="quiz-link-button" target="_blank" href="<%= regimen.url %>">
+            VIEW MY REGIMEN
+          </a>
+        </div>
         <% } %>
-        <button type="button">
-          VIEW MY REGIMEN
-        </button>
-      </div>
     </div>
   </div>
 </script>

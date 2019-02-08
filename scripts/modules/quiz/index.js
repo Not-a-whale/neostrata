@@ -269,7 +269,9 @@ define([
         'RETINOL',
         'AMINOFIL',
         'NEOGLUCOSAMINE'
-      ]
+      ],
+      url: '/product/skin-active-repair-firming',
+      hero: '/cms/files/WIP_NS_US_RECO_REGIMEN_SKINACTIVE_V1_1.jpg'
     },
     'RESURFACE': {
       slug: 'resurface',
@@ -288,7 +290,9 @@ define([
       ingredients: [
         'GLYCOLIC ACID',
         'CITRIC ACID'
-      ]
+      ],
+      url: '/c/168',
+      hero: '/cms/files/WIP_NS_US_RECO_REGIMEN_RESURFACE_V1.jpg'
     },
     'RESTORE': {
       slug: 'restore',
@@ -307,7 +311,9 @@ define([
         'GLUCONOLACTONE',
         'LACTOBIONIC ACID',
         'MALTOBIONIC ACID'
-      ]
+      ],
+      url: '/c/169',
+      hero: '/cms/files/WIP_NS_US_RECO_REGIMEN_RESTORE_V1.jpg'
     },
     'CLARIFY': {
       slug: 'clarify',
@@ -327,7 +333,9 @@ define([
         'GLYCOLIC ACID',
         'MANDELIC ACID',
         'NEOGLUCOSAMINE'
-      ]
+      ],
+      url: '/c/170',
+      hero: '/cms/files/WIP_NS_US_RECO_REGIMEN_CLARIFY_V1.jpg'
     },
     'ENLIGHTEN': {
       slug: 'enlighten',
@@ -346,7 +354,9 @@ define([
         'VITAMIN C',
         'RETINOL',
         'NEOGLUCOSAMINE'
-      ]
+      ],
+      url: '/c/171',
+      hero: '/cms/files/WIP_NS_US_RECO_REGIMEN_ENLIGHTEN_V1.jpg'
     },
     'CORRECT': {
       slug: 'correct',
@@ -366,7 +376,9 @@ define([
         'HYALURONIC ACID',
         'PEPTIDES',
         'AHAS'
-      ]
+      ],
+      url: '/c/172',
+      hero: '/cms/files/WIP_NS_US_RECO_REGIMEN_CORRECT_V1.jpg'
     },
     'DEFEND': {
       slug: 'defend',
@@ -385,7 +397,9 @@ define([
         'NEOGLUCOSAMINE',
         'GLUCONOLACTONE',
         'LACTOBIONIC ACID'
-      ]
+      ],
+      url: '/c/173',
+      hero: '/cms/files/'
     }
   };
 
