@@ -247,17 +247,22 @@
        // display: none;
        .global-cart-product-listing{}
        .product-listing-container{
-            height:175px !important;
+            //height:175px !important;
             @media screen and (min-width: 1200px) {
                 min-height: 240px !important;
             }
             padding-bottom:10px;
             margin-bottom:10px;
             border-bottom:1px solid #CCC;
+            display: flex;
+            flex-wrap: wrap;
 
             .mz-productlisting {
                 width: 82%;
                 float: left;
+            }
+            .bottom-details {
+                width: 18%;
             }
             .mz-productdetail-conversion-buttons{
                 padding-right:0;
@@ -291,6 +296,7 @@
            .bottom-details{
                .pdp4.mz-pricestack{
                     overflow: hidden;
+                    position: absolute;
                     .mz-price{
                         text-align: right;
                         width: 100%;
