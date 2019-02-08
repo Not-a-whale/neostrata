@@ -581,12 +581,26 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
             if (!payload.account.firstName) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('firstNameMissing')), false;
             if (!payload.account.lastName) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('lastNameMissing')), false;            
             if (!payload.account.birthMonth || !payload.account.birthDay || !payload.account.birthYear) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('birthMissing')), false;
+            if (self.checkDate(payload.account.birthMonth, payload.account.birthDay, payload.account.birthYear)) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('thirteenError')), false;
             if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(payload.account.emailAddress))) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('emailwrongpattern')), false;
             if (payload.password !== $(el).parents('#newshopper').find('[data-mz-signup-confirmpassword]').val()) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('passwordsDoNotMatch')), false;
             //if (payload.account.attributes.recoveryquestion === "0") return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('chooseRecoveryQuestion')), false;
             //if($('#recoveryQuestionList').val() === "0") return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('chooseRecoveryQuestion')), false;
             //if(!$('#recoveryAnswer').val()) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('recoveryAnswerMissing')), false;
             return true;
+        };
+        this.checkDate = function (month, day, year) {                  
+            var input = Date.parse( month + '/' + day + '/' + year );
+            var today = new Date();
+            
+            if ( today <= input ) {
+              return true;
+            }
+            var diff = ( today - input ) / ( 1000 * 60 * 60 * 24 * 365 );
+            if( diff < 13 ) {
+              return true;
+            }
+            return false;
         };
     };
 
