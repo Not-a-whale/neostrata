@@ -439,7 +439,28 @@ define(['modules/backbone-mozu', 'underscore', 'modules/models-address', 'module
         validation: {
             password: {
                 fn: function(value) {
-                    if (this.validatePassword && !value) return Hypr.getLabel('passwordMissing');
+                    if (this.validatePassword){
+                        var minMaxLength = /^[\s\S]{6,50}$/,
+                        upper = /[A-Z]/,
+                        lower = /[a-z]/,
+                        number = /[0-9]/,
+                        special = /[^A-Za-z0-9]/,
+                        count = 0;
+            
+                        if (!value) {
+                            return Hypr.getLabel('passwordMissing');
+                        } else if (!minMaxLength.test(value)) {
+                            return Hypr.getLabel('passwordlength');
+                        } else {
+                            if (upper.test(value)) count++;
+                            if (lower.test(value)) count++;
+                            if (number.test(value)) count++;
+                            if (special.test(value)) count++;
+                            
+                            if(count < 3)
+                                return Hypr.getLabel('passwordStrong');
+                        }
+                    }
                 }
             },
             confirmPassword: {
@@ -479,6 +500,10 @@ define(['modules/backbone-mozu', 'underscore', 'modules/models-address', 'module
             var self = this;
             self.validatePassword = true;
             if (this.validate('password') || this.validate('confirmPassword')) return false;
+           /* var password = this.get('password');
+            if (!password) {
+                return Hypr.getLabel('passwordMissing');
+            }*/
             return this.apiChangePassword({
                 oldPassword: this.get('oldPassword'),
                 newPassword: this.get('password')
