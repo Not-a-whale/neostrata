@@ -84,9 +84,6 @@
         <div class="quiz-product-price-amount">
           $<%= price.price %>
         </div>
-        <div class="quiz-product-price-qualifier">
-          SUGGESTED RETAIL PRICE
-        </div>
       </div>
       <button type="button" data-product-code="<%= productCode %>" data-action="add-to-cart">
         ADD TO CART

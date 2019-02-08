@@ -454,6 +454,13 @@ define([
   var SectionBullet = _.template($('#template-section-bullet').html());
   var ProductDetail = _.template($('#template-product-detail').html());
 
+  function currency(amount) {
+    var whole = Math.floor(amount);
+    var fraction = String(Math.floor(100 * (amount - whole))).padStart(2, '0');
+
+    return [whole, fraction].join('.');
+  }
+
   var templateHelpers = {
     deepGet: deepGet,
     _spectrumPart: RadioSpectrum,
@@ -955,7 +962,8 @@ define([
 
       // Per requirements, if there isn't a match between the users "current products,"
       // return the "cleanser" included in the matched regimen.
-      return matchedProducts[0] || regimen.products.cleanser;
+      var recommendation = matchedProducts[0] || regimen.products.cleanser;
+      return _.extend({}, recommendation, { price: _.extend({}, recommendation.price, { price: currency(recommendation.price.price) }) });
     }
   });
 
