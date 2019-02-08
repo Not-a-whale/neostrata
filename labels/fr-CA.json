@@ -439,7 +439,8 @@
   "passwordsDoNotMatch"  : "[fr-CA]Passwords did not match, please reenter[fr-CA]",
   // signup form new fields validation added(gagandeep 4 may 2017)
   "emailwrongpattern"    : "[fr-CA]Email does not appear to be a valid e-mail address. Please use the format name@domain.xxx.[fr-CA]",
-  "passwordlength"       : "[fr-CA]Password must be a minimum of 6 characters with at least 1 number and 1 alphabetic character.[fr-CA]",
+  "passwordlength"       : "[fr-CA]Password must be a minimum of 6 characters and maximum of 50 characters.[fr-CA]",
+  "passwordStrong"       : "[fr-CA]Password must contain at least 3 of the following: uppercase letters, lowercase letters, numbers and special characters #$%&/().[fr-CA]",
   "chooseRecoveryQuestion" : "[fr-CA]Please select a recovery question.[fr-CA]",
   "recoveryAnswerMissing"      : "[fr-CA]Please enter a recovery answer.[fr-CA]",
   // ends

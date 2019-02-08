@@ -554,18 +554,25 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
             }
         };
         this.validatePassword = function(el, payload){
-            if (!payload.password)
+            var minMaxLength = /^[\s\S]{6,50}$/,
+            upper = /[A-Z]/,
+            lower = /[a-z]/,
+            number = /[0-9]/,
+            special = /[^A-Za-z0-9]/,
+            count = 0;
+
+            if (!payload.password) {
                 return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('passwordMissing')), false;
-            if (payload.password.length < 6) {
+            } else if (!minMaxLength.test(payload.password)) {
                 return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('passwordlength')), false;
-            } else if (payload.password.length > 50) {
-                return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('passwordlength')), false;
-            } else if (payload.password.search(/\d/) == -1) {
-                return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('passwordlength')), false;
-            } else if (payload.password.search(/[a-zA-Z]/) == -1) {
-                return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('passwordlength')), false;
-            } else if (payload.password.search(/[^a-zA-Z0-9\!\@\#\$\%\^\&\*\(\)\_\+\.\,\;\:]/) != -1) {
-                return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('passwordlength')), false;
+            } else {
+                if (upper.test(payload.password)) count++;
+                if (lower.test(payload.password)) count++;
+                if (number.test(payload.password)) count++;
+                if (special.test(payload.password)) count++;
+                   
+                if(count < 3)
+                    return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('passwordStrong')), false;
             }
             return true;
         };
@@ -582,6 +589,11 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
             return true;
         };
     };
+
+    $( window ).resize(function() {
+        $("#my-account").popover('update');
+    });
+
     $(document).ready(function() {
         $docBody = $(document.body);
 
@@ -607,7 +619,7 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
         });
         $("#my-account").popover({
                 html : true,
-                placement : 'bottom',
+                placement : 'auto',
                 content: function() {
                   return $('#my-account-content').html();
                 }
