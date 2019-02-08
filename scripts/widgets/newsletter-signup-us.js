@@ -99,7 +99,10 @@ require(['modules/jquery-mozu', 'underscore', 'hyprlive'], function($,  _,  Hypr
           $('*[data-qe-id="form-button"]').show();
         }
       });
-
+      $('*[data-qe-id="form-button"]').click( function() {
+        $('#newsletter-disclaimer > p').html('');
+        $('#newsletter-form > .required-fields').html('');
+      });
       $( '[data-role="submit-override"]' ).click( function( ev ) {
         var valid = true;
 
