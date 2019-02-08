@@ -125,7 +125,7 @@
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1) !important;
     color: #4e5458 !important;
     margin: 0 !important;
-    padding: 0 4.44rem 0 2.875rem !important;
+    padding: 0 1rem 0 2.875rem !important;
     border: 0.1875rem solid #4e5458 !important;
     font-weight: 400 !important;
     height: 5.375rem !important;
@@ -325,6 +325,11 @@
     width: auto;
     padding-top: 0;
 }
+
+.redesigned-theme-2018 .wufoo ul li.phone input.text {
+    padding: 0 1rem !important;
+}
+
 .nameFieldAffiliate {
     flex-wrap: wrap;
 }
