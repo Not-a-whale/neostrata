@@ -298,7 +298,7 @@
   "newUserEmailList2Text3": "Phone: <a href=\"tel:1-800-628-9904\">1-800-628-9904 M-F 9:00AM-5:00PM EST</a>",
   "newUserEmailList2Text4": "We respect your privacy. <a href=\"http://{0}/\">Click here</a> to read our policy.",
   "emailPasswordTop"     : "<p>We received a request to reset the password associated with this email address and the username {0}.  If you made this request, please click the link below, or copy and paste it into your browser's address window:</p>",
-  "emailPasswordBottom"  : "If you did not request a password reset, please contact us <a href=\"http://{0}/\">{1} Customer Service</a> if you have questions.",
+  "emailPasswordBottom"  : "If you did not request a password reset, please contact us <a href=\"http://{0}/contact-us\">{1} Customer Service</a> if you have questions.",
   "emailPasswordText"    : "You recently requested to reset your password for your {0} account. Use the button below to reset it. This password reset is only valid for the next 24 hours.",
   "emailPasswordButton"  : "RESET YOUR PASSWORD",
   "billingInformation"   : "Billing Information",
