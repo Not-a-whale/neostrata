@@ -376,7 +376,8 @@
     "passwordsDoNotMatch": "Passwörter nicht überein, bitte neu eingeben",
     // signup form new fields validation added(gagandeep 4 may 2017)
     "emailwrongpattern": "Email does not appear to be a valid e-mail address. Please use the format name@domain.xxx.",
-    "passwordlength": "Password must be a minimum of 6 characters with at least 1 number and 1 alphabetic character.",
+    "passwordlength"       : "Password must be a minimum of 6 characters and maximum of 50 characters.",
+    "passwordStrong"       : "Password must contain at least 3 of the following: uppercase letters, lowercase letters, numbers and special characters #$%&/().",
     "chooseRecoveryQuestion": "Please select a recovery question.",
     "recoveryAnswerMissing": "Please enter a recovery answer.",
     // ends
