@@ -831,13 +831,12 @@ define([
     },
 
     summary: function() {
-      var ABOUT_ME_SUMMARY_TEMPLATE = 'I\'m a ${gender} ${age} who lives in a ${climate} climate.';
+      var ABOUT_ME_SUMMARY_TEMPLATE = 'I\'m a ${gender} ${age}.';
 
-      var climate = this.model.getPath('inputs.climate');
       var gender = this.model.getPath('inputs.gender');
       var age = this.model.getPath('inputs.age');
 
-      if ( !age || !gender || !climate ) return null;
+      if ( !age || !gender ) return null;
 
       if (age === 20) {
         age = 'under 30';
@@ -851,8 +850,7 @@ define([
 
       return ABOUT_ME_SUMMARY_TEMPLATE
         .split('${gender}').join(gender)
-        .split('${age}').join(age)
-        .split('${climate}').join(climate);
+        .split('${age}').join(age);
     },
 
     validate: function() {
