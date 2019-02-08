@@ -16,7 +16,7 @@ define([
   CartMonitor,
   Hypr
 ) {
-  var DEBUG = true;
+  var DEBUG = false;
 
   var EXPERTISE_OPTIONS = [
     {
