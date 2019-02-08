@@ -673,7 +673,7 @@
   "filter": "FILTER",
   "shopBy": "Shop by",
   "siteMap": "Site Map",
-  "passwordFormat": "7 Characters minimum",
+  "passwordFormat": "At least 6 characters and a combination of upper and lower cases letters, numbers and symbols.",
   "orderFailsHeader": "There was a problem with your order.",
   "orderFailsText": "We are unable to process your order at this time.",
   "dayGuaranteeStatement": "30-day Money Back Guarantee. Order by 1:00 PM EST for sameday shipping.",
