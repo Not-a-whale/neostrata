@@ -977,6 +977,11 @@ define([
       // Per requirements, if there isn't a match between the users "current products,"
       // return the "cleanser" included in the matched regimen.
       var recommendation = matchedProducts[0] || regimen.products.cleanser;
+
+      if (DEBUG) {
+        console.log('Recommendation:', recommendation);
+      }
+
       return _.extend({}, recommendation, { price: _.extend({}, recommendation.price, { price: currency(recommendation.price.price) }) });
     }
   });

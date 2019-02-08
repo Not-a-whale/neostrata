@@ -72,11 +72,7 @@
       <div class="quiz-product-name">
         <%= content.productName %>
       </div>
-      <div class="quiz-product-ingredients">
-        <div class="fpo fpo-text">
-          PLACEHOLDER<BR />INGREDIENTS
-        </div>
-      </div>
+      <div class="quiz-product-ingredients"></div>
       <div class="quiz-product-description">
         <%= content.productName %>
       </div>
@@ -282,12 +278,7 @@
             </div>
           <% })%>
         </div>
-        <div class="quiz-carousel-container">
-          <div class="fpo fpo-carousel">
-            <div>PLACEHOLDER</div>
-            ADDITIONAL PRODUCTS WITH THESE INGREDIENTS
-          </div>
-        </div>
+        <div class="quiz-carousel-container"></div>
       </div>
     </div>
   </div>
