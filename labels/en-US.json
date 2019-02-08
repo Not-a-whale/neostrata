@@ -151,6 +151,9 @@
   "sortByDateDesc"     : "Date Added: Most Recent First",
   "registeredCustomer"   : "Registered customer?",
   "register"             : "Register",
+  "registerBirthMonth" : "Birth Month",
+  "registerBirthDay" : "Birth Day",
+  "registerBirthYear" : "Birth Year",
   "forFasterCheckout"    : "For Faster Checkout",
   "stackTrace"           : "Details",
   "pleaseSelect"         : "Please Select",
@@ -439,6 +442,9 @@
   "reenterCVV"           : "Please verify your card's security code",
   "cardBillingMissing"   : "Please select a billing contact for this credit card.",
   "emailMissing"         : "Please enter a valid email address",
+  "firstnameMissing"     : "Please enter first name",
+  "lastnameMissing"      : "Please enter last name",
+  "birthMissing"         : "Please complete Birth fields",
   "passwordMissing"      : "Please enter a password",
   "passwordsDoNotMatch"  : "Passwords did not match, please reenter",
   // signup form new fields validation added(gagandeep 4 may 2017)
@@ -719,5 +725,6 @@
   "checkoutQuizText": "Take our online skin consultation quiz to recieve cutomized recommendations for your skin care needs.",
   "checkoutQuizTakeBtn": "Take Quiz",
   "makeDefault": "Make Default",
-  "defaultPayment": "Default Payment"  
+  "defaultPayment": "Default Payment",
+  "ordersViewSubTitle": "View and manage your orders." 
 }

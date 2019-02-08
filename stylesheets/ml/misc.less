@@ -1029,6 +1029,14 @@ footer {
                     font-size: 3.4375rem;
                     font-weight: bold;
                 }
+                p.info-details{
+                    text-align: center;
+                    margin-top: 2rem;
+                    margin-bottom: 0;
+                    a{
+                        text-decoration: underline;
+                    }
+                }
                 .link-button {
                     .flex-display(flex);
                     width: 80%;
@@ -1053,6 +1061,7 @@ footer {
                     .input-group-addon {
                         display: none;
                     }
+                    select,
                     input {
                         border-radius: 0;
                         border: 2px solid #4e5458;
@@ -1065,6 +1074,10 @@ footer {
                     }
                     input[data-mz-signup-lastname] {
                         margin-left: 1.5rem;
+                    }
+                    .signup_input_dob_day{
+                        margin-left: 1rem;
+                        margin-right: 1rem;
                     }
                     &.validation-message {
                         width: 100%;
@@ -2000,25 +2013,30 @@ ul.tabs {
             margin-top: .8rem;
             .add-to-cart-container {
                 padding: 0;
+                width: 75%;
+                display: inline-block;
                 .primary-btn {
                     height: 3rem;
                     line-height: 1.5rem;
                     font-size: 1rem;
-                    min-width: 18.25rem;
+                    width: 100%;
                 }
             }
             .add-to-wishlist-container{
-                padding: 0.5rem;
+                padding: 0;
+                display: inline-block;
+                width: 20%;
+                vertical-align: text-bottom;
+
                 .mz-productdetail-addtowishlist{
                     text-decoration: none;
                     text-align:center;
                     color: #8fabcc;
-                    span{
-                        font-size: 2rem;
-                        line-height:3rem;
+                    font-size: 2rem;
+                    line-height:3rem;
+                    span {
                         &.blank-heart{
                             .icon(before, @icon-heart-outline);
-
                         }
                         &.filled-heart{
                             .icon(before, @icon-heart-filled);
@@ -4263,9 +4281,9 @@ body.mz-product {
                                 width: auto;
                                 font-size: 1rem;
                             }
-                            
 
-                            
+
+
                             .mz-paymentmethod-myaccount {
                                 width: 50%;
                                 margin: 0 0 0 -4rem;
@@ -4316,13 +4334,13 @@ body.mz-product {
                             .make-primary {
                                 color: @colorLighterGray;
                             }
-                            
+
                             .mz-paymentmethod-cardnumber {
                                 font-weight: 600;
                             }
                         }
                     }
-                    
+
                 }
 
                 &.mz-accountwishlist  {

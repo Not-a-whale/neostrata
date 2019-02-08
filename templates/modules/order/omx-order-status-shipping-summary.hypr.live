@@ -1,6 +1,6 @@
 
     {% with model.Address|first as model %}
-        <div class="mz-address-name">{{ model.FullName|first }} </div>
+        <div class="mz-address-name"><b>{{ model.FullName|first }}</b></div>
         <div class="mz-address-address">{{ model.Address1|first }}</div>
         {% if model.Address2 %}
             <div class="mz-address-address">{{ model.Address2|first }}</div>

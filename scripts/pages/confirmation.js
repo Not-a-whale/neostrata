@@ -61,6 +61,11 @@ define(['modules/api',
               });
               confirmationView.render();
               });
-
+              $('#printOut').click(function(e){
+                  e.preventDefault();
+                  window.print();
+                  document.close();
+                  return false;
+              });
             });
         });

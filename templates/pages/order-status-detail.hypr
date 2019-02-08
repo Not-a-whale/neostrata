@@ -7,11 +7,6 @@
 {% block body-content %}
     {% require_script "pages/order-status-detail" %}
     <div class="mz-l-container">
-        <div class="dl-maintitle">
-            <h1 class="mz-pagetitle ">
-                {{ labels.orderDetails }}
-            </h1>
-        </div>
         <div class="mz-l-sidebar mz-myaccount-nav">
             {% include "modules/my-account/my-account-nav" with navtarget="body" %}
         </div>
@@ -22,8 +17,7 @@
                 {% include "modules/common/message-bar" with model=model.messages %}
             </div>
   		    
-            <div id='order-status-detail' class='mz-l-stack-section mz-order-status-detail'>
-                
+            <div id='order-status-detail' class='mz-l-stack-section mz-order-status-detail is-editing'>
                 <div>{{labels.orderStatusDetailDescription}}</div>
                 {% include "modules/order/order-status-detail" %}
             </div>

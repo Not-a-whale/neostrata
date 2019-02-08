@@ -1900,13 +1900,7 @@
         "displayName":"Free Samples",
         "displayTemplate":"neostrata/free-samples",
         "editViewFields":[
-          {"name":"freeSampleCategory", "fieldLabel":"Free Sample Category", "xtype": "mz-input-category"},
-          {"name":"freeSampleProducts", "fieldLabel":"Free Sample Products", "xtype": "mz-input-productmulti"},
-          {"name":"system", "fieldLabel":"System"},
-          {"name":"imagePath", "fieldLabel":"Image Path"},
-          {"name":"description", "fieldLabel":"Description"},
-          {"name":"linkPath", "fieldLabel":"Link Path"},
-          {"name":"linkTitle", "fieldLabel":"Link Title"}
+          {"name":"freeSampleCategory", "fieldLabel":"Free Sample Category", "xtype": "mz-input-category"}
         ],
         "icon":"/resources/admin/widgets/26_related_products.png",
         "validPageTypes":["*"]

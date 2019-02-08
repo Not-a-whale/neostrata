@@ -143,6 +143,9 @@
     "resultsPerPage": "Ergebnisse pro Seite",
     "registeredCustomer": "Registriert Kunde?",
     "register": "registrieren",
+    "registerBirthMonth" : "Birth Month",
+    "registerBirthDay" : "Birth Day",
+    "registerBirthYear" : "Birth Year",
     "stackTrace": "Details",
     "pleaseSelect": "Bitte wählen",
     "forgotPasswordLink": "Passwort vergessen?",
@@ -359,6 +362,7 @@
     "countryMissing": "Bitte treffen Sie eine Auswahl Land",
     "firstNameMissing": "Vorname Pflicht",
     "lastNameMissing": "Erforderlich Nachname",
+    "birthMissing"         : "Please complete Birth fields",
     "paymentTypeMissing": "Bitte wählen Sie eine Zahlungsart",
     "cardTypeMissing": "Bitte wählen Sie Ihre Karte Typ",
     "cardNameMissing": "Bitte geben Sie die Namen auf Ihrer Karte",
@@ -588,5 +592,6 @@
     "checkoutQuizTakeBtn": "Take Quiz",
     "makeDefault": "Make Default",
     "defaultPayment": "Default Payment",
-    "endingIn"             : "Ending in "
+    "endingIn"             : "Ending in ",
+    "ordersViewSubTitle": "View and manage your orders."
 }
