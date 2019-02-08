@@ -318,13 +318,6 @@
       </div>
     </div>
   </div>
-
-  <div class="quiz-section" data-section-sub="resources">
-    <%= _sectionBulletPart({ label: 'ADDITIONAL RESOURCES' }) %>
-    <div class="quiz-section-main">
-
-    </div>
-  </div>
 </script>
 
 <script type="text/json" id="quiz-config">
