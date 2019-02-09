@@ -257,7 +257,7 @@
   "orderConfirmationBlob1": "Thank you for shopping with us at {0}. Your order was received and we are preparing it for shipment.  If you would like to view or manage your orders, please visit <a href=\"http://{1}/myaccount\">My Account</a>.",
   "checkOrderStatus"     : "Check Order Status",
   "emailOpening"         : "<p>Hi {0}!</p>",
-  "emailOpeningAlternative" : "<p>Hello!</p>",
+  "emailOpeningAlternative" : "<p>Hi!</p>",
   "emailClosing"         : "<p>Thanks,<br />The {0} Team.</p>",
   "inStockBlob1"         : "We are writing to let you know the following product is back in stock and ready to be ordered:",
   "inStockBlob2"         : "Click <a href=\"http://{0}/p/{1}\">here</a> to be taken to the product page.",
@@ -439,7 +439,8 @@
   "passwordsDoNotMatch"  : "Passwords did not match, please reenter",
   // signup form new fields validation added(gagandeep 4 may 2017)
   "emailwrongpattern"    : "Email does not appear to be a valid e-mail address. Please use the format name@domain.xxx.",
-  "passwordlength"       : "Password must be a minimum of 6 characters with at least 1 number and 1 alphabetic character.",
+  "passwordlength"       : "Password must be a minimum of 6 characters and maximum of 50 characters.",
+  "passwordStrong"       : "Password must contain at least 3 of the following: uppercase letters, lowercase letters, numbers and special characters #$%&/().",
   "chooseRecoveryQuestion" : "Please select a recovery question.",
   "recoveryAnswerMissing"      : "Please enter a recovery answer.",
   // ends
@@ -615,6 +616,7 @@
   "newsletterDisclaimer" : "Your personal information will be stored in the databases of NEOSTRATA® of Canada and its third party service providers inside and outside Canada. The personnel, agents and third party service providers of NEOSTRATA® of Canada. may have access to your personal information to manage data in compliance with our <a href=\"/privacy-policy\">Privacy Policy</a> or to provide you with promotional materials or services you have requested or to which you have consented. For more information on the privacy practices of NEOSTRATA® of Canada, including data collection, use, purposes, disclosure and our use of service providers inside and outside of Canada, or to request a written copy of our Privacy Policy, access to your file or the correction of information, or to unsubscribe or withdraw your consent for any communications from us, please use our <a href='https://www.ccc-consumercarecenter.com/UCUConfiguration?id=a075800004sn4F3' target='_blank'>contact us</a> form or send your request by mail to Consumer Care Center, Attn: Canadian Chief Privacy Officer, 199 Grandview Rd., Skillman, NJ, USA 08558-9418.",
   "newsletterBirthday" : "Birthday (must be 13 years of age or older)",
   "newsletterThanksHeader" : "Thanks for signing up!",
+  "thirteenError" : "You must be over 13 years of age to sign up for our newsletter.<br />Please see our <a href=\"/privacy-policy\">Privacy Policy</a> for details.",
   "newsletterThanksText" : "You can unsubscribe at any time using the Unsubscribe link at the bottom of every email.",
   "newsletterSelectMonth": "Select Month",
   "newsletterSelectDay": "Select Day",  

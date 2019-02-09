@@ -617,6 +617,13 @@
                       }
                       .popover{
                           top: -10px;
+                            @media (max-width: 991px) and (min-width: 768px) {
+                                top:  40px !important;
+                                left: -20px !important;
+                                .arrow {
+                                    left: 30px !important;
+                                }
+                            }
 
                           .popover-content{
                               .my-account-details{

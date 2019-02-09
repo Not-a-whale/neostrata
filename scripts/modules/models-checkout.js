@@ -237,6 +237,11 @@
     
         CustomerInfo = CheckoutStep.extend({
             initialize: function () {
+                //sessionStorage updated with customer data
+                var user = require.mozuData('user');
+                sessionStorage.setItem('checkoutEmail', user.email);
+                sessionStorage.setItem('checkoutName', user.firstName);
+                sessionStorage.setItem('checkoutLastname', user.lastName);
             },
             validation: {
                 firstName: {
@@ -253,10 +258,11 @@
                 }
             },
             defaults: function () {
+//use sessionStorage info for defaults
                 return {
-                    firstName: null,
-                    lastNameOrSurname: null,
-                    email: null,
+                    firstName: sessionStorage.getItem('checkoutName'),
+                    lastNameOrSurname: sessionStorage.getItem('checkoutLastname'),
+                    email: sessionStorage.getItem('checkoutEmail'),
                     acceptsMarketing: false
                 };
             },
@@ -270,7 +276,10 @@
                 if (this.validate()){
                     return false;
                 }
-
+                //sessionStorage updated with form data
+                sessionStorage.setItem('checkoutEmail', this.get('email'));
+                sessionStorage.setItem('checkoutName', this.get('firstName'));
+                sessionStorage.setItem('checkoutLastname', this.get('lastNameOrSurname'));
                 this.stepStatus('complete');
             }
         }),
@@ -1326,7 +1335,28 @@
             },
             'password': {
                 fn: function (value) {
-                    if (this.attributes.createAccount && !value) return Hypr.getLabel('passwordMissing');
+                    if (this.attributes.createAccount){
+                        var minMaxLength = /^[\s\S]{6,50}$/,
+                        upper = /[A-Z]/,
+                        lower = /[a-z]/,
+                        number = /[0-9]/,
+                        special = /[^A-Za-z0-9]/,
+                        count = 0;
+            
+                        if (!value) {
+                            return Hypr.getLabel('passwordMissing');
+                        } else if (!minMaxLength.test(value)) {
+                            return Hypr.getLabel('passwordlength');
+                        } else {
+                            if (upper.test(value)) count++;
+                            if (lower.test(value)) count++;
+                            if (number.test(value)) count++;
+                            if (special.test(value)) count++;
+                            
+                            if(count < 3)
+                                return Hypr.getLabel('passwordStrong');
+                        }
+                    }
                 }
             },
             'confirmPassword': {
@@ -1557,6 +1587,9 @@
                 });
             },
             onCheckoutSuccess: function () {
+                sessionStorage.setItem('checkoutEmail', '');
+                sessionStorage.setItem('checkoutName', '');
+                sessionStorage.setItem('checkoutLastname', '');                
                 this.isLoading(true);
                 this.trigger('complete');
             },

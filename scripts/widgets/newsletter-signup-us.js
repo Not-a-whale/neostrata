@@ -42,7 +42,7 @@ require(['modules/jquery-mozu', 'underscore', 'hyprlive'], function($,  _,  Hypr
       }
 
       // Customize skin-type field.
-      $( '#custom_field_string_custom_field_1_label_'+getFormId() ).html( Hypr.getLabel( 'skinType' ) + ' *' );
+      $( '#custom_field_string_custom_field_1_label_'+getFormId() ).html( Hypr.getLabel( 'skinType' ));
       $( '#custom_field_string_custom_field_1_'+getFormId() ).prop( 'type', 'hidden' );
       $( '#custom_field_string_custom_field_1_field_'+getFormId() ).append( $( '#template-newsletter-skintype' ).html() );
 
@@ -58,17 +58,17 @@ require(['modules/jquery-mozu', 'underscore', 'hyprlive'], function($,  _,  Hypr
 
       // Handle skin-type changes.
       $( '#input_skintype' ).change( function() {
-          $( '#custom_field_string_custom_field_1_'+getFormId() ).prop( 'value', $( this ).prop( 'value' ) );
+          $( '#custom_field_string_custom_field_1_'+getFormId() ).prop( 'value', $( '#input_skintype' ).prop( 'value' ) );
       });
       
       $( '#input_dob_month' ).change( function() {
-          $( '#custom_field_string_custom_field_2_'+getFormId() ).prop( 'value', $( this ).prop( 'value' ) +" "+ $( '#input_dob_year' ).prop( 'value' ) );
+          $( '#custom_field_string_custom_field_2_'+getFormId() ).prop( 'value', $('#input_dob_month').prop( 'value' ) +" "+ $('#input_dob_day').prop( 'value' ) +" "+$( '#input_dob_year' ).prop( 'value' ) );
       });
       $( '#input_dob_day' ).change( function() {
-        $( '#custom_field_string_custom_field_2_'+getFormId() ).prop( 'value', $( this ).prop( 'value' ) +" "+ $( '#input_dob_year' ).prop( 'value' ) );
+        $( '#custom_field_string_custom_field_2_'+getFormId() ).prop( 'value', $('#input_dob_month').prop( 'value' ) +" "+ $('#input_dob_day').prop( 'value' ) +" "+$( '#input_dob_year' ).prop( 'value' ) );
     });
       $( '#input_dob_year' ).change( function() {
-          $( '#custom_field_string_custom_field_2_'+getFormId() ).prop( 'value', $( '#input_dob_month' ).prop( 'value' ) +" "+ $( this ).prop( 'value' ) );
+          $( '#custom_field_string_custom_field_2_'+getFormId() ).prop( 'value', $('#input_dob_month').prop( 'value' ) +" "+ $('#input_dob_day').prop( 'value' ) +" "+$( '#input_dob_year' ).prop( 'value' ) );
       });
 
       $( '#input_newsletter_confirmation' ).change( function() {
@@ -81,14 +81,29 @@ require(['modules/jquery-mozu', 'underscore', 'hyprlive'], function($,  _,  Hypr
       $submit.after( $( '#template-newsletter-submit' ).html() );
 
       // Validate form (custom, supplemental).
-      $( '#newsletter-form input' ).keydown( function() {
+      $( '#newsletter-form input' ).keydown( function(event) {
+          if(event.which == '13') event.preventDefault();
         $( this ).removeClass( 'is-error' );
+        if(checkDate() && $( '#first_name_'+getFormId() ).val() !== '' && $( '#last_name_'+getFormId() ).val() !== '' && $('#email_address_'+getFormId()).val() !== ''){
+          $('.ctct-form-button').hide();
+          $('*[data-qe-id="form-button"]').show();
+        }
       });
 
-      $( '#newsletter-form select' ).change( function() {
+      $( '#newsletter-form select' ).change( function(event) {
         $( this ).removeClass( 'is-error' );
+        if(event.target.id === 'input_skintype'){
+          $( '#input_skintype' ).val(event.target.value);
+        }
+        if(checkDate() && $( '#first_name_'+getFormId() ).val() !== '' && $( '#last_name_'+getFormId() ).val() !== '' && $('#email_address_'+getFormId()).val() !== ''){
+          $('.ctct-form-button').hide();
+          $('*[data-qe-id="form-button"]').show();
+        }
       });
-
+      $('*[data-qe-id="form-button"]').click( function() {
+        $('#newsletter-disclaimer > p').html('');
+        $('#newsletter-form > .required-fields').html('');
+      });
       $( '[data-role="submit-override"]' ).click( function( ev ) {
         var valid = true;
 
@@ -160,12 +175,12 @@ require(['modules/jquery-mozu', 'underscore', 'hyprlive'], function($,  _,  Hypr
         $( '#input_dob_year' ).addClass( 'is-error' );
         return false;
     }
-    var day = $( '#iinput_dob_day' ).prop( 'value' );
+    var day = $( '#input_dob_day' ).prop( 'value' );
     if ( day === '' ){
         $( '#input_dob_day' ).addClass( 'is-error' );
         return false;
     }
-/*
+
     var input = Date.parse( month + '/' + day + '/' + year );
     var today = new Date();
 
@@ -175,9 +190,13 @@ require(['modules/jquery-mozu', 'underscore', 'hyprlive'], function($,  _,  Hypr
 
     var diff = ( today - input ) / ( 1000 * 60 * 60 * 24 * 365 );
     if( diff < 13 ) {
+      $('.lessYears').remove();
+      $( "#ctct_form_" + getFormId() ).append('<div class="is-error lessYears">'+ $('#thirteenError').html() +'</div>');
       return false;
+    }else{
+      $('.lessYears').remove();
     }
-*/
+
     return true;
   }
 

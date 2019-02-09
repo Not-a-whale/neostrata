@@ -1,5 +1,6 @@
 ﻿{% block credit-card-form %}
 {% if isMyAccount %} 
+    <input type="hidden" name="credit-card-type" id="mz-payment-credit-card-type" value="{{ model.cardType }}" >
     <div class="mz-l-formfieldgroup-row mz-payment-credit-card-number-row">
         <div class="mz-l-formfieldgroup-cell">
             <label for="mz-payment-credit-card-number">{{ labels.cardNumber }}</label>
