@@ -1,17 +1,17 @@
 <div class="mz-order-status-totals">
   {% with model.orderDetail.OrderHeader|first  as headerSection %}
     <div class="mz-ordersummary-subtotal">
-      <div class="mz-checkout-total-row">
-        <span class="mz-ordersummary-totalname col-sm-4 text-right">{{ labels.totalQty|string_format(headerSection.omxTotalQty)  }}</span>
-        <span class="mz-ordersummary-totalvalue col-sm-4">  {{ headerSection.NetAmount|first }}</span>
+      <div class="mz-checkout-total-row row">
+        <span class="mz-ordersummary-totalname col-xs-5 col-md-3">{{ labels.totalQty|string_format(headerSection.omxTotalQty)  }}</span>
+        <span class="mz-ordersummary-totalvalue col-xs-5 col-md-3 text-right">  {{ headerSection.NetAmount|first|currency }}</span>
       </div>
     </div>
     
     {% if headerSection.TotalDiscount|first < 0  %}
       <div class="mz-ordersummary-discount">
-        <div class="mz-checkout-total-row mz-checkout-discount-row-container">
-          <span class="mz-ordersummary-discountname col-sm-4 text-right">{{ labels.orderDiscountTotal }}</span>
-          <span class="mz-ordersummary-discountamt col-sm-4">{{ headerSection.TotalDiscount|first }}</span>
+        <div class="mz-checkout-total-row mz-checkout-discount-row-container  row">
+          <span class="mz-ordersummary-discountname col-xs-5 col-md-3">{{ labels.orderDiscountTotal }}</span>
+          <span class="mz-ordersummary-discountamt col-xs-5 col-md-3 text-right">{{ headerSection.TotalDiscount|first|currency }}</span>
         </div>
       </div>
     {% endif %}
@@ -19,9 +19,9 @@
   {% with model.orderDetail.ShippingInformation|first as modelShipping %}
     {% if modelShipping.ShippingAmount|first > 0 %}
       <div class="mz-ordersummary-shippingtotal">
-        <div class="mz-checkout-total-row">
-          <span class="mz-ordersummary-totalname col-sm-4 text-right">{{ labels.orderDetailShipping }}</span>
-          <span class="mz-ordersummary-totalvalue col-sm-4">{{ modelShipping.ShippingAmount|first }}</span>
+        <div class="mz-checkout-total-row  row">
+          <span class="mz-ordersummary-totalname col-xs-5 col-md-3">{{ labels.orderDetailShipping }}</span>
+          <span class="mz-ordersummary-totalvalue col-xs-5 col-md-3 text-right">{{ modelShipping.ShippingAmount|first|currency }}</span>
         </div>
       </div>
     {% endif %}
@@ -29,16 +29,16 @@
   {% with model.orderDetail.OrderHeader|first  as headerSection  %}
     {% if headerSection.Tax|first  > 0 %}
       <div class="mz-ordersummary-tax">
-          <div class="mz-checkout-total-row">
-              <span class="mz-ordersummary-totalname col-sm-4 text-right">{{ labels.tax }}</span>
-              <span class="mz-ordersummary-totalvalue col-sm-4">{{ headerSection.Tax|first }}</span>
+          <div class="mz-checkout-total-row  row">
+              <span class="mz-ordersummary-totalname col-xs-5 col-md-3">{{ labels.tax }}</span>
+              <span class="mz-ordersummary-totalvalue col-xs-5 col-md-3 text-right">{{ headerSection.Tax|first|currency }}</span>
           </div>
       </div>
     {% endif %}
     <div class="mz-ordersummary-grandtotal">
-        <div class="mz-checkout-total-row">
-            <span class="mz-ordersummary-totalname col-sm-4 text-right">{{ labels.total }}:</span>
-            <span class="mz-ordersummary-totalvalue col-sm-4">{{ headerSection.TotalAmount|first }}</span>
+        <div class="mz-checkout-total-row row">
+            <span class="mz-ordersummary-totalname col-xs-5 col-md-3">{{ labels.total }}:</span>
+            <span class="mz-ordersummary-totalvalue col-xs-5 col-md-3 text-right">{{ headerSection.TotalAmount|first|currency }}</span>
         </div>
     </div>
   {% endwith%}

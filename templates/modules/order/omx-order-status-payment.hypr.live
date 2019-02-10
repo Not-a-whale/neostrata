@@ -1,10 +1,14 @@
+<div class="row">
 {% if model.$.type == 1 %}
-		<div class="mz-payment-type"> {{ model.CreditCardName|first }}</div>
-		<div class="mz-payment-number"> {{labels.orderStatusPaymentCCEnding|string_format(model.omxCCNumber) }}</div>
-		<div class="mz-payment-type"> {{labels.orderStatusPaymentCCExpires|string_format(model.CreditCardExpDate|first|date("m/Y")) }}</div>
+		<div class="mz-payment-type col-xs-4"> <img src="/resources/images/icons/payment/CC-icons_{{model.CreditCardName}}.png" alt="{{ model.CreditCardName }}"></div>
+		<div class="mz-payment-type col-xs-8">
+			<div class="mz-payment-number"><b>{{ labels.endingIn }} {{ model.omxCCNumber|replace("*") }}</b></div>
+			<div class="mz-payment-type"> {{labels.orderStatusPaymentCCExpires|string_format(model.CreditCardExpDate|first|date("m/Y")) }}</div>
+		</div>
 {% else  %}
 	{% if model.$.type == 13 %}
 		<div class="mz-payment-type"> {{ model.$.description }}</div>
 
 	{% endif %}
 {% endif %}
+</div>

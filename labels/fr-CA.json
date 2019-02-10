@@ -160,6 +160,9 @@
   "sortByDateDesc"     : "Plus récents",
   "registeredCustomer"   : "[fr-CA]Registered customer?[fr-CA]",
   "register"             : "[fr-CA]Register[fr-CA]",
+  "registerBirthMonth" : "[fr-CA]Birth Month[fr-CA]",
+  "registerBirthDay" : "[fr-CA]Birth Day[fr-CA]",
+  "registerBirthYear" : "[fr-CA]Birth Year[fr-CA]",
   "forFasterCheckout"    : "[fr-CA]For Faster Checkout[fr-CA]",
   "stackTrace"           : "[fr-CA]Details[fr-CA]",
   "pleaseSelect"         : "[fr-CA]Please Select[fr-CA]",
@@ -254,7 +257,7 @@
   "orderConfirmationBlob1": "[fr-CA]Thank you for shopping with us at {0}. Your order was received and we are preparing it for shipment.  If you would like to view or manage your orders, please visit <a href=\"http://{1}/myaccount\">My Account</a>.[fr-CA]",
   "checkOrderStatus"     : "[fr-CA]Check Order Status[fr-CA]",
   "emailOpening"         : "[fr-CA]<p>Hi {0}!</p>[fr-CA]",
-  "emailOpeningAlternative" : "[fr-CA]<p>Hello!</p>[fr-CA]",
+  "emailOpeningAlternative" : "[fr-CA]<p>Hi!</p>[fr-CA]",
   "emailClosing"         : "[fr-CA]<p>Thanks,<br />The {0} Team.</p>[fr-CA]",
   "inStockBlob1"         : "[fr-CA]We are writing to let you know the following product is back in stock and ready to be ordered:[fr-CA]",
   "inStockBlob2"         : "[fr-CA]Click <a href=\"http://{0}/p/{1}\">here</a> to be taken to the product page.[fr-CA]",
@@ -421,6 +424,7 @@
   "countryMissing"       : "[fr-CA]Please make a country selection[fr-CA]",
   "firstNameMissing"     : "[fr-CA]Please enter first name[fr-CA]",
   "lastNameMissing"      : "[fr-CA]Please enter last name[fr-CA]",
+  "birthMissing"         : "[fr-CA]Please complete Birth fields[fr-CA]",
   "paymentTypeMissing"   : "[fr-CA]Please select a payment type[fr-CA]",
   "selectASavedCard"     : "[fr-CA]Please select a saved card[fr-CA]",
   "cardTypeMissing"      : "[fr-CA]Please select your card type[fr-CA]",
@@ -435,7 +439,8 @@
   "passwordsDoNotMatch"  : "[fr-CA]Passwords did not match, please reenter[fr-CA]",
   // signup form new fields validation added(gagandeep 4 may 2017)
   "emailwrongpattern"    : "[fr-CA]Email does not appear to be a valid e-mail address. Please use the format name@domain.xxx.[fr-CA]",
-  "passwordlength"       : "[fr-CA]Password must be a minimum of 6 characters with at least 1 number and 1 alphabetic character.[fr-CA]",
+  "passwordlength"       : "[fr-CA]Password must be a minimum of 6 characters and maximum of 50 characters.[fr-CA]",
+  "passwordStrong"       : "[fr-CA]Password must contain at least 3 of the following: uppercase letters, lowercase letters, numbers and special characters #$%&/().[fr-CA]",
   "chooseRecoveryQuestion" : "[fr-CA]Please select a recovery question.[fr-CA]",
   "recoveryAnswerMissing"      : "[fr-CA]Please enter a recovery answer.[fr-CA]",
   // ends
@@ -663,6 +668,7 @@
   "accountDashboardBack" : "[fr-CA]Back to Dashboard[fr-CA]",
   "saveAddress": "[fr-CA]Save Address[fr-CA]",
   "savePayment": "[fr-CA]Save Payment[fr-CA]",
+  "thirteenError" : "[fr-CA]You must be over 13 years of age to sign up for our newsletter.<br />Please see our <a href=\"/privacy-policy\">Privacy Policy</a> for details.[fr-CA]",
   "savePersonalInfo": "[fr-CA]Save Personal Info[fr-CA]",
   "youHaveWishlist": "[fr-CA]You have {0} items on your wishlist.[fr-CA]",
   "orderPackagePrice": "[fr-CA]Price Each[fr-CA]",
@@ -704,5 +710,6 @@
   "checkoutQuizText": "[fr-CA]Take our online skin consultation quiz to recieve cutomized recommendations for your skin care needs.[fr-CA]",
   "checkoutQuizTakeBtn": "[fr-CA]Take Quiz[fr-CA]",
   "makeDefault": "[fr-CA]Make Default[fr-CA]",
-  "defaultPayment": "Default Payment"  
+  "defaultPayment": "[fr-CA]Default Payment[fr-CA]",
+  "ordersViewSubTitle": "[fr-CA]View and manage your orders.[fr-CA]"  
 }

@@ -761,6 +761,9 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
         },
         finishEditCard: function() {
             var self = this;
+            if (!self.model.get('editingCard.paymentOrCardType') &&  $("input[name='credit-card-number']")[0].value && $("input[name='credit-card-type']")[0].value ) {
+                self.model.set('editingCard.paymentOrCardType', $("input[name='credit-card-type']")[0].value); 
+            }
             var operation = this.doModelAction('saveCard');
             if (operation) {
                 operation.then(function(){

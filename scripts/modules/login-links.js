@@ -501,6 +501,10 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
             var email = $(this).parents('#newshopper').find('[data-mz-signup-emailaddress]').val().trim();
             var firstName = $(this).parents('#newshopper').find('[data-mz-signup-firstname]').val().trim();
             var lastName = $(this).parents('#newshopper').find('[data-mz-signup-lastname]').val().trim();
+            var skinType = $(this).parents('#newshopper').find('[data-mz-signup-skintype]').val().trim();
+            var birthMonth = $(this).parents('#newshopper').find('[data-mz-signup-birthmonth]').val().trim();
+            var birthDay = $(this).parents('#newshopper').find('[data-mz-signup-birthday]').val().trim();
+            var birthYear = $(this).parents('#newshopper').find('[data-mz-signup-birthyear]').val().trim();
             //var recoveryquestion = $(this).parents('#newshopper').find('[data-mz-signup-recoveryquestion]').val();
             //var recoveryanswer = $(this).parents('#newshopper').find('[data-mz-signup-recoveryanswer]').val().trim();
             var payload = {
@@ -509,6 +513,10 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
                     userName: email,
                     firstName: firstName,
                     lastName: lastName,
+                    skinType: skinType,
+                    birthMonth: birthMonth,
+                    birthDay: birthDay,
+                    birthYear: birthYear,
                     acceptsMarketing: accMarketing,
                     contacts: [{
                         email: email
@@ -546,23 +554,34 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
             }
         };
         this.validatePassword = function(el, payload){
-            if (!payload.password)
+            var minMaxLength = /^[\s\S]{6,50}$/,
+            upper = /[A-Z]/,
+            lower = /[a-z]/,
+            number = /[0-9]/,
+            special = /[^A-Za-z0-9]/,
+            count = 0;
+
+            if (!payload.password) {
                 return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('passwordMissing')), false;
-            if (payload.password.length < 6) {
+            } else if (!minMaxLength.test(payload.password)) {
                 return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('passwordlength')), false;
-            } else if (payload.password.length > 50) {
-                return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('passwordlength')), false;
-            } else if (payload.password.search(/\d/) == -1) {
-                return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('passwordlength')), false;
-            } else if (payload.password.search(/[a-zA-Z]/) == -1) {
-                return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('passwordlength')), false;
-            } else if (payload.password.search(/[^a-zA-Z0-9\!\@\#\$\%\^\&\*\(\)\_\+\.\,\;\:]/) != -1) {
-                return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('passwordlength')), false;
+            } else {
+                if (upper.test(payload.password)) count++;
+                if (lower.test(payload.password)) count++;
+                if (number.test(payload.password)) count++;
+                if (special.test(payload.password)) count++;
+                   
+                if(count < 3)
+                    return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('passwordStrong')), false;
             }
             return true;
         };
-        this.validateSignup = function (el, payload) {
+        this.validateSignup = function (el, payload) {                  
             if (!payload.account.emailAddress) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('emailMissing')), false;
+            if (!payload.account.firstName) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('firstNameMissing')), false;
+            if (!payload.account.lastName) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('lastNameMissing')), false;            
+            if (!payload.account.birthMonth || !payload.account.birthDay || !payload.account.birthYear) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('birthMissing')), false;
+            if (self.checkDate(payload.account.birthMonth, payload.account.birthDay, payload.account.birthYear)) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('thirteenError')), false;
             if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(payload.account.emailAddress))) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('emailwrongpattern')), false;
             if (payload.password !== $(el).parents('#newshopper').find('[data-mz-signup-confirmpassword]').val()) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('passwordsDoNotMatch')), false;
             //if (payload.account.attributes.recoveryquestion === "0") return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('chooseRecoveryQuestion')), false;
@@ -570,9 +589,33 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
             //if(!$('#recoveryAnswer').val()) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('recoveryAnswerMissing')), false;
             return true;
         };
+        this.checkDate = function (month, day, year) {                  
+            var input = Date.parse( month + '/' + day + '/' + year );
+            var today = new Date();
+            
+            if ( today <= input ) {
+              return true;
+            }
+            var diff = ( today - input ) / ( 1000 * 60 * 60 * 24 * 365 );
+            if( diff < 13 ) {
+              return true;
+            }
+            return false;
+        };
     };
+
+    $( window ).resize(function() {
+        $("#my-account").popover('update');
+    });
+
     $(document).ready(function() {
         $docBody = $(document.body);
+
+        var currentYear = (new Date()).getFullYear();
+        var fromYear = currentYear-101;
+        for (fromYear; fromYear<currentYear; fromYear++){
+            $('<option/>').val(fromYear).html(fromYear).appendTo('#signup_input_dob_year');
+        }
 
         $('[data-mz-action="lite-registration"]').each(function() {
             var modal = new LoginRegistrationModal();
@@ -595,7 +638,7 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
         });
         $("#my-account").popover({
                 html : true,
-                placement : 'bottom',
+                placement : 'auto',
                 content: function() {
                   return $('#my-account-content').html();
                 }

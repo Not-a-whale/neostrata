@@ -617,6 +617,13 @@
                       }
                       .popover{
                           top: -10px;
+                            @media (max-width: 991px) and (min-width: 768px) {
+                                top:  40px !important;
+                                left: -20px !important;
+                                .arrow {
+                                    left: 30px !important;
+                                }
+                            }
 
                           .popover-content{
                               .my-account-details{
@@ -953,6 +960,14 @@
 // Account Dashboard
 .mz-myaccount {
     @leftPosition: 19.5%;
+    #account-messages {
+        margin-top: -9.25rem;
+        display: block;
+        height: 8.25rem;
+        .mz-messagebar .mz-errors li {
+            font-size: 1rem;
+        }
+    }
     .mz-l-container {
         margin: 10rem auto 0;
         max-width: 83.33%;
@@ -1561,6 +1576,69 @@
 
                 &.mz-accountstorecredit {
                     display: none !important;
+                }
+
+                &.mz-order-status-detail  {
+                    &.is-editing {
+                        display: inline-block;
+                        .mz-l-stack-sectiontitle {
+                            margin-top: 3.25rem;
+                        }
+                        .mz-order-status-section {
+                            .mz-billing-shipping-wrapper {
+                                line-height: 1.5;
+                                margin-bottom: 2rem;
+                            }
+                            .mz-l-stack-sectiontitle {
+                                font-size: 1.875rem;
+                                line-height: 1.5;
+                                border-bottom: 2px solid @gray-lighter;
+                                margin-top: 0;
+                                margin-bottom: 0.5rem;
+                                text-align: left;
+                            }
+                            .mz-order-status-section-item {
+                                margin-bottom: 3rem;
+                            }
+                            .mz-shipping-method {
+                                font-weight: bold;
+                            }
+                            .mz-payment-total {
+                                margin-bottom: 1.5rem;
+                            }
+                            img {
+                                max-width: 100%;
+                            }
+                            .mz-addresssummary {
+                                margin-bottom: 2rem;
+                            }
+                            .mz-row-orderstatus-item {
+                                border-bottom: 2px solid @gray-lighter;
+                                padding-top: 0.5rem;
+                                padding-bottom: .5rem;
+                                .mz-orderstatus-item-qty {
+                                    text-align: center;
+                                    text-transform: uppercase;
+                                }
+                                .mz-orderstatus-item-price, .mz-orderstatus-total-container {
+                                    text-align: right;
+                                }
+                                .mz-orderstatus-item {
+                                    margin-bottom: 1rem;
+                                }
+                                .mz-orderstatus-action.add {
+                                    text-decoration: none;
+                                }
+                                .mz-ordersummary-grandtotal {
+                                    font-weight: bold;
+                                    text-transform: uppercase;
+                                }
+                                .mz-orderstatus-item-image {
+                                    padding-right: 0;
+                                }
+                            }
+                        }
+                    }
                 }
 
             }

@@ -167,7 +167,7 @@
 {% endcomment %}
           <div class="order-summary-privacyPolicy">
             <p>By placing your order you agree to the <br />
-                NEOSTRATA <a href="#">Privacy Policy</a> and <a href="#">Terms of Use.</a></p>
+                NEOSTRATA <a href="/privacy-policy" target="_blank">Privacy Policy</a> and <a href="/terms-and-conditions" target="_blank">Terms of Use.</a></p>
           </div>
         </div>
         

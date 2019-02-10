@@ -222,7 +222,7 @@
                     left: 0px;
                     .arrow{left: 50%;}
                     .popover-content{
-                        width: 250px;
+                        width: 17.5rem;
                         padding: 9px 10px;
                         .my-account-details{
                             border-bottom: 1px solid #D9D9D9;
@@ -1029,6 +1029,14 @@ footer {
                     font-size: 3.4375rem;
                     font-weight: bold;
                 }
+                p.info-details{
+                    text-align: center;
+                    margin-top: 2rem;
+                    margin-bottom: 0;
+                    a{
+                        text-decoration: underline;
+                    }
+                }
                 .link-button {
                     .flex-display(flex);
                     width: 80%;
@@ -1053,6 +1061,7 @@ footer {
                     .input-group-addon {
                         display: none;
                     }
+                    select,
                     input {
                         border-radius: 0;
                         border: 2px solid #4e5458;
@@ -1066,6 +1075,10 @@ footer {
                     input[data-mz-signup-lastname] {
                         margin-left: 1.5rem;
                     }
+                    .signup_input_dob_day{
+                        margin-left: 1rem;
+                        margin-right: 1rem;
+                    }
                     &.validation-message {
                         width: 100%;
                         padding: 2rem 0;
@@ -1076,9 +1089,11 @@ footer {
                             left: 50%;
                             transform: translate(-50%,-50%);
                             font-weight: normal;
+                            width: 100%;
                             .mz-validationmessage {
                                 color: #ee6f73;
                                 display: block;
+                                text-align: center;
                             }
                         }
                     }
@@ -2000,25 +2015,31 @@ ul.tabs {
             margin-top: .8rem;
             .add-to-cart-container {
                 padding: 0;
+                width: 80%;
+                display: inline-block;
+                float: right;
                 .primary-btn {
                     height: 3rem;
                     line-height: 1.5rem;
                     font-size: 1rem;
-                    min-width: 18.25rem;
+                    width: 100%;
                 }
             }
             .add-to-wishlist-container{
-                padding: 0.5rem;
+                padding: 0;
+                display: inline-block;
+                width: 15%;
+                vertical-align: text-bottom;
+
                 .mz-productdetail-addtowishlist{
                     text-decoration: none;
                     text-align:center;
                     color: #8fabcc;
-                    span{
-                        font-size: 2rem;
-                        line-height:3rem;
+                    font-size: 2rem;
+                    line-height:3rem;
+                    span {
                         &.blank-heart{
                             .icon(before, @icon-heart-outline);
-
                         }
                         &.filled-heart{
                             .icon(before, @icon-heart-filled);
@@ -4263,9 +4284,9 @@ body.mz-product {
                                 width: auto;
                                 font-size: 1rem;
                             }
-                            
 
-                            
+
+
                             .mz-paymentmethod-myaccount {
                                 width: 50%;
                                 margin: 0 0 0 -4rem;
@@ -4316,13 +4337,13 @@ body.mz-product {
                             .make-primary {
                                 color: @colorLighterGray;
                             }
-                            
+
                             .mz-paymentmethod-cardnumber {
                                 font-weight: 600;
                             }
                         }
                     }
-                    
+
                 }
 
                 &.mz-accountwishlist  {
