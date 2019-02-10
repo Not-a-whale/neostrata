@@ -10,11 +10,9 @@ require(['modules/jquery-mozu', 'underscore', 'hyprlive'], function($,  _,  Hypr
 
         var successMessage = '#success_message_'+getFormId();
         if($(successMessage).is( ':visible' ) ) {
-          console.log('hiding the stuff');
           $('.required-fields').hide();
           $('#newsletter-disclaimer > p').html('');
           $('.newsletter-confirmation').hide();
-          console.log('hiding the stuff');
           observer.disconnect();
         }
     });
@@ -53,7 +51,6 @@ require(['modules/jquery-mozu', 'underscore', 'hyprlive'], function($,  _,  Hypr
       );
 
       // Insert disclaimer.
-      console.log('Inserting disclaimer');
       $( '#newsletter-form' ).after( $( '#template-newsletter-disclaimer' ).html() );
 
       // Handle skin-type changes.
