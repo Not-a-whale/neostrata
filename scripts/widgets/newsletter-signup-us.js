@@ -8,12 +8,13 @@ require(['modules/jquery-mozu', 'underscore', 'hyprlive'], function($,  _,  Hypr
           initOnce();
         }
 
-
         var successMessage = '#success_message_'+getFormId();
         if($(successMessage).is( ':visible' ) ) {
+          console.log('hiding the stuff');
           $('.required-fields').hide();
-          $('#newsletter-disclaimer').hide();
+          $('#newsletter-disclaimer > p').html('');
           $('.newsletter-confirmation').hide();
+          console.log('hiding the stuff');
           observer.disconnect();
         }
     });
@@ -24,15 +25,6 @@ require(['modules/jquery-mozu', 'underscore', 'hyprlive'], function($,  _,  Hypr
   function initOnce() {
     if ( !didInit ) {
 
-
-      var form = $('ctct_form_'+getFormId());
-      form.submit(function(event) {
-        // Prevent default form action
-        console.log('Submit called');
-        event.preventDefault();
-        return false;
-
-      });
       // Add placeholders.
       $('#first_name_'+getFormId()).prop( 'placeholder', Hypr.getLabel('firstName') + ' *' );
       $('#last_name_'+getFormId()).prop( 'placeholder', Hypr.getLabel('lastName') + ' *' );
@@ -61,6 +53,7 @@ require(['modules/jquery-mozu', 'underscore', 'hyprlive'], function($,  _,  Hypr
       );
 
       // Insert disclaimer.
+      console.log('Inserting disclaimer');
       $( '#newsletter-form' ).after( $( '#template-newsletter-disclaimer' ).html() );
 
       // Handle skin-type changes.
@@ -80,61 +73,13 @@ require(['modules/jquery-mozu', 'underscore', 'hyprlive'], function($,  _,  Hypr
 
       var $submit = $( '.ctct-form-button' );
 
-      $submit.hide();
       $submit.after( $( '#template-newsletter-submit' ).html() );
-
-      $( '#newsletter-form select' ).change( function(event) {
-        $( this ).removeClass( 'is-error' );
-        if(event.target.id === 'input_skintype'){
-          $( '#input_skintype' ).val(event.target.value);
-        }
-        if(checkDate() && $( '#first_name_'+getFormId() ).val() !== '' && $( '#last_name_'+getFormId() ).val() !== '' && $('#email_address_'+getFormId()).val() !== ''){
-          $('.ctct-form-button').hide();
-          $('*[data-qe-id="form-button"]').show();
-        }
-      });
+/*
       $('*[data-qe-id="form-button"]').click( function() {
         $('#newsletter-disclaimer > p').html('');
         $('#newsletter-form > .required-fields').html('');
       });
-      $( '[data-role="submit-override"]' ).click( function( ev ) {
-        var valid = true;
-
-        _.each( [
-          '#first_name_'+getFormId(),
-          '#last_name_'+getFormId(),
-          '#email_address_'+getFormId()
-        ], function( id ) {
-          $( id ).removeClass( 'is-error' );
-          if ( $( id ).val() === '' ) {
-            $( id ).addClass( 'is-error' );
-            valid = false;
-          }
-        });
-
-        $( '#input_newsletter_confirmation' ).removeClass( 'is-error' );
-        if (!$( '#input_newsletter_confirmation' ).prop("checked")) {
-          $( '#input_newsletter_confirmation' ).addClass( 'is-error' );
-          valid = false;
-          $('html, body').animate({scrollTop: $( '#input_newsletter_confirmation' ).offset().top}, 1500);
-        }
-
-        // Date
-        $( '.input_age' ).removeClass( 'is-error' );
-        if (!checkDate() ) {
-          valid = false;
-        }
-
-        if ( valid ) {
-          // Pass the click through to the real submit button.
-          $submit.click();
-        }
-        else {
-          // Scroll to the top of the form.
-          $( document ).scrollTop( $( '#newsletter-form' ).offset().top - 150 );
-        }
-      });
-
+*/
       $('#success_message_'+getFormId()+' h2').html( Hypr.getLabel('newsletterThanksHeader') );
       $('#success_message_'+getFormId()+' p').html( Hypr.getLabel('newsletterThanksText') );
 
@@ -156,31 +101,39 @@ require(['modules/jquery-mozu', 'underscore', 'hyprlive'], function($,  _,  Hypr
     }
   }
 
+  function setDateError() {
+    $( '#input_dob_month' ).addClass( 'is-error' );
+    $( '#input_dob_day' ).addClass( 'is-error' );
+    $( '#input_dob_year' ).addClass( 'is-error' );
+  }
+  function removeDateError() {
+    $( '#input_dob_month' ).removeClass( 'is-error' );
+    $( '#input_dob_day' ).removeClass( 'is-error' );
+    $( '#input_dob_year' ).removeClass( 'is-error' );
+  }
+
   function checkDate() {
+
     var month = $( '#input_dob_month' ).prop( 'value' );
-    if ( month === '' ){
-        $( '#input_dob_month' ).addClass( 'is-error' );
-        return false;
-    }
     var day = $( '#input_dob_day' ).prop( 'value' );
-    if ( day === '' ){
-        $( '#input_dob_day' ).addClass( 'is-error' );
-        return false;
-    }
     var year = $( '#input_dob_year' ).prop( 'value' );
-    if ( year === '' ){
-        $( '#input_dob_year' ).addClass( 'is-error' );
+
+    if ( month === '' || day === '' || year === '' ){
+        removeDateError();
         return false;
     }
 
     var input = new Date( month + '/' + day + '/' + year );
     var today = new Date();
 
-    if ( today <= input ) {
-      return false;
+    var ageResult = checkAge(input, 13);
+    if (ageResult) {
+      removeDateError();
     }
-
-    return checkAge(input, 13);
+    else {
+      setDateError();
+    }
+    return ageResult;
   }
 
   function checkAge(dateToCheck, minimumAge) {
