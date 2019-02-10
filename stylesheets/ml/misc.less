@@ -4395,3 +4395,133 @@ body.mz-product {
 #mz-drop-zone-featured-recommended-regimen{
     width: 100%;
 }
+/* Login page START */
+.login-page-wrapper {
+    width: 84% !important;
+    margin: 0 auto;
+
+    @media (max-width: 991px) {
+        width: 90% !important;
+    }
+
+    .login-page {
+        padding: 5rem 7rem;
+        margin:0 10% 10%;
+
+        @media (max-width: 991px) {
+            padding: 3rem 0;
+            margin:0 0 1%;
+        }
+    }
+
+    h1 {
+        text-align: center;
+        margin: 4.7rem 0 0.7rem;
+        font-size: 3.4375rem;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .link-button {
+        .flex-display(flex);
+        width: 80%;
+        margin: 0 auto;
+        a {
+            text-decoration: underline;
+            text-align: right;
+            width: 100%;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+    }
+
+    a{
+        color: #4e5458; text-decoration: none;
+        &:hover{color: #383333; text-decoration: none; }
+    }
+
+    .input-group {
+        position: relative;
+        padding: 0;
+        .flex-display(flex);
+        width: 80%;
+        margin: 0 auto;
+
+        .input-group-addon {
+            display: none;
+        }
+
+        select,
+        input {
+            border-radius: 0;
+            border: 2px solid #4e5458;
+            height: 5rem;
+            margin: 2rem auto 0;
+            font-size: 1rem;
+            color: #4e5458;
+            text-transform: uppercase;
+            padding: 0 0 0 2rem;
+            font-weight: 700;
+        }
+
+        &.validation-message {
+            width: 100%;
+            padding: 2rem 0;
+
+            .popover-message {
+                position: absolute;
+                top: 50%;
+                font-size: 1.8rem;
+                left: 50%;
+                transform: translate(-50%,-50%);
+                font-weight: normal;
+                width: 100%;
+
+                .mz-validationmessage {
+                    color: #ee6f73;
+                    display: block;
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    .btn-forgot-password {
+        justify-content: flex-end;
+
+        a {
+            width: auto;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+    }
+    
+    .login-btn-row {
+        padding: 0;
+        .flex-display(flex);
+        width: 60%;
+        margin: 3.5rem auto 0;
+        .flex-direction(column);
+        
+        &.create-account {
+            margin-bottom: 2rem;
+            margin-top: 0;
+            text-align: center;
+            text-transform: uppercase;
+
+            p {
+                font-size: 1rem;
+                margin: 2.5rem 0 0 0;
+                font-weight: normal;
+            }
+            a {
+                text-decoration: underline;
+                padding: 0.25rem;
+                font-size: 1.2rem;
+            }
+        }
+    }
+}
+
+
+/* Login page END */
