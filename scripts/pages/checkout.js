@@ -1,11 +1,11 @@
-  require(["modules/jquery-mozu",
-    "underscore", "hyprlive",
-    "modules/backbone-mozu",
-    "modules/models-checkout",
-    "modules/views-messages",
-    "modules/cart-monitor",
-    'hyprlivecontext',
-    'modules/editable-view',
+require(["modules/jquery-mozu", 
+    "underscore", "hyprlive", 
+    "modules/backbone-mozu", 
+    "modules/models-checkout", 
+    "modules/views-messages", 
+    "modules/cart-monitor", 
+    'hyprlivecontext', 
+    'modules/editable-view', 
     'modules/preserve-element-through-render',
     'modules/xpress-paypal',
 		'modules/bootstrap-select'],
@@ -14,7 +14,7 @@
 
     var CheckoutStepView = EditableView.extend({
         edit: function () {
-            this.model.edit();
+            this.model.edit();            
         /*sets which is current step for styling purposes*/
             this.$el.siblings().removeClass('is-current');
             this.$el.addClass('is-current');
@@ -24,9 +24,9 @@
         next: function () {
             // wait for blur validation to complete
             var me = this;
-        /*sets which is current step for styling purposes*/
+        /*sets which is current step for styling purposes*/                        
             this.lastStep = this.$el.prop('id');
-        /*sets which is current step for styling purposes*/
+        /*sets which is current step for styling purposes*/                        
             me.editing.savedCard = false;
             _.defer(function () {
                 me.model.next();
@@ -59,12 +59,7 @@
         },
         render: function () {
             this.$el.removeClass('is-new is-incomplete is-complete is-invalid').addClass('is-' + this.model.stepStatus());
-        /*sets which is current step for styling purposes*/
-            if(this.lastStep == 'step-shipping-address'){
-                $('#step-shipping-method').addClass('force-view');
-            }else if(this.lastStep == 'step-shipping-method'){
-                $('#step-shipping-method').removeClass('force-view');
-            }else{
+        /*sets which is current step for styling purposes*/            
                 if(this.$el.prop('id') == 'step-customer-info'){ //let's initialize, at least first element is-current
                     this.$el.addClass('is-current');
                 }else{ // checking for previous steps status
@@ -73,34 +68,35 @@
                         this.model._stepStatus = 'incomplete'; //set by using stepStatus() method fires an infinite bucle in this logic.
                     }
                     if(this.$el.prev().hasClass('is-complete') && !this.$el.hasClass('is-complete')) this.$el.addClass('is-current');  //previous complete and this not? let's focus on this step
-                }
-                if(this.$el.hasClass('is-current')){ //is current element
+                }           
+                if(this.$el.hasClass('is-current')){ //is current element 
                     this.$el.removeClass('is-incomplete');
-                    if(this.$el.prop('id') == 'step-shipping-method' && this.$el.hasClass('force-view')){
-                        this.$el.siblings().removeClass('is-current');
-                        this.$el.removeClass('is-complete').addClass('is-incomplete');
-                        this.model._stepStatus = 'incomplete'; //set by using stepStatus() method fires an infinite bucle in this logic.
-                    }
                     if(this.$el.prop('id') == 'step-payment-info'){ //payment-step must always set coupon-code visibility
                         this.$el.next().removeClass('is-complete').addClass('is-current');
                         $('#step-review').removeClass('is-current');
-                    }
+                    }       
                 }
-                if(this.model.stepStatus() == 'complete'){ //all is OK, let set next setp as is-current
-                    this.$el.removeClass('is-current is-incomplete');
+                if(this.model.stepStatus() == 'complete'){ //all is OK, let set next setp as is-current                           
+                    this.$el.removeClass('is-current is-incomplete');    
                     this.$el.next().addClass('is-current');
                     if(this.$el.prop('id') == 'step-payment-info'){ //payment-step is ok? lets show the review section
                         this.$el.next().removeClass('is-current').addClass('is-complete');
-                        $('#step-review').addClass('is-current');
-                    }
-                }
-                if(this.$el.prop('id') == 'step-shipping-address' && $('#step-customer-info').hasClass('is-current')){ //we are on the last step but fist is-current? let's adjust all steps
+                        $('#step-review').addClass('is-current');    
+                    }                                
+                } 
+                if(this.$el.prop('id') == 'step-shipping-address' && $('#step-customer-info').hasClass('is-current')){ //we are on the last step but fist is-current? let's adjust all steps 
                     this.$el.siblings().removeClass('is-current');
                     $('#step-customer-info').addClass('is-current');
+                }    
+                if(this.lastStep && this.lastStep == 'step-shipping-address'){
+                    this.lastStep = false;
+                    $('#step-shipping-method').removeClass('is-complete').addClass('is-current');
+                    $('#step-shipping-method').siblings().removeClass('is-current');
+                    this.model._stepStatus = 'incomplete'; //set by using stepStatus() method fires an infinite bucle in this logic.
                 }
-            }
+            //}
         /*sets which is current step for styling purposes*/
-            $('#order-summary button').html($('.is-current').find('.primary-btn').html()); //updates right box area button with current step button text
+            $('#order-summary button').html($('.is-current').find('.primary-btn').html()); //updates right box area button with current step button text        
             EditableView.prototype.render.apply(this, arguments);
             this.resize();
         },
@@ -108,7 +104,7 @@
             this.$('.mz-panel-wrap').animate({'height': this.$('.mz-inner-panel').outerHeight() });
         },200)
     });
-
+    
     var OrderSummaryView = Backbone.MozuView.extend({
         templateName: 'modules/checkout/checkout-order-summary',
 
@@ -119,7 +115,7 @@
         editCart: function () {
             window.location =  (HyprLiveContext.locals.siteContext.siteSubdirectory||'') + "/cart";
         },
-
+        
         onOrderCreditChanged: function (order, scope) {
             this.render();
         },
@@ -127,7 +123,7 @@
         // override loading button changing at inappropriate times
         handleLoadingChange: function () { }
     });
-
+    
     var CustomerInfoView = CheckoutStepView.extend({
         templateName: 'modules/checkout/checkout-customer-info',
         autoUpdate: [
@@ -137,7 +133,7 @@
             'acceptsMarketing'
         ]
     });
-
+    
     var ShippingAddressView = CheckoutStepView.extend({
         templateName: 'modules/checkout/step-shipping-address',
         autoUpdate: [
@@ -188,7 +184,7 @@
     });
 
     var poCustomFields = function() {
-
+        
         var fieldDefs = [];
 
         var isEnabled = HyprLiveContext.locals.siteContext.checkoutSettings.purchaseOrder &&
@@ -247,7 +243,7 @@
             'usingSavedCard',
             'savedPaymentMethodId',
             'billingContact.email'
-
+            
         ],
         additionalEvents: {
             "blur #mz-payment-credit-card-number": "changeCardType",
@@ -268,9 +264,9 @@
                 cardType = "VISA";
             }
 
-            // Mastercard
+            // Mastercard 
             // Updated for Mastercard 2017 BINs expansion
-             if (/^(5[1-5][0-9]{14}|2(22[1-9][0-9]{12}|2[3-9][0-9]{13}|[3-6][0-9]{14}|7[0-1][0-9]{13}|720[0-9]{12}))$/.test(number))
+             if (/^(5[1-5][0-9]{14}|2(22[1-9][0-9]{12}|2[3-9][0-9]{13}|[3-6][0-9]{14}|7[0-1][0-9]{13}|720[0-9]{12}))$/.test(number)) 
                 cardType = "MC";
 
             // AMEX
@@ -282,7 +278,7 @@
             re = new RegExp("^(6011|622(12[6-9]|1[3-9][0-9]|[2-8][0-9]{2}|9[0-1][0-9]|92[0-5]|64[4-9])|65)");
             if (number.match(re) !== null)
                 cardType = "DISCOVER";
-
+            
             $('.mz-card-type-images').find('span').removeClass('active');
             if(cardType){
                 this.model.set('card.paymentOrCardType',cardType);
@@ -290,7 +286,7 @@
                 $('.mz-card-type-images').find('span[data-mz-card-type-image="'+cardType+'"]').addClass('active');
             }
             else{
-                this.model.set('card.paymentOrCardType',null);
+                this.model.set('card.paymentOrCardType',null);    
             }
         },
         initialize: function () {
@@ -341,7 +337,7 @@
 
             if (this.$(".p-button").length > 0)
                 PayPal.loadScript();
-
+                
             $('.selectpicker').selectpicker();
         },
         updateAcceptsMarketing: function(e) {
@@ -355,7 +351,7 @@
         edit: function () {
             this.model.edit();
             this.beginEditingCard();
-        },
+        },         
         beginEditingCard: function() {
             var me = this;
             if (!this.model.isExternalCheckoutFlowComplete()) {
@@ -426,7 +422,7 @@
                 return;
             }
             var amtToApply = this.stripNonNumericAndParseFloat(val);
-
+            
             this.model.applyDigitalCredit(creditCode, amtToApply, true);
             this.render();
         },
@@ -491,7 +487,7 @@
                 me.model.parent.processDigitalWallet('VisaCheckout', payment);
             });
 
-
+          
 
             window.V.init({
                 apikey: apiKey,
@@ -508,7 +504,7 @@
     var CouponView = Backbone.MozuView.extend({
         templateName: 'modules/checkout/coupon-code-field',
         handleLoadingChange: function (isLoading) {
-            // override adding the isLoading class so the apply button
+            // override adding the isLoading class so the apply button 
             // doesn't go loading whenever other parts of the order change
         },
         initialize: function () {
@@ -636,7 +632,7 @@
         conf.el.css('opacity',1);
         if (mask) mask.remove();
       }
-      conf.model.on('refresh', killMask);
+      conf.model.on('refresh', killMask); 
       conf.model.on('error', killMask);
       return conf;
     };
@@ -683,7 +679,7 @@
                     el: $('#comments-field'),
                     model: checkoutModel
                 }),
-
+                
                 reviewPanel: new ReviewOrderView({
                     el: $('#step-review'),
                     model: checkoutModel
@@ -700,7 +696,7 @@
             CartMonitor.setCount(0);
             window.location = (HyprLiveContext.locals.siteContext.siteSubdirectory||'') + "/checkout/" + checkoutModel.get('id') + "/confirmation";
         });
-
+        
         var $reviewPanel = $('#step-review');
         checkoutModel.on('change:isReady',function (model, isReady) {
             if (isReady) {
@@ -708,7 +704,7 @@
                 setTimeout(function () { window.scrollTo(0, $reviewPanel.offset().top); }, 750);
             }
         });
-
+ 
         _.invoke(checkoutViews.steps, 'initStepView');
 
         $checkoutView.noFlickerFadeIn();

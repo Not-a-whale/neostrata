@@ -1,5 +1,6 @@
 ﻿{% block credit-card-form %}
-{% if isMyAccount %}
+{% if isMyAccount %} 
+    <input type="hidden" name="credit-card-type" id="mz-payment-credit-card-type" value="{{ model.cardType }}" >
     <div class="mz-l-formfieldgroup-row mz-payment-credit-card-number-row">
         <div class="mz-l-formfieldgroup-cell">
             <label for="mz-payment-credit-card-number">{{ labels.cardNumber }}</label>
@@ -9,6 +10,17 @@
             <span class="mz-validationmessage" data-mz-validationmessage-for="{{ cardcontext }}cardNumberPartOrMask"></span>
         </div>
     </div>
+    
+    <div class="mz-l-formfieldgroup-row mz-payment-credit-card-name-row">
+        <div class="mz-l-formfieldgroup-cell">
+            <label for="mz-payment-credit-card-name">{{ labels.nameOnCard }}</label>
+        </div>
+        <div class="mz-l-formfieldgroup-cell">
+            <input type="text" name="credit-card-name" id="mz-payment-credit-card-name" data-mz-value="{{ cardcontext }}nameOnCard" value="{{ model.nameOnCard }}" maxlength="{{themeSettings.fullNameLength}}" placeholder="{{ labels.nameOnCard }}*">
+            <span class="mz-validationmessage" data-mz-validationmessage-for="{{ cardcontext }}nameOnCard" ></span>
+        </div>
+    </div>
+
     <div class="mz-l-formfieldgroup-row mz-payment-credit-card-expiration-row">
         <div class="mz-l-formfieldgroup-cell">
             <label for="mz-payment-expiration-month">{{ labels.expiration }}</label>

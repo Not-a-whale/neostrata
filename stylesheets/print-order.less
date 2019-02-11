@@ -111,60 +111,62 @@
 .print-order-details {
   display: none;
 }
-.modal-dialog{
-  .mz-close-icon {
-    top: 20px;
-    width: 55px;
-    &:before{
-      height: 25px;
+#printModalWindow {
+  .modal-dialog{
+    .mz-close-icon {
+      top: 20px;
+      width: 55px;
+      &:before{
+        height: 25px;
+      }
+      &:after{
+        height: 25px;
+      }
     }
-    &:after{
-      height: 25px;
+    .printBtn{
+      font-family: FontAwesome;
+      z-index: 9999;
+      position: absolute;
+      right: 70px;
+      top: 20px;
+      cursor: pointer;
     }
-  }
-  .printBtn{
-    font-family: FontAwesome;
-    z-index: 9999;
-    position: absolute;
-    right: 70px;
-    top: 20px;
-    cursor: pointer;
-  }
-  width: auto !important;
-  .modal-content{
-    padding: 5rem;
-    margin: 10%;
-  }
-  .modal-header{
-    padding: 0 !important;
-    border-bottom: 0px solid #e5e5e5;
-  }
-  .modal-footer{
-    display: none;
-  }
-  .order-summary-links{
-    display: none;
-  }
-  .fullWidthPrint{
-    width: 100% !important;
-    margin-bottom: 4rem;
-    p{
-      font-size: 1.2rem;
-      line-height: 1.5em;
+    width: auto !important;
+    .modal-content{
+      padding: 5rem;
+      margin: 10%;
     }
-  }
-  .ordersummary-confirmation{
-    width: 100% !important;
-    padding-bottom: 0 !important;
-    h4{
+    .modal-header{
+      padding: 0 !important;
+      border-bottom: 0px solid #e5e5e5;
+    }
+    .modal-footer{
       display: none;
-    } 
-  }
-  .shipping-information-section{
-    width: 49% !important;
-  }
-  .payment-information-section{
-    width: 49% !important;
+    }
+    .order-summary-links{
+      display: none;
+    }
+    .fullWidthPrint{
+      width: 100% !important;
+      margin-bottom: 4rem;
+      p{
+        font-size: 1.2rem;
+        line-height: 1.5em;
+      }
+    }
+    .ordersummary-confirmation{
+      width: 100% !important;
+      padding-bottom: 0 !important;
+      h4{
+        display: none;
+      } 
+    }
+    .shipping-information-section{
+      width: 49% !important;
+    }
+    .payment-information-section{
+      width: 49% !important;
+    }
   }
 }
 @media print { 

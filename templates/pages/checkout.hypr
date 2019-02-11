@@ -23,7 +23,7 @@
 <div class="mz-l-container">
     <div class="mz-l-column checkout-signin-header container">
         {% if not user.isAuthenticated %}
-            <a data-toggle="modal" data-mz-action="lite-registration" class="mz-pagetitle-note secondary-button">
+            <a class="mz-pagetitle-note secondary-button btn-login-checkout">
                 {{ labels.logIn }}
             </a>
             <span>{{ labels.forFasterCheckout }}</span>
