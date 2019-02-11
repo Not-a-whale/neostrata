@@ -591,6 +591,17 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
                 });
             });
         },
+        startReturn: function(event) {
+            if(event)
+                event.preventDefault();
+            $('.mz-l-stack-section').hide();
+            $('.mz-l-stack-section.mz-accountreturnhistory').show();
+            $('.mz-l-stack-section.mz-accountreturnhistory').removeClass('no-editing').addClass('is-editing');
+            $('.dl-maintitle').hide();
+            $('.mz-scrollnav-item').removeClass('active');
+            $('.mz-scrollnav-item.dl-returns').addClass('active');
+            this.render();
+        },
         printReturnLabel: function(e) {
             var self = this,
                 $target = $(e.currentTarget);
@@ -761,6 +772,9 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
         },
         finishEditCard: function() {
             var self = this;
+            if (!self.model.get('editingCard.paymentOrCardType') &&  $("input[name='credit-card-number']")[0].value && $("input[name='credit-card-type']")[0].value ) {
+                self.model.set('editingCard.paymentOrCardType', $("input[name='credit-card-type']")[0].value); 
+            }
             var operation = this.doModelAction('saveCard');
             if (operation) {
                 operation.then(function(){
@@ -1092,6 +1106,16 @@ function getQueryVariable(variable)
             accountViews.omxOrderHistory.cancelViewOMXOrder();
             accountViews.wishList.startEditWishlist(e);
         });
+        $('.mz-myaccount-nav .dl-returns').on('click', function (e) {
+            e.preventDefault();
+            accountViews.settings.cancelEdit();
+            accountViews.addressBook.cancelViewContact();
+            accountViews.paymentMethods.cancelViewCard();
+            accountViews.wishList.cancelEditWishlist();
+            accountViews.omxOrderHistory.cancelViewOMXOrder();
+            accountViews.wishList.cancelEditWishlist();
+            accountViews.returnHistory.startReturn(e);
+        });
 
         // TODO: upgrade server-side models enough that there's no delta between server output and this render,
         // thus making an up-front render unnecessary.
@@ -1139,6 +1163,14 @@ function getQueryVariable(variable)
                     accountViews.wishList.cancelEditWishlist();
                     accountViews.omxOrderHistory.cancelViewOMXOrder();
                     accountViews.addressBook.viewAddressBook(null);
+                    break;
+                case "returns":
+                    accountViews.settings.cancelEdit();
+                    accountViews.addressBook.cancelViewContact();
+                    accountViews.paymentMethods.cancelViewCard();
+                    accountViews.wishList.cancelEditWishlist();
+                    accountViews.omxOrderHistory.cancelViewOMXOrder();
+                    accountViews.returnHistory.startReturn(null);
                     break;
                 default:
               } 
