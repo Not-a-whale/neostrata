@@ -655,7 +655,16 @@
             }
         }
         .dropdown-menu>li>a:hover {
-            background: none;
+            background: @lightGray;
+            color: @charcoal;
+        }
+        .dropdown-menu>.active>a {
+            background: @mutedBlue;
+
+            &:hover {
+                background: @lightGray;
+                color: @charcoal;
+            }
         }
     }
     .mz-checkoutform-disabled {
