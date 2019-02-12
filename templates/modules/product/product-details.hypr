@@ -22,6 +22,7 @@
               <div class="mz-all-review-container add-to-wishlist-container">
               <button class="mz-productdetail-addToWishlist-Action mz-favorites" data-mz-action="addToWishlist" data-mz-product-code="{{ model.productCode }}">
                   <span class="heart-outline"></span>
+                  <span class="hide-anchor-text">Add to Wishlist</span>
               </button>
                 <span class="mz-reviews-pdp-stars">
                   {% dropzone "reviews-pdp-stars" scope="template" %}
