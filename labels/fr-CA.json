@@ -713,8 +713,6 @@
   "makeDefault": "[fr-CA]Make Default[fr-CA]",
   "defaultPayment": "[fr-CA]Default Payment[fr-CA]",
   "ordersViewSubTitle": "[fr-CA]View and manage your orders.[fr-CA]", 
-
-
   "autoShipDelivery" : "[fr-CA]Subscribe & save 10%[fr-CA]", 
   "oneTimePurchase" : "[fr-CA]One Time Purchase[fr-CA]",
   "autoShipDeliveryDiscount" : "[fr-CA]Free Shipping, easily cancel online any time.[fr-CA]", 
