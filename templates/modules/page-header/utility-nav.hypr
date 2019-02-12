@@ -39,7 +39,7 @@
               <div class="tab-content">
                 <div class="tab-pane active" id="login">
                   <form name="login" onsubmit="return false">
-                    <div class="close-button"><a href="#" data-dismiss="modal"><i class="icon-close"></i></a></div>
+                    <div class="close-button"><a href="#" data-dismiss="modal"><i class="icon-close"></i><span class="hide-anchor-text">Close</span></a></div>
                     <p class="login-text">Sign in for a personalized experience.</p>
                     <div class="input-group validation-message">
                         <label data-mz-role="popover-message" class="popover-message"></label>
@@ -66,7 +66,7 @@
                 </div>
                 <!------- Signup start-------->
                 <div class="tab-pane " id="newshopper">
-                  <div class="close-button"><a href="#" data-dismiss="modal"><i class="icon-close"></i></a></div>
+                  <div class="close-button"><a href="#" data-dismiss="modal"><i class="icon-close"></i><span class="hide-anchor-text">Close</span></a></div>
                   <p class="login-text">Sign up for a personalized experience.</p>
                   <p class="info-details">The information you submit will be governed by our site's <a href="/privacy-policy" target="_blank">Privacy Policy</a>. See <a href="/brand-reviews-terms-and-conditions" target="_blank">Terms and Conditions</a>.</p>
                   <div class="input-group validation-message">
