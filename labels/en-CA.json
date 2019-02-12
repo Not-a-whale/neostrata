@@ -711,5 +711,12 @@
   "checkoutQuizTakeBtn": "Take Quiz",
   "makeDefault": "Make Default",
   "defaultPayment": "Default Payment",
-  "ordersViewSubTitle": "View and manage your orders."  
+  "ordersViewSubTitle": "View and manage your orders.", 
+
+
+  "autoShipDelivery" : "Subscribe & save 10%", 
+  "oneTimePurchase" : "One Time Purchase",
+  "autoShipDeliveryDiscount" : "Free Shipping, easily cancel online any time.", 
+  "deliveryEvery" : "Delivery every {0} days", 
+  "recommendedFrequently" : "(most common)"  
 }
