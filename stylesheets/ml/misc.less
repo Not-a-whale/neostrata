@@ -124,19 +124,26 @@
                 display: block;
                 width: 20.9rem;
                 height: 2.8rem;
+                background-image: url('../resources/images/neostrata_logo.svg');
+                background-repeat: no-repeat;
+                background-size: contain;
+
                 @media (max-width: 356px) {
                     width: 17rem;
                     height: 2.3rem;
                 }
-                background-image: url('../resources/images/neostrata_logo.svg');
-                background-repeat: no-repeat;
-                background-size: contain;
-                &:after{
-                    content: url(../resources/images/neostrata_tagline.svg);
+
+                &::after {
+                    content: "";
                     position: absolute;
-                    bottom: -.95rem;
+                    bottom: -0.95rem;
+                    height: 0.766rem;
                     width: 100%;
-                }
+                    background-image: url(../resources/images/neostrata_tagline.svg);
+                    background-position: 0 0;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                  }
             }
             .customLogo {
                 width: auto;
