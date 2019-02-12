@@ -76,7 +76,7 @@
         <link rel="prev" href="{{PageContext.CrawlerInfo.PreviousUrl}}">
         {% endif %}
 
-		{% if PageContext.CrawlerInfo.NextUrl  %}
+		    {% if PageContext.CrawlerInfo.NextUrl  %}
         <link rel="next" href="{{PageContext.CrawlerInfo.NextUrl}}">
         {% endif %}
 
@@ -97,6 +97,9 @@
 
         {%header_content%}
 
+        {% if not pageContext.isEditMode %}
+        <style> html{display:none;} </style>
+        {% endif %}
     </head>
     {% endblock head-tag %}
 
@@ -109,7 +112,6 @@
             {% include "modules/google-tag-manager/gtm-loader" %}
         {% endif %}
         {% if not pageContext.isEditMode %}
-        <style> html{display:none;} </style>
         <script>
            if(self == top) {
                document.documentElement.style.display = 'block';
