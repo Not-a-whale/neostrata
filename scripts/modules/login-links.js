@@ -621,6 +621,15 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
             var modal = new LoginRegistrationModal();
             modal.init(this);
         });
+
+        $('.btn-signup').on('click', function(){
+            $('[data-mz-param="signup"]').trigger( "click" );
+        });
+        
+        $('.btn-login-checkout').on('click', function(){
+            $('[data-mz-param="login"]').trigger( "click" );
+        });
+
         $('#my-account').attr('href','#');
         $('[data-mz-action="my-account"]').click(function() {
             var popover = new MyAccountPopover();

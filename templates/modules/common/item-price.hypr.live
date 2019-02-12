@@ -1,5 +1,7 @@
 ﻿      {% with item.productDiscounts|first as productDiscount %}
+      {% if not isGlobalCart %}
       <span class="cartproduct-title">{{ labels.price }}</span>
+      {% endif %}
       {% if item.unitPrice.saleAmount %}
         {% if not productDiscount or productDiscount.appliesToSalePrice %}
             <span class="mz-item-price is-crossedout" {% block crossedout-inline-style %}{% endblock crossedout-inline-style %}>{{ item.unitPrice.listAmount|currency }}</span>

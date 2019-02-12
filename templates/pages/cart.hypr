@@ -24,19 +24,7 @@
             <h1 class="mz-pagetitle">{{ labels.cart }}</h1>
         </div>
         <!-- Check if model is not empty and form product table if not-->
-        {% if not model.isEmpty %}  
-            <div class="cart-top-summary">
-                <span class="items-counts">{{ model.count }} {% if model.count == 1 %}Item{% else %}Items{% endif %}</span>
-                <em>|</em>
-                <span class="cart-subtotal">Cart Subtotal: <strong>{{model.discountedSubtotal |currency }}</strong></span>
-                {% include "modules/cart/promo-discounts" %}
-                <button  id="cart-checkout-btn" class="mz-button font-large button_primary primary-btn" data-mz-action="proceedToCheckout">
-                    {{ labels.proceedToCheckout }}
-                </button>
-                <div class="money-back-msg hidden-md">
-                    <span>{{ labels.moneyBackMsg }}</span>
-                </div>
-            </div>
+        {% if not model.isEmpty %}
             <form method="post" action="{{ siteContext.secureHost }}{{siteContext.siteSubdirectory}}/cart/checkout" id="cartform">
                 {% dropzone "cart-top" scope="template" %}
                 <input type="hidden" name="id" value="{{model.id}}" />

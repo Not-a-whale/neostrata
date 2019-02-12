@@ -11,6 +11,7 @@
   "logOut"               : "[fr-CA]Logout[fr-CA]",
   "logIn"                : "[fr-CA]Log In[fr-CA]",
   "logIn2": "[fr-CA]Sign in to your account[fr-CA]",
+  "loginQuestion"        : "[fr-CA]Don't have an account?[fr-CA]",
   "anonOrderNumberMissing": "[fr-CA]The order number you provided was not found. Please validate the order number and try again or contact customer service.[fr-CA]",
   "anonAuthError": "[fr-CA]Sorry, the information you provided did not match our records. Please check the information that you provided and try again or contact the customer service department.[fr-CA]",
   "signUp"               : "s'inscrire",

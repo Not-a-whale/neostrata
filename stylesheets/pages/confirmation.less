@@ -128,6 +128,9 @@
                 display: flex;
                 justify-content: space-between;
                 
+                @media (max-width: 767px) and (min-width: 500px) {
+                    justify-content: flex-start;
+                }
                 .mz-order-content-container {
                     width: 40%;
                     display: flex;
@@ -136,10 +139,17 @@
                     @media (max-width: 800px) {
                         align-items: flex-start;
                     }
-    
+                    @media (max-width: 767px) and (min-width: 500px) {
+                        width: 61%;
+                        overflow: scroll;
+                    }
                     .mz-order-summary-image {
                         width: auto;
                         padding-right: 3.125rem;
+                        
+                        @media (max-width: 767px) and (min-width: 500px) {
+                            padding-right: 4%;
+                        }
                     }
                     .mz-carttable-item-title {
                         font-size: 1.7125rem;
