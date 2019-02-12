@@ -153,16 +153,40 @@ define(["modules/jquery-mozu", "underscore", "modules/backbone-mozu", "hyprlive"
                 FamilyItem.addToCart();
             }
             this.whenReady(function () {
+                console.log('in the addtoCaart'); 
                 if (!me.validate()) {
                     var fulfillMethod = me.get('fulfillmentMethod');
                     if (!fulfillMethod) {
                         fulfillMethod = (me.get('goodsType') === 'Physical') ? Product.Constants.FulfillmentMethods.SHIP : Product.Constants.FulfillmentMethods.DIGITAL;
                     }
+                    console.log('in the addtoCaart'); 
+                    
                     me.apiAddToCart({
                         options: me.getConfiguredOptions(),
                         fulfillmentMethod: fulfillMethod,
                         quantity: me.get("quantity")
                     }).then(function (item) {
+                        var isAutoReplahish = $("input[name*='_autoShipRadio']:checked")[0].value; 
+                        item.data.data = {};
+                        if (isAutoReplahish == "1") {
+                            console.log('is auuto replanish'); 
+                            var autoReplanishCode = $('#mz_pdp_autoship_code').find(":selected").val(); 
+                            item.data.data = { autoreplanishmentCode: autoReplanishCode };
+                        }
+                        var apiData = require.mozuData('apicontext');
+                        $.ajax({
+                            url: '/api/commerce/carts/current/items/'+item.data.id,
+                            headers: apiData.headers,
+                            method: 'PUT',
+                            dataType: "json",
+                            contentType: "application/json; charset=utf-8",
+                            data: JSON.stringify(item.data)
+                        }).done(function(data) {
+                            console.log("Cart item updated", data);
+                        }).fail(function() {
+                            console.log("Error updating cart item");
+                        });
+                    
                         me.trigger('addedtocart', item);
                     }, function(err) {
                         if(err.message.indexOf("Validation Error: The following items have limited quantity or are out of stock:") !== -1){ 

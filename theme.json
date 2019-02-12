@@ -1181,7 +1181,14 @@
         { "url": "/produit/soins-types-de-produits", "linkedCategoryCode": "16", "includeInSecondaryNav": true },
         { "url": "/produit/ingredients", "linkedCategoryCode": "17", "includeInSecondaryNav": true }
       ]
-    }
+    }, 
+    "autoReplanishmentMonthInterval" : "tenant~autoship-month-intervals", 
+    "autoReplanishmentRecomendedInterval" : "tenant~autoship-recommended-interval", 
+    "autoReplenishmentEnable" : "true", 
+    "autoReplenishment_1" :"Delivery every 30 days", 
+    "autoReplenishment_2" :"Delivery every 60 days", 
+    "autoReplenishment_3" :"Delivery every 90 days", 
+    "autoReplenishment_4" :"Delivery every 120 days"
   },
   "layoutWidgets": [
     {
