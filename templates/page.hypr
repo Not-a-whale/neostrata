@@ -135,12 +135,14 @@
             </div>
             <div role="main" id="page-content" class="mz-l-pagecontent">
                 <div class="container-fluid">
-                <div class="row">
-                   <!--  {% block breadcrumbs %}
+                  <div class="row">
+                    {% comment %}
+                    <!--  {% block breadcrumbs %}
                     {% if themeSettings.showBreadcrumbs %}
                     {% include "modules/breadcrumbs" %}
                     {% endif %}
                     {% endblock breadcrumbs %} -->
+                    {% endcomment %}
 
                     {% block body-content %}
                     {% dropzone "body" scope="page" %}
@@ -149,14 +151,12 @@
                     {% block body-below-content %}
                     {% dropzone "body-bottom" scope="template" %}
                     {% endblock body-below-content %}
-                    </div>
+                  </div>
                 </div>
             </div>
             {% block page-footer %}
             {% include "modules/page-footer" %}
             {% endblock page-footer %}
-
-
         </div>
 
         {% block trailing-scripts %}
@@ -166,6 +166,5 @@
         {% visitor_tracking_pixel %}
     </body>
     {% endblock body-tag %}
-
 </html>
 {% endautoescape %}
