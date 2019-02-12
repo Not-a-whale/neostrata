@@ -63,11 +63,13 @@
 				.mz-utilitynav-item{
                     &.navbar-collapse-control{
                         left: 0;
-                    }
-					&:nth-child(2){ //store locator
-						position: absolute;
-						right: 5%;
-						top: 46%;
+					}
+					.commerce-enabled-false & {
+						&:nth-child(2){ //store locator
+							position: absolute;
+							right: 5%;
+							top: 46%;
+						}
 					}
 				}
 			}
