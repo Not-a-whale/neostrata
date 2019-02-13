@@ -34,7 +34,7 @@
               {% endif %}  
             {% endwith %}
 
-          <div class="mz-carttable-item-info-wrap">
+          <div class="mz-carttable-item-info-wrap ">
             <a class="mz-carttable-item-title" href="{{item.product.url}}">{{ item.product.name|safe }}</a>
             {% if item.product.options and themeSettings.showCartItemOptions %}
               <dl class="mz-propertylist">
@@ -75,6 +75,7 @@
                 {{ labels.storePickupAt|string_format(item.fulfillmentLocationName)|safe }}
             </span>
             {% endif %}
+            
           </div>
         </div>
         <div class="col-xs-3 col-sm-3 cart-item-qty">  
@@ -91,12 +92,64 @@
               {% include "modules/common/item-total" %}
             </div>
         </div>
+        {% if themeSettings.autoReplenishmentEnable &&  item.data &&  item.data.autoreplanishmentCode %}
+            {% if  item.product|get_product_attribute(themeSettings.autoReplanishmentMonthInterval) %}
+            <div class="mz-autoShip-wrapper col-xs-8 nopaddingleft">
+                <div class="mz-autoship-content col-xs-12 pull-left nopaddingleft">
+                    <div class="col-xs-2"><input type="radio" name="{{item.product.productCode}}_autoShipRadio"  value="1" checked /> </div> 
+                    <div class="col-xs-10 mz-autoship-content-title">{{labels.autoShipDelivery}}</div>
+                    <div class="col-xs-10 offset-xs-2 mz-autoship-infomsg">{{labels.autoShipDeliveryDiscount}} </div>
+                    <div id="autoshipDropDown" class="col-xs-10 offset-xs-2 ">
+                        <select class="mz-autoship-dropdown" id="mz_pdp_autoship_code" >
+                        {% with item.product|get_product_attribute(themeSettings.autoReplanishmentRecomendedInterval) as recommendedIntervals %}
+                            {% if recommendedIntervals %}
+                            {% with recommendedIntervals.values|first as recommendedIntervalValue %}
+                                {% with item.product|get_product_attribute(themeSettings.autoReplanishmentMonthInterval) as intervals %}
+                                {% if intervals %}
+                                    {% for v in intervals.values %}
+                                        {% if v.stringValue %}
+                                        {% for splitValue in v.stringValue|split(',') %}
+                                            {% if splitValue %}
+                                            {% with "autoReplenishment_X"|replace("X", splitValue) as autoReplenishmentCode %}
+                                            {% with themeSettings|prop(autoReplenishmentCode) as evalValue %}
+                                                <option value="{{ splitValue|safe }}" {% if item.data && splitValue == item.data.autoreplanishmentCode %} selected {% endif %} > {{evalValue}}
+                                                {% if recommendedIntervalValue && splitValue == recommendedIntervalValue.stringValue %} {{labels.recommendedFrequently}} {% endif %}
+                                                </option>                    
+                                            {% endwith %}{% endwith %}
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                                {% endwith %}
+                            {% endwith %}
+                            {% endif %}
+                        {% endwith %}
+                        </select>
+                    </div>
+                </div>
+                <div class="mz-autoship-content col-xs-12 pull-left nopaddingleft">
+                    <div class="col-xs-2"><input type="radio" name="{{item.product.productCode}}_autoShipRadio" value="0" /> </div>
+                    <div class="col-xs-10 mz-autoship-content-title">{{labels.oneTimePurchase}}</div>
+                </div>
+            </div>
+            {% endif %}
+        {% endif %}
+
         <div class="col-xs-12 btn-remove-area">
            <div class="mz-carttable-item-remove col-xs-4 pull-right">
             <a href="javascript:;" data-mz-action="removeItem" data-mz-cart-item="{{ item.id }}" class="btn-link" title="{{ labels.remove }}">{{ labels.remove }}</a>
           </div>
         </div>
+
+
+
+
+
       </div>
+
+
+
     </div>
     {% endfor %}
 {% else %}
