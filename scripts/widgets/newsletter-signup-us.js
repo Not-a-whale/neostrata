@@ -68,6 +68,16 @@ require(['modules/jquery-mozu', 'underscore', 'hyprlive'], function($,  _,  Hypr
         updateDoB();
       });
 
+      //verified if the age_error cookie was set
+      if ($.cookie('mozu-newsletter-age') ) {
+        console.log('mozu-newsletter-age is true'); 
+        $('#input_dob_month').prop('disabled', 'disabled');
+        $('#input_dob_day').prop('disabled', 'disabled');
+        $('#input_dob_year').prop('disabled', 'disabled');
+        console.log('mozu-newsletter-age disable'); 
+        
+      }
+      
       var $submit = $( '.ctct-form-button' );
 
       $submit.after( $( '#template-newsletter-submit' ).html() );
@@ -97,7 +107,12 @@ require(['modules/jquery-mozu', 'underscore', 'hyprlive'], function($,  _,  Hypr
       $( '#custom_field_string_custom_field_2_'+getFormId() ).prop( 'value', '' );
     }
   }
-
+  function setDateErrorCookie() {
+    $.cookie('mozu-newsletter-age', true, { path: '/', expires: 1 });
+    $('#input_dob_month').prop('disabled', 'disabled');
+    $('#input_dob_day').prop('disabled', 'disabled');
+    $('#input_dob_year').prop('disabled', 'disabled');
+  }
   function setDateError() {
     $( '#input_dob_month' ).addClass( 'is-error' );
     $( '#input_dob_day' ).addClass( 'is-error' );
@@ -129,6 +144,7 @@ require(['modules/jquery-mozu', 'underscore', 'hyprlive'], function($,  _,  Hypr
     }
     else {
       setDateError();
+      setDateErrorCookie(); 
     }
     return ageResult;
   }
