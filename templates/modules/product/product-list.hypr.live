@@ -1,7 +1,7 @@
 ﻿<div class="mz-productlist {% block module-classes %}{% endblock module-classes %}">
+    {% dropzone "featured-recommended-regimen" scope="page" %}
 
     <ul id="product-list-ul" class="mz-productlist-list row ml-list-view-toggle grid-view {% block list-classes %}{% endblock list-classes %}">
-        {% dropzone "featured-recommended-regimen" scope="page" %}
         {% if model.items %}
         {% for prod in model.items %}
         <li class="mz-productlist-item product-item col-xs-12 col-sm-4 col-md-3" data-mz-product="{{ prod.productCode }}">{% include "modules/product/product-listing" with model=prod %}</li>
