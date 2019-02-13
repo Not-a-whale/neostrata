@@ -30,7 +30,7 @@
       <!-- <label class="mz-qty-label text-uppercase" for="mz_pdp_qty">{{ labels.qty }}</label> -->
       <div class="mz-qty-label text-uppercase col-xs-6 text-right">{{ labels.qty }}:</div>
       <div class="mz_pdp_qty col-xs-6">
-        <select class="mz-productdetail-qty" id="mz_pdp_qty" >
+        <select class="mz-productdetail-qty" id="mz_pdp_qty" title="Quantity">
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>

@@ -42,9 +42,9 @@
 	{% block breadcrumbs %}
 		{% if themeSettings.showBreadcrumbs %}
 			{% include "modules/breadcrumbs" %}
-	    {% endif %}
+	  {% endif %}
 	{% endblock breadcrumbs %}
-    <div class="clearfix"></div>
-    {% include "modules/product/product-details" %}
+  <div class="clearfix"></div>
+  {% include "modules/product/product-details" %}
 </div>
 {% endblock body-content %}

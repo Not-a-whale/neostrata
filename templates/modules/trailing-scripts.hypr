@@ -1,7 +1,7 @@
 ﻿{% with themeSettings.useDebugScripts|default:pageContext.isDebugMode as debugMode %}
 
 <script src="{{siteContext.cdnPrefix}}/js/require-{% if debugMode %}debug{% else %}min{% endif %}.js"></script>
-<script type="text/javascript">
+<script>
     require.config({
       waitSeconds : 120,
       cdnPrefix: "{{ siteContext.cdnPrefix }}",

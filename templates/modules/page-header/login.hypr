@@ -72,11 +72,10 @@ Use require_script to load AMD modules that are wrapped in define() or require()
 {%else%}
   {% if themeSettings.commerceEnabled %}
         <!-- Button trigger modal -->
-        <a type="button" class="login-link-text"  >
-          <span data-toggle="modal" data-mz-action="lite-registration" data-mz-param="login">sign in </span><b>or</b> 
+        <a class="login-link-text"  >
+          <span data-toggle="modal" data-mz-action="lite-registration" data-mz-param="login">sign in </span><b>or</b>
           <span data-toggle="modal" data-mz-action="lite-registration"  data-mz-param="signup">create account</span>
           <i class="icon-user" data-mz-action="lite-registration" data-mz-param="login"></i>
         </a>
   {% endif %}
 {% endif %}
-        
