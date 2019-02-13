@@ -288,7 +288,7 @@
                 padding-left: 4.375rem;
                 line-height: 3.5rem;
                 display: block;
-                width: 100%;
+                width: 100%;                
                 .icon-user {
                     .icon(before, @icon-user);
                     font-size: 2.5rem;
@@ -958,11 +958,15 @@
 .mz-myaccount {
     @leftPosition: 19.5%;
     #account-messages {
-        margin-top: -9.25rem;
-        display: block;
-        height: 8.25rem;
+        margin-top: -5rem;
+        position: absolute;
+        width: 100%;
+        height: auto;
         .mz-messagebar .mz-errors li {
             font-size: 1rem;
+            overflow: auto;
+            line-height: 2.5;
+            margin-top: 0;
         }
     }
     .mz-l-container {

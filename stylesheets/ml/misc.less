@@ -124,19 +124,26 @@
                 display: block;
                 width: 20.9rem;
                 height: 2.8rem;
+                background-image: url('../resources/images/neostrata_logo.svg');
+                background-repeat: no-repeat;
+                background-size: contain;
+
                 @media (max-width: 356px) {
                     width: 17rem;
                     height: 2.3rem;
                 }
-                background-image: url('../resources/images/neostrata_logo.svg');
-                background-repeat: no-repeat;
-                background-size: contain;
-                &:after{
-                    content: url(../resources/images/neostrata_tagline.svg);
+
+                &::after {
+                    content: "";
                     position: absolute;
-                    bottom: -.95rem;
+                    bottom: -0.95rem;
+                    height: 0.766rem;
                     width: 100%;
-                }
+                    background-image: url(../resources/images/neostrata_tagline.svg);
+                    background-position: 0 0;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                  }
             }
             .customLogo {
                 width: auto;
@@ -169,6 +176,9 @@
                     display: none;
                 }
               }
+              @media (min-width: 500px) and (max-width: 530px){
+                    right: 8rem;
+                }
             }
             .search-button{
                 .icon(before, @icon-search);
@@ -218,7 +228,7 @@
                 }
                 .popover{
                     left: 0px;
-                    .arrow{left: 50%;}
+                    .arrow{left: 50% !important;}
                     .popover-content{
                         width: 17.5rem;
                         padding: 9px 10px;
@@ -274,6 +284,17 @@
                             position: absolute; // added 020319
                             top: 36%; // added 020319
                             left: 6.2rem; // added 020319
+
+                            #mz-logged-in-notice {
+                                #my-account {
+                                    height: 3rem;
+                                    width: 3.125rem;
+                                    display: block;
+                                }
+                            }
+                        }
+                        @media (min-width: 500px) and (max-width: 530px) {
+                            left: 4.8rem;
                         }
                     }
                 }
@@ -2663,6 +2684,7 @@ ul.tabs {
             }
         }
       .mz-reviews-pdp-stars{
+          display: inline;
           color: @colorGreen;
       }
 
@@ -4022,6 +4044,15 @@ body.mz-product {
 // Account Dashboard
 .mz-myaccount {
     @leftPosition: 19.5%;
+    #account-messages {
+        margin-top: -9.25rem;
+        display: block;
+        height: 8.25rem;
+        position: relative;
+        .mz-messagebar .mz-errors li {
+            font-size: 1rem;
+        }
+    }
     .mz-l-container {
         display: block;
         .h1, h1 {
@@ -4514,5 +4545,13 @@ body.mz-product {
     }
 }
 
+#mz-drop-zone-faceted-nav-footer .mz-content-widget-inner-wrap div.all-products a.primary-btn{
+    display: flex;
+    line-height: 1.5em;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    white-space: normal;
+}
 
 /* Login page END */
