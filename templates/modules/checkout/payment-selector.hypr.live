@@ -25,7 +25,7 @@
             </div>
         </div>
         {% if model.paymentType == "CreditCard" and not model.usingSavedCard %}
-            {% include "modules/checkout/billing-credit-card-form" with model=model.card %}
+            {% include "modules/checkout/billing-credit-card-form" with model=model.card isAnonymousShopper=model.isAnonymousShopper %}
             <div class="mz-l-stack-section">
                 <h5 class="checkout-fields-title">{{ labels.billingAddress }}</h5>
                 {% include "modules/checkout/billing-address-selector" %}

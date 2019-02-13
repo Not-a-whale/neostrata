@@ -722,12 +722,10 @@
 #checkout-form .checkout-leftcolumn .mz-formstep {
     margin-bottom: 6.25rem;
     float: none;
-    &.is-partial{
-        .mz-formstep-edit{
-            display:none;
-        }
-    }
     &.is-complete{
+        .mz-formstep-edit{
+            display:block;
+        }
         .mz-formstep-body{
             display:block;
         }
@@ -743,9 +741,21 @@
         .mz-formstep-body{
             display:block;
         }        
-        .mz-addresssummary{
-            display:none;
+        .mz-checkout-current-payment{
+            p{
+                display:none;    
+            }
         }
+        .mz-checkout-saved-billingaddress{
+            .mz-checkoutform-title,
+            .mz-addresssummary{
+                display:none;
+            }
+        }
+        
+    }
+    .mz-formstep-edit{
+        display:none;
     }
     &.mz-checkoutform-review.is-current,
     &.mz-checkoutform-shippingmethod.is-complete,
