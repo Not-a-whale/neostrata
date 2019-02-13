@@ -166,28 +166,48 @@ define(["modules/jquery-mozu", "underscore", "modules/backbone-mozu", "hyprlive"
                         fulfillmentMethod: fulfillMethod,
                         quantity: me.get("quantity")
                     }).then(function (item) {
-                        var isAutoReplahish = $("input[name*='_autoShipRadio']:checked")[0].value; 
-                        item.data.data = {};
-                        if (isAutoReplahish == "1") {
-                            console.log('is auuto replanish'); 
-                            var autoReplanishCode = $('#mz_pdp_autoship_code').find(":selected").val(); 
-                            item.data.data = { autoreplanishmentCode: autoReplanishCode };
+
+                        var isAutoReplenishmentEnable = Hypr.getThemeSetting('autoReplenishmentEnable'); 
+                        if (isAutoReplenishmentEnable) {
+                            var isAutoReplahish = $("input[name*='_autoShipRadio']:checked")[0].value; 
+                            item.data.data = {};
+                            if (isAutoReplahish == "1") {
+                                console.log('is auuto replanish'); 
+                                var autoReplanishCode = $('#mz_pdp_autoship_code').find(":selected").val(); 
+                                item.data.data = { autoreplanishmentCode: autoReplanishCode };
+                            }
+                            var apiData = require.mozuData('apicontext');
+                            $.ajax({
+                                url: '/api/commerce/carts/current/items/'+item.data.id,
+                                headers: apiData.headers,
+                                method: 'PUT',
+                                dataType: "json",
+                                contentType: "application/json; charset=utf-8",
+                                data: JSON.stringify(item.data)
+                            }).done(function(data) {
+                                console.log("Cart item updated", data);
+
+                                me.trigger('addedtocart', item);
+                                if (data.data.data && data.data.data.autoreplanishmentCode == "0") {
+                                    var couponCode = "autoship_discount"; 
+                                    me.apiRemoveCoupon(couponCode).then(function(response){
+                                        console.log('couponremoved', couponCode); 
+                                        me.trigger('couponremoved', couponCode);
+                                    });
+                                }
+                            }).fail(function() {
+                                console.log("Error updating cart item");
+                            });
+                        } else {
+                            me.trigger('addedtocart', item);
+
+                            var couponCode = "autoship_discount"; 
+                            me.apiRemoveCoupon(couponCode).then(function(response){
+                                console.log('couponremoved', couponCode); 
+                                me.trigger('couponremoved', couponCode);
+                            });
+
                         }
-                        var apiData = require.mozuData('apicontext');
-                        $.ajax({
-                            url: '/api/commerce/carts/current/items/'+item.data.id,
-                            headers: apiData.headers,
-                            method: 'PUT',
-                            dataType: "json",
-                            contentType: "application/json; charset=utf-8",
-                            data: JSON.stringify(item.data)
-                        }).done(function(data) {
-                            console.log("Cart item updated", data);
-                        }).fail(function() {
-                            console.log("Error updating cart item");
-                        });
-                    
-                        me.trigger('addedtocart', item);
                     }, function(err) {
                         if(err.message.indexOf("Validation Error: The following items have limited quantity or are out of stock:") !== -1){ 
                             me.messages.reset({ message: Hypr.getLabel('productOutOfStockError') });
