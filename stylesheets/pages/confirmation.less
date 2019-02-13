@@ -126,29 +126,32 @@
     
             .mz-ordersummary-line-item {
                 display: flex;
-                justify-content: space-between;
+                justify-content: space-between; 
                 
-                @media (max-width: 767px) and (min-width: 500px) {
+                @media (max-width: 767px) {
                     justify-content: flex-start;
                 }
                 .mz-order-content-container {
                     width: 40%;
-                    display: flex;
-                    align-items: center;
+                    display: inline-block;
                     
-                    @media (max-width: 800px) {
-                        align-items: flex-start;
-                    }
-                    @media (max-width: 767px) and (min-width: 500px) {
+                    @media (max-width: 767px) {
                         width: 61%;
-                        overflow: scroll;
+                        display: flex;
                     }
+
                     .mz-order-summary-image {
+                        padding-right: 4%;
+                        display: inline-block;
                         width: auto;
-                        padding-right: 3.125rem;
-                        
-                        @media (max-width: 767px) and (min-width: 500px) {
-                            padding-right: 4%;
+
+                        .mz-carttable-item-image {
+                            max-width: 100%;
+                        }
+                    }
+                    @media (max-width: 767px) {
+                        .mz-carttable-item-info-wrap {
+                            width: 50%;
                         }
                     }
                     .mz-carttable-item-title {
@@ -158,8 +161,8 @@
                         color: @charcoal;
                         font-weight: 500;
 
-                        @media (max-width: 800px) {
-                            font-size: 2.5rem;
+                        @media (max-width: 767px) {
+                            font-size: 1.5rem;
                             line-height: 1.15em;
                         }
                     }
@@ -169,24 +172,19 @@
                 .mz-price-main-container {
                     width: 20%;
                     text-align: center;
-                    display: flex;
-                    justify-content: center;
-                    flex-direction: column;
-
-                    @media (max-width: 800px) {
-                        justify-content: flex-start;
-                    }
+                    display: inline-block;
 
                     .cartproduct-title {
                         font-size: 1.875rem;
                         line-height: 1.5em;
                         font-weight: 400;
                         padding-bottom: 1.6875rem;
+                        display: block;
 
-                        @media (max-width: 800px) {
-                            font-size: 2.5rem;
+                        @media (max-width: 767px) {
                             line-height: 1.15em;
                             font-weight: 500;
+                            font-size: 1.5rem;
                         }
                     }
 
@@ -206,9 +204,10 @@
                     line-height: 1.5em;
                     font-weight: 500;
                     color: @charcoal;
+                    display: block;
 
-                    @media (max-width: 800px) {
-                        font-size: 2.5rem;
+                    @media (max-width: 767px) {
+                        font-size: 1.5rem;
                         line-height: 1.15em;
                         font-weight: 400;
                     }
