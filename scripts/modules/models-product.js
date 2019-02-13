@@ -170,7 +170,7 @@ define(["modules/jquery-mozu", "underscore", "modules/backbone-mozu", "hyprlive"
                         var isAutoReplenishmentEnable = Hypr.getThemeSetting('autoReplenishmentEnable'); 
                         if (isAutoReplenishmentEnable) {
                             var isAutoReplahish = $("input[name*='_autoShipRadio']:checked")[0].value; 
-                            item.data.data = {};
+                            item.data.data = null;
                             if (isAutoReplahish == "1") {
                                 console.log('is auuto replanish'); 
                                 var autoReplanishCode = $('#mz_pdp_autoship_code').find(":selected").val(); 
@@ -188,7 +188,7 @@ define(["modules/jquery-mozu", "underscore", "modules/backbone-mozu", "hyprlive"
                                 console.log("Cart item updated", data);
 
                                 me.trigger('addedtocart', item);
-                                if (data.data.data && data.data.data.autoreplanishmentCode == "0") {
+                                if (!data.data) {
                                     var couponCode = "autoship_discount"; 
                                     me.apiRemoveCoupon(couponCode).then(function(response){
                                         console.log('couponremoved', couponCode); 
