@@ -709,6 +709,7 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             Backbone.MozuView.prototype.render.apply(this, arguments);
 
             $('#account-panels .selectpicker').selectpicker();
+            $('.mz-l-stack-section.mz-accountpaymentmethods').removeClass('is-form').addClass('no-form');
         },
         allowDigit:function(e){
             e.target.value= e.target.value.replace(/[^\d]/g,'');
