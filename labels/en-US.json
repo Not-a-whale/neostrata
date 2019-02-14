@@ -193,7 +193,7 @@
   "orderTotal"           : "Order Total",
   "emptyCart"            : "Empty Cart",
   "proceedToCheckout"    : "Proceed to Checkout",
-  "moneyBackMsg"         : "30-day Money Back Guarantee. Order by 1:00pm EST for same-day shipping.",
+  "moneyBackMsg"         : "30-day Money Back Guarantee. <br />Order by 1:00pm EST for same-day shipping.",
   "storePickupAt"        : "In-Store Pickup at <strong>{0}</strong>",
   "inStorePickup"                         : "In-Store Pickup",
   "unavailableForThisItem"                : "Unavailable for this item.",

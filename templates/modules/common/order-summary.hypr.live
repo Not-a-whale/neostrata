@@ -158,7 +158,7 @@
             </div>
        {% endif %}
           <div class="order-summary-promo">
-            <p>30-day Money Back Guarantee. Order by <br /> 1:00pm EST for same-day shipping.</p>
+            <p>{{ labels.moneyBackMsg|safe }}</p>
           </div>
 {% comment %} 
           <div class="mz-formstep-next skinActive">

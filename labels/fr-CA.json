@@ -201,7 +201,7 @@
   "orderTotal"           : "[fr-CA]Order Total[fr-CA]",
   "emptyCart"            : "[fr-CA]Empty Cart[fr-CA]",
   "proceedToCheckout"    : "[fr-CA]Checkout[fr-CA]",
-  "moneyBackMsg"         : "[fr-CA]30-day Money Back Guarantee. Order by 1:00pm EST for same-day shipping.[fr-CA]",
+  "moneyBackMsg"         : "[fr-CA]30-day Money Back Guarantee. <br />Order by 1:00pm EST for same-day shipping.[fr-CA]",
   "storePickupAt"        : "[fr-CA]In-Store Pickup at <strong>{0}</strong>[fr-CA]",
   "inStorePickup"                         : "[fr-CA]In-Store Pickup[fr-CA]",
   "unavailableForThisItem"                : "[fr-CA]Unavailable for this item.[fr-CA]",
