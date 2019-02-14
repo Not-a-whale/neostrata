@@ -199,6 +199,9 @@ start
 <!-- Widget code -->
 <div class="row" style="padding-top: 10px;">
     <div class="col-xs-12">
+        {% include "modules/cart/free-samples" %}
+    </div>
+    <div class="col-xs-12">
         {% dropzone "cart-advert" scope="template" %}
     </div>
 </div>

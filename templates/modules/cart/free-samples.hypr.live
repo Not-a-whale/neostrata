@@ -1,0 +1,6 @@
+{# partial_cache themeSettings.freeSampleCategoryId #}
+<div data-mz-free-samples="{{themeSettings.freeSampleCategoryId}}" class="mz-l-container container mz-category-free-samples" id="free-samples">
+{% include "modules/product/free-sample-widget/free-sample-products" %}
+</div>
+{# endpartial_cache #}
+{% require_script "widgets/neostrata/free-sample-widget" %}
