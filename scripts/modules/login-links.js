@@ -644,10 +644,7 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
             $('<option/>').val(fromYear).html(fromYear).appendTo('#signup_input_dob_year');
         }
 
-        $('[data-mz-action="lite-registration"]').each(function() {
-            var modal = new LoginRegistrationModal();
-            modal.init(this);
-        });
+       new LoginRegistrationModal().init($('[data-mz-action="lite-registration"]').first());
 
         $('.btn-signup').on('click', function(){
             $('[data-mz-param="signup"]').trigger( "click" );
