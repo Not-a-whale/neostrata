@@ -1323,7 +1323,6 @@
                         margin-right: 0;
                         margin-bottom: 2rem;
                         &.expiry-month {
-                            width: 50% !important;
                             margin-left: 0 !important;
                         }
                         @leftInputMargin: 1.5rem;
@@ -1337,6 +1336,17 @@
                         .mz-l-formfieldgroup-row {
                             display: block;
                             padding: 0;
+                            &.mz-addressform-city, &.mz-addressform-state {
+                                display: inline-block;
+                                width: 50%;
+                                float: left;
+                                .custom-select-wrapper {
+                                    width: 100%;
+                                }
+                            }
+                            &.mz-addressform-city {
+                                padding-right: 2%;
+                            }
                         }
                         .mz-l-formfieldgroup-cell {
                             display: block;
@@ -1360,7 +1370,7 @@
                         width: 100%;
                         min-height: auto;
                         &.mz-contactselector-new {
-                            span {
+                            span:not(.mz-validationmessage) {
                                 display: inline-block;
                             }
                             .mz-contactselector-inputwrapper {
@@ -1374,6 +1384,10 @@
                                 display: none;
                             }
                         }
+                    }
+                    .form-row {
+                        padding-top: 0;
+                        padding-bottom: 0;
                     }
                 }
 
