@@ -449,10 +449,19 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
             if($(this).context.attributes["data-mz-param"].value == "signup"){
                 $('.nav-tabs > li.second-tab').addClass('active');
                 $('.tab-content #newshopper').addClass('active');
+                if ($.cookie('mozu-signup-age') ) {
+                    console.log('mozu-signup-age is true'); 
+                    $('#signup_input_dob_month').prop('disabled', 'disabled');
+                    $('#signup_input_dob_day').prop('disabled', 'disabled');
+                    $('#signup_input_dob_year').prop('disabled', 'disabled');
+                    console.log('mozu-signup-age disable'); 
+                }
             }
             else {
                 $('.nav-tabs > li.first-tab').addClass('active');
                 $('.tab-content #login').addClass('active');
+                //verified if the age_error cookie was set
+                
             }
             self.modalEl.modal('show');
         };
@@ -580,8 +589,14 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
             if (!payload.account.emailAddress) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('emailMissing')), false;
             if (!payload.account.firstName) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('firstNameMissing')), false;
             if (!payload.account.lastName) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('lastNameMissing')), false;            
-            if (!payload.account.birthMonth || !payload.account.birthDay || !payload.account.birthYear) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('birthMissing')), false;
-            if (self.checkDate(payload.account.birthMonth, payload.account.birthDay, payload.account.birthYear)) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('thirteenError')), false;
+            if ((!payload.account.birthMonth || !payload.account.birthDay || !payload.account.birthYear) && !self.isDOBDisable()) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('birthMissing')), false;
+            if ((!payload.account.birthMonth || !payload.account.birthDay || !payload.account.birthYear) && self.isDOBDisable()) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('thirteenPreviousError')), false;
+            if (self.checkDate(payload.account.birthMonth, payload.account.birthDay, payload.account.birthYear)) {
+
+                self.setDateErrorCookie(); 
+                return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('thirteenError')), false;
+            }
+            
             if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(payload.account.emailAddress))) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('emailwrongpattern')), false;
             if (payload.password !== $(el).parents('#newshopper').find('[data-mz-signup-confirmpassword]').val()) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('passwordsDoNotMatch')), false;
             //if (payload.account.attributes.recoveryquestion === "0") return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('chooseRecoveryQuestion')), false;
@@ -589,6 +604,18 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
             //if(!$('#recoveryAnswer').val()) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('recoveryAnswerMissing')), false;
             return true;
         };
+
+        this.isDOBDisable = function () {
+            return $.cookie('mozu-signup-age'); 
+        }; 
+
+        this.setDateErrorCookie = function () {
+            $.cookie('mozu-signup-age', true, { path: '/', expires: 1 });
+            $('#signup_input_dob_month').prop('disabled', 'disabled');
+            $('#signup_input_dob_day').prop('disabled', 'disabled');
+            $('#signup_input_dob_year').prop('disabled', 'disabled');
+        }; 
+
         this.checkDate = function (month, day, year) {                  
             var input = Date.parse( month + '/' + day + '/' + year );
             var today = new Date();
