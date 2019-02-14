@@ -741,6 +741,9 @@
         .mz-formstep-body{
             display:block;
         }        
+        .mz-addresssummary{
+            display:none;    
+        }
         .mz-checkout-current-payment{
             p{
                 display:none;    
@@ -844,6 +847,8 @@
     .coupon-code-wrapper {
         #coupon-code{
             width:62%;
+            float:left;
+            margin-right:1%;
             @media (max-width: 992px) {
                 width:60%;
             }
@@ -851,6 +856,10 @@
         .primary-btn {
             height: 4.375rem;
             line-height: normal;
+            @media (max-width: 992px) {
+                padding: 0;
+                width: 39%;
+            }
         }
     }
     &.is-complete{
