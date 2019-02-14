@@ -180,11 +180,9 @@ define([
                 var validationObj = this.validate();
 
                 if (validationObj) {
-                    /*
                     Object.keys(validationObj).forEach(function(key){
                         this.trigger('error', {message: validationObj[key]});
                     }, this);
-                    */
                     return false;
                 }
 
@@ -199,6 +197,8 @@ define([
                     order.messages.reset();
                     order.syncApiModel();
                     me.isLoading(true);
+                    me.stepStatus('complete');
+
                     order.apiModel.getShippingMethodsFromContact().then(function (methods) {
                         return parent.refreshShippingMethods(methods);
                     }).ensure(function () {

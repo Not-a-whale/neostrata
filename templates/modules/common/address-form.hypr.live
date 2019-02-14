@@ -183,10 +183,9 @@
 </div>
 
 {% else %}
-{% if not addresscontext == "billingContact." %}
-
+{% if addresscontext == "billingContact." %}
+{% else %}
 <h5 class="checkout-fields-title">{{ labels.phone }}</h5>
-
 <div class="mz-addressform-phone form-row">
         <div class="mz-l-formfieldgroup-cell">
             <label for="shippingphone">{{ labels.phone }}<span class="is-required"> *</span></label>
@@ -197,7 +196,6 @@
     </div>
 </div>
 {% endif %}
-
 {% endif %}
 
 
