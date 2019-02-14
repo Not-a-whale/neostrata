@@ -882,7 +882,7 @@
     "googleGeolocationMaximumAge": "Infinity",
     "preselectCountryCode": "US",
     "productImagesContainerWidth": 350,
-    "requireCheckoutAgreeToTerms": true,
+    "requireCheckoutAgreeToTerms": false,
     "suggestPriorSearchTerms": true,
     "searchExpandOnFocus": true,
     "showAddressTypeDropdown": true,

@@ -1,4 +1,4 @@
-﻿@-webkit-keyframes pulse {
+@-webkit-keyframes pulse {
   from { .opacity(0.2); }
   to { .opacity(0.3); }
 }
@@ -610,13 +610,6 @@
             font-family: 'icomoon' !important;
         }
     }
-    .mz-paymentselector {
-        .mz-l-formfieldgroup-address {
-            .checkout-twocolumn-row.checkout-customer-name.form-row {
-                display: none;
-            }
-        }
-    }
 
     .custom-select-wrapper {
         .bootstrap-select {
@@ -741,9 +734,6 @@
         .mz-formstep-body{
             display:block;
         }        
-        .mz-addresssummary{
-            display:none;    
-        }
         .mz-checkout-current-payment{
             p{
                 display:none;    
@@ -760,12 +750,13 @@
     .mz-formstep-edit{
         display:none;
     }
+
     &.mz-checkoutform-review.is-current,
     &.mz-checkoutform-shippingmethod.is-complete,
     &.mz-checkoutform-shippingmethod.is-current{
         display:block;
     }
-    &.mz-checkoutform-review,
+
     &.mz-checkoutform-shippingmethod,
     .mz-formstep-body{
         display:none;
