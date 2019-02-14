@@ -12,7 +12,9 @@
                  {% dropzone "store-top" scope="page" %}
              </div>
          </div>
+    {% if not themeSettings.commerceEnabled %}
         <h1 class="mz-pagetitle">{{ labels.localStores }}</h1>
+    {% endif %}
         <div class="mz-l-stack">
             <p class="mz-locationsearch-pleasewait hidden">
                 {{ labels.locationWait|safe }}

@@ -57,7 +57,7 @@
 {% if model.items.length>0 %}
 	<div class="row total-amount-row">
 	    <div class="col-xs-12 cart-subtotal">
-	    	<b>Cart Subtotal </b>
+	    	<b>{{ labels.cartSubtotal }} </b>
 	    	<span>
 				({{ model.itemCount }} Item{% if model.itemCount>1 %}s{% endif %})
 			</span>
@@ -72,26 +72,26 @@
 	  	    {% endfor %}
 	    {% endif %}
 	</div>
-	<div class="row">
-		<div class="col-xs-5">
+	<div class="row minicart-buttons-row">
+		<div class="view-cart-btn-wrapper">
 			<a href="/cart" class="primary-btn view-cart-btn">{{ labels.openCart }}</a>
 			{% if (themeSettings.globalCartEnableSaveCart && user.isAnonymous)  %}
-				<button data-mz-action="openLiteRegistration" class="primary-btn save-cart-btn">Save Cart</button>
+				<button data-mz-action="openLiteRegistration" class="primary-btn save-cart-btn">{{ labels.saveCart }}</button>
 			{% endif %}
 		</div>
-		<div class="col-xs-7">
+		<div class="checkout-cart-btn-wrapper">
 			{% if not user.isAnonymous %}
   				<form method="post" value="" action="{{ pageContext.secureHost }}/cart/checkout">
-  					<button type="submit" class="mz-button btn btn-default checkout-cart-btn" >Go To Checkout</button>
+  					<button type="submit" class="mz-button btn btn-default checkout-cart-btn" >{{ labels.goToCheckout }}</button>
   				</form>
  			{% else%}
- 				<button type="submit" class="mz-button btn btn-default checkout-cart-btn" data-mz-action="checkoutGuest">Go To Checkout</button>
+ 				<button type="submit" class="primary-btn checkout-cart-btn" data-mz-action="checkoutGuest">{{ labels.goToCheckout }}</button>
 			{% endif%}
 		</div>
 	</div>
 
 	{% if themeSettings.globalCartRelatedProducts %}
-		<h5 class="text-center">Add these products for a more <br>complete skin care regimen.</h5>
+		<h6 class="text-center">{{ labels.cartRelatedTitle|safe }}</h6>
 		<div class="related-products"></div>
 	{% endif %}
 	<div class="row text-center" style="padding-top: 15px;">
@@ -103,13 +103,13 @@
 	</div>
 	{% comment %}
 	<div class="row text-center" style="padding-top: 15px;">
-		<h5 class="full-recommended"><a href="#">View Full Recommended Regimen ></a></h5>
+		<h5 class="full-recommended"><a href="#">{{ labels.viewFullRecommended|safe }}</a></h5>
 	</div>
 	{% endcomment %}
 
 {% else %}
 	<div class="text-center">
-		<div class=>Your shopping basket is empty</div>
+		<div class=>{{ labels.emptyBasketTitle }}</div>
 		{% if themeSettings.globalCartEmptyBasketFooter %}
 		  <a {% if themeSettings.globalCartEmptyBasketKickerLink %} href="{{ themeSettings.globalCartEmptyBasketKickerLink }}"{% else %} href="/home" {% endif %}>
 		  	<img src="{% make_url "image" themeSettings.globalCartEmptyBasketFooter.imageUrl with width=370 as_parameters %}"  />

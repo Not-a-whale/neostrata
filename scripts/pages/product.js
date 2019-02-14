@@ -798,7 +798,7 @@
                 }
             }else{
                 localStorage.setItem('addToWishlist', JSON.stringify({ 'code': $( "#addToWishlistHide" ).data('mzProductCode') }));
-                $('.login-link-text').trigger( "click" );
+                $("[data-mz-action='lite-registration']").trigger( "click" );
             }
         });
         setTimeout(function(){
@@ -849,7 +849,7 @@
                     }
                 }else{
                     localStorage.setItem('addToWishlist', JSON.stringify({ 'code': pCode }));
-                    $('.login-link-text').trigger( "click" );
+                    $("[data-mz-action='lite-registration']").trigger( "click" );
                 }
             });
         }, 1500);
