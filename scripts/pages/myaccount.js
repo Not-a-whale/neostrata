@@ -1125,6 +1125,13 @@ function getQueryVariable(variable)
         var urlParams = getQueryVariable("sec");
         if(urlParams.length){
             switch(urlParams) {
+                case "accountdashboard":
+                    accountViews.settings.cancelEdit();
+                    accountViews.addressBook.cancelViewContact();
+                    accountViews.paymentMethods.cancelViewCard();
+                    accountViews.wishList.cancelEditWishlist();
+                    accountViews.omxOrderHistory.cancelViewOMXOrder();
+                    break;
                 case "accountsettings":
                     accountViews.settings.cancelEdit();
                     accountViews.addressBook.cancelViewContact();

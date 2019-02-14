@@ -962,11 +962,14 @@
         position: absolute;
         width: 100%;
         height: auto;
-        .mz-messagebar .mz-errors li {
-            font-size: 1rem;
-            overflow: auto;
-            line-height: 2.5;
-            margin-top: 0;
+        .mz-messagebar .mz-errors { 
+            background-position: 10px center;
+            li {
+                font-size: 1rem;
+                line-height: 1.2;
+                margin-top: 0;
+                white-space: normal;
+            }
         }
     }
     .mz-l-container {
@@ -1320,6 +1323,7 @@
                         margin-right: 0;
                         margin-bottom: 2rem;
                         &.expiry-month {
+                            width: 50% !important;
                             margin-left: 0 !important;
                         }
                         @leftInputMargin: 1.5rem;

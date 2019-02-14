@@ -15,6 +15,11 @@ Use require_script to load AMD modules that are wrapped in define() or require()
     <!-- ! (<a href="/logout" data-mz-action="logout" class="mz-utilitynav-link">{{ labels.logOut }}</a>)-->
         <div id="my-account-content" style="display:none;">
             <div class="my-account-details">
+                <a href="/myaccount?sec=accountdashboard">
+                    <h4>{{ labels.yourAccount }}</h4>
+                </a>
+            </div>
+            <div class="my-account-details">
                 <a href="/myaccount?sec=accountsettings">
                     <h4>{{ labels.accountSettings }}</h4>
                     <p>{{ labels.accountSettingsInfo }}</p>
