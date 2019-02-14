@@ -1,5 +1,5 @@
 ﻿    <h3 class="mz-formstep-header mz-checkoutform-header">
-        {{ labels.reviewOrder }}
+        <span>{{ labels.reviewOrder }}</span>
     </h3>
 
     <div class="mz-formstep-body mz-checkoutform">
@@ -12,7 +12,7 @@
 
             {% if themeSettings.requireCheckoutAgreeToTerms %}
             <div class="mz-l-formfieldgroup mz-l-formfieldgroup-norows mz-checkoutform form-row">
-                <input type="checkbox" name="terms-and-conditions" id="mz-terms-and-conditions" data-mz-value="agreeToTerms" {% if model.agreeToTerms %} checked="checked"{% endif %}> 
+                <input type="checkbox" name="terms-and-conditions" id="mz-terms-and-conditions" data-mz-value="agreeToTerms" {% if model.agreeToTerms %} checked="checked"{% endif %}>
                 <label class='icon-check form-element terms-conditions-label' for="mz-terms-and-conditions">{{ labels.agreeToTerms }}</label>
                 <span class="mz-validationmessage" data-mz-validationmessage-for="agreeToTerms"></span>
             </div>
