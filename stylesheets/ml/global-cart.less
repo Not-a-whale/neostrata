@@ -114,8 +114,8 @@
     position: absolute;
     -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-    width: 415px;
-    padding: 20px 15px;
+    width: 47.6875rem;
+    padding: 20px 3.4rem;
     border: 1px solid rgba(0, 0, 0, 0.15);
     background: white;
     z-index: 2;
@@ -200,23 +200,36 @@
         display: none;
     }
     .view-cart-btn, .checkout-cart-btn {
-        font-weight: 400;
-        color: #4e5458;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        background: none;
-        text-decoration: none;
-        border: 2px solid #4e5458;
-        height: 4.9rem;
-        line-height: 4rem;
-        padding: 2px 20px;
-        border-radius: 0;
-        margin-top: -2px !important;
+        height: 5rem;
+        line-height: 1em;
+        display: flex;
+        align-items: center;
+        padding:0 4.56rem;
+        letter-spacing: 0.07em;
+    }
+    .checkout-cart-btn {
+        padding: 0 3.875rem;
     }
     .media{
         border:none;
+        display: flex;
+        align-items: center;
+    }
+    .media-body, .media-left {
+        display: block;
+    }
+    .media-left {
+        width: 9rem;
+        padding-right: 0;
+        margin-right: 3.875rem;
+
+        img {
+            width: 9rem;
+        }
     }
     .media-body{
+        width: auto;
+
         .mz-item-rowtotal {
             display: none;
         }
@@ -226,6 +239,8 @@
         }
         .mz-item-price{
             font-weight: 500;
+            color: @black;
+            font-size: 1.25rem;
         }
         .items-short-description{
             font-weight: 400;
@@ -234,8 +249,25 @@
             text-transform: capitalize;
         }
     }
+    .row.minicart-buttons-row {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+
+        &:before,
+        &:after {
+            display: none;
+        }
+    }
+    .row {
+        margin: 0;
+    }
     .row.total-amount-row{
         border:none;
+        color: @black;
+        font-size: 1.25rem;
+
         .cart-subtotal{
             padding-left:0;
         }
@@ -243,26 +275,33 @@
             display: none;
         }
     }
+    h6 {
+        font-size: 1.5rem;
+        line-height: 1.25em;
+    }
     .related-products{
-       // display: none;
+       padding-top: 3.125rem;
+
        .global-cart-product-listing{}
        .product-listing-container{
-            //height:175px !important;
             @media screen and (min-width: 1200px) {
                 min-height: 240px !important;
             }
-            padding-bottom:10px;
-            margin-bottom:10px;
-            border-bottom:1px solid #CCC;
+            padding-bottom:3.125rem;
+            margin-bottom:4.25rem;
+            border-bottom:2px solid @midGray;
             display: flex;
             flex-wrap: wrap;
 
             .mz-productlisting {
                 width: 82%;
-                float: left;
+                display: flex;
             }
             .bottom-details {
                 width: 18%;
+                display: flex;
+                flex-direction: row-reverse;
+                align-items: center;
             }
             .mz-productdetail-conversion-buttons{
                 padding-right:0;
@@ -276,18 +315,19 @@
                 }
             }
            .mz-productlisting-image{
-                padding-right:10px;
-                display: inline-block;
-                vertical-align: top;
+               width: 9rem;
+               margin-right: 2.5rem;
 
                 img{
-                    height:115px !important;
+                    height: auto !important;
+                    width: 8.5rem;
                 }
             }
            .mz-productlisting-info{
                 width: 60%;
-                height: 116px;
-                display: inline-block;
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
 
                 .pdp1{
                     display: none;
@@ -300,6 +340,7 @@
                     .mz-price{
                         text-align: right;
                         width: 100%;
+                        color: @black;
                     }
                     .price-msrp, .price-small-srp{
                         display: none;
