@@ -7,7 +7,7 @@
         {{ labels.proceedToCheckout }}
     </button>
     <div class="money-back-msg hidden-md">
-        <span>{{ labels.moneyBackMsg }}</span>
+        <span>{{ labels.moneyBackMsg|safe }}</span>
     </div>
 </div>
 <div class="col-md-6 pull-right col-sm-6 col-xs-12 col-xs-12 text-right hidden-xs mz-button-checkout-cart-top">
@@ -186,6 +186,6 @@
         <div></div>
     </div>
     <div class="money-back-msg hidden-xs">
-        <span>{{ labels.moneyBackMsg }}</span>
+        <span>{{ labels.moneyBackMsg|safe }}</span>
     </div>
 </div>

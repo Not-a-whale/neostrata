@@ -10,12 +10,12 @@
               <div class="mz-ordersummary-line mz-ordersummary-line-item {% if item.discountTotal > 0 %}is-discounted{% endif %}">
                     <div class="mz-ordersummary-item-product col-sm-6 col-xs-12 mz-order-content-container mz-reset-padding">
                       <div class="pull-left mz-order-summary-image">
-                        {% with item.product|get_product_attribute("tenant~color") as colorAttr %}  
+                        {% with item.product|get_product_attribute("tenant~color") as colorAttr %}
                           {% if colorAttr %}
                             {% with colorAttr.value|replace(" ","_") as colorValue %}
                               {% with "/cms/files/{0}_{1}_v1.jpg"|string_format(item.product.productCode, colorValue) as fileName %}
                                   <img class="mz-carttable-item-image" src="https:{% make_url "cdn" fileName with maxWidth=themeSettings.globalCartItemImageMaxWidth as_parameter %}" {% if item.product.imageAlternateText %}alt="{{ item.product.imageAlternateText }}"{% endif %} onerror="this.setAttribute('src','{% if item.product.imageUrl %}{% make_url 'image' item.product with maxWidth=themeSettings.globalCartItemImageMaxWidth as_parameters %}{% else %}https:{% make_url 'cdn' '/cms/files/No_image_available.png' with maxWidth=themeSettings.globalCartItemImageMaxWidth as_parameter %}{% endif %}')"/>
-                              {% endwith %}     
+                              {% endwith %}
                             {% endwith %}
                           {% else %}
                             {% if item.product.imageUrl %}
@@ -24,9 +24,9 @@
                                 <span class="mz-carttable-item-image mz-product-image-placeholder pull-left">
                                   <span class="mz-productlisting-imageplaceholdertext">{{ labels.productImagePlaceholder }}</span>
                                 </span>
-                            {% endif %}    
-                          {% endif %}  
-                        {% endwith %}                       
+                            {% endif %}
+                          {% endif %}
+                        {% endwith %}
                       </div>
                       <div class="mz-carttable-item-info-wrap pull-left col-xs-8 mz-reset-padding-right">
                         <div class="mz-carttable-item-title" >{{ item.product.name |safe }}</div>
@@ -56,7 +56,7 @@
                                     {{ option.shopperEnteredValue }}
                               {% endif %}
                             </span>
-                          </div>          
+                          </div>
                           {% endfor %}
                         </div>
                         {% endif %}
@@ -95,7 +95,7 @@
           </div>
           {% endif %}
           {% endfor %}
-          
+
           {% if model.dutyTotal > 0 %}
           <div class="mz-ordersummary-tax">
             <div class="mz-checkout-total-row">
@@ -158,17 +158,17 @@
             </div>
        {% endif %}
           <div class="order-summary-promo">
-            <p>30-day Money Back Guarantee. Order by <br /> 1:00pm EST for same-day shipping.</p>
+            <p>30-day Money Back Guarantee. <br /> Order by 1:00pm EST for same-day shipping.</p>
           </div>
-{% comment %} 
+{% comment %}
           <div class="mz-formstep-next skinActive">
               <button class="mz-button primary-btn" data-mz-action="next">{{ labels.useThisInfo }}</button>
           </div>
 {% endcomment %}
           <div class="order-summary-privacyPolicy">
-            <p>By placing your order you agree to the <br />
-                NEOSTRATA <a href="/privacy-policy" target="_blank">Privacy Policy</a> and <a href="/terms-and-conditions" target="_blank">Terms of Use.</a></p>
+            <p>By placing your order you agree to the
+               NEOSTRATA® <a href="/privacy-policy" target="_blank">Privacy Policy</a> and <a href="/terms-and-conditions" target="_blank">Terms of Use.</a></p>
           </div>
         </div>
-        
+
     </div>

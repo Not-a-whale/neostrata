@@ -40,10 +40,10 @@
             {{ prod.content.productShortDescription|striptags|truncatewords(themeSettings.maxProductSummaryWords) }}
         </div>
         <div class="row wishAndPricew">
-          <div class="col-xs-4">
+          <div class="bv-raiting-row">
               <div id="BVRRInlineRating-{{prod.productCode}}" class="pdp5 bvr-inline-rating" data-mz-product-code="{{ prod.productCode }}" data-bv-product-code="{{apicontext.headers.x-vol-locale}}-{{ prod.productCode }}" data-mz-product-url="{{ prod.url }}"></div>
           </div>
-          <div class="col-xs-6 posLeft">
+          <div class="featured-price posLeft">
               {% include "modules/product/price-stack" with model=prod %}
           </div>
         </div>
@@ -108,10 +108,10 @@
             {{ prod.content.productShortDescription|striptags|truncatewords(themeSettings.maxProductSummaryWords) }}
         </div>
         <div class="row wishAndPricew">
-          <div class="col-xs-4">
+          <div class="bv-raiting-row">
               <div id="BVRRInlineRating-{{prod.productCode}}" class="pdp5 bvr-inline-rating" data-mz-product-code="{{ prod.productCode }}" data-bv-product-code="{{apicontext.headers.x-vol-locale}}-{{ prod.productCode }}" data-mz-product-url="{{ prod.url }}"></div>
           </div>
-          <div class="col-xs-6 posLeft">
+          <div class="featured-price posLeft">
               {% include "modules/product/price-stack" with model=prod %}
           </div>
         </div>

@@ -36,7 +36,16 @@
         }
     }
     .wishAndPricew{
-        margin-top: 3rem;
+        margin: 3rem 0 0;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        flex-wrap: wrap;
+
+        @media (max-width: 991px) {
+            flex-direction: column;
+            align-items: flex-start;
+        }
     }
     .price-msrp {
         text-transform: uppercase;
@@ -45,9 +54,16 @@
     }
     .posLeft{
         border-left: 0.0625em solid #c2c2c2;
-        margin-left: 2.5em;
+        margin-left: 1rem;
         display: inline-block;
         max-height: 3rem;
+        padding-left: 1rem;
+
+        @media (max-width: 991px) {
+            border: 0;
+            padding-left: 0;
+            margin-left: 0;
+        }
         .pdp4{
             .not-range{
                 @media (max-width: 904px) {

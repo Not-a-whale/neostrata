@@ -101,7 +101,7 @@
                     }
                 }else{
                     localStorage.setItem('addToWishlist', JSON.stringify({ 'code': qvProductCode }));
-                    $('.login-link-text').trigger( "click" );
+                    $("[data-mz-action='lite-registration']").trigger( "click" );
                 }
             });
             if(cat){
