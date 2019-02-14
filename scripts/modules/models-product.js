@@ -189,6 +189,26 @@ define(["modules/jquery-mozu", "underscore", "modules/backbone-mozu", "hyprlive"
 
                                 me.trigger('addedtocart', item);
                                 if (!data.data) {
+
+
+                                    var apiData = require.mozuData('apicontext');
+                                    var couponCode = "autoship_discount"; 
+                                    $.ajax({
+                                        
+                                        url: '/api/commerce/carts/'+data.id+'/coupons/'+couponCode,
+                                        headers: apiData.headers,
+                                        method: 'PUT',
+                                        dataType: "json",
+                                        contentType: "application/json; charset=utf-8"
+                                       
+                                    }).done(function(data) {
+                                        console.log("Cart item updated- coupon removed", data);
+                                        me.trigger('addedtocart', item);
+                                        me.trigger('couponremoved', couponCode);
+                                    }).fail(function() {
+                                        console.log("Error updating cart item - removing the coupon ");
+                                    });
+        
                                     var couponCode = "autoship_discount"; 
                                     me.apiRemoveCoupon(couponCode).then(function(response){
                                         console.log('couponremoved', couponCode); 
