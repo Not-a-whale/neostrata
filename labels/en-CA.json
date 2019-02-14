@@ -624,6 +624,7 @@
   "newsletterBirthday" : "Birthday (must be 13 years of age or older)",
   "newsletterThanksHeader" : "Thanks for signing up!",
   "thirteenError" : "You must be over 13 years of age to sign up for our newsletter.<br />Please see our <a href=\"/privacy-policy\">Privacy Policy</a> for details.",
+  "thirteenPreviousError" : "You entered a non valid age on a previous session. You must be over 13 years of age.", 
   "newsletterThanksText" : "You can unsubscribe at any time using the Unsubscribe link at the bottom of every email.",
   "newsletterSelectMonth": "Select Month",
   "newsletterSelectDay": "Select Day",
