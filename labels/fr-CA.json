@@ -676,6 +676,7 @@
   "saveAddress": "[fr-CA]Save Address[fr-CA]",
   "savePayment": "[fr-CA]Save Payment[fr-CA]",
   "thirteenError" : "[fr-CA]You must be over 13 years of age to sign up for our newsletter.<br />Please see our <a href=\"/privacy-policy\">Privacy Policy</a> for details.[fr-CA]",
+  "thirteenPreviousError" : "[fr-CA]You entered a non valid age on a previous session. You must be over 13 years of age.[fr-CA]", 
   "savePersonalInfo": "[fr-CA]Save Personal Info[fr-CA]",
   "youHaveWishlist": "[fr-CA]You have {0} items on your wishlist.[fr-CA]",
   "orderPackagePrice": "[fr-CA]Price Each[fr-CA]",
