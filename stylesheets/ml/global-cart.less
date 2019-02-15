@@ -40,6 +40,11 @@
     transform: translate3d(0, 0, 0);
   }
 }
+@media (min-width: 1241px) {
+    html.mz-html-cart {
+        font-size: 12px;
+    }
+}
 .mz-cart{
     #page-wrapper{
         #page-content{
@@ -47,18 +52,9 @@
                 margin-top: 9.28rem;
             }
             .mz-l-container{
-                margin: 0 10.5rem;
+                max-width: 1200px;
+                margin: auto;
 
-                @media screen and (max-width: 991px) {
-                    margin: 0 6.5rem;
-                }
-                @media screen and (max-width: 640px) {
-                    margin: 0 1.5rem;
-                }
-                @media screen and (max-width: 410px) {
-                    margin: 0 0.5rem;
-                }
-                
                 .mz-pagetitle{
                     text-transform: capitalize;
                     padding: 15px 15px 0;

@@ -13,6 +13,8 @@
 
 {% block secondary-nav %}{% endblock secondary-nav %}
 
+{% block html-tag-classes %}mz-html-cart{% endblock html-tag-classes %}
+
 {% block body-content %}
     {% require_script "pages/cart" %}
     {% preload_json model "cart" %}
