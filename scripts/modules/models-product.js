@@ -188,14 +188,21 @@ define(["modules/jquery-mozu", "underscore", "modules/backbone-mozu", "hyprlive"
                                 console.log("Cart item updated", data);
 
                                 me.trigger('addedtocart', item);
-                                if (!data.data) {
+/*                                if (!data.data) {
 
+                                    var cart = ''; //CartModels.Cart.fromCurrent();
+          
+                                    var couponCode = "autoship_discount"; 
+                                    var discount = _.find(data.productDiscounts, function(e) {
+                                        return e.discount.name === couponCode;
+                                    }); 
 
                                     var apiData = require.mozuData('apicontext');
-                                    var couponCode = "autoship_discount"; 
+                                    
+
                                     $.ajax({
                                         
-                                        url: '/api/commerce/carts/'+data.id+'/coupons/'+couponCode,
+                                        url: '/api/commerce/carts/'+cart.id+'/coupons/'+discount.discount.id,
                                         headers: apiData.headers,
                                         method: 'PUT',
                                         dataType: "json",
@@ -207,14 +214,8 @@ define(["modules/jquery-mozu", "underscore", "modules/backbone-mozu", "hyprlive"
                                         me.trigger('couponremoved', couponCode);
                                     }).fail(function() {
                                         console.log("Error updating cart item - removing the coupon ");
-                                    });
-        
-                                    var couponCode = "autoship_discount"; 
-                                    me.apiRemoveCoupon(couponCode).then(function(response){
-                                        console.log('couponremoved', couponCode); 
-                                        me.trigger('couponremoved', couponCode);
-                                    });
-                                }
+                                    });  
+                                }  */
                             }).fail(function() {
                                 console.log("Error updating cart item");
                             });
