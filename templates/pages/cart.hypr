@@ -25,14 +25,17 @@
         </div>
         <!-- Check if model is not empty and form product table if not-->
         {% if not model.isEmpty %}
+            <form method="post" action="{{ siteContext.secureHost }}{{siteContext.siteSubdirectory}}/cart/checkout" id="cartform">
                 {% dropzone "cart-top" scope="template" %}
+                <input type="hidden" name="id" value="{{model.id}}" />
                 {% include "modules/common/message-bar" with model=model.messages %}
                 <div class="mz-table mz-table-cart" id="cart">
                     {% include "modules/cart/cart-table" %}
                 </div>
-                <div data-mz-free-samples="{{themeSettings.freeSampleCategoryId}}" class="mz-l-container container mz-category-free-samples" id="free-samples">
+            </form>
+            <div data-mz-free-samples="{{themeSettings.freeSampleCategoryId}}" class="mz-l-container container mz-category-free-samples" id="free-samples">
                 {% include "modules/product/free-sample-widget/free-sample-products" %}
-                </div>
+            </div>
 
         <!-- Show empty cart if model is empty -->
         {% else %}
