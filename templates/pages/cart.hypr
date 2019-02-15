@@ -33,6 +33,10 @@
                     {% include "modules/cart/cart-table" %}
                 </div>
             </form>
+            <div data-mz-free-samples="{{themeSettings.freeSampleCategoryId}}" class="mz-l-container container mz-category-free-samples" id="free-samples">
+                {% include "modules/product/free-sample-widget/free-sample-products" %}
+            </div>
+
         <!-- Show empty cart if model is empty -->
         {% else %}
             <div class="cart-div">Your bag is empty - continue shopping!</div>
@@ -42,11 +46,6 @@
                 </a>
             </div>
         {% endif %}
-        <!-- Widget code -->
-        <div class="row" style="padding-top: 10px;">
-            <div class="col-xs-12">
-                {% dropzone "cart-advert" scope="page" %}
-            </div>
-        </div>
     </div>
+
 {% endblock body-content %}

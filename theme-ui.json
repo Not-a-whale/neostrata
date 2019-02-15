@@ -761,11 +761,6 @@
             },
             {
               "xtype": "mz-input-text",
-              "name": "freeSamplePagePath",
-              "fieldLabel": "Free Sample Page Path"
-            },
-            {
-              "xtype": "mz-input-text",
               "name": "freeSampleQty",
               "fieldLabel": "Quantity of sample product allowed per sample page"
             },

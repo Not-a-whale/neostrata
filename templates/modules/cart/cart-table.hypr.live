@@ -108,6 +108,7 @@
       </div>
     </div>
     {% endfor %}
+
 {% else %}
   <div class="mz-carttable-noitems">
     <div colspan="5">
@@ -184,5 +185,10 @@
     </div>
     <div class="money-back-msg hidden-xs">
         <span>{{ labels.moneyBackMsg|safe }}</span>
+    </div>
+</div>
+<div class="row" style="padding-top: 10px;">
+    <div class="col-xs-12">
+        {% dropzone "cart-advert" scope="template" %}
     </div>
 </div>

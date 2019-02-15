@@ -35,6 +35,6 @@
 {% endif %}
 
 {% if editing.card == "view" %}
-<a class="mz-button primary-btn dl-link-newpayments" href="javascript:;" data-mz-action="beginEditCard" data-mz-card="new">{{ labels.addNewCard }}</a>
+<!-- <a class="mz-button primary-btn dl-link-newpayments" href="javascript:;" data-mz-action="beginEditCard" data-mz-card="new">{{ labels.addNewCard }}</a> -->
 <button class="dz-backtodashboard" data-mz-action="cancelViewCard">{{ labels.accountDashboardBack }}</button>  
 {% endif %}
