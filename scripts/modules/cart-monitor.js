@@ -50,6 +50,7 @@ define(['modules/jquery-mozu', 'modules/api', 'bootstrap', 'modules/page-header/
                     }
                     else {
                       $document.ready(function() {
+                        $('.ml-header-global-cart-wrapper').css('display', 'block');
                         CartMonitor.setCount(summary.data.totalQuantity);
                         CartMonitor.setAmount(summary.data.total);
                       });
