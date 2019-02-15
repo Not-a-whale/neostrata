@@ -40,22 +40,21 @@ define(['modules/jquery-mozu', 'modules/api', 'bootstrap', 'modules/page-header/
                     $.cookie('mozucart', JSON.stringify(summary.data), { path: '/' });
                     savedCarts[userId] = summary.data;
                     //console.log(summary);
-                    /*
-                    if( offerSampleProducts  && summary.data.total && summary.data.total > Hypr.getThemeSetting('freeSampleOrderTotalThreshold') ){
+
+                    if( offerSampleProducts ){
                         $document.ready(function() {
                             CartMonitor.setCount(summary.data.totalQuantity);
                             CartMonitor.setAmount(summary.data.total);
-                            window.location.href = Hypr.getThemeSetting('freeSamplePagePath') || "/c/" + Hypr.getThemeSetting('freeSampleCategoryId');
                         });
                     }
-                    else{*/
+                    else{
                         $document.ready(function() {
                             $('.ml-header-global-cart-wrapper').css('display', 'block');
                             CartMonitor.setCount(summary.data.totalQuantity);
                             CartMonitor.setAmount(summary.data.total);
                             GlobalCart.update( showGlobalCart );
                         });
-                    /* } */
+                    }
                 });
 
             }

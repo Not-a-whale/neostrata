@@ -1157,7 +1157,6 @@
     "paymentsMethodInfo": "Payment Methods",
     "giftCardsInfo": "Gift Card",
     "freeSampleCategoryId": 165,
-    "freeSamplePagePath": "/product/free-sample",
     "freeSampleQty": 3,
     "freeSampleOrderTotalThreshold": 75,
     "omxOrderNumberAttribute":"tenant~omx_order_number",
