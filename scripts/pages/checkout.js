@@ -62,7 +62,8 @@ require(["modules/jquery-mozu",
         /*sets which is current step for styling purposes*/
                 if(this.$el.prop('id') == 'step-customer-info'){ //let's initialize, at least first element is-current
                     this.$el.addClass('is-current');
-                }else{ // checking for previous steps status
+                }
+                else{ // checking for previous steps status
                     if(this.$el.prev().hasClass('is-current') || this.$el.prev().hasClass('is-incomplete')){ //prev elements not complete? then neither this
                         this.$el.removeClass('is-complete');
                         this.model._stepStatus = 'incomplete'; //set by using stepStatus() method fires an infinite bucle in this logic.

@@ -41,7 +41,7 @@
       border: 1px solid #999;
       color: black;
     }
-    
+
     input[type="checkbox"],
     input[type="radio"] {
         left: -9999rem;
@@ -52,14 +52,14 @@
             padding-top: 0;
             font-size: 1.25rem;
             line-height: 1.5em !important;
-    
+
             strong {
                 font-weight: 500;
             }
-    
+
             &:after {
                 top: 18px;
-            } 
+            }
             &:before {
                 top: 20px;
                 left: 3px;
@@ -227,7 +227,7 @@
         .mz-contactselector-contact{
             display: block;
         }
-    } 
+    }
 }
 .mz-checkoutform-paymentinfo{
     .mz-l-formfieldgroup-row{
@@ -245,7 +245,7 @@
                     margin-left: 3px;
                 }
             }
-            
+
             input[type="text"]{
                 width: 240px;
                 border: 1px solid @inputBorder;
@@ -335,7 +335,7 @@
     &:after {
         display: none;
     }
-    
+
     .mz-messagebar {
         width: 100%;
     }
@@ -352,7 +352,7 @@
     .checkout-leftcolumn {
         width: 61.375rem;
     }
-    
+
     .mz-checkoutform-header {
         padding: 0 0 1.375rem;
         margin: 0 0 3.9375rem;
@@ -405,12 +405,12 @@
             position: relative;
 
             #btn_xpressPaypal {
-                min-width:320px;  
-                height:auto; 
-                margin:0 auto; 
-                position: absolute; 
+                min-width:320px;
+                height:auto;
+                margin:0 auto;
+                position: absolute;
                 bottom: -10rem;
-                left: ~'calc((100% - 320px) / 2)'; 
+                left: ~'calc((100% - 320px) / 2)';
                 left: ~'-webkit-calc((100% - 320px) / 2)';
                 left: ~'-moz-calc((100% - 320px) / 2)';
                 /*@media (max-width: 800px) {
@@ -429,7 +429,7 @@
             text-decoration: underline;
         }
     }
-    
+
     input[type="text"],
     input[type="tel"],
     input[type="password"] {
@@ -457,11 +457,11 @@
         align-items: center;
         flex-wrap: wrap;
 
-        
+
         @media (max-width: 800px) {
             justify-content: initial;
         }
-        
+
         .mz-addressform-firstname,
         .mz-addressform-lastname,
         .mz-addressform-city,
@@ -478,7 +478,7 @@
             }
         }
         .mz-addressform-state{
-            .custom-select-wrapper {    
+            .custom-select-wrapper {
                 .dropdown-toggle{
                     .filter-option{
                         .filter-option-inner{
@@ -487,8 +487,8 @@
                                 text-overflow: ellipsis;
                             }
                         }
-                    } 
-                } 
+                    }
+                }
             }
         }
         .mz-addressform-firstname,
@@ -516,7 +516,7 @@
 
         }
     }
-    
+
     .primary-btn {
         padding: 0 8.125rem;
     }
@@ -525,7 +525,7 @@
         display: flex;
         justify-content: center;
     }
-    
+
     .mz-ordersummary-checkout {
         .mz-checkoutform-header {
             font-size: 1.875rem;
@@ -603,7 +603,7 @@
 
     input[type="radio"] + label {
         .icon (before, @icon-dot-single);
-        
+
         font-family: @fontFamily !important;
 
         &:before, &:after{
@@ -676,7 +676,7 @@
     .ordersummary-column,
     .checkout-leftcolumn {
         @media (max-width: 800px) {
-            
+
             width: 100%;
 
             + .mz-l-column {
@@ -685,7 +685,7 @@
         }
 
         .checkout-twocolumn-row {
-            
+
         }
     }
     .ordersummary-column {
@@ -733,10 +733,10 @@
     &.is-current{
         .mz-formstep-body{
             display:block;
-        }        
+        }
         .mz-checkout-current-payment{
             p{
-                display:none;    
+                display:none;
             }
         }
         .mz-checkout-saved-billingaddress{
@@ -745,19 +745,12 @@
                 display:none;
             }
         }
-        
+
     }
     .mz-formstep-edit{
         display:none;
     }
 
-    &.mz-checkoutform-review.is-current,
-    &.mz-checkoutform-shippingmethod.is-complete,
-    &.mz-checkoutform-shippingmethod.is-current{
-        display:block;
-    }
-
-    &.mz-checkoutform-shippingmethod,
     .mz-formstep-body{
         display:none;
     }
@@ -915,7 +908,7 @@
         white-space: normal;
         padding-left: 2.875rem;
     }
-    
+
     .dropdown-toggle {
         display: flex;
         justify-content: space-between;
@@ -934,7 +927,7 @@
 
     .secondary-button {
         .primary-btn(@mutedBlue);
-    
+
         font-size: 1rem;
         line-height: 2.5rem;
         height: 2.8125rem;
