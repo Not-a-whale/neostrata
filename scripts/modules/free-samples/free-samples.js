@@ -60,7 +60,7 @@ define([
       },
       initialize: function(conf) {
 
-        console.log('Init model');
+        //console.log('Init model');
         var me = this;
         var freeSamplesCollection = this.get('freeSamples');
 
@@ -76,7 +76,7 @@ define([
         });
       },
       update: function() {
-        console.log('Update called');
+        //console.log('Update called');
         var me = this;
         var cart = me.get( 'cartModel' );
         var cartItems = cart.get('items');
@@ -127,7 +127,7 @@ define([
         me.trigger('updated', me);
       },
       itemRemoved: function( productCode ) {
-        console.log('Removing ' + productCode);
+        //console.log('Removing ' + productCode);
         var me = this;
         me.setInCart(productCode, false);
         me.setMessaging();
@@ -145,12 +145,12 @@ define([
           'click #product-list-ul .mz-productdetail-addtocart': 'addToCart'
         },*/
         initialize: function(conf) {
-          console.log('Init called', conf);
+          //console.log('Init called', conf);
           this.model = conf.model;
           this.listenTo(this.model, 'updated', this.render);
         },
         render: function() {
-          console.log('render called', this.model);
+          //console.log('render called', this.model);
           Backbone.MozuView.prototype.render.apply(this);
         },
         addSampleToCart: function(_e, a, b, c) {
