@@ -1,6 +1,6 @@
 <div class="mz-l-container confirmation-summary">
     <div class="mz-l-stack">
-        <div class="mz-l-stack-section thankyou-order-block">
+        <div class="mz-l-stack-section thankyou-order-block"> 
             <div class="mz-l-stack-section-title">
                 <h1 class="mz-pagetitle">{{ labels.confirmationText }}</h1>
 
@@ -10,11 +10,22 @@
                     {% endif %}
                 {% endfor %}
             </div>
+
+           {% if user.isAuthenticated %}
             <div class="mz-l-stack-item quiz-stack-item">
                 <p class="quiz-title">{{ labels.checkoutQuizTitle }}</p>
                 <p class="quiz-text">{{ labels.checkoutQuizText }}</p>
                 <a href="/skin-care-quiz" class="primary-btn">{{ labels.checkoutQuizTakeBtn }}</a>
             </div>
+            {% else %}
+                    <div class="mz-l-stack-item">
+                        <p class="confirmation-title">{{ labels.confirmationCreateAccTitle|safe }}</p>
+                        <p class="confirmation-text">{{ labels.confirmationCreateAccText }}</p>
+                    </div>
+                    <div class="mz-l-stack-item">
+                        <a data-toggle="modal" data-mz-action="lite-registration" data-mz-param="signup" class="primary-btn">{{ labels.signUpLink }}</a>
+                    </div>
+            {% endif %}
 
         </div>
 

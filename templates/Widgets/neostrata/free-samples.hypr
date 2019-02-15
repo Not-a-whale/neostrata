@@ -1,6 +1,0 @@
-{% partial_cache model.config.freeSampleCategory %}
-<div data-mz-free-samples="{{model.config.freeSampleCategory}}" class="mz-l-container container mz-category-free-samples" id="free-samples-category">
-{% include "modules/product/free-sample-widget/free-sample-products" with products=model.config.freeSampleProducts and cartData="some data" %}
-</div>
-{% endpartial_cache %}
-{% require_script "widgets/neostrata/free-sample-widget" %}
