@@ -9,8 +9,9 @@ define(['modules/api',
         'modules/preserve-element-through-render',
         'modules/modal-dialog',
         'modules/xpress-paypal',
-        "modules/metrics"
-    ], function (api, Backbone, _, $, CartModels, CartMonitor, HyprLiveContext, Hypr, preserveElement, modalDialog, paypal, MetricsEngine) {
+        "modules/metrics",
+        "modules/free-samples/free-samples"
+    ], function (api, Backbone, _, $, CartModels, CartMonitor, HyprLiveContext, Hypr, preserveElement, modalDialog, paypal, MetricsEngine, FreeSamples) {
 
 
     var CartView = Backbone.MozuView.extend({
@@ -497,14 +498,21 @@ define(['modules/api',
 
     $(document).ready(function() {
         var cartModel = CartModels.Cart.fromCurrent(),
+            freeSamplesModel = new FreeSamples.Model( {
+              categoryId: $('#free-samples').data('mz-free-samples'),
+              cartModel: cartModel
+            }),
             cartViews = {
-
                 cartView: new CartView({
                     el: $('#cart'),
                     model: cartModel,
                     messagesEl: $('[data-mz-message-bar]')
+                }),
+                freeSamplesView: new FreeSamples.View( {
+                  el: $('#free-samples'),
+                  model: freeSamplesModel,
+                  cartModel: cartModel,
                 })
-
             };
 
         cartModel.on('ordercreated', function (order) {
@@ -514,13 +522,15 @@ define(['modules/api',
 
         cartModel.on('itemremoved', function (cartItem) {
             MetricsEngine.trackRemovedFromCart(cartItem);
+            freeSamplesModel.itemRemoved(cartItem.get('product').get('productCode'));
         });
 
         cartModel.on('sync', function() {
              if (this.isEmpty())
                 window.location.reload();
-            else
+            else {
                 CartMonitor.update();
+            }
         });
 
         window.cartView = cartViews;

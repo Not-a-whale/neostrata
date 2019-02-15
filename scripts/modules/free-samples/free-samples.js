@@ -43,131 +43,145 @@ define([
     var FreeSamplesModel = Backbone.MozuModel.extend({
       mozuType: 'freeSamples',
       defaults: {
-        freeSamples: null,
-        message: 'Here are the samples',
-        freeSampleCount: 0
+        freeSamples: new FreeSamplesCollection(),
+        message: '',
+        freeSamplesCount: 0,
+        cart: null,
+        showProducts: false
       },
       relations: {
-        freeSamples: FreeSamplesCollection
+        freeSamples: FreeSamplesCollection,
+        cart: CartModels.Cart
       },
       dataTypes: {
-          freeSampleCount: Backbone.MozuModel.DataTypes.Int
+          freeSamplesCount: Backbone.MozuModel.DataTypes.Int,
+          showProducts: Backbone.MozuModel.DataTypes.Boolean
+
       },
+      initialize: function(conf) {
+
+        console.log('Init model');
+        var me = this;
+        var freeSamplesCollection = this.get('freeSamples');
+
+        api.get('products', "categoryId req " + conf.categoryId).then( function( categoryResponse ) {
+          categoryResponse.data.items.forEach( function(product) {
+            var newItem = new FreeSampleItem( {
+              productCode: product.productCode,
+              product: new ProductModels.Product(product)
+            });
+            freeSamplesCollection.add(newItem);
+          });
+          me.update();
+        });
+      },
+      update: function() {
+        console.log('Update called');
+        var me = this;
+        var cart = me.get( 'cartModel' );
+        var cartItems = cart.get('items');
+        me.set('freeSamplesCount', 0);
+        cartItems.forEach( function(item) {
+          var cartProductCode = item.get('product').get('productCode');
+          me.setInCart(cartProductCode, true);
+        });
+        me.setMessaging();
+        me.trigger('updated', me);
+      },
+      setMessaging: function() {
+        var me = this;
+
+        var cart = me.get( 'cartModel' );
+        var cartTotal = cart.attributes.subtotal;
+        var freeSamplesCollection = me.get('freeSamples');
+        var freeSamplesCount = me.get('freeSamplesCount');
+
+        var message, showProducts = false;
+        if (cartTotal < FREE_SAMPLE_THRESHOLD) {
+          message = "Add $" + (FREE_SAMPLE_THRESHOLD - cartTotal) + " more for free shipping and " + FREE_SAMPLE_MAX + " free samples!";
+        }
+        else if (freeSamplesCount < 3) {
+          message = "You’ve earned 3 FREE SAMPLES. Choose them below.";
+          showProducts = true;
+        }
+        else {
+          message = "You have chosen your free samples!";
+        }
+        me.set('message', message);
+        me.set('showProducts', showProducts);
+      },
+      setInCart: function( productCode, inCartStatus ) {
+        var me = this;
+        var freeSamplesCollection = me.get('freeSamples');
+        // find this product in free samples and set it
+        var sample = freeSamplesCollection.get(productCode);
+        if (sample) {
+          sample.set('inCart', inCartStatus);
+          me.set('freeSamplesCount', me.get('freeSamplesCount')+ (inCartStatus ? 1 : -1));
+        }
+      },
+      itemAdded: function( productCode ) {
+        var me = this;
+        me.setInCart(productCode, true);
+        me.setMessaging();
+        me.trigger('updated', me);
+      },
+      itemRemoved: function( productCode ) {
+        console.log('Removing ' + productCode);
+        var me = this;
+        me.setInCart(productCode, false);
+        me.setMessaging();
+        me.trigger('updated', me);
+      }
     });
 
     var FreeSamplesView = Backbone.MozuView.extend({
         templateName: 'modules/product/free-sample-widget/product-list-tiled',
+        autoUpdate: [
+            'showProducts',
+            'freeSamples'
+        ],
         /*events: {
           'click #product-list-ul .mz-productdetail-addtocart': 'addToCart'
         },*/
         initialize: function(conf) {
-          var me = this;
           console.log('Init called', conf);
-          var freeSamplesCollection = new FreeSamplesCollection();
-          this.model = new FreeSamplesModel( {
-            freeSamples: freeSamplesCollection
-          });
-
-          api.get('products', "categoryId req " + conf.categoryId).then( function( categoryResponse ) {
-            categoryResponse.data.items.forEach( function(product) {
-              var newItem = new FreeSampleItem( {
-                productCode: product.productCode,
-                product: new ProductModels.Product(product)
-              });
-              freeSamplesCollection.add(newItem);
-            });
-            console.log('calling update');
-            me.update();
-          });
+          this.model = conf.model;
+          this.listenTo(this.model, 'updated', this.render);
         },
-        update: function() {
-          console.log('Update called');
-          var me = this;
-          var cart = CartModels.Cart.fromCurrent();
-          //console.log('Cart is', cart);
-          var cartTotal = cart.attributes.subtotal;
-          //console.log('Subtotal is' +  cartTotal);
-          var freeSamplesCollection = me.model.get('freeSamples');
-          var freeSamplesCount = 0;
-          var cartItems = cart.get('items');
-          cartItems.forEach( function(item) {
-            var cartProductCode = item.get('product').get('productCode');
-            // find this product in free samples and set it
-            var sample = freeSamplesCollection.get(cartProductCode);
-            if (sample) {
-              sample.set('inCart', true);
-              freeSamplesCount++;
-            }
-          });
-
-          var setModel = function( message, count) {
-            me.model.set('message', message);
-            me.model.set('freeSamplesCount', count);
-          };
-
-          try {
-            if (cartTotal < FREE_SAMPLE_THRESHOLD) {
-              setModel(
-                "Add $" + (FREE_SAMPLE_THRESHOLD - cartTotal) + " more for free shipping and " + FREE_SAMPLE_MAX + " free samples!",
-                freeSamplesCount
-              );
-            }
-            else if (freeSamplesCount < 3) {
-              setModel(
-                "You’ve earned 3 FREE SAMPLES. Choose them below.",
-                freeSamplesCount
-              );
-            }
-            else {
-              setModel(
-                "You have chosen your free samples!",
-                freeSamplesCount
-              );
-            }
-            me.render();
-          }
-          catch (e) {
-            console.log(e);
-          }
+        render: function() {
+          console.log('render called', this.model);
+          Backbone.MozuView.prototype.render.apply(this);
         },
-        /*render: function() {
-          console.log('render called');
-        },*/
         addSampleToCart: function(_e, a, b, c) {
           var me = this;
-          console.log('Add to cart');
-          console.log('e', _e);
-          console.log('a', a);
-          console.log('b', b);
-          console.log('c', c);
 
           var productCode = $(_e.currentTarget).data("mz-product-code");
-
-          var itemsInCart = GlobalCart.getItemsCache();
-
           if(productCode && productCode !== ''){
+            api.get('product', productCode).then(function(productResponse){
+              var product = new ProductModels.Product(productResponse.data);
+              product.on('addedtocart', function(cartitem) {
+                  if (cartitem && cartitem.prop('id')) {
+                      me.model.itemAdded(productCode);
+                      me.model.get('cartModel').fetch();
+                      // CartMonitor.addToCount( product.get('quantity'), true);
+                      // MetricsEngine.trackDirectoryAddToCart(product, product.get('categories')[0], false, 1);
+                  }
+                  else {
+                      product.trigger("error", { message: Hypr.getLabel('unexpectedError') });
+                  }
 
-              api.get('product', productCode).then(function(productResponse){
-                  var product = new ProductModels.Product(productResponse.data);
-                  product.on('addedtocart', function(cartitem) {
-                      if (cartitem && cartitem.prop('id')) {
-                          console.log('Calling update', me);
-                          me.update();
-                          CartMonitor.addToCount( product.get('quantity'), true);
-                          MetricsEngine.trackDirectoryAddToCart(product, product.get('categories')[0], false, 1);
-                      }
-                      else {
-                          product.trigger("error", { message: Hypr.getLabel('unexpectedError') });
-                      }
-
-                  });
-                  product.addToCart();
               });
+              product.addToCart();
+            });
           }
         }
 
     });
 
-    return FreeSamplesView;
+    return {
+      Model: FreeSamplesModel,
+      View: FreeSamplesView
+    };
 
 });

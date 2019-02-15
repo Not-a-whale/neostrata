@@ -1,4 +1,3 @@
-Here
 <div class="product-list mz-l-paginatedlist col-12">
     <div data-mz-productlist class="mz-l-paginatedlist-list">
         {% include "modules/product/free-sample-widget/product-list-tiled" %}
