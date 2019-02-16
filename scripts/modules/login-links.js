@@ -638,10 +638,10 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
     $(document).ready(function() {
         $docBody = $(document.body);
 
-        var currentYear = (new Date()).getFullYear();
-        var fromYear = currentYear-101;
-        for (fromYear; fromYear<currentYear; fromYear++){
-            $('<option/>').val(fromYear).html(fromYear).appendTo('#signup_input_dob_year');
+        var year = (new Date()).getFullYear()-13;
+        var endYear = year-90;
+        for (year; year>endYear; year--){
+            $('<option/>').val(year).html(year).appendTo('#signup_input_dob_year');
         }
 
        new LoginRegistrationModal().init($('[data-mz-action="lite-registration"]').first());
