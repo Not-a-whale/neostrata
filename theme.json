@@ -342,13 +342,6 @@
       "customEditor": "categoryContent@mozu"
     },
     {
-      "entityType": "category",
-      "id": "freeSampleCategory",
-      "template": "free-sample-category",
-      "title": "Free Sample Category",
-      "userCreatable": false
-    },
-    {
       "entityType": "product",
       "id": "product",
       "template": "product",
@@ -1891,17 +1884,6 @@
           {"name":"linkTitle", "fieldLabel":"Link Title"}
         ],
         "icon":"/resources/admin/widgets/BV_Conversations.png",
-        "validPageTypes":["*"]
-    },
-    {
-        "category" : "catalog",
-        "id":"free-samples-widget",
-        "displayName":"Free Samples",
-        "displayTemplate":"neostrata/free-samples",
-        "editViewFields":[
-          {"name":"freeSampleCategory", "fieldLabel":"Free Sample Category", "xtype": "mz-input-category"}
-        ],
-        "icon":"/resources/admin/widgets/26_related_products.png",
         "validPageTypes":["*"]
     },
     {

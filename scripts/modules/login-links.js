@@ -610,7 +610,7 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
         }; 
 
         this.setDateErrorCookie = function () {
-            $.cookie('mozu-signup-age', true, { path: '/', expires: 1 });
+            $.cookie('mozu-signup-age', true); //, { path: '/', expires: 1 });
             $('#signup_input_dob_month').prop('disabled', 'disabled');
             $('#signup_input_dob_day').prop('disabled', 'disabled');
             $('#signup_input_dob_year').prop('disabled', 'disabled');

@@ -1,4 +1,4 @@
-define(['modules/api',
+  define(['modules/api',
         'modules/backbone-mozu',
         'underscore',
         'modules/jquery-mozu',

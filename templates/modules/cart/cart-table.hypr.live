@@ -10,15 +10,8 @@
         <span>{{ labels.moneyBackMsg|safe }}</span>
     </div>
 </div>
-<div class="col-md-6 pull-right col-sm-6 col-xs-12 col-xs-12 text-right hidden-xs mz-button-checkout-cart-top">
-</div>
-<div class="clearfix"></div>
-
 <div class="mz-table-cart-{%if Model.IsEmpty %}isempty{% else %}items{% endif %} col-md-8 col-xs-12">
 {% if not model.isEmpty %}
-<form method="post" action="{{ siteContext.secureHost }}{{siteContext.siteSubdirectory}}/cart/checkout" id="cartform">
-    <input type="hidden" name="id" value="{{model.id}}" />
-
     <div class="mz-header-basket-md-sm">
         <div class="col-xs-12">{{ labels.itemsInOrder }}</div>
     </div>
@@ -115,7 +108,6 @@
       </div>
     </div>
     {% endfor %}
-</form>
 
 {% else %}
   <div class="mz-carttable-noitems">

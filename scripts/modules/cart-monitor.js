@@ -40,13 +40,21 @@ define(['modules/jquery-mozu', 'modules/api', 'bootstrap', 'modules/page-header/
                     $.cookie('mozucart', JSON.stringify(summary.data), { path: '/' });
                     savedCarts[userId] = summary.data;
                     //console.log(summary);
-
-                    $document.ready(function() {
+                    if (showGlobalCart) {
+                      $document.ready(function() {
                         $('.ml-header-global-cart-wrapper').css('display', 'block');
                         CartMonitor.setCount(summary.data.totalQuantity);
                         CartMonitor.setAmount(summary.data.total);
                         GlobalCart.update( showGlobalCart );
-                    });
+                      });
+                    }
+                    else {
+                      $document.ready(function() {
+                        $('.ml-header-global-cart-wrapper').css('display', 'block');
+                        CartMonitor.setCount(summary.data.totalQuantity);
+                        CartMonitor.setAmount(summary.data.total);
+                      });
+                    }
                 });
 
             }

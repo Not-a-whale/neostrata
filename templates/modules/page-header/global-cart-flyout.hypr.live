@@ -91,8 +91,10 @@
 	</div>
 
 	{% if themeSettings.globalCartRelatedProducts %}
+		{% comment %}
 		<h6 class="text-center">{{ labels.cartRelatedTitle|safe }}</h6>
 		<div class="related-products"></div>
+		{% endcomment %}
 	{% endif %}
 	<div class="row text-center" style="padding-top: 15px;">
 		{% if themeSettings.globalCartEmptyBasketFooter %}
