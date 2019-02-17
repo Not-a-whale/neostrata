@@ -204,7 +204,7 @@
   "selectStore"                           : "Select Store",
   "checkout"             : "Checkout",
   "orderSummary"         : "Order Summary",
-  "shippingInformation"  : "Shipping",
+  "shippingInformation"  : "Shipping Address",
   "noFulfillmentInfoRequired" : "No shipping information is required since all items will be picked up in the store or digitally fulfilled.",
   "selectValidAddress"   : "Select an address from these alternatives:",
   "addressValidationError": "We could not validate this address. Please check the address you entered and try again.",
