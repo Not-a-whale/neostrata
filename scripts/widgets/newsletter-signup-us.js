@@ -108,7 +108,7 @@ require(['modules/jquery-mozu', 'underscore', 'hyprlive'], function($,  _,  Hypr
     }
   }
   function setDateErrorCookie() {
-    $.cookie('mozu-newsletter-age', true, { path: '/', expires: 1 });
+    $.cookie('mozu-newsletter-age', true ); //, { path: '/' });
     $('#input_dob_month').prop('disabled', 'disabled');
     $('#input_dob_day').prop('disabled', 'disabled');
     $('#input_dob_year').prop('disabled', 'disabled');

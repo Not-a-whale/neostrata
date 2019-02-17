@@ -22,7 +22,7 @@
     </tr>
     <tr>
       <td style="padding-bottom:1em;font-size:1rem;line-height:1.45rem;padding-top:0.4rem;margin-top:0;text-align:center;">
-        <ul style="list-style: inside;">
+        <ul class="new-user-list" style="list-style: none;">
           <li>{{ labels.newUserEmailListText1|safe }}</li>
           <li>{{ labels.newUserEmailListText2|safe }}</li>
           <li>{{ labels.newUserEmailListText3|safe }}</li>
@@ -36,7 +36,7 @@
     </tr>
     <tr>
       <td style="padding-bottom:1em;font-size:1rem;line-height:1.45rem;padding-top:0.4rem;margin-top:0;text-align:center;">
-        <ul style="list-style: inside;">
+        <ul class="new-user-list" style="list-style: none;">
           <li>{{ labels.newUserEmailList2Text1|string_format(domainName, siteContext.generalSettings.websiteName)|safe }}</li>
           <li>{{ labels.newUserEmailList2Text2|safe }}</li>
           <li>{{ labels.newUserEmailList2Text3|safe }}</li>
