@@ -181,6 +181,20 @@ require([
     }
   });
 
+  var SUPPORTS_HISTORY = window.history && typeof window.history.pushState === 'function';
+  function pushState(state, title, url) {
+    if (SUPPORTS_HISTORY) {
+      history.pushState(state, title, url);
+    }
+  }
+
+  function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+  }
+
   var Selector = Backbone.View.extend({
     template: _.template( $( '#regimen-select-template' ).html() ),
 
@@ -201,7 +215,8 @@ require([
       }
     },
 
-    initialize: function() {
+    initialize: function(conf) {
+
       this.skinTypeToggled = false;
       this.skinTypeSelected = undefined;
       this.skinConcernToggled = false;
@@ -220,6 +235,18 @@ require([
           label: item[1]
         };
       });
+
+      if (conf.skinType) {
+        this.skinTypeSelected = _.find(SKIN_TYPES, function(item) {
+           return (item[0]===conf.skinType);
+        });
+      }
+      if (conf.skinConcern) {
+        this.skinConcernSelected = _.find(SKIN_CONCERNS, function(item) {
+           return (item[0]===conf.skinConcern);
+        });
+      }
+
 
       document.addEventListener( 'click', this.clear.bind( this ) );
     },
@@ -248,6 +275,13 @@ require([
         var newRegimen = this.calculateRegimen(this.skinTypeSelected, this.skinConcernSelected);
         if (this.selectedRegimen != newRegimen) {
           this.selectedRegimen = newRegimen;
+
+          pushState(
+            { skinType: this.skinTypeSelected[0], skinConcern: this.skinConcernSelected[0] },
+            this.skinTypeSelected[1] + ' / ' + this.skinConcernSelected[1],
+            '?skin-type=' + this.skinTypeSelected[0] + '&skin-concern=' + this.skinConcernSelected[0]
+          );
+
           this.trigger( 'change', this.selectedRegimen );
         }
       }
@@ -424,12 +458,20 @@ require([
       }
     },
 
+
     initialize: function() {
       var self = this;
 
       this.state = new State();
 
-      this.selector = new Selector({ el: this.$( '[data-view="selector"]' ) }).render();
+      var skinType = getUrlParameter('skin-type');
+      var skinConcern = getUrlParameter('skin-concern');
+
+      this.selector = new Selector({
+        el: this.$( '[data-view="selector"]' ),
+        skinConcern: skinConcern,
+        skinType: skinType
+      }).render();
       this.regimen = new RegimenView({ el: this.$( '[data-view="regimen"]' ), model: this.state }).render();
 
       this.updateFromCart();
