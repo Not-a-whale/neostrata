@@ -236,7 +236,9 @@ require(["modules/jquery-mozu",
             'creditAmountToApply',
             'digitalCreditCode',
             'purchaseOrder.purchaseOrderNumber',
-            'purchaseOrder.paymentTerm'
+            'purchaseOrder.paymentTerm',
+            'couponCode'
+
         ].concat(poCustomFields()),
         renderOnChange: [
             'billingContact.address.countryCode',
@@ -291,7 +293,8 @@ require(["modules/jquery-mozu",
                 this.model.set('card.paymentOrCardType',null);
             }
         },
-        initialize: function () {
+        initialize: function (conf) {
+            var me = this;
             // this.addPOCustomFieldAutoUpdate();
             this.listenTo(this.model, 'change:digitalCreditCode', this.onEnterDigitalCreditCode, this);
             this.listenTo(this.model, 'orderPayment', function (order, scope) {
@@ -308,6 +311,22 @@ require(["modules/jquery-mozu",
                 this.render();
             }, this);
             this.codeEntered = !!this.model.get('digitalCreditCode');
+
+            this.listenTo(this.model, 'change:couponCode', this.onEnterCouponCode, this);
+
+            this.parentModel = conf.parentModel;
+            console.log('parent model', this.parentModel);
+            this.couponCodeEntered = !!this.model.get('couponCode');
+            this.$el.on('keypress', '#coupon-code', function (e) {
+              console.log('Coupon code enter');
+                if (e.which === 13) {
+                  if (me.couponCodeEntered) {
+                    me.handleCouponCodeEnterKey();
+                  }
+                  return false;
+                }
+            });
+
         },
         allowDigit:function(e){
             e.target.value= e.target.value.replace(/[^\d]/g,'');
@@ -499,57 +518,38 @@ require(["modules/jquery-mozu",
                     subtotal: "" + orderModel.get('subtotal')
                 }
             });
-        }
+        },
         /* end visa checkout */
-    });
 
-    var CouponView = Backbone.MozuView.extend({
-        templateName: 'modules/checkout/coupon-code-field',
-        handleLoadingChange: function (isLoading) {
-            // override adding the isLoading class so the apply button
-            // doesn't go loading whenever other parts of the order change
-        },
-        initialize: function () {
-            var me = this;
-            this.listenTo(this.model, 'change:couponCode', this.onEnterCouponCode, this);
-            this.codeEntered = !!this.model.get('couponCode');
-            this.$el.on('keypress', 'input', function (e) {
-                if (e.which === 13) {
-                    if (me.codeEntered) {
-                        me.handleEnterKey();
-                    }
-                    return false;
-                }
-            });
-        },
-        onEnterCouponCode: function (model, code) {
-            if (code && !this.codeEntered) {
-                this.codeEntered = true;
-                this.$el.find('button').prop('disabled', false);
-            }
-            if (!code && this.codeEntered) {
-                this.codeEntered = false;
-                this.$el.find('button').prop('disabled', true);
-            }
-        },
-        autoUpdate: [
-            'couponCode'
-        ],
+        /* coupon */
         addCoupon: function (e) {
             // add the default behavior for loadingchanges
             // but scoped to this button alone
             var self = this;
             this.$el.addClass('is-loading');
-            this.model.addCoupon().ensure(function() {
+            this.parentModel.set('couponCode', this.model.get('couponCode'));
+            this.parentModel.addCoupon().ensure(function() {
                 self.$el.removeClass('is-loading');
                 self.model.unset('couponCode');
                 self.render();
             });
         },
-        handleEnterKey: function () {
+        onEnterCouponCode: function (model, code) {
+            if (code && !this.couponCodeEntered) {
+                this.couponCodeEntered = true;
+                this.$el.find('button').prop('disabled', false);
+            }
+            if (!code && this.couponCodeEntered) {
+                this.couponCodeEntered = false;
+                this.$el.find('button').prop('disabled', true);
+            }
+        },
+
+        handleCouponCodeEnterKey: function () {
             this.addCoupon();
         }
     });
+
 
     var CommentsView = Backbone.MozuView.extend({
         templateName: 'modules/checkout/comments-field',
@@ -666,22 +666,18 @@ require(["modules/jquery-mozu",
                     }),
                     paymentInfo: new BillingInfoView({
                         el: $('#step-payment-info'),
-                        model: checkoutModel.get('billingInfo')
+                        model: checkoutModel.get('billingInfo'),
+                        parentModel: checkoutModel
                     })
                 },
                 orderSummary: new OrderSummaryView({
                     el: $('#order-summary'),
                     model: checkoutModel
                 }),
-                couponCode: new CouponView({
-                    el: $('#coupon-code-field'),
-                    model: checkoutModel
-                }),
                 comments: Hypr.getThemeSetting('showCheckoutCommentsField') && new CommentsView({
                     el: $('#comments-field'),
                     model: checkoutModel
                 }),
-
                 reviewPanel: new ReviewOrderView({
                     el: $('#step-review'),
                     model: checkoutModel
