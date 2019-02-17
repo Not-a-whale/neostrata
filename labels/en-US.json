@@ -77,7 +77,7 @@
   "shippingFree"         : "FREE",
   "comments"             : "Comments",
   "couponCode"           : "Promo Code",
-  "cuoponPromoCode"      : "+ Cuopon or Promo Code",
+  "couponPromoCode"      : "+ Coupon or Promo Code",
   "createAccountCheckout": "<strong>Create Account</strong> for faster ordering, free shipping, exclusive offers <br /> and a personalized site experience",
   "couponDisclaimer"     : "Note: \"{0}\" may be reflected in checkout.",
   "apply"                : "Apply",

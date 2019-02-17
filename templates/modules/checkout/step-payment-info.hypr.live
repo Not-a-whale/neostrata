@@ -72,7 +72,7 @@
             </div>
         </div>
         {% endif %}
-        {% if payment.billingInfo.paymentType|lower == "paypalexpress2"  %}
+        {% if payment.billingInfo.paymentType|lower == "*.hyprexpress2"  %}
             {% if model.nonStoreCreditTotal == 0%}
                 <h4 class="mz-checkout-nopaymentrequired">{{ labels.noPaymentRequired|string_format(model.remainingTotal|currency) }}</h4>
             {% endif %}
@@ -215,6 +215,14 @@
 
     <div class="mz-formstep-next">
         <button type="button" class="mz-button primary-btn" data-mz-action="next">{{ labels.useThisPaymentInfo }}</button>
+    </div>
+
+    <div class="mz-l-formfieldgroup-row mz-paymentselector-externalworkflows">
+        <div class="mz-l-formfieldgroup-cell">
+        </div>
+        <div class="mz-l-formfieldgroup-cell text-center">
+                <img id="btn_xpressPaypal" class="p-button" alt="Check out with PayPal" role="button" src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png"/>
+        </div>
     </div>
 
 {% comment%}
