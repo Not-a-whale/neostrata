@@ -876,6 +876,9 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             this.startEditAddressBook();
             this.editing.contact = false;
             this.model.endEditContact();
+
+            this.model.set('editingContact.isShippingContact', true);
+
             this.editing.contact = "new";
             this.render();
             $("input[name='firstname']").focus();
@@ -890,7 +893,6 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             
             var self = this,
                 isAddressValidationEnabled = HyprLiveContext.locals.siteContext.generalSettings.isAddressValidationEnabled;
-            self.model.set('editingContact.isShippingContact', true);
 
                 var operation = this.doModelAction('saveContact', { forceIsValid: isAddressValidationEnabled, editingView: self }); // hack in advance of doing real validation in the myaccount page, tells the model to add isValidated: true
             if (operation) {
