@@ -424,23 +424,6 @@ require([
       }
     },
 
-    /*
-            var addToCartPromises = _.map(selection.items, function(item) {
-              console.log('adding product to cart: ', item.product);
-              var product = new ProductModels.Product(item.product);
-              console.log('    : ', product);
-
-              return function(callback) {
-                product.addToCart().then( function(result, error) {
-                  callback(error, result);
-                }).bind({ product: product});
-              };
-            });
-            async.series(addToCartPromises, function(err, results) {
-              console.log('items in cart results', results);
-            });
-            */
-
     initialize: function() {
       var self = this;
 
