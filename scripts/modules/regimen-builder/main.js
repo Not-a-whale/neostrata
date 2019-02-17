@@ -2,14 +2,23 @@
 require([
   'modules/jquery-mozu',
   'underscore',
+  "async",
   'modules/backbone-mozu',
-  'modules/api'
+  'modules/api',
+  'modules/models-product',
+  'modules/cart-monitor',
+  'modules/block-ui'
 ], function(
   $,
   _,
+  async,
   Backbone,
-  API
+  API,
+  ProductModels,
+  CartMonitor,
+  blockUiLoader
 ) {
+
   API.get( 'entityList', {
       listName: 'bvsettings@mzint',
       id: API.context.site
@@ -82,11 +91,74 @@ require([
     }
   ];
 
-  var REGIMENS = _.map([
+  // this is skin-type.skin-concern that then points to the regimen to show
+  var SKIN_CONCERNS = [
+    ['aging','Aging'],
+    ['fine-lines','Fine Lines & Wrinkles'],
+    ['dry','Dry or Scaly Skin'],
+    ['acne','Acne & Blemishes'],
+    ['dark-circles','Dark Circles & Crows Feet'],
+    ['uneven','Uneven / Dark Spots'],
+    ['lax','Lax or Sagging Skin'],
+    ['blotchy','Blotchy'],
+    ['keratosis-pilaris','Keratosis Pilaris'],
+    ['dull','Dull Skin'],
+    ['psoriasis', 'Psoriasis']
+
+  ];
+
+  var SKIN_TYPES = [
     ['normal', 'Normal Skin'],
     ['dry', 'Dry Skin'],
     ['oily', 'Oily Skin'],
     ['sensitive', 'Sensitive Skin']
+  ];
+
+  var REGIMEN_LOOKUP = {
+    'normal': {
+      'aging': 'skinActive',
+      'fine-lines': 'skinActive',
+      'dry': 'restore',
+      'acne': 'clarify',
+      'dark-circles': 'enlighten',
+      'uneven': 'enlighten',
+      'lax': 'skinActive',
+      'blotchy': 'restore',
+      'keratosis-pilaris': 'restore',
+      'dull': 'skinActive',
+      'psoriasis': 'psorent'
+    },
+    'sensitive': {
+      'psoriasis': 'psorent'
+    },
+    'oily': {
+      'aging': 'clarify',
+      'fine-lines': 'clarify',
+      'dry': 'restore',
+      'acne': 'clarify',
+      'dark-circles': 'enlighten',
+      'uneven': 'enlighten',
+      'lax': 'skinActive',
+      'blotchy': 'restore',
+      'keratosis-pilaris': 'resurface',
+      'dull': 'resurface',
+      'psoriasis': 'psorent'
+    },
+    'dry': {
+      'psoriasis': 'psorent'
+    }
+  };
+
+  var REGIMEN_DEFAULT = 'restore';
+
+  var REGIMENS = _.map([
+    ['skinActive', 'Skin Active'],
+    ['resurface', 'Resurface'],
+    ['restore', 'Restore'],
+    ['clarify', 'Clarify'],
+    ['enlighten', 'Enlighten'],
+    ['correct', 'Correct'],
+    ['psorent', 'Psorent'],
   ], function( regimen ) {
     return regimen.concat([
       buildSteps( regimen[0] ),
@@ -103,7 +175,8 @@ require([
     defaults: function() {
       return {
         current: REGIMENS[0],
-        selection: summarizeSelection( REGIMENS[0] )
+        selection: summarizeSelection( REGIMENS[0] ),
+        itemsInCart: []
       };
     }
   });
@@ -112,22 +185,36 @@ require([
     template: _.template( $( '#regimen-select-template' ).html() ),
 
     events: {
-      'click [data-role="wrapper"]': function( ev ) {
+      'click [data-role="wrapperSkinType"]': function( ev ) {
         ev.stopPropagation();
-
-        this.toggle( !this.toggled );
+        this.toggleSkinType( !this.skinTypeToggled );
       },
-
-      'click [data-option]': function( ev ) {
-        this.select( $( ev.target ).attr( 'data-option' ) );
+      'click [data-role="wrapperSkinConcern"]': function( ev ) {
+        ev.stopPropagation();
+        this.toggleSkinConcern( !this.skinConcernToggled );
+      },
+      'click [data-skinType]': function( ev ) {
+        this.selectSkinType( $( ev.target ).attr( 'data-skinType' ) );
+      },
+      'click [data-skinConcern]': function( ev ) {
+        this.selectSkinConcern( $( ev.target ).attr( 'data-skinConcern' ) );
       }
     },
 
     initialize: function() {
-      this.toggled = false;
-      this.selected = undefined;
+      this.skinTypeToggled = false;
+      this.skinTypeSelected = undefined;
+      this.skinConcernToggled = false;
+      this.skinConcernSelected = undefined;
+      this.selectedRegimen = undefined;
 
-      this.options = _.map( REGIMENS, function( item ) {
+      this.skinTypes = _.map( SKIN_TYPES, function( item ) {
+        return {
+          value: item[0],
+          label: item[1]
+        };
+      });
+      this.skinConcerns = _.map( SKIN_CONCERNS, function( item ) {
         return {
           value: item[0],
           label: item[1]
@@ -140,31 +227,66 @@ require([
     render: function() {
       var self = this;
 
-      this.$el.html( this.template({ open: this.toggled, selected: this.selected, options: this.options }) );
+      this.$el.html( this.template({ skinTypeOpen: this.skinTypeToggled, skinTypeSelected: this.skinTypeSelected, skinConcernOpen: this.skinConcernToggled, skinConcernSelected: this.skinConcernSelected, skinTypes: this.skinTypes, skinConcerns: this.skinConcerns }) );
 
       return this;
     },
-
-    toggle: function( value ) {
-      this.toggled = value;
+    calculateRegimen: function( skinType, skinConcern ) {
+      console.log('Look for regimen for: ' + skinType[0] + '/' + skinConcern[0]);
+      var regimenKey = REGIMEN_LOOKUP[skinType[0]] ? REGIMEN_LOOKUP[skinType[0]][skinConcern[0]] : REGIMEN_DEFAULT;
+      if (!regimenKey) {
+        regimenKey = REGIMEN_DEFAULT;
+      }
+      return regimenKey;
+    },
+    toggleSkinType: function( value ) {
+      this.skinTypeToggled = value;
+      this.render();
+    },
+    updateRegimen: function() {
+      if (this.skinTypeSelected && this.skinConcernSelected) {
+        var newRegimen = this.calculateRegimen(this.skinTypeSelected, this.skinConcernSelected);
+        if (this.selectedRegimen != newRegimen) {
+          this.selectedRegimen = newRegimen;
+          this.trigger( 'change', this.selectedRegimen );
+        }
+      }
+    },
+    selectSkinType: function( value ) {
+      var selection = _.find( SKIN_TYPES, function( item ) {
+        return item[0] === value;
+      });
+      if ( selection !== this.skinTypeSelected ) {
+        this.skinTypeSelected = selection;
+        // look up the regimen if we have the details we need
+        this.updateRegimen();
+      }
       this.render();
     },
 
-    select: function( value ) {
-      var selection = _.find( REGIMENS, function( item ) {
+    toggleSkinConcern: function( value ) {
+      this.skinConcernToggled = value;
+      this.render();
+    },
+
+    selectSkinConcern: function( value ) {
+      var selection = _.find( SKIN_CONCERNS, function( item ) {
         return item[0] === value;
       });
 
-      if ( selection !== this.selected ) {
-        this.trigger( 'change', selection );
+      if ( selection !== this.skinConcernSelected ) {
+        this.skinConcernSelected = selection;
+        // look up the regimen if we have the details we need
+        this.updateRegimen();
       }
 
-      this.selected = selection;
       this.render();
     },
 
     clear: function() {
-      this.toggle( false );
+      this.toggleSkinType( false );
+      this.toggleSkinConcern( false );
+
     }
   });
 
@@ -177,13 +299,15 @@ require([
 
     render: function() {
       var regimen = this.model.get( 'current' );
-
       if ( regimen ) {
+        var itemsInCart =  this.model.get('itemsInCart');
         this.$el.html( this.template( this.model.attributes ) );
         this.$( '[data-view="steps"]' )
           .html(
             _.map( regimen[2], function( step ) {
-              return new StepView().render( step ).el;
+              console.log('checking if ' + step.product.productCode + ' is in ' + itemsInCart);
+              var inCart = _.contains(itemsInCart, step.product.productCode);
+              return new StepView().render( step, inCart ).el;
             })
           );
       }
@@ -216,10 +340,17 @@ require([
 
     className: 'block flex-swing',
 
-    render: function( step ) {
-      this.$el.html( this.template( _.extend({}, step, {
-        product: PRODUCT_TILE( _.extend({}, PRODUCT_DEFAULTS, step.product ) )
-      })));
+    render: function( step, inCart ) {
+      this.$el.html( this.template( _.extend(
+        {},
+        step,
+        {
+          product: PRODUCT_TILE( _.extend({}, PRODUCT_DEFAULTS, step.product ) )
+        },
+        {
+          inCart: inCart
+        }
+      )));
 
       return this;
     }
@@ -239,8 +370,76 @@ require([
         this.state.set({
           selection: summarizeSelection( regimen )
         });
+      },
+      'click [data-control="addToCart"]': function( ev ) {
+        var self = this;
+        var $el = $( ev.target );
+        var selection = this.state.get('selection');
+        console.log('Add to cart', selection);
+
+        blockUiLoader.globalLoader();
+        var productsAdded = [];
+        var promises = _.map( selection.items, function(item) {
+          var product = new ProductModels.Product(item.product);
+          console.log('    : ', product);
+
+          var productCode = product.get('productCode');
+
+          return function(callback) {
+            console.log('  inside  : ', product);
+            product.on('addedtocart', function(cartitem) {
+                if (cartitem && cartitem.prop('id')) {
+                  console.log('Added: ', cartitem);
+                  productsAdded.push(productCode);
+                }
+                else {
+                    console.log('Error adding to cart');
+                    //product.trigger("error", { message: Hypr.getLabel('unexpectedError') });
+                }
+                callback(null, cartitem);
+            });
+            product.addToCart();
+          };
+        });
+        var errors = { "items": [] };
+        async.series(promises,
+          function(err, results) {
+            console.log('Results', results);
+            CartMonitor.addToCount( results.length, false);
+            var resp = results.reduce(
+              function(flag, value) {
+                return flag && results[0] === value;
+              },
+              true
+            );
+            if (resp === true) {
+              //window.productView.model.trigger('error', { message: Hypr.getLabel('selectValidOption') });
+              blockUiLoader.unblockUi();
+              return;
+            }
+            self.updateFromCart();
+            blockUiLoader.unblockUi();
+          }
+        );
       }
     },
+
+    /*
+            var addToCartPromises = _.map(selection.items, function(item) {
+              console.log('adding product to cart: ', item.product);
+              var product = new ProductModels.Product(item.product);
+              console.log('    : ', product);
+
+              return function(callback) {
+                product.addToCart().then( function(result, error) {
+                  callback(error, result);
+                }).bind({ product: product});
+              };
+            });
+            async.series(addToCartPromises, function(err, results) {
+              console.log('items in cart results', results);
+            });
+            */
 
     initialize: function() {
       var self = this;
@@ -250,10 +449,33 @@ require([
       this.selector = new Selector({ el: this.$( '[data-view="selector"]' ) }).render();
       this.regimen = new RegimenView({ el: this.$( '[data-view="regimen"]' ), model: this.state }).render();
 
-      this.selector.on( 'change', function( regimen ) {
+      this.updateFromCart();
+
+      this.selector.on( 'change', function( regimenKey ) {
+        var newRegimen = _.find( REGIMENS, function( item ) {
+          return item[0] === regimenKey;
+        });
+        if (!newRegimen) {
+          console.log('Regimen not found: ' + regimenKey);
+        }
+        else {
+          console.log('Setting regimen to:' + regimenKey);
+        }
         self.state.set({
-          current: regimen,
-          selection: summarizeSelection( regimen )
+          current: newRegimen,
+          selection: summarizeSelection( newRegimen )
+        });
+      });
+    },
+    updateFromCart: function() {
+      var self = this;
+      API.get( 'cart' ).then( function(resp) {
+        var cart = resp;
+        var itemsInCart = _.map(cart.data.items, function(item) {
+          return item.product.productCode;
+        });
+        self.state.set( {
+          'itemsInCart': itemsInCart
         });
       });
     }
@@ -295,7 +517,8 @@ require([
 
     return {
       cost: cost,
-      count: included.length
+      count: included.length,
+      items: included
     };
   }
 });
