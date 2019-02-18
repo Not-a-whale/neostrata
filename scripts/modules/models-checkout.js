@@ -325,8 +325,10 @@ define([
                 }
             },
             refreshShippingMethods: function (methods) {
+                var sortedMethods = _.sortBy(methods,'price');
+                
                 this.set({
-                    availableShippingMethods: methods
+                    availableShippingMethods: sortedMethods
                 });
 
                 // always make them choose again
