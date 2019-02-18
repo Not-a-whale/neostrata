@@ -5,8 +5,9 @@ define([
     "hyprlive",
     'underscore',
     "modules/models-product",
-    "modules/models-cart"
-], function(Backbone, $, Api, Hypr, _, ProductModels, CartModels) {
+    "modules/models-cart",
+    "modules/metrics"
+], function(Backbone, $, Api, Hypr, _, ProductModels, CartModels, MetricsEngine) {
 
     var globalCartRelatedProducts = Hypr.getThemeSetting('globalCartRelatedProducts'),
         globalCartRelatedProductsSize = Hypr.getThemeSetting('globalCartRelatedProductsSize'),
@@ -67,6 +68,9 @@ define([
                             Api.get('product', productCode).then(function(productResponse){
                                 var product = new ProductModels.Product(productResponse.data);
                                 product.addToCart();
+                                product.on('addedtocart', function(cartitem) {
+                                	MetricsEngine.trackDirectoryAddToCart(product, product.get('categories')[0], false, 1);
+                                });
                                 setTimeout(function(){
                                     Api.get("cart").then(function(resp) {
                                         $('.ml-header-global-cart-count .mz-cartmonitor').html(resp.data.items.length);

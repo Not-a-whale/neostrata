@@ -1,4 +1,4 @@
-﻿define(['shim!vendor/typeahead.js/typeahead.bundle[modules/jquery-mozu=jQuery]>jQuery', 'swiper', "modules/api", "modules/models-product", "modules/cart-monitor"], function($, Swiper, api, ProductModels, CartMonitor) {
+﻿define(['shim!vendor/typeahead.js/typeahead.bundle[modules/jquery-mozu=jQuery]>jQuery', 'swiper', "modules/api", "modules/models-product", "modules/cart-monitor", "modules/metrics" ], function($, Swiper, api, ProductModels, CartMonitor, MetricsEngine) {
     var swiper = new Swiper('.swiper-container', {
         slidesPerView: 3,
         spaceBetween: 0,
@@ -59,6 +59,9 @@
                     api.get('product', productCode).then(function(productResponse){
                         var product = new ProductModels.Product(productResponse.data);
                         product.addToCart();
+                        product.on('addedtocart', function(cartitem) {
+                            MetricsEngine.trackDirectoryAddToCart(product, product.get('categories')[0], false, 1);
+                        });
                         setTimeout(function(){
                             CartMonitor.update('showGlobalCart');
                             $('html, body').animate({ scrollTop: 0 }, 'normal');
