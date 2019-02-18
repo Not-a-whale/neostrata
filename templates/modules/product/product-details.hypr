@@ -113,7 +113,6 @@
             {% endif %}
             {% include "modules/product/product-desc-tabs" %}
           </div>
-        </div>
       </div>
     </div>
   </div>
