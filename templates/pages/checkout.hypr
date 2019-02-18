@@ -65,9 +65,7 @@
         <div class="mz-formstep mz-checkoutform-paymentinfo" id="step-payment-info">
             {% include "modules/checkout/step-payment-info" %}
         </div>
-        <div class="mz-formstep mz-checkoutform-couponcode" id="coupon-code-field" >
-            {% include "modules/checkout/coupon-code-field" %}
-        </div>
+
         <div class="mz-formstep mz-checkoutform-review" id="step-review">
             {% include "modules/checkout/step-review" %}
         </div>

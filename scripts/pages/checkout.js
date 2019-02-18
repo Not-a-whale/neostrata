@@ -22,15 +22,15 @@ require(["modules/jquery-mozu",
             $('.selectpicker').selectpicker();
         },
         next: function () {
-            // wait for blur validation to complete
-            var me = this;
-        /*sets which is current step for styling purposes*/
-            this.lastStep = this.$el.prop('id');
-        /*sets which is current step for styling purposes*/
-            me.editing.savedCard = false;
+          // wait for blur validation to complete
+          var me = this;
+          /*sets which is current step for styling purposes*/
+          this.lastStep = this.$el.prop('id');
+          /*sets which is current step for styling purposes*/
+          me.editing.savedCard = false;
             _.defer(function () {
-                me.model.next();
-            });
+            me.model.next();
+          });
         },
         choose: function () {
             var me = this;
@@ -59,41 +59,44 @@ require(["modules/jquery-mozu",
         },
         render: function () {
             this.$el.removeClass('is-new is-incomplete is-complete is-invalid').addClass('is-' + this.model.stepStatus());
-        /*sets which is current step for styling purposes*/
-                if(this.$el.prop('id') == 'step-customer-info'){ //let's initialize, at least first element is-current
-                    this.$el.addClass('is-current');
-                }else{ // checking for previous steps status
-                    if(this.$el.prev().hasClass('is-current') || this.$el.prev().hasClass('is-incomplete')){ //prev elements not complete? then neither this
-                        this.$el.removeClass('is-complete');
-                        this.model._stepStatus = 'incomplete'; //set by using stepStatus() method fires an infinite bucle in this logic.
-                    }
-                    if(this.$el.prev().hasClass('is-complete') && !this.$el.hasClass('is-complete')) this.$el.addClass('is-current');  //previous complete and this not? let's focus on this step
-                }
-                if(this.$el.hasClass('is-current')){ //is current element
-                    this.$el.removeClass('is-incomplete');
-                    if(this.$el.prop('id') == 'step-payment-info'){ //payment-step must always set coupon-code visibility
-                        this.$el.next().removeClass('is-complete').addClass('is-current');
-                        $('#step-review').removeClass('is-current');
-                    }
-                }
-                if(this.model.stepStatus() == 'complete'){ //all is OK, let set next setp as is-current
-                    this.$el.removeClass('is-current is-incomplete');
-                    this.$el.next().addClass('is-current');
-                    if(this.$el.prop('id') == 'step-payment-info'){ //payment-step is ok? lets show the review section
-                        this.$el.next().removeClass('is-current').addClass('is-complete');
-                        $('#step-review').addClass('is-current');
-                    }
-                }
-                if(this.$el.prop('id') == 'step-shipping-address' && $('#step-customer-info').hasClass('is-current')){ //we are on the last step but fist is-current? let's adjust all steps
-                    this.$el.siblings().removeClass('is-current');
-                    $('#step-customer-info').addClass('is-current');
-                }
-                if(this.lastStep && this.lastStep == 'step-shipping-address'){
-                    this.lastStep = false;
-                    $('#step-shipping-method').removeClass('is-complete').addClass('is-current');
-                    $('#step-shipping-method').siblings().removeClass('is-current');
+            /*sets which is current step for styling purposes*/
+
+            var currentStepId = this.$el.prop('id');
+            var currentStep = this.$el;
+            var previousStep = currentStep.prev();
+            var nextStep = currentStep.next();
+            if(currentStepId == 'step-customer-info'){ //let's initialize, at least first element is-current
+                currentStep.addClass('is-current');
+            }
+            else{ // checking for previous steps status
+                if(previousStep.hasClass('is-current') || previousStep.hasClass('is-incomplete')){ //prev elements not complete? then neither this
+                    currentStep.removeClass('is-complete');
                     this.model._stepStatus = 'incomplete'; //set by using stepStatus() method fires an infinite bucle in this logic.
                 }
+                if(previousStep.hasClass('is-complete') && !currentStep.hasClass('is-complete')) currentStep.addClass('is-current');  //previous complete and this not? let's focus on this step
+            }
+            if(currentStep.hasClass('is-current')){ //is current element
+                currentStep.removeClass('is-incomplete');
+            }
+            if(this.model.stepStatus() == 'complete'){ //all is OK, let set next setp as is-current
+                currentStep.removeClass('is-current is-incomplete');
+                nextStep.addClass('is-current');
+                if(currentStepId == 'step-payment-info'){ //payment-step is ok? lets show the review section
+                    $('#step-review').addClass('is-current');
+                }
+            }
+            /*
+            if(currentStepId == 'step-shipping-address' && $('#step-customer-info').hasClass('is-current')){ //we are on the last step but fist is-current? let's adjust all steps
+                this.$el.siblings().removeClass('is-current');
+                $('#step-customer-info').addClass('is-current');
+            }
+
+            if(this.lastStep && this.lastStep == 'step-shipping-address'){
+                this.lastStep = false;
+                $('#step-shipping-method').removeClass('is-complete').addClass('is-current');
+                $('#step-shipping-method').siblings().removeClass('is-current');
+                this.model._stepStatus = 'incomplete'; //set by using stepStatus() method fires an infinite bucle in this logic.
+            }*/
             //}
         /*sets which is current step for styling purposes*/
             $('#order-summary button').html($('.is-current').find('.primary-btn').html()); //updates right box area button with current step button text
@@ -235,7 +238,9 @@ require(["modules/jquery-mozu",
             'creditAmountToApply',
             'digitalCreditCode',
             'purchaseOrder.purchaseOrderNumber',
-            'purchaseOrder.paymentTerm'
+            'purchaseOrder.paymentTerm',
+            'couponCode'
+
         ].concat(poCustomFields()),
         renderOnChange: [
             'billingContact.address.countryCode',
@@ -290,7 +295,8 @@ require(["modules/jquery-mozu",
                 this.model.set('card.paymentOrCardType',null);
             }
         },
-        initialize: function () {
+        initialize: function (conf) {
+            var me = this;
             // this.addPOCustomFieldAutoUpdate();
             this.listenTo(this.model, 'change:digitalCreditCode', this.onEnterDigitalCreditCode, this);
             this.listenTo(this.model, 'orderPayment', function (order, scope) {
@@ -307,6 +313,20 @@ require(["modules/jquery-mozu",
                 this.render();
             }, this);
             this.codeEntered = !!this.model.get('digitalCreditCode');
+
+            this.listenTo(this.model, 'change:couponCode', this.onEnterCouponCode, this);
+
+            this.couponCodeEntered = !!this.model.get('couponCode');
+            this.$el.on('keypress', '#coupon-code', function (e) {
+              console.log('Coupon code enter');
+                if (e.which === 13) {
+                  if (me.couponCodeEntered) {
+                    me.handleCouponCodeEnterKey();
+                  }
+                  return false;
+                }
+            });
+
         },
         allowDigit:function(e){
             e.target.value= e.target.value.replace(/[^\d]/g,'');
@@ -498,57 +518,38 @@ require(["modules/jquery-mozu",
                     subtotal: "" + orderModel.get('subtotal')
                 }
             });
-        }
+        },
         /* end visa checkout */
-    });
 
-    var CouponView = Backbone.MozuView.extend({
-        templateName: 'modules/checkout/coupon-code-field',
-        handleLoadingChange: function (isLoading) {
-            // override adding the isLoading class so the apply button
-            // doesn't go loading whenever other parts of the order change
-        },
-        initialize: function () {
-            var me = this;
-            this.listenTo(this.model, 'change:couponCode', this.onEnterCouponCode, this);
-            this.codeEntered = !!this.model.get('couponCode');
-            this.$el.on('keypress', 'input', function (e) {
-                if (e.which === 13) {
-                    if (me.codeEntered) {
-                        me.handleEnterKey();
-                    }
-                    return false;
-                }
-            });
-        },
-        onEnterCouponCode: function (model, code) {
-            if (code && !this.codeEntered) {
-                this.codeEntered = true;
-                this.$el.find('button').prop('disabled', false);
-            }
-            if (!code && this.codeEntered) {
-                this.codeEntered = false;
-                this.$el.find('button').prop('disabled', true);
-            }
-        },
-        autoUpdate: [
-            'couponCode'
-        ],
+        /* coupon */
         addCoupon: function (e) {
             // add the default behavior for loadingchanges
             // but scoped to this button alone
             var self = this;
             this.$el.addClass('is-loading');
-            this.model.addCoupon().ensure(function() {
+            this.model.parent.set('couponCode', this.model.get('couponCode'));
+            this.model.parent.addCoupon().ensure(function() {
                 self.$el.removeClass('is-loading');
                 self.model.unset('couponCode');
                 self.render();
             });
         },
-        handleEnterKey: function () {
+        onEnterCouponCode: function (model, code) {
+            if (code && !this.couponCodeEntered) {
+                this.couponCodeEntered = true;
+                this.$el.find('button').prop('disabled', false);
+            }
+            if (!code && this.couponCodeEntered) {
+                this.couponCodeEntered = false;
+                this.$el.find('button').prop('disabled', true);
+            }
+        },
+
+        handleCouponCodeEnterKey: function () {
             this.addCoupon();
         }
     });
+
 
     var CommentsView = Backbone.MozuView.extend({
         templateName: 'modules/checkout/comments-field',
@@ -672,15 +673,10 @@ require(["modules/jquery-mozu",
                     el: $('#order-summary'),
                     model: checkoutModel
                 }),
-                couponCode: new CouponView({
-                    el: $('#coupon-code-field'),
-                    model: checkoutModel
-                }),
                 comments: Hypr.getThemeSetting('showCheckoutCommentsField') && new CommentsView({
                     el: $('#comments-field'),
                     model: checkoutModel
                 }),
-
                 reviewPanel: new ReviewOrderView({
                     el: $('#step-review'),
                     model: checkoutModel
