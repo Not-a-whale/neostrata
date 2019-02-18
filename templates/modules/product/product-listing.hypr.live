@@ -47,12 +47,16 @@
     {% endif %}
 {% endblock product-extrainfo %}
         </div>
+        {% if model.quantityNull === 0 or model.quantity == 0 %}  
+        <div class="outOfStock">{{ labels.outOfStock }}</div>
+        {% endif %}
     </div>
     <div class="bottom-details">
         <div id="BVRRInlineRating-{{model.productCode}}" class="pdp5 bvr-inline-rating" data-mz-product-code="{{ model.productCode }}" data-bv-product-code="{{apicontext.headers.x-vol-locale}}-{{ model.productCode }}" data-mz-product-url="{{ model.url }}"></div>
         {% include "modules/product/listing-price-stack" %}
     </div>
 {% if themeSettings.commerceEnabled %}
+    {% if model.quantityNull != 0 or model.quantity != 0 %}  
     <div class="mz-productdetail-conversion-buttons col-xs-12">
         <div class="add-to-wishlist-container">
             {% if siteContext.generalSettings.isWishlistCreationEnabled %}
@@ -73,5 +77,6 @@
         {% endif %}
         </div>
     </div>
+    {% endif %}
 {% endif %}
 </div>
