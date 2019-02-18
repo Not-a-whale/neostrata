@@ -443,12 +443,19 @@ require([
         console.log('Add to cart', selection);
 
         blockUiLoader.globalLoader();
+        var itemsInCart = this.state.get('itemsInCart') || [];
         var productsAdded = [];
         var promises = _.map( selection.items, function(item) {
           var product = new ProductModels.Product(item.product);
           console.log('    : ', product);
 
           var productCode = product.get('productCode');
+          var inCart = _.contains(itemsInCart, productCode);
+          if (inCart) {
+            return function(callback) {
+              callback(null, 'alreadyInCart');
+            };
+          }
 
           return function(callback) {
             console.log('  inside  : ', product);
