@@ -279,6 +279,48 @@
     background-color: rgba(0,0,0,0.7);
   }
 
+  .regimen-type {
+    font-size: 1.5rem;
+    letter-spacing: .05em;
+    border-bottom: none;
+
+    text-align: center;
+    li {
+      text-transform: uppercase;
+      display: inline-block;
+      border-right: 0.125rem solid @midGray;
+
+      a {
+        text-decoration: none;
+        outline: none;
+        padding: 0 2.5rem;
+        border-radius: 0;
+
+        span {
+          height: 2em;
+          display: inline-block;
+        }
+      }
+
+      &.active, &:hover {
+        a {
+          border: none;
+          font-style: italic;
+          font-weight: bold;
+          span {
+            border-bottom: .1875rem solid @mutedBlue;
+          }
+        }
+      }
+
+
+      &:last-child  {
+        border-right: none;
+      }
+    }
+
+  }
+
   .regimen-view {
     min-height: 400px;
   }
