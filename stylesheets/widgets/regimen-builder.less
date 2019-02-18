@@ -279,6 +279,50 @@
     background-color: rgba(0,0,0,0.7);
   }
 
+  .regimen-type {
+    font-size: 1.5rem;
+    letter-spacing: .05em;
+    border-bottom: none;
+
+    text-align: center;
+    li {
+      display: inline-block;
+      border-right: 0.125rem solid @midGray;
+
+      button {
+        text-decoration: none;
+        text-transform: uppercase;
+        background: none;
+        outline: none;
+        border: none;
+        padding: 0 2.5rem;
+        border-radius: 0;
+
+        span {
+          height: 2em;
+          display: inline-block;
+        }
+      }
+
+      &.active, &:hover {
+        button {
+          border: none;
+          font-style: italic;
+          font-weight: bold;
+          span {
+            border-bottom: .1875rem solid @mutedBlue;
+          }
+        }
+      }
+
+
+      &:last-child  {
+        border-right: none;
+      }
+    }
+
+  }
+
   .regimen-view {
     min-height: 400px;
   }
@@ -343,6 +387,7 @@
     display: inline-block;
     input{
       margin-right: 1rem;
+      display: none;
     }
     .form-row{
       padding: 0;
