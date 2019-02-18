@@ -316,8 +316,6 @@ require(["modules/jquery-mozu",
 
             this.listenTo(this.model, 'change:couponCode', this.onEnterCouponCode, this);
 
-            this.parentModel = conf.parentModel;
-            console.log('parent model', this.parentModel);
             this.couponCodeEntered = !!this.model.get('couponCode');
             this.$el.on('keypress', '#coupon-code', function (e) {
               console.log('Coupon code enter');
@@ -529,8 +527,8 @@ require(["modules/jquery-mozu",
             // but scoped to this button alone
             var self = this;
             this.$el.addClass('is-loading');
-            this.parentModel.set('couponCode', this.model.get('couponCode'));
-            this.parentModel.addCoupon().ensure(function() {
+            this.model.parent.set('couponCode', this.model.get('couponCode'));
+            this.model.parent.addCoupon().ensure(function() {
                 self.$el.removeClass('is-loading');
                 self.model.unset('couponCode');
                 self.render();
@@ -668,8 +666,7 @@ require(["modules/jquery-mozu",
                     }),
                     paymentInfo: new BillingInfoView({
                         el: $('#step-payment-info'),
-                        model: checkoutModel.get('billingInfo'),
-                        parentModel: checkoutModel
+                        model: checkoutModel.get('billingInfo')
                     })
                 },
                 orderSummary: new OrderSummaryView({
