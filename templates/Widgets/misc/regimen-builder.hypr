@@ -125,6 +125,12 @@
           <label class="icon-check form-element" for="checkbox_<%= productCode %>">Already In Cart</label>
       </div>
     </div>
+    <% } else if (!isPurchasable) { %>
+    <div class="include-in-regimen">
+      <div class="form-row">
+          <label class="not-available form-element" for="checkbox_<%= productCode %>">Not Available</label>
+      </div>
+    </div>
     <% } else { %>
     <div class="include-in-regimen">
       <div class="form-row">

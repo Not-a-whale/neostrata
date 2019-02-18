@@ -44,6 +44,8 @@ require([
     try {
       if ( !json.match( /^\s+$/ ) ) {
         _.each( JSON.parse( json ).items, function( item ) {
+          //var productModel = ProductModels.Product(item);
+          //item.productModel = productModel;  // just doing this now to avoid having to refactor all the way through
           PRODUCTS[item.productCode] = item;
         });
       }
@@ -412,7 +414,8 @@ require([
           product: PRODUCT_TILE( _.extend({}, PRODUCT_DEFAULTS, step.product ) )
         },
         {
-          inCart: inCart
+          inCart: inCart,
+          isPurchasable: !step.product.purchasableState || step.product.purchasableState.isPurchasable
         }
       )));
 
@@ -430,7 +433,9 @@ require([
         var step = $el.attr( 'data-value' );
         var checked = $el.prop( 'checked' );
 
-        regimen[2][step-1].included = checked;
+        var isBasic = (regimenType == 'basic');
+        var productColumn = isBasic ? 3 : 2;
+        regimen[productColumn][step-1].included = checked;
 
         this.state.set({
           selection: summarizeSelection( regimen, regimenType  )
@@ -554,12 +559,13 @@ require([
         var key = slug + 'Step' + ( index + 1 );
         var code = CONFIG[key];
 
+        var product = PRODUCTS[code];
         return _.extend({}, step, {
-          product: code && PRODUCTS[code],
-          productContent: code && PRODUCTS[code] && PRODUCTS[code].content,
+          product: code && product,
+          productContent: code && product && product.content,
           productCode: code,
-          price: PRODUCTS[code] && PRODUCTS[code].price,
-          included: true
+          price: product && product.price,
+          included: product && (!product.purchasableState || product.purchasableState.isPurchasable)
         });
       })
       .filter( function( step ) {
