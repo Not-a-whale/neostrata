@@ -15,8 +15,8 @@
 <script type="text/template" id="regimen-select-template">
     <div class="regimen-type">
       <ul>
-        <li class="active"><a href="#basic" data-type="basic"><span>Basic</span></a></li>
-        <li><a href="#comprehensive" data-type="comprehensive"><span>Comprehensive</span></a></li>
+        <li class="<% if (regimenType==='basic') { %>active<% } %>" ><button type="button" data-role="regimenType" data-regimenType="basic"><span data-regimenType="basic">Basic</span></button></li>
+        <li class="<% if (regimenType==='comprehensive') { %>active<% } %>" ><button type="button" data-role="regimenType" data-regimenType="comprehensive"><span data-regimenType="comprehensive">Comprehensive</span></button></li>
       </ul>
     </div>
     <div class="divider"></div>
