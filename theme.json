@@ -342,13 +342,6 @@
       "customEditor": "categoryContent@mozu"
     },
     {
-      "entityType": "category",
-      "id": "freeSampleCategory",
-      "template": "free-sample-category",
-      "title": "Free Sample Category",
-      "userCreatable": false
-    },
-    {
       "entityType": "product",
       "id": "product",
       "template": "product",
@@ -882,7 +875,7 @@
     "googleGeolocationMaximumAge": "Infinity",
     "preselectCountryCode": "US",
     "productImagesContainerWidth": 350,
-    "requireCheckoutAgreeToTerms": true,
+    "requireCheckoutAgreeToTerms": false,
     "suggestPriorSearchTerms": true,
     "searchExpandOnFocus": true,
     "showAddressTypeDropdown": true,
@@ -1157,7 +1150,6 @@
     "paymentsMethodInfo": "Payment Methods",
     "giftCardsInfo": "Gift Card",
     "freeSampleCategoryId": 165,
-    "freeSamplePagePath": "/product/free-sample",
     "freeSampleQty": 3,
     "freeSampleOrderTotalThreshold": 75,
     "omxOrderNumberAttribute":"tenant~omx_order_number",
@@ -1666,189 +1658,330 @@
       "editViewFields": [
         {
           "xtype": "panel",
-        	"title": "Normal Skin Regimen",
+        	"title": "Skin Active Regimen",
         	"collapsed": false,
         	"items": [
             {
               "xtype": "mz-input-product",
-              "name": "normalStep1",
+              "name": "skinActiveStep1",
               "fieldLabel": "Step One: Cleanser"
             },
             {
               "xtype": "mz-input-product",
-              "name": "normalStep2",
+              "name": "skinActiveStep2",
               "fieldLabel": "Step Two: Toner"
             },
             {
               "xtype": "mz-input-product",
-              "name": "normalStep3",
+              "name": "skinActiveStep3",
               "fieldLabel": "Step Three: Serum"
             },
             {
               "xtype": "mz-input-product",
-              "name": "normalStep4",
+              "name": "skinActiveStep4",
               "fieldLabel": "Step Four: Day"
             },
             {
               "xtype": "mz-input-product",
-              "name": "normalStep5",
+              "name": "skinActiveStep5",
               "fieldLabel": "Step Five: Night"
             },
             {
               "xtype": "mz-input-product",
-              "name": "normalStep6",
+              "name": "skinActiveStep6",
               "fieldLabel": "Step Six: Eye"
             },
             {
               "xtype": "mz-input-product",
-              "name": "normalStep7",
-              "fieldLabel": "Step Seven: Regimen Boosters"
+              "name": "skinActiveStep7",
+              "fieldLabel": "Step Seven: Targeted Treatment"
             },
             {
               "xtype": "mz-input-text",
-              "name": "normalCategoryPath",
-              "fieldLabel": "Skin-Type Page Path"
+              "name": "skinActiveCategoryPath",
+              "fieldLabel": "Skin-Active Page Path"
             }
           ]
         },
         {
           "xtype": "panel",
-        	"title": "Dry Skin Regimen",
+        	"title": "Resurface Regimen",
         	"collapsed": false,
         	"items": [
             {
               "xtype": "mz-input-product",
-              "name": "dryStep1",
+              "name": "resurfaceStep1",
               "fieldLabel": "Step One: Cleanser"
             },
             {
               "xtype": "mz-input-product",
-              "name": "dryStep2",
+              "name": "resurfaceStep2",
               "fieldLabel": "Step Two: Toner"
             },
             {
               "xtype": "mz-input-product",
-              "name": "dryStep3",
+              "name": "resurfaceStep3",
               "fieldLabel": "Step Three: Serum"
             },
             {
               "xtype": "mz-input-product",
-              "name": "dryStep4",
+              "name": "resurfaceStep4",
               "fieldLabel": "Step Four: Day"
             },
             {
               "xtype": "mz-input-product",
-              "name": "dryStep5",
+              "name": "resurfaceStep5",
               "fieldLabel": "Step Five: Night"
             },
             {
               "xtype": "mz-input-product",
-              "name": "dryStep6",
+              "name": "resurfaceStep6",
               "fieldLabel": "Step Six: Eye"
             },
             {
               "xtype": "mz-input-product",
-              "name": "dryStep7",
-              "fieldLabel": "Step Seven: Regimen Boosters"
+              "name": "resurfaceStep7",
+              "fieldLabel": "Step Seven: Targeted Treatment"
             },
             {
               "xtype": "mz-input-text",
-              "name": "dryCategoryPath",
-              "fieldLabel": "Skin-Type Page Path"
+              "name": "resurfaceCategoryPath",
+              "fieldLabel": "Resurface Page Path"
             }
           ]
         },
         {
           "xtype": "panel",
-        	"title": "Oily Skin Regimen",
-        	"collapsed": false,
-        	"items": [
+          "title": "Restore Regimen",
+          "collapsed": false,
+          "items": [
             {
               "xtype": "mz-input-product",
-              "name": "oilyStep1",
+              "name": "restoreStep1",
               "fieldLabel": "Step One: Cleanser"
             },
             {
               "xtype": "mz-input-product",
-              "name": "oilyStep2",
+              "name": "restoreStep2",
               "fieldLabel": "Step Two: Toner"
             },
             {
               "xtype": "mz-input-product",
-              "name": "oilyStep3",
+              "name": "restoreStep3",
               "fieldLabel": "Step Three: Serum"
             },
             {
               "xtype": "mz-input-product",
-              "name": "oilyStep4",
+              "name": "restoreStep4",
               "fieldLabel": "Step Four: Day"
             },
             {
               "xtype": "mz-input-product",
-              "name": "oilyStep5",
+              "name": "restoreStep5",
               "fieldLabel": "Step Five: Night"
             },
             {
               "xtype": "mz-input-product",
-              "name": "oilyStep6",
+              "name": "restoreStep6",
               "fieldLabel": "Step Six: Eye"
             },
             {
               "xtype": "mz-input-product",
-              "name": "oilyStep7",
-              "fieldLabel": "Step Seven: Regimen Boosters"
+              "name": "restoreStep7",
+              "fieldLabel": "Step Seven: Targeted Treatment"
             },
             {
               "xtype": "mz-input-text",
-              "name": "oilyCategoryPath",
-              "fieldLabel": "Skin-Type Page Path"
+              "name": "restoreCategoryPath",
+              "fieldLabel": "Restore Page Path"
             }
           ]
         },
         {
           "xtype": "panel",
-        	"title": "Sensitive Skin Regimen",
-        	"collapsed": false,
-        	"items": [
+          "title": "Clarify Regimen",
+          "collapsed": false,
+          "items": [
             {
               "xtype": "mz-input-product",
-              "name": "sensitiveStep1",
+              "name": "clarifyStep1",
               "fieldLabel": "Step One: Cleanser"
             },
             {
               "xtype": "mz-input-product",
-              "name": "sensitiveStep2",
+              "name": "clarifyStep2",
               "fieldLabel": "Step Two: Toner"
             },
             {
               "xtype": "mz-input-product",
-              "name": "sensitiveStep3",
+              "name": "clarifyStep3",
               "fieldLabel": "Step Three: Serum"
             },
             {
               "xtype": "mz-input-product",
-              "name": "sensitiveStep4",
+              "name": "clarifyStep4",
               "fieldLabel": "Step Four: Day"
             },
             {
               "xtype": "mz-input-product",
-              "name": "sensitiveStep5",
+              "name": "clarifyStep5",
               "fieldLabel": "Step Five: Night"
             },
             {
               "xtype": "mz-input-product",
-              "name": "sensitiveStep6",
+              "name": "clarifyStep6",
               "fieldLabel": "Step Six: Eye"
             },
             {
               "xtype": "mz-input-product",
-              "name": "sensitiveStep7",
-              "fieldLabel": "Step Seven: Regimen Boosters"
+              "name": "clarifyStep7",
+              "fieldLabel": "Step Seven: Targeted Treatment"
             },
             {
               "xtype": "mz-input-text",
-              "name": "sensitiveCategoryPath",
-              "fieldLabel": "Skin-Type Page Path"
+              "name": "clarifyCategoryPath",
+              "fieldLabel": "Clarify Page Path"
+            }
+          ]
+        },
+        {
+          "xtype": "panel",
+          "title": "Enlighten Regimen",
+          "collapsed": false,
+          "items": [
+            {
+              "xtype": "mz-input-product",
+              "name": "enlightenStep1",
+              "fieldLabel": "Step One: Cleanser"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "enlightenStep2",
+              "fieldLabel": "Step Two: Toner"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "enlightenStep3",
+              "fieldLabel": "Step Three: Serum"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "enlightenStep4",
+              "fieldLabel": "Step Four: Day"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "enlightenStep5",
+              "fieldLabel": "Step Five: Night"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "enlightenStep6",
+              "fieldLabel": "Step Six: Eye"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "enlightenStep7",
+              "fieldLabel": "Step Seven: Targeted Treatment"
+            },
+            {
+              "xtype": "mz-input-text",
+              "name": "enlightenCategoryPath",
+              "fieldLabel": "Enlighten Page Path"
+            }
+          ]
+        },
+        {
+          "xtype": "panel",
+          "title": "Correct Regimen",
+          "collapsed": false,
+          "items": [
+            {
+              "xtype": "mz-input-product",
+              "name": "correctStep1",
+              "fieldLabel": "Step One: Cleanser"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "correctStep2",
+              "fieldLabel": "Step Two: Toner"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "correctStep3",
+              "fieldLabel": "Step Three: Serum"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "correctStep4",
+              "fieldLabel": "Step Four: Day"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "correctStep5",
+              "fieldLabel": "Step Five: Night"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "correctStep6",
+              "fieldLabel": "Step Six: Eye"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "correctStep7",
+              "fieldLabel": "Step Seven: Targeted Treatment"
+            },
+            {
+              "xtype": "mz-input-text",
+              "name": "correctCategoryPath",
+              "fieldLabel": "Correct Page Path"
+            }
+          ]
+        },
+        {
+          "xtype": "panel",
+          "title": "Psorent Regimen",
+          "collapsed": false,
+          "items": [
+            {
+              "xtype": "mz-input-product",
+              "name": "psorentStep1",
+              "fieldLabel": "Step One: Cleanser"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "psorentStep2",
+              "fieldLabel": "Step Two: Toner"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "psorentStep3",
+              "fieldLabel": "Step Three: Serum"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "psorentStep4",
+              "fieldLabel": "Step Four: Day"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "psorentStep5",
+              "fieldLabel": "Step Five: Night"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "psorentStep6",
+              "fieldLabel": "Step Six: Eye"
+            },
+            {
+              "xtype": "mz-input-product",
+              "name": "psorentStep7",
+              "fieldLabel": "Step Seven: Targeted Treatment"
+            },
+            {
+              "xtype": "mz-input-text",
+              "name": "psorentCategoryPath",
+              "fieldLabel": "Psorent Page Path"
             }
           ]
         }
@@ -1892,23 +2025,6 @@
           {"name":"linkTitle", "fieldLabel":"Link Title"}
         ],
         "icon":"/resources/admin/widgets/BV_Conversations.png",
-        "validPageTypes":["*"]
-    },
-    {
-        "category" : "catalog",
-        "id":"free-samples-widget",
-        "displayName":"Free Samples",
-        "displayTemplate":"neostrata/free-samples",
-        "editViewFields":[
-          {"name":"freeSampleCategory", "fieldLabel":"Free Sample Category", "xtype": "mz-input-category"},
-          {"name":"freeSampleProducts", "fieldLabel":"Free Sample Products", "xtype": "mz-input-productmulti"},
-          {"name":"system", "fieldLabel":"System"},
-          {"name":"imagePath", "fieldLabel":"Image Path"},
-          {"name":"description", "fieldLabel":"Description"},
-          {"name":"linkPath", "fieldLabel":"Link Path"},
-          {"name":"linkTitle", "fieldLabel":"Link Title"}
-        ],
-        "icon":"/resources/admin/widgets/26_related_products.png",
         "validPageTypes":["*"]
     },
     {

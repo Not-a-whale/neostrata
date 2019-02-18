@@ -10,12 +10,13 @@
 			.ml-header-logo-wrapper{
 				top: 52%;
 				.logo {
-					width:22.5rem;
+					width:22rem;
 				    background-repeat: no-repeat;
 					background-size: contain;
 					height: 4rem;
-					&:after{
-						bottom: -0.2rem;
+
+					&:after {
+						bottom: 0;
 					}
 				}
 				.customLogo {
@@ -63,11 +64,13 @@
 				.mz-utilitynav-item{
                     &.navbar-collapse-control{
                         left: 0;
-                    }
-					&:nth-child(2){ //store locator
-						position: absolute;
-						right: 5%;
-						top: 46%;
+					}
+					.commerce-enabled-false & {
+						&:nth-child(2){ //store locator
+							position: absolute;
+							right: 5%;
+							top: 46%;
+						}
 					}
 				}
 			}

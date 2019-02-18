@@ -16,7 +16,7 @@ define([
   CartMonitor,
   Hypr
 ) {
-  var DEBUG = true;
+  var DEBUG = false;
 
   var EXPERTISE_OPTIONS = [
     {
@@ -43,7 +43,7 @@ define([
     {
       value: 'aging',
       label: 'AGING',
-      description: 'Due mostly to cumulative sun exposure, visible signs of aging skin include wrinkles, lax or sagging skin, uneven pigmentation and rough texture. Aminofil, NeoGlucosamine & Retinol are key ingredients in treating the look of aging skin.',
+      description: 'Due mostly to cumulative sun exposure, visible signs of aging skin include wrinkles, lax or sagging skin, uneven pigmentation and rough texture. Aminofil®, NeoGlucosamine® & Retinol are key ingredients in treating the look of aging skin.',
       answer: 'I want to improve aging skin.'
     },
     {
@@ -73,19 +73,19 @@ define([
     {
       value: 'dark-circles',
       label: 'DARK CIRCLES & CROW’S FEET',
-      description: 'Dark circles and the little lines around your eyes (crow’s feet) become more prominent as skin thins with age. Gentle products formulated with Gluconolactone (PHA), Lactobionic Acid (PHAs)and NeoGlucosamine™ can help with this common issue in the delicate eye area.',
+      description: 'Dark circles and the little lines around your eyes (crow’s feet) become more prominent as skin thins with age. Gentle products formulated with Gluconolactone (PHA), Lactobionic Acid (PHAs)and NeoGlucosamine® can help with this common issue in the delicate eye area.',
       answer: 'I want to improve dark circles and crows feet.'
     },
     {
       value: 'spots',
       label: 'UNEVEN SKIN TONE & DARK SPOTS',
-      description: 'Uneven skin tone and dark spots appear as areas of  skin discoloration on the face, chest, shoulders or hands. Also known as sun spots, age spots and dark spots. Look for products that contain Gluconolactone (PHA), NeoGlucosamine and Vitamin C.',
+      description: 'Uneven skin tone and dark spots appear as areas of  skin discoloration on the face, chest, shoulders or hands. Also known as sun spots, age spots and dark spots. Look for products that contain Gluconolactone (PHA), NeoGlucosamine® and Vitamin C.',
       answer: 'I want to improve uneven skin tone and dark spots.'
     },
     {
       value: 'sagging',
       label: 'LAX OR SAGGING SKIN',
-      description: 'Lax or Sagging Skin (laxity) is due to accumulated sun exposure and gravity. Ingredients like Aminofil™, NeoGlucosamine, and NeoCitriate target and treat lax and sagging skin for improved tone and firmness.',
+      description: 'Lax or Sagging Skin (laxity) is due to accumulated sun exposure and gravity. Ingredients like Aminofil®, NeoGlucosamine®, and NeoCitriate® target and treat lax and sagging skin for improved tone and firmness.',
       answer: 'I want to improve lax or sagging skin.'
     },
     {
@@ -97,7 +97,7 @@ define([
     {
       value: 'dull',
       label: 'DULL SKIN ',
-      description: 'The cumulative effects of sun exposure and photoaging can make skin look dull and lacking in natural glow. Products that contain Glycolic Acid (AHA), Vitamin C and NeoGlucosamine™ and Retinol work to exfoliate and brighten skin.',
+      description: 'The cumulative effects of sun exposure and photoaging can make skin look dull and lacking in natural glow. Products that contain Glycolic Acid (AHA), Vitamin C and NeoGlucosamine® and Retinol work to exfoliate and brighten skin.',
       answer: 'I want to improve dull skin.'
     }
   ];
@@ -269,7 +269,9 @@ define([
         'RETINOL',
         'AMINOFIL',
         'NEOGLUCOSAMINE'
-      ]
+      ],
+      url: '/product/skin-active-repair-firming',
+      hero: '/cms/files/WIP_NS_US_RECO_REGIMEN_SKINACTIVE_V1_1.jpg'
     },
     'RESURFACE': {
       slug: 'resurface',
@@ -288,7 +290,9 @@ define([
       ingredients: [
         'GLYCOLIC ACID',
         'CITRIC ACID'
-      ]
+      ],
+      url: '/c/168',
+      hero: '/cms/files/WIP_NS_US_RECO_REGIMEN_RESURFACE_V1.jpg'
     },
     'RESTORE': {
       slug: 'restore',
@@ -307,12 +311,14 @@ define([
         'GLUCONOLACTONE',
         'LACTOBIONIC ACID',
         'MALTOBIONIC ACID'
-      ]
+      ],
+      url: '/c/169',
+      hero: '/cms/files/WIP_NS_US_RECO_REGIMEN_RESTORE_V1.jpg'
     },
     'CLARIFY': {
       slug: 'clarify',
       name: 'CLARIFY',
-      description: 'A targeted collection of products for oily and acne-prone skin. Formulated to clear clogged pores and reduce oil and blemishes. The exfoliating power of Glycolic and Mandelic Acids and NeoGlucosamine™, ' +
+      description: 'A targeted collection of products for oily and acne-prone skin. Formulated to clear clogged pores and reduce oil and blemishes. The exfoliating power of Glycolic and Mandelic Acids and NeoGlucosamine®, ' +
         'in this collection helps refine surface texture for smoother, healthier-looking skin.',
       products: {
         cleanser: null,
@@ -327,12 +333,14 @@ define([
         'GLYCOLIC ACID',
         'MANDELIC ACID',
         'NEOGLUCOSAMINE'
-      ]
+      ],
+      url: '/c/170',
+      hero: '/cms/files/WIP_NS_US_RECO_REGIMEN_CLARIFY_V1.jpg'
     },
     'ENLIGHTEN': {
       slug: 'enlighten',
       name: 'ENLIGHTEN',
-      description: 'A unique collection of products that addresses a multitude of clarity and discoloration issues. Powerful skin brighteners such as Vitamin C, Retinol and NeoGlucosamine help reveal even-toned, glowing skin.',
+      description: 'A unique collection of products that addresses a multitude of clarity and discoloration issues. Powerful skin brighteners such as Vitamin C, Retinol and NeoGlucosamine® help reveal even-toned, glowing skin.',
       products: {
         cleanser: null,
         toner: null,
@@ -346,7 +354,9 @@ define([
         'VITAMIN C',
         'RETINOL',
         'NEOGLUCOSAMINE'
-      ]
+      ],
+      url: '/c/171',
+      hero: '/cms/files/WIP_NS_US_RECO_REGIMEN_ENLIGHTEN_V1.jpg'
     },
     'CORRECT': {
       slug: 'correct',
@@ -366,7 +376,9 @@ define([
         'HYALURONIC ACID',
         'PEPTIDES',
         'AHAS'
-      ]
+      ],
+      url: '/c/172',
+      hero: '/cms/files/WIP_NS_US_RECO_REGIMEN_CORRECT_V1.jpg'
     },
     'DEFEND': {
       slug: 'defend',
@@ -385,7 +397,9 @@ define([
         'NEOGLUCOSAMINE',
         'GLUCONOLACTONE',
         'LACTOBIONIC ACID'
-      ]
+      ],
+      url: '/c/173',
+      hero: '/cms/files/'
     }
   };
 
@@ -424,12 +438,12 @@ define([
       'it ideal for dry skin.',
 
     'AMINOFIL':
-      'Aminofil™ is a revolutionary, patented amino acid derivative. It targets expression lines ' +
-      'such as scowl lines, furrows, smile lines and crow’s feet. Aminofil™ is the ingredient ' +
+      'Aminofil® is a revolutionary, patented amino acid derivative. It targets expression lines ' +
+      'such as scowl lines, furrows, smile lines and crow’s feet. Aminofil® is the ingredient ' +
       'for volume building, plumping and firming the look of skin.',
 
     'NEOGLUCOSAMINE':
-      'NeoGlucosamine™ is a patented, non-acid amino sugar that improves discoloration and ' +
+      'NeoGlucosamine® is a patented, non-acid amino sugar that improves discoloration and ' +
       'diminishes the appearance of fine lines & wrinkles. Gently exfoliates to reveal fresh ' +
       'new cells. It’s also a building block of skin’s natural Hyaluronic Acid and helps ' +
       'promote firm skin.',
@@ -453,6 +467,13 @@ define([
   var SectionTab = _.template($('#template-section-tab').html());
   var SectionBullet = _.template($('#template-section-bullet').html());
   var ProductDetail = _.template($('#template-product-detail').html());
+
+  function currency(amount) {
+    var whole = Math.floor(amount);
+    var fraction = String(Math.floor(100 * (amount - whole))).padStart(2, '0');
+
+    return [whole, fraction].join('.');
+  }
 
   var templateHelpers = {
     deepGet: deepGet,
@@ -831,13 +852,12 @@ define([
     },
 
     summary: function() {
-      var ABOUT_ME_SUMMARY_TEMPLATE = 'I\'m a ${gender} ${age} who lives in a ${climate} climate.';
+      var ABOUT_ME_SUMMARY_TEMPLATE = 'I\'m a ${gender} ${age}.';
 
-      var climate = this.model.getPath('inputs.climate');
       var gender = this.model.getPath('inputs.gender');
       var age = this.model.getPath('inputs.age');
 
-      if ( !age || !gender || !climate ) return null;
+      if ( !age || !gender ) return null;
 
       if (age === 20) {
         age = 'under 30';
@@ -851,8 +871,7 @@ define([
 
       return ABOUT_ME_SUMMARY_TEMPLATE
         .split('${gender}').join(gender)
-        .split('${age}').join(age)
-        .split('${climate}').join(climate);
+        .split('${age}').join(age);
     },
 
     validate: function() {
@@ -957,7 +976,13 @@ define([
 
       // Per requirements, if there isn't a match between the users "current products,"
       // return the "cleanser" included in the matched regimen.
-      return matchedProducts[0] || regimen.products.cleanser;
+      var recommendation = matchedProducts[0] || regimen.products.cleanser;
+
+      if (DEBUG) {
+        console.log('Recommendation:', recommendation);
+      }
+
+      return _.extend({}, recommendation, { price: _.extend({}, recommendation.price, { price: currency(recommendation.price.price) }) });
     }
   });
 

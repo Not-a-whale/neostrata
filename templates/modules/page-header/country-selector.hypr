@@ -4,6 +4,6 @@
     </button>
     <ul class="dropdown-menu dropdown-select-list country-selector" title="Country Selector">
         <li data-value="us">US<i class="flag flagUs"></i></li>
-        <li data-value="ca"><a href="{{ themeSettings.sitesURLs.en-ca }}">CA<i class="flag"></i><a></a></li>
+        <li data-value="ca"><a href="{{ themeSettings.sitesURLs.en-ca }}">CA<i class="flag"></i></a></li>
     </ul>
 </div>

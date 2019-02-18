@@ -312,7 +312,7 @@ define([
                     }
                 }else{
                     sessionStorage.setItem('addToWishlist', productCode);
-                    $(".login-link-text").trigger("click");
+                    $("[data-mz-action='lite-registration']").trigger("click");
                 }
             }
         }

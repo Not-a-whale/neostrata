@@ -11,7 +11,9 @@
     {% preload_json model "product" %}
 
     <div class="mz-l-container container mz-location-parent">
+    {% if not themeSettings.commerceEnabled %}
         <h2 class="h1 mz-pagetitle">{{ labels.localStores }}</h2>
+    {% endif %}
         <div class="mz-l-stack">
             <p class="mz-locationsearch-pleasewait hidden">
                 {{ labels.locationWait|safe }}

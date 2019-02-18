@@ -1,88 +1,65 @@
 <div class="arrow-up"></div>
 <a href="javascript:void(0)" onclick="jQuery(&quot;#global-cart&quot;).css(&quot;display&quot;,&quot;none&quot;);" id="closeGlobalCart">X</a>
+
+{% if model.lastProductAdded %}
+{% with model.lastProductAdded as items %}
+  <h5>ADDED TO CART!</h5>
+  <ul class="media-list">
+    <div class="media">
+    <div class="media-left">
+      <a href="/p/{{items.product.productCode}}">
+        {% with items.product|get_product_attribute("tenant~color") as colorAttr %}
+          {% if colorAttr %}
+            {% with colorAttr.value|replace(" ","_") as colorValue %}
+              {% with "/cms/files/{0}_{1}_v1.jpg"|string_format(items.product.productCode, colorValue) as fileName %}
+                    <img class="media-object" src="https:{% make_url "cdn" fileName with maxWidth=themeSettings.globalCartItemImageMaxWidth as_parameter %}" {% if items.product.imageAlternateText %}alt="{{ items.product.imageAlternateText }}"{% endif %} onerror="this.setAttribute('src','{% if item.product.imageUrl %}{% make_url 'image' item.product with maxWidth=themeSettings.globalCartItemImageMaxWidth as_parameters %}{% else %}https:{% make_url 'cdn' '/cms/files/No_image_available.png' with maxWidth=themeSettings.globalCartItemImageMaxWidth as_parameter %}{% endif %}')" />
+              {% endwith %}
+            {% endwith %}
+          {% else %}
+            {% if items.product.imageUrl %}
+                  <img class="media-object" src="{% make_url "image" items.product with maxWidth=themeSettings.globalCartItemImageMaxWidth as_parameters %}" {% if items.product.imageAlternateText %}alt="{{ items.product.imageAlternateText }}"{% endif %} />
+            {% else %}
+              <div class="media-object cart-noimage">
+            [{{ labels.noImages }}]
+          </div>
+            {% endif %}
+          {% endif %}
+        {% endwith %}
+      </a>
+    </div>
+    <div class="media-body">
+      <div class="col-xs-9 global-cart-padding">
+        <h5 class="media-heading">
+          <a href="/p/{{items.product.productCode}}">
+            {{ items.product.name }}
+          </a>
+          <br><span class="items-short-description">{{ items.product.description }}</span>
+        </h5>
+        {% if items.product.options %}
+          {% for option in items.product.options %}
+          <div><b>{{ option.name }}</b>  <span>{% if option.stringname %}{{ option.stringname }}{% else %}{{ option.value }}{% endif %}</span></div>
+          {% endfor %}
+        {% endif %}
+      </div>
+      <div class="col-xs-3">
+        <div class="row">
+          <div class="global-cart-padding text-right"  >
+          {% include "modules/common/item-price" with item=items isGlobalCart="true"  %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </ul>
+{% endwith %}
+{% endif %}
+
 {% if model.items.length>0 %}
-
-<h5>ADDED TO CART!</h5>
-	<ul class="media-list">	
-			<div class="media heading-row">
-				<div class="media-left">
-					<h5 class="bold-text">item</h5>
-				</div>
-				<div class="media-body">
-					<div class="col-xs-6">															
-					</div>
-					<div class="col-xs-6 price-label">
-						<div class="row">
-							<div class="col-xs-6 price-each-col"><h5 class="bold-text">price each</h5></div>
-							<div class="col-xs-6 price-col"><h5 class="bold-text">price</h5></div>			
-						</div>
-
-					</div>
-				</div>
-			</div>
-				
-			{% set cartItemsTotal = 0 %}
-		    {% for items in model.cartItems|reverse  %}
-				{% set cartItemsTotal = cartItemsTotal + items.quantity %}
-				
-				{% if forloop.index == 1 %}
-				
-		    	<div class="media">
-					<div class="media-left">
-						<a href="/p/{{items.product.productCode}}">							
-							{% with items.product|get_product_attribute("tenant~color") as colorAttr %}  
-							  {% if colorAttr %}
-							    {% with colorAttr.value|replace(" ","_") as colorValue %}
-							      {% with "/cms/files/{0}_{1}_v1.jpg"|string_format(items.product.productCode, colorValue) as fileName %}
-							            <img class="media-object" src="https:{% make_url "cdn" fileName with maxWidth=themeSettings.globalCartItemImageMaxWidth as_parameter %}" {% if items.product.imageAlternateText %}alt="{{ items.product.imageAlternateText }}"{% endif %} onerror="this.setAttribute('src','{% if item.product.imageUrl %}{% make_url 'image' item.product with maxWidth=themeSettings.globalCartItemImageMaxWidth as_parameters %}{% else %}https:{% make_url 'cdn' '/cms/files/No_image_available.png' with maxWidth=themeSettings.globalCartItemImageMaxWidth as_parameter %}{% endif %}')" />   
-							      {% endwith %}     
-							    {% endwith %}
-							  {% else %}
-							    {% if items.product.imageUrl %}
-							          <img class="media-object" src="{% make_url "image" items.product with maxWidth=themeSettings.globalCartItemImageMaxWidth as_parameters %}" {% if items.product.imageAlternateText %}alt="{{ items.product.imageAlternateText }}"{% endif %} />
-							    {% else %}
-							      <div class="media-object cart-noimage">
-									[{{ labels.noImages }}]
-								</div>
-							    {% endif %}    
-							  {% endif %}  
-							{% endwith %}						  
-						</a>
-					</div>
-					<div class="media-body">
-						<div class="col-xs-9 global-cart-padding">
-							<h5 class="media-heading">
-								<a href="/p/{{items.product.productCode}}">
-									{{ items.product.name }}									
-								</a>
-								<br><span class="items-short-description">{{ items.product.description }}</span>
-							</h5>
-							{% if items.product.options %}
-								{% for option in items.product.options %}
-								<div><b>{{ option.name }}</b>  <span>{% if option.stringname %}{{ option.stringname }}{% else %}{{ option.value }}{% endif %}</span></div>
-								{% endfor %}
-							{% endif %}	
-							<div style="display:none;"><b>{{ labels.qty }} </b>  <span>{{ items.quantity }}</span></div>
-						</div>
-						<div class="col-xs-3">
-							<div class="row">
-								<div class="global-cart-padding text-right"  >
-								{% include "modules/common/item-price" with item=items %}
-								</div>
-								<div class="col-xs-5 price-amount-col">{% include "modules/common/item-total" with item=items isGlobalCart="true" %}</div>	
-							</div>
-						</div>
-					</div>
-				</div>
-				{% endif %}
-
-			{% endfor %}
-	</ul>
 	<div class="row total-amount-row">
 	    <div class="col-xs-12 cart-subtotal">
-	    	<b>Cart Subtotal </b>
+	    	<b>{{ labels.cartSubtotal }} </b>
 	    	<span>
-				({{ cartItemsTotal }} Item{% if cartItemsTotal>1 %}s{% endif %})
+				({{ model.itemCount }} Item{% if model.itemCount>1 %}s{% endif %})
 			</span>
 	    	<span><b>{{ model.subtotal|currency }}</b></span>
 	    </div>
@@ -94,58 +71,51 @@
 		    </div>
 	  	    {% endfor %}
 	    {% endif %}
-	    {% if model.items.length > themeSettings.globalCartMaxItemCount %}
-	    <div class="col-xs-6 text-left ">
-	    	<a href="/cart"> {{model.items.length-themeSettings.globalCartMaxItemCount}} more item(s)... </a>
-	    </div>
-	    {% endif%}
-	    <div class="{% if model.items.length > themeSettings.globalCartMaxItemCount %}col-xs-6{% else %}col-xs-12{% endif %}">
-			<div class="cart-total">
-				<b>Total: </b>
-				<span>{{ model.total|currency }}</span>
-			</div>
-	    </div>	    
 	</div>
-	<div class="row">
-		<div class="col-xs-5">
+	<div class="row minicart-buttons-row">
+		<div class="view-cart-btn-wrapper">
 			<a href="/cart" class="primary-btn view-cart-btn">{{ labels.openCart }}</a>
 			{% if (themeSettings.globalCartEnableSaveCart && user.isAnonymous)  %}
-				<button data-mz-action="openLiteRegistration" class="primary-btn save-cart-btn">Save Cart</button>
+				<button data-mz-action="openLiteRegistration" class="primary-btn save-cart-btn">{{ labels.saveCart }}</button>
 			{% endif %}
 		</div>
-		<div class="col-xs-7">
+		<div class="checkout-cart-btn-wrapper">
 			{% if not user.isAnonymous %}
   				<form method="post" value="" action="{{ pageContext.secureHost }}/cart/checkout">
-  					<button type="submit" class="mz-button btn btn-default checkout-cart-btn" >Go To Checkout</button>
+  					<button type="submit" class="primary-btn checkout-cart-btn" >{{ labels.goToCheckout }}</button>
   				</form>
  			{% else%}
- 				<button type="submit" class="mz-button btn btn-default checkout-cart-btn" data-mz-action="checkoutGuest">Go To Checkout</button>
+ 				<button type="submit" class="primary-btn checkout-cart-btn" data-mz-action="checkoutGuest">{{ labels.goToCheckout }}</button>
 			{% endif%}
 		</div>
 	</div>
 
 	{% if themeSettings.globalCartRelatedProducts %}
-		<h5 class="text-center">Add these products for a more <br>complete skin care regimen.</h5>
+		{% comment %}
+		<h6 class="text-center">{{ labels.cartRelatedTitle|safe }}</h6>
 		<div class="related-products"></div>
+		{% endcomment %}
 	{% endif %}
 	<div class="row text-center" style="padding-top: 15px;">
-		{% if themeSettings.globalCartEmptyBasketFooter %} 
+		{% if themeSettings.globalCartEmptyBasketFooter %}
 		  <a {% if themeSettings.globalCartEmptyBasketKickerLink %} href="{{ themeSettings.globalCartEmptyBasketKickerLink }}"{% else %} href="/home" {% endif %}>
 		  	<img src="{% make_url "image" themeSettings.globalCartEmptyBasketFooter.imageUrl with width=370 as_parameters %}"  />
 		  </a>
-		{% endif %}		
+		{% endif %}
 	</div>
+	{% comment %}
 	<div class="row text-center" style="padding-top: 15px;">
-		<h5 class="full-recommended"><a href="#">View Full Recommended Regimen ></a></h5>
+		<h5 class="full-recommended"><a href="#">{{ labels.viewFullRecommended|safe }}</a></h5>
 	</div>
+	{% endcomment %}
 
 {% else %}
 	<div class="text-center">
-		<div class=>Your shopping basket is empty</div>
-		{% if themeSettings.globalCartEmptyBasketFooter %} 
+		<div class=>{{ labels.emptyBasketTitle }}</div>
+		{% if themeSettings.globalCartEmptyBasketFooter %}
 		  <a {% if themeSettings.globalCartEmptyBasketKickerLink %} href="{{ themeSettings.globalCartEmptyBasketKickerLink }}"{% else %} href="/home" {% endif %}>
 		  	<img src="{% make_url "image" themeSettings.globalCartEmptyBasketFooter.imageUrl with width=370 as_parameters %}"  />
 		  </a>
-		{% endif %}		
+		{% endif %}
 	</div>
 {% endif %}

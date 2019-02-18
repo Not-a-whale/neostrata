@@ -288,7 +288,7 @@
                 padding-left: 4.375rem;
                 line-height: 3.5rem;
                 display: block;
-                width: 100%;
+                width: 100%;                
                 .icon-user {
                     .icon(before, @icon-user);
                     font-size: 2.5rem;
@@ -617,6 +617,13 @@
                       }
                       .popover{
                           top: -10px;
+                            @media (max-width: 991px) and (min-width: 768px) {
+                                top:  40px !important;
+                                left: -20px !important;
+                                .arrow {
+                                    left: 30px !important;
+                                }
+                            }
 
                           .popover-content{
                               .my-account-details{
@@ -631,9 +638,6 @@
                           }
                       }
                       &.store-locator{
-                        .commerce-enabled-true & {
-                            display: none;
-                        }
                         i {
                             font-size: 3.3rem;
                           }
@@ -953,6 +957,21 @@
 // Account Dashboard
 .mz-myaccount {
     @leftPosition: 19.5%;
+    #account-messages {
+        margin-top: -5rem;
+        position: absolute;
+        width: 100%;
+        height: auto;
+        .mz-messagebar .mz-errors { 
+            background-position: 10px center;
+            li {
+                font-size: 1rem;
+                line-height: 1.2;
+                margin-top: 0;
+                white-space: normal;
+            }
+        }
+    }
     .mz-l-container {
         margin: 10rem auto 0;
         max-width: 83.33%;
@@ -1302,8 +1321,8 @@
                         display: block;
                         margin-left: 0;
                         margin-right: 0;
+                        margin-bottom: 2rem;
                         &.expiry-month {
-                            width: 50% !important;
                             margin-left: 0 !important;
                         }
                         @leftInputMargin: 1.5rem;
@@ -1317,18 +1336,24 @@
                         .mz-l-formfieldgroup-row {
                             display: block;
                             padding: 0;
+                            &.mz-addressform-city, &.mz-addressform-state {
+                                display: inline-block;
+                                width: 50%;
+                                float: left;
+                                .custom-select-wrapper {
+                                    width: 100%;
+                                }
+                            }
+                            &.mz-addressform-city {
+                                padding-right: 2%;
+                            }
                         }
                         .mz-l-formfieldgroup-cell {
                             display: block;
                             padding: 0;
                         }
                     }
-                    .mz-creditcard-actions {
-                        margin: 0 auto;
-                        text-align: center;
-                    }
                     .mz-creditcard-cancel {
-                        float: right;
                         border: none;
                         text-transform: none !important;
                     }
@@ -1345,7 +1370,7 @@
                         width: 100%;
                         min-height: auto;
                         &.mz-contactselector-new {
-                            span {
+                            span:not(.mz-validationmessage) {
                                 display: inline-block;
                             }
                             .mz-contactselector-inputwrapper {
@@ -1360,13 +1385,100 @@
                             }
                         }
                     }
+                    .form-row {
+                        padding-top: 0;
+                        padding-bottom: 0;
+                    }
                 }
 
                 &.mz-accountpaymentmethods {
+                    &.no-editing {
+                        .mz-accountpaymentmethods-list {
+                            display: flex;
+                            flex-direction: column;
+                            max-height: 8.5rem;
+                            overflow: hidden;
+                            margin-top: -2.375rem;
+                            .mz-paymentmethod.mz-paymentmethod-myaccount {
+                                width: 100%;
+                                border-right: none;
+                                display: none;
+                                min-height: auto;
+                                order: 2;
+                                &:first-of-type {
+                                    display: flex;
+                                }
+                                &.dl-isPrimary {
+                                    display: flex;
+                                    order: 1;
+                                }
+                            }
+                        }
+                        .dl-link-newaddress, .dz-backtodashboard, .mz-paymentmethod-actions {
+                            display: none;
+                        }
+
+                    }
                     &.is-editing {
+                        &.is-form .mz-accountpaymentmethods-list .mz-paymentmethod-myaccount {
+                            display: none;
+                        }
                         .mz-accountpaymentmethods-list {
                             width: 100%;
                             float: left;
+                            margin: 3rem 0;
+
+                            label {
+                                margin-top: 1rem;
+                            }
+                            .mz-creditcard-actions .mz-button {
+                                background: none;
+                                .my-account-button();
+                                text-align: center;
+                                margin: 3rem auto;
+                                left: 50%;
+                                transform: translate(-50%, 0);
+                                width: 100%;
+                                max-width: 420px;
+                                position: relative;
+                                font-size: 1.8rem;
+                            }
+
+
+
+                            .mz-paymentmethod-myaccount {
+                                width: 100%;
+                                display: inline-block;
+                                float: left;
+                                margin: 0;
+                                border: none;
+                                padding: 0 2rem 2rem 2rem;
+                                min-height: auto;
+                            }
+                            .mz-paymentmethod-actions {
+                                float: none;
+                                text-align: right;
+                                margin-bottom: 0.5rem;
+                            }
+                            .mz-paymentmethod-methoddetails {
+                                margin-top: 0;
+                                width: 100%;
+                                border-top: 2px solid @gray-lighter;
+                                padding-top: 0.5rem;
+                            }
+
+                        }
+                        .dl-link-newpayments {
+                            background: none;
+                            .my-account-button();
+                            text-align: center;
+                            margin: 3rem auto;
+                            left: 50%;
+                            transform: translate(-50%,0);
+                            width: 100%;
+                            max-width: 420px;
+                            position: relative;
+                            font-size: 1.8rem;
                         }
                         .dl-link-editpayment {
                             display: none;
@@ -1374,18 +1486,29 @@
                         .mz-creditcard-actions .mz-button {
                             background: none;
                         }
-                        .dl-link-newpayments {
-                            .my-account-button();
-                            text-align: center;
-                            margin: 3rem auto;
-                            left: 50%;
-                            transform: translate(-50%, 0);
-                            width: 100%;
-                            max-width: 420px;
-                            position: relative;
-                            font-size: 1.8rem;
+                    }
+                    .mz-creditcard-cancel {
+                        border: none;
+                        text-transform: none !important;
+                    }
+                    .mz-accountpaymentmethods-list {
+                        .mz-paymentmethod-methoddetails {
+                            .row {
+                                margin-top: 1rem;
+                            }
+                            .mz-paymentmethod-methodtype img {
+                                max-width: 100%;
+                            }
+                            .make-primary {
+                                color: @colorLighterGray;
+                            }
+
+                            .mz-paymentmethod-cardnumber {
+                                font-weight: 600;
+                            }
                         }
                     }
+
                 }
 
                 &.mz-accountwishlist  {
@@ -1471,6 +1594,69 @@
 
                 &.mz-accountstorecredit {
                     display: none !important;
+                }
+
+                &.mz-order-status-detail  {
+                    &.is-editing {
+                        display: inline-block;
+                        .mz-l-stack-sectiontitle {
+                            margin-top: 3.25rem;
+                        }
+                        .mz-order-status-section {
+                            .mz-billing-shipping-wrapper {
+                                line-height: 1.5;
+                                margin-bottom: 2rem;
+                            }
+                            .mz-l-stack-sectiontitle {
+                                font-size: 1.875rem;
+                                line-height: 1.5;
+                                border-bottom: 2px solid @gray-lighter;
+                                margin-top: 0;
+                                margin-bottom: 0.5rem;
+                                text-align: left;
+                            }
+                            .mz-order-status-section-item {
+                                margin-bottom: 3rem;
+                            }
+                            .mz-shipping-method {
+                                font-weight: bold;
+                            }
+                            .mz-payment-total {
+                                margin-bottom: 1.5rem;
+                            }
+                            img {
+                                max-width: 100%;
+                            }
+                            .mz-addresssummary {
+                                margin-bottom: 2rem;
+                            }
+                            .mz-row-orderstatus-item {
+                                border-bottom: 2px solid @gray-lighter;
+                                padding-top: 0.5rem;
+                                padding-bottom: .5rem;
+                                .mz-orderstatus-item-qty {
+                                    text-align: center;
+                                    text-transform: uppercase;
+                                }
+                                .mz-orderstatus-item-price, .mz-orderstatus-total-container {
+                                    text-align: right;
+                                }
+                                .mz-orderstatus-item {
+                                    margin-bottom: 1rem;
+                                }
+                                .mz-orderstatus-action.add {
+                                    text-decoration: none;
+                                }
+                                .mz-ordersummary-grandtotal {
+                                    font-weight: bold;
+                                    text-transform: uppercase;
+                                }
+                                .mz-orderstatus-item-image {
+                                    padding-right: 0;
+                                }
+                            }
+                        }
+                    }
                 }
 
             }

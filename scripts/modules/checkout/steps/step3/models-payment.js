@@ -15,7 +15,7 @@ define([
 
         var BillingInfo = CheckoutStep.extend({
             mozuType: 'payment',
-            validation: {
+            validation: this.validateBillingPhone, /*{
                 paymentType: {
                     fn: "validatePaymentType"
                 },
@@ -28,8 +28,13 @@ define([
                 'billingContact.email': {
                     pattern: 'email',
                     msg: Hypr.getLabel('emailMissing')
+                },
+                'billingContact.phoneNumbers': {
+                    fn: "validateBillingPhone"
                 }
-            },
+
+            },*/
+
             dataTypes: {
                 'isSameBillingShippingAddress': Backbone.MozuModel.DataTypes.Boolean,
                 'creditAmountToApply': Backbone.MozuModel.DataTypes.Float
@@ -39,6 +44,10 @@ define([
                 card: PaymentMethods.CreditCardWithCVV,
                 check: PaymentMethods.Check,
                 purchaseOrder: PaymentMethods.PurchaseOrder
+            },
+
+            validateBillingPhone: function () {
+              console.log('Validating phone', this);
             },
             validateBillingAddress: function () {
                 var isValid = this.selectedBillingDestination();
@@ -245,7 +254,7 @@ define([
                     this.loadCustomerDigitalCredits();
                 }
                 return this._cachedDigitalCredits && this._cachedDigitalCredits.length > 0 && this._cachedDigitalCredits;
-            }, 
+            },
             refreshBillingInfoAfterAddingStoreCredit: function (order, updatedOrder) {
                 var self = this;
                 //clearing existing order billing info because information may have been removed (payment info) #68583
@@ -254,7 +263,7 @@ define([
                 var activePayments = this.activePayments();
                 var hasNonStoreCreditPayment = (_.filter(activePayments, function (item) { return item.paymentType !== 'StoreCredit'; })).length > 0;
                 if ((order.get('amountRemainingForPayment') >= 0 && !hasNonStoreCreditPayment) ||
-                    (order.get('amountRemainingForPayment') < 0 && hasNonStoreCreditPayment)) 
+                    (order.get('amountRemainingForPayment') < 0 && hasNonStoreCreditPayment))
                 {
                     var billingContactEmail = this.get('billingContact').get('email');
                     order.get('billingInfo').clear();
@@ -879,6 +888,9 @@ define([
                 }
 
                 return !_.isEqual(normalizedSavedPaymentInfo, normalizedLiveBillingInfo);
+            },
+            validate: function() {
+              console.log('Validate!', this);
             },
             submit: function () {
 

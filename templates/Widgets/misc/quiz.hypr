@@ -4,7 +4,7 @@
       Skincare is a serious science but choosing what products to use shouldn’t be.
     </div>
     <div class="quiz-intro-text">
-      Find what’s right for you with our fast quiz.
+      Find what’s right for you with our quiz.
     </div>
     <button type="button" data-role="open">
       TAKE OUR QUIZ
@@ -72,20 +72,13 @@
       <div class="quiz-product-name">
         <%= content.productName %>
       </div>
-      <div class="quiz-product-ingredients">
-        <div class="fpo fpo-text">
-          PLACEHOLDER<BR />INGREDIENTS
-        </div>
-      </div>
+      <div class="quiz-product-ingredients"></div>
       <div class="quiz-product-description">
-        <%= content.productName %>
+        <%= content.productShortDescription %>
       </div>
       <div class="quiz-product-price">
         <div class="quiz-product-price-amount">
           $<%= price.price %>
-        </div>
-        <div class="quiz-product-price-qualifier">
-          SUGGESTED RETAIL PRICE
         </div>
       </div>
       <button type="button" data-product-code="<%= productCode %>" data-action="add-to-cart">
@@ -285,12 +278,7 @@
             </div>
           <% })%>
         </div>
-        <div class="quiz-carousel-container">
-          <div class="fpo fpo-carousel">
-            <div>PLACEHOLDER</div>
-            ADDITIONAL PRODUCTS WITH THESE INGREDIENTS
-          </div>
-        </div>
+        <div class="quiz-carousel-container"></div>
       </div>
     </div>
   </div>
@@ -305,27 +293,17 @@
         <% if (regimen) { %>
           <div class="quiz-regimen-description">
             <div class="regimen-image-container">
-              <div class="fpo-regimen-image">
-                <div>PLACEHOLDER</div>
-                <%= regimen.name %>
-              </div>
+              <img src="<%= regimen.hero %>" />
             </div>
             <div class="quiz-content">
               <%= regimen.description %>
             </div>
           </div>
+          <a class="quiz-link-button" target="_blank" href="<%= regimen.url %>">
+            VIEW MY REGIMEN
+          </a>
+        </div>
         <% } %>
-        <button type="button">
-          VIEW MY REGIMEN
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div class="quiz-section" data-section-sub="resources">
-    <%= _sectionBulletPart({ label: 'ADDITIONAL RESOURCES' }) %>
-    <div class="quiz-section-main">
-
     </div>
   </div>
 </script>

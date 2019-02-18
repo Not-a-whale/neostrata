@@ -45,7 +45,7 @@
             {% for shippingDiscount in model.shippingDiscounts %}
             <div class="mz-ordersummary-shippingdiscount">
               <div class="mz-checkout-total-row">
-                <span class="mz-ordersummary-totalname text-right">{{ shippingDiscount.discount.discount.name }}:</span>
+                <span class="mz-ordersummary-totalname text-left">{{ shippingDiscount.discount.discount.name }}:</span>
                 <span class="mz-ordersummary-totalvalue">-{{ shippingDiscount.discount.impact|currency }}</span>
               </div>
             </div>
@@ -84,7 +84,7 @@
                 {% with "orderNumber={0}&zip={1}" as urlText %}
                   <a href="/user/order-status?{{ urlText|string_format(model.orderNumber, model.billingInfo.billingContact.address.postalOrZipCode)|urlencode}}">Track & Manage Order</a>
                 {% endwith %}
-              <a href="#" id="printReceipt">Print Receipt</a>
+              <!--<a data-toggle="modal" href="#printModalWindow" id="printReceipt">Print Receipt</a>-->
             </div>
           </div>
         </div>

@@ -591,6 +591,17 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
                 });
             });
         },
+        startReturn: function(event) {
+            if(event)
+                event.preventDefault();
+            $('.mz-l-stack-section').hide();
+            $('.mz-l-stack-section.mz-accountreturnhistory').show();
+            $('.mz-l-stack-section.mz-accountreturnhistory').removeClass('no-editing').addClass('is-editing');
+            $('.dl-maintitle').hide();
+            $('.mz-scrollnav-item').removeClass('active');
+            $('.mz-scrollnav-item.dl-returns').addClass('active');
+            this.render();
+        },
         printReturnLabel: function(e) {
             var self = this,
                 $target = $(e.currentTarget);
@@ -698,6 +709,7 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             Backbone.MozuView.prototype.render.apply(this, arguments);
 
             $('#account-panels .selectpicker').selectpicker();
+            $('.mz-l-stack-section.mz-accountpaymentmethods').removeClass('is-form').addClass('no-form');
         },
         allowDigit:function(e){
             e.target.value= e.target.value.replace(/[^\d]/g,'');
@@ -757,9 +769,13 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             this.model.beginEditCard(id);
             this.render();
             $("input[name='credit-card-number']").focus();
+            $('.mz-l-stack-section.mz-accountpaymentmethods').removeClass('no-form').addClass('is-form');
         },
         finishEditCard: function() {
             var self = this;
+            if (!self.model.get('editingCard.paymentOrCardType') &&  $("input[name='credit-card-number']")[0].value && $("input[name='credit-card-type']")[0].value ) {
+                self.model.set('editingCard.paymentOrCardType', $("input[name='credit-card-type']")[0].value); 
+            }
             var operation = this.doModelAction('saveCard');
             if (operation) {
                 operation.then(function(){
@@ -770,11 +786,13 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
                 });
                 this.editing.card = "view";
             }
+            $('.mz-l-stack-section.mz-accountpaymentmethods').removeClass('is-form').addClass('no-form');
         },
         cancelEditCard: function () {
             this.editing.card = "view";
             this.model.endEditCard();
             this.render();
+            $('.mz-l-stack-section.mz-accountpaymentmethods').removeClass('is-form').addClass('no-form');
         },
         cancelViewCard: function () {
             this.editing.card = false;
@@ -858,6 +876,9 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             this.startEditAddressBook();
             this.editing.contact = false;
             this.model.endEditContact();
+
+            this.model.set('editingContact.isShippingContact', true);
+
             this.editing.contact = "new";
             this.render();
             $("input[name='firstname']").focus();
@@ -872,7 +893,6 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             
             var self = this,
                 isAddressValidationEnabled = HyprLiveContext.locals.siteContext.generalSettings.isAddressValidationEnabled;
-            self.model.set('editingContact.isShippingContact', true);
 
                 var operation = this.doModelAction('saveContact', { forceIsValid: isAddressValidationEnabled, editingView: self }); // hack in advance of doing real validation in the myaccount page, tells the model to add isValidated: true
             if (operation) {
@@ -1089,6 +1109,16 @@ function getQueryVariable(variable)
             accountViews.omxOrderHistory.cancelViewOMXOrder();
             accountViews.wishList.startEditWishlist(e);
         });
+        $('.mz-myaccount-nav .dl-returns').on('click', function (e) {
+            e.preventDefault();
+            accountViews.settings.cancelEdit();
+            accountViews.addressBook.cancelViewContact();
+            accountViews.paymentMethods.cancelViewCard();
+            accountViews.wishList.cancelEditWishlist();
+            accountViews.omxOrderHistory.cancelViewOMXOrder();
+            accountViews.wishList.cancelEditWishlist();
+            accountViews.returnHistory.startReturn(e);
+        });
 
         // TODO: upgrade server-side models enough that there's no delta between server output and this render,
         // thus making an up-front render unnecessary.
@@ -1097,6 +1127,13 @@ function getQueryVariable(variable)
         var urlParams = getQueryVariable("sec");
         if(urlParams.length){
             switch(urlParams) {
+                case "accountdashboard":
+                    accountViews.settings.cancelEdit();
+                    accountViews.addressBook.cancelViewContact();
+                    accountViews.paymentMethods.cancelViewCard();
+                    accountViews.wishList.cancelEditWishlist();
+                    accountViews.omxOrderHistory.cancelViewOMXOrder();
+                    break;
                 case "accountsettings":
                     accountViews.settings.cancelEdit();
                     accountViews.addressBook.cancelViewContact();
@@ -1136,6 +1173,14 @@ function getQueryVariable(variable)
                     accountViews.wishList.cancelEditWishlist();
                     accountViews.omxOrderHistory.cancelViewOMXOrder();
                     accountViews.addressBook.viewAddressBook(null);
+                    break;
+                case "returns":
+                    accountViews.settings.cancelEdit();
+                    accountViews.addressBook.cancelViewContact();
+                    accountViews.paymentMethods.cancelViewCard();
+                    accountViews.wishList.cancelEditWishlist();
+                    accountViews.omxOrderHistory.cancelViewOMXOrder();
+                    accountViews.returnHistory.startReturn(null);
                     break;
                 default:
               } 

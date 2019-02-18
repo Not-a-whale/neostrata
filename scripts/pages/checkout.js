@@ -1,11 +1,11 @@
-require(["modules/jquery-mozu", 
-    "underscore", "hyprlive", 
-    "modules/backbone-mozu", 
-    "modules/models-checkout", 
-    "modules/views-messages", 
-    "modules/cart-monitor", 
-    'hyprlivecontext', 
-    'modules/editable-view', 
+require(["modules/jquery-mozu",
+    "underscore", "hyprlive",
+    "modules/backbone-mozu",
+    "modules/models-checkout",
+    "modules/views-messages",
+    "modules/cart-monitor",
+    'hyprlivecontext',
+    'modules/editable-view',
     'modules/preserve-element-through-render',
     'modules/xpress-paypal',
 		'modules/bootstrap-select'],
@@ -14,20 +14,23 @@ require(["modules/jquery-mozu",
 
     var CheckoutStepView = EditableView.extend({
         edit: function () {
-            this.model.edit();            
-            /*sets which is current step for styling purposes*/
+            this.model.edit();
+        /*sets which is current step for styling purposes*/
             this.$el.siblings().removeClass('is-current');
             this.$el.addClass('is-current');
-            /*sets which is current step for styling purposes*/
+        /*sets which is current step for styling purposes*/
             $('.selectpicker').selectpicker();
         },
         next: function () {
-            // wait for blur validation to complete
-            var me = this;
-            me.editing.savedCard = false;
+          // wait for blur validation to complete
+          var me = this;
+          /*sets which is current step for styling purposes*/
+          this.lastStep = this.$el.prop('id');
+          /*sets which is current step for styling purposes*/
+          me.editing.savedCard = false;
             _.defer(function () {
-                me.model.next();
-            });
+            me.model.next();
+          });
         },
         choose: function () {
             var me = this;
@@ -56,41 +59,47 @@ require(["modules/jquery-mozu",
         },
         render: function () {
             this.$el.removeClass('is-new is-incomplete is-complete is-invalid').addClass('is-' + this.model.stepStatus());
-        /*sets which is current step for styling purposes*/            
-            if(this.$el.prop('id') == 'step-customer-info'){ //let's initialize, at least first element is-current
-                this.$el.addClass('is-current');
-            }else{ // checking for previous steps status
-                if(this.$el.prev().hasClass('is-current') || this.$el.prev().hasClass('is-incomplete')){ //prev elements not complete? then neither this
-                    this.$el.removeClass('is-complete').addClass('is-incomplete');
+            /*sets which is current step for styling purposes*/
+
+            var currentStepId = this.$el.prop('id');
+            var currentStep = this.$el;
+            var previousStep = currentStep.prev();
+            var nextStep = currentStep.next();
+            if(currentStepId == 'step-customer-info'){ //let's initialize, at least first element is-current
+                currentStep.addClass('is-current');
+            }
+            else{ // checking for previous steps status
+                if(previousStep.hasClass('is-current') || previousStep.hasClass('is-incomplete')){ //prev elements not complete? then neither this
+                    currentStep.removeClass('is-complete');
                     this.model._stepStatus = 'incomplete'; //set by using stepStatus() method fires an infinite bucle in this logic.
                 }
-                if(this.$el.prev().hasClass('is-complete') && !this.$el.hasClass('is-complete')) this.$el.addClass('is-current');  //previous complete and this not? let's focus on this step
-            }           
-            
-            if(this.$el.hasClass('is-current')){ //is current element 
-                this.$el.removeClass('is-incomplete');
-                if(this.$el.prop('id') == 'step-shipping-address'){ //shipping-step must always set shipments visibility
-                    this.$el.next().addClass('is-current');
-                }
-                if(this.$el.prop('id') == 'step-payment-info'){ //payment-step must always set coupon-code visibility
-                    this.$el.next().removeClass('is-complete').addClass('is-current');
-                    $('#step-review').removeClass('is-current');
-                }       
-            }                        
-            
+                if(previousStep.hasClass('is-complete') && !currentStep.hasClass('is-complete')) currentStep.addClass('is-current');  //previous complete and this not? let's focus on this step
+            }
+            if(currentStep.hasClass('is-current')){ //is current element
+                currentStep.removeClass('is-incomplete');
+            }
             if(this.model.stepStatus() == 'complete'){ //all is OK, let set next setp as is-current
-                this.$el.removeClass('is-current is-incomplete');    
-                this.$el.next().addClass('is-current');
-                if(this.$el.prop('id') == 'step-payment-info'){ //payment-step is ok? lets show the review section
-                    this.$el.next().removeClass('is-current').addClass('is-complete');
-                    $('#step-review').addClass('is-current');    
-                }                                
-            } 
-            if(this.$el.prop('id') == 'step-shipping-address' && $('#step-customer-info').hasClass('is-current')){ //we are on the last step but fist is-current? let's adjust all steps 
+                currentStep.removeClass('is-current is-incomplete');
+                nextStep.addClass('is-current');
+                if(currentStepId == 'step-payment-info'){ //payment-step is ok? lets show the review section
+                    $('#step-review').addClass('is-current');
+                }
+            }
+            /*
+            if(currentStepId == 'step-shipping-address' && $('#step-customer-info').hasClass('is-current')){ //we are on the last step but fist is-current? let's adjust all steps
                 this.$el.siblings().removeClass('is-current');
                 $('#step-customer-info').addClass('is-current');
             }
+
+            if(this.lastStep && this.lastStep == 'step-shipping-address'){
+                this.lastStep = false;
+                $('#step-shipping-method').removeClass('is-complete').addClass('is-current');
+                $('#step-shipping-method').siblings().removeClass('is-current');
+                this.model._stepStatus = 'incomplete'; //set by using stepStatus() method fires an infinite bucle in this logic.
+            }*/
+            //}
         /*sets which is current step for styling purposes*/
+            $('#order-summary button').html($('.is-current').find('.primary-btn').html()); //updates right box area button with current step button text
             EditableView.prototype.render.apply(this, arguments);
             this.resize();
         },
@@ -98,7 +107,7 @@ require(["modules/jquery-mozu",
             this.$('.mz-panel-wrap').animate({'height': this.$('.mz-inner-panel').outerHeight() });
         },200)
     });
-    
+
     var OrderSummaryView = Backbone.MozuView.extend({
         templateName: 'modules/checkout/checkout-order-summary',
 
@@ -109,7 +118,7 @@ require(["modules/jquery-mozu",
         editCart: function () {
             window.location =  (HyprLiveContext.locals.siteContext.siteSubdirectory||'') + "/cart";
         },
-        
+
         onOrderCreditChanged: function (order, scope) {
             this.render();
         },
@@ -117,7 +126,7 @@ require(["modules/jquery-mozu",
         // override loading button changing at inappropriate times
         handleLoadingChange: function () { }
     });
-    
+
     var CustomerInfoView = CheckoutStepView.extend({
         templateName: 'modules/checkout/checkout-customer-info',
         autoUpdate: [
@@ -127,7 +136,7 @@ require(["modules/jquery-mozu",
             'acceptsMarketing'
         ]
     });
-    
+
     var ShippingAddressView = CheckoutStepView.extend({
         templateName: 'modules/checkout/step-shipping-address',
         autoUpdate: [
@@ -159,8 +168,9 @@ require(["modules/jquery-mozu",
             e.target.value= e.target.value.replace(/[^\d]/g,'');
         },
         render: function() {
-            CheckoutStepView.prototype.render.apply(this );
-            $('.selectpicker').selectpicker();
+          console.log('Calling render', this);
+          CheckoutStepView.prototype.render.apply(this );
+          $('.selectpicker').selectpicker();
         }
     });
 
@@ -178,7 +188,7 @@ require(["modules/jquery-mozu",
     });
 
     var poCustomFields = function() {
-        
+
         var fieldDefs = [];
 
         var isEnabled = HyprLiveContext.locals.siteContext.checkoutSettings.purchaseOrder &&
@@ -228,7 +238,9 @@ require(["modules/jquery-mozu",
             'creditAmountToApply',
             'digitalCreditCode',
             'purchaseOrder.purchaseOrderNumber',
-            'purchaseOrder.paymentTerm'
+            'purchaseOrder.paymentTerm',
+            'couponCode'
+
         ].concat(poCustomFields()),
         renderOnChange: [
             'billingContact.address.countryCode',
@@ -237,7 +249,7 @@ require(["modules/jquery-mozu",
             'usingSavedCard',
             'savedPaymentMethodId',
             'billingContact.email'
-            
+
         ],
         additionalEvents: {
             "blur #mz-payment-credit-card-number": "changeCardType",
@@ -258,9 +270,9 @@ require(["modules/jquery-mozu",
                 cardType = "VISA";
             }
 
-            // Mastercard 
+            // Mastercard
             // Updated for Mastercard 2017 BINs expansion
-             if (/^(5[1-5][0-9]{14}|2(22[1-9][0-9]{12}|2[3-9][0-9]{13}|[3-6][0-9]{14}|7[0-1][0-9]{13}|720[0-9]{12}))$/.test(number)) 
+             if (/^(5[1-5][0-9]{14}|2(22[1-9][0-9]{12}|2[3-9][0-9]{13}|[3-6][0-9]{14}|7[0-1][0-9]{13}|720[0-9]{12}))$/.test(number))
                 cardType = "MC";
 
             // AMEX
@@ -272,7 +284,7 @@ require(["modules/jquery-mozu",
             re = new RegExp("^(6011|622(12[6-9]|1[3-9][0-9]|[2-8][0-9]{2}|9[0-1][0-9]|92[0-5]|64[4-9])|65)");
             if (number.match(re) !== null)
                 cardType = "DISCOVER";
-            
+
             $('.mz-card-type-images').find('span').removeClass('active');
             if(cardType){
                 this.model.set('card.paymentOrCardType',cardType);
@@ -280,10 +292,11 @@ require(["modules/jquery-mozu",
                 $('.mz-card-type-images').find('span[data-mz-card-type-image="'+cardType+'"]').addClass('active');
             }
             else{
-                this.model.set('card.paymentOrCardType',null);    
+                this.model.set('card.paymentOrCardType',null);
             }
         },
-        initialize: function () {
+        initialize: function (conf) {
+            var me = this;
             // this.addPOCustomFieldAutoUpdate();
             this.listenTo(this.model, 'change:digitalCreditCode', this.onEnterDigitalCreditCode, this);
             this.listenTo(this.model, 'orderPayment', function (order, scope) {
@@ -300,6 +313,20 @@ require(["modules/jquery-mozu",
                 this.render();
             }, this);
             this.codeEntered = !!this.model.get('digitalCreditCode');
+
+            this.listenTo(this.model, 'change:couponCode', this.onEnterCouponCode, this);
+
+            this.couponCodeEntered = !!this.model.get('couponCode');
+            this.$el.on('keypress', '#coupon-code', function (e) {
+              console.log('Coupon code enter');
+                if (e.which === 13) {
+                  if (me.couponCodeEntered) {
+                    me.handleCouponCodeEnterKey();
+                  }
+                  return false;
+                }
+            });
+
         },
         allowDigit:function(e){
             e.target.value= e.target.value.replace(/[^\d]/g,'');
@@ -331,7 +358,7 @@ require(["modules/jquery-mozu",
 
             if (this.$(".p-button").length > 0)
                 PayPal.loadScript();
-                
+
             $('.selectpicker').selectpicker();
         },
         updateAcceptsMarketing: function(e) {
@@ -345,7 +372,7 @@ require(["modules/jquery-mozu",
         edit: function () {
             this.model.edit();
             this.beginEditingCard();
-        },         
+        },
         beginEditingCard: function() {
             var me = this;
             if (!this.model.isExternalCheckoutFlowComplete()) {
@@ -416,7 +443,7 @@ require(["modules/jquery-mozu",
                 return;
             }
             var amtToApply = this.stripNonNumericAndParseFloat(val);
-            
+
             this.model.applyDigitalCredit(creditCode, amtToApply, true);
             this.render();
         },
@@ -481,7 +508,7 @@ require(["modules/jquery-mozu",
                 me.model.parent.processDigitalWallet('VisaCheckout', payment);
             });
 
-          
+
 
             window.V.init({
                 apikey: apiKey,
@@ -491,57 +518,38 @@ require(["modules/jquery-mozu",
                     subtotal: "" + orderModel.get('subtotal')
                 }
             });
-        }
+        },
         /* end visa checkout */
-    });
 
-    var CouponView = Backbone.MozuView.extend({
-        templateName: 'modules/checkout/coupon-code-field',
-        handleLoadingChange: function (isLoading) {
-            // override adding the isLoading class so the apply button 
-            // doesn't go loading whenever other parts of the order change
-        },
-        initialize: function () {
-            var me = this;
-            this.listenTo(this.model, 'change:couponCode', this.onEnterCouponCode, this);
-            this.codeEntered = !!this.model.get('couponCode');
-            this.$el.on('keypress', 'input', function (e) {
-                if (e.which === 13) {
-                    if (me.codeEntered) {
-                        me.handleEnterKey();
-                    }
-                    return false;
-                }
-            });
-        },
-        onEnterCouponCode: function (model, code) {
-            if (code && !this.codeEntered) {
-                this.codeEntered = true;
-                this.$el.find('button').prop('disabled', false);
-            }
-            if (!code && this.codeEntered) {
-                this.codeEntered = false;
-                this.$el.find('button').prop('disabled', true);
-            }
-        },
-        autoUpdate: [
-            'couponCode'
-        ],
+        /* coupon */
         addCoupon: function (e) {
             // add the default behavior for loadingchanges
             // but scoped to this button alone
             var self = this;
             this.$el.addClass('is-loading');
-            this.model.addCoupon().ensure(function() {
+            this.model.parent.set('couponCode', this.model.get('couponCode'));
+            this.model.parent.addCoupon().ensure(function() {
                 self.$el.removeClass('is-loading');
                 self.model.unset('couponCode');
                 self.render();
             });
         },
-        handleEnterKey: function () {
+        onEnterCouponCode: function (model, code) {
+            if (code && !this.couponCodeEntered) {
+                this.couponCodeEntered = true;
+                this.$el.find('button').prop('disabled', false);
+            }
+            if (!code && this.couponCodeEntered) {
+                this.couponCodeEntered = false;
+                this.$el.find('button').prop('disabled', true);
+            }
+        },
+
+        handleCouponCodeEnterKey: function () {
             this.addCoupon();
         }
     });
+
 
     var CommentsView = Backbone.MozuView.extend({
         templateName: 'modules/checkout/comments-field',
@@ -626,12 +634,10 @@ require(["modules/jquery-mozu",
         conf.el.css('opacity',1);
         if (mask) mask.remove();
       }
-      conf.model.on('refresh', killMask); 
+      conf.model.on('refresh', killMask);
       conf.model.on('error', killMask);
       return conf;
     };
-
-
 
     $(document).ready(function () {
 
@@ -667,15 +673,10 @@ require(["modules/jquery-mozu",
                     el: $('#order-summary'),
                     model: checkoutModel
                 }),
-                couponCode: new CouponView({
-                    el: $('#coupon-code-field'),
-                    model: checkoutModel
-                }),
                 comments: Hypr.getThemeSetting('showCheckoutCommentsField') && new CommentsView({
                     el: $('#comments-field'),
                     model: checkoutModel
                 }),
-                
                 reviewPanel: new ReviewOrderView({
                     el: $('#step-review'),
                     model: checkoutModel
@@ -696,10 +697,11 @@ require(["modules/jquery-mozu",
         var $reviewPanel = $('#step-review');
         checkoutModel.on('change:isReady',function (model, isReady) {
             if (isReady) {
+                $('#order-summary button').html($('.is-current').find('.primary-btn').html()); //updates right box area button with current step button text
                 setTimeout(function () { window.scrollTo(0, $reviewPanel.offset().top); }, 750);
             }
         });
- 
+
         _.invoke(checkoutViews.steps, 'initStepView');
 
         $checkoutView.noFlickerFadeIn();

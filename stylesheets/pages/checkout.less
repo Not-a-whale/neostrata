@@ -1,4 +1,4 @@
-﻿@-webkit-keyframes pulse {
+@-webkit-keyframes pulse {
   from { .opacity(0.2); }
   to { .opacity(0.3); }
 }
@@ -41,7 +41,7 @@
       border: 1px solid #999;
       color: black;
     }
-    
+
     input[type="checkbox"],
     input[type="radio"] {
         left: -9999rem;
@@ -52,14 +52,14 @@
             padding-top: 0;
             font-size: 1.25rem;
             line-height: 1.5em !important;
-    
+
             strong {
                 font-weight: 500;
             }
-    
+
             &:after {
                 top: 18px;
-            } 
+            }
             &:before {
                 top: 20px;
                 left: 3px;
@@ -227,7 +227,7 @@
         .mz-contactselector-contact{
             display: block;
         }
-    } 
+    }
 }
 .mz-checkoutform-paymentinfo{
     .mz-l-formfieldgroup-row{
@@ -245,7 +245,7 @@
                     margin-left: 3px;
                 }
             }
-            
+
             input[type="text"]{
                 width: 240px;
                 border: 1px solid @inputBorder;
@@ -285,9 +285,7 @@
             }
         }
     }
-    .mz-formstep-next{
-        margin-top:16rem;
-    }
+
 }
 .mz-l-formfieldgroup-full{
       display: block;
@@ -296,7 +294,7 @@
 /* new checkout styles */
 
 .mz-checkout #page-content {
-    margin-top: 12.9rem;
+    margin-top: 9.28rem;
 }
 .checkout-signin-header {
     display: flex;
@@ -335,7 +333,7 @@
     &:after {
         display: none;
     }
-    
+
     .mz-messagebar {
         width: 100%;
     }
@@ -352,7 +350,7 @@
     .checkout-leftcolumn {
         width: 61.375rem;
     }
-    
+
     .mz-checkoutform-header {
         padding: 0 0 1.375rem;
         margin: 0 0 3.9375rem;
@@ -401,21 +399,21 @@
     }
     .checkout-leftcolumn {
         .mz-formstep.mz-checkoutform-paymentinfo {
-            margin-bottom: 13rem ;
-            position: relative;
-
             #btn_xpressPaypal {
-                min-width:320px;  
-                height:auto; 
-                margin:0 auto; 
-                position: absolute; 
-                bottom: -10rem;
-                left: ~'calc((100% - 320px) / 2)'; 
+                min-width:320px;
+                height:auto;
+                margin: 3rem auto;
+                left: ~'calc((100% - 320px) / 2)';
                 left: ~'-webkit-calc((100% - 320px) / 2)';
                 left: ~'-moz-calc((100% - 320px) / 2)';
                 /*@media (max-width: 800px) {
                     bottom: -8rem;
                 } */
+            }
+            &.is-complete {
+              #btn_xpressPaypal {
+                  display: none;
+              }
             }
         }
     }
@@ -429,7 +427,7 @@
             text-decoration: underline;
         }
     }
-    
+
     input[type="text"],
     input[type="tel"],
     input[type="password"] {
@@ -457,11 +455,11 @@
         align-items: center;
         flex-wrap: wrap;
 
-        
+
         @media (max-width: 800px) {
             justify-content: initial;
         }
-        
+
         .mz-addressform-firstname,
         .mz-addressform-lastname,
         .mz-addressform-city,
@@ -478,7 +476,7 @@
             }
         }
         .mz-addressform-state{
-            .custom-select-wrapper {    
+            .custom-select-wrapper {
                 .dropdown-toggle{
                     .filter-option{
                         .filter-option-inner{
@@ -487,8 +485,8 @@
                                 text-overflow: ellipsis;
                             }
                         }
-                    } 
-                } 
+                    }
+                }
             }
         }
         .mz-addressform-firstname,
@@ -516,16 +514,22 @@
 
         }
     }
-    
+
     .primary-btn {
         padding: 0 8.125rem;
+    }
+
+    .mz-checkoutform-shippingaddress {
+         .primary-btn {
+            padding: 0 5rem;
+        }
     }
 
     .mz-formstep-next {
         display: flex;
         justify-content: center;
     }
-    
+
     .mz-ordersummary-checkout {
         .mz-checkoutform-header {
             font-size: 1.875rem;
@@ -603,18 +607,11 @@
 
     input[type="radio"] + label {
         .icon (before, @icon-dot-single);
-        
+
         font-family: @fontFamily !important;
 
         &:before, &:after{
             font-family: 'icomoon' !important;
-        }
-    }
-    .mz-paymentselector {
-        .mz-l-formfieldgroup-address {
-            .checkout-twocolumn-row.checkout-customer-name.form-row {
-                display: none;
-            }
         }
     }
 
@@ -624,7 +621,10 @@
         }
         .dropdown-menu {
             overflow-x: hidden !important;
-            top:37px;
+            border-radius: 0;
+            top: 100%;
+            margin: 0;
+            min-height: 300px !important;
         }
         .dropdown-toggle {
             text-align: center;
@@ -652,7 +652,16 @@
             }
         }
         .dropdown-menu>li>a:hover {
-            background: none;
+            background: @lightGray;
+            color: @charcoal;
+        }
+        .dropdown-menu>.active>a {
+            background: @mutedBlue;
+
+            &:hover {
+                background: @lightGray;
+                color: @charcoal;
+            }
         }
     }
     .mz-checkoutform-disabled {
@@ -671,7 +680,7 @@
     .ordersummary-column,
     .checkout-leftcolumn {
         @media (max-width: 800px) {
-            
+
             width: 100%;
 
             + .mz-l-column {
@@ -680,7 +689,7 @@
         }
 
         .checkout-twocolumn-row {
-            
+
         }
     }
     .ordersummary-column {
@@ -710,12 +719,10 @@
 #checkout-form .checkout-leftcolumn .mz-formstep {
     margin-bottom: 6.25rem;
     float: none;
-    &.is-partial{
-        .mz-formstep-edit{
-            display:none;
-        }
-    }
     &.is-complete{
+        .mz-formstep-edit{
+            display:block;
+        }
         .mz-formstep-body{
             display:block;
         }
@@ -730,18 +737,24 @@
     &.is-current{
         .mz-formstep-body{
             display:block;
-        }        
-        .mz-addresssummary{
-            display:none;
         }
+        .mz-checkout-current-payment{
+            p{
+                display:none;
+            }
+        }
+        .mz-checkout-saved-billingaddress{
+            .mz-checkoutform-title,
+            .mz-addresssummary{
+                display:none;
+            }
+        }
+
     }
-    &.mz-checkoutform-review.is-current,
-    &.mz-checkoutform-shippingmethod.is-complete,
-    &.mz-checkoutform-shippingmethod.is-current{
-        display:block;
+    .mz-formstep-edit{
+        display:none;
     }
-    &.mz-checkoutform-review,
-    &.mz-checkoutform-shippingmethod,
+
     .mz-formstep-body{
         display:none;
     }
@@ -817,11 +830,13 @@
     }
 }
 #coupon-code-field{
-    position: relative;
-    top: -35rem;
+    padding-bottom: 3rem;
+
     .coupon-code-wrapper {
         #coupon-code{
             width:62%;
+            float:left;
+            margin-right:1%;
             @media (max-width: 992px) {
                 width:60%;
             }
@@ -829,11 +844,11 @@
         .primary-btn {
             height: 4.375rem;
             line-height: normal;
+            @media (max-width: 992px) {
+                padding: 0;
+                width: 39%;
+            }
         }
-    }
-    &.is-complete{
-        top: -13rem;
-        opacity: 0.5;
     }
 }
 
@@ -893,7 +908,7 @@
         white-space: normal;
         padding-left: 2.875rem;
     }
-    
+
     .dropdown-toggle {
         display: flex;
         justify-content: space-between;
@@ -912,7 +927,7 @@
 
     .secondary-button {
         .primary-btn(@mutedBlue);
-    
+
         font-size: 1rem;
         line-height: 2.5rem;
         height: 2.8125rem;
@@ -941,5 +956,16 @@
         display: flex;
         justify-content: space-between;
         font-size: 1.2rem;
+    }
+}
+
+.sticky-nav-present{
+    #order-summary{
+        position: fixed;
+        width: 32rem;
+        @media (max-width: 931px) {
+            position: relative;
+            width: 100%;
+        }
     }
 }

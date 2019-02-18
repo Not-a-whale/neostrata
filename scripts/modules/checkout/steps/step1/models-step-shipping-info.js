@@ -78,7 +78,7 @@ function ($, _, Hypr, Backbone, api, HyprLiveContext, CheckoutStep, ShippingDest
                     giftCardDestination = self.getCheckout().get('destinations').newGiftCardDestination();
                 }
                 self.getCheckout().get('destinations').reset = function(models, options) {
-                    var giftCardDestination = self.getCheckout().get('destinations').findWhere({'isGiftCardDestination': true}); 
+                    var giftCardDestination = self.getCheckout().get('destinations').findWhere({'isGiftCardDestination': true});
                     if(giftCardDestination && !_.findWhere(models, {'isGiftCardDestination': true})) {
                         models.push(giftCardDestination);
                     }
@@ -270,13 +270,13 @@ function ($, _, Hypr, Backbone, api, HyprLiveContext, CheckoutStep, ShippingDest
             var validationObj = this.validate();
 
             if (validationObj) {
-               /* if (validationObj) {
+                if (validationObj) {
                     Object.keys(validationObj.singleShippingAddess).forEach(function(key) {
                         this.trigger('error', {
                             message: validationObj.singleShippingAddess[key]
                         });
                     }, this);
-                }*/
+                }
                 return false;
             }
             return true;
@@ -308,7 +308,7 @@ function ($, _, Hypr, Backbone, api, HyprLiveContext, CheckoutStep, ShippingDest
                 if(shippingDestination.get('id')) {
                     var isBilling = shippingDestination.get('id').toString().startsWith("billing_");
                     if(isBilling) {
-                        shippingDestination.set('id', "");    
+                        shippingDestination.set('id', "");
                     }
                 }
                 return shippingDestination;
@@ -427,7 +427,7 @@ function ($, _, Hypr, Backbone, api, HyprLiveContext, CheckoutStep, ShippingDest
 
                 checkout.messages.reset();
                 checkout.syncApiModel();
-                
+
                 if (self.requiresDigitalFulfillmentContact()) {
                     if(!self.saveDigitalGiftCard()) {
                         return false;

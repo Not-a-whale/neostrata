@@ -88,9 +88,20 @@
     .custom-select-wrapper {
         .bootstrap-select {
             width: 100% !important;
+
+            span.bs-caret {
+
+                &:before {
+                    right: 0;
+                }
+            }
         }
         .dropdown-menu {
             overflow-x: hidden !important;
+            @media (max-width: 600px) {
+                right: 0;
+                left: auto;            
+            }
         }
         .dropdown-toggle {
             height: 4rem;

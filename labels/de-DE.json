@@ -1,4 +1,4 @@
-﻿{
+{
     "multiShipAddressSummary": "Shipping to {0} addresses",
     "dateFormat": "j.n.Y",
     "logOut": "Abmeldung",
@@ -70,6 +70,7 @@
     "cardNumber": "Kartennummer",
     "nameOnCard": "Name auf der Karte",
     "expires": "Verfällt",
+    "expiration"           : "Expiration",
     "securityCode": "Sicherheitscode",
     "phone": "Telefon",
     "purchaseOrder": "Bestellung",
@@ -142,6 +143,9 @@
     "resultsPerPage": "Ergebnisse pro Seite",
     "registeredCustomer": "Registriert Kunde?",
     "register": "registrieren",
+    "registerBirthMonth" : "Birth Month",
+    "registerBirthDay" : "Birth Day",
+    "registerBirthYear" : "Birth Year",
     "stackTrace": "Details",
     "pleaseSelect": "Bitte wählen",
     "forgotPasswordLink": "Passwort vergessen?",
@@ -167,7 +171,7 @@
     "orderTotal": "Gesamtbestellung",
     "emptyCart": "Einkaufswagen leeren",
     "proceedToCheckout": "Kasse",
-    "moneyBackMsg"         : "30-day Money Back Guarantee. Order by 1:00pm EST for same-day shipping.",
+    "moneyBackMsg"         : "30-day Money Back Guarantee. <br />Order by 1:00pm EST for same-day shipping.",
     "storePickupAt": "In-Store Pickup <strong> {0} </ strong>",
     "checkout": "Kasse",
     "orderSummary": "Bestellübersicht",
@@ -358,6 +362,7 @@
     "countryMissing": "Bitte treffen Sie eine Auswahl Land",
     "firstNameMissing": "Vorname Pflicht",
     "lastNameMissing": "Erforderlich Nachname",
+    "birthMissing"         : "Please complete Birth fields",
     "paymentTypeMissing": "Bitte wählen Sie eine Zahlungsart",
     "cardTypeMissing": "Bitte wählen Sie Ihre Karte Typ",
     "cardNameMissing": "Bitte geben Sie die Namen auf Ihrer Karte",
@@ -371,7 +376,8 @@
     "passwordsDoNotMatch": "Passwörter nicht überein, bitte neu eingeben",
     // signup form new fields validation added(gagandeep 4 may 2017)
     "emailwrongpattern": "Email does not appear to be a valid e-mail address. Please use the format name@domain.xxx.",
-    "passwordlength": "Password must be a minimum of 6 characters with at least 1 number and 1 alphabetic character.",
+    "passwordlength"       : "Password must be a minimum of 6 characters and maximum of 50 characters.",
+    "passwordStrong"       : "Password must contain at least 3 of the following: uppercase letters, lowercase letters, numbers and special characters #$%&/().",
     "chooseRecoveryQuestion": "Please select a recovery question.",
     "recoveryAnswerMissing": "Please enter a recovery answer.",
     // ends
@@ -539,7 +545,7 @@
     "products": "Products",
     "step": "STEP",
     "includeInRegimen": "INCLUDE IN REGIMEN",
-    "storesNear": "Stores near",
+    "storesNear": "Physicians near",
     "sort": "SORT",
     "filter": "FILTER",
     "passwordFormat": "7 Characters minimum",
@@ -584,5 +590,9 @@
     "ordersCount": "Orders",
     "checkoutQuizTitle": "You're unique. So your skin care regimen should be too.",
     "checkoutQuizText": "Take our online skin consultation quiz to recieve cutomized recommendations for your skin care needs.",
-    "checkoutQuizTakeBtn": "Take Quiz"
+    "checkoutQuizTakeBtn": "Take Quiz",
+    "makeDefault": "Make Default",
+    "defaultPayment": "Default Payment",
+    "endingIn"             : "Ending in ",
+    "ordersViewSubTitle": "View and manage your orders."
 }

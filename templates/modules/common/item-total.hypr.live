@@ -1,6 +1,5 @@
-﻿{% if item.discountedTotal || item.discountedTotal == 0 %}
-	<span class="cartproduct-title">{{ labels.total }}</span>
-	{% if item.discountedTotal < item.subtotal %} 
+{% if item.discountedTotal || item.discountedTotal == 0 %}
+	{% if item.discountedTotal < item.subtotal %}
 		<span class="mz-item-rowtotal is-crossedout" {% block crossedout-inline-style %}{% endblock crossedout-inline-style %}>	{{ item.subtotal|currency }}</span>
 		{% for productDiscount in item.productDiscounts %}
 			<div class="mz-item-discount">
@@ -17,6 +16,5 @@
 		<span class="mz-item-rowtotal {% if item.unitPrice.saleAmount %}is-saleprice{% endif %}">{{ item.subtotal|currency }}</span>
 	{% endif %}
 {% else %}
-	<span class="cartproduct-title">{{ labels.total }}</span>
 	<span class="mz-item-rowtotal {% if item.unitPrice.saleAmount %}is-saleprice{% endif %}">{{ item.subtotal|currency }}</span>
 {% endif %}
