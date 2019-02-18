@@ -1,12 +1,4 @@
 <div class="regimen-builder-widget container" data-widget="regimen-builder">
-  <div class="block">
-    <h2 class="align-center">
-        {{ labels.regimenContent1|safe }}
-    </h2>
-    <div class="text-base align-center">
-        {{ labels.regimenContent2|safe }}
-    </div>
-  </div>
   <div data-view="selector" class="align-center">
   </div>
   <div data-view="regimen" class="regimen-view block"></div>
