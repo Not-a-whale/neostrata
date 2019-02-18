@@ -7,7 +7,9 @@
 <div class="mz-formstep-body mz-checkoutform shipping-method-wrapper">
     <div class="mz-formstep-summary">
         {% if model.requiresFulfillmentInfo %}
-            <strong class="form-row">{{ model.shippingMethodName }}</strong> <label>({%if model.price == 0 %}{{ labels.shippingFree }}{% else %}{{ model.price|currency }}{% endif %})</label>
+            <strong class="form-row">{{ model.shippingMethodName }}</strong> 
+            <label class="{%if model.price == 0 %}mz-strikethrough{% endif %}">({{ model.price|currency }})</label>
+            {%if model.price == 0 %}<label>{{ labels.shippingFree }}</label>{% endif %}
         {% else %}
             {{ labels.noFulfillmentInfoRequired }}
         {% endif %}
