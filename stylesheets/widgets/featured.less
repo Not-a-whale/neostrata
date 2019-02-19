@@ -521,6 +521,15 @@
   }
 }
 
+@keyframes fpulse {
+  0%, 100% {
+    background-color: #fff;
+  }
+  50% {
+    background-color: #aaa;
+  }
+}
+
 .featured-product-and-regimen-widget .add-to-cart-control {
   @media (min-width: 992px) {
     flex: 1 1 50%;
@@ -533,5 +542,10 @@
 
   .button {
     width: 100%;
+  }
+
+  .button.working {
+    color: #4e5458;
+    animation: fpulse 3s infinite;
   }
 }
