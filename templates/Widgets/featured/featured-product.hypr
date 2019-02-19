@@ -1,6 +1,14 @@
 {% if model.items %}
   {% for prod in model.items %}
     <div class="featured-product-container" data-mz-product="{{prod.productCode}}">
+      <div class="featured-product-callout mobile-only">
+        <div class="callout-text">
+          FEATURED PRODUCT
+        </div>
+        <div class="callout-feather"></div>
+        <div class="callout-feather"></div>
+        <div class="callout-feather"></div>
+      </div>
       <div class="featured-product-tile-wrapper">
         <div class="featured-product-image-container">
           {% if prod.mainImage.imageUrl %}
@@ -20,7 +28,7 @@
           {% endif %}
         </div>
         <div class="featured-product-info-container">
-          <div class="featured-product-callout">
+          <div class="featured-product-callout desktop-only">
             <div class="callout-text">
               FEATURED PRODUCT
             </div>
@@ -74,7 +82,7 @@
           </a>
         </div>
         <div class="add-to-cart-container">
-          <button class="primary-btn mz-productdetail-addtocart font-large button_primary pull-right add-to-cart-button" data-mz-product-code="{{prod.productCode}}" data-control="add-to-cart">
+          <button class="primary-btn mz-productdetail-addtocart font-large button_primary add-to-cart-button" data-mz-product-code="{{prod.productCode}}" data-control="add-to-cart">
             Add To Cart
           </button>
         </div>

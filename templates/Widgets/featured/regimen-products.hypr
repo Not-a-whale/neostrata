@@ -1,9 +1,17 @@
 {% if model.config.category %}
   {% with navigation|find:model.config.category as cat %}
     <div class="featured-regimen-container" data-role="regimen-products" data-mz-category-regimen="{{model.config.category}}">
+      <div class="featured-regimen-callout mobile-only">
+        <div class="callout-text">
+          RECOMMENDED REGIMEN
+        </div>
+        <div class="callout-feather"></div>
+        <div class="callout-feather"></div>
+        <div class="callout-feather"></div>
+      </div>
       <div class="featured-regimen-tile-wrapper">
         <div class="featured-regimen-info-container">
-          <div class="featured-regimen-callout">
+          <div class="featured-regimen-callout desktop-only">
             <div class="callout-text">
               RECOMMENDED REGIMEN
             </div>
@@ -11,22 +19,25 @@
             <div class="callout-feather"></div>
             <div class="callout-feather"></div>
           </div>
-          <div class="featured-regimen-title">
+          <div class="featured-regimen-title desktop-only">
             {{ cat.name }}
           </div>
         </div>
         <div class="featured-regimen-image-container">
           <div class="featured-regimen-image" style="background-image: url('{{model.config.image}}')"></div>
         </div>
+        <div class="featured-regimen-title mobile-only">
+          {{ cat.name }}
+        </div>
       </div>
       <div class="featured-regimen-controls">
         <div class="add-to-cart-container addRegimen view-regimen-control">
-          <a href="{{ cat.url }}" class="button primary-btn mz-productdetail-addtocart font-large button_primary pull-left">
+          <a href="{{ cat.url }}" class="button primary-btn mz-productdetail-addtocart font-large button_primary">
             VIEW REGIMEN
           </a>
         </div>
         <div class="add-to-cart-container add-to-cart-control">
-          <button class="button primary-btn mz-productdetail-addtocart font-large button_primary pull-right" data-control="add-to-cart-regimen">
+          <button class="button primary-btn mz-productdetail-addtocart font-large button_primary" data-control="add-to-cart-regimen">
             ADD ALL TO CART
           </button>
         </div>
