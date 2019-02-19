@@ -1,11 +1,11 @@
-﻿<header class="mz-pageheader{% if themeSettings.bannerImageEnabled %} mz-pageheader-hasbanner {% endif %}">
+﻿<div class="browser-detection-wrapper col-xs-12 {% if pageContext.isEditMode %}show{% endif %}">
+    {% dropzone "browser-detection" scope="site" %}
+</div>
+<header class="mz-pageheader{% if themeSettings.bannerImageEnabled %} mz-pageheader-hasbanner {% endif %}">
     <div class="container-fluid">
 
         {% if not themeSettings.commerceEnabled %}    
         <div class="ml-header-content">
-            <div class="browser-detection-wrapper col-xs-12 {% if pageContext.isEditMode %}show{% endif %}">
-                {% dropzone "browser-detection" scope="site" %}
-            </div>
             {% require_script "modules/browser-detect" %}
             <div class="ml-header-logo-wrapper">
                 {% block store-branding %}
@@ -45,8 +45,6 @@
                 <div class="ml-header-search-wrapper">
                     <i class="search-button"></i>
                     <span class="ml-header-search-label">{{ labels.search }}</span>
-                </div>                <div class="browser-detection-wrapper col-xs-12 {% if pageContext.isEditMode %}show{% endif %}">
-                    {% dropzone "browser-detection" scope="site" %}
                 </div>
                 {% require_script "modules/browser-detect" %}
                 <div class="site-link">

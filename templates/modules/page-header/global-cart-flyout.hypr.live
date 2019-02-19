@@ -82,7 +82,7 @@
 		<div class="checkout-cart-btn-wrapper">
 			{% if not user.isAnonymous %}
   				<form method="post" value="" action="{{ pageContext.secureHost }}/cart/checkout">
-  					<button type="submit" class="mz-button btn btn-default checkout-cart-btn" >{{ labels.goToCheckout }}</button>
+  					<button type="submit" class="primary-btn checkout-cart-btn" >{{ labels.goToCheckout }}</button>
   				</form>
  			{% else%}
  				<button type="submit" class="primary-btn checkout-cart-btn" data-mz-action="checkoutGuest">{{ labels.goToCheckout }}</button>

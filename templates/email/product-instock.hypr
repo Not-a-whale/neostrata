@@ -4,30 +4,30 @@
 	
 
 	<table cellpadding="0" cellspacing="0" width="100%" style="text-align:center;">
-		{% if user and user.firstName %}
-			<h1 style="padding:15px 15px 0;font-size: 2.0rem;margin-bottom: 2px;line-height: 1.15em;font-weight:700;">
-				{{ labels.emailOpening|string_format(user.firstName)|safe }}
-			</h1>
-		{% else %}
-			<h1 style="padding:15px 15px 0;font-size: 2.0rem;margin-bottom: 2px;line-height: 1.15em;font-weight:700;">
-				{{ labels.emailOpeningAlternative|safe }}
-			</h1>
-		{% endif %}
+		<tr>
+		  <td style="padding:50px 60px;">
+			{% if user and user.firstName %}
+			  <h1 style="padding:15px 15px 0;font-size: 2.0rem;margin-bottom: 2px;line-height: 1.15em;font-weight:700;">{{ labels.emailOpening|string_format(user.firstName)|safe }}</h1>
+			{% else %}
+			  <h1 style="padding:15px 15px 0;font-size: 2.0rem;margin-bottom: 2px;line-height: 1.15em;font-weight:700;">{{ labels.emailOpeningAlternative|safe }}</h1>
+			{% endif %}
+		  </td>
+		</tr>
 	</table>
 	<table cellpadding="0" cellspacing="0" width="100%">
 		<tr>
-			<td style="padding-bottom:1em;font-size:1rem;line-height:1.45rem;padding-top:0.4rem;margin-top:0;text-align:center;">
-				<p>{{ labels.inStockBlob1|safe }}</p>
+			<td style="padding-bottom:16px;font-size:16px;line-height:23px;padding-top:6px;margin-top:0;text-align:center;">
+				<p style="font-size:16px;line-height:23px;text-align:center;">{{ labels.inStockBlob1|safe }}</p>
 			</td>
 		</tr>
 		<tr>
-			<td style="padding-bottom:1em;font-size:1rem;line-height:1.45rem;padding-top:0.4rem;margin-top:0;text-align:center;">
-				<h2 style="font-size: 1.5rem;margin:0;line-height: 2.5rem;font-weight:400;">{{ model.content.productName }}</h2>
+			<td style="padding-bottom:16px;font-size:16px;line-height:23px;padding-top:6px;margin-top:0;text-align:center;">
+				<h2 style="font-size: 24px;margin:0;line-height: 40px;font-weight:400;">{{ model.content.productName }}</h2>
 			</td>
 		</tr>
 		<tr>
-			<td style="padding-bottom:1em;font-size:1rem;line-height:1.45rem;padding-top:0.4rem;margin-top:0;text-align:center;">
-				<p>{{ labels.inStockBlob2|string_format(domainName, model.productCode)|safe }}</p>
+			<td style="padding-bottom:16px;font-size:16px;line-height:23px;padding-top:6px;margin-top:0;text-align:center;">
+				<p style="font-size:16px;line-height:23px;text-align:center;">{{ labels.inStockBlob2|string_format(domainName, model.productCode)|safe }}</p>
 			</td>
 		</tr>
 	</table>

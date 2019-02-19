@@ -133,7 +133,9 @@ define([
                     this.validation = this.digitalOnlyValidation;
                 }
 
-                if (!this.requiresFulfillmentInfo() && !this.requiresDigitalFulfillmentContact()) return this.stepStatus('complete');
+                if (!this.requiresFulfillmentInfo() && !this.requiresDigitalFulfillmentContact()) {
+                  return this.stepStatus('complete');
+                }
                 return CheckoutStep.prototype.calculateStepStatus.apply(this);
             },
             getOrder: function () {
@@ -325,8 +327,10 @@ define([
                 }
             },
             refreshShippingMethods: function (methods) {
+                var sortedMethods = _.sortBy(methods,'price');
+
                 this.set({
-                    availableShippingMethods: methods
+                    availableShippingMethods: sortedMethods
                 });
 
                 // always make them choose again
@@ -337,7 +341,9 @@ define([
             },
             calculateStepStatus: function () {
                 // If no shipping required, we're done.
-                if (!this.requiresFulfillmentInfo()) return this.stepStatus('complete');
+                if (!this.requiresFulfillmentInfo()) {
+                  return this.stepStatus('complete');
+                }
 
                 // If there's no shipping address yet, go blank.
                 if (this.get('fulfillmentContact').stepStatus() !== 'complete') {
@@ -347,10 +353,13 @@ define([
                 // Incomplete status for shipping is basically only used to show the Shipping Method's Next button,
                 // which does nothing but show the Payment Info step.
                 var billingInfo = this.parent.get('billingInfo');
+
+                /*
                 if (!billingInfo || billingInfo.stepStatus() === 'new') return this.stepStatus('incomplete');
 
                 // Payment Info step has been initialized. Complete status hides the Shipping Method's Next button.
-                return this.stepStatus('complete');
+                return this.stepStatus('complete');*/
+                return this.stepStatus('incomplete');
             },
             updateShippingMethod: function (code, resetMessage) {
                 var available = this.get('availableShippingMethods'),

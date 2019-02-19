@@ -1,67 +1,53 @@
 <div class="regimen-builder-widget container" data-widget="regimen-builder">
-  <div class="block">
-    <h2 class="align-center">
-        {{ labels.regimenContent1|safe }}
-    </h2>
-    <div class="text-base align-center">
-        {{ labels.regimenContent2|safe }}
-    </div>
-  </div>
-  <div class="divider"></div>
-  <div class="text-base align-center block">
-    {{ labels.regimenContent3|safe }}
-  </div>
   <div data-view="selector" class="align-center">
-    <div class="inline anchor align-left cursor-pointer" data-role="wrapperSkinType">
-      <div class="height-fixed border-strong uppercase pointer icon-right" data-control="toggleSkinType">
-        <div class="chevron-down"></div>
-        {{ labels.select }} {{ labels.skinType }}
-      </div>
-    </div>
-    <div class="inline anchor align-left cursor-pointer" data-role="wrapperSkinConcern">
-      <div class="height-fixed border-strong uppercase pointer icon-right" data-control="toggleSkinConcern">
-        <div class="chevron-down"></div>
-        {{ labels.select }} Skin Concern
-      </div>
-    </div>
   </div>
   <div data-view="regimen" class="regimen-view block"></div>
 </div>
 
 <script type="text/template" id="regimen-select-template">
-  <div class="inline anchor align-left cursor-pointer" data-role="wrapperSkinType">
-    <div class="height-fixed border-strong uppercase pointer icon-right" data-control="toggleSkinType">
-      <div class="chevron-down"></div>
-      <%= skinTypeSelected ? skinTypeSelected[1] : ('{{labels.select}} {{labels.skinType}}') %>
+    <div class="regimen-type">
+      <ul>
+        <li class="<% if (regimenType==='basic') { %>active<% } %>" ><button type="button" data-role="regimenType" data-regimenType="basic"><span data-regimenType="basic">Basic</span></button></li>
+        <li class="<% if (regimenType==='comprehensive') { %>active<% } %>" ><button type="button" data-role="regimenType" data-regimenType="comprehensive"><span data-regimenType="comprehensive">Comprehensive</span></button></li>
+      </ul>
     </div>
-    <% if ( skinTypeOpen ) { %>
-      <div class="mobile backdrop"></div>
-      <div class="dropdown layer-top background-white">
-        <% _.each( skinTypes, function( skinType ) { %>
-          <div class="height-fixed uppercase cursor-pointer border-top-between" data-skinType="<%= skinType.value %>">
-            <%= skinType.label %>
-          </div>
-        <% }) %>
-      </div>
-    <% } %>
-  </div>
-  <div class="inline anchor align-left cursor-pointer" data-role="wrapperSkinConcern">
-    <div class="height-fixed border-strong uppercase pointer icon-right" data-control="toggleSkinConcern">
-      <div class="chevron-down"></div>
-      <%= skinConcernSelected ? skinConcernSelected[1] : ('{{labels.select}} Skin Concern') %>
+    <div class="divider"></div>
+    <div class="text-base align-center block">
+      {{ labels.regimenContent3|safe }}
     </div>
-    <% if ( skinConcernOpen ) { %>
-      <div class="mobile backdrop"></div>
-      <div class="dropdown layer-top background-white">
-        <% _.each( skinConcerns, function( skinConcern ) { %>
-          <div class="height-fixed uppercase cursor-pointer border-top-between" data-skinConcern="<%= skinConcern.value %>">
-            <%= skinConcern.label %>
-          </div>
-        <% }) %>
-      </div>
-    <% } %>
-  </div>
 
+    <div class="inline anchor align-left cursor-pointer" data-role="wrapperSkinType">
+      <div class="height-fixed border-strong uppercase pointer icon-right" data-control="toggleSkinType">
+        <div class="chevron-down"></div>
+        <%= skinTypeSelected ? skinTypeSelected[1] : ('{{labels.select}} {{labels.skinType}}') %>
+      </div>
+      <% if ( skinTypeOpen ) { %>
+        <div class="mobile backdrop"></div>
+        <div class="dropdown layer-top background-white">
+          <% _.each( skinTypes, function( skinType ) { %>
+            <div class="height-fixed uppercase cursor-pointer border-top-between" data-skinType="<%= skinType.value %>">
+              <%= skinType.label %>
+            </div>
+          <% }) %>
+        </div>
+      <% } %>
+    </div>
+    <div class="inline anchor align-left cursor-pointer" data-role="wrapperSkinConcern">
+      <div class="height-fixed border-strong uppercase pointer icon-right" data-control="toggleSkinConcern">
+        <div class="chevron-down"></div>
+        <%= skinConcernSelected ? skinConcernSelected[1] : ('{{labels.select}} Skin Concern') %>
+      </div>
+      <% if ( skinConcernOpen ) { %>
+        <div class="mobile backdrop"></div>
+        <div class="dropdown layer-top background-white">
+          <% _.each( skinConcerns, function( skinConcern ) { %>
+            <div class="height-fixed uppercase cursor-pointer border-top-between" data-skinConcern="<%= skinConcern.value %>">
+              <%= skinConcern.label %>
+            </div>
+          <% }) %>
+        </div>
+      <% } %>
+    </div>
 </script>
 
 <script type="text/template" id="regimen-template">
@@ -139,6 +125,12 @@
           <label class="icon-check form-element" for="checkbox_<%= productCode %>">Already In Cart</label>
       </div>
     </div>
+    <% } else if (!isPurchasable) { %>
+    <div class="include-in-regimen">
+      <div class="form-row">
+          <label class="not-available form-element" for="checkbox_<%= productCode %>">Not Available</label>
+      </div>
+    </div>
     <% } else { %>
     <div class="include-in-regimen">
       <div class="form-row">
@@ -168,7 +160,7 @@
 </script>
 
 <script type="text/json" id="regimen-builder-products" data-role="regimen-product">
-{% include_products "modules/product/json-products" with categoryCode="product" %}
+{% include_products "modules/product/json-products" with categoryCode="product" and pageSize=100 %}
 </script>
 
 {% require_script "modules/regimen-builder/main" %}

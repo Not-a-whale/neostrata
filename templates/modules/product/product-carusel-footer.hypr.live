@@ -21,13 +21,18 @@
         {% include "modules/product/price-stack" with model=prod %}
     </div>
 </div>
-<span class="mz-favorites mz-slider-favorites" data-mz-product-code="{{ prod.productCode }}" data-mz-action="directoryAddToWishlist">
-    <span class="heart-outline"></span>
-</span>
-{% if prod.quantityNull === 0 or prod.quantity == 0%}
-    {% if not user.isAnonymous %}
-        <button id="email-me-{{ prod.productCode }}" class="col-xs-10 primary-btn mz-productdetail-emailme pull-right" data-mz-action="directoryEmailMe" data-mz-product-code="{{ prod.productCode }}" data-mz-location-code="{{ prod.productCode }}">{{ labels.notifyWidgetButton }}</button>
+{% if prod.quantity == 0 %}  
+    <div class="outOfStock">{{ labels.outOfStock }}</div>
+{% endif %}
+{% if prod.quantity > 0 %}  
+    <span class="mz-favorites mz-slider-favorites" data-mz-product-code="{{ prod.productCode }}" data-mz-action="directoryAddToWishlist">
+        <span class="heart-outline"></span>
+    </span>
+    {% if prod.quantityNull === 0 or prod.quantity == 0%}
+        {% if not user.isAnonymous %}
+            <button id="email-me-{{ prod.productCode }}" class="col-xs-10 primary-btn mz-productdetail-emailme pull-right" data-mz-action="directoryEmailMe" data-mz-product-code="{{ prod.productCode }}" data-mz-location-code="{{ prod.productCode }}">{{ labels.notifyWidgetButton }}</button>
+        {% endif %}
+    {% else %}
+        <button id="add-to-cart-{{ prod.productCode }}" class="col-xs-10 primary-btn mz-productdetail-addtocart font-large button_primary pull-right {% if not prod.purchasableState.isPurchasable %}button_disabled{% endif %}" data-mz-action="directoryAddToCart" data-mz-product-code="{{ prod.productCode }}">{{ labels.addToCart }}</button>
     {% endif %}
-{% else %}
-    <button id="add-to-cart-{{ prod.productCode }}" class="col-xs-10 primary-btn mz-productdetail-addtocart font-large button_primary pull-right {% if not prod.purchasableState.isPurchasable %}button_disabled{% endif %}" data-mz-action="directoryAddToCart" data-mz-product-code="{{ prod.productCode }}">{{ labels.addToCart }}</button>
 {% endif %}

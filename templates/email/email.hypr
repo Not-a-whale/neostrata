@@ -188,50 +188,44 @@
     </head>
   
   
-    <body marginheight="0" marginwidth="0" leftmargin="0" topmargin="0">
-        <table cellpadding="0" cellspacing="0" border="0" id="backgroundTable" class="main-email-wrapper">
+    <body marginheight="0" marginwidth="0" leftmargin="0" topmargin="0" style="width:100% !important; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; margin:0; padding:0; letter-spacing: 0.025em; line-height: 1.4; font-size: 12px;">
+        <table cellpadding="0" cellspacing="0" border="0" id="backgroundTable" width="800" class="main-email-wrapper" style="max-width: 800px; margin: auto !important; width: 800px;">
             <tr>
                 <td valign="top">
                     <table cellpadding="0" cellspacing="0" border="0">
                         <tr>
-                            <td><img src="https://{{domainName}}/cms/files/email_main_header.png" style="width:100%;" alt="NEOSTRATA"/></td>
+                            <td><img src="https://{{domainName}}/cms/files/email_main_header.png"  width="800" height="274" style="width:800px;" border="0" alt="NEOSTRATA"/></td>
                         </tr>
                     </table>
                     <div>{{pageContext.cmsContext.page.document.properties.html_1|safe}}</div>
 
                     <table cellpadding="0" cellspacing="0" border="0">
                         <tr>
-                            <td width="60"><img src="https://{{domainName}}/cms/files/px.gif" width="60" height="1" alt=""></td>
                             <td>
                                 {% block body-content %}
                                 {% endblock body-content %}
                             </td>
-                            <td width="60"><img src="https://{{domainName}}/cms/files/px.gif" width="60" height="1" alt=""></td>
                         </tr>
                     </table>
             
                     <div>{{pageContext.cmsContext.page.document.properties.html_2|safe}}</div>
 
-                    <table cellpadding="0" cellspacing="0" width="100%">
+                    <table cellpadding="0" cellspacing="0" border="0" width="100%">
                         <tr>
-                            <td style="padding-bottom:1em;font-size:1rem;line-height:1.45rem;padding-top:0.4rem;margin-top:0;text-align:center;">
-                                <p>{{ labels.emailClosing|string_format(siteContext.generalSettings.websiteName)|safe }}</p>
+                            <td style="padding-bottom:16px; font-size:16px; line-height:23px; padding-top:6px; margin-top:0; text-align:center;color: #4e5458;">
+                                <p style="font-size:16px; line-height:23px;">{{ labels.emailClosing|string_format(siteContext.generalSettings.websiteName)|safe }}</p>
                             </td>
                         </tr>
                     </table>
-                    <table cellpadding="0" cellspacing="0" width="100%" bgcolor="#edeeee"  style="background-image: url(https://{{domainName}}/cms/files/email-main-footer-bg.png); background-repeat: repeat-x; background-position: 0 100%;">
+                    <table cellpadding="0" cellspacing="0" width="100%" border="0" bgcolor="#edeeee">
                       <tr>
-                        <td height="15"><img src="https://{{domainName}}/cms/files/px.gif" width="100%" height="15" alt=""></td>
-                      </tr>
-                      <tr>
-                        <td valign="middle" style="padding-bottom:1em;font-size:0.625rem;padding-top:0.4rem;margin-top:0;text-align: center;">
-                            <p>{{ labels.emailFooterSentTo|string_format(user.email)|safe }}</p>
-                            <p>{{ labels.emailFooterAddress|safe }}</p>
-                            <!--<p><a href="#" style="font-weight: bold">{{ labels.emailFooterManagePreferences|safe }}</a> | <a href="#" style="font-weight: bold">{{ labels.emailFooterUnsubscribe|safe }}</a></p>-->
+                        <td valign="middle" style="padding-bottom:16px; padding-top:50px;margin-top:0;text-align: center;">
+                            <p style="font-size:10px;">{{ labels.emailFooterSentTo|string_format(user.email)|safe }}</p>
+                            <p style="font-size:10px;">{{ labels.emailFooterAddress|safe }}</p>
                         </td>
                       </tr>
                       <tr>
-                        <td height="15"><img src="https://{{domainName}}/cms/files/px.gif" width="100%" height="15" alt=""></td>
+                        <td height="15"><img src="https://{{domainName}}/cms/files/email-main-footer-img.png" width="800" height="69" border="0" alt=""></td>
                       </tr>
                     </table>
                 </td>

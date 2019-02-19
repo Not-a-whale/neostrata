@@ -44,6 +44,8 @@ require([
     try {
       if ( !json.match( /^\s+$/ ) ) {
         _.each( JSON.parse( json ).items, function( item ) {
+          //var productModel = ProductModels.Product(item);
+          //item.productModel = productModel;  // just doing this now to avoid having to refactor all the way through
           PRODUCTS[item.productCode] = item;
         });
       }
@@ -53,7 +55,7 @@ require([
     }
   });
 
-  var STEPS = [
+  var COMPREHENSIVE_STEPS = [
     {
       type: 'CLEANSER',
       sub: 'AM/PM',
@@ -90,6 +92,13 @@ require([
       description: 'Now professional grade skincare is yours in these at-home procedures that are results driven and easy to use.'
     }
   ];
+
+  var BASIC_STEPS = [
+    COMPREHENSIVE_STEPS[0],
+    COMPREHENSIVE_STEPS[3],
+    COMPREHENSIVE_STEPS[4]
+  ];
+
 
   // this is skin-type.skin-concern that then points to the regimen to show
   var SKIN_CONCERNS = [
@@ -161,7 +170,8 @@ require([
     ['psorent', 'Psorent'],
   ], function( regimen ) {
     return regimen.concat([
-      buildSteps( regimen[0] ),
+      buildSteps( regimen[0], COMPREHENSIVE_STEPS ),
+      buildSteps( regimen[0], BASIC_STEPS ), //
       CONFIG[regimen[0] + 'CategoryPath']
     ]);
   });
@@ -175,7 +185,8 @@ require([
     defaults: function() {
       return {
         current: REGIMENS[0],
-        selection: summarizeSelection( REGIMENS[0] ),
+        regimenType: 'basic',
+        selection: summarizeSelection( REGIMENS[0], 'basic' ),
         itemsInCart: []
       };
     }
@@ -212,6 +223,10 @@ require([
       },
       'click [data-skinConcern]': function( ev ) {
         this.selectSkinConcern( $( ev.target ).attr( 'data-skinConcern' ) );
+      },
+      'click [data-role="regimenType"]': function( ev ) {
+        ev.stopPropagation();
+        this.selectRegimenType( $( ev.target ).attr( 'data-regimenType' ) );
       }
     },
 
@@ -222,6 +237,8 @@ require([
       this.skinConcernToggled = false;
       this.skinConcernSelected = undefined;
       this.selectedRegimen = undefined;
+      this.regimenType = conf.regimenType;
+      this.lastRegimenType = undefined;
 
       this.skinTypes = _.map( SKIN_TYPES, function( item ) {
         return {
@@ -250,13 +267,23 @@ require([
 
       document.addEventListener( 'click', this.clear.bind( this ) );
     },
-
     render: function() {
       var self = this;
 
-      this.$el.html( this.template({ skinTypeOpen: this.skinTypeToggled, skinTypeSelected: this.skinTypeSelected, skinConcernOpen: this.skinConcernToggled, skinConcernSelected: this.skinConcernSelected, skinTypes: this.skinTypes, skinConcerns: this.skinConcerns }) );
+      this.$el.html( this.template({
+        skinTypeOpen: this.skinTypeToggled, skinTypeSelected: this.skinTypeSelected,
+        skinConcernOpen: this.skinConcernToggled, skinConcernSelected: this.skinConcernSelected,
+        skinTypes: this.skinTypes, skinConcerns: this.skinConcerns,
+        regimenType: this.regimenType
+      }) );
 
       return this;
+    },
+    selectRegimenType: function( regimenType ) {
+      console.log('Setting regimen type to: ' + regimenType);
+      this.regimenType = regimenType;
+      this.updateRegimen();
+      this.render();
     },
     calculateRegimen: function( skinType, skinConcern ) {
       console.log('Look for regimen for: ' + skinType[0] + '/' + skinConcern[0]);
@@ -271,18 +298,18 @@ require([
       this.render();
     },
     updateRegimen: function() {
-      if (this.skinTypeSelected && this.skinConcernSelected) {
+      if (this.skinTypeSelected && this.skinConcernSelected  && this.regimenType) {
         var newRegimen = this.calculateRegimen(this.skinTypeSelected, this.skinConcernSelected);
-        if (this.selectedRegimen != newRegimen) {
+        if (this.selectedRegimen != newRegimen || this.regimenType != this.lastRegimenType) {
           this.selectedRegimen = newRegimen;
-
+          this.lastRegimenType = this.regimenType;
           pushState(
-            { skinType: this.skinTypeSelected[0], skinConcern: this.skinConcernSelected[0] },
+            { skinType: this.skinTypeSelected[0], skinConcern: this.skinConcernSelected[0], regimenType: this.regimenType },
             this.skinTypeSelected[1] + ' / ' + this.skinConcernSelected[1],
-            '?skin-type=' + this.skinTypeSelected[0] + '&skin-concern=' + this.skinConcernSelected[0]
+            '?skin-type=' + this.skinTypeSelected[0] + '&skin-concern=' + this.skinConcernSelected[0] + '&regimen-type=' + this.regimenType
           );
 
-          this.trigger( 'change', this.selectedRegimen );
+          this.trigger( 'change', { selectedRegimen: this.selectedRegimen, regimenType: this.regimenType } );
         }
       }
     },
@@ -333,12 +360,16 @@ require([
 
     render: function() {
       var regimen = this.model.get( 'current' );
+
+      var regimenType = this.model.get( 'regimenType' );
+      var productsColumn = regimenType == 'basic' ? 3 : 2;
+
       if ( regimen ) {
         var itemsInCart =  this.model.get('itemsInCart');
         this.$el.html( this.template( this.model.attributes ) );
         this.$( '[data-view="steps"]' )
           .html(
-            _.map( regimen[2], function( step ) {
+            _.map( regimen[productsColumn], function( step ) {
               console.log('checking if ' + step.product.productCode + ' is in ' + itemsInCart);
               var inCart = _.contains(itemsInCart, step.product.productCode);
               return new StepView().render( step, inCart ).el;
@@ -346,7 +377,7 @@ require([
           );
       }
 
-      var productIds = _.reduce( regimen[2], function( acc, step ) {
+      var productIds = _.reduce( regimen[productsColumn], function( acc, step ) {
         acc[step.product.productCode] = {
             url: step.product.url,
             containerId: 'BVRRInlineRating-' + step.product.productCode
@@ -355,11 +386,12 @@ require([
         return acc;
       }, {});
 
-      $BV.ui( 'rr', 'inline_ratings', {
-        productIds: productIds,
-        containerPrefix: 'BVRRInlineRating'
-      });
-
+      if (productIds && productIds.length > 0) {
+        $BV.ui( 'rr', 'inline_ratings', {
+          productIds: productIds,
+          containerPrefix: 'BVRRInlineRating'
+        });
+      }
       return this;
     }
   });
@@ -382,7 +414,8 @@ require([
           product: PRODUCT_TILE( _.extend({}, PRODUCT_DEFAULTS, step.product ) )
         },
         {
-          inCart: inCart
+          inCart: inCart,
+          isPurchasable: !step.product.purchasableState || step.product.purchasableState.isPurchasable
         }
       )));
 
@@ -396,13 +429,16 @@ require([
         var $el = $( ev.target );
 
         var regimen = this.state.get( 'current' );
+        var regimenType = this.state.get( 'regimenType' );
         var step = $el.attr( 'data-value' );
         var checked = $el.prop( 'checked' );
 
-        regimen[2][step-1].included = checked;
+        var isBasic = (regimenType == 'basic');
+        var productColumn = isBasic ? 3 : 2;
+        regimen[productColumn][step-1].included = checked;
 
         this.state.set({
-          selection: summarizeSelection( regimen )
+          selection: summarizeSelection( regimen, regimenType  )
         });
       },
       'click [data-control="addToCart"]': function( ev ) {
@@ -412,12 +448,19 @@ require([
         console.log('Add to cart', selection);
 
         blockUiLoader.globalLoader();
+        var itemsInCart = this.state.get('itemsInCart') || [];
         var productsAdded = [];
         var promises = _.map( selection.items, function(item) {
           var product = new ProductModels.Product(item.product);
           console.log('    : ', product);
 
           var productCode = product.get('productCode');
+          var inCart = _.contains(itemsInCart, productCode);
+          if (inCart) {
+            return function(callback) {
+              callback(null, 'alreadyInCart');
+            };
+          }
 
           return function(callback) {
             console.log('  inside  : ', product);
@@ -466,29 +509,33 @@ require([
 
       var skinType = getUrlParameter('skin-type');
       var skinConcern = getUrlParameter('skin-concern');
+      var regimenType = getUrlParameter('regimen-type');
 
       this.selector = new Selector({
         el: this.$( '[data-view="selector"]' ),
         skinConcern: skinConcern,
-        skinType: skinType
+        skinType: skinType,
+        regimenType: regimenType
       }).render();
       this.regimen = new RegimenView({ el: this.$( '[data-view="regimen"]' ), model: this.state }).render();
 
       this.updateFromCart();
 
-      this.selector.on( 'change', function( regimenKey ) {
+      this.selector.on( 'change', function( conf ) {
         var newRegimen = _.find( REGIMENS, function( item ) {
-          return item[0] === regimenKey;
+          return item[0] === conf.selectedRegimen;
         });
         if (!newRegimen) {
-          console.log('Regimen not found: ' + regimenKey);
+          console.log('Regimen not found: ' + conf.selectedRegimen);
         }
         else {
-          console.log('Setting regimen to:' + regimenKey);
+          console.log('Setting regimen to:' + conf.selectedRegimen);
         }
+
         self.state.set({
           current: newRegimen,
-          selection: summarizeSelection( newRegimen )
+          selection: summarizeSelection( newRegimen, conf.regimenType),
+          regimenType: conf.regimenType
         });
       });
     },
@@ -506,18 +553,19 @@ require([
     }
   });
 
-  function buildSteps( slug ) {
-    return _.chain( STEPS )
+  function buildSteps( slug, steps ) {
+    return _.chain( steps )
       .map( function( step, index ) {
         var key = slug + 'Step' + ( index + 1 );
         var code = CONFIG[key];
 
+        var product = PRODUCTS[code];
         return _.extend({}, step, {
-          product: code && PRODUCTS[code],
-          productContent: code && PRODUCTS[code] && PRODUCTS[code].content,
+          product: code && product,
+          productContent: code && product && product.content,
           productCode: code,
-          price: PRODUCTS[code] && PRODUCTS[code].price,
-          included: true
+          price: product && product.price,
+          included: product && (!product.purchasableState || product.purchasableState.isPurchasable)
         });
       })
       .filter( function( step ) {
@@ -531,8 +579,10 @@ require([
       .value();
   }
 
-  function summarizeSelection( regimen ) {
-    var included = _.filter( regimen[2], function( step ) {
+  function summarizeSelection( regimen, regimenType ) {
+    var isBasic = (regimenType == 'basic');
+    var productColumn = isBasic ? 3 : 2;
+    var included = _.filter( regimen[productColumn], function( step ) {
       return step.included;
     });
 
