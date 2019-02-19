@@ -83,8 +83,6 @@
   flex-direction: row;
   overflow: hidden;
 
-  background-color: #efefef;
-
   font-style: italic;
 
   @media (min-width: 992px) {
@@ -112,6 +110,7 @@
 
   .callout-text {
     flex: 0 0 auto;
+    background-color: #efefef;
 
     @media (min-width: 992px) {
       padding-left: 1.375rem;
@@ -124,47 +123,38 @@
   }
 
   .callout-feather {
-    border-color: #8fabcc #8fabcc transparent transparent;
-
-    @media (min-width: 992px) {
-      flex: 0 0 4.75rem;
-      border-width: 2.375rem;
-      border-style: solid;
-      margin-bottom: -2.375rem;
-      margin-right: -4.75rem;
-      margin-left: 11px;
-    }
-    @media (max-width: 991px) {
-      flex: 0 0 6.562rem;
-      border-width: 3.281rem;
-      border-style: solid;
-      margin-bottom: -3.281rem;
-      margin-right: -6.562rem;
-      margin-left: 21px;
-    }
-  }
-
-  .callout-feather:nth-child(even) {
-    border-color: #fff #fff transparent transparent;
-  }
-
-  .callout-feather:last-child {
-    position: relative;
     flex: 1 1 auto;
-
-    @media (min-width: 992px) {
-      margin-left: 25px;
-    }
-    @media (max-width: 991px) {
-      margin-left: 25px;
-    }
+    position: relative;
 
     &::after {
       content: "";
       position: absolute;
       width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      z-index: 3;
+
+      background-image: linear-gradient(
+          45deg,
+          #efefef,
+          #efefef 2.697rem,
+          #ffffff 2.697rem,
+          #ffffff 3.492rem,
+          #8fabcc 3.492rem,
+          #8fabcc 4.508rem,
+          transparent 4.508rem
+      );
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      left: 0;
       bottom: 0;
-      border-bottom: 1px solid #c2c2c2;
+      border-bottom: 1px solid #c4c4c4;
+      z-index: 2;
     }
   }
 }
@@ -362,8 +352,6 @@
   flex-direction: row;
   overflow: hidden;
 
-  background-color: #efefef;
-
   font-style: italic;
 
   @media (min-width: 992px) {
@@ -391,6 +379,7 @@
 
   .callout-text {
     flex: 0 0 auto;
+    background-color: #efefef;
 
     @media (min-width: 992px) {
       padding-left: 1.375rem;
@@ -403,47 +392,38 @@
   }
 
   .callout-feather {
-    border-color: #b2e0e5 #b2e0e5 transparent transparent;
-
-    @media (min-width: 992px) {
-      flex: 0 0 4.75rem;
-      border-width: 2.375rem;
-      border-style: solid;
-      margin-bottom: -2.375rem;
-      margin-right: -4.75rem;
-      margin-left: 11px;
-    }
-    @media (max-width: 991px) {
-      flex: 0 0 6.562rem;
-      border-width: 3.281rem;
-      border-style: solid;
-      margin-bottom: -3.281rem;
-      margin-right: -6.562rem;
-      margin-left: 21px;
-    }
-  }
-
-  .callout-feather:nth-child(even) {
-    border-color: #fff #fff transparent transparent;
-  }
-
-  .callout-feather:last-child {
-    position: relative;
     flex: 1 1 auto;
-
-    @media (min-width: 992px) {
-      margin-left: 25px;
-    }
-    @media (max-width: 991px) {
-      margin-left: 25px;
-    }
+    position: relative;
 
     &::after {
       content: "";
       position: absolute;
       width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      z-index: 3;
+
+      background-image: linear-gradient(
+          45deg,
+          #efefef,
+          #efefef 2.697rem,
+          #ffffff 2.697rem,
+          #ffffff 3.492rem,
+          #b2e0e5 3.492rem,
+          #b2e0e5 4.508rem,
+          transparent 4.508rem
+      );
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      left: 0;
       bottom: 0;
-      border-bottom: 1px solid #c2c2c2;
+      border-bottom: 1px solid #c4c4c4;
+      z-index: 2;
     }
   }
 }
