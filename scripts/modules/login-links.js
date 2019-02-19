@@ -503,7 +503,10 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
         this.doSignup = function(){
             var redirectTemplate = 'myaccount';
             var returnUrl = $('#returnUrl').val();
-            var accMarketing = $(this).parents('#newshopper').find('[data-mz-signup-emailupdates]').is(':checked');
+            var emailupdates = $(this).parents('#newshopper').find('[data-mz-signup-emailupdates]').val();
+            var accMarketing = false;
+            if(emailupdates === "on")
+                accMarketing = true;
             var email = $(this).parents('#newshopper').find('[data-mz-signup-emailaddress]').val().trim();
             var firstName = $(this).parents('#newshopper').find('[data-mz-signup-firstname]').val().trim();
             var lastName = $(this).parents('#newshopper').find('[data-mz-signup-lastname]').val().trim();
@@ -519,15 +522,14 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
                     userName: email,
                     firstName: firstName,
                     lastName: lastName,
+                    skinType: skinType,
                     birthMonth: birthMonth,
                     birthDay: birthDay,
                     birthYear: birthYear,
                     acceptsMarketing: accMarketing,
-                    contacts: [{email: email}],
-                    attributes: [{"fullyQualifiedName": "tenant~skintype",
-                                  "values": [skinType]},
-                                 {"fullyQualifiedName": "tenant~dob",
-                                  "values": [birthMonth+"/"+birthDay+"/"+birthYear]}]
+                    contacts: [{
+                        email: email
+                    }]
                     /* ,
                     attributes: [
                       {
