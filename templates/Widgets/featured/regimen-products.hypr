@@ -1,100 +1,47 @@
 {% if model.config.category %}
-{% with navigation|find:model.config.category as cat %}  
-<div class="col-xs-12 col-sm-6 col-md-6 wrapRelBlock">    	    
-<div
-  class="mz-productlist-item product-item regimenProducts" data-mz-category-regimen="{{model.config.category}}"
->
-  <div class="product-listing-container desctWidget">
-    <div
-      class="mz-productlisting mz-productlist-tiled featuredBlock row defend"
-    >
-      <div class="mz-productlisting-info col-xs-12">
-        <div class="slashHeading col-xs-8"><span>RECOMMENDED REGIMEN</span></div>
-        <div class="col-xs-4 countProd"></div>
-        <a
-          class="mz-productlisting-title pdp2 col-xs-4"
-          href="{{ cat.url }}"
-          >{{ cat.name }}</a
-        >
-
-        <div class="mz-productlisting-shortdesc pdp3 col-xs-8">
-          {{ model.config.descr }}
+  {% with navigation|find:model.config.category as cat %}
+    <div class="featured-regimen-container" data-role="regimen-products" data-mz-category-regimen="{{model.config.category}}">
+      <div class="featured-regimen-callout mobile-only">
+        <div class="callout-text">
+          RECOMMENDED REGIMEN
+        </div>
+        <div class="callout-feather"></div>
+        <div class="callout-feather"></div>
+        <div class="callout-feather"></div>
+      </div>
+      <div class="featured-regimen-tile-wrapper">
+        <div class="featured-regimen-info-container">
+          <div class="featured-regimen-callout desktop-only">
+            <div class="callout-text">
+              RECOMMENDED REGIMEN
+            </div>
+            <div class="callout-feather"></div>
+            <div class="callout-feather"></div>
+            <div class="callout-feather"></div>
+          </div>
+          <div class="featured-regimen-title desktop-only">
+            {{ cat.name }}
+          </div>
+        </div>
+        <div class="featured-regimen-image-container">
+          <div class="featured-regimen-image" style="background-image: url('{{model.config.image}}')"></div>
+        </div>
+        <div class="featured-regimen-title mobile-only">
+          {{ cat.name }}
         </div>
       </div>
-      <div class="mz-productlisting-image col-xs-12">
-      <div class="featuredImg" style="
-          background-image: url('{{model.config.image}}?max={% block thumbnail-size %}{{ themeSettings.listProductThumbSize }}{% endblock thumbnail-size %}');
-      ">
+      <div class="featured-regimen-controls">
+        <div class="add-to-cart-container addRegimen view-regimen-control">
+          <a href="{{ cat.url }}" class="button primary-btn mz-productdetail-addtocart font-large button_primary">
+            VIEW REGIMEN
+          </a>
+        </div>
+        <div class="add-to-cart-container add-to-cart-control">
+          <button class="button primary-btn mz-productdetail-addtocart font-large button_primary" data-control="add-to-cart-regimen">
+            ADD ALL TO CART
+          </button>
         </div>
       </div>
     </div>
-    <div
-      class="mz-productdetail-conversion-buttons featuredBlockButton col-xs-12"
-    >
-      <div class="col-xs-6 add-to-cart-container addRegimen">
-          <a
-          href="{{ cat.url }}"
-        > 
-        <button
-          class="primary-btn mz-productdetail-addtocart font-large button_primary pull-left "
-        >
-          VIEW REGIMEN
-        </button>
-      </a>
-      </div>
-      <div class="col-xs-6 add-to-cart-container">
-        <button
-          id="add-to-cart-regimen"
-          class="primary-btn mz-productdetail-addtocart font-large button_primary pull-right "
-        >
-          ADD ALL TO CART
-        </button>
-      </div>
-    </div>
-  </div>
-  <div class="product-listing-container mobileWidget">
-    <div
-      class="mz-productlisting mz-productlist-tiled featuredBlock row defend"
-    >
-      <div class="col-xs-12 text-left"><h5>RECOMMENDED REGIMEN</h5></div>
-      <div class="col-xs-12 text-left regimenProductsInfo"><a
-        class="mz-productlisting-title pdp2"
-        href="{{ cat.url }}"
-        >{{ cat.name }} - {{ model.config.descr }}</a>
-    </div>
-      <div class="mz-productlisting-image col-xs-12">
-      <div class="featuredImg" style="
-          background-image: url('{{model.config.image}}?max={% block thumbnail-size %}{{ themeSettings.listProductThumbSize }}{% endblock thumbnail-size %}');
-      ">
-        </div>
-      </div>
-      <div class="col-xs-12 text-right"><h5 class="countProd"></h5></div>
-    </div>
-    <div
-      class="mz-productdetail-conversion-buttons featuredBlockButton col-xs-12"
-    >
-      <div class="col-xs-6 add-to-cart-container addRegimen">
-          <a
-          href="{{ cat.url }}"
-        > 
-        <button
-          class="primary-btn mz-productdetail-addtocart font-large button_primary pull-left "
-        >
-          VIEW REGIMEN
-        </button>
-      </a>
-      </div>
-      <div class="col-xs-6 add-to-cart-container">
-        <button
-          id="add-to-cart-regimen"
-          class="primary-btn mz-productdetail-addtocart font-large button_primary pull-right "
-        >
-          ADD ALL TO CART
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-{% endwith %}
+  {% endwith %}
 {% endif %}
