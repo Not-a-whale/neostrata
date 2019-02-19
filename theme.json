@@ -2096,6 +2096,12 @@
         },
         {
           "anchor": "100%",
+          "fieldLabel": "Regimen Link URL",
+          "name": "regimen_url",
+          "xtype": "mz-input-text"
+        },
+        {
+          "anchor": "100%",
           "fieldLabel": "Regimen Category Image",
           "name": "image",
           "xtype": "mz-input-imageurl"

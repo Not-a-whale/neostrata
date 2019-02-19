@@ -20,7 +20,9 @@
             <div class="callout-feather"></div>
           </div>
           <div class="featured-regimen-title desktop-only">
-            {{ cat.name }}
+            <a href="{{ model.config.regimen_url }}">
+              {{ cat.name }}
+            </a>
           </div>
         </div>
         <div class="featured-regimen-image-container">
@@ -32,7 +34,7 @@
       </div>
       <div class="featured-regimen-controls">
         <div class="add-to-cart-container addRegimen view-regimen-control">
-          <a href="{{ cat.url }}" class="button primary-btn mz-productdetail-addtocart font-large button_primary">
+          <a href="{{ model.config.regimen_url }}" class="button primary-btn mz-productdetail-addtocart font-large button_primary">
             VIEW REGIMEN
           </a>
         </div>
