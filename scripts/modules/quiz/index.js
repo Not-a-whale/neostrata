@@ -270,7 +270,7 @@ define([
         'AMINOFIL',
         'NEOGLUCOSAMINE'
       ],
-      url: '/product/skin-active-repair-firming',
+      url: '/skincare-regimen-tool?skin-type=normal&skin-concern=fine-lines&regimen-type=basic',
       hero: '/cms/files/WIP_NS_US_RECO_REGIMEN_SKINACTIVE_V1_1.jpg'
     },
     'RESURFACE': {
@@ -291,7 +291,7 @@ define([
         'GLYCOLIC ACID',
         'CITRIC ACID'
       ],
-      url: '/c/168',
+      url: '/skincare-regimen-tool?skin-type=normal&skin-concern=keratosis-pilaris&regimen-type=basic',
       hero: '/cms/files/WIP_NS_US_RECO_REGIMEN_RESURFACE_V1.jpg'
     },
     'RESTORE': {
@@ -312,7 +312,7 @@ define([
         'LACTOBIONIC ACID',
         'MALTOBIONIC ACID'
       ],
-      url: '/c/169',
+      url: '/skincare-regimen-tool?skin-type=sensitive&skin-concern=aging&regimen-type=basic',
       hero: '/cms/files/WIP_NS_US_RECO_REGIMEN_RESTORE_V1.jpg'
     },
     'CLARIFY': {
@@ -334,7 +334,7 @@ define([
         'MANDELIC ACID',
         'NEOGLUCOSAMINE'
       ],
-      url: '/c/170',
+      url: '/skincare-regimen-tool?skin-type=oily&skin-concern=aging&regimen-type=basic',
       hero: '/cms/files/WIP_NS_US_RECO_REGIMEN_CLARIFY_V1.jpg'
     },
     'ENLIGHTEN': {
@@ -355,7 +355,7 @@ define([
         'RETINOL',
         'NEOGLUCOSAMINE'
       ],
-      url: '/c/171',
+      url: '/skincare-regimen-tool?skin-type=normal&skin-concern=dark-circles&regimen-type=basic',
       hero: '/cms/files/WIP_NS_US_RECO_REGIMEN_ENLIGHTEN_V1.jpg'
     },
     'CORRECT': {
