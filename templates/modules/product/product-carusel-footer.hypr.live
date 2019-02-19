@@ -21,10 +21,11 @@
         {% include "modules/product/price-stack" with model=prod %}
     </div>
 </div>
-{% if prod.quantity == 0 %}  
+{% if prod.isPurchasable() %}  
+{% else %}
     <div class="outOfStock">{{ labels.outOfStock }}</div>
 {% endif %}
-{% if prod.quantity > 0 %}  
+{% if prod.isPurchasable() %}  
     <span class="mz-favorites mz-slider-favorites" data-mz-product-code="{{ prod.productCode }}" data-mz-action="directoryAddToWishlist">
         <span class="heart-outline"></span>
     </span>

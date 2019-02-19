@@ -47,7 +47,8 @@
     {% endif %}
 {% endblock product-extrainfo %}
         </div>
-        {% if model.quantityNull === 0 or model.quantity == 0 %}  
+        {% if model.isPurchasable() %}  
+        {% else %}
         <div class="outOfStock">{{ labels.outOfStock }}</div>
         {% endif %}
     </div>
@@ -56,7 +57,7 @@
         {% include "modules/product/listing-price-stack" %}
     </div>
 {% if themeSettings.commerceEnabled %}
-    {% if model.quantityNull != 0 or model.quantity != 0 %}  
+    {% if model.isPurchasable() %}  
     <div class="mz-productdetail-conversion-buttons col-xs-12">
         <div class="add-to-wishlist-container">
             {% if siteContext.generalSettings.isWishlistCreationEnabled %}
