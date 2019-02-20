@@ -53,7 +53,7 @@
         "price": "{% if model.priceRange %}{{model.priceRange.lower.salePrice}} - {{model.priceRange.upper.salePrice}}{% else %}{% if model.price.salePrice %}{{model.price.salePrice}}{% else %}{{model.price.price}}{% endif %}{% endif %}",
         "originalPrice" : "{% if model.priceRange %}{{model.priceRange.lower.price}} - {{model.priceRange.upper.price}}{% else %}{% if model.price.price %}{{model.price.price}}{% else %}"{% endif %}{% endif %}",
         "brand": "",
-        "category": "{% for crumb in navigation.breadcrumbs %}{% if not forloop.last %}{{crumb.name|safe}}/{% else %}{{ crumb.name|safe }}{% endif %}{% endfor %}",
+        "category": "{% if breadcrumbCategories %}{% for catId in breadcrumbCategories %}{% with catId|multiply(1) as catIdNumber %}{% with categories|find(catIdNumber) as category %}{% if category %}{% if not forloop.last %}{{category.content.name|safe}}/{% else %}{{category.content.name|safe}}{% endif %}{% endif %}{% endwith %}{% endwith %}{% endfor %}{% else %}{% for crumb in navigation.breadcrumbs %}{% if not forloop.last %}{{crumb.name|safe}}/{% else %}{{ crumb.name|safe }}{% endif %}{% endfor %}{% endif %}",
         "variant": ""
        }]
      }{% if globalCart.items.length > 0 %},
