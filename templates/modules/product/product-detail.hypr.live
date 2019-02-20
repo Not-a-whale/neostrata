@@ -6,9 +6,9 @@
 </div>
 {% endif %}
 <div class="col-xs-12 mz-reset-padding-left">
-    <div class="col-xs-12 email-popup">
+    <!-- <div class="col-xs-12 email-popup">
       {% dropzone "email-notification" scope="template" %}
-    </div>
+    </div> -->
 </div>
 {% if model.options and model.options.length > 0 and model.productType != themeSettings.familyProductType %}
 <div class="mz-productdetail-options mz-l-stack-section">
