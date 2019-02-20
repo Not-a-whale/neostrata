@@ -10,6 +10,13 @@
 	{% endif %}
 	</a>
 {% else %}
+	{% if themeSettings.commerceEnabled %}
+	<a class="logo" href="/" title="{{ siteContext.generalSettings.websiteName }}">
+		<span class="logo-image"><img src="/resources/images/neostrata_logo.svg" /></span>		
+		<span class="logo-slogan"><img src="/resources/images/neostrata_tagline_TM_new.svg" /></span>
+	</a>
+	{% else %}
 	<a class="logo" href="/" title="{{ siteContext.generalSettings.websiteName }}">Home
 	</a>
+	{% endif %}
 {% endif %}

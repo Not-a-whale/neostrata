@@ -128,6 +128,23 @@
                 background-repeat: no-repeat;
                 background-size: contain;
 
+                .commerce-enabled-true & {
+                    background: none;
+
+                    .logo-image {
+                        display: block;
+                    }
+
+                    .logo-slogan {
+                        display: block;
+                        margin-top: 0.438rem;
+                    }
+
+                    img {
+                        display: block;
+                    }
+                }
+
                 @media (max-width: 356px) {
                     width: 17rem;
                     height: 2.3rem;
@@ -143,8 +160,9 @@
                     background-position: 0 0;
                     background-repeat: no-repeat;
                     background-size: contain;
+
                     .commerce-enabled-true & {
-                        background-image: url(../resources/images/neostrata_tagline_TM_new.svg);
+                        display: none;
                     }
                   }
             }
