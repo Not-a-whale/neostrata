@@ -60,7 +60,7 @@
                 }
             }
             $('.featured-product-container .mz-productdetail-addtowishlist').click(function() {
-                var qvProductCode = $('.featured-product-container #add-to-cart-featuredBlock').data('mzProductCode');
+                var qvProductCode = $('.featured-product-container .mz-productdetail-addtowishlist').data('mzProductCode');
                 if(user.accountId){
                     if($('.featured-product-container .mz-productdetail-addtowishlist span').hasClass('blank-heart')){
                         api.createSync('wishlist').getOrCreate(user.accountId).then(function(wishlist) {
@@ -114,7 +114,7 @@
                 });
                 setTimeout(function() {
                     $('[data-control="add-to-cart-regimen"]').data('mzProductCode', JSON.stringify(productRegimenCollection));
-                    $('.countProd').html( count + ' PRODUCTS - $' + totalPrice.toFixed(2));
+                    $('[data-role="regimen-bundle-info"]').html( count + ' PRODUCTS - $' + totalPrice.toFixed(2));
                 }, 1000);
             }
             $('[data-control="add-to-cart"]').click(function(){

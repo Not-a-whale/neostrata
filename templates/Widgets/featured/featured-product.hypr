@@ -6,8 +6,6 @@
           FEATURED PRODUCT
         </div>
         <div class="callout-feather"></div>
-        <div class="callout-feather"></div>
-        <div class="callout-feather"></div>
       </div>
       <div class="featured-product-tile-wrapper">
         <div class="featured-product-image-container">
@@ -32,8 +30,6 @@
             <div class="callout-text">
               FEATURED PRODUCT
             </div>
-            <div class="callout-feather"></div>
-            <div class="callout-feather"></div>
             <div class="callout-feather"></div>
           </div>
           <div class="featured-product-type">
