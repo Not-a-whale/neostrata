@@ -7,13 +7,16 @@
         </div>
         <div class="callout-feather"></div>
       </div>
+      <div class="featured-regimen-bundle-info mobile-only" data-role="regimen-bundle-info"></div>
       <div class="featured-regimen-tile-wrapper">
         <div class="featured-regimen-info-container">
           <div class="featured-regimen-callout desktop-only">
             <div class="callout-text">
               RECOMMENDED REGIMEN
             </div>
-            <div class="callout-feather"></div>
+            <div class="callout-feather">
+              <div class="featured-regimen-bundle-info desktop-only" data-role="regimen-bundle-info"></div>
+            </div>
           </div>
           <div class="featured-regimen-title desktop-only">
             <a href="{{ model.config.regimen_url }}">
