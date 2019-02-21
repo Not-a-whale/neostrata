@@ -106,7 +106,7 @@
         <div class="flex-center-row">
           <div class="flex-fill flex-column align-center">
             <div class="flex-center-column">
-              <div class="flex-fixed" id="BVRRInlineRating-<%= productCode %>"></div>
+              <div class="flex-fixed bvr-inline-rating" id="BVRRInlineRating-<%= productCode %>" data-mz-product-code="<%= productCode %>" data-bv-product-code="{{apicontext.headers.x-vol-locale}}-<%= productCode %>"></div>
             </div>
           </div>
         </div>
