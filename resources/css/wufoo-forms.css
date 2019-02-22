@@ -131,8 +131,8 @@
     height: 5.375rem !important;
     border-radius: 0 !important;
     font-family: "Gotham A","Gotham B",sans-serif !important;
-    font-size: 1.31em !important;
-    line-height: 1.31em !important;
+    font-size: 1.31rem !important;
+    line-height: 1em !important;
     width: 100% !important;
 }
 
@@ -202,9 +202,9 @@
     text-transform: uppercase !important;
     background: none !important;
     text-decoration: none !important;
-    border: 0.1875rem solid #4e5458 !important;
-    height: 6rem !important;
-    max-width: 18.75rem !important;
+    border: 0.125rem solid #8fabcc !important;
+    height: 5.23rem !important;
+    width: 37.69rem !important;
     margin: 0 auto !important;
     line-height: 0 !important;
     border-radius: 0 !important;
@@ -215,7 +215,7 @@
 
 .redesigned-theme-2018 .wufoo .btTxt.submit:hover {
     color: #ffffff !important;
-    background: #4e5458 !important;
+    background: #8fabcc !important;
     text-decoration: none !important;
     cursor: pointer !important;
 }
@@ -351,5 +351,63 @@
         box-sizing: border-box;
     }
 }
-
 /* Affiliate END */
+
+/* Contact Us START */
+@media screen and (max-width: 850px) {
+    .redesigned-theme-2018 .wufoo .btTxt.submit {
+        width: 100% !important;
+        height: 9.25rem !important;
+    }
+    .redesigned-theme-2018 .wufoo ul li#fo1li1 span,
+    .redesigned-theme-2018 .wufoo ul li#fo2li1 span {
+        width: 100%;
+        margin: 2rem auto 4rem !important;
+    }
+    .redesigned-theme-2018 .wufoo ul li input.text,
+    .redesigned-theme-2018 .wufoo ul li textarea.textarea {
+        height: 9.25rem !important;
+        font-size: 2.31rem !important;
+    }
+    .redesigned-theme-2018 .wufoo .wufoo-dropdown-control {
+        height: 9.25rem;
+    }
+    .redesigned-theme-2018 .wufoo .wufoo-dropdown-control .wufoo-dropdown-chevron {
+        width: 2rem !important;
+        height: 2rem !important;
+        top: 3rem;
+        right: 2rem;
+    }
+    .redesigned-theme-2018 .wufoo ul li textarea.textarea {
+        height: 40rem !important;
+    }
+    .redesigned-theme-2018 .wufoo ul li label,
+    .redesigned-theme-2018 .wufoo ul li label.desc,
+    .redesigned-theme-2018 form.wufoo span.req {
+        font-size: 2.5rem !important;
+    }
+    
+    .redesigned-theme-2018 .wufoo ul li input.text::-webkit-input-placeholder {
+        font-size: 2.31rem !important;
+    }
+
+    .redesigned-theme-2018 .wufoo ul li input.text::-ms-input-placeholder {
+        font-size: 2.31rem !important;
+    }
+
+    .redesigned-theme-2018 .wufoo ul li input.text::-moz-placeholder {
+        font-size: 2.31rem !important;
+    }
+
+    .redesigned-theme-2018 .wufoo .wufoo-dropdown-control span.text {
+        font-size: 2.31rem !important;
+    }
+    .redesigned-theme-2018 .wufoo ul li {
+        margin-bottom: 4rem !important;
+    }
+    .redesigned-theme-2018 .wufoo ul li#fo1li1 {
+        margin-bottom: 0 !important;
+    }
+}
+
+/* Contact Us END */

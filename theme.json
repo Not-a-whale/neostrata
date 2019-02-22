@@ -247,6 +247,14 @@
     {
       "documentType": "web_page",
       "entityType": "webpage",
+      "id": "contact-us-page",
+      "template": "contact-us-page",
+      "title": "Contact Us Page",
+      "userCreatable": true
+    },
+    {
+      "documentType": "web_page",
+      "entityType": "webpage",
       "id": "ancillary-page",
       "template": "ancillary-page",
       "title": "Ancillary Page",
