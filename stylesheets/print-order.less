@@ -135,6 +135,19 @@
     .modal-content{
       padding: 5rem;
       margin: 10%;
+
+      @media (max-width: 800px) {
+        padding: 1rem;
+        margin: 2%;
+      }
+
+      .card-type-confirmation {
+        img {
+          @media (max-width: 800px) {
+            width: 30%;
+          }
+        }
+      }
     }
     .modal-header{
       padding: 0 !important;
@@ -163,13 +176,25 @@
     }
     .shipping-information-section{
       width: 49% !important;
+
+      @media (max-width: 800px) {
+        width: 100% !important;
+      }
     }
     .payment-information-section{
       width: 49% !important;
+
+      @media (max-width: 800px) {
+        width: 100% !important;
+      }
     }
   }
 }
-@media print { 
+@media print {
+  html,
+  body {
+    font-size: 6px !important;
+  }
   footer{
     display: none !important;
   }
@@ -190,6 +215,7 @@
   }
   .modal-body{
     display: block !important;
+    
     .fullWidthPrint{
       display: block !important;
       font-size: 3rem;
@@ -200,5 +226,44 @@
   }
   .modal-content{
     padding: 0;
+    margin: 0;
+  }
+  #printModalWindow {
+    .modal-dialog{
+      .shipping-information-section{
+        width: 49% !important;
+      }
+      .payment-information-section{
+        width: 49% !important;
+      }
+    }
+    .mz-order-summary-image .mz-carttable-item-image {
+      width: 50%;
+    }
+    .mz-checkout-payment .card-type-confirmation {
+      padding: 0;
+    }
+    #confirmation-container .mz-addresssummary div, #confirmation-container .mz-addresssummary span {
+      font-size: 1rem;
+      line-height: 1.2em;
+    }
+    .mz-ordersummary-grandtotal .mz-checkout-total-row {
+      padding: 1rem 0 0;
+    }
+    .order-summary-confirmation-info > div {
+      padding: 0 0 0.2rem;
+    }
+    .fullWidthPrint{
+      p{
+        font-size: 2rem !important;
+        margin: 0 !important;
+      }
+      h2 {
+        margin: 0 !important;
+      }
+    }
+    .ordersummary-confirmation {
+      padding: 0;
+    }
   }
 }
