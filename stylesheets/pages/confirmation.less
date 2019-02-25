@@ -278,7 +278,11 @@
         .mz-checkout-paymenttitle {
             padding: 0;
             border: 0;
-            white-space: nowrap;    
+            white-space: nowrap;
+
+            @media (max-width: 900px) {
+                white-space: normal;
+            }
             
             strong {
                 font-weight: 500;
