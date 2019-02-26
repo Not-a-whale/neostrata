@@ -900,6 +900,9 @@ define([
             // could be adapted to return a promise.
             setTimeout(function() {
               CartMonitor.update('showGlobalCart');
+              if ($(window).width() <= 991) {
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+              }
             }, 1000);
           });
       }

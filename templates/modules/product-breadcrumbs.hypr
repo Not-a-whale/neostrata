@@ -1,3 +1,21 @@
+{% if breadcrumbCategories %}
+<div class="mz-breadcrumbs">
+{% with breadcrumbCategories | slice("1:") as breadcrumbs %}
+     {% for catId in breadcrumbs %}
+     {% with catId|multiply(1) as catIdNumber %}
+             {% with categories|find(catIdNumber) as category %}
+                  {% if category %}
+                      <a href="{{category.url}}" class="mz-breadcrumb-link">{{category.content.name|safe}}</a>
+                      {% if not forloop.last %}
+                        <span class="mz-breadcrumb-separator">></span>
+                      {% endif %}
+                  {% endif %}
+             {% endwith %}
+        {% endwith %}
+     {% endfor %}
+{% endwith %}
+</div>
+{% else %}
 {% if navigation.breadcrumbs.length != 0 %}
 {% with navigation.breadcrumbs | slice("1:-1") as breadcrumbs %}
 <div class="mz-breadcrumbs">
@@ -11,4 +29,5 @@
   {% endfor %}
 </div>
 {% endwith %}
+{% endif %}
 {% endif %}

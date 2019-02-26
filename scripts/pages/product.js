@@ -622,7 +622,9 @@
 
         var product = ProductModels.Product.fromCurrent();
         product.on('addedtocart', function(cartitem) {
-            MetricsEngine.trackAddToCart(cartitem.data, product.get('categories')[0], false, product.get('quantity'));
+            var breadcrumbCategories = require.mozuData('breadcrumbCategories');
+            var category = _.find(product.get('categories'), function (cat) { return cat.categoryId == breadcrumbCategories.slice(-1)[0] ; });
+            MetricsEngine.trackAddToCart(cartitem.data, breadcrumbCategories ? category : product.get('categories')[0], false, product.get('quantity'));
             if (cartitem && cartitem.prop('id')) {
 
                 //product.isLoading(true);

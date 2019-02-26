@@ -17,7 +17,8 @@ function($, Api, CartModels, hyprlivecontext, _) {
        var merchantAccountId = _.findWhere(externalPayment.credentials, {"apiName" : "merchantAccountId"}),
           environment = _.findWhere(externalPayment.credentials, {"apiName" : "environment"}),
           id = CartModels.Cart.fromCurrent().id || window.order.id,
-          isCart = window.location.href.indexOf("cart") > 0;
+          isCart = window.location.href.indexOf("cart") > 0,
+          lastToken = false;
       if(externalPayment.isEnabled) {
         window.paypal.checkout.setup(merchantAccountId.value, {
             environment: environment.value,
@@ -26,6 +27,7 @@ function($, Api, CartModels, hyprlivecontext, _) {
                 var url = "../paypal/token?id=" + id + (!document.URL.split('?')[1] ? "": "&" + document.URL.split('?')[1].replace("id="+id,"").replace("&&", "&"));
                 if (isCart)
                   url += "&isCart="+ isCart;
+                if(lastToken) window.paypal.checkout.closeFlow();
                 window.paypal.checkout.initXO();
                 $.ajax({
                     url: url,
@@ -34,7 +36,8 @@ function($, Api, CartModels, hyprlivecontext, _) {
 
                     //Load the minibrowser with the redirection url in the success handler
                     success: function (token) {
-                        var url = window.paypal.checkout.urlPrefix + token.token;
+                        lastToken = token.token;
+                        var url = window.paypal.checkout.urlPrefix + lastToken;
                         //Loading Mini browser with redirect url, true for async AJAX calls
                         window.paypal.checkout.startFlow(url);
                     },

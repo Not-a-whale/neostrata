@@ -179,6 +179,18 @@ require(["modules/jquery-mozu",
         renderOnChange: [
             'availableShippingMethods'
         ],
+        initialize: function () {
+            var freeShippingMethod = false;
+            var shippingDiscounts = this.model.get('shippingDiscounts');  
+            this.model = this.model.get('fulfillmentInfo');
+            if(shippingDiscounts && shippingDiscounts.length){
+                shippingDiscounts.forEach(function(discount){
+                    if(discount.methodCode) freeShippingMethod = discount.methodCode;
+                }, this);
+            }
+            this.model.set('freeShippingMethod', freeShippingMethod);
+            console.log(this.model);
+        },
         additionalEvents: {
             "change [data-mz-shipping-method]": "updateShippingMethod"
         },
@@ -662,7 +674,7 @@ require(["modules/jquery-mozu",
                     }),
                     shippingInfo: new ShippingInfoView({
                         el: $('#step-shipping-method'),
-                        model: checkoutModel.get('fulfillmentInfo')
+                        model: checkoutModel
                     }),
                     paymentInfo: new BillingInfoView({
                         el: $('#step-payment-info'),

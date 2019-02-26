@@ -1610,6 +1610,9 @@ define([
 
                     else if (me.get('total') === 0) {
                         me.trigger('complete');
+                    } else {
+                        $('.mz-messagebar').html( '<div class="promoCodeApplied">' + Hypr.getLabel('promoCodeApplied', code, allDiscounts[0].discount.name) + '</div>');
+                        $("html, body").animate({ scrollTop: 0 }, "slow");
                     }
                     // only do this when there isn't a payment on the order...
                     me.get('billingInfo').updatePurchaseOrderAmount();
