@@ -1610,9 +1610,16 @@ define([
 
                     else if (me.get('total') === 0) {
                         me.trigger('complete');
-                    } else {
-                        $('.mz-messagebar').html( '<div class="promoCodeApplied">' + Hypr.getLabel('promoCodeApplied', code, allDiscounts[0].discount.name) + '</div>');
-                        $("html, body").animate({ scrollTop: 0 }, "slow");
+                    } else {    
+                        var retText = '<div class="promoCodeApplied">' + Hypr.getLabel('promoCodeApplied', code, allDiscounts[0].discount.name) + '</div><div class="addNewCoupon"><span class="glyphicon-plus"></span>  '+ Hypr.getLabel('addNewPromoCode') +'</div>';
+                        setTimeout(function() {
+                            $('#coupon-code-wrapper').hide();
+                            document.getElementById('addNewPromoCode').innerHTML = retText;
+                            $('#addNewCoupon').click(function() {
+                                $('#addNewPromoCode').html('');
+                                $('#coupon-code-wrapper').show();
+                            });
+                        }, 1000);
                     }
                     // only do this when there isn't a payment on the order...
                     me.get('billingInfo').updatePurchaseOrderAmount();
