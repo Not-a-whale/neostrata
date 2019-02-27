@@ -700,11 +700,17 @@
 
 [data-section-sub="regimen"] {
   .quiz-regimen-description {
-    width: 75%;
+    @media (min-width: 992px) {
+      width: 75%;
+    }
   }
 
   .regimen-image-container {
     margin-bottom: 2.75rem;
+  }
+
+  img {
+    max-width: 100%;
   }
 
   button,
