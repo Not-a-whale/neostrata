@@ -30,8 +30,15 @@
 
     cursor: pointer;
 
+    &:hover {
+      background-color: @prompt-color;
+      color: #fff;
+    }
+
     &[disabled] {
       opacity: .5;
+      color: @prompt-color;
+      background-color: transparent;
     }
 
     @media (min-width: 992px) {
@@ -109,6 +116,11 @@
   .quiz-link-button {
     border-color: @tab-secondary-color;
     background-color: #fff;
+
+    &:hover {
+      background-color: @tab-secondary-color;
+      color: #fff;
+    }
 
     @media (min-width: 992px) {
       width: 39.375rem;
@@ -700,6 +712,11 @@
     @media (min-width: 992px) {
       margin-left: 0;
       border-color: @tab-color-active;
+
+      &:hover {
+        background-color: @tab-color-active;
+        color: #fff;
+      }
     }
   }
 }
@@ -891,6 +908,11 @@
   .quiz-link-button {
     border-color: @tab-secondary-color;
     width: 100%;
+
+    &:hover {
+      background-color: @tab-secondary-color;
+      color: #fff;
+    }
   }
 }
 
