@@ -233,6 +233,7 @@
   "optInSmall"           : "SIGN UP FOR EMAIL UPDATES ABOUT NEW PRODUCTS AND SPECIAL OFFERS FROM NEOSTRATA®.",
   "promoCodeError"     : "Sorry, '{0}' does not appear to be a valid coupon code.",
   "promoCodeApplied"     : "Coupon Applied! <b>{1} - {0}</b>",
+  "addNewPromoCode"      : "Enter Another Coupon or Promo Code",
   "reviewOrder"          : "Complete Your Order",
   "reviewOrderText": "",
   "recalculatePayments": "Your order total has changed. Please re-enter your payment information to recalculate payment.",

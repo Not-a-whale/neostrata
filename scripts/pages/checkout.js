@@ -189,13 +189,28 @@ require(["modules/jquery-mozu",
                 }, this);
             }
             this.model.set('freeShippingMethod', freeShippingMethod);
-            console.log(this.model);
         },
         additionalEvents: {
             "change [data-mz-shipping-method]": "updateShippingMethod"
         },
         updateShippingMethod: function (e) {
             this.model.updateShippingMethod(this.$('[data-mz-shipping-method]:checked').val());
+        },
+        render: function() {
+
+            if(!this.model.get('freeShippingMethod')){
+                var freeShippingMethod = false;
+                var shippingDiscounts = window.checkoutViews.parentView.model.get('shippingDiscounts');    
+                if(shippingDiscounts && shippingDiscounts.length){
+                shippingDiscounts.forEach(function(discount){
+                    if(discount.methodCode) freeShippingMethod = discount.methodCode;
+                }, this);
+            }
+            this.model.set('freeShippingMethod', freeShippingMethod);
+            }
+            
+            CheckoutStepView.prototype.render.apply(this, arguments);
+            $('.selectpicker').selectpicker();
         }
     });
 
