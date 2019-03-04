@@ -12,8 +12,8 @@
 {% else %}
 	{% if themeSettings.commerceEnabled %}
 	<a class="logo" href="/" title="{{ siteContext.generalSettings.websiteName }}">
-		<span class="logo-image"><img src="/resources/images/neostrata_logo.svg" /></span>		
-		<span class="logo-slogan"><img src="/resources/images/neostrata_tagline_TM_new.svg" /></span>
+		<span class="logo-image"><img src="/resources/images/neostrata_logo.svg" alt="{{ siteContext.generalSettings.websiteName }}" /></span>
+		<span class="logo-slogan"><img src="/resources/images/neostrata_tagline_TM_new.svg" alt="The Science of Skin Regeneration™"></span>
 	</a>
 	{% else %}
 	<a class="logo" href="/" title="{{ siteContext.generalSettings.websiteName }}">Home
