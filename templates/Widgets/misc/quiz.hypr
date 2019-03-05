@@ -255,7 +255,9 @@
               <%= product.propertiesMap['tenant~ingredient-highlights'] %>
             </div>
             <div class="quiz-product-info-group">
-              <div class="quiz-product-rating"></div>
+              <div class="quiz-product-rating">
+                <div class="bvr-inline-rating" id="BVRRInlineRating-<%= product.productCode %>" data-mz-product-code="<%= product.productCode %>" data-bv-product-code="{{apicontext.headers.x-vol-locale}}-<%= product.productCode %>"></div>
+              </div>
               <div class="quiz-product-price">
                 $<%= product.price.price %>.00
               </div>

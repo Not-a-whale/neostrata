@@ -977,7 +977,28 @@ define([
       this.$el.toggleClass('active', active);
       this.visited = this.visited || active;
 
-      if (active) this.$AdditionalProducts.render();
+      if (active) {
+        this.$AdditionalProducts.render();
+
+        // <div class="flex-fixed bvr-inline-rating" id="BVRRInlineRating-<%= code %>" data-mz-product-code="<%= code %>" data-bv-product-code="{{apicontext.headers.x-vol-locale}}-<%= code %>"></div>
+        var productIds = {};
+
+        $('[data-widget="quiz"] [data-bv-product-code]').each(function(el) {
+          var code = $(el).attr('data-bv-product-code');
+
+          productIds[code] = {
+            url: '/p/' + code,
+            containerId: 'BVRRInlineRating-' + code
+          };
+        });
+
+        if ( typeof $BV !== 'undefined' ) {
+          $BV.ui( 'rr', 'inline_ratings', {
+            productIds: productIds,
+            containerPrefix: 'BVRRInlineRating'
+          });
+        }
+      }
     },
 
     selectRegimen: function() {
@@ -1149,9 +1170,37 @@ define([
     }
   });
 
-  $('[data-widget="quiz"]').each(function(i, $el) {
-    new App({ el: $el });
-  });
+  function main() {
+    $('[data-widget="quiz"]').each(function(i, $el) {
+      new App({ el: $el });
+    });
+  }
+
+  API.get('entityList', {
+        listName: 'bvsettings@mzint',
+        id: API.context.site
+    }).then(function(res) {
+      console.log('BV', res);
+
+      var data = res.data.items[0];
+      var staging = data.environment != 'Staging' ? '' : '-stg';
+      var locale = API.context.locale.replace("-", "_");
+      var script = "//display" + staging + ".ugc.bazaarvoice.com/static/" + data.clientName + "/"+ data.deploymentZone +"/" + locale + "/bvapi.js";
+
+      $.getScript(script)
+        .done(function() {
+          main();
+        })
+        .fail(function(jqxhr, settings, exception) {
+          console.error('BazaarVoice failed to load.', exception);
+          main();
+        });
+    }).catch( function( err ) {
+      console.warn( err );
+      console.log( 'Initializing quiz without BazaarVoice.' );
+
+      main();
+    });
 
   CATALOG = scrapeCatalog();
   if (DEBUG) console.log('Catalog', CATALOG);
