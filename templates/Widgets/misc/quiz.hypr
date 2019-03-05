@@ -236,6 +236,39 @@
   </div>
 </script>
 
+<script type="text/x-template" id="template-additional-products">
+  <div class="quiz-carousel-frame swiper-container">
+    <div class="swiper-wrapper">
+      <% _.each(products, function(product) { %>
+        <div class="quiz-additional-product swiper-slide">
+          <a href="/product/<%= product.productCode %>" class="product-tile-link">
+            <div class="image-container">
+              <img src="<%= product.content.productImages[0].imageUrl %>" />
+            </div>
+            <div class="quiz-product-type">
+              <%= product.propertiesMap['tenant~product-type'] %>
+            </div>
+            <div class="quiz-product-title">
+              <%= product.content.productName %>
+            </div>
+            <div class="quiz-product-ingredients">
+              <%= product.propertiesMap['tenant~ingredient-highlights'] %>
+            </div>
+            <div class="quiz-product-info-group">
+              <div class="quiz-product-rating"></div>
+              <div class="quiz-product-price">
+                $<%= product.price.price %>.00
+              </div>
+            </div>
+          </a>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+</script>
+
 <script type="text/x-template" id="template-results-section">
   <div class="quiz-section">
     <%= _sectionTabPart(section) %>
@@ -278,7 +311,13 @@
             </div>
           <% })%>
         </div>
-        <div class="quiz-carousel-container"></div>
+        <div class="quiz-additional-products-header">
+          Additional products with these ingredients
+        </div>
+        <div class="quiz-carousel-container" data-role="additional-products"></div>
+        <a class="quiz-link-button button-all-products" href="/product">
+          SEE ALL OUR PRODUCTS
+        </a>
       </div>
     </div>
   </div>

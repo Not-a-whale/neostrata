@@ -922,6 +922,173 @@
   }
 }
 
+.quiz-additional-products-header {
+  text-align: center;
+  color: #4e5458;
+  font-weight: bold;
+
+  @media (min-width: 992px) {
+    font-size: 1.9rem;
+    margin-bottom: 2.25rem;
+  }
+  @media (max-width: 991px) {
+    font-size: 2.86rem;
+    margin-top: 5.156rem;
+    margin-bottom: 4.686rem;
+  }
+}
+
+.quiz-carousel-container {
+  position: relative;
+
+  @media (min-width: 992px) {
+    width: 100%;
+    height: 0;
+    padding-bottom: 63.725%;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    border-style: solid;
+    border-color: transparent;
+
+    background-image: none;
+    width: 0;
+    height: 0;
+
+    @media (min-width: 992px) {
+      border-width: 1rem;
+      margin-top: -1rem;
+    }
+    @media (max-width: 991px) {
+      border-width: 2.156rem;
+      margin-top: -2.156rem;
+    }
+  }
+
+  .swiper-button-next {
+    border-left-color: #4e5458;
+    right: 0;
+    left: auto;
+
+    @media (min-width: 992px) {
+      margin-right: -3rem;
+    }
+    @media (max-width: 991px) {
+      margin-right: -6.468rem;
+    }
+  }
+
+  .swiper-button-prev {
+    border-right-color: #4e5458;
+    left: 0;
+    right: auto;
+
+    @media (min-width: 992px) {
+      margin-left: -3rem;
+    }
+    @media (max-width: 991px) {
+      margin-left: -6.468rem;
+    }
+  }
+}
+
+.quiz-carousel-frame {
+  @media (min-width: 992px) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.quiz-additional-product {
+  width: 100%;
+  position: relative;
+  padding: 0 0.375rem;
+
+  color: #4e5458;
+
+  img {
+    width: 100%;
+    cursor: pointer;
+  }
+}
+
+.product-tile-link {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.quiz-product-type {
+  font-style: italic;
+  text-transform: uppercase;
+
+  @media (min-width: 992px) {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+  }
+  @media (max-width: 991px) {
+    margin-top: 2.25rem;
+    font-size: 1.672rem;
+  }
+}
+
+.quiz-product-title {
+  font-weight: bold;
+  cursor: pointer;
+
+  @media (min-width: 992px) {
+    font-size: 1.1875rem;
+  }
+  @media (max-width: 991px) {
+    font-size: 2.28rem;
+  }
+}
+
+.quiz-product-ingredients {
+  @media (min-width: 992px) {
+    margin-top: 0.5rem;
+    font-size: 0.834rem;
+  }
+  @media (max-width: 991px) {
+    font-size: 1.6rem;
+  }
+}
+
+.quiz-product-info-group {
+  margin-top: 1.5rem;
+}
+
+.quiz-product-price {
+  text-align: right;
+  font-weight: bold;
+
+  @media (min-width: 992px) {
+    font-size: 0.875rem;
+    padding-right: 1.75rem;
+  }
+  @media (max-width: 991px) {
+    font-size: 1.672rem;
+    padding-right: 3.84rem;
+  }
+}
+
+[data-section-sub="ingredients"] .button-all-products {
+  margin-top: 5.625rem;
+
+  @media (min-width: 992px) {
+    display: none;
+  }
+}
+
 .option-spectrum {
   display: flex;
   flex-direction: row;

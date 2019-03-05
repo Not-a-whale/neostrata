@@ -6,7 +6,8 @@ define([
   'modules/api',
   'modules/models-product',
   'modules/cart-monitor',
-  'hyprlive'
+  'hyprlive',
+  'swiper'
 ], function(
   $,
   _,
@@ -14,7 +15,8 @@ define([
   API,
   ProductModel,
   CartMonitor,
-  Hypr
+  Hypr,
+  Swiper
 ) {
   var DEBUG = false;
 
@@ -404,61 +406,83 @@ define([
   };
 
   var INGREDIENTS = {
-    'GLYCOLIC ACID':
-      'Glycolic acid is a natural derivative of sugar cane. It refines the appearance of pore ' +
-      'size and smooths the look of fine lines and wrinkles. NEOSTRATA® products that contain ' +
-      'Glycolic Acid are enhanced with Smart Amphoteric Complex, which delivers the acid ' +
-      'gradually for maximum efficacy and minimal irritation.',
+    'GLYCOLIC ACID': {
+      property: 'glycolic-acid',
+      description: 'Glycolic acid is a natural derivative of sugar cane. It refines the appearance of pore ' +
+        'size and smooths the look of fine lines and wrinkles. NEOSTRATA® products that contain ' +
+        'Glycolic Acid are enhanced with Smart Amphoteric Complex, which delivers the acid ' +
+        'gradually for maximum efficacy and minimal irritation.'
+    },
 
-    'CITRIC ACID':
-      'Citric acid, found naturally in citrus fruits, is a powerful Alpha/Beta Hydroxy Acid ' +
-      'that has photodamage corrective antiaging effects. It’s also a powerful antioxidant ' +
-      'that helps protect skin against oxidative stress.',
+    'CITRIC ACID': {
+      property: 'citric-acid',
+      description: 'Citric acid, found naturally in citrus fruits, is a powerful Alpha/Beta Hydroxy Acid ' +
+        'that has photodamage corrective antiaging effects. It’s also a powerful antioxidant ' +
+        'that helps protect skin against oxidative stress.'
+    },
 
-    'MANDELIC ACID':
-      'Mandelic acid is an oil-soluble AHA found naturally in almonds. It’s the perfect ' +
-      'exfoliating acid for oily and blemish-prone skin and actually reduces oily shine ' +
-      'with continued use.',
+    'MANDELIC ACID': {
+      property: 'mandelic-acid',
+      description: 'Mandelic acid is an oil-soluble AHA found naturally in almonds. It’s the perfect ' +
+        'exfoliating acid for oily and blemish-prone skin and actually reduces oily shine ' +
+        'with continued use.'
+    },
 
-    'GLUCONOLACTONE':
-      'Gluconolactone is found naturally in the skin and provides gentle antiaging and exfoliating ' +
-      'benefits without causing sun sensitivity. It also hydrates and provides antioxidant ' +
-      'benefits.',
+    'GLUCONOLACTONE': {
+      property: 'gluconolactone',
+      description: 'Gluconolactone is found naturally in the skin and provides gentle antiaging and exfoliating ' +
+        'benefits without causing sun sensitivity. It also hydrates and provides antioxidant ' +
+        'benefits.'
+    },
 
-    'LACTOBIONIC ACID':
-      'Non-irritating Lactobionic Acid is part of the PHA family. This patented exfoliator, ' +
-      'known as a "Bionic Acid,” helps reduce the look of lines and wrinkles, discoloration, ' +
-      'enlarged pores and roughness. It’s also a potent antioxidant and humectant, making ' +
-      'it ideal for dry skin.',
+    'LACTOBIONIC ACID': {
+      property: 'lactobionic-acids',
+      description: 'Non-irritating Lactobionic Acid is part of the PHA family. This patented exfoliator, ' +
+        'known as a "Bionic Acid,” helps reduce the look of lines and wrinkles, discoloration, ' +
+        'enlarged pores and roughness. It’s also a potent antioxidant and humectant, making ' +
+        'it ideal for dry skin.'
+    },
 
-    'MALTOBIONIC ACID':
-      'Non-irritating Maltobionic Acid is part of the PHA family. This patented exfoliator, ' +
-      'known as a "Bionic Acid,” helps reduce the look of lines and wrinkles, discoloration, ' +
-      'enlarged pores and roughness. It’s also a potent antioxidant and humectant, making ' +
-      'it ideal for dry skin.',
+    'MALTOBIONIC ACID': {
+      property: 'maltobionic-acid',
+      description: 'Non-irritating Maltobionic Acid is part of the PHA family. This patented exfoliator, ' +
+        'known as a "Bionic Acid,” helps reduce the look of lines and wrinkles, discoloration, ' +
+        'enlarged pores and roughness. It’s also a potent antioxidant and humectant, making ' +
+        'it ideal for dry skin.'
+    },
 
-    'AMINOFIL':
-      'Aminofil® is a revolutionary, patented amino acid derivative. It targets expression lines ' +
-      'such as scowl lines, furrows, smile lines and crow’s feet. Aminofil® is the ingredient ' +
-      'for volume building, plumping and firming the look of skin.',
+    'AMINOFIL': {
+      property: 'aminofil',
+      description: 'Aminofil® is a revolutionary, patented amino acid derivative. It targets expression lines ' +
+        'such as scowl lines, furrows, smile lines and crow’s feet. Aminofil® is the ingredient ' +
+        'for volume building, plumping and firming the look of skin.'
+    },
 
-    'NEOGLUCOSAMINE':
-      'NeoGlucosamine® is a patented, non-acid amino sugar that improves discoloration and ' +
-      'diminishes the appearance of fine lines & wrinkles. Gently exfoliates to reveal fresh ' +
-      'new cells. It’s also a building block of skin’s natural Hyaluronic Acid and helps ' +
-      'promote firm skin.',
+    'NEOGLUCOSAMINE': {
+      property: 'neo-glucosamine',
+      description: 'NeoGlucosamine® is a patented, non-acid amino sugar that improves discoloration and ' +
+        'diminishes the appearance of fine lines & wrinkles. Gently exfoliates to reveal fresh ' +
+        'new cells. It’s also a building block of skin’s natural Hyaluronic Acid and helps ' +
+        'promote firm skin.'
+    },
 
-    'RETINOL':
-      'Retinol, a form of Vitamin A, helps smooth wrinkles and diminishes the appearance of ' +
-      'uneven pigment.',
+    'RETINOL': {
+      property: 'retinol',
+      description: 'Retinol, a form of Vitamin A, helps smooth wrinkles and diminishes the appearance of ' +
+        'uneven pigment.'
+    },
 
-    'VITAMIN C':
-      'Vitamin C, also known as ascorbic acid, is an antioxidant that protects the skin ' +
-      'against UV-induced free radicals to help maintain a youthful appearance.',
+    'VITAMIN C': {
+      property: 'vitamin-c',
+      description: 'Vitamin C, also known as ascorbic acid, is an antioxidant that protects the skin ' +
+        'against UV-induced free radicals to help maintain a youthful appearance.'
+    },
 
-    'HYALURONIC ACID':
-      'Hyaluronic acid is a natural acid found in the skin’s support matrix. When applied ' +
-      'topically, HA acts like a sponge to attract and hold moisture, thus hydrating skin.'
+    'HYALURONIC ACID': {
+      property: 'hyaluronic-acid',
+      description: 'Hyaluronic acid is a natural acid found in the skin’s support matrix. When applied ' +
+        'topically, HA acts like a sponge to attract and hold moisture, thus hydrating skin.'
+    }
   };
 
   var CATALOG = {};
@@ -916,6 +940,8 @@ define([
       this.model.on('change:currentSection', this.updateActiveState, this);
       this.model.on('change:inputs', this.render, this);
 
+      this.$AdditionalProducts = new AdditionalProducts({ el: this.$el });
+
       this.render();
     },
 
@@ -934,18 +960,24 @@ define([
         ingredients: regimen && regimen.ingredients && regimen.ingredients.slice(0, 2).map(function(ingredient) {
           return {
             name: ingredient,
-            description: INGREDIENTS[ingredient]
+            property: INGREDIENTS[ingredient].property,
+            description: INGREDIENTS[ingredient].description
           };
         })
       }, templateHelpers);
 
       this.$el.html(this.template(locals));
+
+      this.$AdditionalProducts.update(regimen);
     },
 
     updateActiveState: function() {
       var active = this.model.get('currentSection') === this.sectionHash;
+
       this.$el.toggleClass('active', active);
       this.visited = this.visited || active;
+
+      if (active) this.$AdditionalProducts.render();
     },
 
     selectRegimen: function() {
@@ -986,6 +1018,96 @@ define([
       }
 
       return _.extend({}, recommendation, { price: _.extend({}, recommendation.price, { price: currency(recommendation.price.price) }) });
+    }
+  });
+
+  var AdditionalProducts = Backbone.View.extend({
+    template: _.template($('#template-additional-products').html()),
+
+    initialize: function() {
+      this.regimen = null;
+      this.cache = {};
+      this.products = [];
+    },
+
+    render: function() {
+      this.$('[data-role="additional-products"]').html(this.template({ products: this.products }));
+
+      new Swiper('[data-role="additional-products"] .swiper-container', {
+        slidesPerView: 3,
+        spaceBetween: 0,
+        loop: true,
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
+        },
+        breakpoints: {
+            1024: {
+                slidesPerView: 3
+            },
+            992: {
+                slidesPerView: 1
+            },
+            768: {
+                slidesPerView: 1
+            }
+        }
+      });
+    },
+
+    update: function(regimen) {
+      var self = this;
+
+      this.regimen = regimen;
+
+      if (!regimen) return;
+
+      // Use cached search results, so we don't have to re-fetch each time the inputs change.
+      if (this.cache[regimen.slug]) {
+        this.products = this.cache[regimen.slug];
+        this.render();
+      }
+      else {
+        var properties = regimen.ingredients
+          .slice(0, 2)
+          .map(function(ingredient) {
+            return INGREDIENTS[ingredient].property;
+          });
+
+        console.log('update():', properties);
+
+        var filter = properties
+          .map(function(value) {
+            return 'properties.tenant~ingredient eq ' + value;
+          })
+          .join(' or ');
+
+        API.get('search', { filter: filter })
+          .then(function(result) {
+            // An array of matching products is returned in result.data.items.
+
+            var products = result.data.items.map(function(product) {
+              return _.extend({}, product, {
+                propertiesMap: product.properties.reduce(function(acc, property) {
+                  var data = _.extend({}, acc);
+
+                  data[property.attributeFQN] = property.values.map(function(value) {
+                    return value.stringValue || value.value;
+                  }).join(', ');
+
+                  return data;
+                })
+              });
+            });
+
+            console.log('update() result:', { products: products });
+
+            self.products = products;
+            self.cache[regimen.slug] = products;
+
+            self.render();
+          });
+      }
     }
   });
 
