@@ -494,6 +494,8 @@
     "instalUrl": "https://www.instagram.com/neostrata/",
     "facebookUrl": "https://www.facebook.com/neostrata/",
     "youtubeUrl": "https://www.youtube.com/neostrata",
+    "promotionMessage": "",
+    "promotionId": "",
     "sitesURLs": {
       "en-ca": "//www.neostrata.ca",
       "fr-ca": "//fr.neostrata.ca"
