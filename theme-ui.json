@@ -64,16 +64,6 @@
                     "xtype": "mz-input-text",
                     "name": "youtubeUrl",
                     "fieldLabel": "Youtube URL"
-                },
-                {
-                    "xtype": "mz-input-text",
-                    "name": "promotionId",
-                    "fieldLabel": "Home Page Promotion ID"
-                },
-                {
-                    "xtype": "mz-input-textarea",
-                    "name": "promotionMessage",
-                    "fieldLabel": "Home Page Promotion Message"
                 }
             ]
         },
