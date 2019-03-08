@@ -1,15 +1,17 @@
-{% if model.config.promoText %}
-<div class="promoAd" id="promoText">
-{{ model.config.promoText }}
+<div class="promoAdminBanner {% if pageContext.isEditMode %}show{% endif %}">
+	{% if model.config.promoText %}
+	<div class="promoAd" id="promoText">
+	{{ model.config.promoText }}
+	</div>
+	<div class="promoAd" id="promoCss">
+	{{ model.config.promoCss }}
+	</div>
+	<div class="promoAd" id="promoUrl">
+	{{ model.config.promoUrl }}
+	</div>
+	<div class="promoAd" id="promoId">
+	{{ model.config.promoId }}
+	</div>
+	{% require_script "widgets/homepage/promo" %}
+	{% endif %}
 </div>
-<div class="promoAd" id="promoCss">
-{{ model.config.promoCss }}
-</div>
-<div class="promoAd" id="promoUrl">
-{{ model.config.promoUrl }}
-</div>
-<div class="promoAd" id="promoId">
-{{ model.config.promoId }}
-</div>
-{% require_script "widgets/homepage/promo" %}
-{% endif %}
