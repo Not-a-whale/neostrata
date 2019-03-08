@@ -4,6 +4,8 @@
 {% require_script "pages/product" %}
 {% with model|get_product_attribute_value("tenant~skin-care-system") as skinCareSystem %}
 <div itemscope itemtype="http://schema.org/Product" class="mz-l-container container {{model|get_product_attribute("tenant~skin-care-system")|prop("values")|first|prop("value")|lower}}">
+   <meta itemprop="brand" content="NEOSTRATA" />
+   <meta itemprop="mpn" content="{{model.productCode}}" />
   {% if (PageContext.isTablet or PageContext.isDesktop) and themeSettings.enableProductCarousel %}
     {% include "modules/product/product-top-carousel" %}
   {% endif %}
@@ -29,6 +31,8 @@
               </div>
             </div>
             <div itemprop="offers" itemscope itemtype="http://schema.org/Offer" class="mz-productdetail-price mz-l-stack-section">
+              <meta itemprop="url" content="{{ pageContext.secureHost }}{% make_url "product" model %}" />
+              <meta itemprop="availability" content="http://schema.org/InStock" />
               {% include "modules/product/price-stack" %}
             </div>
         </div>
