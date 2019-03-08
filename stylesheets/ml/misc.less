@@ -4608,3 +4608,33 @@ body.mz-product {
         margin-bottom: 1rem;
     }
 }
+// Promo style
+.promoTextAd {
+    color: @colorWhite;
+    background-color: @charcoal;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 0.5rem;
+    padding: 1rem 2rem;
+    right: 5rem;
+    z-index: 9;
+    i{
+        padding-left: 1rem;
+        cursor: pointer;
+        float: right;
+        clear: both;
+        padding-top: 4px;
+    }
+    .promoLink {
+        color: @colorWhite;
+        display: block;
+        font-weight: @fontWeightBook; 
+        font-size: 0.6875rem;
+    }
+}
+.promoAdminBanner {
+    display: none;
+    &.show {
+        display: block;
+    }
+}

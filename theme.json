@@ -2150,6 +2150,42 @@
     },
     {
       "defaultConfig": {},
+      "displayName": "Page Promotion Message",
+      "displayTemplate": "misc/promo",
+      "editViewFields": [
+        {
+          "anchor": "100%",
+          "fieldLabel": "Promotion Message",
+          "name": "promoText",
+          "xtype": "mz-input-text"
+        },
+        {
+          "anchor": "100%",
+          "fieldLabel": "Promotion Id",
+          "name": "promoId",
+          "xtype": "mz-input-text"
+        },
+        {
+          "anchor": "100%",
+          "fieldLabel": "Terms and Conditions link",
+          "name": "promoUrl",
+          "xtype": "mz-input-text"
+        },
+        {
+          "anchor": "100%",
+          "fieldLabel": "CSS Selector",
+          "name": "promoCss",
+          "xtype": "mz-input-text"
+        }
+      ],
+      "icon": "/resources/admin/widgets/social.png",
+      "id": "page-promotion-message",
+      "validPageTypes": [
+        "*"
+      ]
+    },
+    {
+      "defaultConfig": {},
       "displayName": "Product carousel 4 products Dark",
       "displayTemplate": "misc/product-carousel-4products-dark",
       "editViewFields": [
