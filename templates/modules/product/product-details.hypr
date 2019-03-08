@@ -33,6 +33,7 @@
             <div itemprop="offers" itemscope itemtype="http://schema.org/Offer" class="mz-productdetail-price mz-l-stack-section">
               <meta itemprop="url" content="{{ pageContext.secureHost }}{% make_url "product" model %}" />
               <meta itemprop="availability" content="http://schema.org/InStock" />
+              <meta itemprop="priceCurrency" content="{{siteContext.currencyInfo.currencyCode}}" />
               {% include "modules/product/price-stack" %}
             </div>
         </div>
