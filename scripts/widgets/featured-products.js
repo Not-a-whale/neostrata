@@ -105,6 +105,8 @@
                 }
             });
             if(cat){
+                console.log('search', cat);
+
                 api.get("search", { filter: "categoryId eq " + cat }).then(function(productResponse){
                     count = productResponse.length;
                     for(var i=0; productResponse.length; i++){

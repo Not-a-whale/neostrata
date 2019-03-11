@@ -268,9 +268,14 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
         },
         retrievePassword: function () {
             this.setLoading(true);
-            api.action('customer', 'resetPasswordStorefront', {
-                EmailAddress: this.$parent.find('[data-mz-forgotpassword-email]').val()
-            }).then(_.bind(this.displayResetPasswordMessage,this), this.displayApiMessage);
+            var self = this;            
+            var urlParts = window.location.href.split("/");
+            var resetPasswordStorefrontURL = urlParts[0] + "//" + urlParts[2] + '/customResetPasswordStorefront/checkData';
+            $.post(resetPasswordStorefrontURL, {EmailAddress: this.$parent.find('[data-mz-forgotpassword-email]').val()}).then(function(data){
+                api.action('customer', 'resetPasswordStorefront', {
+                    EmailAddress: data.realEmail
+                }).then(_.bind(self.displayResetPasswordMessage,self), self.displayApiMessage);        
+            });           
         },
         handleLoginComplete: function (returnUrl) {
             if ( returnUrl ){
