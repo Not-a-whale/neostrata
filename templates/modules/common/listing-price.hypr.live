@@ -2,7 +2,7 @@
 <span class="is-not-ranged mz-price is-crossedout">
     {% include "modules/common/localized-currency" with amount=model.price %}
 </span>
-<span itemprop="price" class="mz-price is-saleprice">
+<span itemprop="price" class="mz-price is-saleprice"  content={{model.price}}>
     {% include "modules/common/localized-currency" with amount=model.price %}
     {% if model.priceType == "MAP" %}
     <div>add to cart to see final price</div>
@@ -12,7 +12,7 @@
     {% include "modules/common/localized-currency" with amount=model.price %}
 </span>
 {% else %}
-<span itemprop="price" class="mz-price">
+<span itemprop="price" class="mz-price"  content={{model.price}}>
 
 {% include "modules/common/localized-currency" with amount=model.price %}
     {% if model.priceType == "MAP" %}
