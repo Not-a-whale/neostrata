@@ -65,17 +65,15 @@ define(['modules/api',
           var dataValue = ''; 
 
           var item = this.model.get("items").get($target.parent().data('mzItemId'));
-          if (selectedOption && selectedOption != "0") {
-            var autoReplanishCode = $target.val(); 
+          if (selectedOption != "0") {
+            var autoReplanishCode = $('#mz_pdp_autoship_code_'+$target.parent().data('mzProductCode')).find(":selected").val(); 
             dataValue = {
               autoreplanishmentCode : autoReplanishCode
             }; 
           }
 
           item.set('data', dataValue);
-          item.apiUpdate().then(function(success){
-            console.log('success : ', success); 
-          }, function(error){
+          item.apiUpdate().then(function(success){}, function(error){
               console.log('issue on the api update'); 
           });
          
@@ -90,9 +88,7 @@ define(['modules/api',
             autoreplanishmentCode : autoReplanishCode
           }; 
           item.set('data', dataValue );
-          item.apiUpdate().then(function(success){
-            console.log('success : ', success); 
-          }, function(error){
+          item.apiUpdate().then(function(success){}, function(error){
               console.log('issue on the api update'); 
           });
         },
