@@ -153,20 +153,16 @@ define(["modules/jquery-mozu", "underscore", "modules/backbone-mozu", "hyprlive"
                 FamilyItem.addToCart();
             }
             this.whenReady(function () {
-                console.log('in the addtoCaart -- ', me); 
                 if (!me.validate()) {
                     var fulfillMethod = me.get('fulfillmentMethod');
                     if (!fulfillMethod) {
                         fulfillMethod = (me.get('goodsType') === 'Physical') ? Product.Constants.FulfillmentMethods.SHIP : Product.Constants.FulfillmentMethods.DIGITAL;
                     }
-                    console.log('in the addtoCaart'); 
-                    
                     me.apiAddToCart({
                         options: me.getConfiguredOptions(),
                         fulfillmentMethod: fulfillMethod,
                         quantity: me.get("quantity")
                     }).then(function (item) {
-
                         var isAutoReplenishmentEnable = Hypr.getThemeSetting('autoReplenishmentEnable'); 
                         if (isAutoReplenishmentEnable) {
                             item.data.data = {};
@@ -176,16 +172,13 @@ define(["modules/jquery-mozu", "underscore", "modules/backbone-mozu", "hyprlive"
                             
                             if (isAutoReplanishProduct) {
                                 var isAutoReplahish = $("input[name*='_autoShipRadio']:checked")[0].value; 
-                                console.log('Item Data ', item.data); 
                                 if (isAutoReplahish == "1") {
-                                    console.log('is auuto replanish'); 
                                     var autoReplanishCode = $('#mz_pdp_autoship_code').find(":selected").val(); 
                                     item.data.data = { autoreplanishmentCode: autoReplanishCode };
                                 } 
                             }
                             
                             var apiData = require.mozuData('apicontext');
-                            console.log('Item Data BEFORE API CALL ', item.data); 
                             $.ajax({
                                 url: '/api/commerce/carts/current/items/'+item.data.id,
                                 headers: apiData.headers,
