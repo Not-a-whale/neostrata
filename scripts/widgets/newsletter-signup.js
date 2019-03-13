@@ -42,9 +42,7 @@ require(['modules/jquery-mozu', 'underscore', 'hyprlive'], function($, _, Hypr) 
         $('<option/>').val(year).html(year).appendTo('#input_dob_year');
       }
 
-      $( '#custom_field_string_custom_field_2_field_'+getFormId()  ).after(
-        '<div style="clear:both">You must be over 13 years of age to sign up for our newsletter.<br />Please see our <a href=\"/privacy-policy\">Privacy Policy</a> for details.</div>'
-      );
+      $( '#custom_field_string_custom_field_2_field_'+getFormId()).after('<div style="clear:both">'+Hypr.getLabel('thirteenError')+'</div>');
                 
       // Customize user-type field.
       $( '#custom_field_string_user_type_'+getFormId()).prop( 'type', 'hidden' );

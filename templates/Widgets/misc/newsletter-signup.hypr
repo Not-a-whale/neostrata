@@ -20,7 +20,7 @@
 </div>
 <!-- Begin Constant Contact Active Forms -->
 <script id="cc-universal">
-  var _ctct_m = "d0beaf76870b02829443423704fdb90a";
+  var _ctct_m = "e1a2d361e295b4067e4ab11321bbc9b9";
 </script>
 <!-- End Constant Contact Active Forms -->
 
@@ -44,18 +44,18 @@
 <script type="text/template" id="template-newsletter-dob">
     <select name="input_dob_month" id="input_dob_month" class="input_dob_month input_age" >
         <option value="">{{ labels.newsletterSelectMonth }}</option>
-        <option value="January">January</option>
-        <option value="February">February</option>
-        <option value="March">March</option>
-        <option value="April">April</option>
-        <option value="May">May</option>
-        <option value="June">June</option>
-        <option value="July">July</option>
-        <option value="August">August</option>
-        <option value="September">September</option>
-        <option value="October">October</option>
-        <option value="November">November</option>
-        <option value="December">December</option>
+        <option value="January">{{ labels.newsletterJanuary }}</option>
+        <option value="February">{{ labels.newsletterFebruary }}</option>
+        <option value="March">{{ labels.newsletterMarch }}</option>
+        <option value="April">{{ labels.newsletterApril }}</option>
+        <option value="May">{{ labels.newsletterMay }}</option>
+        <option value="June">{{ labels.newsletterJune }}</option>
+        <option value="July">{{ labels.newsletterJuly }}</option>
+        <option value="August">{{ labels.newsletterAugust }}</option>
+        <option value="September">{{ labels.newsletterSeptember }}</option>
+        <option value="October">{{ labels.newsletterOctober }}</option>
+        <option value="November">{{ labels.newsletterNovember }}</option>
+        <option value="December">{{ labels.newsletterDecember }}</option>
     </select>
     <select name="input_dob_day" id="input_dob_day" class="input_dob_day input_age" >
       <option value="">{{ labels.newsletterSelectDay }}</option>
