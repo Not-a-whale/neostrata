@@ -153,7 +153,7 @@ define(["modules/jquery-mozu", "underscore", "modules/backbone-mozu", "hyprlive"
                 FamilyItem.addToCart();
             }
             this.whenReady(function () {
-                console.log('in the addtoCaart'); 
+                console.log('in the addtoCaart -- ', me); 
                 if (!me.validate()) {
                     var fulfillMethod = me.get('fulfillmentMethod');
                     if (!fulfillMethod) {
@@ -169,14 +169,23 @@ define(["modules/jquery-mozu", "underscore", "modules/backbone-mozu", "hyprlive"
 
                         var isAutoReplenishmentEnable = Hypr.getThemeSetting('autoReplenishmentEnable'); 
                         if (isAutoReplenishmentEnable) {
-                            var isAutoReplahish = $("input[name*='_autoShipRadio']:checked")[0].value; 
-                            item.data.data = null;
-                            if (isAutoReplahish == "1") {
-                                console.log('is auuto replanish'); 
-                                var autoReplanishCode = $('#mz_pdp_autoship_code').find(":selected").val(); 
-                                item.data.data = { autoreplanishmentCode: autoReplanishCode };
+                            item.data.data = {};
+                            
+                            var autoReplahishPropName = Hypr.getThemeSetting('autoReplanishmentRecomendedInterval'); 
+                            var isAutoReplanishProduct = _.contains(_.flatten(_.pluck(item.data.product.properties, 'attributeFQN')), autoReplahishPropName);
+                            
+                            if (isAutoReplanishProduct) {
+                                var isAutoReplahish = $("input[name*='_autoShipRadio']:checked")[0].value; 
+                                console.log('Item Data ', item.data); 
+                                if (isAutoReplahish == "1") {
+                                    console.log('is auuto replanish'); 
+                                    var autoReplanishCode = $('#mz_pdp_autoship_code').find(":selected").val(); 
+                                    item.data.data = { autoreplanishmentCode: autoReplanishCode };
+                                } 
                             }
+                            
                             var apiData = require.mozuData('apicontext');
+                            console.log('Item Data BEFORE API CALL ', item.data); 
                             $.ajax({
                                 url: '/api/commerce/carts/current/items/'+item.data.id,
                                 headers: apiData.headers,
@@ -185,50 +194,12 @@ define(["modules/jquery-mozu", "underscore", "modules/backbone-mozu", "hyprlive"
                                 contentType: "application/json; charset=utf-8",
                                 data: JSON.stringify(item.data)
                             }).done(function(data) {
-                                console.log("Cart item updated", data);
-
+                                console.log('Item Data AFTER API CALL ', item.data); 
                                 me.trigger('addedtocart', item);
-/*                                if (!data.data) {
-
-                                    var cart = ''; //CartModels.Cart.fromCurrent();
-          
-                                    var couponCode = "autoship_discount"; 
-                                    var discount = _.find(data.productDiscounts, function(e) {
-                                        return e.discount.name === couponCode;
-                                    }); 
-
-                                    var apiData = require.mozuData('apicontext');
-                                    
-
-                                    $.ajax({
-                                        
-                                        url: '/api/commerce/carts/'+cart.id+'/coupons/'+discount.discount.id,
-                                        headers: apiData.headers,
-                                        method: 'PUT',
-                                        dataType: "json",
-                                        contentType: "application/json; charset=utf-8"
-                                       
-                                    }).done(function(data) {
-                                        console.log("Cart item updated- coupon removed", data);
-                                        me.trigger('addedtocart', item);
-                                        me.trigger('couponremoved', couponCode);
-                                    }).fail(function() {
-                                        console.log("Error updating cart item - removing the coupon ");
-                                    });  
-                                }  */
                             }).fail(function() {
                                 console.log("Error updating cart item");
                             });
-                        } else {
-                            me.trigger('addedtocart', item);
-
-                            var couponCode = "autoship_discount"; 
-                            me.apiRemoveCoupon(couponCode).then(function(response){
-                                console.log('couponremoved', couponCode); 
-                                me.trigger('couponremoved', couponCode);
-                            });
-
-                        }
+                        } 
                     }, function(err) {
                         if(err.message.indexOf("Validation Error: The following items have limited quantity or are out of stock:") !== -1){ 
                             me.messages.reset({ message: Hypr.getLabel('productOutOfStockError') });

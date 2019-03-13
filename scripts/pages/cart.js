@@ -52,7 +52,49 @@ define(['modules/api',
               me.fulfillmentInfoCache.push(dataObject);
 
             });
+        },
+        additionalEvents: {
+          "change [data-mz-autoreplanish-radio]": "handleAutoshipOption", 
+          "change [data-mz-autoreplanish]": "handleAutoshipFrequency", 
+        },
 
+        handleAutoshipOption: function(e){
+          var self = this;
+          var $target = $(e.currentTarget);
+          var selectedOption = $target.val();
+          var dataValue = ''; 
+
+          var item = this.model.get("items").get($target.parent().data('mzItemId'));
+          if (selectedOption && selectedOption != "0") {
+            var autoReplanishCode = $target.val(); 
+            dataValue = {
+              autoreplanishmentCode : autoReplanishCode
+            }; 
+          }
+
+          item.set('data', dataValue);
+          item.apiUpdate().then(function(success){
+            console.log('success : ', success); 
+          }, function(error){
+              console.log('issue on the api update'); 
+          });
+         
+        },
+        handleAutoshipFrequency: function(e){
+          var self = this;
+          var $target = $(e.currentTarget);
+
+          var item = this.model.get("items").get($target.parent().data('mzItemId'));
+          var autoReplanishCode = $target.val(); 
+          var dataValue = {
+            autoreplanishmentCode : autoReplanishCode
+          }; 
+          item.set('data', dataValue );
+          item.apiUpdate().then(function(success){
+            console.log('success : ', success); 
+          }, function(error){
+              console.log('issue on the api update'); 
+          });
         },
         render: function() {
             preserveElement(this, ['.v-button', '.p-button'], function() {
