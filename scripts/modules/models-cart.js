@@ -170,6 +170,13 @@ define(['underscore', 'modules/backbone-mozu', 'hyprlive', "modules/api", "modul
                 me.isLoading(false);
             });
         },
+        removeCoupon: function(code) {
+            var me = this;
+            return this.apiRemoveCoupon(code).then(function(response){
+                console.log('coupon removed', response); 
+                me.trigger('couponremoved', code);
+            });
+        },
         toJSON: function(options) {
             var j = Backbone.MozuModel.prototype.toJSON.apply(this, arguments);
             return j;
