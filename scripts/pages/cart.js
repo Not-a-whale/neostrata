@@ -68,6 +68,7 @@
                 item = this.model.get("items").get(id);
             setTimeout(function () {
                 if(newQuantity == parseInt($qField.val(), 10)){
+                    $qField.attr('disabled', true);
                     if (item && !isNaN(parseInt($qField.val(), 10))) {
                         item.set('quantity', parseInt($qField.val(), 10));
                         item.saveQuantity();
