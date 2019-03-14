@@ -71,7 +71,20 @@
               <label class="icon-dot form-element" for="{{model.productCode}}_autoShipRadio_0">
                   {{labels.oneTimePurchase}}
               </label>
+              <a class="dl-autoship-info" href="javascript:void(0);" onclick="jQuery('#autoShipDetails').show();"><i class="fa fa-question-circle"></i></a>
             </div>
+        </div>
+        <div class="ml-auto-ship " id="autoShipDetails" style="display: block;">
+            <a class="dl-autoship-close" href="javascript:void(0);" onclick="jQuery('#autoShipDetails').hide();"></a>
+            <span style="font-size: 18px; font-weight: bold;">Auto Replenishment</span><br><br>
+            How it works:<br><br>
+            <ol> 
+            <li>Shop your favorite products and select the Auto Replenishment option</li>
+            <li>Manage your delivery frequency by selecting how often you would like to receive your product</li>
+            <li>Save 10% &amp; receive free shipping on every Auto Replenishment order</li>
+            <li>Get an email reminder before each delivery ships from our warehouse</li>
+            <li>Adjust or cancel your next scheduled delivery in My Account. Changes must be made at least 3 days prior to your next scheduled order date.</li>
+            </ol>
         </div>
     </div>
     {% endif %}

@@ -3025,6 +3025,45 @@ ul.tabs {
             }
         }
     }
+    #autoShipDetails {
+        width: 350px !important;
+        top: 50%;
+        left: 50%;
+        height: 360px;
+        position: absolute;
+        visibility: visible;
+        background-color: #fff;
+        border-radius: 2px;
+        padding: 20px;
+        z-index: 1000;
+        bottom: 23%;
+        margin-left: 0;
+        border: 1px solid #afafaf;
+        box-shadow: 0 0 1em #afafaf;
+        overflow-y: auto;
+        font-size: 1rem;
+        transform: translate(-50%,-50%);
+        .dl-autoship-close {
+            display: block;
+            float: right;
+            text-align: right;
+            width: 100%;
+            text-decoration: none;
+            cursor: pointer;
+            &::after {
+                content: "\f00d";
+                font-family: FontAwesome;
+                color: #000;
+                position: absolute;
+            }
+        }
+    }
+    .dl-autoship-info {
+        .fa.fa-question-circle {
+            color: #8fabcc;
+            font-size: 1.8rem;
+        }
+    }
 }
 
 /* End Auto replenishment options */
