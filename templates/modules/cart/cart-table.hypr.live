@@ -96,8 +96,12 @@
             {% if  item.product|get_product_attribute(themeSettings.autoReplanishmentMonthInterval) %}
             <div class="mz-autoShip-wrapper col-xs-8 nopaddingleft">
                 <div class="mz-autoship-content col-xs-12 pull-left nopaddingleft">
-                    <div class="col-xs-2" data-mz-product-code="{{item.product.productCode}}" data-mz-item-id="{{ item.id }}" ><input data-mz-autoreplanish-radio type="radio" name="{{item.product.productCode}}_autoShipRadio"  value="1" {% if item.data && item.data.autoreplanishmentCode %} checked {% endif %} /> </div> 
-                    <div class="col-xs-10 mz-autoship-content-title">{{labels.autoShipDelivery}}</div>
+                    <div class="col-xs-2" data-mz-product-code="{{item.product.productCode}}" data-mz-item-id="{{ item.id }}" >
+                      <input data-mz-autoreplanish-radio type="radio" name="{{item.product.productCode}}_autoShipRadio" id="{{item.product.productCode}}_autoShipRadio_1"  value="1" {% if item.data && item.data.autoreplanishmentCode %} checked {% endif %} /> 
+                      <label class="icon-dot form-element" for="{{item.product.productCode}}_autoShipRadio_1">
+                        {{labels.autoShipDelivery}}
+                      </label>  
+                    </div> 
                     <div class="col-xs-10 offset-xs-2 mz-autoship-infomsg">{{labels.autoShipDeliveryDiscount}} </div>
                     <div id="autoshipDropDown" class="col-xs-10 offset-xs-2 " data-mz-product-code="{{ item.product.productCode }}" data-mz-item-id="{{ item.id }}">
                         <select class="mz-autoship-dropdown" id="mz_pdp_autoship_code_{{item.product.productCode}}" data-mz-autoreplanish >
@@ -129,8 +133,12 @@
                     </div>
                 </div>
                 <div class="mz-autoship-content col-xs-12 pull-left nopaddingleft">
-                    <div class="col-xs-2" data-mz-product-code="{{ item.product.productCode }}" data-mz-item-id="{{ item.id }}"><input data-mz-autoreplanish-radio type="radio" name="{{item.product.productCode}}_autoShipRadio" value="0" {% if not item.data || item.data == "" %} checked {% endif %} /> </div>
-                    <div class="col-xs-10 mz-autoship-content-title">{{labels.oneTimePurchase}}</div>
+                    <div class="col-xs-2" data-mz-product-code="{{ item.product.productCode }}" data-mz-item-id="{{ item.id }}">
+                      <input data-mz-autoreplanish-radio type="radio" name="{{item.product.productCode}}_autoShipRadio" id="{{item.product.productCode}}_autoShipRadio_0" value="0" {% if not item.data || item.data == "" %} checked {% endif %} /> 
+                      <label class="icon-dot form-element" for="{{item.product.productCode}}_autoShipRadio_0">
+                        {{labels.oneTimePurchase}}
+                      </label>  
+                    </div>
                 </div>
             </div>
             {% endif %}

@@ -30,9 +30,11 @@
       <div class="mz-autoShip-wrapper">
         <div class="mz-autoship-content col-xs-12 text-left row">
             <div class="col-xs-1  mz-autoship-radio form-row">
-              <input type="radio" name="{{model.productCode}}_autoShipRadio"  value="1" checked /> 
+              <input type="radio" name="{{model.productCode}}_autoShipRadio" id="{{model.productCode}}_autoShipRadio_1"  value="1" checked /> 
+              <label class="icon-dot form-element" for="{{model.productCode}}_autoShipRadio_1">
+                  {{labels.autoShipDelivery}}
+              </label>
             </div> 
-            <div class="col-xs-11 mz-autoship-content-title mz-autoship-save">{{labels.autoShipDelivery}}</div>
             <div class="col-xs-11 offset-xs-1 mz-autoship-infomsg">{{labels.autoShipDeliveryDiscount}} </div>
             <div id="autoshipDropDown" class="col-xs-11 offset-xs-1 ">
                 <select class="mz-autoship-dropdown" id="mz_pdp_autoship_code" >
@@ -64,8 +66,12 @@
             </div>
         </div>
         <div class="mz-autoship-content col-xs-12 text-left row">
-            <div class="col-xs-1 mz-autoship-radio form-row"><input type="radio" name="{{model.productCode}}_autoShipRadio" value="0" /> </div>
-            <div class="col-xs-11 mz-autoship-content-title">{{labels.oneTimePurchase}}</div>
+            <div class="col-xs-1 mz-autoship-radio form-row">
+              <input type="radio" name="{{model.productCode}}_autoShipRadio" id="{{model.productCode}}_autoShipRadio_0" value="0" /> 
+              <label class="icon-dot form-element" for="{{model.productCode}}_autoShipRadio_0">
+                  {{labels.oneTimePurchase}}
+              </label>
+            </div>
         </div>
     </div>
     {% endif %}
