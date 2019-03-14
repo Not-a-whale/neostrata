@@ -29,8 +29,10 @@
     {% if  model|get_product_attribute(themeSettings.autoReplanishmentMonthInterval) %}
       <div class="mz-autoShip-wrapper">
         <div class="mz-autoship-content col-xs-12 text-left row">
-            <div class="col-xs-1"><input type="radio" name="{{model.productCode}}_autoShipRadio"  value="1" checked /> </div> 
-            <div class="col-xs-11 mz-autoship-content-title">{{labels.autoShipDelivery}}</div>
+            <div class="col-xs-1  mz-autoship-radio form-row">
+              <input type="radio" name="{{model.productCode}}_autoShipRadio"  value="1" checked /> 
+            </div> 
+            <div class="col-xs-11 mz-autoship-content-title mz-autoship-save">{{labels.autoShipDelivery}}</div>
             <div class="col-xs-11 offset-xs-1 mz-autoship-infomsg">{{labels.autoShipDeliveryDiscount}} </div>
             <div id="autoshipDropDown" class="col-xs-11 offset-xs-1 ">
                 <select class="mz-autoship-dropdown" id="mz_pdp_autoship_code" >
@@ -62,7 +64,7 @@
             </div>
         </div>
         <div class="mz-autoship-content col-xs-12 text-left row">
-            <div class="col-xs-1"><input type="radio" name="{{model.productCode}}_autoShipRadio" value="0" /> </div>
+            <div class="col-xs-1 mz-autoship-radio form-row"><input type="radio" name="{{model.productCode}}_autoShipRadio" value="0" /> </div>
             <div class="col-xs-11 mz-autoship-content-title">{{labels.oneTimePurchase}}</div>
         </div>
     </div>
