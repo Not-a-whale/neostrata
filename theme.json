@@ -3249,6 +3249,33 @@
       ]
     },
     {
+      "displayName": "Wishlist Item Count",
+      "displayTemplate": "misc/wishlist-item-count",
+      "id": "wishlistItemCount",
+      "defaultConfig": {
+        "title": "Your Wishlist",
+        "linkTitle": "View Your Wishlist"
+      },
+      "editViewFields": [
+        {
+          "anchor": "100%",
+          "fieldLabel": "Title",
+          "name": "title",
+          "xtype": "mz-input-text"
+        },
+        {
+          "anchor": "100%",
+          "fieldLabel": "Link Title",
+          "name": "linkTitle",
+          "xtype": "mz-input-text"
+        }
+      ],
+      "icon": "/resources/admin/widgets/top_selling.png",
+      "validPageTypes": [
+        "*"
+      ]
+    },
+    {
       "displayName": "New Arrivals",
       "displayTemplate": "catalog/new-arrivals",
       "editViewFields": [
