@@ -79,7 +79,7 @@
             <span style="font-size: 18px; font-weight: bold;">{{labels.autoReplenishment}}</span><br><br>
             {{labels.autoReplenishmentHowItWorks}}<br><br>
             <ol> 
-                {{labels.autoReplenishmentContent}}
+                {{labels.autoReplenishmentContent|safe}}
             </ol>
         </div>
     </div>
