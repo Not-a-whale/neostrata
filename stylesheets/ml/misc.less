@@ -2966,6 +2966,69 @@ ul.tabs {
     }
 }
 
+/* Auto replenishment options */
+
+.mz-autoShip-wrapper {
+	margin: 2rem 0;
+	float: left;
+
+    .mz-autoship-content {
+        margin-bottom: 2rem;
+        .mz-autoship-radio {
+            padding: 0;
+            &.form-row { 
+                input[type="radio"] {
+                    left: -9999rem;
+                    opacity: 0; 
+                }
+                label {
+                    font-family: "Gotham A","Gotham B",sans-serif !important;
+                    font-size: 1.5rem;
+                    padding-left: 2.5rem;
+                    &::before {
+                        font-family: 'icomoon' !important;
+                        top: -0.5rem;
+                        left: -0.5rem;
+                    }
+                    &::after {
+                        width: 1.8rem;
+                        height: 1.8rem;
+                    }
+                }
+            }
+        }
+        .mz-autoship-infomsg {
+            font-style: italic;
+            padding-left: 2.5rem;
+        }
+        #autoshipDropDown {
+            margin: 2rem 0;
+            #mz_pdp_autoship_code {
+                border: 0.25rem solid #4e5458;
+                border-radius: 0;
+                width: 100%;
+                height: 4rem;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                padding: 0 0 0 2rem;
+            }
+            
+            #autoshipDropDown::after {
+                content: "\e909";
+                font-family: 'icomoon' !important;
+                font-size: 2.5rem;
+                position: absolute;
+                top: 0.2rem;
+                right: 2rem;
+                pointer-events: none;
+            }
+        }
+    }
+}
+
+/* End Auto replenishment options */
+
 @media (min-width: 1241px) {
   html.mz-product {
     font-size: 12px;
