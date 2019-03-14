@@ -34,6 +34,7 @@
               <label class="icon-dot form-element" for="{{model.productCode}}_autoShipRadio_1">
                   {{labels.autoShipDelivery}}
               </label>
+              <a class="dl-autoship-info" href="javascript:void(0);" onclick="jQuery('#autoShipDetails').show();"><i class="fa fa-question-circle"></i></a>
             </div> 
             <div class="col-xs-11 offset-xs-1 mz-autoship-infomsg">{{labels.autoShipDeliveryDiscount}} </div>
             <div id="autoshipDropDown" class="col-xs-11 offset-xs-1 ">
@@ -70,20 +71,15 @@
               <input type="radio" name="{{model.productCode}}_autoShipRadio" id="{{model.productCode}}_autoShipRadio_0" value="0" /> 
               <label class="icon-dot form-element" for="{{model.productCode}}_autoShipRadio_0">
                   {{labels.oneTimePurchase}}
-              </label>
-              <a class="dl-autoship-info" href="javascript:void(0);" onclick="jQuery('#autoShipDetails').show();"><i class="fa fa-question-circle"></i></a>
+              </label>              
             </div>
         </div>
-        <div class="ml-auto-ship " id="autoShipDetails" style="display: block;">
+        <div class="ml-auto-ship " id="autoShipDetails" style="display: none;">
             <a class="dl-autoship-close" href="javascript:void(0);" onclick="jQuery('#autoShipDetails').hide();"></a>
-            <span style="font-size: 18px; font-weight: bold;">Auto Replenishment</span><br><br>
-            How it works:<br><br>
+            <span style="font-size: 18px; font-weight: bold;">{{labels.autoReplenishment}}</span><br><br>
+            {{labels.autoReplenishmentHowItWorks}}<br><br>
             <ol> 
-            <li>Shop your favorite products and select the Auto Replenishment option</li>
-            <li>Manage your delivery frequency by selecting how often you would like to receive your product</li>
-            <li>Save 10% &amp; receive free shipping on every Auto Replenishment order</li>
-            <li>Get an email reminder before each delivery ships from our warehouse</li>
-            <li>Adjust or cancel your next scheduled delivery in My Account. Changes must be made at least 3 days prior to your next scheduled order date.</li>
+                {{labels.autoReplenishmentContent}}
             </ol>
         </div>
     </div>
