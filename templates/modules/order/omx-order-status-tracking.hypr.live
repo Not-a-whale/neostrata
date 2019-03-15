@@ -1,0 +1,15 @@
+{% with model.Shipment|first as shipment  %}
+	<div class="mz-item-tracking">
+		{% with shipment.TrackingNumber|first as trackingNumber %}
+			{% if trackingNumber.length() == 0 %}
+				{{labels.noTrackings}}
+			{% else %}
+				<div>{{ shipment.TrackingNumber|first }}</div>
+				<div>{{ shipment.ShipDate|first|date("F j, Y") }}</div>
+
+			{% endif %}
+		{% endwith %}
+	</div>
+{% endwith %}
+
+

@@ -3,3 +3,4 @@
 {% preload_json user "user" %}
 {% preload_json navigation "navigation" %}
 {% preload_json categories "categories" %}
+{% preload_json breadcrumbCategories "breadcrumbCategories" %}

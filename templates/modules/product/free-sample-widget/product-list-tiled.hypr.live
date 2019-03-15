@@ -1,14 +1,16 @@
 <div class="message">
   {{ model.message }}
 </div>
+{% if model.showProducts %}
 <div class="mz-productlist mz-productlist-tiled">
-    {% if model.freeSamples %}
     <ul id="product-list-ul" class="mz-productlist-list row ml-list-view-toggle grid-view mz-l-tiles">
         {% for freeSample in model.freeSamples %}
-        <li class="mz-productlist-item product-item col-xs-12 col-sm-4 col-md-3" data-mz-product="{{ freeSample.productCode }}">
-          {% include "modules/product/free-sample-widget/product-listing" with model=freeSample.product inCart=freeSample.inCart %}
-        </li>
+          {% if freeSample.product.purchasableState.isPurchasable %}
+            <li class="mz-productlist-item product-item col-xs-12 col-sm-6 col-md-4" data-mz-product="{{ freeSample.productCode }}">
+              {% include "modules/product/free-sample-widget/product-listing" with model=freeSample.product inCart=freeSample.inCart %}
+            </li>
+          {% endif %}
         {% endfor %}
     </ul>
-    {% endif %}
 </div>
+{% endif %}

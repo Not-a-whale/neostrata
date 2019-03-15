@@ -4,8 +4,10 @@ define([
     "modules/api",
     "hyprlive",
     'underscore',
-    "modules/models-product"
-], function(Backbone, $, Api, Hypr, _, ProductModels) {
+    "modules/models-product",
+    "modules/models-cart",
+    "modules/metrics"
+], function(Backbone, $, Api, Hypr, _, ProductModels, CartModels, MetricsEngine) {
 
     var globalCartRelatedProducts = Hypr.getThemeSetting('globalCartRelatedProducts'),
         globalCartRelatedProductsSize = Hypr.getThemeSetting('globalCartRelatedProductsSize'),
@@ -14,6 +16,12 @@ define([
         coerceBoolean = function(x) {
             return !!x;
         };
+
+
+    var GlobalCartModel = Backbone.MozuModel.extend(
+
+    );
+
     var GlobalCartView = Backbone.MozuView.extend({
         templateName: "modules/page-header/global-cart-flyout",
         initialize: function() {
@@ -38,13 +46,10 @@ define([
                     }
                 }
             }
-            //console.log("productCodes", productCodes);
             var filter = _.map(productCodes, function(c) {
                 return "ProductCode eq " + c;
             }).join(' or ');
-            //console.log("filter", filter);
             Api.get("search", { filter: filter, pageSize : globalCartRelatedProductsSize}).then(function(collection) {
-                //console.log("collection.data",collection.data);
                 var template = 'Widgets/misc/product-related-listing';
                 var RelatedProductsView = Backbone.MozuView.extend({
                     templateName: template
@@ -63,6 +68,9 @@ define([
                             Api.get('product', productCode).then(function(productResponse){
                                 var product = new ProductModels.Product(productResponse.data);
                                 product.addToCart();
+                                product.on('addedtocart', function(cartitem) {
+                                	MetricsEngine.trackDirectoryAddToCart(product, product.get('categories')[0], false, 1);
+                                });
                                 setTimeout(function(){
                                     Api.get("cart").then(function(resp) {
                                         $('.ml-header-global-cart-count .mz-cartmonitor').html(resp.data.items.length);
@@ -76,7 +84,6 @@ define([
             }, function() {
                 console.log("Got some error at cross sell in Global Cart");
             });
-
         },
         openLiteRegistration:function() {
             $(".second-tab").show();
@@ -93,12 +100,35 @@ define([
         },
         update: function(showGlobalCart) {
             var me = this;
+
             Api.get("cart").then(function(resp) {
-                resp.data.cartItems = resp.data.items.slice(0,globalCartMaxItemCount);
+                resp.data.cartItems = resp.data.items; //.slice(0,globalCartMaxItemCount);
                 if(globalCartHidePopover === true && resp.data.cartItems.length === 0){
                     $(me.el).hide();
                 }
                 me.model.attributes = resp.data;
+
+                // if an a product was added put it in the model so it can be shown in the Global Cart
+                var lastMessage = resp.data.changeMessages && resp.data.changeMessages.slice(-1)[0];
+                if (lastMessage && (lastMessage.subject == 'Item Added' ||
+                  (lastMessage.subject == 'Product Quantity Change' && lastMessage.verb == 'Increased'))) {
+                    var lastProductAddedCode = lastMessage.metadata[0].productCode;
+                    var lastProductAdded = resp.data.items.find( function(item) {
+                      return (item.product.productCode == lastProductAddedCode);
+                    });
+                    var itemCount = resp.data.items.reduce(
+                      function( total, item ) {
+                        total += item.quantity;
+                        return total;
+                      },
+                      0
+                    );
+
+                    me.model.set('lastProductAdded', lastProductAdded);
+                    me.model.set('itemCount', itemCount);
+                }
+
+
                 me.render();
                 if (showGlobalCart) {
                     me.$el.show();
@@ -106,6 +136,7 @@ define([
                     //     me.$el.attr('style', '');
                     // }, 5000);
                 }
+
                 if (globalCartRelatedProducts) {
                     me.showRelatedProducts(resp.data.items);
                 }
@@ -114,16 +145,17 @@ define([
                 } else {
                     $('.ml-header-global-cart-count').removeClass('emptyCart');
                 }
+
+
             });
         }
     });
 
-    var Model = Backbone.MozuModel.extend();
     var globalCartView = new GlobalCartView({
         el: $('#global-cart'),
-        model: new Model({})
+        model: new GlobalCartModel({})
     });
-    globalCartView.render();
+    //globalCartView.render();
     var GlobalCart = {
         update: function(showGlobalCart) {
             globalCartView.update(showGlobalCart);

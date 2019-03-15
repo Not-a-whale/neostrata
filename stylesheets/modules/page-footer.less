@@ -51,9 +51,9 @@ footer {
 
           margin-top: 5rem; 
           text-transform: uppercase;
-          font-size: 1.5625em;
+          font-size: 1.31rem;
           line-height: 1.5em;
-        
+          margin-bottom: 1rem;
           letter-spacing: 0.0625rem;
           .fontsMedium(); 
           color: @charcoal;
@@ -70,18 +70,18 @@ footer {
             line-height: 2.2em;
 /*            height: 2.2em;  */
             @media (max-width: 991px) {
-              line-height: 3.85em;
 /*              height: 3.85em;  */
+              line-height: 1.5em;
+              padding-bottom: 2.35em;
             }
             a {
               .fontsBook(); 
-              font-size: 1.5625rem; 
+              font-size: 1.31rem; 
               letter-spacing: 0.0625rem;
               color: @charcoal;
-              line-height: 2.2em;
+              line-height: 1;
               @media (max-width: 991px) {
                 font-size: 1.734rem; 
-                line-height: 3.75em;
               }
               b{
                   font-style: italic;
@@ -103,10 +103,14 @@ footer {
           .h2 {
             .fontsMedium(); 
 
-            font-size: 1.5625rem; 
+            font-size: 1rem; 
             letter-spacing: 0.0625rem;
             color: @charcoal;
-            font-style: italic;
+            font-style: normal;
+            font-weight: 400;
+            display: block;
+            text-align: center;
+            margin: 1rem 0;
             @media (max-width: 991px) {
               font-size: 1.734rem; 
               font-style: normal; 

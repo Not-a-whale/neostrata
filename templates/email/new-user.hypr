@@ -2,16 +2,48 @@
 
   {% block body-content %}
 
-	{% if user and user.firstName %}
-		{{ labels.emailOpening|string_format(user.firstName)|safe }}
-	{% else %}
-		{{ labels.emailOpeningAlternative|safe }}
-	{% endif %}
+  <table cellpadding="0" cellspacing="0" width="100%" style="text-align:center;">
+    <tr>
+      <td style="padding:50px 60px;">
+        {% if user and user.firstName %}
+          <h1 style="padding:15px 15px 0;font-size: 2.0rem;margin-bottom: 2px;line-height: 1.15em;font-weight:700;">{{ labels.emailOpening|string_format(user.firstName)|safe }} {{ labels.newUserEmailSalutation|string_format(siteContext.generalSettings.websiteName) }}</h1>
+        {% else %}
+          <h1 style="padding:15px 15px 0;font-size: 2.0rem;margin-bottom: 2px;line-height: 1.15em;font-weight:700;">{{ labels.emailOpeningAlternative|safe }} {{ labels.newUserEmailSalutation|string_format(siteContext.generalSettings.websiteName) }}</h1>
+        {% endif %}
+      </td>
+    </tr>
+  </table>
 
-  <h1>{{ labels.newUserEmailSalutation|string_format(siteContext.generalSettings.websiteName) }}</h1>
-
-  <p>{{ labels.newUserEmailNotification|string_format(domainName, model.UserEmailAddress)|safe }}</p>
-
-  {{ labels.emailClosing|string_format(siteContext.generalSettings.websiteName)|safe }}
+  <table cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+      <td>
+        <p style="padding-bottom:16px;font-size:16px;line-height:23px;padding-top:6px;margin-top:0;text-align:center;">{{ labels.newUserEmailTopText|safe }}</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding-bottom:16px;font-size:16px;line-height:23px;padding-top:6px;margin-top:0;text-align:center;">
+        <div class="new-user-list" style="list-style: none; text-align:center;">
+          <p style="font-size:16px;line-height:23px;list-style: none; margin: 0;">{{ labels.newUserEmailListText1|safe }}</p>
+          <p style="font-size:16px;line-height:23px;list-style: none; margin: 0;">{{ labels.newUserEmailListText2|safe }}</p>
+          <p style="font-size:16px;line-height:23px;list-style: none; margin: 0;">{{ labels.newUserEmailListText3|safe }}</p>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p style="padding-bottom:16px;font-size:16px;line-height:23px;padding-top:6px;margin-top:0;text-align:center;">{{ labels.newUserEmailText|safe }}</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding-bottom:16px;font-size:16px;line-height:23px;padding-top:6px;margin-top:0;text-align:center;">
+        <div class="new-user-list" style="list-style: none;text-align:center;">
+          <p style="font-size:16px;line-height:23px;list-style: none; margin: 0;">{{ labels.newUserEmailList2Text1|string_format(domainName, siteContext.generalSettings.websiteName)|safe }}</li>
+          <p style="font-size:16px;line-height:23px;list-style: none; margin: 0;">{{ labels.newUserEmailList2Text2|safe }}</p>
+          <p style="font-size:16px;line-height:23px;list-style: none; margin: 0;">{{ labels.newUserEmailList2Text3|safe }}</p>
+          <p style="font-size:16px;line-height:23px;list-style: none; margin: 0;">{{ labels.newUserEmailList2Text4|string_format(domainName)|safe }}</p>
+        </div>
+      </td>
+    </tr>
+  </table>
 
 {% endblock body-content %}

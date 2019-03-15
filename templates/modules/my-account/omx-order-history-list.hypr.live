@@ -1,0 +1,24 @@
+<div class="mz-orderlist">
+    <div class="omx-orderhistory-header row">
+        <div class="mz-orderlisting-details-item col-xs-3">
+            {{ labels.orderHistoryDate }}
+        </div>
+        <div class="mz-orderlisting-details-item col-xs-3">
+            {{ labels.orderHistoryNumber }}
+        </div>
+        <div class="mz-orderlisting-details-item col-xs-3 dl-total">
+            {{ labels.orderHistoryTotal }}
+        </div>
+        <div class="mz-orderlisting-details-item col-xs-3 dl-status">
+            {{ labels.orderHistoryStatus }}
+        </div>
+    </div>
+    <div class="omx-orderhistory-list row">
+        {% for order in model %}
+        <div data-mz-order-id="{{order.orderId}}" data-mz-omx-order-history-listing>
+            <div data-order-message-bar class="order-message-bar"></div>
+            {% include "modules/my-account/omx-order-history-listing" with model=order %}
+        </div>
+        {% endfor %}
+    </div>
+</div>

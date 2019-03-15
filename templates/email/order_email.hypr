@@ -83,6 +83,7 @@
                 text-transform: uppercase;
                 text-decoration: none;
                 border: 1px solid #4e5458;
+                white-space: nowrap;
             }
             tr.title td{
                 border-bottom: 2px solid #e1e1e1;
@@ -92,10 +93,9 @@
                 font-weight: 500;
                 line-height: 2.5rem;
             }
-            .main-content,
-            .mz-orderitems{
+            .main-email-wrapper{
                 max-width: 800px;
-                margin: auto;
+                margin: auto !important;
             }
             .mz-ordersummary .mz-ordersummary-totalname{
                 float:left;
@@ -228,16 +228,48 @@
   
   
     <body>
-        <table cellpadding="0" cellspacing="0" border="0" id="backgroundTable">
+        <table cellpadding="0" cellspacing="0" border="0" id="backgroundTable" class="main-email-wrapper">
             <tr>
                 <td valign="top">
+                    <table cellpadding="0" cellspacing="0" border="0">
+                        <picture style="position: relative;width: 100%;">
+                            <!-- IMAGE FOR LARGE VIEWPORTS --> 
+                            <source srcset="https://{{domainName}}/cms/files/email_main_header.png" media="(min-width: 992px)"/>
+                            <!-- IMAGE FOR SMALL VIEWPORTS -->   
+                            <img src="https://{{domainName}}/cms/files/email_main_header-m.png" style="width:100%;"/>
+                        </picture>
+                    </table>
 				
                     <div>{{pageContext.cmsContext.page.document.properties.html_1|safe}}</div>
     		
-                    {% block body-content %}
-                    {% endblock body-content %}
+                    <table cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                            <td width="60"><img src="https://{{domainName}}/cms/files/px.gif" width="60" height="1" alt=""></td>
+                            <td>
+                                {% block body-content %}
+                                {% endblock body-content %}
+                            </td>
+                            <td width="60"><img src="https://{{domainName}}/cms/files/px.gif" width="60" height="1" alt=""></td>
+                        </tr>
+                    </table>
             
                     <div>{{pageContext.cmsContext.page.document.properties.html_2|safe}}</div>
+
+                    <table cellpadding="0" cellspacing="0" width="100%" bgcolor="#edeeee"  style="background-image: url(https://{{domainName}}/cms/files/email-main-footer-bg.png); background-repeat: repeat-x; background-position: 0 100%;">
+                      <tr>
+                        <td height="15"><img src="https://{{domainName}}/cms/files/px.gif" width="100%" height="15" alt=""></td>
+                      </tr>
+                      <tr>
+                        <td valign="middle" style="padding-bottom:1em;font-size:0.625rem;padding-top:0.4rem;margin-top:0;text-align: center;">
+                            <p>{{ labels.emailFooterSentTo|string_format(user.email)|safe }}</p>
+                            <p>{{ labels.emailFooterAddress|safe }}</p>
+                            <!--<p><a href="#" style="font-weight: bold">{{ labels.emailFooterManagePreferences|safe }}</a> | <a href="#" style="font-weight: bold">{{ labels.emailFooterUnsubscribe|safe }}</a></p>-->
+                        </td>
+                      </tr>
+                      <tr>
+                        <td height="15"><img src="https://{{domainName}}/cms/files/px.gif" width="100%" height="15" alt=""></td>
+                      </tr>
+                    </table>
                 </td>
             </tr>
     	</div>

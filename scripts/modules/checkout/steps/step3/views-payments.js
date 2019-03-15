@@ -85,9 +85,9 @@ define(["modules/jquery-mozu",
                     cardType = "VISA";
                 }
 
-                // Mastercard 
+                // Mastercard
                 // Updated for Mastercard 2017 BINs expansion
-                 if (/^(5[1-5][0-9]{14}|2(22[1-9][0-9]{12}|2[3-9][0-9]{13}|[3-6][0-9]{14}|7[0-1][0-9]{13}|720[0-9]{12}))$/.test(number)) 
+                 if (/^(5[1-5][0-9]{14}|2(22[1-9][0-9]{12}|2[3-9][0-9]{13}|[3-6][0-9]{14}|7[0-1][0-9]{13}|720[0-9]{12}))$/.test(number))
                     cardType = "MC";
 
                 // AMEX
@@ -99,7 +99,7 @@ define(["modules/jquery-mozu",
                 re = new RegExp("^(6011|622(12[6-9]|1[3-9][0-9]|[2-8][0-9]{2}|9[0-1][0-9]|92[0-5]|64[4-9])|65)");
                 if (number.match(re) !== null)
                     cardType = "DISCOVER";
-                
+
                 $('.mz-card-type-images').find('span').removeClass('active');
                 if(cardType){
                     this.model.set('card.paymentOrCardType',cardType);
@@ -107,7 +107,7 @@ define(["modules/jquery-mozu",
                     $('.mz-card-type-images').find('span[data-mz-card-type-image="'+cardType+'"]').addClass('active');
                 }
                 else{
-                    this.model.set('card.paymentOrCardType',null);    
+                    this.model.set('card.paymentOrCardType',null);
                 }
             },
             initialize: function () {
@@ -165,7 +165,7 @@ define(["modules/jquery-mozu",
             edit: function() {
                 this.model.edit();
                 this.beginEditingCard();
-            },            
+            },
             beginEditingCard: function() {
                 var me = this;
 
@@ -330,8 +330,11 @@ define(["modules/jquery-mozu",
                         subtotal: "" + orderModel.get('subtotal')
                     }
                 });
-            }
+            },
             /* end visa checkout */
+            validate: function() {
+              console.log('Validate called', this.model);
+            }
         });
 
     return BillingInfoView;

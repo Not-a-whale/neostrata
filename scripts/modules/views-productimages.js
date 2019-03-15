@@ -45,12 +45,21 @@
             });
         },
         onMouseLeaveResetThumbImage: function(_e){
-            var img_url = $('.mz-productimages-mainimage').data('zoom-image').replace('maxWidth='+width_zoom, 'maxWidth='+width_pdp);
-            checkImage(img_url, function(response) {
-                if (response) {
-                    $('.mz-productimages-mainimage').attr('src', img_url);
-                }
-            });
+            var self=this;
+            if ($('.mz-productimages-mainimage').data('zoom-image')){
+                var img_url = $('.mz-productimages-mainimage').data('zoom-image').replace('maxWidth='+width_zoom, 'maxWidth='+width_pdp);
+                checkImage(img_url, function(response) {
+                    if (response) {
+                        $('.mz-productimages-mainimage').attr('src', img_url);
+                    }
+                });
+            }else{
+                checkImage(this.selectedMainImageSrc.replace('maxWidth='+width_thumb, 'maxWidth=' + Hypr.getThemeSetting('productImagePdpMaxWidth')), function(response) {
+                    if (response) {
+                        $('.mz-productimages-mainimage').attr('src', self.selectedMainImageSrc.replace('maxWidth='+width_thumb, 'maxWidth=' + Hypr.getThemeSetting('productImagePdpMaxWidth')));
+                     }
+                });   
+            }         
         },
         switchImage: function(e) {
             $(e.currentTarget).parents("ul").find("li").removeClass("active");

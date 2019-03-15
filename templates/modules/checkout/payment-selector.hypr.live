@@ -25,7 +25,7 @@
             </div>
         </div>
         {% if model.paymentType == "CreditCard" and not model.usingSavedCard %}
-            {% include "modules/checkout/billing-credit-card-form" with model=model.card %}
+            {% include "modules/checkout/billing-credit-card-form" with model=model.card isAnonymousShopper=model.isAnonymousShopper %}
             <div class="mz-l-stack-section">
                 <h5 class="checkout-fields-title">{{ labels.billingAddress }}</h5>
                 {% include "modules/checkout/billing-address-selector" %}
@@ -85,12 +85,14 @@
         {% endif %}
     </div>
     {% endif %}
-    
-    {% with siteContext.checkoutSettings.externalPaymentWorkflowSettings|findwhere("isEnabled", true) as externalPaymentWorkflowsEnabled %} 
+
+    {% with siteContext.checkoutSettings.externalPaymentWorkflowSettings|findwhere("isEnabled", true) as externalPaymentWorkflowsEnabled %}
         {% if externalPaymentWorkflowsEnabled %}
+{% comment %}
             <div class="mz-l-formfieldgroup-row">
                 <div class="mz-paymentselector-label-separator">&ndash; {{ labels.or }} &ndash;</div>
             </div>
+{% endcomment %}
             {% for externalPayment in siteContext.checkoutSettings.externalPaymentWorkflowSettings %}
 				{% if externalPayment.isEnabled %}
                 {% with externalPayment.name|lower as name %}
@@ -104,9 +106,12 @@
                                     src="{{pageContext.visaCheckoutButtonUrl}}?size=154&amp;color=neutral"/>
                                 </div>
                             {% endif %}
+                            {% comment %}
+                            Moved out to the payment step template so it can be after the button
                             {% if name == "paypalexpress2" %}
                                 <img id="btn_xpressPaypal" class="p-button" alt="Check out with PayPal" role="button" src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png"/>
                             {%endif%}
+                            {% endcomment %}
                         </div>
                     </div>
                 {% endwith %}

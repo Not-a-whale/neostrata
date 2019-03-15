@@ -1,0 +1,89 @@
+<div class="order-status-detail" id='order-status-detail'>
+
+{% if model.success %}
+    {% with model.orderDetail as model %}
+        {% with model.OrderHeader|first as orderHeader %}
+            <div>
+                <h1 class="mz-l-stack-sectiontitle">{{ labels.orderDetailNumber|string_format(orderHeader.OrderNumber|first)|safe }}</h1>
+                <div class="mz-l-stack-sectionsubtitle"> <span> {{ labels.orderDetailDate}} {{orderHeader.OrderDate|first|date("F j, Y") }} </span> | <span>  {{ labels.orderDetailStatus}} <b>{{ model.omxOrderStatusName }}</b></span> </div>
+            </div>
+        {% endwith %} <!-- OrderHeader end --> 
+        
+        <div class="mz-order-status-section">
+            <div class="mz-order-status-section-item row"> 
+                <div class="col-xs-12 col-md-6 mz-billing-shipping-wrapper">
+                    <div class="mz-shipping-wrapper"> <!-- shipping Info Start --> 
+                        <h3 class="mz-l-stack-sectiontitle">{{ labels.orderDetailShippingInfo }}</h3> 
+                        {% with model.ShippingInformation|first as shippingInfo %}
+                            <div class="mz-addresssummary">{% include "modules/order/omx-order-status-shipping-summary" with model=shippingInfo  %}</div>
+                            <div class="mz-shipping-method">
+                                {{ model.omxOrderShippingMethodName }}
+                            </div>
+                        {% endwith %}
+                    </div> <!-- shipping Info END --> 
+                    <div class="mz-billTo-wrapper"> <!-- billing Info Start --> 
+                        {% with model.Customer|first as customerInfo %}
+                            {% with customerInfo.Address|first as customerInfoAddress %}
+                                {% if customerInfo.omxSameAddress %}
+                                    <div class="mz-billTo-wrapper-same-shipping">
+                                        <span class="mz-billTo-wrapper-same-shipping-title"><b>{{ labels.orderStatusBillingAddress }}: </b></span>
+                                        <span>{{ labels.orderStatusSameBillingAddress }}</span>
+                                    </div>                            
+                                {% else %}
+                                    <h3 class="mz-l-stack-sectiontitle">{{ labels.orderStatusBillingAddress }}</h3> 
+                                    <div class="mz-addresssummary">{% include "modules/order/omx-order-status-shipping-summary" with model=customerInfo  %}</div>
+                                {% endif %}
+                            {% endwith %}
+                        {% endwith %}
+                    
+                    </div> <!-- billing Info END --> 
+                </div>
+            
+                <div class="col-xs-12 col-md-6 mz-payment-wrapper"> <!-- Payment Info Start --> 
+                    <h3 class="mz-l-stack-sectiontitle">{{ labels.orderDetailPaymentInfo }}</h3> 
+                    {% if model.orderTotal === "0"  %}
+                        {% with model.orderTotal|currency as total %}
+                            <h4 class="mz-confirmation-nopaymentrequired">{{ labels.noPaymentWasRequired|string_format(total) }}</h4>
+                        {% endwith %}
+                    {% else %}
+                        {% with model.OrderHeader|first as headerPayment %}
+                            <div class="mz-payment-total"><span class="ms-payment-total-summary">{{ labels.orderStatusPaymentTotal|string_format(headerPayment.TotalAmount|first) }} </span><span class="mz-payment-summary-name"></span></div>
+                        {% endwith %}
+                        {% with model.Payment|first as paymentInfo %}
+                            {% include "modules/order/omx-order-status-payment" with model=paymentInfo %}  
+                        {% endwith %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="mz-order-status-section-item mz-tracking-wrapper row"> <!-- Tracking Info Start --> 
+                <div class="col-xs-12 col-md-6">
+                    <h3 class="mz-l-stack-sectiontitle">{{ labels.orderStatusTrackings }}</h3> 
+                    {% with model.ShippingInformation|first as shippingInfo %}
+                        {% include "modules/order/omx-order-status-tracking" with model=shippingInfo %}  
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="mz-order-status-section-item">
+                <h3 class="mz-l-stack-sectiontitle">{{ labels.orderDetailItems }}</h3> 
+                
+                {% with model.OrderDetail|first as orderItems %}
+                    {% for item in orderItems.LineItem %}
+                        {% include "modules/order/omx-order-status-lineitem"  %}
+                    {% endfor %}                    
+                {% endwith %}
+            </div>
+            <div class="mz-order-status-section-item mz-reset-padding mz-order-status-totals-container">
+                {% include "modules/order/omx-order-status-totals"  %}
+            </div>
+        </div>
+
+        
+    {% endwith %}
+{% else %}
+  <div>there was an error processing your request.</div>
+{% endif %}
+<div class="mz-orderstatus-buttons">
+    <a class='mz-orderstatus-button dz-backtodashboard' >{{labels.orderDetailReturnButton}}</a>
+</div>
+
+</div>

@@ -10,7 +10,7 @@
       </section>
       <section data-mz-role="forgotpassword-form" class="mz-forgot-password mz-l-slidebox-panel">
         <label>{{ labels.resetPassword }}</label>
-        <input type="email" data-mz-forgotpassword-email name="reset-password" placeholder="{{ labels.emailAddress }}" maxlength="{{themeSettings.passwordMaxLength}}"/>
+        <input type="email" data-mz-forgotpassword-email name="reset-password" placeholder="{{ labels.emailAddress }}" title="{{ labels.emailAddress }}" maxlength="{{themeSettings.passwordMaxLength}}"/>
         <div class="mz-popover-action">
           (<a href="javascript:;" data-mz-action="loginform">{{ labels.cancel }}</a>) <button class="mz-button" data-mz-action="submitforgotpassword">{{ labels.sendEmail }}</button>
         </div>

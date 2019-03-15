@@ -31,15 +31,12 @@
 
         </div>
     </div>
-    <div class="bottom-details">
-        <div id="BVRRInlineRating-{{model.productCode}}" class="pdp5 bvr-inline-rating" data-mz-product-code="{{ model.productCode }}" data-bv-product-code="{{apicontext.headers.x-vol-locale}}-{{ model.productCode }}" data-mz-product-url="{{ model.url }}"></div>
-    </div>
     <div class="mz-productdetail-conversion-buttons col-xs-12">
       <div class="add-to-sample-container">
         {% if inCart %}
           <span class="added-message"><span class="check">&nbsp;</span>Added to cart!</span>
         {% else %}
-          <button id="add-to-cart-{{ model.productCode }}" class="primary-btn mz-productdetail-addtocart font-large button_primary {% if not model.purchasableState.isPurchasable %}button_disabled{% endif %}" data-mz-action="directoryAddToCart" data-mz-product-code="{{ model.productCode }}">{{ labels.addToCart }}</button>
+          <button id="add-to-cart-{{ model.productCode }}" class="primary-btn mz-productdetail-addtocart font-large button_primary {% if not model.purchasableState.isPurchasable %}button_disabled{% endif %}" data-mz-action="addSampleToCart" data-mz-product-code="{{ model.productCode }}">{{ labels.addToCart }}</button>
         {% endif %}
       </div>
     </div>

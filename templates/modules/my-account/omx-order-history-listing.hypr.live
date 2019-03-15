@@ -1,0 +1,30 @@
+<div class="mz-omx-orderlisting" data-mz-id="{{ model.orderNumber }}">
+    <div class="mz-orderlisting-detail">
+      {% block order-details %}
+        <div class="mz-orderlisting-details-list">
+          <div class="mz-orderlisting-details-item col-xs-3">
+              <div class="mz-propertylist mz-propertylist-order">
+                  <div>{{ model.orderDate }}</div>
+              </div>
+          </div>
+            <div class="mz-orderlisting-details-item col-xs-3">
+                <div class="mz-propertylist mz-propertylist-order">
+                    <div><a class='mz-order-code' data-mz-order-code={{model.orderNumber}}>{{model.orderNumber}}</a></div>
+                </div>
+            </div>
+            <div class="mz-orderlisting-details-item dl-total col-xs-3">
+                <div class="mz-propertylist mz-propertylist-order">
+                    <div>{{ model.totalAmount }}</div>
+                </div>
+            </div>
+            <div class="mz-orderlisting-details-item dl-status col-xs-3">
+                <div class="mz-propertylist mz-propertylist-order">
+                    <div>{{ model.orderStatus }}</div>
+                </div>
+            </div>
+          </div>
+      {% endblock order-details %}
+      {% block order-items %}
+      {% endblock order-items %}
+    </div>
+</div>

@@ -99,9 +99,9 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
         },
         customRetrieveErrorLabel: function (xhr) {
             if (xhr.message === "Verification field required.") {
-                xhr.message =  Hypr.getLabel("billingRequiredMsg"); 
-            } 
-            this.retrieveErrorLabel(xhr); 
+                xhr.message =  Hypr.getLabel("billingRequiredMsg");
+            }
+            this.retrieveErrorLabel(xhr);
         },
         retrieveErrorLabel: function (xhr) {
             var message = "";
@@ -268,9 +268,14 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
         },
         retrievePassword: function () {
             this.setLoading(true);
-            api.action('customer', 'resetPasswordStorefront', {
-                EmailAddress: this.$parent.find('[data-mz-forgotpassword-email]').val()
-            }).then(_.bind(this.displayResetPasswordMessage,this), this.displayApiMessage);
+            var self = this;            
+            var urlParts = window.location.href.split("/");
+            var resetPasswordStorefrontURL = urlParts[0] + "//" + urlParts[2] + '/customResetPasswordStorefront/checkData';
+            $.post(resetPasswordStorefrontURL, {EmailAddress: this.$parent.find('[data-mz-forgotpassword-email]').val()}).then(function(data){
+                api.action('customer', 'resetPasswordStorefront', {
+                    EmailAddress: data.realEmail
+                }).then(_.bind(self.displayResetPasswordMessage,self), self.displayApiMessage);        
+            });           
         },
         handleLoginComplete: function (returnUrl) {
             if ( returnUrl ){
@@ -403,8 +408,8 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
                 content: function() {
                   return self.popoverEl.html();
                 }
-            }); 
-            
+            });
+
         };
     };
 
@@ -416,7 +421,7 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
             self.doLogin = _.debounce(self.doLogin, 150);
             self.doSignup = _.debounce(self.doSignup, 150);
             api.get('attributedefinition').then(function(attribute) {
-                console.log(attribute.data.items);
+                //console.log(attribute.data.items);
                 for(var i=0; i< attribute.data.items.length; i++){
                     if(attribute.data.items[i].attributeCode === "recovery-question"){
                         var recVals = attribute.data.items[i].vocabularyValues;
@@ -442,6 +447,26 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
             if (self.modalEl[0] == $("#liteRegistrationModal")[0]) {
                 $(".second-tab").show();
                 $(".third-tab").hide();
+            }
+
+            $('.nav-tabs > li').removeClass('active');
+            $('.tab-content .tab-pane').removeClass('active');
+            if($(this).context.attributes["data-mz-param"].value == "signup"){
+                $('.nav-tabs > li.second-tab').addClass('active');
+                $('.tab-content #newshopper').addClass('active');
+                if ($.cookie('mozu-signup-age') ) {
+                    console.log('mozu-signup-age is true'); 
+                    $('#signup_input_dob_month').prop('disabled', 'disabled');
+                    $('#signup_input_dob_day').prop('disabled', 'disabled');
+                    $('#signup_input_dob_year').prop('disabled', 'disabled');
+                    console.log('mozu-signup-age disable'); 
+                }
+            }
+            else {
+                $('.nav-tabs > li.first-tab').addClass('active');
+                $('.tab-content #login').addClass('active');
+                //verified if the age_error cookie was set
+                
             }
             self.modalEl.modal('show');
         };
@@ -483,13 +508,14 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
         this.doSignup = function(){
             var redirectTemplate = 'myaccount';
             var returnUrl = $('#returnUrl').val();
-            var emailupdates = $(this).parents('#newshopper').find('[data-mz-signup-emailupdates]').val();
-            var accMarketing = false;
-            if(emailupdates === "on")
-                accMarketing = true;
+            var accMarketing = $(this).parents('#newshopper').find('[data-mz-signup-emailupdates]').is(':checked');
             var email = $(this).parents('#newshopper').find('[data-mz-signup-emailaddress]').val().trim();
             var firstName = $(this).parents('#newshopper').find('[data-mz-signup-firstname]').val().trim();
             var lastName = $(this).parents('#newshopper').find('[data-mz-signup-lastname]').val().trim();
+            var skinType = $(this).parents('#newshopper').find('[data-mz-signup-skintype]').val().trim();
+            var birthMonth = $(this).parents('#newshopper').find('[data-mz-signup-birthmonth]').val().trim();
+            var birthDay = $(this).parents('#newshopper').find('[data-mz-signup-birthday]').val().trim();
+            var birthYear = $(this).parents('#newshopper').find('[data-mz-signup-birthyear]').val().trim();
             //var recoveryquestion = $(this).parents('#newshopper').find('[data-mz-signup-recoveryquestion]').val();
             //var recoveryanswer = $(this).parents('#newshopper').find('[data-mz-signup-recoveryanswer]').val().trim();
             var payload = {
@@ -498,10 +524,15 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
                     userName: email,
                     firstName: firstName,
                     lastName: lastName,
+                    birthMonth: birthMonth,
+                    birthDay: birthDay,
+                    birthYear: birthYear,
                     acceptsMarketing: accMarketing,
-                    contacts: [{
-                        email: email
-                    }]
+                    contacts: [{email: email}],
+                    attributes: [{"fullyQualifiedName": "tenant~skintype",
+                                  "values": [skinType]},
+                                 {"fullyQualifiedName": "tenant~dob",
+                                  "values": [birthMonth+"/"+birthDay+"/"+birthYear]}]
                     /* ,
                     attributes: [
                       {
@@ -535,23 +566,40 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
             }
         };
         this.validatePassword = function(el, payload){
-            if (!payload.password)
+            var minMaxLength = /^[\s\S]{6,50}$/,
+            upper = /[A-Z]/,
+            lower = /[a-z]/,
+            number = /[0-9]/,
+            special = /[^A-Za-z0-9]/,
+            count = 0;
+
+            if (!payload.password) {
                 return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('passwordMissing')), false;
-            if (payload.password.length < 6) {
+            } else if (!minMaxLength.test(payload.password)) {
                 return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('passwordlength')), false;
-            } else if (payload.password.length > 50) {
-                return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('passwordlength')), false;
-            } else if (payload.password.search(/\d/) == -1) {
-                return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('passwordlength')), false;
-            } else if (payload.password.search(/[a-zA-Z]/) == -1) {
-                return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('passwordlength')), false;
-            } else if (payload.password.search(/[^a-zA-Z0-9\!\@\#\$\%\^\&\*\(\)\_\+\.\,\;\:]/) != -1) {
-                return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('passwordlength')), false;
+            } else {
+                if (upper.test(payload.password)) count++;
+                if (lower.test(payload.password)) count++;
+                if (number.test(payload.password)) count++;
+                if (special.test(payload.password)) count++;
+                   
+                if(count < 3)
+                    return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('passwordStrong')), false;
             }
             return true;
         };
-        this.validateSignup = function (el, payload) {
+        this.validateSignup = function (el, payload) {                  
             if (!payload.account.emailAddress) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('emailMissing')), false;
+            if (!payload.account.firstName) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('firstNameMissing')), false;
+            if (!payload.account.lastName) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('lastNameMissing')), false;            
+            if ((!payload.account.birthMonth || !payload.account.birthDay || !payload.account.birthYear) && !self.isDOBDisable()) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('birthMissing')), false;
+            if ((!payload.account.birthMonth || !payload.account.birthDay || !payload.account.birthYear) && self.isDOBDisable()) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('thirteenPreviousError')), false;
+            if (self.checkDate(payload.account.birthMonth, payload.account.birthDay, payload.account.birthYear)) {
+
+                self.setDateErrorCookie(); 
+                return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('thirteenError')), false;
+            }
+            
             if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(payload.account.emailAddress))) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('emailwrongpattern')), false;
             if (payload.password !== $(el).parents('#newshopper').find('[data-mz-signup-confirmpassword]').val()) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('passwordsDoNotMatch')), false;
             //if (payload.account.attributes.recoveryquestion === "0") return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('chooseRecoveryQuestion')), false;
@@ -559,14 +607,57 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
             //if(!$('#recoveryAnswer').val()) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('recoveryAnswerMissing')), false;
             return true;
         };
+
+        this.isDOBDisable = function () {
+            return $.cookie('mozu-signup-age'); 
+        }; 
+
+        this.setDateErrorCookie = function () {
+            $.cookie('mozu-signup-age', true); //, { path: '/', expires: 1 });
+            $('#signup_input_dob_month').prop('disabled', 'disabled');
+            $('#signup_input_dob_day').prop('disabled', 'disabled');
+            $('#signup_input_dob_year').prop('disabled', 'disabled');
+        }; 
+
+        this.checkDate = function (month, day, year) {                  
+            var input = Date.parse( month + '/' + day + '/' + year );
+            var today = new Date();
+            
+            if ( today <= input ) {
+              return true;
+            }
+            var diff = ( today - input ) / ( 1000 * 60 * 60 * 24 * 365 );
+            if( diff < 13 ) {
+              return true;
+            }
+            return false;
+        };
     };
+
+    $( window ).resize(function() {
+        $("#my-account").popover('update');
+    });
+
     $(document).ready(function() {
         $docBody = $(document.body);
 
-        $('[data-mz-action="lite-registration"]').each(function() {
-            var modal = new LoginRegistrationModal();
-            modal.init(this);
+        var year = (new Date()).getFullYear()-13;
+        var endYear = year-90;
+        for (year; year>endYear; year--){
+            $('<option/>').val(year).html(year).appendTo('#signup_input_dob_year');
+        }
+
+       new LoginRegistrationModal().init($('[data-mz-action="lite-registration"]').first()); 
+       new LoginRegistrationModal().init($('.thankyou-order-block [data-mz-action="lite-registration"]').first());
+
+        $('.btn-signup').on('click', function(){
+            $('[data-mz-param="signup"]').trigger( "click" );
         });
+        
+        $('.btn-login-checkout').on('click', function(){
+            $('[data-mz-param="login"]').trigger( "click" );
+        });
+
         $('#my-account').attr('href','#');
         $('[data-mz-action="my-account"]').click(function() {
             var popover = new MyAccountPopover();
@@ -579,7 +670,7 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
         });
         $("#my-account").popover({
                 html : true,
-                placement : 'bottom',
+                placement : 'auto',
                 content: function() {
                   return $('#my-account-content').html();
                 }

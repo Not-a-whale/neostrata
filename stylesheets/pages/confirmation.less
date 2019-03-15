@@ -126,20 +126,33 @@
     
             .mz-ordersummary-line-item {
                 display: flex;
-                justify-content: space-between;
+                justify-content: space-between; 
                 
+                @media (max-width: 767px) {
+                    justify-content: flex-start;
+                }
                 .mz-order-content-container {
                     width: 40%;
-                    display: flex;
-                    align-items: center;
+                    display: inline-block;
                     
-                    @media (max-width: 800px) {
-                        align-items: flex-start;
+                    @media (max-width: 767px) {
+                        width: 61%;
+                        display: flex;
                     }
-    
+
                     .mz-order-summary-image {
+                        padding-right: 4%;
+                        display: inline-block;
                         width: auto;
-                        padding-right: 3.125rem;
+
+                        .mz-carttable-item-image {
+                            max-width: 100%;
+                        }
+                    }
+                    @media (max-width: 767px) {
+                        .mz-carttable-item-info-wrap {
+                            width: 50%;
+                        }
                     }
                     .mz-carttable-item-title {
                         font-size: 1.7125rem;
@@ -148,8 +161,8 @@
                         color: @charcoal;
                         font-weight: 500;
 
-                        @media (max-width: 800px) {
-                            font-size: 2.5rem;
+                        @media (max-width: 767px) {
+                            font-size: 1.5rem;
                             line-height: 1.15em;
                         }
                     }
@@ -159,24 +172,19 @@
                 .mz-price-main-container {
                     width: 20%;
                     text-align: center;
-                    display: flex;
-                    justify-content: center;
-                    flex-direction: column;
-
-                    @media (max-width: 800px) {
-                        justify-content: flex-start;
-                    }
+                    display: inline-block;
 
                     .cartproduct-title {
                         font-size: 1.875rem;
                         line-height: 1.5em;
                         font-weight: 400;
                         padding-bottom: 1.6875rem;
+                        display: block;
 
-                        @media (max-width: 800px) {
-                            font-size: 2.5rem;
+                        @media (max-width: 767px) {
                             line-height: 1.15em;
                             font-weight: 500;
+                            font-size: 1.5rem;
                         }
                     }
 
@@ -196,9 +204,10 @@
                     line-height: 1.5em;
                     font-weight: 500;
                     color: @charcoal;
+                    display: block;
 
-                    @media (max-width: 800px) {
-                        font-size: 2.5rem;
+                    @media (max-width: 767px) {
+                        font-size: 1.5rem;
                         line-height: 1.15em;
                         font-weight: 400;
                     }
@@ -269,7 +278,11 @@
         .mz-checkout-paymenttitle {
             padding: 0;
             border: 0;
-            white-space: nowrap;    
+            white-space: nowrap;
+
+            @media (max-width: 900px) {
+                white-space: normal;
+            }
             
             strong {
                 font-weight: 500;
@@ -344,6 +357,8 @@
 }
 
 .confirmation-summary {
+    padding: 3rem 0 0;
+
     h1.mz-pagetitle {
         text-transform: none;
         font-size: 3.4375rem;
@@ -352,6 +367,7 @@
     }
 
     .thankyou-order-block {
+        padding: 1.6rem 0 0;
 
         @media (max-width: 800px) {
             text-align: center;
@@ -401,6 +417,22 @@
                 line-height: 1.275em;
                 padding: 0 3.75rem;
                 margin-bottom: 6.5rem;
+            }
+        }
+
+        .quiz-stack-item {
+            margin: 4.75rem 0;
+            font-size: 1.7125rem;
+            @media (max-width: 991px) {
+                font-size: 2.5rem;
+            }
+
+            p {
+                margin: 0 0 2rem 0;
+
+                &.quiz-title {
+                    font-weight: bold;
+                }
             }
         }
     }
@@ -521,6 +553,12 @@
         > div {
             @media (max-width: 800px) {
                 padding-bottom: 3.125rem;
+            }
+        }
+
+        .mz-ordersummary-shippingdiscount {
+            .mz-ordersummary-totalname {
+                padding-right: 2rem;
             }
         }
     }

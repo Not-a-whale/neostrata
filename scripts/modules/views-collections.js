@@ -285,7 +285,7 @@ define([
                                     if($('#addToWishListPopUp').length === 1){
                                         $('#addToWishListPopUp').remove();
                                     }
-                                    $( '<div id="addToWishListPopUp" class="row alert" role="alert"><div class="col-xs-6 text-right">Item added to wishlist.</div><div class="col-xs-6 text-left"><a href="/myaccount#wishlist">View Wishlist</a></div></div>' ).insertAfter('#nav-header-container > #ml-nav');
+                                    $( '<div id="addToWishListPopUp" class="row alert" role="alert"><div class="col-xs-6 text-right">Item added to wishlist.</div><div class="col-xs-6 text-left"><a href="/myaccount?sec=wishlist">View Wishlist</a></div></div>' ).insertAfter('#nav-header-container > #ml-nav');
                                     setTimeout(function(){
                                         $('#addToWishListPopUp').fadeOut(function(){$(this).remove();});
                                     }, 5000);
@@ -303,7 +303,7 @@ define([
                             if($('#addToWishListPopUp').length === 1){
                                 $('#addToWishListPopUp').remove();
                             }
-                            $( '<div id="addToWishListPopUp" class="row alert" role="alert"><div class="col-xs-6 text-right">Item removed from wishlist.</div><div class="col-xs-6 text-left"><a href="/myaccount#wishlist">View Wishlist</a></div></div>' ).insertAfter('#nav-header-container > #ml-nav');
+                            $( '<div id="addToWishListPopUp" class="row alert" role="alert"><div class="col-xs-6 text-right">Item removed from wishlist.</div><div class="col-xs-6 text-left"><a href="/myaccount?sec=wishlist">View Wishlist</a></div></div>' ).insertAfter('#nav-header-container > #ml-nav');
                             setTimeout(function(){
                                 $('#addToWishListPopUp').fadeOut(function(){$(this).remove();});
                             }, 5000);
@@ -311,8 +311,21 @@ define([
                         });
                     }
                 }else{
-                    sessionStorage.setItem('addToWishlist', productCode);
-                    $(".login-link-text").trigger("click");
+                    var savedProdToWish = [];
+                    if(sessionStorage.getItem('addToWishlistArr')){
+                        savedProdToWish = JSON.parse(sessionStorage.getItem('addToWishlistArr'));
+                    }
+                    if(!savedProdToWish.includes(productCode)){
+                        savedProdToWish.push(productCode);
+                        sessionStorage.setItem('addToWishlistArr', JSON.stringify(savedProdToWish));
+                        return $('#wishlist-'+productCode+' span').removeClass("blank-heart").addClass("filled-heart");
+                    }else{
+                        savedProdToWish = savedProdToWish.filter(function(item) { 
+                            return item !== productCode;
+                        });
+                        sessionStorage.setItem('addToWishlistArr', JSON.stringify(savedProdToWish));
+                        return $('#wishlist-'+productCode+' span').removeClass("filled-heart").addClass("blank-heart");
+                    }
                 }
             }
         }
@@ -580,7 +593,7 @@ define([
                     if($('#addToWishListPopUp').length === 1){
                         $('#addToWishListPopUp').remove();
                     }
-                    $( '<div id="addToWishListPopUp" class="row alert" role="alert"><div class="col-xs-6 text-right">Item added to wishlist.</div><div class="col-xs-6 text-left"><a href="/myaccount#wishlist">View Wishlist</a></div></div>' ).insertAfter('#nav-header-container > #ml-nav');
+                    $( '<div id="addToWishListPopUp" class="row alert" role="alert"><div class="col-xs-6 text-right">Item added to wishlist.</div><div class="col-xs-6 text-left"><a href="/myaccount?sec=wishlist">View Wishlist</a></div></div>' ).insertAfter('#nav-header-container > #ml-nav');
                     setTimeout(function(){
                         $('#addToWishListPopUp').fadeOut(function(){$(this).remove();});
                     }, 5000);
@@ -602,6 +615,13 @@ define([
                     }
                 }
             });
+        }else{
+            if(sessionStorage.getItem('addToWishlistArr')){
+                var tempSavedProdToWish = JSON.parse(sessionStorage.getItem('addToWishlistArr'));
+                for (var index = 0; index < tempSavedProdToWish.length; index++) {
+                    $('#wishlist-'+tempSavedProdToWish[index]+' span').removeClass("blank-heart").addClass("filled-heart");
+                }
+            }
         }
 
         $('body').click(function(e){

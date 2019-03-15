@@ -1,4 +1,4 @@
-define(['modules/api',
+  define(['modules/api',
         'modules/backbone-mozu',
         'underscore',
         'modules/jquery-mozu',
@@ -9,8 +9,9 @@ define(['modules/api',
         'modules/preserve-element-through-render',
         'modules/modal-dialog',
         'modules/xpress-paypal',
-        "modules/metrics"
-    ], function (api, Backbone, _, $, CartModels, CartMonitor, HyprLiveContext, Hypr, preserveElement, modalDialog, paypal, MetricsEngine) {
+        "modules/metrics",
+        "modules/free-samples/free-samples"
+    ], function (api, Backbone, _, $, CartModels, CartMonitor, HyprLiveContext, Hypr, preserveElement, modalDialog, paypal, MetricsEngine, FreeSamples) {
 
 
     var CartView = Backbone.MozuView.extend({
@@ -60,16 +61,23 @@ define(['modules/api',
             });
         },
         updateQuantity: _.debounce(function (e) {
+            var self = this;
             var $qField = $(e.currentTarget),
                 newQuantity = parseInt($qField.val(), 10),
                 id = $qField.data('mz-cart-item'),
                 item = this.model.get("items").get(id);
-
-            if (item && !isNaN(newQuantity)) {
-                item.set('quantity', newQuantity);
-                item.saveQuantity();
-
-            }
+            setTimeout(function () {
+                if(newQuantity == parseInt($qField.val(), 10)){
+                    $qField.attr('disabled', true);
+                    if (item && !isNaN(parseInt($qField.val(), 10))) {
+                        item.set('quantity', parseInt($qField.val(), 10));
+                        item.saveQuantity();
+                    }
+                }else{
+                    self.updateQuantity(e);
+                }
+                
+            }, 300);                
         },400),
         onQuantityUpdateFailed: function(model, oldQuantity) {
             var field = this.$('[data-mz-cart-item=' + model.get('id') + ']');
@@ -497,14 +505,21 @@ define(['modules/api',
 
     $(document).ready(function() {
         var cartModel = CartModels.Cart.fromCurrent(),
+            freeSamplesModel = new FreeSamples.Model( {
+              categoryId: $('#free-samples').data('mz-free-samples'),
+              cartModel: cartModel
+            }),
             cartViews = {
-
                 cartView: new CartView({
                     el: $('#cart'),
                     model: cartModel,
                     messagesEl: $('[data-mz-message-bar]')
+                }),
+                freeSamplesView: new FreeSamples.View( {
+                  el: $('#free-samples'),
+                  model: freeSamplesModel,
+                  cartModel: cartModel,
                 })
-
             };
 
         cartModel.on('ordercreated', function (order) {
@@ -514,13 +529,15 @@ define(['modules/api',
 
         cartModel.on('itemremoved', function (cartItem) {
             MetricsEngine.trackRemovedFromCart(cartItem);
+            freeSamplesModel.itemRemoved(cartItem.get('product').get('productCode'));
         });
 
         cartModel.on('sync', function() {
              if (this.isEmpty())
                 window.location.reload();
-            else
+            else {
                 CartMonitor.update();
+            }
         });
 
         window.cartView = cartViews;

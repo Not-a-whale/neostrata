@@ -42,7 +42,7 @@ bnCommon.waitAndExecuteAll(handlerparams);};BaynoteAPI.call=function(handlerName
 bnCommon.finishCall(handlerName,method,methodArgs,scopeObj);};BaynoteAPI.isBaynoteIgnored=function(){return BaynoteIgnored;};BaynoteAPI.getCookieDomain=function(){var cDomain="";var bn_locHref=window.location.href;var i=bn_locHref.indexOf('//');var s1=bn_locHref.substring(i+2);var j=s1.indexOf('/');if(j<0)
 var s2=s1;else
 var s2=s1.substring(0,j);var k=s2.indexOf('.');var s3=s2.substring(k+1);s3;return cDomain=s3;}
-baynote_globals.cookieDomain=BaynoteAPI.getCookieDomain();var preLoadObj={};var bn_locHref=window.location.href;if(bn_locHref.indexOf("https://")==0){preLoadObj.server="https://ng-demo.baynote.net";}else{preLoadObj.server="http://ng-demo.baynote.net";}
-preLoadObj.customerId="ng";preLoadObj.code="demo";BaynoteAPI.init(preLoadObj);if(typeof(baynoteObserver)=="undefined"||typeof(baynoteObserver)!="boolean"||baynoteObserver){BaynoteAPI.execute("observer");}
+baynote_globals.cookieDomain=BaynoteAPI.getCookieDomain();var preLoadObj={};var bn_locHref=window.location.href;if(bn_locHref.indexOf("https://")==0){preLoadObj.server="https://neostrata-www.baynote.net";}else{preLoadObj.server="http://neostrata-www.baynote.net";}
+preLoadObj.customerId="neostrata";preLoadObj.code="www";BaynoteAPI.init(preLoadObj);if(typeof(baynoteObserver)=="undefined"||typeof(baynoteObserver)!="boolean"||baynoteObserver){BaynoteAPI.execute("observer");}
 if(typeof(baynoteGuide)=="undefined"||typeof(baynoteGuide)!="boolean"||baynoteGuide){BaynoteAPI.execute("recommendation");}
 if(typeof(baynoteDisableAjax)!="undefined"&&typeof(baynoteDisableAjax)=="boolean"&&!baynoteDisableAjax){BaynoteAPI.execute("ajax");}

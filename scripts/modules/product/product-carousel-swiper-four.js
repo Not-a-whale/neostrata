@@ -6,7 +6,9 @@
 		navigation: {
 			nextEl: '.swiper-button-next',
 			prevEl: '.swiper-button-prev'
-		},
+        },
+        preventClicks: false,
+        preventClicksPropagation: false,
         breakpoints: {
             1024: {
                 slidesPerView: 4
@@ -48,11 +50,12 @@
                         product.addToCart();
                         setTimeout(function(){
                             CartMonitor.update('showGlobalCart');
+                            $('html, body').animate({ scrollTop: 0 }, 'normal');
                         }, 1000);
                     });
                 }
             });
-            $('.swiper-container-4 .').click(function(){
+            $('.swiper-container-4 .mz-productdetail-addtowishlist').click(function(){
                 var productCode = $(this).data('mzProductCode');
                 var _e = this;
                 if(productCode && productCode !== ''){
@@ -102,8 +105,21 @@
                             });
                         }
                     }else{
-                        sessionStorage.setItem('addToWishlist', productCode);
-                        $(".login-link-text").trigger("click");
+                        var savedProdToWish = [];
+                        if(sessionStorage.getItem('addToWishlistArr')){
+                            savedProdToWish = JSON.parse(sessionStorage.getItem('addToWishlistArr'));
+                        }
+                        if(!savedProdToWish.includes(productCode)){
+                            savedProdToWish.push(productCode);
+                            sessionStorage.setItem('addToWishlistArr', JSON.stringify(savedProdToWish));
+                            return $('#wishlist-'+productCode+' span').removeClass("blank-heart").addClass("filled-heart");
+                        }else{
+                            savedProdToWish = savedProdToWish.filter(function(item) { 
+                                return item !== productCode;
+                            });
+                            sessionStorage.setItem('addToWishlistArr', JSON.stringify(savedProdToWish));
+                            return $('#wishlist-'+productCode+' span').removeClass("filled-heart").addClass("blank-heart");
+                        }
                     }
                 }
             });

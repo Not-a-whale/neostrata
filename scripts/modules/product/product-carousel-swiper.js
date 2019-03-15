@@ -1,12 +1,14 @@
-﻿define(['shim!vendor/typeahead.js/typeahead.bundle[modules/jquery-mozu=jQuery]>jQuery', 'swiper', "modules/api", "modules/models-product", "modules/cart-monitor"], function($, Swiper, api, ProductModels, CartMonitor) {
+﻿define(['shim!vendor/typeahead.js/typeahead.bundle[modules/jquery-mozu=jQuery]>jQuery', 'swiper', "modules/api", "modules/models-product", "modules/cart-monitor", "modules/metrics" ], function($, Swiper, api, ProductModels, CartMonitor, MetricsEngine) {
     var swiper = new Swiper('.swiper-container', {
         slidesPerView: 3,
         spaceBetween: 0,
-        loop: true,
+        loop: false,
 		navigation: {
 			nextEl: '.swiper-button-next',
 			prevEl: '.swiper-button-prev'
-		},
+        },
+        preventClicks: false,
+        preventClicksPropagation: false,
         breakpoints: {
             1024: {
                 slidesPerView: 3
@@ -26,12 +28,14 @@
         }
     });
     function window_resize(){
+      /*
         $('.product-listing-container').css('height', '');
         var maxHeight = Math.max.apply(null, $(".product-listing-container").map(function ()
         {
             return $(this).height() + parseFloat($(this).css("padding-top")) + parseFloat($(this).css("padding-bottom"));
         }).get());
         $('.product-listing-container').css('height', maxHeight);
+        */
     }
     $(document).ready(function() {
         window_resize();
@@ -55,8 +59,12 @@
                     api.get('product', productCode).then(function(productResponse){
                         var product = new ProductModels.Product(productResponse.data);
                         product.addToCart();
+                        product.on('addedtocart', function(cartitem) {
+                            MetricsEngine.trackDirectoryAddToCart(product, product.get('categories')[0], false, 1);
+                        });
                         setTimeout(function(){
                             CartMonitor.update('showGlobalCart');
+                            $('html, body').animate({ scrollTop: 0 }, 'normal');
                         }, 1000);
                     });
                 }
@@ -93,7 +101,7 @@
                                         return $('#wishlist-'+productCode+' span').removeClass("blank-heart").addClass("filled-heart");
                                     });
                                 }, 1000);
-                               
+
                             });
                         }else if(action == 'directoryRemoveFromWishlist'){
                             var finishRemoveItemId = $(_e).data('mz-item-id');
@@ -112,8 +120,21 @@
                             });
                         }
                     }else{
-                        sessionStorage.setItem('addToWishlist', productCode);
-                        $(".login-link-text").trigger("click");
+                        var savedProdToWish = [];
+                        if(sessionStorage.getItem('addToWishlistArr')){
+                            savedProdToWish = JSON.parse(sessionStorage.getItem('addToWishlistArr'));
+                        }
+                        if(!savedProdToWish.includes(productCode)){
+                            savedProdToWish.push(productCode);
+                            sessionStorage.setItem('addToWishlistArr', JSON.stringify(savedProdToWish));
+                            return $('#wishlist-'+productCode+' span').removeClass("blank-heart").addClass("filled-heart");
+                        }else{
+                            savedProdToWish = savedProdToWish.filter(function(item) { 
+                                return item !== productCode;
+                            });
+                            sessionStorage.setItem('addToWishlistArr', JSON.stringify(savedProdToWish));
+                            return $('#wishlist-'+productCode+' span').removeClass("filled-heart").addClass("blank-heart");
+                        }
                     }
                 }
             });

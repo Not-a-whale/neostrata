@@ -11,15 +11,23 @@
     		    {% cms_resources %}
     		{% endif %}
     	
-
-
-        
-
         <style type="text/css">
             /* Based on The MailChimp Reset INLINE: Yes. */  
             /* Client-specific Styles */
             #outlook a {padding:0;} /* Force Outlook to provide a "view in browser" menu link. */
-            body{width:100% !important; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; margin:0; padding:0;} 
+            body{
+                width:100% !important; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; 
+                margin:0; padding:0;
+                letter-spacing: 0.025em;
+                color: #4e5458;
+                line-height: 1.4;
+                font-size: 12px;
+            } 
+            /*default text color*/
+            p,
+            span{
+                color: #4e5458;
+            }
             /* Prevent Webkit and Windows Mobile platforms from changing default font sizes.*/ 
             .ExternalClass {width:100%;} /* Force Hotmail to display emails at full width */  
             .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height: 100%;}
@@ -39,7 +47,7 @@
 
             /* Hotmail header color reset
             Bring inline: Yes. */
-            h1, h2, h3, h4, h5, h6 {color: black !important;}
+            h1, h2, h3, h4, h5, h6 {color: #4e5458;}
 
             h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {color: blue !important;}
 
@@ -61,9 +69,39 @@
 
             /* Styling your links has become much simpler with the new Yahoo.  In fact, it falls in line with the main credo of styling in email and make sure to bring your styles inline.  Your link colors will be uniform across clients when brought inline.
             Bring inline: Yes. */
-            a {color: orange;}
+            a {
+                color: #4e5458 !important;
+                text-decoration: none !important;
+                font-weight: bold !important;
+            }
 
+            .primary-btn{
+                font-size: 1.15rem;
+                padding: 1rem 2.125rem;
+                font-weight: 400;
+                color: #4e5458 !important;
+                letter-spacing: 0.14em;
+                text-transform: uppercase;
+                text-decoration: none;
+                border: 1px solid #4e5458;
+                white-space: nowrap;
+            }
+            tr.title td{
+                border-bottom: 2px solid #e1e1e1;
+            }
+            tr.title td span{
+                font-size: 1.1rem;
+                font-weight: 500;
+                line-height: 2.5rem;
+            }
+            .main-email-wrapper{
+                max-width: 800px;
+                margin: auto !important;
+            }
 
+            .new-user-list {
+                list-style: none;
+            }
             /***************************************************
             ****************************************************
             MOBILE TARGETING
@@ -73,14 +111,14 @@
                 /* Part one of controlling phone number linking for mobile. */
                 a[href^="tel"], a[href^="sms"] {
                             text-decoration: none;
-                            color: blue; /* or whatever your want */
+                            color: #4e5458;
                             pointer-events: none;
                             cursor: default;
                         }
 
                 .mobile_link a[href^="tel"], .mobile_link a[href^="sms"] {
                             text-decoration: default;
-                            color: orange !important;
+                            color: #4e5458;
                             pointer-events: auto;
                             cursor: default;
                         }
@@ -94,14 +132,14 @@
                 /* repeating for the ipad */
                 a[href^="tel"], a[href^="sms"] {
                             text-decoration: none;
-                            color: blue; /* or whatever your want */
+                            color: #4e5458;
                             pointer-events: none;
                             cursor: default;
                         }
 
                 .mobile_link a[href^="tel"], .mobile_link a[href^="sms"] {
                             text-decoration: default;
-                            color: orange !important;
+                            color: #4e5458;
                             pointer-events: auto;
                             cursor: default;
                         }
@@ -150,17 +188,46 @@
     </head>
   
   
-    <body>
-        <table cellpadding="0" cellspacing="0" border="0" id="backgroundTable">
+    <body marginheight="0" marginwidth="0" leftmargin="0" topmargin="0" style="width:100% !important; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; margin:0; padding:0; letter-spacing: 0.025em; line-height: 1.4; font-size: 12px;">
+        <table cellpadding="0" cellspacing="0" border="0" id="backgroundTable" width="800" class="main-email-wrapper" style="max-width: 800px; margin: auto !important; width: 800px;">
             <tr>
                 <td valign="top">
-				
+                    <table cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                            <td><img src="https://{{domainName}}/cms/files/email_main_header.png"  width="800" height="274" style="width:800px;" border="0" alt="NEOSTRATA"/></td>
+                        </tr>
+                    </table>
                     <div>{{pageContext.cmsContext.page.document.properties.html_1|safe}}</div>
-    		
-                    {% block body-content %}
-                    {% endblock body-content %}
+
+                    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                        <tr>
+                            <td>
+                                {% block body-content %}
+                                {% endblock body-content %}
+                            </td>
+                        </tr>
+                    </table>
             
                     <div>{{pageContext.cmsContext.page.document.properties.html_2|safe}}</div>
+
+                    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                        <tr>
+                            <td style="padding-bottom:16px; font-size:16px; line-height:23px; padding-top:6px; margin-top:0; text-align:center;color: #4e5458;">
+                                <p style="font-size:16px; line-height:23px;">{{ labels.emailClosing|string_format(siteContext.generalSettings.websiteName)|safe }}</p>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellpadding="0" cellspacing="0" width="100%" border="0" bgcolor="#edeeee">
+                      <tr>
+                        <td valign="middle" style="padding-bottom:16px; padding-top:50px;margin-top:0;text-align: center;">
+                            <p style="font-size:10px;">{{ labels.emailFooterSentTo|string_format(user.email)|safe }}</p>
+                            <p style="font-size:10px;">{{ labels.emailFooterAddress|safe }}</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td height="15"><img src="https://{{domainName}}/cms/files/email-main-footer-img.png" width="800" height="69" border="0" alt=""></td>
+                      </tr>
+                    </table>
                 </td>
             </tr>
     	</div>

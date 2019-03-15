@@ -32,14 +32,15 @@
         bottom: 0;
         height: 100%;
         background-color: @white;
-        z-index: 5;
+        z-index: 600;
         >div{
             top: 50%;
             position: absolute;
-            transform: translate(-50%, -50%);
+            transform: translate(0, -50%);
             vertical-align: top;
             width: 65%;
-            left: 50%;
+            left: 21%;
+
             >.form-input{
                 >.twitter-typeahead{
                     width: 100%;
@@ -218,30 +219,12 @@
   @media (min-width: 992px) {
     .commerce-enabled-true & {
       position: relative;
-      height: 1.875rem;
+      height: auto;
       width: 100%;
-      background-image: url(../resources/images/neostrata_logo.svg);
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-size: contain;
-
-      &::after {
-        content: "";
-        position: absolute;
-        top: 100%;
-        bottom: unset;
-        margin-top: 0.438rem;
-        height: 0.563rem;
-        width: 100%;
-        background-image: url(../resources/images/neostrata_tagline.svg);
-        background-position: center center;
-        background-repeat: no-repeat;
-        background-size: 15.75rem;
-      }
     }
 
     .commerce-enabled-true .sticky-nav & {
-      &::after {
+      .logo-slogan {
         display: none;
       }
     }
@@ -278,6 +261,19 @@
       left: 86%;
 
       .ml-header-search-label {
+        display: none;
+      }
+    }
+  }
+}
+
+.sticky-nav .mz-pageheader .ml-header-content .ml-header-search-wrapper,
+.sticky-nav .mz-pageheader .ml-header-content .ml-header-links-wrapper { 
+  @media (min-width: 992px) {
+    .commerce-enabled-true & {
+      position: absolute;
+
+      .user-login b {
         display: none;
       }
     }
@@ -334,6 +330,51 @@
 
       .login-link-text span {
         display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 991px) { //added 020319
+  .commerce-enabled-true & {
+    #nav-header-container .container-fluid {
+      position: relative;
+      z-index: 11;
+    }
+  }
+}
+.mz-pageheader .ml-header-content { //added 020319
+  @media (max-width: 991px) {
+    .commerce-enabled-true & {
+      .ml-header-logo-wrapper {
+        left: 49.8%;
+      }
+      .ml-header-links-wrapper { 
+        .icon-user {
+          .icon(before, @icon-user);
+          position: absolute;
+          top: 0;
+          left: 0;
+          font-size: 3.125rem;
+          transform: none;
+        }
+        .login-link-text span, .login-link-text b { //added 020319
+            display: none;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 991px) { //added 020319
+  .commerce-enabled-true & {
+    .mz-sitenav {
+      .login-link-text span, .login-link-text b {
+        display: inline-block;
+        padding-right: 5px;
+      }
+      .user-login .icon-user {
+        left: -.9rem;
+        position:relative;
       }
     }
   }
@@ -440,7 +481,7 @@
 
   @media (max-width: 991px) {
     .commerce-enabled-true & {
-      height: 3.75rem;
+      height: auto;
     }
   }
 }

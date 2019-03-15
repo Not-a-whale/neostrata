@@ -1,10 +1,11 @@
 define([
     'modules/jquery-mozu',
-    "modules/free-samples/free-samples"], function($, FreeSamplesViewFactory) {
+    "modules/free-samples/free-samples"], function($, FreeSamplesView) {
     $(document).ready(function() {
-        console.log('Setting freeSamples on window');
-        window.freeSamplesView = FreeSamplesViewFactory.createFreeSamplesViews({
-            $body: $('[data-mz-free-samples]')
+        //console.log('Setting freeSamples on window');
+        window.freeSamplesView = new FreeSamplesView( {
+          el: '#free-samples',
+          categoryId: $('#free-samples').data('mz-free-samples')
         });
     });
 });

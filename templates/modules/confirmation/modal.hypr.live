@@ -1,0 +1,165 @@
+{% extends "modules/common/modal-dialog" %}
+{% block modal-header %}
+<div class="close-modal">
+    <span class="mz-close-icon" data-dismiss="modal" aria-hidden="true" data-mz-quickview-close="true"></span>  
+</div>
+<div class="printBtn" id="printOut">
+        <i class="fa fa-3x fa-print"></i>
+</div>
+<h3 class="modal-title"></h3>
+{% endblock modal-header %}
+{% block modal-body %}
+<div class="mz-l-stack">
+    <div class="text-center fullWidthPrint">
+        <h2>NEOSTRATA Order Details</h2>
+        <p>Order Number: <b>{{model.orderNumber}}</b>  <br />
+        Placed <b>{{model.submittedDate|date("F j, Y")}}</b> | Status: <b>{{model.status}}</b></p>
+    </div>
+    {% if model.hasDirectShip %}
+    <div class="mz-l-stack-section shipping-information-section">
+        <h4 class="mz-l-stack-sectiontitle">{{ labels.shippingInformation }}</h4>
+        <div class="mz-l-stack-item shipping-address-row">
+            <div class="mz-addresssummary">{% include "modules/common/address-summary" with model=model.fulfillmentInfo.fulfillmentContact %}</div>
+        </div>
+        <div class="mz-l-stack-item shipping-method-row">
+            <small>{{ labels.shippingMethod }}</small>
+            <div>{{ model.fulfillmentInfo.shippingMethodName }}</div>
+        </div>
+    </div>
+    {% endif %}
+    {% for item in model.items %}
+    {% if item.fulfillmentMethod == "Pickup" %}
+    <div class="mz-l-stack-section">
+        <h4 class="mz-l-stack-sectiontitle">{{ labels.storePickupFor|string_format(item.product.name)|safe }}</h4>
+        {% with model.locationDetails|findwhere("code", item.fulfillmentLocationCode) as location %}
+        <div class="mz-l-stack-item">
+            <small>{{ labels.storeName }}</small>
+            <div>{{ location.name }}</div>
+
+        </div>
+        <div class="mz-l-stack-item">
+          <small>{{ labels.address }}</small>
+          <div>{{ location.address.address1 }}</div>
+          {% if location.address.address2 %}<div> {{ location.address.address2 }}</div>{% endif %}
+          {% if location.address.address3 %}<div> {{ location.address.address3 }}</div>{% endif %}
+          {% if location.address.address4 %}<div> {{ location.address.address4 }}</div>{% endif %}
+          <div> {{ location.address.cityOrTown }}, {{ location.address.stateOrProvince }}</div>
+          <div> {{location.address.postalOrZipCode}} </div>
+        </div>
+        {% endwith %}
+    </div>
+    {% endif %}
+    {% endfor %}
+
+    <div class="mz-l-stack-section payment-information-section">
+        <h4 class="mz-l-stack-sectiontitle">{{ labels.payments }}</h4>
+        {% if model.total == 0 %}
+            {% with model.total|currency as total %}
+                <h4 class="mz-confirmation-nopaymentrequired">{{ labels.noPaymentWasRequired|string_format(total) }}</h4>
+            {% endwith %}
+        {% else %}
+            {% for payment in model.payments %}
+            {% if payment.status != "Voided" and payment.status != "Declined" %}
+            {% include "modules/checkout/checkout-payment" with model=payment %}
+            {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    {% if model.attributes.length > 0 %}
+    <div class="mz-l-stack-section">
+        <h4 class="mz-l-stack-sectiontitle">{{ labels.additionalInformation }}</h4>
+        {% for attribute in model.attributes %}
+        {% with attribute.values|first as attributeVal %}
+        {% with model.orderAttributeDefinitions|findwhere('attributeFQN', attribute.fullyQualifiedName) as attributeDef %}
+        {% if attributeDef %}
+            <div class="mz-l-stack-item">
+                <small>{{ attributeDef.content.value }}</small>
+                <div>
+                    {% if attributeDef.dataType == "DateTime" %}
+                        {{ attributeVal|date("F j, Y") }}
+                    {% else %}
+                        {% if attributeDef.dataType == "Bool" %}
+                            {% if attributeVal == "True" %}
+                            Yes
+                            {% else %}
+                            No
+                            {% endif %}
+                        {% else %}
+                            {{ attributeVal }}
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+        {% endwith %}
+        {% endwith %}
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="mz-l-stack-section confirmation-cart-items-wrapper">
+        <h4 class="mz-l-stack-sectiontitle">{{ labels.confirmationCartTitle }}</h4>
+
+      {% for item in model.items %}
+          <div class="mz-ordersummary-lineitems mz-carttable-item clearfix">
+            <div class="mz-ordersummary-line mz-ordersummary-line-item {% if item.discountTotal > 0 %}is-discounted{% endif %} clearfix">
+                <div class="mz-ordersummary-item-product mz-order-content-container mz-reset-padding">
+                    <div class="pull-left mz-order-summary-image">
+                      {% with item.product|get_product_attribute("tenant~color") as colorAttr %}
+                        {% if colorAttr %}
+                          {% with colorAttr.value|replace(" ","_") as colorValue %}
+                            {% with "/cms/files/{0}_{1}_v1.jpg"|string_format(item.product.productCode, colorValue) as fileName %}
+                                <img class="mz-carttable-item-image" src="https:{% make_url "cdn" fileName with maxWidth=themeSettings.globalCartItemImageMaxWidth as_parameter %}" {% if item.product.imageAlternateText %}alt="{{ item.product.imageAlternateText }}"{% endif %} onerror="this.setAttribute('src','{% if item.product.imageUrl %}{% make_url 'image' item.product with maxWidth=themeSettings.globalCartItemImageMaxWidth as_parameters %}{% else %}https:{% make_url 'cdn' '/cms/files/No_image_available.png' with maxWidth=themeSettings.globalCartItemImageMaxWidth as_parameter %}{% endif %}')"/>
+                            {% endwith %}
+                          {% endwith %}
+                        {% else %}
+                          {% if item.product.imageUrl %}
+                                <img class="mz-carttable-item-image" src="{% make_url "image" item.product with maxWidth=themeSettings.globalCartItemImageMaxWidth as_parameters %}" {% if item.product.imageAlternateText %}alt="{{ item.product.imageAlternateText }}"{% endif %} />
+                          {% else %}
+                              <span class="mz-carttable-item-image mz-product-image-placeholder pull-left">
+                                <span class="mz-productlisting-imageplaceholdertext">{{ labels.productImagePlaceholder }}</span>
+                              </span>
+                          {% endif %}
+                        {% endif %}
+                      {% endwith %}
+                    </div>
+                    <div class="mz-carttable-item-info-wrap mz-reset-padding-right">
+                      <div class="mz-carttable-item-title" >{{ item.product.name |safe }}</div>
+                    </div>
+                  </div>
+                  <div class="clearfix visible-xs mz-print-hide"></div>
+                  <div class="mz-qty-container">
+                    <span class="cartproduct-title">{{ labels.qty }}</span>
+                    <span class="text-capitalize mz-item-qty">{{ item.quantity }}</span>
+                  </div>
+                  <div class="hidden-xs mz-price-each-display mz-price-main-container">
+                      {% include "modules/common/item-price" %}
+                  </div>
+                  <div class="mz-checkout-item-total-container pull-right">
+                      {% include "modules/common/item-total" %}
+                  </div>
+              </div>
+          </div>
+      {% endfor %}
+    </div>
+    <div class="mz-l-stack-section ordersummary-confirmation">
+        <h4 class="mz-l-stack-sectiontitle order-summary-title">{{ labels.orderSummary }} </h4>
+        {% include "modules/common/order-summary-confirmation" %}
+        {% if model.shopperNotes.comments %}
+        <div class="mz-ordercomments">
+            <h5 class="mz-ordercomments-header">{{ labels.comments }}</h5>
+            <p class="mz-ordercomments-body">{{ model.shopperNotes.comments }}</p>
+        </div>
+        {% endif %}
+        {% if model.shopperNotes.giftMessage %}
+        <div class="mz-ordercomments">
+            <h5 class="mz-ordercomments-header">{{ labels.giftMessage }}</h5>
+            <p class="mz-ordercomments-body">{{ model.shopperNotes.giftMessage }}</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock modal-body %}
+{% block modal-footer %}
+{% endblock modal-footer %}
