@@ -14,10 +14,10 @@
         </div>
     </div>
     <div class="omx-orderhistory-list row">
-        {% for order in model %}
+        {% for orderItem in model %}
         <div data-mz-order-id="{{order.orderId}}" data-mz-omx-order-history-listing>
             <div data-order-message-bar class="order-message-bar"></div>
-            {% include "modules/my-account/omx-item-subscription-listing" with model=order %}
+            {% include "modules/my-account/omx-item-subscription-listing" with model=orderItem %}
         </div>
         {% endfor %}
     </div>
