@@ -1,6 +1,6 @@
 {% if model.items %}
 {% for prod in model.items %}
-<div class="mz-l-container container">
+<div class="mz-l-container container desktopView">
     <div>
         <div>
           <div class="mz-product-top-content">
@@ -121,6 +121,86 @@
         </div>
     </div>
 {% endif %}
+</div>
+<div class="featured-product-and-regimen-widget">
+  <div class="featured-product-container mobile-only" data-mz-product="{{prod.productCode}}">
+    <div class="featured-product-callout">
+      <div class="callout-text">
+        FEATURED PRODUCT
+      </div>
+      <div class="callout-feather"></div>
+    </div>
+    <div class="featured-product-tile-wrapper">
+      <div class="featured-product-image-container">
+        {% if prod.mainImage.src %}
+          <a href="{% make_url 'product' prod %}">
+            <div
+              class="featured-product-image"
+              style="background-image: url('{{prod.mainImage.src}}');"
+              >
+            </div>
+          </a>
+        {% else %}
+            <span class="featured-product-image-placeholder">
+              <span class="featured-product-image-placeholder-text">
+                {{ labels.productImagePlaceholder }}
+              </span>
+            </span>
+        {% endif %}
+      </div>
+      <div class="featured-product-info-container">
+        <div class="featured-product-type">
+          {% with prod|get_product_attribute("tenant~product-type") as productType %}
+            {% for v in productType.values %}
+              {% if v.stringValue %}
+                {{ v.stringValue|safe }}{% if not forloop.last %},{% endif %}
+              {% endif %}
+            {% endfor %}
+          {% endwith %}
+        </div>
+        <div class="featured-product-title">
+          <a href="{% make_url 'product' prod %}">
+            {{ prod.productName }}
+          </a>
+        </div>
+        <div class="featured-product-highlighted-ingredients">
+          {% with prod|get_product_attribute("tenant~ingredient-highlights") as productIngredients %}
+            {% for v in productIngredients.values %}
+              {% if v.stringValue %}
+                <div>
+                  {{ v.stringValue|safe }}
+                </div>
+              {% endif %}
+            {% endfor %}
+          {% endwith %}
+        </div>
+        <div class="featured-product-info-group">
+          <div class="featured-product-rating">
+            <div id="BVRRInlineRating-{{prod.productCode}}" class="pdp5 bvr-inline-rating" data-mz-product-code="{{ prod.productCode }}" data-bv-product-code="{{apicontext.headers.x-vol-locale}}-{{ prod.productCode }}" data-mz-product-url="{{ prod.url }}"></div>
+          </div>
+          <div class="featured-product-price">
+            {% include "modules/product/price-stack" with model=prod %}
+          </div>
+        </div>
+        <div class="featured-product-description">
+          {{ prod.content.productShortDescription|striptags|truncatewords(themeSettings.maxProductSummaryWords) }}
+        </div>
+      </div>
+    </div>
+
+    <div class="featured-product-controls">
+      <div class="add-to-wishlist-container">
+        <a id="wishlist-{{prod.productCode}}" class="mz-productdetail-addtowishlist wishlistHeart" data-mz-action="directoryAddToWishlist" data-mz-product-code="{{prod.productCode}}">
+          <span class="blank-heart"></span>
+        </a>
+      </div>
+      <div class="add-to-cart-container">
+        <button class="primary-btn mz-productdetail-addtocart font-large button_primary add-to-cart-button" data-mz-product-code="{{prod.productCode}}" data-control="add-to-cart">
+          Add To Cart
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
 {% endfor %}
 {% endif %}
