@@ -437,6 +437,81 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
         }
         
     });
+    /* var OmxItemSubscriptionView = Backbone.MozuView.extend({
+        //templateName: "modules/my-account/omx-order-history-list",
+        templateName: "modules/my-account/my-account-omx-item-subscriptions",  
+        
+        constructor: function() {
+            EditableView.apply(this, arguments);
+            this.editing.order = false;
+            this.invalidFields = {};
+        },
+
+        getRenderContext: function() {
+            var context = Backbone.MozuView.prototype.getRenderContext.apply(this, arguments);
+            return context;
+        },
+        render: function() {
+            var self = this;
+           
+                Backbone.MozuView.prototype.render.apply(this, arguments);
+
+                $.each(this.$el.find('[data-mz-omx-order-history-listing]'), function(index, val) {
+    
+                    var orderId = $(this).data('mzOrderId');
+                    var myOrder = _.find(self.model.models, function(model) {
+                        return model.attributes.orderId == orderId;
+                    });
+                    var orderHistoryListingView = new OmxOrderHistoryListingView({
+                        el: $(this).find('.mz-omx-orderlisting'),
+                        model: myOrder,
+                        messagesEl: $(this).find('[data-order-message-bar]')
+                    });
+                    orderHistoryListingView.render();   
+                });
+            if (this.editing.order) {
+                this.startViewOMXItemSubscription();
+            } else {
+                this.cancelViewOMXItemSubscription(); 
+            }
+        },
+        viewOMXItemSubscription: function (event) {
+            if(event)
+                event.preventDefault();
+
+            this.editing.order = true; 
+            this.startViewOMXItemSubscription(); 
+        },
+
+        startViewOMXItemSubscription: function () {
+            $('.dz-backtodashboard.mz-back-to-dash').show(); 
+            $('.mz-l-stack-section').hide();
+            $('.mz-l-stack-section.mz-accountorderhistory').show();
+            $('.mz-l-stack-section.mz-accountorderhistory').removeClass('no-editing').addClass('is-editing');
+            $('.dl-maintitle').hide();
+            $('.mz-scrollnav-item').removeClass('active');
+            $('.mz-scrollnav-item.dl-orderhistory').addClass('active');
+            $('.mz-accountorderhistory .dl-view-wrapper').addClass('hidden'); 
+            $('.mz-accountorderhistory .dl-link-edit.mz-link-edit-order').addClass('hidden'); 
+            $('.mz-accountorderhistory .mz-orderhistory-section-wrapper').removeClass('hidden'); 
+        },
+        cancelViewOMXItemSubscription: function () {
+            this.editing.order = false; 
+            $('.dz-backtodashboard.mz-back-to-dash').hide(); 
+            
+            $('.mz-l-stack-section').removeClass('is-editing').addClass('no-editing');
+            $('.mz-l-stack-section').show();
+            $('.dl-maintitle').show();
+            $('.mz-scrollnav-item').removeClass('active');
+            $('.mz-scrollnav-item.dl-accountDashboard').addClass('active');
+            $('.mz-accountorderhistory .dl-view-wrapper').removeClass('hidden'); 
+            $('.mz-accountorderhistory .mz-orderhistory-section-wrapper').addClass('hidden'); 
+            $('.mz-accountorderhistory .dl-link-edit.mz-link-edit-order').removeClass('hidden'); 
+
+        }
+        
+    });  */
+
 
     var OmxOrderHistoryListingView = Backbone.MozuView.extend({
         templateName: "modules/my-account/omx-order-history-listing",
@@ -962,6 +1037,7 @@ function getQueryVariable(variable)
             $passwordEl = $('#password-section'),
             $orderHistoryEl = $('#account-orderhistory'),
             $omxOrderHistoryEl = $('#account-omx-orderhistory'),
+            //$omxItemSusbcriptionsEl = $('#account-omx-item-subscriptions'),
             $returnHistoryEl = $('#account-returnhistory'),
             $paymentMethodsEl = $('#account-paymentmethods'),
             $addressBookEl = $('#account-addressbook'),
@@ -971,6 +1047,8 @@ function getQueryVariable(variable)
             orderHistory = accountModel.get('orderHistory'),
             returnHistory = accountModel.get('returnHistory'),
             omxOrderHistoryModel = accountModel.get('omxOrderHistory');
+            //omxItemSubscriptionsModel = accountModel.get('omxItemSubscriptions');
+            
             //$parentEl = $('.mz-myaccount .mz-l-container');
         var accountViews = window.accountViews = {
             /*
@@ -993,7 +1071,11 @@ function getQueryVariable(variable)
               el: $omxOrderHistoryEl, //.find('[data-mz-omx-orderlist]'),
               model: omxOrderHistoryModel
             }),
-            /*orderHistory: new OrderHistoryView({
+/*            omxItemSubscriptions: new OmxItemSubscriptionView({
+                el: $omxItemSusbcriptionsEl, //.find('[data-mz-omx-orderlist]'),
+                model: omxItemSubscriptionsModel
+            }),  */
+             /*orderHistory: new OrderHistoryView({
                 el: $orderHistoryEl.find('[data-mz-orderlist]'),
                 model: orderHistory
             }),

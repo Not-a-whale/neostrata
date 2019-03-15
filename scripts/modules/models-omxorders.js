@@ -1,13 +1,17 @@
-define(["modules/api", 'underscore', "modules/backbone-mozu", "hyprlive"], function(api, _, Backbone, Hypr) {
-
+define(["modules/api", 'underscore', "modules/backbone-mozu", "hyprlive", 'modules/models-product'], function(api, _, Backbone, Hypr, ProductModels) {
+  
    var OmxOrderHistoryItem = Backbone.MozuModel.extend({
           idAttribute: 'orderId'
+      }),
+      OmxItemSubscription = Backbone.MozuModel.extend({
+        idAttribute: 'orderId',
+        relations: {
+          product: ProductModels.Product
+        }
       }),
       OmxOrderHistoryList = Backbone.Collection.extend({
         helpers: ['hasItems'],
         hasItems: function() {
-            console.log('models-omxorder.js --> OmxOrderHistoryList -->hasItems()--Start'); 
-            console.log('models-omxorder.js --> OmxOrderHistoryList -->hasItems() --> THIS', this); 
             return this.length > 0;
         },
         relations: {
@@ -15,10 +19,23 @@ define(["modules/api", 'underscore', "modules/backbone-mozu", "hyprlive"], funct
               model: OmxOrderHistoryItem
           })
         }
+      }),
+      OmxItemSubscriptionList = Backbone.Collection.extend({
+        helpers: ['hasItems'],
+        hasItems: function() {
+            return this.length > 0;
+        },
+        relations: {
+          items: Backbone.Collection.extend({
+              model: OmxItemSubscription
+          })
+        }
       });
 
+
       return {
-          OmxOrderHistoryList: OmxOrderHistoryList
+          OmxOrderHistoryList: OmxOrderHistoryList, 
+          OmxItemSubscriptionList: OmxItemSubscriptionList
       };
 
 });

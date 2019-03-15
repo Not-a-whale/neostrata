@@ -426,15 +426,16 @@ define(['modules/backbone-mozu', 'underscore', 'modules/models-address', 'module
     }),
 
     EditableCustomer = Customer.extend({
-
         handlesMessages: true,
-        relations: _.extend({
+        relations:  
+            _.extend({
             editingCard: CustomerCardWithContact,
             editingContact: CustomerContact,
             wishlist: Wishlist,
             orderHistory: OrderModels.OrderCollection,
             returnHistory: ReturnModels.RMACollection,
-            omxOrderHistory: OmxOrderHistoryModels.OmxOrderHistoryList
+            //omxItemSubscriptions: OmxOrderHistoryModels.OmxItemSubscriptions,
+            omxOrderHistory: OmxOrderHistoryModels.OmxOrderHistoryList 
         }, Customer.prototype.relations),
         validation: {
             password: {

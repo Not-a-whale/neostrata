@@ -57,6 +57,11 @@
             {% include "modules/my-account/my-account-omx-orderhistory" with model=model.omxOrderHistory %}
         </div>
 
+        <a id="itemsubscriptions"></a>
+        <div class="mz-l-stack-section mz-accountitemsubscriptions no-editing" id="account-omx-item-subscriptions">
+            {% include "modules/my-account/my-account-omx-item-subscriptions" with model=model.omxItemSubscriptions %}
+        </div>
+
         <a id="returnhistory"></a>
         <div class="mz-l-stack-section mz-accountreturnhistory no-editing" id="account-returnhistory">
             {% include "modules/my-account/my-account-returnhistory" with model=model.returnHistory %}
