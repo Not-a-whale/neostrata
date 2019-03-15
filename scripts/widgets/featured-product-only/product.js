@@ -1,11 +1,11 @@
 define(['modules/jquery-mozu', "modules/api", 'modules/models-product', 'underscore', "modules/cart-monitor"],
-    function ($, api, ProductModels, _, CartMonitor) { 
+    function ($, api, ProductModels, _, CartMonitor) {
         function showAddToWishListM(){
             if($('#addToWishListPopUp').length === 1){
                 $('#addToWishListPopUp').remove();
             }
             $( '<div id="addToWishListPopUp" class="row alert" role="alert"><div class="col-xs-6 text-right">Item added to wishlist.</div><div class="col-xs-6 text-left"><a href="/myaccount#wishlist">View Wishlist</a></div></div>' ).insertAfter('#nav-header-container > #ml-nav');
-            setTimeout(function(){ 
+            setTimeout(function(){
                 $('#addToWishListPopUp').fadeOut(function(){$(this).remove();});
             }, 5000);
         }
@@ -14,7 +14,7 @@ define(['modules/jquery-mozu', "modules/api", 'modules/models-product', 'undersc
                 $('#addToWishListPopUp').remove();
             }
             $( '<div id="addToWishListPopUp" class="row alert" role="alert"><div class="col-xs-6 text-right">Item removed from wishlist.</div><div class="col-xs-6 text-left"><a href="/myaccount#wishlist">View Wishlist</a></div></div>' ).insertAfter('#nav-header-container > #ml-nav');
-            setTimeout(function(){ 
+            setTimeout(function(){
                 $('#addToWishListPopUp').fadeOut(function(){$(this).remove();});
             }, 5000);
         }
@@ -30,7 +30,7 @@ define(['modules/jquery-mozu', "modules/api", 'modules/models-product', 'undersc
                         setTimeout(function(){
                             api.createSync('wishlist').getOrCreate(user.accountId).then(function(wishlist) {
                                 return wishlist.data;
-                            }).then(function(wishlistItems) {          
+                            }).then(function(wishlistItems) {
                                 $( ".featured-product-only-widget .mz-productdetail-addToWishlist-Action" ).data('mz-wishlist-id', wishlistItems.id);
                                 for (var i = 0; i < wishlistItems.items.length; i++) {
                                     if(wishlistItems.items[i].product.productCode === $('.featured-product-only-widget .mz-productdetail-addToWishlist-Action').data('mzProductCode')){
@@ -40,11 +40,11 @@ define(['modules/jquery-mozu', "modules/api", 'modules/models-product', 'undersc
                                 }
                             });
                         }, 1000);
-                    });                
+                    });
                 }else{
                     api.createSync('wishlist').getOrCreate(user.accountId).then(function(wishlist) {
                         return wishlist.data;
-                    }).then(function(wishlistItems) {        
+                    }).then(function(wishlistItems) {
                         $( ".featured-product-only-widget .mz-productdetail-addToWishlist-Action" ).data('mz-wishlist-id', wishlistItems.id);
                         for (var i = 0; i < wishlistItems.items.length; i++) {
                             if(wishlistItems.items[i].product.productCode === $('.featured-product-only-widget .mz-productdetail-addToWishlist-Action').data('mzProductCode')){
@@ -68,11 +68,11 @@ define(['modules/jquery-mozu', "modules/api", 'modules/models-product', 'undersc
                                     proceed = false;
                                 }
                             }
-                
+
                             if (proceed) {
                                 var product = new ProductModels.Product({ productCode: qvProductCode} );
                                 product.addToWishlist({ quantity: 1});
-                
+
                                 try {
                                     product.on('addedtowishlist', function(wishlistitem) {
                                         $( ".featured-product-only-widget .mz-productdetail-addToWishlist-Action" ).data('mz-item-id', wishlistitem.data.id);
@@ -106,11 +106,10 @@ define(['modules/jquery-mozu', "modules/api", 'modules/models-product', 'undersc
                 if(productCode && productCode !== ''){
                     api.get('product', productCode).then(function(productResponse){
                         var product = new ProductModels.Product(productResponse.data);
-                        console.log(product);
-                        // product.addToCart({ quantity: parseInt(qty)});
-                        // setTimeout(function(){
-                        //     CartMonitor.update('showGlobalCart');
-                        // }, 1000);
+                        product.addToCart({ quantity: parseInt(qty)});
+                        setTimeout(function(){
+                            CartMonitor.update('showGlobalCart');
+                        }, 1000);
                     });
                 }
             });
