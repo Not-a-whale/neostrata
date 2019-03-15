@@ -10,6 +10,11 @@ require([
           }).then(function(wishlistItems) {
               $('.wishlist-item-count > .heart > .count-number > .wishNumber').html(wishlistItems.items.length);
           });
+      } else {
+        if(sessionStorage.getItem('addToWishlistArr')){
+            var savedProdToWish = JSON.parse(sessionStorage.getItem('addToWishlistArr'));
+            $('.wishlist-item-count > .heart > .count-number > .wishNumber').html(savedProdToWish.length);
+        }
       }
     });
 });
