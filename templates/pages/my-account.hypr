@@ -53,10 +53,10 @@
         </div>
 
         <a id="orderhistory"></a>
-        <div class="mz-l-stack-section mz-accountorderhistory no-editing" id="account-orderhistory">
-            {% include "modules/my-account/my-account-orderhistory" with model=model.orderHistory showPaging=true %}
+        <div class="mz-l-stack-section mz-accountorderhistory no-editing" id="account-omx-orderhistory">
+            {% include "modules/my-account/my-account-omx-orderhistory" with model=model.omxOrderHistory %}
         </div>
-        
+
         <a id="returnhistory"></a>
         <div class="mz-l-stack-section mz-accountreturnhistory no-editing" id="account-returnhistory">
             {% include "modules/my-account/my-account-returnhistory" with model=model.returnHistory %}

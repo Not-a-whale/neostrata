@@ -4,7 +4,7 @@
       Skincare is a serious science but choosing what products to use shouldn’t be.
     </div>
     <div class="quiz-intro-text">
-      Find what’s right for you with our fast quiz.
+      Find what’s right for you with our quiz.
     </div>
     <button type="button" data-role="open">
       TAKE OUR QUIZ
@@ -38,7 +38,7 @@
 <script type="text/x-template" id="template-section-tab">
   <div class="quiz-section-tab <%= summary ? 'answered' : '' %>">
     <div class="quiz-section-tab-label">
-      <div class="quiz-label-text">
+      <div class="quiz-label-text <%= visited ? 'visited' : '' %>" data-role="anchor">
         <%= label %>
       </div>
       <div class="quiz-section-number">
@@ -72,20 +72,13 @@
       <div class="quiz-product-name">
         <%= content.productName %>
       </div>
-      <div class="quiz-product-ingredients">
-        <div class="fpo fpo-text">
-          PLACEHOLDER<BR />INGREDIENTS
-        </div>
-      </div>
+      <div class="quiz-product-ingredients"></div>
       <div class="quiz-product-description">
-        <%= content.productName %>
+        <%= content.productShortDescription %>
       </div>
       <div class="quiz-product-price">
         <div class="quiz-product-price-amount">
           $<%= price.price %>
-        </div>
-        <div class="quiz-product-price-qualifier">
-          SUGGESTED RETAIL PRICE
         </div>
       </div>
       <button type="button" data-product-code="<%= productCode %>" data-action="add-to-cart">
@@ -226,11 +219,6 @@
     </div>
     <div class="quiz-section-body">
       <div class="quiz-prompt">
-        What climate do you spend most of your time in?
-      </div>
-      <%= _spectrumPart({ name: 'climate', options: climate.options, value: climate.value }) %>
-
-      <div class="quiz-prompt">
         How much of a routine is realistic for you?
       </div>
       <%= _spectrumPart({ name: 'routine', options: routine.options, value: routine.value }) %>
@@ -246,6 +234,41 @@
       </button>
     </div>
   </div>
+</script>
+
+<script type="text/x-template" id="template-additional-products">
+  <div class="quiz-carousel-frame swiper-container">
+    <div class="swiper-wrapper">
+      <% _.each(products, function(product) { %>
+        <div class="quiz-additional-product swiper-slide">
+          <a href="/product/<%= product.productCode %>" class="product-tile-link">
+            <div class="image-container">
+              <img src="<%= product.content.productImages[0].imageUrl %>" />
+            </div>
+            <div class="quiz-product-type">
+              <%= product.propertiesMap['tenant~product-type'] %>
+            </div>
+            <div class="quiz-product-title">
+              <%= product.content.productName %>
+            </div>
+            <div class="quiz-product-ingredients">
+              <%= product.propertiesMap['tenant~ingredient-highlights'] %>
+            </div>
+            <div class="quiz-product-info-group">
+              <div class="quiz-product-rating">
+                <div class="bvr-inline-rating" id="BVRRInlineRating-<%= product.productCode %>" data-mz-product-code="<%= product.productCode %>" data-bv-product-code="{{apicontext.headers.x-vol-locale}}-<%= product.productCode %>"></div>
+              </div>
+              <div class="quiz-product-price">
+                $<%= product.price.price %>.00
+              </div>
+            </div>
+          </a>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
 </script>
 
 <script type="text/x-template" id="template-results-section">
@@ -290,12 +313,13 @@
             </div>
           <% })%>
         </div>
-        <div class="quiz-carousel-container">
-          <div class="fpo fpo-carousel">
-            <div>PLACEHOLDER</div>
-            ADDITIONAL PRODUCTS WITH THESE INGREDIENTS
-          </div>
+        <div class="quiz-additional-products-header">
+          Additional products with these ingredients
         </div>
+        <div class="quiz-carousel-container" data-role="additional-products"></div>
+        <a class="quiz-link-button button-all-products" href="/product">
+          SEE ALL OUR PRODUCTS
+        </a>
       </div>
     </div>
   </div>
@@ -310,27 +334,17 @@
         <% if (regimen) { %>
           <div class="quiz-regimen-description">
             <div class="regimen-image-container">
-              <div class="fpo-regimen-image">
-                <div>PLACEHOLDER</div>
-                <%= regimen.name %>
-              </div>
+              <img src="<%= regimen.hero %>" />
             </div>
             <div class="quiz-content">
               <%= regimen.description %>
             </div>
           </div>
+          <a class="quiz-link-button" target="_blank" href="<%= regimen.url %>">
+            VIEW MY REGIMEN
+          </a>
+        </div>
         <% } %>
-        <button type="button">
-          VIEW MY REGIMEN
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div class="quiz-section" data-section-sub="resources">
-    <%= _sectionBulletPart({ label: 'ADDITIONAL RESOURCES' }) %>
-    <div class="quiz-section-main">
-
     </div>
   </div>
 </script>

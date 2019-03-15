@@ -13,16 +13,27 @@
 <div class="mz-pagesubtitle text-left" >
     <span>{{ prod.content.productShortDescription|safe }}</span>
 </div>
-<div class="mz-productlisting-title mz-productlisting-price text-right">
-    {% include "modules/product/price-stack" with model=prod %}
+<div class="mz-productlisting-title mz-productlisting-price">
+    <div class="text-left col-xs-6">
+        <div id="BVRRInlineRating-{{prod.productCode}}" class="pdp5 bvr-inline-rating" data-mz-product-code="{{ prod.productCode }}" data-bv-product-code="{{apicontext.headers.x-vol-locale}}-{{ prod.productCode }}" data-mz-product-url="{{ prod.url }}"></div>
+    </div>
+    <div class="text-right col-xs-6">
+        {% include "modules/product/price-stack" with model=prod %}
+    </div>
 </div>
-<span class="mz-favorites mz-slider-favorites" data-mz-product-code="{{ prod.productCode }}" data-mz-action="directoryAddToWishlist">
-    <span class="heart-outline"></span>
-</span>
-{% if prod.quantityNull === 0 or prod.quantity == 0%}
-    {% if not user.isAnonymous %}
-        <button id="email-me-{{ prod.productCode }}" class="col-xs-10 primary-btn mz-productdetail-emailme pull-right" data-mz-action="directoryEmailMe" data-mz-product-code="{{ prod.productCode }}" data-mz-location-code="{{ prod.productCode }}">{{ labels.notifyWidgetButton }}</button>
-    {% endif %}
+{% if prod.purchasableState.isPurchasable %}  
 {% else %}
-    <button id="add-to-cart-{{ prod.productCode }}" class="col-xs-10 primary-btn mz-productdetail-addtocart font-large button_primary pull-right {% if not prod.purchasableState.isPurchasable %}button_disabled{% endif %}" data-mz-action="directoryAddToCart" data-mz-product-code="{{ prod.productCode }}">{{ labels.addToCart }}</button>
+    <div class="outOfStock">{{ labels.outOfStock }}</div>
+{% endif %}
+{% if prod.purchasableState.isPurchasable %}  
+    <span class="mz-favorites mz-slider-favorites" data-mz-product-code="{{ prod.productCode }}" data-mz-action="directoryAddToWishlist">
+        <span class="heart-outline"></span>
+    </span>
+    {% if prod.quantityNull === 0 or prod.quantity == 0%}
+        {% if not user.isAnonymous %}
+            <button id="email-me-{{ prod.productCode }}" class="col-xs-10 primary-btn mz-productdetail-emailme pull-right" data-mz-action="directoryEmailMe" data-mz-product-code="{{ prod.productCode }}" data-mz-location-code="{{ prod.productCode }}">{{ labels.notifyWidgetButton }}</button>
+        {% endif %}
+    {% else %}
+        <button id="add-to-cart-{{ prod.productCode }}" class="col-xs-10 primary-btn mz-productdetail-addtocart font-large button_primary pull-right {% if not prod.purchasableState.isPurchasable %}button_disabled{% endif %}" data-mz-action="directoryAddToCart" data-mz-product-code="{{ prod.productCode }}">{{ labels.addToCart }}</button>
+    {% endif %}
 {% endif %}

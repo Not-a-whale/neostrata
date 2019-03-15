@@ -1,7 +1,7 @@
 {% with navigation.tree|findwhere('categoryCode', themeSettings.megaMenu.parentCategoryCode) as lookupCategory %}
 <nav class="ml-navbar-secondary">
   <div class="secondary-title">{{labels.shopBy}}</div>
-  <ul class="mz-sitenav-list">
+  <ul class="mz-sitenav-list footer-shop-by-nav">
     {% partial_cache %}
       {% for lookup in themeSettings.megaMenu.categoryLookups %}
         {% if lookup.includeInSecondaryNav %}

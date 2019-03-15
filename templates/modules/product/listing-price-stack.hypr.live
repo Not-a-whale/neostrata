@@ -13,5 +13,5 @@
         {% include "modules/common/listing-price" with model=model.price %}
         </span>
     {% endif %}
-    <div class="price-msrp">{{ labels.suggestedRetailPrice }}</div>
+    {% if not themeSettings.commerceEnabled %}<div class="price-msrp">{{ labels.suggestedRetailPrice }}</div>{% endif %}
 </div>

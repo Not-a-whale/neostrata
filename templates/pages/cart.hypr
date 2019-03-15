@@ -13,6 +13,8 @@
 
 {% block secondary-nav %}{% endblock secondary-nav %}
 
+{% block html-tag-classes %}mz-html-cart{% endblock html-tag-classes %}
+
 {% block body-content %}
     {% require_script "pages/cart" %}
     {% preload_json model "cart" %}
@@ -24,19 +26,7 @@
             <h1 class="mz-pagetitle">{{ labels.cart }}</h1>
         </div>
         <!-- Check if model is not empty and form product table if not-->
-        {% if not model.isEmpty %}  
-            <div class="cart-top-summary">
-                <span class="items-counts">{{ model.count }} {% if model.count == 1 %}Item{% else %}Items{% endif %}</span>
-                <em>|</em>
-                <span class="cart-subtotal">Cart Subtotal: <strong>{{model.discountedSubtotal |currency }}</strong></span>
-                {% include "modules/cart/promo-discounts" %}
-                <button  id="cart-checkout-btn" class="mz-button font-large button_primary primary-btn" data-mz-action="proceedToCheckout">
-                    {{ labels.proceedToCheckout }}
-                </button>
-                <div class="money-back-msg hidden-md">
-                    <span>{{ labels.moneyBackMsg }}</span>
-                </div>
-            </div>
+        {% if not model.isEmpty %}
             <form method="post" action="{{ siteContext.secureHost }}{{siteContext.siteSubdirectory}}/cart/checkout" id="cartform">
                 {% dropzone "cart-top" scope="template" %}
                 <input type="hidden" name="id" value="{{model.id}}" />
@@ -45,6 +35,10 @@
                     {% include "modules/cart/cart-table" %}
                 </div>
             </form>
+            <div data-mz-free-samples="{{themeSettings.freeSampleCategoryId}}" class="mz-l-container container mz-category-free-samples" id="free-samples">
+                {% include "modules/product/free-sample-widget/free-sample-products" %}
+            </div>
+
         <!-- Show empty cart if model is empty -->
         {% else %}
             <div class="cart-div">Your bag is empty - continue shopping!</div>
@@ -54,11 +48,6 @@
                 </a>
             </div>
         {% endif %}
-        <!-- Widget code -->
-        <div class="row" style="padding-top: 10px;">
-            <div class="col-xs-12">
-                {% dropzone "cart-advert" scope="page" %}
-            </div>
-        </div>
     </div>
+
 {% endblock body-content %}

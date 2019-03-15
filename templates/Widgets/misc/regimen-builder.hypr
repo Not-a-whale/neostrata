@@ -1,44 +1,53 @@
 <div class="regimen-builder-widget container" data-widget="regimen-builder">
-  <div class="block">
-    <h2 class="align-center">
-        {{ labels.regimenContent1|safe }}
-    </h2>
-    <div class="text-base align-center">
-        {{ labels.regimenContent2|safe }}
-    </div>
-  </div>
-  <div class="divider"></div>
-  <div class="text-base align-center block">
-    {{ labels.regimenContent3|safe }}
-  </div>
   <div data-view="selector" class="align-center">
-    <div class="inline anchor align-left cursor-pointer" data-role="wrapper">
-      <div class="height-fixed border-strong uppercase pointer icon-right" data-control="toggle">
-        <div class="chevron-down"></div>
-        {{ labels.select }} {{ labels.skinType }}
-      </div>
-    </div>
   </div>
   <div data-view="regimen" class="regimen-view block"></div>
 </div>
 
 <script type="text/template" id="regimen-select-template">
-  <div class="inline anchor align-left cursor-pointer" data-role="wrapper">
-    <div class="height-fixed border-strong uppercase pointer icon-right" data-control="toggle">
-      <div class="chevron-down"></div>
-      <%= selected ? selected[1] : (labels.select  + ' ' + labels.skinType) %>
+    <div class="regimen-type">
+      <ul>
+        <li class="<% if (regimenType==='basic') { %>active<% } %>" ><button type="button" data-role="regimenType" data-regimenType="basic"><span data-regimenType="basic">Basic</span></button></li>
+        <li class="<% if (regimenType==='comprehensive') { %>active<% } %>" ><button type="button" data-role="regimenType" data-regimenType="comprehensive"><span data-regimenType="comprehensive">Comprehensive</span></button></li>
+      </ul>
     </div>
-    <% if ( open ) { %>
-      <div class="mobile backdrop"></div>
-      <div class="dropdown layer-top background-white">
-        <% _.each( options, function( option ) { %>
-          <div class="height-fixed uppercase cursor-pointer border-top-between" data-option="<%= option.value %>">
-            <%= option.label %>
-          </div>
-        <% }) %>
+    <div class="divider"></div>
+    <div class="text-base align-center block">
+      {{ labels.regimenContent3|safe }}
+    </div>
+
+    <div class="inline anchor align-left cursor-pointer" data-role="wrapperSkinType">
+      <div class="height-fixed border-strong uppercase pointer icon-right" data-control="toggleSkinType">
+        <div class="chevron-down"></div>
+        <%= skinTypeSelected ? skinTypeSelected[1] : ('{{labels.select}} {{labels.skinType}}') %>
       </div>
-    <% } %>
-  </div>
+      <% if ( skinTypeOpen ) { %>
+        <div class="mobile backdrop"></div>
+        <div class="dropdown layer-top background-white">
+          <% _.each( skinTypes, function( skinType ) { %>
+            <div class="height-fixed uppercase cursor-pointer border-top-between" data-skinType="<%= skinType.value %>">
+              <%= skinType.label %>
+            </div>
+          <% }) %>
+        </div>
+      <% } %>
+    </div>
+    <div class="inline anchor align-left cursor-pointer" data-role="wrapperSkinConcern">
+      <div class="height-fixed border-strong uppercase pointer icon-right" data-control="toggleSkinConcern">
+        <div class="chevron-down"></div>
+        <%= skinConcernSelected ? skinConcernSelected[1] : ('{{labels.select}} Skin Concern') %>
+      </div>
+      <% if ( skinConcernOpen ) { %>
+        <div class="mobile backdrop"></div>
+        <div class="dropdown layer-top background-white">
+          <% _.each( skinConcerns, function( skinConcern ) { %>
+            <div class="height-fixed uppercase cursor-pointer border-top-between" data-skinConcern="<%= skinConcern.value %>">
+              <%= skinConcern.label %>
+            </div>
+          <% }) %>
+        </div>
+      <% } %>
+    </div>
 </script>
 
 <script type="text/template" id="regimen-template">
@@ -50,14 +59,11 @@
       </div>
       <div class="">
         <div class="products h3">
-          <%= selection.count %> <%= selection.count == 1 ? labels.product : labels.products %>
+          <%= selection.count %> <%= selection.count == 1 ? '{{labels.product}}' : '{{labels.products}}' %>
         </div>
         <div class="">
           <div class="selection-cost">
             $<%= selection.cost %>.00
-          </div>
-          <div class="suggested-price">
-            {{ labels.suggestedRetailPrice }}
           </div>
         </div>
       </div>
@@ -65,7 +71,7 @@
     <div class="">
       <div class="flex-center-column align-center">
         <div class="flex-fixed">
-          <a href="/store-locator" class="primary-btn align-center">{{ labels.findARetailer }}</a>
+          <a class="primary-btn align-center" data-control="addToCart">Add Regimen To Cart</a>
         </div>
       </div>
     </div>
@@ -100,26 +106,40 @@
         <div class="flex-center-row">
           <div class="flex-fill flex-column align-center">
             <div class="flex-center-column">
-              <div class="flex-fixed" id="BVRRInlineRating-<%= productCode %>"></div>
+              <div class="flex-fixed bvr-inline-rating" id="BVRRInlineRating-<%= productCode %>" data-mz-product-code="<%= productCode %>" data-bv-product-code="{{apicontext.headers.x-vol-locale}}-<%= productCode %>"></div>
             </div>
           </div>
         </div>
       </div>
       <div class="">
         <div class="product-price">
+
           $<%= price.price %>.00
         </div>
-        <div class="suggested-price">
-          {{ labels.suggestedRetailPrice }}
-        </div>
       </div>
     </div>
+    <% if (inCart) { %>
+      <div class="include-in-regimen in-cart">
+        <div class="form-row">
+          <input id="checkbox_<%= productCode %>" type="checkbox" data-value="<%= number %>" checked disabled />
+          <label class="icon-check form-element" for="checkbox_<%= productCode %>">Already In Cart</label>
+      </div>
+    </div>
+    <% } else if (!isPurchasable) { %>
     <div class="include-in-regimen">
       <div class="form-row">
-        <input id="checkbox_<%= productCode %>" type="checkbox" data-control="include" data-value="<%= number %>" <%= included ? 'checked' : '' %> />
-        <label class="icon-check form-element" for="checkbox_<%= productCode %>"> {{ labels.includeInRegimen }}</label>
+          <label class="not-available form-element" for="checkbox_<%= productCode %>">Not Available</label>
       </div>
     </div>
+    <% } else { %>
+    <div class="include-in-regimen">
+      <div class="form-row">
+          <input id="checkbox_<%= productCode %>" type="checkbox" data-control="include" data-value="<%= number %>" <%= included ? 'checked' : '' %> />
+          <label class="icon-check form-element" for="checkbox_<%= productCode %>"> {{ labels.includeInRegimen }}</label>
+      </div>
+    </div>
+    <% } %>
+
     </div>
   </div>
 
@@ -139,48 +159,8 @@
 {{ model.config|safe }}
 </script>
 
-<script type="text/json" id="regimen-builder-product-normal-1" data-role="regimen-product">
-{% include_products "modules/product/json-products" with productCodes=model.config.normalStep1 %}
-</script>
-<script type="text/json" id="regimen-builder-product-normal-2" data-role="regimen-product">
-{% include_products "modules/product/json-products" with productCodes=model.config.normalStep2 %}
-</script>
-<script type="text/json" id="regimen-builder-product-normal-3" data-role="regimen-product">
-{% include_products "modules/product/json-products" with productCodes=model.config.normalStep3 %}
-</script>
-<script type="text/json" data-role="regimen-product">
-{% include_products "modules/product/json-products" with productCodes=model.config.normalStep4 %}
-</script>
-<script type="text/json" data-role="regimen-product">
-{% include_products "modules/product/json-products" with productCodes=model.config.normalStep5 %}
-</script>
-<script type="text/json" data-role="regimen-product">
-{% include_products "modules/product/json-products" with productCodes=model.config.normalStep6 %}
-</script>
-<script type="text/json" data-role="regimen-product">
-{% include_products "modules/product/json-products" with productCodes=model.config.normalStep7 %}
-</script>
-
-<script type="text/json" data-role="regimen-product">
-{% include_products "modules/product/json-products" with productCodes=model.config.dryStep1 %}
-</script>
-<script type="text/json" data-role="regimen-product">
-{% include_products "modules/product/json-products" with productCodes=model.config.dryStep2 %}
-</script>
-<script type="text/json" data-role="regimen-product">
-{% include_products "modules/product/json-products" with productCodes=model.config.dryStep3 %}
-</script>
-<script type="text/json" data-role="regimen-product">
-{% include_products "modules/product/json-products" with productCodes=model.config.dryStep4 %}
-</script>
-<script type="text/json" data-role="regimen-product">
-{% include_products "modules/product/json-products" with productCodes=model.config.dryStep5 %}
-</script>
-<script type="text/json" data-role="regimen-product">
-{% include_products "modules/product/json-products" with productCodes=model.config.dryStep6 %}
-</script>
-<script type="text/json" data-role="regimen-product">
-{% include_products "modules/product/json-products" with productCodes=model.config.dryStep7 %}
+<script type="text/json" id="regimen-builder-products" data-role="regimen-product">
+{% include_products "modules/product/json-products" with categoryCode="product" and pageSize=100 %}
 </script>
 
 {% require_script "modules/regimen-builder/main" %}

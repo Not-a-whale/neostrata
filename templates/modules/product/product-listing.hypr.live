@@ -4,7 +4,7 @@
             <div class="zoom-container-listing">
         {% block product-image %}
             {% if model.mainImage.imageUrl %}
-                <a href="{% make_url "product" model %}">
+                <a href="{% make_url "product" model %}?bc={% for crumb in navigation.breadcrumbs %}{{crumb.originalId}}{% if not forloop.last %},{%endif%}{%endfor%}">
                     <img src="{{model.mainImage.imageUrl}}?max={% block thumbnail-size %}{{ themeSettings.listProductThumbSize }}{% endblock thumbnail-size %}" data-zoom-image="{{model.mainImage.imageUrl}}?max={% block thumbnail-size %}{{ themeSettings.productZoomImageMaxWidth }}{% endblock thumbnail-size %}" alt="{{ model.content.productShortDescription|striptags|truncatewords(themeSettings.maxProductSummaryWords) }}" />
                 </a>
             {% else %}
@@ -23,7 +23,7 @@
                 {% endfor %}
             </div>
         {% endwith %}
-            <a class="mz-productlisting-title pdp2" href="{% make_url "product" model %}">{{model.content.productName}}</a>
+            <a class="mz-productlisting-title pdp2" href="{% make_url "product" model %}?bc={% for crumb in navigation.breadcrumbs %}{{crumb.originalId}}{% if not forloop.last %},{%endif%}{%endfor%}">{{model.content.productName}}</a>
         {% if model.content.productShortDescription and themeSettings.listProductShortDesc %}
             <div class="mz-productlisting-shortdesc pdp3">{{ model.content.productShortDescription|striptags|truncatewords(themeSettings.maxProductSummaryWords) }}</div>
         {% endif %}
@@ -47,14 +47,19 @@
     {% endif %}
 {% endblock product-extrainfo %}
         </div>
+        {% if model.purchasableState.isPurchasable %}
+        {% else %}
+        <div class="outOfStock">{{ labels.outOfStock }}</div>
+        {% endif %}
     </div>
     <div class="bottom-details">
-        {% include "modules/product/listing-price-stack" %}
         <div id="BVRRInlineRating-{{model.productCode}}" class="pdp5 bvr-inline-rating" data-mz-product-code="{{ model.productCode }}" data-bv-product-code="{{apicontext.headers.x-vol-locale}}-{{ model.productCode }}" data-mz-product-url="{{ model.url }}"></div>
+        {% include "modules/product/listing-price-stack" %}
     </div>
 {% if themeSettings.commerceEnabled %}
+    {% if model.purchasableState.isPurchasable %}
     <div class="mz-productdetail-conversion-buttons col-xs-12">
-        <div class="col-xs-2 add-to-wishlist-container">
+        <div class="add-to-wishlist-container">
             {% if siteContext.generalSettings.isWishlistCreationEnabled %}
                 {% if model.purchasableState.isPurchasable and model.options.length < 1 %}
                     <a id="wishlist-{{ model.productCode }}" class="mz-productdetail-addtowishlist wishlistHeart" data-mz-action="directoryAddToWishlist" data-mz-product-code="{{ model.productCode }}">
@@ -63,7 +68,7 @@
                 {% endif %}
             {% endif %}
         </div>
-        <div class="col-xs-10 add-to-cart-container">
+        <div class="add-to-cart-container">
         {% if model.quantityNull === 0 or model.quantity == 0%}
             {% if not user.isAnonymous %}
                 <button id="email-me-{{ model.productCode }}" class="primary-btn mz-productdetail-emailme pull-right" data-mz-action="directoryEmailMe" data-mz-product-code="{{ model.productCode }}" data-mz-location-code="{{ model.productCode }}">{{ labels.notifyWidgetButton }}</button>
@@ -73,5 +78,6 @@
         {% endif %}
         </div>
     </div>
+    {% endif %}
 {% endif %}
 </div>
