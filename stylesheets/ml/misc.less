@@ -4649,12 +4649,32 @@ body.mz-product {
 }
 // Wishlist Item Count Widget
 .wishlist-item-count{
-  h2{
+    width: 100%;
+    padding: ~"0 calc( 50% - 70px )";
+    text-align: center;
+    margin: 4rem 0;
+  .wishlist-item-count-title{
+    font-size: 1.5rem;
     color: red;
+    font-weight: 500;
+    @media (max-width: 1250px) {
+      font-size: 2rem;
+    }
+    @media (max-width: 768px) {
+      font-size: 1.5rem;
+    }
   }
   .link{
     a{
       color: red;
+      font-size: 1.1rem;
+      text-decoration: none;
+      @media (max-width: 1250px) {
+        font-size: 1.6rem;
+      }
+      @media (max-width: 768px) {
+        font-size: 1.1rem;
+      }
     }
   }
   .heart {
@@ -4662,13 +4682,20 @@ body.mz-product {
     width: 100px;
     height: 90px;
     margin-top: 10px;
+    margin-left: 20px;
     .count-number{
       color: #ffffff;
       font-size: 1.25rem;
       text-align: center;
-      padding-top: 10%;
+      padding-top: 12%;
       position: relative;
       z-index: 99;
+      @media (max-width: 1250px) {
+        font-size: 1.5rem;
+      }
+      @media (max-width: 768px) {
+        font-size: 1.25rem;
+      }
     }
     &:before {
       content: "";

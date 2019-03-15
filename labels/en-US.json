@@ -498,6 +498,7 @@
   "notPurchasable"       : "Not Purchasable",
   "addToWishlist"        : "Add To Wishlist",
   "addedToWishlist"      : "Added to wishlist",
+  "wishlistItems"        : "Items",
   "fullDesc"             : "Description",
   "bundleContents"       : "Bundle Contents",
   "properties"           : "Properties",

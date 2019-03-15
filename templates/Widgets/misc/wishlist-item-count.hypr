@@ -1,8 +1,8 @@
 {% if model.config.linkTitle %}
 <div class="wishlist-item-count">
-  <h2>{{model.config.title}}</h2>
+  <div class="wishlist-item-count-title">{{model.config.title}}</div>
   <div class="heart">
-    <div class="count-number">0<br/>Items</div>
+    <div class="count-number"><span class="wishNumber">0</span><br />{{ labels.wishlistItems }}</div>
   </div>
   <div class="link">
     <a href="/myaccount?sec=wishlist">{{model.config.linkTitle}}</a>

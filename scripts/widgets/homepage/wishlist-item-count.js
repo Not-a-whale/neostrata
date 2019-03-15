@@ -8,7 +8,7 @@ require([
           api.createSync('wishlist').getOrCreate(user.accountId).then(function(wishlist) {
               return wishlist.data;
           }).then(function(wishlistItems) {
-              $('.wishlist-item-count > .heart > .count-number').html(wishlistItems.items.length + '<br/>Items');
+              $('.wishlist-item-count > .heart > .count-number > .wishNumber').html(wishlistItems.items.length);
           });
       }
     });
