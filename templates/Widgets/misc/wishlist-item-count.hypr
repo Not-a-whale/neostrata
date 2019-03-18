@@ -1,0 +1,12 @@
+{% if model.config.linkTitle %}
+<div class="wishlist-item-count">
+  <div class="wishlist-item-count-title">{{model.config.title}}</div>
+  <div class="heart">
+    <div class="count-number"><span class="wishNumber">0</span><br />{{ labels.wishlistItems }}</div>
+  </div>
+  <div class="link">
+    <a href="/myaccount?sec=wishlist">{{model.config.linkTitle}}</a>
+  </div>
+</div>
+{% require_script "widgets/homepage/wishlist-item-count" %}
+{% endif %}

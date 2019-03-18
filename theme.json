@@ -2114,6 +2114,23 @@
       ]
     },
     {
+      "displayName": "Featured Product only",
+      "displayTemplate": "featured-product/product",
+      "editViewFields": [
+        {
+          "anchor": "100%",
+          "fieldLabel": "Select Featured Product",
+          "name": "product",
+          "xtype": "mz-input-product"
+        }
+      ],
+      "icon": "/resources/admin/widgets/01_photo_text.png",
+      "id": "featured-product-only",
+      "validPageTypes": [
+        "*"
+      ]
+    },
+    {
       "defaultConfig": {},
       "displayName": "Product carousel",
       "displayTemplate": "misc/product-carousel",
@@ -3240,6 +3257,33 @@
           "anchor": "100%",
           "fieldLabel": "Title",
           "name": "configurableTitle",
+          "xtype": "mz-input-text"
+        }
+      ],
+      "icon": "/resources/admin/widgets/top_selling.png",
+      "validPageTypes": [
+        "*"
+      ]
+    },
+    {
+      "displayName": "Wishlist Item Count",
+      "displayTemplate": "misc/wishlist-item-count",
+      "id": "wishlistItemCount",
+      "defaultConfig": {
+        "title": "Your Wishlist",
+        "linkTitle": "View Your Wishlist"
+      },
+      "editViewFields": [
+        {
+          "anchor": "100%",
+          "fieldLabel": "Title",
+          "name": "title",
+          "xtype": "mz-input-text"
+        },
+        {
+          "anchor": "100%",
+          "fieldLabel": "Link Title",
+          "name": "linkTitle",
           "xtype": "mz-input-text"
         }
       ],

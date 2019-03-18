@@ -1,6 +1,4 @@
-﻿define(['shim!vendor/typeahead.js/typeahead.bundle[modules/jquery-mozu=jQuery]>jQuery', 'hyprlive', 'modules/api',
-      'hyprlivecontext'], function($, Hypr, api,
-        HyprLiveContext) {
+﻿define(['shim!vendor/typeahead.js/typeahead.bundle[modules/jquery-mozu=jQuery]>jQuery', 'hyprlive', 'modules/api',  'underscore', 'hyprlivecontext'], function($, Hypr, api, _, HyprLiveContext) {
 
     // bundled typeahead saves a lot of space but exports bloodhound to the root object, let's lose it
     var Bloodhound = window.Bloodhound.noConflict();
@@ -30,6 +28,12 @@
                         break;
                     }
                 }
+                if (suggestionGroups[i].name === 'Pages' && thisGroup.suggestions && thisGroup.suggestions.length > 0) {
+                    thisGroup.suggestions = _.filter( thisGroup.suggestions, function( sugg ){
+                        return ( sugg.suggestion && sugg.suggestion.productType !== 'Free Sample');
+                    });
+                }
+                
                 return thisGroup.suggestions;
             };
         },
