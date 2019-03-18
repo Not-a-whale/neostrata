@@ -480,6 +480,9 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
                 event.preventDefault();
 
             this.editing.subscription = true; 
+            this.editing.allSubscription = true; 
+           
+            
             this.startViewOMXItemSubscription(); 
         },
 
@@ -492,11 +495,12 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             $('.mz-scrollnav-item').removeClass('active');
             $('.mz-scrollnav-item.dl-itemsubscriptions').addClass('active');
             $('.mz-accountitemsubscriptions .dl-view-wrapper').addClass('hidden'); 
-            $('.mz-accountitemsubscriptions .dl-link-edit.mz-link-edit-order').addClass('hidden'); 
-            $('.mz-accountitemsubscriptions .mz-orderhistory-section-wrapper').removeClass('hidden'); 
+            $('.mz-accountitemsubscriptions .dl-link-edit.mz-link-edit-suscription').addClass('hidden'); 
+            $('.mz-accountitemsubscriptions .mz-subscription-section-wrapper').removeClass('hidden'); 
         },
         cancelViewOMXItemSubscription: function () {
             this.editing.subscription = false; 
+            this.editing.allSubscription = false; 
             $('.dz-backtodashboard.mz-back-to-dash').hide(); 
             
             $('.mz-l-stack-section').removeClass('is-editing').addClass('no-editing');
@@ -505,8 +509,8 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             $('.mz-scrollnav-item').removeClass('active');
             $('.mz-scrollnav-item.dl-accountDashboard').addClass('active');
             $('.mz-accountitemsubscriptions .dl-view-wrapper').removeClass('hidden'); 
-            $('.mz-accountitemsubscriptions .mz-orderhistory-section-wrapper').addClass('hidden'); 
-            $('.mz-accountitemsubscriptions .dl-link-edit.mz-link-edit-order').removeClass('hidden'); 
+            $('.mz-accountitemsubscriptions .mz-subscription-section-wrapper').addClass('hidden'); 
+            $('.mz-accountitemsubscriptions .dl-link-edit.mz-link-edit-subscription').removeClass('hidden'); 
 
         }
         
