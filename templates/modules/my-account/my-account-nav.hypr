@@ -25,6 +25,11 @@
                 {{ labels.orderHistory }}
             </a>
         </li>
+        <li class="mz-scrollnav-item dl-itemsubscriptions">
+            <a class="mz-scrollnav-link" href="">
+                {{ labels.subscriptions }}
+            </a>
+        </li>
         <li class="mz-scrollnav-item dl-returns">
             <a class="mz-scrollnav-link" href="">
                 {{ labels.returns }}

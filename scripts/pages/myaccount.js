@@ -486,17 +486,17 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
         startViewOMXItemSubscription: function () {
             $('.dz-backtodashboard.mz-back-to-dash').show(); 
             $('.mz-l-stack-section').hide();
-            $('.mz-l-stack-section.mz-accountorderhistory').show();
-            $('.mz-l-stack-section.mz-accountorderhistory').removeClass('no-editing').addClass('is-editing');
+            $('.mz-l-stack-section.mz-accountitemsubscriptions').show();
+            $('.mz-l-stack-section.mz-accountitemsubscriptions').removeClass('no-editing').addClass('is-editing');
             $('.dl-maintitle').hide();
             $('.mz-scrollnav-item').removeClass('active');
-            $('.mz-scrollnav-item.dl-orderhistory').addClass('active');
-            $('.mz-accountorderhistory .dl-view-wrapper').addClass('hidden'); 
-            $('.mz-accountorderhistory .dl-link-edit.mz-link-edit-order').addClass('hidden'); 
-            $('.mz-accountorderhistory .mz-orderhistory-section-wrapper').removeClass('hidden'); 
+            $('.mz-scrollnav-item.dl-itemsubscriptions').addClass('active');
+            $('.mz-accountitemsubscriptions .dl-view-wrapper').addClass('hidden'); 
+            $('.mz-accountitemsubscriptions .dl-link-edit.mz-link-edit-order').addClass('hidden'); 
+            $('.mz-accountitemsubscriptions .mz-orderhistory-section-wrapper').removeClass('hidden'); 
         },
         cancelViewOMXItemSubscription: function () {
-            this.editing.order = false; 
+            this.editing.subscription = false; 
             $('.dz-backtodashboard.mz-back-to-dash').hide(); 
             
             $('.mz-l-stack-section').removeClass('is-editing').addClass('no-editing');
@@ -504,9 +504,9 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             $('.dl-maintitle').show();
             $('.mz-scrollnav-item').removeClass('active');
             $('.mz-scrollnav-item.dl-accountDashboard').addClass('active');
-            $('.mz-accountorderhistory .dl-view-wrapper').removeClass('hidden'); 
-            $('.mz-accountorderhistory .mz-orderhistory-section-wrapper').addClass('hidden'); 
-            $('.mz-accountorderhistory .dl-link-edit.mz-link-edit-order').removeClass('hidden'); 
+            $('.mz-accountitemsubscriptions .dl-view-wrapper').removeClass('hidden'); 
+            $('.mz-accountitemsubscriptions .mz-orderhistory-section-wrapper').addClass('hidden'); 
+            $('.mz-accountitemsubscriptions .dl-link-edit.mz-link-edit-order').removeClass('hidden'); 
 
         }
         

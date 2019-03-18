@@ -355,6 +355,7 @@
   "accountNoReturns"     : "You have not requested any returns.",
   "accountNoCredits"     : "You have no store credits.",
   "orderHistory"         : "Order History",
+  "subscriptions"        : "Subscriptions", 
   "paymentMethod"    : "Payment Method",
   "paymentMethods"       : "Payment Methods",
   "addressBook"          : "Address Book",
@@ -740,5 +741,4 @@
   "autoReplenishment": "Auto Replenishment",
   "autoReplenishmentHowItWorks": "How it works:",
   "autoReplenishmentContent": "<li>Shop your favorite products and select the Auto Replenishment option</li><li>Manage your delivery frequency by selecting how often you would like to receive your product</li><li>Save 10% &amp; receive free shipping on every Auto Replenishment order</li><li>Get an email reminder before each delivery ships from our warehouse</li><li>Adjust or cancel your next scheduled delivery in My Account. Changes must be made at least 3 days prior to your next scheduled order date.</li>"
-
 }
