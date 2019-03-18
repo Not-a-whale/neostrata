@@ -3,30 +3,27 @@
     <li {% if editing.allSubscription %} class="active" {% endif %}><a data-toggle="tab" href="#tab2"><span>{{ labels.subscriptionAllSubscriptions }}</span></a></li>
 </ul>
 
-
-
-
-<div class="mz-orderlist">
-    <div class="omx-orderhistory-header row">
-        <div class="mz-orderlisting-details-item col-xs-3">
-            {{ labels.orderHistoryDate }}
-        </div>
-        <div class="mz-orderlisting-details-item col-xs-3">
-            {{ labels.orderHistoryNumber }}
-        </div>
-        <div class="mz-orderlisting-details-item col-xs-3 dl-total">
-            {{ labels.orderHistoryTotal }}
-        </div>
-        <div class="mz-orderlisting-details-item col-xs-3 dl-status">
-            {{ labels.orderHistoryStatus }}
+<div class="tab-content">
+    
+    <div id="tab1" class="tab-pane fade {% if not editing.allSubscription %}  active in  {% endif %}">
+        <div class="tab-content-1">
+            next orders
         </div>
     </div>
-    <div class="omx-orderhistory-list row">
-        {% for orderItem in model %}
-        <div data-mz-order-id="{{order.orderId}}" data-mz-omx-order-history-listing>
-            <div data-order-message-bar class="order-message-bar"></div>
-            {% include "modules/my-account/omx-item-subscription-listing" with model=orderItem %}
+    <div id="tab2" class="tab-pane fade {% if editing.allSubscription %} active in {% endif %}">
+        <div class="tab-content-2">
+            <div class="mz-header-basket-md-sm">
+                <div class="col-xs-12">{{ labels.itemsInOrder }}</div>
+            </div>
+            <div class="omx-orderhistory-list row">
+          
+                {% for orderItem in model %}
+                    <div data-mz-membership-id="{orderItem.membershipId}}" data-mz-omx-item-subscription-listing>
+                        <div data-order-message-bar class="order-message-bar"></div>
+                        {% include "modules/my-account/omx-item-subscription-listing" with model=orderItem %}
+                    </div>
+                {% endfor %}
+            </div>
         </div>
-        {% endfor %}
     </div>
 </div>

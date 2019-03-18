@@ -1,30 +1,51 @@
-<div class="mz-omx-orderlisting" data-mz-id="{{ model.orderNumber }}">
-    <div class="mz-orderlisting-detail">
-      {% block order-details %}
-        <div class="mz-orderlisting-details-list">
-          <div class="mz-orderlisting-details-item col-xs-3">
-              <div class="mz-propertylist mz-propertylist-order">
-                  <div>{{ model.orderDate }}</div>
-              </div>
+<div class="col-xs-12 mz-row-carttable-item">
+    <div class="mz-carttable-item">
+        <div class="mz-carttable-item-product col-xs-6 col-sm-6 nopaddingleft"> 
+            {% if model.product.imageUrl %}
+                <a href="{{ model.product.url }}">
+                    <img class="mz-carttable-item-image" src="{% make_url "image" model.product with maxWidth=themeSettings.globalCartItemImageMaxWidth as_parameters %}" {% if model.product.imageAlternateText %}alt="{{ model.product.imageAlternateText }}"{% endif %} />
+                </a>
+            {% else %}
+                <a href="{{ model.product.url }}">
+                <div class="cart-noimage">
+                    [{{ labels.noImages }}]
+                </div>
+                </a>
+            {% endif %} 
+            <div class="mz-carttable-item-info-wrap ">
+                <span class="label-qty">{{ labels.subscriptionProductName }}</span>
+                <a class="mz-carttable-item-title" href="{{model.product.url}}">{{ model.product.name|safe }}</a>
+            </div>
+        </div>
+        <div class="col-xs-2 col-sm-2 cart-item-qty">  
+          <span class="label-qty">{{ labels.qty }}</span>
+          <div class="mz-carttable-item-qty">
+            {{model.qty}}
           </div>
-            <div class="mz-orderlisting-details-item col-xs-3">
-                <div class="mz-propertylist mz-propertylist-order">
-                    <div><a class='mz-order-code' data-mz-order-code={{model.orderNumber}}>{{model.orderNumber}}</a></div>
-                </div>
-            </div>
-            <div class="mz-orderlisting-details-item dl-total col-xs-3">
-                <div class="mz-propertylist mz-propertylist-order">
-                    <div>{{ model.totalAmount }}</div>
-                </div>
-            </div>
-            <div class="mz-orderlisting-details-item dl-status col-xs-3">
-                <div class="mz-propertylist mz-propertylist-order">
-                    <div>{{ model.orderStatus }}</div>
-                </div>
-            </div>
+        </div>
+        <div class="col-xs-2 col-sm-2 ">  
+          <span class="label-discount">{{ labels.subscriptionPriceEach }}</span>
+          <div class="mz-carttable-item-qty">
+            {{model.priceEach}}
           </div>
-      {% endblock order-details %}
-      {% block order-items %}
-      {% endblock order-items %}
+        </div>
+        <div class="col-xs-2 col-sm-2 ">  
+          <span class="label-priceEach">{{ labels.subscriptionDiscount }}</span>
+          <div class="mz-carttable-item-discount">
+            {{model.discount}}
+          </div>
+        </div>
+
+        <div class="col-xs-6 col-sm-6 nopaddingleft"> 
+            <span class="label-nextOrderDate">{{ labels.subscriptionNextOrderDate }}</span>
+            <div class="mz-carttable-item-next">
+                {{model.nextShipDate}}
+            </div>
+
+        </div>
+        <div class="col-xs-6 col-sm-6 nopaddingright"> 
+            <a href="javascript:;" data-mz-action="manageItem" data-mz-item="{{ item.membershipId }}" class="">{{ labels.subscriptionManage }}</a>
+           
+        </div>
     </div>
 </div>
