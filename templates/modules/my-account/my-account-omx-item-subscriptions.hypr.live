@@ -1,8 +1,10 @@
 <h3 class="mz-l-stack-sectiontitle">{{ labels.orderHistory }}
-{% if not editing.order %}<a href class="dl-link-edit mz-link-edit-order" data-mz-action="viewOMXItemSubscription">{{ labels.edit }}</a>{% endif %}
+{% if not editing.subscription %}<a href class="dl-link-edit mz-link-edit-subscription" data-mz-action="viewOMXItemSubscription">{{ labels.edit }}</a>{% endif %}
 </h3>
 
-{% if not editing.order && model %}
+
+
+{% if not editing.subscription && model %}
   <div class="dl-view-wrapper">
     <div class="dl-info-message">{{ labels.ordersViewInfo }}</div>
     <div class="dl-info-count">{{ model.length }} {{ labels.ordersCount }}</div>
@@ -10,11 +12,11 @@
 {% endif %}
 
 
-<div class="mz-orderhistory-section-wrapper {% if not editing.order %} hidden {% endif %}">
+<div class="mz-subscription-section-wrapper {% if not editing.subscription %} hidden {% endif %}">
   {% if model.length > 0 %}
     <h5 class="mz-l-stack-sectionsubtitle">{{ labels.ordersViewSubTitle }}</h5>
-    <div class="mz-orderhistory-section mz-l-paginatedlist ">
-        <div data-mz-omx-orderlist class="mz-l-paginatedlist-list">
+    <div class="mz-subscription-section mz-l-paginatedlist ">
+        <div data-mz-omx-subscriptionlist class="mz-l-paginatedlist-list">
           {% include "modules/my-account/omx-item-subscription-list" %}
         </div>
     </div>

@@ -434,7 +434,7 @@ define(['modules/backbone-mozu', 'underscore', 'modules/models-address', 'module
             wishlist: Wishlist,
             orderHistory: OrderModels.OrderCollection,
             returnHistory: ReturnModels.RMACollection,
-            //omxItemSubscriptions: OmxOrderHistoryModels.OmxItemSubscriptions,
+            omxItemSubscriptions: OmxOrderHistoryModels.OmxItemSubscriptionList,
             omxOrderHistory: OmxOrderHistoryModels.OmxOrderHistoryList 
         }, Customer.prototype.relations),
         validation: {

@@ -437,7 +437,7 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
         }
         
     });
-    /* var OmxItemSubscriptionView = Backbone.MozuView.extend({
+    var OmxItemSubscriptionView = Backbone.MozuView.extend({
         //templateName: "modules/my-account/omx-order-history-list",
         templateName: "modules/my-account/my-account-omx-item-subscriptions",  
         
@@ -451,7 +451,7 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             var context = Backbone.MozuView.prototype.getRenderContext.apply(this, arguments);
             return context;
         },
-        render: function() {
+        /*render: function() {
             var self = this;
            
                 Backbone.MozuView.prototype.render.apply(this, arguments);
@@ -474,12 +474,12 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             } else {
                 this.cancelViewOMXItemSubscription(); 
             }
-        },
+        },   */
         viewOMXItemSubscription: function (event) {
             if(event)
                 event.preventDefault();
 
-            this.editing.order = true; 
+            this.editing.subscription = true; 
             this.startViewOMXItemSubscription(); 
         },
 
@@ -510,7 +510,7 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
 
         }
         
-    });  */
+    }); 
 
 
     var OmxOrderHistoryListingView = Backbone.MozuView.extend({
@@ -1037,7 +1037,7 @@ function getQueryVariable(variable)
             $passwordEl = $('#password-section'),
             $orderHistoryEl = $('#account-orderhistory'),
             $omxOrderHistoryEl = $('#account-omx-orderhistory'),
-            //$omxItemSusbcriptionsEl = $('#account-omx-item-subscriptions'),
+            $omxItemSusbcriptionsEl = $('#account-omx-item-subscriptions'),
             $returnHistoryEl = $('#account-returnhistory'),
             $paymentMethodsEl = $('#account-paymentmethods'),
             $addressBookEl = $('#account-addressbook'),
@@ -1046,8 +1046,8 @@ function getQueryVariable(variable)
             $storeCreditEl = $('#account-storecredit'),
             orderHistory = accountModel.get('orderHistory'),
             returnHistory = accountModel.get('returnHistory'),
-            omxOrderHistoryModel = accountModel.get('omxOrderHistory');
-            //omxItemSubscriptionsModel = accountModel.get('omxItemSubscriptions');
+            omxOrderHistoryModel = accountModel.get('omxOrderHistory'),
+            omxItemSubscriptionsModel = accountModel.get('omxItemSubscriptions');
             
             //$parentEl = $('.mz-myaccount .mz-l-container');
         var accountViews = window.accountViews = {
@@ -1071,10 +1071,10 @@ function getQueryVariable(variable)
               el: $omxOrderHistoryEl, //.find('[data-mz-omx-orderlist]'),
               model: omxOrderHistoryModel
             }),
-/*            omxItemSubscriptions: new OmxItemSubscriptionView({
+            omxItemSubscriptions: new OmxItemSubscriptionView({
                 el: $omxItemSusbcriptionsEl, //.find('[data-mz-omx-orderlist]'),
                 model: omxItemSubscriptionsModel
-            }),  */
+            }),  
              /*orderHistory: new OrderHistoryView({
                 el: $orderHistoryEl.find('[data-mz-orderlist]'),
                 model: orderHistory
