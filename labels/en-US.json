@@ -748,6 +748,7 @@
   "subscriptionPriceEach"         : "Price Each", 
   "subscriptionDiscount"          : "Discount", 
   "subscriptionNextOrderDate"     : "Next Order Date", 
-  "subscriptionManage"            : "Manage" 
+  "subscriptionManage"            : "Manage", 
+  "subscriptionReplenishment"     : "Subscription"
 
 }

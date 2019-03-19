@@ -20,14 +20,15 @@ define(["modules/api", 'underscore', "modules/backbone-mozu", "hyprlive", 'modul
           })
         }
       }),
-      OmxItemSubscriptionList = Backbone.Collection.extend({
-        helpers: ['hasItems'],
-        hasItems: function() {
-            return this.length > 0;
-        },
+      OmxItemSubscriptionList = Backbone.MozuModel.extend({
+       
         relations: {
           items: Backbone.Collection.extend({
-              model: OmxItemSubscription
+              model: OmxItemSubscription, 
+              helpers: ['hasItems'],
+              hasItems: function() {
+                  return this.length > 0;
+              }
           })
         }
       });

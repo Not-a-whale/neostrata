@@ -4,16 +4,16 @@
 
 
 
-{% if not editing.subscription && model %}
+{% if not editing.subscription && model.items %}
   <div class="dl-view-wrapper">
     <div class="dl-info-message">{{ labels.ordersViewInfo }}</div>
-    <div class="dl-info-count">{{ model.length }} {{ labels.ordersCount }}</div>
+    <div class="dl-info-count">{{ model.items.length }} {{ labels.ordersCount }}</div>
   </div>
 {% endif %}
 
 
 <div class="mz-subscription-section-wrapper {% if not editing.subscription %} hidden {% endif %}">
-  {% if model.length > 0 %}
+  {% if model.items.length > 0 %}
     <h5 class="mz-l-stack-sectionsubtitle">{{ labels.ordersViewSubTitle }}</h5>
     <div class="mz-subscription-section mz-l-paginatedlist ">
         <div data-mz-omx-subscriptionlist class="mz-l-paginatedlist-list">

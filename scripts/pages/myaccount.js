@@ -1,4 +1,41 @@
-define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', 'modules/jquery-mozu', 'underscore', 'modules/models-customer', 'modules/views-paging', 'modules/editable-view','modules/block-ui', 'vendor/bootstrap-select/dist/js/bootstrap-select','modules/models-omxorders'], function(Backbone, Api, Hypr, HyprLiveContext, $, _, CustomerModels, PagingViews, EditableView,blockUiLoader) {
+define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', 
+    'modules/jquery-mozu', 'underscore', 'modules/models-customer', 
+    'modules/views-paging', 'modules/editable-view','modules/block-ui', 
+    'vendor/bootstrap-select/dist/js/bootstrap-select','modules/models-omxorders'], function(Backbone, Api, Hypr, HyprLiveContext, $, _, CustomerModels, PagingViews, EditableView,blockUiLoader) {
+
+    var getMozuProducts = function(orderProductList) {
+        var deferred = Api.defer();
+        var numReqs = orderProductList.length;
+        var productList = [];
+        var filter = "";
+        _.each(orderProductList, function(attrs) {
+            if (filter !== "") filter += " or ";
+            filter += "productCode eq "+ attrs;    
+        });
+        var op = Api.get('products', filter);                
+        op.then(function(data) {
+            console.log('OrderStatusDetail::getMozuProducts() --> in then result data: ', data); 
+            if (data.data.items && data.data.items.length === 0) {
+                _.defer(function() {
+                    deferred.resolve(productList);
+                });
+            }
+            _.each(data.data.items, function(product){
+                productList.push(product);
+                _.defer(function() {
+                    deferred.resolve(productList);
+                });
+            });
+
+        }, function(reason){
+            _.defer(function() {
+                deferred.resolve(productList);
+            });                    
+        });
+        return deferred.promise;
+    };
+
+    
     var AccountSettingsView = EditableView.extend({
         templateName: 'modules/my-account/my-account-settings',
         autoUpdate: [
@@ -1182,6 +1219,47 @@ function getQueryVariable(variable)
             accountViews.wishList.startEditWishlist(e);
         });
 
+/*
+        var productIds = []; 
+
+        accountViews.omxItemSubscriptions.model.attributes.items.forEach( function(subscriptionItem) {
+            productIds.push(subscriptionItem.attributes.itemCode); 
+        }); 
+        
+        getMozuProducts(productIds).then(function (products) {
+            accountViews.omxItemSubscriptions.model.attributes.items.forEach( function(lineItem) {
+                var apiProduct = ''; 
+                if (lineItem.attributes.itemCode != 'MLCOUPON') {
+                    products.forEach( function(pInApi) {
+                        if (lineItem.attributes.itemCode === pInApi.productCode ){
+                            apiProduct = pInApi; 
+                        }
+                    });
+                    if (apiProduct) {
+                        lineItem.attributes.url = "/"+apiProduct.content.seoFriendlyUrl+"/p/"+apiProduct.productCode; 
+                        lineItem.attributes.image = apiProduct.content.productImages[0].imageUrl; 
+                        
+                    }
+                }
+            });
+            accountViews.omxItemSubscriptions.model.attributes.nextOrder.items.forEach( function(lineItem) {
+                var apiProduct = ''; 
+                if (lineItem.attributes.itemCode != 'MLCOUPON') {
+                    products.forEach( function(pInApi) {
+                        if (lineItem.attributes.itemCode === pInApi.productCode ){
+                            apiProduct = pInApi; 
+                        }
+                    });
+                    if (apiProduct) {
+                        lineItem.attributes.url = "/"+apiProduct.content.seoFriendlyUrl+"/p/"+apiProduct.productCode; 
+                        lineItem.attributes.image = apiProduct.content.productImages[0].imageUrl; 
+                        
+                    }
+                }
+            });  
+        });
+*/
+
         // TODO: upgrade server-side models enough that there's no delta between server output and this render,
         // thus making an up-front render unnecessary.
         _.invoke(window.accountViews, 'render');
@@ -1232,6 +1310,5 @@ function getQueryVariable(variable)
                 default:
               } 
         }
-
     });
 });
