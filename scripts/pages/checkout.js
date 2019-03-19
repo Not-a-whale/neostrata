@@ -85,7 +85,7 @@ require(["modules/jquery-mozu",
                     $('#step-review').addClass('is-current');
                 }
             }
-            /*
+            $('.mz-formstep-next').data( "currentStepId", currentStepId );
             if(currentStepId == 'step-shipping-address' && $('#step-customer-info').hasClass('is-current')){ //we are on the last step but fist is-current? let's adjust all steps
                 this.$el.siblings().removeClass('is-current');
                 $('#step-customer-info').addClass('is-current');
@@ -96,7 +96,7 @@ require(["modules/jquery-mozu",
                 $('#step-shipping-method').removeClass('is-complete').addClass('is-current');
                 $('#step-shipping-method').siblings().removeClass('is-current');
                 this.model._stepStatus = 'incomplete'; //set by using stepStatus() method fires an infinite bucle in this logic.
-            }*/
+            }
             //}
         /*sets which is current step for styling purposes*/
             $('#order-summary button').html($('.is-current').find('.primary-btn').html()); //updates right box area button with current step button text
@@ -181,7 +181,7 @@ require(["modules/jquery-mozu",
         ],
         initialize: function () {
             var freeShippingMethod = false;
-            var shippingDiscounts = this.model.get('shippingDiscounts');  
+            var shippingDiscounts = this.model.get('shippingDiscounts');
             this.model = this.model.get('fulfillmentInfo');
             if(shippingDiscounts && shippingDiscounts.length){
                 shippingDiscounts.forEach(function(discount){
@@ -200,7 +200,7 @@ require(["modules/jquery-mozu",
 
             if(!this.model.get('freeShippingMethod')){
                 var freeShippingMethod = false;
-                var shippingDiscounts = window.checkoutViews.parentView.model.get('shippingDiscounts');    
+                var shippingDiscounts = window.checkoutViews.parentView.model.get('shippingDiscounts');
                 if(shippingDiscounts && shippingDiscounts.length){
                 shippingDiscounts.forEach(function(discount){
                     if(discount.methodCode) freeShippingMethod = discount.methodCode;
@@ -208,7 +208,7 @@ require(["modules/jquery-mozu",
             }
             this.model.set('freeShippingMethod', freeShippingMethod);
             }
-            
+
             CheckoutStepView.prototype.render.apply(this, arguments);
             $('.selectpicker').selectpicker();
         }
@@ -733,6 +733,18 @@ require(["modules/jquery-mozu",
 
         $checkoutView.noFlickerFadeIn();
 
+        $('.mz-formstep-next').click(function() {
+          var catStepId = $('.mz-formstep-next').data( "currentStepId");
+          var scrollTarget = 'body';
+          if(catStepId == 'step-customer-info'){
+            scrollTarget = '#step-customer-info';
+          } else if(catStepId == 'step-shipping-address'){
+              scrollTarget = '#step-shipping-address';
+          } else if(catStepId == 'step-payment-info'){
+              scrollTarget = '#step-payment-info';
+          }
+          $("html, body").animate({ scrollTop: $(scrollTarget).offset().top }, 1000);
+        });
 
     });
 });
