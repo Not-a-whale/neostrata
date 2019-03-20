@@ -1,0 +1,26 @@
+    
+    {% if editing.nextOrdershipTo %}
+        <input type="radio" name="shipToAddress_{{model.id}}" data-mz-autoreplanish-radio data-mz-autoreplanish-id={{model.id}} {% if not model.id %} checked {% endif %} /> 
+        <label class="icon-dot form-element" for="shipToAddress_{{model.id}}">
+            {{labels.autoShipDelivery}}
+        </label>
+    {% endif %}
+    <div class="address-customer-name">{{ model.firstName }} {{ model.lastNameOrSurname }}</div>
+    <div>{{ model.address.address1 }}</div>
+    {% if model.address.address2 %}
+        <div>{{ model.address.address2 }}</div>
+    {% endif %}
+    {% if model.address.address3 %}
+        <div>{{ model.address.address3 }}</div>
+    {% endif %}
+    {% if model.address.address4 %}
+        <div>{{ model.address.address4 }}</div>
+    {% endif %}
+    <div>{{ model.address.cityOrTown }} {{ model.address.stateOrProvince }} {{ model.address.postalOrZipCode }}</div>
+    {% comment %}
+    <div>{{ model.address.countryCode }}</div>
+    {% endcomment %}
+    {% if model.phoneNumbers.home %}
+        <span>{{ model.phoneNumbers.home }}</span>
+    {% endif %}
+    

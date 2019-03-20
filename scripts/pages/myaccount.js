@@ -3,39 +3,6 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext',
     'modules/views-paging', 'modules/editable-view','modules/block-ui', 
     'vendor/bootstrap-select/dist/js/bootstrap-select','modules/models-omxorders'], function(Backbone, Api, Hypr, HyprLiveContext, $, _, CustomerModels, PagingViews, EditableView,blockUiLoader) {
 
-    var getMozuProducts = function(orderProductList) {
-        var deferred = Api.defer();
-        var numReqs = orderProductList.length;
-        var productList = [];
-        var filter = "";
-        _.each(orderProductList, function(attrs) {
-            if (filter !== "") filter += " or ";
-            filter += "productCode eq "+ attrs;    
-        });
-        var op = Api.get('products', filter);                
-        op.then(function(data) {
-            console.log('OrderStatusDetail::getMozuProducts() --> in then result data: ', data); 
-            if (data.data.items && data.data.items.length === 0) {
-                _.defer(function() {
-                    deferred.resolve(productList);
-                });
-            }
-            _.each(data.data.items, function(product){
-                productList.push(product);
-                _.defer(function() {
-                    deferred.resolve(productList);
-                });
-            });
-
-        }, function(reason){
-            _.defer(function() {
-                deferred.resolve(productList);
-            });                    
-        });
-        return deferred.promise;
-    };
-
-    
     var AccountSettingsView = EditableView.extend({
         templateName: 'modules/my-account/my-account-settings',
         autoUpdate: [
@@ -474,53 +441,35 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext',
         }
         
     });
-    var OmxItemSubscriptionView = Backbone.MozuView.extend({
-        //templateName: "modules/my-account/omx-order-history-list",
+    var OmxItemSubscriptionView = EditableView.extend({
         templateName: "modules/my-account/my-account-omx-item-subscriptions",  
         
         constructor: function() {
             EditableView.apply(this, arguments);
-            this.editing.order = false;
+            this.editing.subscription = false; 
+            this.editing.allSubscription = true; 
+            this.editing.nextOrdershipTo  = false; 
+            this.editing.nextOrderPayment  = false; 
             this.invalidFields = {};
         },
 
-        getRenderContext: function() {
-            var context = Backbone.MozuView.prototype.getRenderContext.apply(this, arguments);
-            return context;
-        },
-        /*render: function() {
+        render: function() {
             var self = this;
-           
-                Backbone.MozuView.prototype.render.apply(this, arguments);
+            Backbone.MozuView.prototype.render.apply(this, arguments);
+        }, 
 
-                $.each(this.$el.find('[data-mz-omx-order-history-listing]'), function(index, val) {
-    
-                    var orderId = $(this).data('mzOrderId');
-                    var myOrder = _.find(self.model.models, function(model) {
-                        return model.attributes.orderId == orderId;
-                    });
-                    var orderHistoryListingView = new OmxOrderHistoryListingView({
-                        el: $(this).find('.mz-omx-orderlisting'),
-                        model: myOrder,
-                        messagesEl: $(this).find('[data-order-message-bar]')
-                    });
-                    orderHistoryListingView.render();   
-                });
-            if (this.editing.order) {
-                this.startViewOMXItemSubscription();
-            } else {
-                this.cancelViewOMXItemSubscription(); 
-            }
-        },   */
         viewOMXItemSubscription: function (event) {
             if(event)
                 event.preventDefault();
-
             this.editing.subscription = true; 
             this.editing.allSubscription = true; 
-           
+            this.editing.nextOrdershipTo  = false; 
+            this.editing.nextOrderPayment  = false; 
             
             this.startViewOMXItemSubscription(); 
+
+            this.render();
+            
         },
 
         startViewOMXItemSubscription: function () {
@@ -548,6 +497,8 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext',
             $('.mz-accountitemsubscriptions .dl-view-wrapper').removeClass('hidden'); 
             $('.mz-accountitemsubscriptions .mz-subscription-section-wrapper').addClass('hidden'); 
             $('.mz-accountitemsubscriptions .dl-link-edit.mz-link-edit-subscription').removeClass('hidden'); 
+
+            this.render(); 
 
         }
         
@@ -1114,7 +1065,8 @@ function getQueryVariable(variable)
             }),
             omxItemSubscriptions: new OmxItemSubscriptionView({
                 el: $omxItemSusbcriptionsEl, //.find('[data-mz-omx-orderlist]'),
-                model: omxItemSubscriptionsModel
+                //model: omxItemSubscriptionsModel
+                model: accountModel
             }),  
              /*orderHistory: new OrderHistoryView({
                 el: $orderHistoryEl.find('[data-mz-orderlist]'),

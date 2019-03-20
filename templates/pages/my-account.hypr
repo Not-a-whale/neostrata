@@ -59,7 +59,7 @@
     
         <a id="itemsubscriptions"></a>
         <div class="mz-l-stack-section mz-accountitemsubscriptions no-editing" id="account-omx-item-subscriptions">
-            {% include "modules/my-account/my-account-omx-item-subscriptions" with model=model.omxItemSubscriptions %}
+            {% include "modules/my-account/my-account-omx-item-subscriptions" %}
         </div>
 
         <a id="returnhistory"></a>

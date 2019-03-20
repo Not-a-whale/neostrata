@@ -1,0 +1,21 @@
+<div class="row">
+    {% if editing.nextOrderPayment %}
+        <div class="col-xs-2">
+            <input type="radio" name="payment_{{model.id}}" data-mz-autoreplanish-radio data-mz-autoreplanish-id={{model.id}} {% if not model.id %} checked {% endif %} /> 
+            <label class="icon-dot form-element" for="payment_{{model.id}}">
+                {{labels.autoShipDelivery}}
+            </label>
+        </div>
+    {% endif %}
+
+
+    <div class="col-xs-4">
+        <strong class="mz-paymentmethod-methodtype">
+        <img src="/resources/images/icons/payment/CC-icons_{{model.cardType}}.png" alt="{{ model.cardType }}">
+        </strong>
+    </div>
+    <div class="col-xs-6">
+        <div class="mz-paymentmethod-cardnumber">{{ labels.endingIn }} {{ model.cardNumberPart|replace("*") }}</div>
+        <div class="mz-paymentmethod-cardexp">{{ labels.expires }} {{ model.expireMonth }}/{{model.expireYear }}</div>
+    </div>
+</div>

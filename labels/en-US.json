@@ -749,6 +749,10 @@
   "subscriptionDiscount"          : "Discount", 
   "subscriptionNextOrderDate"     : "Next Order Date", 
   "subscriptionManage"            : "Manage", 
-  "subscriptionReplenishment"     : "Subscription"
+  "subscriptionReplenishment"     : "Subscription",
+  "nextOrderShippingInfo"         : "Shipping Info", 
+  "nextOrderPaymentInfo"          : "Payments",
+  "nextOrderSave"                 : "Save",
+  "nextOrderCancel"               : "Cancel" 
 
 }
