@@ -667,7 +667,13 @@ require(["modules/jquery-mozu",
     };
 
     $(document).ready(function () {
-
+      setTimeout(function(){
+        $('#nextBtn').click(function() {
+          var catStepId = $('.mz-formstep-next').data( "currentStepId");
+          console.log(catStepId);
+          $("html, body").animate({ scrollTop: $('#'+catStepId).offset().top }, 1000);
+        });
+      }, 1000);
         var $checkoutView = $('#checkout-form'),
             checkoutData = require.mozuData('checkout');
 
@@ -733,18 +739,6 @@ require(["modules/jquery-mozu",
 
         $checkoutView.noFlickerFadeIn();
 
-        $('.mz-formstep-next').click(function() {
-          var catStepId = $('.mz-formstep-next').data( "currentStepId");
-          var scrollTarget = 'body';
-          if(catStepId == 'step-customer-info'){
-            scrollTarget = '#step-customer-info';
-          } else if(catStepId == 'step-shipping-address'){
-              scrollTarget = '#step-shipping-address';
-          } else if(catStepId == 'step-payment-info'){
-              scrollTarget = '#step-payment-info';
-          }
-          $("html, body").animate({ scrollTop: $(scrollTarget).offset().top }, 1000);
-        });
 
     });
 });
