@@ -2055,6 +2055,26 @@ ul.tabs {
 
         .mz-productdetail-conversion-buttons {
             margin-top: .8rem;
+            .mz-productdetail-emailme{
+                height: 3rem;
+                line-height: 1.5rem;
+                font-size: 1rem;
+                float: right;
+                &.requested{
+                    border:none;
+                    width: 50%;
+                    padding: 0;
+                    &:hover{
+                        background: none;
+                        color: #4e5458;
+                    }
+                }
+            }      
+            .outOfStock{
+                float:left;
+                width:45%;
+                text-align:center;
+            }
             .add-to-cart-container {
                 padding: 0;
                 width: 80%;
@@ -2972,6 +2992,15 @@ ul.tabs {
         // border-color: #85acce !important;
         margin: 0 auto;
         display: inline-block;
+        &.requested{
+            border:none;
+            padding: 0;
+            line-height: 1.5rem;
+            &:hover{
+                background: none;
+                color: #4e5458;
+            }
+        }       
         &:hover{
             // background: #85acce !important;
         }

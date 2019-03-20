@@ -332,30 +332,41 @@ define([
         /*directory Add-To-Wishlist action */
         /*directory Email-Me action */
         var directoryEmailMe = IntentEmitter(_$body,
-                                                   ['click #product-list-ul .mz-productdetail-emailme',
-                                                    'click #more-list-ul .mz-productdetail-emailme'],
-                                                    directoryEmailMeAction);
+                                            ['click #product-list-ul .mz-productdetail-emailme',
+                                             'click #more-list-ul .mz-productdetail-emailme'],
+                                             directoryEmailMeAction);
         function directoryEmailMeAction(_e){
+            
+            var self = this;
             blockUiLoader.globalLoader();
-            var productCode = $(_e.currentTarget).data("mz-product-code");
-            var locationCode = $(_e.currentTarget).data("mz-location-code");
             var user = require.mozuData('user');
-            if(productCode && productCode !== '' && user){
-                api.get('product', productCode).then(function(productResponse){
-                    var product = new ProductModels.Product(productResponse.data);
-                    api.create('instockrequest', {
-                        email: user.email,
-                        customerId: user.accountId,
-                        productCode: productCode,
-                        locationCode: product.get('inventoryInfo').onlineLocationCode
-                    }).then(function () {
-                        console.log(product);
-                        //self.render();
-                    }, function (res) {
-                        console.log(res.message);
-                        console.log(Hypr.getLabel('notifyWidgetError'));
-                    });
-                });
+            if(user && user.accountId !== ''){
+                var productCode = $(_e.currentTarget).data("mz-product-code");    
+                if(productCode && productCode !== ''){
+                   api.request('GET', '/api/commerce/instocknotifications/?filter=email+eq+'+user.email+'+and+productCode+eq+'+productCode).then(function(instocknotificationsItemsResponse) {
+                       if(instocknotificationsItemsResponse.totalCount){
+                            $(_e.currentTarget).addClass('requested').html(Hypr.getLabel('instocknotificationsRequested')).attr("disabled", "disabled");
+                       }else{
+                           api.get('product', productCode).then(function(productResponse){
+                               var product = new ProductModels.Product(productResponse.data);                    
+                               api.create('instockrequest', {
+                                   email: user.email,
+                                   customerId: user.accountId,
+                                   userId: user.userId,
+                                   productCode: productCode,
+                                   locationCode: product.get('inventoryInfo').onlineLocationCode
+                               }).then(function (response) {
+                                   $(_e.currentTarget).addClass('requested').html(Hypr.getLabel('instocknotificationsRequested')).attr("disabled", "disabled");
+                               }, function (res) {
+                                   console.log(res.message);
+                                   console.log(Hypr.getLabel('notifyWidgetError'));
+                               });
+                           });
+                       }                    
+                   });                    
+               }                   
+            }else{
+                $(_e.currentTarget).addClass('requested').html(Hypr.getLabel('instocknotificationsRequestedGuest')).attr("disabled", "disabled");
             }
             blockUiLoader.unblockUi();
         }
@@ -583,6 +594,13 @@ define([
         });
         var user = require.mozuData('user');
         if(user.accountId){
+            api.request('GET', '/api/commerce/instocknotifications/?filter=email+eq+'+user.email).then(function(instocknotificationsItemsResponse) {
+                if(instocknotificationsItemsResponse.totalCount){
+                    _.each(instocknotificationsItemsResponse.items, function(item){
+                        if($('#email-me-'+item.productCode)) $('#email-me-'+item.productCode).addClass('requested').html(Hypr.getLabel('instocknotificationsRequested')).attr("disabled", "disabled");
+                    });
+                }
+            });
             var addToWishlist = sessionStorage.getItem('addToWishlist');
             if(addToWishlist){
                 sessionStorage.removeItem('addToWishlist');
