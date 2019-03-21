@@ -500,6 +500,52 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext',
 
             this.render(); 
 
+        }, 
+        editOMXItemSubscriptionShipTo: function () {
+            this.editing.nextOrdershipTo = true; 
+            this.editing.allSubscription = false; 
+            this.render(); 
+        }, 
+        finishEditNextOrderShipTo: function () {
+            var selectedShipId = $("input[name*='shipToAddress_']:checked").data('mzAutoreplanishId'), 
+                contact = this.model.get('contacts').findWhere({
+                    id: selectedShipId
+                }), 
+                membershipId = this.model.get('omxItemSubscriptions').get('nextOrder').membershipId;
+
+            if (contact) {
+           
+                this.model.get('omxItemSubscriptions').updateNextOrderShipTo(contact,membershipId).then(function(data){
+                    console.log('update success : ', data); 
+                    this.editing.nextOrdershipTo = true; 
+                    this.render(); 
+                }).catch(function(err){
+                    console.log('update error : ', err); 
+                }); 
+            }
+        }, 
+        cancelEditNextOrderShipTo: function () {
+            this.editing.nextOrdershipTo = false; 
+            this.render(); 
+        }, 
+
+
+        manageItem:  function (event) {
+            this.editing.allSubscription = true;
+            var membershipId = $(event.currentTarget).data('mzItem');
+            $(event.currentTarget).parent().parent().addClass('hidden'); 
+            $(event.currentTarget).parent().parent().next().removeClass('hidden'); 
+        }, 
+        cancelEditAuotreplanishItem : function (event) {
+            this.editing.allSubscription = true;
+            $(event.currentTarget).parent().parent().addClass('hidden'); 
+            $(event.currentTarget).parent().parent().prev().removeClass('hidden'); 
+            
+        }, 
+        finishEditAuotreplanishItem : function(event) {
+            this.editing.allSubscription = true;
+            var membershipId = $(event.currentTarget).data('mzMembershipId');
+            
         }
         
     }); 

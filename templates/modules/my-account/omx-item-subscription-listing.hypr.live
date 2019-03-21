@@ -12,10 +12,6 @@
               <span class="label-qty">{{ labels.subscriptionProductName }}</span>
               <a class="mz-carttable-item-title" href="{{model.url}}">{{ model.name|safe }}</a>
           </div>
-          <div class="mz-carttable-item-info-wrap ">
-              <span class="label-qty">{{ labels.subscriptionReplenishment }}</span>
-              <div class="mz-carttable-item-plan">{{ model.configurationName|safe }}</div>
-          </div>
         </div>
         <div class="col-xs-2 col-sm-2 cart-item-qty">  
           <span class="label-qty">{{ labels.qty }}</span>
@@ -36,16 +32,56 @@
           </div>
         </div>
 
-        <div class="col-xs-6 col-sm-6 nopaddingleft"> 
-            <span class="label-nextOrderDate">{{ labels.subscriptionNextOrderDate }}</span>
-            <div class="mz-carttable-item-next">
-                {{model.nextShipDate}}
-            </div>
+        <div class="mz-autoreplanish-item-info col-xs-12 ">
+          <div class="col-xs-6 col-sm-6 nopaddingleft"> 
+                <span class="label-qty">{{ labels.subscriptionReplenishment }}</span>
+                <div class="mz-carttable-item-plan">{{ model.configurationName|safe }}</div>
+            
+          </div>
+          <div class="col-xs-3 col-sm-3 nopaddingleft"> 
+              <span class="label-nextOrderDate">{{ labels.subscriptionNextOrderDate }}</span>
+              <div class="mz-carttable-item-next">
+                  {{model.nextShipDate}}
+              </div>
+          </div>
+          <div class="col-xs-6 col-sm-6 nopaddingright"> 
+              <a href="javascript:;" data-mz-action="manageItem" data-mz-item="{{ model.membershipId }}" class="">{{ labels.subscriptionManage }}</a>
+          </div>
+        </div>
+        <div class="mz-autoreplanish-item-actions hidden col-xs-12 ">
+          <div class="col-xs-6 col-sm-6 nopaddingleft"> 
+            <span class="label-qty">{{ labels.subscriptionReplenishment }}</span>
+            <div class="mz-carttable-item-plan" data-mz-membership-id="{{model.membershipId}}">
+              <select class="mz-autoship-dropdown" id="mz_autoship_code_{{model.membershipId}}" data-mz-autoreplanish >
 
+                {% for splitValue in model.monthIntervalsProp|split(',') %}
+                    {% if splitValue %}
+                    {% with "autoReplenishment_X"|replace("X", splitValue) as autoReplenishmentCode %}
+                    {% with themeSettings|prop(autoReplenishmentCode) as evalValue %}
+                        <option value="{{ splitValue|safe }}" {% if model.frequencyCode && splitValue == model.frequencyCode %} selected {% endif %} > {{evalValue}}
+                        {% if model.recomendedIntervalProp && splitValue == model.recomendedIntervalProp %} {{labels.recommendedFrequently}} {% endif %}
+                        </option>                    
+                    {% endwith %}{% endwith %}
+                    {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="col-xs-3 col-sm-3 nopaddingleft"> 
+            <span class="label-nextOrderDate">{{ labels.subscriptionActionType }}</span>
+            <div class="mz-carttable-item-plan" data-mz-membership-id="{{model.membershipId}}">
+              <select class="mz-autoreplanish-action-type" id="mz_autoship_code_{{model.membershipId}}" >
+                <option value="mz-autoreplanish-action-type-ship-now" > {{labels.subscriptionActionTypeShipNow }} </option>                    
+                <option value="mz-autoreplanish-action-type-delay-ship" > {{labels.subscriptionActionTypeDelayShip }} </option>                    
+                <option value="mz-autoreplanish-action-type-update-frequency" selected > {{labels.subscriptionActionTypeUpdateFrequency }} </option>                    
+              </select>
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-6 nopaddingright mz-contact-actions"> 
+            <button class="mz-button mz-contact-save" data-mz-membership-id="{{model.membershipId}}" data-mz-action="finishEditAuotreplanishItem">{{labels.nextOrderSave}}</button>
+            <button class="mz-button mz-contact-cancel" data-mz-membership-id="{{model.membershipId}}" data-mz-action="cancelEditAuotreplanishItem">{{labels.nextOrderCancel}}</button>
+          </div>
         </div>
-        <div class="col-xs-6 col-sm-6 nopaddingright"> 
-            <a href="javascript:;" data-mz-action="manageItem" data-mz-item="{{ item.membershipId }}" class="">{{ labels.subscriptionManage }}</a>
-           
-        </div>
+
     </div>
 </div>

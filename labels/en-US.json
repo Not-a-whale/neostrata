@@ -753,6 +753,10 @@
   "nextOrderShippingInfo"         : "Shipping Info", 
   "nextOrderPaymentInfo"          : "Payments",
   "nextOrderSave"                 : "Save",
-  "nextOrderCancel"               : "Cancel" 
+  "nextOrderCancel"               : "Cancel", 
+  "subscriptionActionType"        : "Action", 
+  "subscriptionActionTypeShipNow"        : "Ship Now", 
+  "subscriptionActionTypeDelayShip"      : "Delay Ship", 
+  "subscriptionActionTypeUpdateFrequency": "Update Plan" 
 
 }

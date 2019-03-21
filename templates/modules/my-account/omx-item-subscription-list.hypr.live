@@ -7,7 +7,7 @@
     
     <div id="tab1" class="tab-pane fade {% if not editing.allSubscription %}  active in  {% endif %}">
         <div class="tab-content-1">
-            <div class="omx-next-order row">
+            <div class="omx-next-order">
                 {% include "modules/my-account/omx-item-subscription-next-order" %}
             </div>
         </div>
@@ -17,7 +17,7 @@
             <div class="mz-header-basket-md-sm">
                 <div class="col-xs-12">{{ labels.itemsInOrder }}</div>
             </div>
-            <div class="omx-orderhistory-list row">
+            <div class="omx-orderhistory-list ">
           
                 {% for orderItem in model.omxItemSubscriptions.items %}
                     <div data-mz-membership-id="{orderItem.membershipId}}" data-mz-omx-item-subscription-listing>
