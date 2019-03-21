@@ -2059,10 +2059,9 @@ ul.tabs {
                 height: 3rem;
                 line-height: 1.5rem;
                 font-size: 1rem;
-                float: right;
+                width:100%;
                 &.requested{
                     border:none;
-                    width: 50%;
                     padding: 0;
                     &:hover{
                         background: none;
@@ -2071,9 +2070,7 @@ ul.tabs {
                 }
             }      
             .outOfStock{
-                float:left;
-                width:45%;
-                text-align:center;
+                
             }
             .add-to-cart-container {
                 padding: 0;
@@ -2992,6 +2989,7 @@ ul.tabs {
         // border-color: #85acce !important;
         margin: 0 auto;
         display: inline-block;
+        border:0.1875rem solid #4e5458;
         &.requested{
             border:none;
             padding: 0;
@@ -3002,7 +3000,8 @@ ul.tabs {
             }
         }       
         &:hover{
-            // background: #85acce !important;
+             background: #4e5458;
+             color:#fff;
         }
     }
     .emailMe{
