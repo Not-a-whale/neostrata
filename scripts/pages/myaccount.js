@@ -544,8 +544,28 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext',
         }, 
         finishEditAuotreplanishItem : function(event) {
             this.editing.allSubscription = true;
-            var membershipId = $(event.currentTarget).data('mzMembershipId');
-            
+            var membershipId = $(event.currentTarget).data('mzMembershipId'), 
+                frequency = $('#mz_autoship_frequency_'+membershipId).val(), 
+                actionType = $('#mz_autoship_action_'+membershipId).val(), 
+                orderNumber = $(event.currentTarget).data('mzOrderNumber'), 
+                lineItem = $(event.currentTarget).data('mzlineNumber'), 
+                params = {
+                    frequency : frequency, 
+                    actionType : actionType, 
+                    orderNumber : orderNumber, 
+                    lineItem : lineItem
+                };
+
+
+                           
+            this.model.get('omxItemSubscriptions').orderWaitDateUpdate(params).then(function(data){
+                console.log('update success : ', data); 
+                $(event.currentTarget).parent().parent().addClass('hidden'); 
+                $(event.currentTarget).parent().parent().prev().removeClass('hidden'); 
+                this.render();             
+            }).catch(function(err){
+                console.log('update error : ', err); 
+            }); 
         }
         
     }); 

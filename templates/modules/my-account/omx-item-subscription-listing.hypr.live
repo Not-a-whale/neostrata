@@ -52,7 +52,7 @@
           <div class="col-xs-6 col-sm-6 nopaddingleft"> 
             <span class="label-qty">{{ labels.subscriptionReplenishment }}</span>
             <div class="mz-carttable-item-plan" data-mz-membership-id="{{model.membershipId}}">
-              <select class="mz-autoship-dropdown" id="mz_autoship_code_{{model.membershipId}}" data-mz-autoreplanish >
+              <select class="mz-autoship-dropdown" id="mz_autoship_frequency_{{model.membershipId}}" data-mz-autoreplanish >
 
                 {% for splitValue in model.monthIntervalsProp|split(',') %}
                     {% if splitValue %}
@@ -70,7 +70,7 @@
           <div class="col-xs-3 col-sm-3 nopaddingleft"> 
             <span class="label-nextOrderDate">{{ labels.subscriptionActionType }}</span>
             <div class="mz-carttable-item-plan" data-mz-membership-id="{{model.membershipId}}">
-              <select class="mz-autoreplanish-action-type" id="mz_autoship_code_{{model.membershipId}}" >
+              <select class="mz-autoreplanish-action-type" id="mz_autoship_action_{{model.membershipId}}" >
                 <option value="mz-autoreplanish-action-type-ship-now" > {{labels.subscriptionActionTypeShipNow }} </option>                    
                 <option value="mz-autoreplanish-action-type-delay-ship" > {{labels.subscriptionActionTypeDelayShip }} </option>                    
                 <option value="mz-autoreplanish-action-type-update-frequency" selected > {{labels.subscriptionActionTypeUpdateFrequency }} </option>                    
@@ -78,7 +78,8 @@
             </div>
           </div>
           <div class="col-xs-6 col-sm-6 nopaddingright mz-contact-actions"> 
-            <button class="mz-button mz-contact-save" data-mz-membership-id="{{model.membershipId}}" data-mz-action="finishEditAuotreplanishItem">{{labels.nextOrderSave}}</button>
+            
+            <button class="mz-button mz-contact-save" data-mz-membership-id="{{model.membershipId}}" data-mz-line-number="{{model.lineNumber}}" data-mz-order-number="{{model.orderNumber}}" data-mz-action="finishEditAuotreplanishItem">{{labels.nextOrderSave}}</button>
             <button class="mz-button mz-contact-cancel" data-mz-membership-id="{{model.membershipId}}" data-mz-action="cancelEditAuotreplanishItem">{{labels.nextOrderCancel}}</button>
           </div>
         </div>

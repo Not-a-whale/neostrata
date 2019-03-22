@@ -15,7 +15,15 @@ define(['jquery', 'hyprlive', 'modules/api','underscore'],
               var ccOrdesStatusURL = urlParts[0] + "//" + urlParts[2] + '/orderMotion/autoreplanish/shippingInfo';
               _.extend(params, {anonymous:true});
               return $.post( ccOrdesStatusURL, params ); 
-           }
+           }, 
+            orderWaitDateUpdate: function(params){
+              var urlParts = window.location.href.split("/");
+              var ccOrdesStatusURL = urlParts[0] + "//" + urlParts[2] + '/orderMotion/autoreplanish/orderWaitDateUpdate';
+              _.extend(params, {anonymous:false});
+              console.log('api-omx-orderWaitDateUpdate :: params:: ',params);
+              console.log('api-omx-orderWaitDateUpdate :: ccOrdesStatusURL:: ',ccOrdesStatusURL);
+              return $.post( ccOrdesStatusURL, params );
+            } 
         };
 
         return {

@@ -32,6 +32,18 @@ define(["modules/api", 'underscore', "modules/backbone-mozu", "hyprlive", 'modul
               }
           })
         }, 
+        orderWaitDateUpdate: function(params) {
+          console.log('omxModels - orderwaitDateUpdate ', params); 
+          if (params) {
+            if (params.actionType && params.actionType == 2) {
+              //shipNow
+              var newDate = new Date(); 
+              newDate.setMonth(newDate.getMonth()+params.frequency);
+              params.newDate = newDate; 
+            }
+            return ApiAutoreplanish.OrderMotionApi.orderWaitDateUpdate(params); 
+          }
+        },
         updateNextOrderShipTo: function(contact, membershipId) {
           console.log('contact : ', contact); 
           var shipTo = {
