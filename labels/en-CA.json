@@ -266,6 +266,8 @@
   "emailOpening"         : "<p>Hi {0}!</p>",
   "emailOpeningAlternative" : "<p>Hi!</p>",
   "emailClosing"         : "<p>Thanks,<br />The {0} Team.</p>",
+  "instocknotificationsRequestedGuest": "You need to be logged to be notified.",
+  "instocknotificationsRequested": "We will email you when this product is back in stock.",    
   "inStockBlob1"         : "We are writing to let you know the following product is back in stock and ready to be ordered:",
   "inStockBlob2"         : "Click <a href=\"http://{0}/p/{1}\">here</a> to be taken to the product page.",
   "orderShipped"         : "Your Order Has Shipped",
@@ -517,7 +519,7 @@
   "positionError"        : "Your position could not be determined. Displaying stores out of order.",
 
   "notifyWidgetHeader"   : "Notify me when this product is back in stock.",
-  "notifyWidgetButton"   : "Notify Me",
+  "notifyWidgetButton"   : "Email Me",
   "notifyWidgetSuccess"  : "You will be notified when this product is back in stock.",
   "notifyWidgetError"    : "There was an error subscribing. Please try again.",
 

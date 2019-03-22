@@ -266,6 +266,8 @@
   "emailOpening"         : "[fr-CA]<p>Hi {0}!</p>[fr-CA]",
   "emailOpeningAlternative" : "[fr-CA]<p>Hi!</p>[fr-CA]",
   "emailClosing"         : "[fr-CA]<p>Thanks,<br />The {0} Team.</p>[fr-CA]",
+  "instocknotificationsRequestedGuest": "[fr-CA]You need to be logged to be notified.[fr-CA]",
+  "instocknotificationsRequested": "[fr-CA]We will email you when this product is back in stock.[fr-CA]",
   "inStockBlob1"         : "[fr-CA]We are writing to let you know the following product is back in stock and ready to be ordered:[fr-CA]",
   "inStockBlob2"         : "[fr-CA]Click <a href=\"http://{0}/p/{1}\">here</a> to be taken to the product page.[fr-CA]",
   "orderShipped"         : "[fr-CA]Your Order Has Shipped[fr-CA]",
@@ -517,7 +519,7 @@
   "positionError"        : "Votre position n'a pas pu être déterminée. Affichage des magasins en panne.",
 
   "notifyWidgetHeader"   : "[fr-CA]Notify me when this product is back in stock.[fr-CA]",
-  "notifyWidgetButton"   : "[fr-CA]Notify Me[fr-CA]",
+  "notifyWidgetButton"   : "[fr-CA]Email Me[fr-CA]",
   "notifyWidgetSuccess"  : "[fr-CA]You will be notified when this product is back in stock.[fr-CA]",
   "notifyWidgetError"    : "[fr-CA]There was an error subscribing. Please try again.[fr-CA]",
 
