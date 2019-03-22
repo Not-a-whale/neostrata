@@ -519,7 +519,7 @@
   "positionError"        : "Votre position n'a pas pu être déterminée. Affichage des magasins en panne.",
 
   "notifyWidgetHeader"   : "[fr-CA]Notify me when this product is back in stock.[fr-CA]",
-  "notifyWidgetButton"   : "[fr-CA]Notify Me[fr-CA]",
+  "notifyWidgetButton"   : "[fr-CA]Email Me[fr-CA]",
   "notifyWidgetSuccess"  : "[fr-CA]You will be notified when this product is back in stock.[fr-CA]",
   "notifyWidgetError"    : "[fr-CA]There was an error subscribing. Please try again.[fr-CA]",
 

@@ -519,7 +519,7 @@
   "positionError"        : "Your position could not be determined. Displaying stores out of order.",
 
   "notifyWidgetHeader"   : "Notify me when this product is back in stock.",
-  "notifyWidgetButton"   : "Notify Me",
+  "notifyWidgetButton"   : "Email Me",
   "notifyWidgetSuccess"  : "You will be notified when this product is back in stock.",
   "notifyWidgetError"    : "There was an error subscribing. Please try again.",
 
