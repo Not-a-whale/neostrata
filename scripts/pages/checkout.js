@@ -67,6 +67,9 @@ require(["modules/jquery-mozu",
             var nextStep = currentStep.next();
             if(currentStepId == 'step-customer-info'){ //let's initialize, at least first element is-current
                 currentStep.addClass('is-current');
+                if(!$('#nextBtn').hasClass('disabled')){
+                  $('#nextBtn').addClass('disabled');
+                }
             }
             else{ // checking for previous steps status
                 if(previousStep.hasClass('is-current') || previousStep.hasClass('is-incomplete')){ //prev elements not complete? then neither this
@@ -89,6 +92,9 @@ require(["modules/jquery-mozu",
             if(currentStepId == 'step-shipping-address' && $('#step-customer-info').hasClass('is-current')){ //we are on the last step but fist is-current? let's adjust all steps
                 this.$el.siblings().removeClass('is-current');
                 $('#step-customer-info').addClass('is-current');
+                if(!$('#nextBtn').hasClass('disabled')){
+                  $('#nextBtn').addClass('disabled');
+                }
             }
 
             if(this.lastStep && this.lastStep == 'step-shipping-address'){
@@ -669,9 +675,9 @@ require(["modules/jquery-mozu",
     $(document).ready(function () {
       setTimeout(function(){
         $('#nextBtn').click(function() {
-          var catStepId = $('.mz-formstep-next').data( "currentStepId");
-          console.log(catStepId);
-          $("html, body").animate({ scrollTop: $('#'+catStepId).offset().top }, 1000);
+          if(!$('#nextBtn').hasClass('disabled')){
+            $('[data-mz-action="next"]').trigger( "click" );
+          }
         });
       }, 1000);
         var $checkoutView = $('#checkout-form'),
