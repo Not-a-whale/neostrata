@@ -35,10 +35,10 @@ define(["modules/api", 'underscore', "modules/backbone-mozu", "hyprlive", 'modul
         orderWaitDateUpdate: function(params) {
           console.log('omxModels - orderwaitDateUpdate ', params); 
           if (params) {
-            if (params.actionType && params.actionType == 2) {
+            if (params.actionType && params.actionType == 'mz-autoreplanish-action-type-delay-ship') {
               //shipNow
               var newDate = new Date(); 
-              newDate.setMonth(newDate.getMonth()+params.frequency);
+              newDate.setMonth(newDate.getMonth() + parseInt(params.frequency));
               params.newDate = newDate; 
             }
             return ApiAutoreplanish.OrderMotionApi.orderWaitDateUpdate(params); 

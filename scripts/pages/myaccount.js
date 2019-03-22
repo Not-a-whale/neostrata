@@ -546,9 +546,9 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext',
             this.editing.allSubscription = true;
             var membershipId = $(event.currentTarget).data('mzMembershipId'), 
                 frequency = $('#mz_autoship_frequency_'+membershipId).val(), 
-                actionType = $('#mz_autoship_action_'+membershipId).val(), 
+                actionType = $('#mz_autoship_action_'+membershipId).find(":selected").val(),
                 orderNumber = $(event.currentTarget).data('mzOrderNumber'), 
-                lineItem = $(event.currentTarget).data('mzlineNumber'), 
+                lineItem = $(event.currentTarget).data('mzLineNumber'), 
                 params = {
                     frequency : frequency, 
                     actionType : actionType, 
