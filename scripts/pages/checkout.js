@@ -85,6 +85,7 @@ require(["modules/jquery-mozu",
                     $('#step-review').addClass('is-current');
                 }
             }
+            /*
             $('.mz-formstep-next').data( "currentStepId", currentStepId );
             if(currentStepId == 'step-shipping-address' && $('#step-customer-info').hasClass('is-current')){ //we are on the last step but fist is-current? let's adjust all steps
                 this.$el.siblings().removeClass('is-current');
@@ -96,7 +97,7 @@ require(["modules/jquery-mozu",
                 $('#step-shipping-method').removeClass('is-complete').addClass('is-current');
                 $('#step-shipping-method').siblings().removeClass('is-current');
                 this.model._stepStatus = 'incomplete'; //set by using stepStatus() method fires an infinite bucle in this logic.
-            }
+            }*/
             //}
         /*sets which is current step for styling purposes*/
             $('#order-summary button').html($('.is-current').find('.primary-btn').html()); //updates right box area button with current step button text
@@ -667,13 +668,7 @@ require(["modules/jquery-mozu",
     };
 
     $(document).ready(function () {
-      setTimeout(function(){
-        $('#nextBtn').click(function() {
-          var catStepId = $('.mz-formstep-next').data( "currentStepId");
-          console.log(catStepId);
-          $("html, body").animate({ scrollTop: $('#'+catStepId).offset().top }, 1000);
-        });
-      }, 1000);
+
         var $checkoutView = $('#checkout-form'),
             checkoutData = require.mozuData('checkout');
 
