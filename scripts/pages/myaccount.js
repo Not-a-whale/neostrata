@@ -544,8 +544,9 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext',
         }, 
         finishEditAuotreplanishItem : function(event) {
             this.editing.allSubscription = true;
-            var membershipId = $(event.currentTarget).data('mzMembershipId'), 
-                frequency = $('#mz_autoship_frequency_'+membershipId).val(), 
+            var me = this, 
+                membershipId = $(event.currentTarget).data('mzMembershipId'), 
+                frequency = $('#mz_autoship_frequency_'+membershipId).find(":selected").val(),
                 actionType = $('#mz_autoship_action_'+membershipId).find(":selected").val(),
                 orderNumber = $(event.currentTarget).data('mzOrderNumber'), 
                 lineItem = $(event.currentTarget).data('mzLineNumber'), 
@@ -555,17 +556,26 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext',
                     orderNumber : orderNumber, 
                     lineItem : lineItem
                 };
+            if ('mz-autoreplanish-action-type-update-frequency' == actionType) {
+                this.model.get('omxItemSubscriptions').updateLineItemFrequency(params).then(function(data){
+                    console.log('update success : ', data); 
+                    $(event.currentTarget).parent().parent().addClass('hidden'); 
+                    $(event.currentTarget).parent().parent().prev().removeClass('hidden'); 
+                    me.render();             
+                }).catch(function(err){
+                    console.log('update error : ', err); 
+                }); 
 
-
-                           
-            this.model.get('omxItemSubscriptions').orderWaitDateUpdate(params).then(function(data){
-                console.log('update success : ', data); 
-                $(event.currentTarget).parent().parent().addClass('hidden'); 
-                $(event.currentTarget).parent().parent().prev().removeClass('hidden'); 
-                this.render();             
-            }).catch(function(err){
-                console.log('update error : ', err); 
-            }); 
+            } else {
+                this.model.get('omxItemSubscriptions').orderWaitDateUpdate(params).then(function(data){
+                    console.log('update success : ', data); 
+                    $(event.currentTarget).parent().parent().addClass('hidden'); 
+                    $(event.currentTarget).parent().parent().prev().removeClass('hidden'); 
+                    me.render();             
+                }).catch(function(err){
+                    console.log('update error : ', err); 
+                }); 
+            }
         }
         
     }); 

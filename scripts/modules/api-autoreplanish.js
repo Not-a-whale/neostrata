@@ -2,20 +2,20 @@ define(['jquery', 'hyprlive', 'modules/api','underscore'],
     function($, Hypr, api, _ ){
 
         var OrderMotionApi = {
-            updateAutoreplanishShippingInfo: function( params ) {
+            orderUpdate: function( params ) {
               var urlParts = window.location.href.split("/");
-              var ccOrdesStatusURL = urlParts[0] + "//" + urlParts[2] + '/orderMotion/autoreplanish/shippingInfo';
+              var ccOrdesStatusURL = urlParts[0] + "//" + urlParts[2] + '/orderMotion/autoreplanish/orderUpdate';
               _.extend(params, {anonymous:false});
-              console.log('api-omx-updateAutoreplanishShippingInfo :: params:: ',params);
-              console.log('api-omx-updateAutoreplanishShippingInfo :: ccOrdesStatusURL:: ',ccOrdesStatusURL);
+              console.log('api-omx-updateOrderUpdate :: params:: ',params);
+              console.log('api-omx-updateOrderUpdate :: ccOrdesStatusURL:: ',ccOrdesStatusURL);
               return $.post( ccOrdesStatusURL, params );
             },
-            updateAnonymousAutoreplanishShippingInfo: function( params ) {
+/*            updateAnonymousAutoreplanishShippingInfo: function( params ) {
               var urlParts = window.location.href.split("/");
               var ccOrdesStatusURL = urlParts[0] + "//" + urlParts[2] + '/orderMotion/autoreplanish/shippingInfo';
               _.extend(params, {anonymous:true});
               return $.post( ccOrdesStatusURL, params ); 
-           }, 
+           }, */
             orderWaitDateUpdate: function(params){
               var urlParts = window.location.href.split("/");
               var ccOrdesStatusURL = urlParts[0] + "//" + urlParts[2] + '/orderMotion/autoreplanish/orderWaitDateUpdate';

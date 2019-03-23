@@ -1,6 +1,6 @@
 define(["modules/api", 'underscore', "modules/backbone-mozu", "hyprlive", 'modules/models-product', "modules/api-autoreplanish"], 
     function(api, _, Backbone, Hypr, ProductModels, ApiAutoreplanish) {
-  
+
    var OmxOrderHistoryItem = Backbone.MozuModel.extend({
           idAttribute: 'orderId'
       }),
@@ -34,14 +34,21 @@ define(["modules/api", 'underscore', "modules/backbone-mozu", "hyprlive", 'modul
         }, 
         orderWaitDateUpdate: function(params) {
           console.log('omxModels - orderwaitDateUpdate ', params); 
+          var me = this;
           if (params) {
             if (params.actionType && params.actionType == 'mz-autoreplanish-action-type-delay-ship') {
               //shipNow
               var newDate = new Date(); 
               newDate.setMonth(newDate.getMonth() + parseInt(params.frequency));
-              params.newDate = newDate; 
+              params.newDate = newDate.getFullYear()+"-"+(newDate.getMonth() +1)+"-"+newDate.getDate();
             }
-            return ApiAutoreplanish.OrderMotionApi.orderWaitDateUpdate(params); 
+            return ApiAutoreplanish.OrderMotionApi.orderWaitDateUpdate(params).then(function(response){
+              console.log('success :: ', response); 
+              
+
+            }).catch(function(err){
+              console.log('error :: ', err); 
+            }); 
           }
         },
         updateNextOrderShipTo: function(contact, membershipId) {
@@ -69,8 +76,28 @@ define(["modules/api", 'underscore', "modules/backbone-mozu", "hyprlive", 'modul
               membershipId : membershipId };
               
               
-          return ApiAutoreplanish.OrderMotionApi.updateAutoreplanishShippingInfo(params); 
+          return ApiAutoreplanish.OrderMotionApi.orderUpdate(params).then(function(data){
+            console.log('updateNextOrderShipTo --> success', data); 
+          }).catch(function(err){
+            console.log('updateNextOrderShipTo --> error', err); 
+          });  
+        }, 
+        updateLineItemFrequency: function(orderItem) {
+          var orderItemConverted = {
+           
+            }, 
+            params = {
+              orderItem : orderItemConverted
+             
+            };
+              
+          return ApiAutoreplanish.OrderMotionApi.orderUpdate(params).then(function(data){
+            console.log('updateLineItemFrequency --> success', data); 
+          }).catch(function(err){
+            console.log('updateLineItemFrequency --> error', err); 
+          }); 
         } 
+
       });
 
 
