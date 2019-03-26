@@ -508,7 +508,8 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext',
 
         
         editOMXItemSubscriptionPayment: function () {
-            this.editing.nextOrdershipTo = true; 
+            this.editing.nextOrdershipTo = false; 
+            this.editing.nextOrderPayment = true; 
             this.editing.allSubscription = false; 
             this.render(); 
         }, 
@@ -531,7 +532,7 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext',
             }
         }, 
         cancelEditNextOrderPayment: function () {
-            this.editing.nextOrdershipTo = false; 
+            this.editing.nextOrderPayment = false; 
             this.render(); 
         }, 
         getContactSameId: function(shipTothis) {
@@ -550,6 +551,8 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext',
 
         editOMXItemSubscriptionShipTo: function () {
             this.editing.nextOrdershipTo = true; 
+            this.editing.nextOrderPayment = false; 
+
             this.editing.allSubscription = false; 
             var shipTothis= this.model.get('omxItemSubscriptions.nextOrder').shippingInfo; 
 
