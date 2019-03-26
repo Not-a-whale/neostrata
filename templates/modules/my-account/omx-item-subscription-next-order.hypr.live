@@ -20,8 +20,11 @@
 
   {% if editing.nextOrdershipTo %}
     <div class="mz-nextorder-shipto-address">
+
+      {% include "modules/my-account/omx-item-subscription-shipping-address" with model=model.omxItemSubscriptions.nextOrder.shippingInfo %}
+
       {% for contact in model.contacts %}
-        {% if contact.isShippingContact %}
+        {% if contact.isShippingContact && editing.sameAsNextOrder != contact.id %}
           {% include "modules/my-account/omx-item-subscription-shipping-address" with model=contact %}
         {% endif %}
       {% endfor %}

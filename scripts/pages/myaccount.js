@@ -513,7 +513,7 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext',
             this.render(); 
         }, 
         finishEditNextOrderPayment: function () {
-            var selectedPayId = $("input[name*='shipToAddress_']:checked").data('mzAutoreplanishId'), 
+            var selectedPayId = $("input[name*='shipToAddress']:checked").data('mzAutoreplanishId'), 
                 contact = this.model.get('contacts').findWhere({
                     id: selectedPayId
                 }), 
@@ -521,11 +521,11 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext',
 
             if (contact) {
            
-                this.model.get('omxItemSubscriptions').updateNextOrderShipTo(contact,membershipId).then(function(data){
+                this.model.get('omxItemSubscriptions').updateNextOrderShipTo(contact,membershipId).done(function(data){
                     console.log('update success : ', data); 
                     this.editing.nextOrdershipTo = true; 
                     this.render(); 
-                }).catch(function(err){
+                }).fail(function(err){
                     console.log('update error : ', err); 
                 }); 
             }
@@ -534,14 +534,30 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext',
             this.editing.nextOrdershipTo = false; 
             this.render(); 
         }, 
+        getContactSameId: function(shipTothis) {
+            
+            var conctacts = this.model.get('contacts'); 
+            var contactOnAccount = conctacts.toJSON().find(function(c){
+                return( c.firstName ==  shipTothis.firstName && c.lastNameOrSurname == shipTothis.lastNameOrSurname && c.address.address1.toLowerCase() == shipTothis.address.address1.toLowerCase()  && c.address.address2.toLowerCase() == shipTothis.address.address2.toLowerCase()  && c.address.cityOrTown.toLowerCase() == shipTothis.address.cityOrTown.toLowerCase() && c.address.countryCode.toLowerCase() == shipTothis.address.countryCode.toLowerCase() && c.address.postalOrZipCode.toLowerCase() == shipTothis.address.postalOrZipCode.toLowerCase() && c.address.stateOrProvince.toLowerCase() == shipTothis.address.stateOrProvince.toLowerCase()); 
+            });
+
+            console.log('contactOnAccount --> ', contactOnAccount); 
+            if (contactOnAccount) {
+                return contactOnAccount.id; 
+            }
+            return ''; 
+        },
 
         editOMXItemSubscriptionShipTo: function () {
             this.editing.nextOrdershipTo = true; 
             this.editing.allSubscription = false; 
+            var shipTothis= this.model.get('omxItemSubscriptions.nextOrder').shippingInfo; 
+
+            this.editing.sameAsNextOrder = this.getContactSameId(shipTothis); 
             this.render(); 
         }, 
         finishEditNextOrderShipTo: function () {
-            var selectedShipId = $("input[name*='shipToAddress_']:checked").data('mzAutoreplanishId'), 
+            var selectedShipId = $("input[name*='shipToAddress']:checked").data('mzAutoreplanishId'), 
                 contact = this.model.get('contacts').findWhere({
                     id: selectedShipId
                 }), 
@@ -549,13 +565,16 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext',
 
             if (contact) {
            
-                this.model.get('omxItemSubscriptions').updateNextOrderShipTo(contact,membershipId).then(function(data){
+                this.model.get('omxItemSubscriptions').updateNextOrderShipTo(contact,membershipId).done(function(data){
                     console.log('update success : ', data); 
-                    this.editing.nextOrdershipTo = true; 
+                    this.editing.nextOrdershipTo = false; 
                     this.render(); 
-                }).catch(function(err){
+                }).fail(function(err){
                     console.log('update error : ', err); 
                 }); 
+            } else {
+                this.editing.nextOrdershipTo = false; 
+                this.render(); 
             }
         }, 
         cancelEditNextOrderShipTo: function () {

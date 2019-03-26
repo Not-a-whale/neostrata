@@ -1,6 +1,6 @@
     
     {% if editing.nextOrdershipTo %}
-        <input type="radio" name="shipToAddress_{{model.id}}" data-mz-autoreplanish-radio data-mz-autoreplanish-id={{model.id}} {% if not model.id %} checked {% endif %} /> 
+        <input type="radio" name="shipToAddress" data-mz-autoreplanish-radio data-mz-autoreplanish-id="{{model.id}}" {%if not model.id %} checked {% endif %} /> 
     {% endif %}
     <div class="address-customer-name">{{ model.firstName }} {{ model.lastNameOrSurname }}</div>
     <div>{{ model.address.address1 }}</div>
