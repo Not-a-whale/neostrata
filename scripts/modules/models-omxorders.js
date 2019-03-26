@@ -5,7 +5,7 @@ define(["modules/api", 'underscore', "modules/backbone-mozu", "hyprlive", 'modul
           idAttribute: 'orderId'
       }),
       OmxItemSubscription = Backbone.MozuModel.extend({
-        idAttribute: 'orderId',
+        idAttribute: 'membershipId',
         relations: {
           product: ProductModels.Product
         }
@@ -30,24 +30,65 @@ define(["modules/api", 'underscore', "modules/backbone-mozu", "hyprlive", 'modul
               hasItems: function() {
                   return this.length > 0;
               }
-          })
+          }), 
+          editingOrderItem: OmxItemSubscription,
         }, 
+        defaults: function () {
+          return {
+            editingOrderItem: {}
+          };
+        },
+
+        beginEditOrderItem: function (id) {
+          var toEdit = this.get('items').get(id);
+          if (toEdit)
+              this.get('editingOrderItem').set(toEdit.toJSON({ helpers: true, ensureCopy: true }), { silent: true });
+        },
+
+        endEditOrderItem: function() {
+          var editingOrderItem = this.get('editingOrderItem');
+//          addressType = editingContact.get("address").get('addressType'),
+  //        countryCode = editingContact.get("address").get('countryCode');
+          editingOrderItem.clear();
+          /*editingContact.set('accountId', this.get('id'));
+          editingContact.get("address").set('addressType',addressType);
+          editingContact.get("address").set('countryCode', countryCode);
+          editingContact.get("address").set('candidateValidatedAddresses', null); */
+        },
+        getFrequencyValue: function (freq) {
+          return Hypr.getThemeSetting('autoReplenishment_'+freq); 
+        },
+        getFrequencyMap: function (freq) {
+          return Hypr.getThemeSetting('autoReplenishmentCode_'+freq); 
+        },
+        
+
         orderWaitDateUpdate: function(params) {
           console.log('omxModels - orderwaitDateUpdate ', params); 
-          var me = this;
+          var me = this, 
+              editingOrderItem = this.get('editingOrderItem');
           if (params) {
+            params.orderNumber = editingOrderItem.get('orderNumber'); 
+            params.lineItem =  editingOrderItem.get('lineNumber');  
             if (params.actionType && params.actionType == 'mz-autoreplanish-action-type-delay-ship') {
               //shipNow
               var newDate = new Date(); 
-              newDate.setMonth(newDate.getMonth() + parseInt(params.frequency));
+              newDate.setMonth(newDate.getMonth() + parseInt(me.getFrequencyMap(params.frequency)));
               params.newDate = newDate.getFullYear()+"-"+(newDate.getMonth() +1)+"-"+newDate.getDate();
             }
-            return ApiAutoreplanish.OrderMotionApi.orderWaitDateUpdate(params).then(function(response){
+            return ApiAutoreplanish.OrderMotionApi.orderWaitDateUpdate(params).done(function(response){
               console.log('success :: ', response); 
-              
+/*              if (params.actionType == 'mz-autoreplanish-action-type-delay-ship') {
+                me.get('editingOrderItem').set('frequencyCode', params.frequency);
+                me.get('editingOrderItem').set('nextShipDate', params.newDate);
+                me.get('editingOrderItem').set('configurationName', me.getFrequencyValue(params.frequency));
+                me.get('items').push(me.get('editingOrderItem')); 
+              }  */
 
-            }).catch(function(err){
-              console.log('error :: ', err); 
+              return true; 
+            }).fail(function(err) {
+              console.log('erro', err);
+              return false; 
             }); 
           }
         },
@@ -76,25 +117,26 @@ define(["modules/api", 'underscore', "modules/backbone-mozu", "hyprlive", 'modul
               membershipId : membershipId };
               
               
-          return ApiAutoreplanish.OrderMotionApi.orderUpdate(params).then(function(data){
+          return ApiAutoreplanish.OrderMotionApi.orderUpdate(params).done(function(data){
             console.log('updateNextOrderShipTo --> success', data); 
-          }).catch(function(err){
+            return data; 
+          }).fail(function(err){
             console.log('updateNextOrderShipTo --> error', err); 
+            return false;
           });  
         }, 
-        updateLineItemFrequency: function(orderItem) {
-          var orderItemConverted = {
-           
-            }, 
-            params = {
-              orderItem : orderItemConverted
-             
-            };
-              
-          return ApiAutoreplanish.OrderMotionApi.orderUpdate(params).then(function(data){
+        updateLineItemFrequency: function(params) {
+          var me = this, 
+              editingOrderItem = this.get('editingOrderItem'); 
+              editingOrderItem.set('frequencyCode', params.frequency); 
+//          this.syncApiModel();
+          _.extend(params, {orderItem:editingOrderItem.toJSON()});
+          return ApiAutoreplanish.OrderMotionApi.orderDetailUpdate(params).done(function(data){
             console.log('updateLineItemFrequency --> success', data); 
-          }).catch(function(err){
+            return data; 
+          }).fail(function(err){
             console.log('updateLineItemFrequency --> error', err); 
+            return false; 
           }); 
         } 
 

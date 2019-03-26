@@ -1,25 +1,24 @@
-<h3 class="mz-l-stack-sectiontitle">{{ labels.orderHistory }}
-{% if not editing.subscription %}<a href class="dl-link-edit mz-link-edit-subscription" data-mz-action="viewOMXItemSubscription">{{ labels.edit }}</a>{% endif %}
-</h3>
+<h1 class="mz-l-stack-sectiontitle">{{ labels.subscriptions }}
+{% if not editing.subscription %}<a class="dl-link-edit dl-link-edit-subscription" href="javascript:;" data-mz-action="viewOMXItemSubscription">{{ labels.edit }}</a>{% endif %}
+</h1>
 
 {% if not editing.subscription && model.omxItemSubscriptions.items %}
   <div class="dl-view-wrapper">
-    <div class="dl-info-message">{{ labels.ordersViewInfo }}</div>
-    <div class="dl-info-count">{{ model.omxItemSubscriptions.items.length }} {{ labels.ordersCount }}</div>
+    <div class="dl-info-message">{{ labels.subscriptionsViewInfo }}</div>
+    <div class="dl-info-count">{{ model.omxItemSubscriptions.items.length }} {{ labels.subscriptionsCount }}</div>
   </div>
 {% endif %}
 
-
 <div class="mz-subscription-section-wrapper {% if not editing.subscription %} hidden {% endif %}">
   {% if model.omxItemSubscriptions.items.length > 0 %}
-    <h5 class="mz-l-stack-sectionsubtitle">{{ labels.ordersViewSubTitle }}</h5>
+    <h5 class="mz-l-stack-sectionsubtitle">{{ labels.subscriptionsViewSubTitle }}</h5>
     <div class="mz-subscription-section mz-l-paginatedlist ">
         <div data-mz-omx-subscriptionlist class="mz-l-paginatedlist-list">
           {% include "modules/my-account/omx-item-subscription-list" %}
         </div>
     </div>
   {% else %}
-    {{ labels.accountNoOrders }}
+    {{ labels.accountNoSubscriptions }}
   {% endif %}
   
   <button class="dz-backtodashboard" data-mz-action="cancelViewOMXItemSubscription">{{ labels.accountDashboardBack }}</button>

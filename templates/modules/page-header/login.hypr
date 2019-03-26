@@ -29,6 +29,12 @@ Use require_script to load AMD modules that are wrapped in define() or require()
                 </div>
             {% endif %}
             <div class="my-account-details">
+                <a href="/myaccount?sec=subscription">
+                    <h4>{{ labels.subscription }}</h4>
+                    <p>{{ labels.subscriptionInfo }}</p>
+                </a>
+            </div>
+            <div class="my-account-details">
                 <a href="/myaccount?sec=orderhistory">
                     <h4>{{ labels.orderHistory }}</h4>
                     <p>{{ labels.orderHistoryInfo }}</p>

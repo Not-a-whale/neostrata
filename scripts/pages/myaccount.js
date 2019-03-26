@@ -443,6 +443,9 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext',
     });
     var OmxItemSubscriptionView = EditableView.extend({
         templateName: "modules/my-account/my-account-omx-item-subscriptions",  
+        autoUpdate: [
+            'omxItemSubscriptions.editingOrderItem.frequency'
+        ],
         
         constructor: function() {
             EditableView.apply(this, arguments);
@@ -465,6 +468,7 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext',
             this.editing.allSubscription = true; 
             this.editing.nextOrdershipTo  = false; 
             this.editing.nextOrderPayment  = false; 
+            this.editing.orderItem = 'view'; 
             
             this.startViewOMXItemSubscription(); 
 
@@ -501,6 +505,36 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext',
             this.render(); 
 
         }, 
+
+        
+        editOMXItemSubscriptionPayment: function () {
+            this.editing.nextOrdershipTo = true; 
+            this.editing.allSubscription = false; 
+            this.render(); 
+        }, 
+        finishEditNextOrderPayment: function () {
+            var selectedPayId = $("input[name*='shipToAddress_']:checked").data('mzAutoreplanishId'), 
+                contact = this.model.get('contacts').findWhere({
+                    id: selectedPayId
+                }), 
+                membershipId = this.model.get('omxItemSubscriptions').get('nextOrder').membershipId;
+
+            if (contact) {
+           
+                this.model.get('omxItemSubscriptions').updateNextOrderShipTo(contact,membershipId).then(function(data){
+                    console.log('update success : ', data); 
+                    this.editing.nextOrdershipTo = true; 
+                    this.render(); 
+                }).catch(function(err){
+                    console.log('update error : ', err); 
+                }); 
+            }
+        }, 
+        cancelEditNextOrderPayment: function () {
+            this.editing.nextOrdershipTo = false; 
+            this.render(); 
+        }, 
+
         editOMXItemSubscriptionShipTo: function () {
             this.editing.nextOrdershipTo = true; 
             this.editing.allSubscription = false; 
@@ -529,18 +563,24 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext',
             this.render(); 
         }, 
 
+        manageItem: function (event) {
 
-        manageItem:  function (event) {
             this.editing.allSubscription = true;
-            var membershipId = $(event.currentTarget).data('mzItem');
-            $(event.currentTarget).parent().parent().addClass('hidden'); 
-            $(event.currentTarget).parent().parent().next().removeClass('hidden'); 
-        }, 
+            var membershipId = this.editing.orderItem = $(event.currentTarget).data('mzItem');
+            //this.editing.orderItem = membershipId.toString(); 
+            this.model.get('omxItemSubscriptions').beginEditOrderItem(membershipId);
+            this.render();
+        },
         cancelEditAuotreplanishItem : function (event) {
             this.editing.allSubscription = true;
-            $(event.currentTarget).parent().parent().addClass('hidden'); 
-            $(event.currentTarget).parent().parent().prev().removeClass('hidden'); 
-            
+            this.editing.orderItem = "view";
+            this.model.get('omxItemSubscriptions').endEditOrderItem();
+            this.render();
+           // $(event.currentTarget).parent().parent().addClass('hidden'); 
+            //$(event.currentTarget).parent().parent().prev().removeClass('hidden'); 
+/*            this.editing.contact = "view";
+            this.model.endEditContact();
+            this.render();            */
         }, 
         finishEditAuotreplanishItem : function(event) {
             this.editing.allSubscription = true;
@@ -549,30 +589,50 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext',
                 frequency = $('#mz_autoship_frequency_'+membershipId).find(":selected").val(),
                 actionType = $('#mz_autoship_action_'+membershipId).find(":selected").val(),
                 orderNumber = $(event.currentTarget).data('mzOrderNumber'), 
-                lineItem = $(event.currentTarget).data('mzLineNumber'), 
+                lineItem = $(event.currentTarget).data('mzLineNumber'),
                 params = {
                     frequency : frequency, 
-                    actionType : actionType, 
-                    orderNumber : orderNumber, 
-                    lineItem : lineItem
+                    actionType : actionType
                 };
-            if ('mz-autoreplanish-action-type-update-frequency' == actionType) {
-                this.model.get('omxItemSubscriptions').updateLineItemFrequency(params).then(function(data){
+            
+/*                var self = this,
+                isAddressValidationEnabled = HyprLiveContext.locals.siteContext.generalSettings.isAddressValidationEnabled;
+            self.model.set('editingContact.isShippingContact', true);
+
+                var operation = this.doModelAction('saveContact', { forceIsValid: isAddressValidationEnabled, editingView: self }); // hack in advance of doing real validation in the myaccount page, tells the model to add isValidated: true
+            if (operation) {
+                blockUiLoader.unblockUi();
+                operation.otherwise(function() {
+                    self.editing.contact = true;
+                });
+                this.editing.contact = "view";
+            }
+*/
+                if ('mz-autoreplanish-action-type-update-frequency' == actionType) {
+                this.model.get('omxItemSubscriptions').updateLineItemFrequency(params).done(function(data){
                     console.log('update success : ', data); 
-                    $(event.currentTarget).parent().parent().addClass('hidden'); 
-                    $(event.currentTarget).parent().parent().prev().removeClass('hidden'); 
+                    window.location.reload();
+                    me.editing.subscription = true; 
+                    me.editing.allSubscription = true; 
+                    me.editing.nextOrdershipTo  = false; 
+                    me.editing.nextOrderPayment  = false; 
+                    me.editing.orderItem = 'view'; 
                     me.render();             
-                }).catch(function(err){
+                }).fail(function(err){
                     console.log('update error : ', err); 
                 }); 
 
             } else {
-                this.model.get('omxItemSubscriptions').orderWaitDateUpdate(params).then(function(data){
+                this.model.get('omxItemSubscriptions').orderWaitDateUpdate(params).done(function(data){
                     console.log('update success : ', data); 
-                    $(event.currentTarget).parent().parent().addClass('hidden'); 
-                    $(event.currentTarget).parent().parent().prev().removeClass('hidden'); 
+                    window.location.reload();
+                    me.editing.subscription = true; 
+                    me.editing.allSubscription = true; 
+                    me.editing.nextOrdershipTo  = false; 
+                    me.editing.nextOrderPayment  = false; 
+                    me.editing.orderItem = 'view'; 
                     me.render();             
-                }).catch(function(err){
+                }).fail(function(err){
                     console.log('update error : ', err); 
                 }); 
             }
@@ -1301,6 +1361,7 @@ function getQueryVariable(variable)
                     accountViews.paymentMethods.cancelViewCard();
                     accountViews.wishList.cancelEditWishlist();
                     accountViews.omxOrderHistory.cancelViewOMXOrder();
+                    accountViews.omxItemSubscriptions.cancelViewOMXItemSubscription(); 
                     accountViews.settings.startEdit(null);
                     break;
                 case "wishlist":
@@ -1309,6 +1370,7 @@ function getQueryVariable(variable)
                     accountViews.paymentMethods.cancelViewCard();
                     accountViews.wishList.cancelEditWishlist();
                     accountViews.omxOrderHistory.cancelViewOMXOrder();
+                    accountViews.omxItemSubscriptions.cancelViewOMXItemSubscription(); 
                     accountViews.wishList.startEditWishlist(null);
                     break;
                 case "orderhistory":
@@ -1317,7 +1379,18 @@ function getQueryVariable(variable)
                     accountViews.paymentMethods.cancelViewCard();
                     accountViews.wishList.cancelEditWishlist();
                     accountViews.omxOrderHistory.cancelViewOMXOrder();
+                    accountViews.omxItemSubscriptions.cancelViewOMXItemSubscription(); 
                     accountViews.omxOrderHistory.viewOMXOrderHistory(null);
+                    break;
+                case "subscription":
+                    accountViews.settings.cancelEdit();
+                    accountViews.addressBook.cancelViewContact();
+                    accountViews.paymentMethods.cancelViewCard();
+                    accountViews.wishList.cancelEditWishlist();
+                    accountViews.omxOrderHistory.cancelViewOMXOrder();
+                    accountViews.omxItemSubscriptions.cancelViewOMXItemSubscription(); 
+
+                    accountViews.omxItemSubscriptions.viewOMXItemSubscription(null); 
                     break;
                 case "paymentmethods":
                     accountViews.settings.cancelEdit();
@@ -1325,6 +1398,7 @@ function getQueryVariable(variable)
                     accountViews.paymentMethods.cancelViewCard();
                     accountViews.wishList.cancelEditWishlist();
                     accountViews.omxOrderHistory.cancelViewOMXOrder();
+                    accountViews.omxItemSubscriptions.cancelViewOMXItemSubscription(); 
                     accountViews.paymentMethods.viewPayments(null);
                     break;
                 case "addressbook":
@@ -1333,6 +1407,7 @@ function getQueryVariable(variable)
                     accountViews.paymentMethods.cancelViewCard();
                     accountViews.wishList.cancelEditWishlist();
                     accountViews.omxOrderHistory.cancelViewOMXOrder();
+                    accountViews.omxItemSubscriptions.cancelViewOMXItemSubscription(); 
                     accountViews.addressBook.viewAddressBook(null);
                     break;
                 default:

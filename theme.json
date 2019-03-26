@@ -1190,7 +1190,14 @@
     "autoReplenishment_3" :"Delivery Every 3 Months", 
     "autoReplenishment_4" :"Delivery Every 4 Months", 
     "autoReplenishment_5" :"Delivery Every 5 Months", 
-    "autoReplenishment_6" :"Delivery Every 6 Months"
+    "autoReplenishment_6" :"Delivery Every 6 Months", 
+
+    "autoReplenishmentCode_1" :"2", 
+    "autoReplenishmentCode_2" :"1", 
+    "autoReplenishmentCode_3" :"3", 
+    "autoReplenishmentCode_4" :"4", 
+    "autoReplenishmentCode_5" :"5", 
+    "autoReplenishmentCode_6" :"6"
   },
   "layoutWidgets": [
     {

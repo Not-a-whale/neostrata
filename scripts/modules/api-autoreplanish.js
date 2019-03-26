@@ -2,6 +2,15 @@ define(['jquery', 'hyprlive', 'modules/api','underscore'],
     function($, Hypr, api, _ ){
 
         var OrderMotionApi = {
+            orderDetailUpdate: function( params ) {
+              var urlParts = window.location.href.split("/");
+              var ccOrdesStatusURL = urlParts[0] + "//" + urlParts[2] + '/orderMotion/autoreplanish/orderDetailUpdate';
+              _.extend(params, {anonymous:false});
+              console.log('api-omx-orderDetailUpdate :: params:: ',params);
+              console.log('api-omx-orderDetailUpdate :: ccOrdesStatusURL:: ',ccOrdesStatusURL);
+              return $.post( ccOrdesStatusURL, params );
+            },
+
             orderUpdate: function( params ) {
               var urlParts = window.location.href.split("/");
               var ccOrdesStatusURL = urlParts[0] + "//" + urlParts[2] + '/orderMotion/autoreplanish/orderUpdate';

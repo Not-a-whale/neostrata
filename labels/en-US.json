@@ -757,6 +757,13 @@
   "subscriptionActionType"        : "Action", 
   "subscriptionActionTypeShipNow"        : "Ship Now", 
   "subscriptionActionTypeDelayShip"      : "Delay Ship", 
-  "subscriptionActionTypeUpdateFrequency": "Update Plan" 
+  "subscriptionActionTypeUpdateFrequency": "Update Plan", 
+  "subscriptionsViewInfo"       : "Track, Return or Buy Again",
+  "subscriptionsCount": "Items",
+  "subscriptionsViewSubTitle": "Get the products you love delivered automatically and save 10%.",
+  "accountNoSubscriptions"      : "You have not placed any subscription.",
+  "subscriptionInfo": "Review all subscription items placed with us using this account"
+
+
 
 }
