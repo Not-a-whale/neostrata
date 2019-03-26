@@ -22,7 +22,7 @@ define(["modules/api", 'underscore', "modules/backbone-mozu", "hyprlive", 'modul
         }
       }),
       OmxItemSubscriptionList = Backbone.MozuModel.extend({
-       
+        
         relations: {
           items: Backbone.Collection.extend({
               model: OmxItemSubscription, 
@@ -70,6 +70,7 @@ define(["modules/api", 'underscore', "modules/backbone-mozu", "hyprlive", 'modul
           if (params) {
             params.orderNumber = editingOrderItem.get('orderNumber'); 
             params.lineItem =  editingOrderItem.get('lineNumber');  
+            params.customerNumber = editingOrderItem.get('customerNumber');  
             if (params.actionType && params.actionType == 'mz-autoreplanish-action-type-delay-ship') {
               //shipNow
               var newDate = new Date(); 
@@ -77,15 +78,14 @@ define(["modules/api", 'underscore', "modules/backbone-mozu", "hyprlive", 'modul
               params.newDate = newDate.getFullYear()+"-"+(newDate.getMonth() +1)+"-"+newDate.getDate();
             }
             return ApiAutoreplanish.OrderMotionApi.orderWaitDateUpdate(params).done(function(response){
-              console.log('success :: ', response); 
-/*              if (params.actionType == 'mz-autoreplanish-action-type-delay-ship') {
-                me.get('editingOrderItem').set('frequencyCode', params.frequency);
-                me.get('editingOrderItem').set('nextShipDate', params.newDate);
-                me.get('editingOrderItem').set('configurationName', me.getFrequencyValue(params.frequency));
-                me.get('items').push(me.get('editingOrderItem')); 
-              }  */
-
-              return true; 
+              console.log('success :: ApiAutoreplanish.OrderMotionApi.orderWaitDateUpdate(params)', response); 
+              if (response && response.omxItemSubscriptions && response.omxItemSubscriptions.items) {
+                me.set('items',response.omxItemSubscriptions.items );
+              }  
+              if (response && response.omxItemSubscriptions && response.omxItemSubscriptions.nextOrder) {
+                me.set('nextOrder',response.omxItemSubscriptions.nextOrder );
+              } 
+              return response; 
             }).fail(function(err) {
               console.log('erro', err);
               return false; 
@@ -132,7 +132,11 @@ define(["modules/api", 'underscore', "modules/backbone-mozu", "hyprlive", 'modul
 //          this.syncApiModel();
           _.extend(params, {orderItem:editingOrderItem.toJSON()});
           return ApiAutoreplanish.OrderMotionApi.orderDetailUpdate(params).done(function(data){
-            console.log('updateLineItemFrequency --> success', data); 
+            console.log('success :: ApiAutoreplanish.OrderMotionApi.updateLineItemFrequency(params)', data); 
+            if (data && data.omxItemSubscriptions) {
+              me.set('items', data.omxItemSubscriptions.items );
+              me.set('nextOrder', data.omxItemSubscriptions.nextOrder );
+            }  
             return data; 
           }).fail(function(err){
             console.log('updateLineItemFrequency --> error', err); 

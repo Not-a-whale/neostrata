@@ -567,7 +567,6 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext',
 
             this.editing.allSubscription = true;
             var membershipId = this.editing.orderItem = $(event.currentTarget).data('mzItem');
-            //this.editing.orderItem = membershipId.toString(); 
             this.model.get('omxItemSubscriptions').beginEditOrderItem(membershipId);
             this.render();
         },
@@ -576,11 +575,6 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext',
             this.editing.orderItem = "view";
             this.model.get('omxItemSubscriptions').endEditOrderItem();
             this.render();
-           // $(event.currentTarget).parent().parent().addClass('hidden'); 
-            //$(event.currentTarget).parent().parent().prev().removeClass('hidden'); 
-/*            this.editing.contact = "view";
-            this.model.endEditContact();
-            this.render();            */
         }, 
         finishEditAuotreplanishItem : function(event) {
             this.editing.allSubscription = true;
@@ -595,23 +589,9 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext',
                     actionType : actionType
                 };
             
-/*                var self = this,
-                isAddressValidationEnabled = HyprLiveContext.locals.siteContext.generalSettings.isAddressValidationEnabled;
-            self.model.set('editingContact.isShippingContact', true);
-
-                var operation = this.doModelAction('saveContact', { forceIsValid: isAddressValidationEnabled, editingView: self }); // hack in advance of doing real validation in the myaccount page, tells the model to add isValidated: true
-            if (operation) {
-                blockUiLoader.unblockUi();
-                operation.otherwise(function() {
-                    self.editing.contact = true;
-                });
-                this.editing.contact = "view";
-            }
-*/
                 if ('mz-autoreplanish-action-type-update-frequency' == actionType) {
                 this.model.get('omxItemSubscriptions').updateLineItemFrequency(params).done(function(data){
                     console.log('update success : ', data); 
-                    window.location.reload();
                     me.editing.subscription = true; 
                     me.editing.allSubscription = true; 
                     me.editing.nextOrdershipTo  = false; 
@@ -625,7 +605,6 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext',
             } else {
                 this.model.get('omxItemSubscriptions').orderWaitDateUpdate(params).done(function(data){
                     console.log('update success : ', data); 
-                    window.location.reload();
                     me.editing.subscription = true; 
                     me.editing.allSubscription = true; 
                     me.editing.nextOrdershipTo  = false; 
@@ -1262,6 +1241,7 @@ function getQueryVariable(variable)
             accountViews.addressBook.cancelViewContact();
             accountViews.paymentMethods.cancelViewCard();
             accountViews.wishList.cancelEditWishlist();
+            accountViews.omxItemSubscriptions.cancelViewOMXItemSubscription(); 
             accountViews.omxOrderHistory.cancelViewOMXOrder();
             
         });
@@ -1272,6 +1252,7 @@ function getQueryVariable(variable)
             accountViews.paymentMethods.cancelViewCard();
             accountViews.wishList.cancelEditWishlist();
             accountViews.omxOrderHistory.cancelViewOMXOrder();
+            accountViews.omxItemSubscriptions.cancelViewOMXItemSubscription(); 
             accountViews.settings.startEdit(e);});
         $('.mz-myaccount-nav .dl-addressbook').on('click', function (e) {
             e.preventDefault();
@@ -1280,6 +1261,7 @@ function getQueryVariable(variable)
             accountViews.paymentMethods.cancelViewCard();
             accountViews.wishList.cancelEditWishlist();
             accountViews.omxOrderHistory.cancelViewOMXOrder();
+            accountViews.omxItemSubscriptions.cancelViewOMXItemSubscription(); 
             accountViews.addressBook.viewAddressBook(e);});
         $('.mz-myaccount-nav .dl-paymentmethods').on('click', function (e) {
             e.preventDefault();
@@ -1288,13 +1270,25 @@ function getQueryVariable(variable)
             accountViews.paymentMethods.cancelViewCard();
             accountViews.wishList.cancelEditWishlist();
             accountViews.omxOrderHistory.cancelViewOMXOrder();
+            accountViews.omxItemSubscriptions.cancelViewOMXItemSubscription(); 
             accountViews.paymentMethods.viewPayments(e);});
+        $('.mz-myaccount-nav .dl-itemsubscriptions').on('click', function (e) {
+            e.preventDefault();
+            accountViews.settings.cancelEdit();
+            accountViews.addressBook.cancelViewContact();
+            accountViews.paymentMethods.cancelViewCard();
+            accountViews.wishList.cancelEditWishlist();
+            accountViews.omxOrderHistory.cancelViewOMXOrder();
+            accountViews.omxItemSubscriptions.viewOMXItemSubscription(e); 
+
+        });
         $('.mz-myaccount-nav .dl-orderhistory').on('click', function (e) {
             e.preventDefault();
             accountViews.settings.cancelEdit();
             accountViews.addressBook.cancelViewContact();
             accountViews.paymentMethods.cancelViewCard();
             accountViews.wishList.cancelEditWishlist();
+            accountViews.omxItemSubscriptions.cancelViewOMXItemSubscription(); 
             accountViews.omxOrderHistory.viewOMXOrderHistory(e);
         });
         $('.mz-myaccount-nav .dl-accountwishlist').on('click', function (e) {
@@ -1304,6 +1298,7 @@ function getQueryVariable(variable)
             accountViews.paymentMethods.cancelViewCard();
             accountViews.wishList.cancelEditWishlist();
             accountViews.omxOrderHistory.cancelViewOMXOrder();
+            accountViews.omxItemSubscriptions.cancelViewOMXItemSubscription(); 
             accountViews.wishList.startEditWishlist(e);
         });
 

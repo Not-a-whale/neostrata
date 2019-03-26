@@ -720,6 +720,30 @@
   "recommendedFrequently" : "[fr-CA](most common)[fr-CA]",
   "autoReplenishment": "[fr-CA]Auto Replenishment[fr-CA]",
   "autoReplenishmentHowItWorks": "[fr-CA]How it works:[fr-CA]",
-  "autoReplenishmentContent": "[fr-CA]<li>Shop your favorite products and select the Auto Replenishment option</li><li>Manage your delivery frequency by selecting how often you would like to receive your product</li><li>Save 10% &amp; receive free shipping on every Auto Replenishment order</li><li>Get an email reminder before each delivery ships from our warehouse</li><li>Adjust or cancel your next scheduled delivery in My Account. Changes must be made at least 3 days prior to your next scheduled order date.</li>[fr-CA]"
+  "autoReplenishmentContent": "[fr-CA]<li>Shop your favorite products and select the Auto Replenishment option</li><li>Manage your delivery frequency by selecting how often you would like to receive your product</li><li>Save 10% &amp; receive free shipping on every Auto Replenishment order</li><li>Get an email reminder before each delivery ships from our warehouse</li><li>Adjust or cancel your next scheduled delivery in My Account. Changes must be made at least 3 days prior to your next scheduled order date.</li>[fr-CA]", 
+
+  "subscriptionNextOrders"        : "[fr-CA]Next Order[fr-CA]", 
+  "subscriptionAllSubscriptions"  : "[fr-CA]All Subscriptions[fr-CA]", 
+  "subscriptionProductName"       : "[fr-CA]Product Name[fr-CA]", 
+  "subscriptionPriceEach"         : "[fr-CA]Price Each[fr-CA]", 
+  "subscriptionDiscount"          : "[fr-CA]Discount[fr-CA]", 
+  "subscriptionNextOrderDate"     : "[fr-CA]Next Order Date[fr-CA]", 
+  "subscriptionManage"            : "[fr-CA]Manage[fr-CA]", 
+  "subscriptionReplenishment"     : "[fr-CA]Subscription[fr-CA]",
+  "nextOrderShippingInfo"         : "[fr-CA]Shipping Info[fr-CA]", 
+  "nextOrderPaymentInfo"          : "[fr-CA]Payments[fr-CA]",
+  "nextOrderSave"                 : "[fr-CA]Save[fr-CA]",
+  "nextOrderCancel"               : "[fr-CA]Cancel[fr-CA]", 
+  "subscriptionActionType"        : "[fr-CA]Action[fr-CA]", 
+  "subscriptionActionTypeShipNow"        : "[fr-CA]Ship Now[fr-CA]", 
+  "subscriptionActionTypeDelayShip"      : "[fr-CA]Delay Ship[fr-CA]", 
+  "subscriptionActionTypeUpdateFrequency": "[fr-CA]Update Plan[fr-CA]", 
+  "subscriptionsViewInfo"       : "[fr-CA]Track, Return or Buy Again[fr-CA]",
+  "subscriptionsCount": "[fr-CA]Items[fr-CA]",
+  "subscriptionsViewSubTitle": "[fr-CA]Get the products you love delivered automatically and save 10%.[fr-CA]",
+  "accountNoSubscriptions"      : "[fr-CA]You have not placed any subscription.[fr-CA]",
+  "subscriptionInfo": "[fr-CA]Review all subscription items placed with us using this account[fr-CA]"
+
+
 
 }

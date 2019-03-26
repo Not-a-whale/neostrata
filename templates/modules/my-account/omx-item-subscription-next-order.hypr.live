@@ -12,7 +12,7 @@
 </div>
 <div class="omx-next-order-shipping-list">
   <h3 class="mz-l-stack-sectiontitle">{{ labels.nextOrderShippingInfo }}
-    {% if not editing.nextOrdershipTo %}<a  href="javascript:;"  class="dl-link-edit mz-link-edit-subscription-shipto" data-mz-membership-id="{{model.omxItemSubscriptions.nextOrder.membershipId}}" data-mz-action="editOMXItemSubscriptionShipTo">{{ labels.edit }}</a>{% endif %}
+    {% if not editing.nextOrdershipTo && model.hasMoreThanOneContact %}<a  href="javascript:;"  class="dl-link-edit mz-link-edit-subscription-shipto" data-mz-membership-id="{{model.omxItemSubscriptions.nextOrder.membershipId}}" data-mz-action="editOMXItemSubscriptionShipTo">{{ labels.edit }}</a>{% endif %}
   </h3>
   {% if not editing.nextOrdershipTo && model.omxItemSubscriptions.nextOrder.shippingInfo %}
     {% include "modules/my-account/omx-item-subscription-shipping-address" with model=model.omxItemSubscriptions.nextOrder.shippingInfo %}
@@ -35,7 +35,7 @@
 </div>
 <div class="omx-next-order-payment-list ">
   <h3 class="mz-l-stack-sectiontitle">{{ labels.nextOrderPaymentInfo }}
-    {% if not editing.nextOrderPayment %}<a  href="javascript:;"  class="dl-link-edit mz-link-edit-subscription-payment" data-mz-membership-id="{{model.omxItemSubscriptions.nextOrder.membershipId}}" data-mz-action="editOMXItemSubscriptionPayment">{{ labels.edit }}</a>{% endif %}
+    {% if not editing.nextOrderPayment && model.omxItemSubscriptions.hasMoreThanOneCard %}<a  href="javascript:;"  class="dl-link-edit mz-link-edit-subscription-payment" data-mz-membership-id="{{model.omxItemSubscriptions.nextOrder.membershipId}}" data-mz-action="editOMXItemSubscriptionPayment">{{ labels.edit }}</a>{% endif %}
   </h3>
   {% if not editing.nextOrderPayment && model.omxItemSubscriptions.nextOrder.paymentInfo %}
     {% include "modules/my-account/omx-item-subscription-payment" with model=model.omxItemSubscriptions.nextOrder.paymentInfo %}
