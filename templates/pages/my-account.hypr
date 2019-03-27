@@ -57,10 +57,12 @@
             {% include "modules/my-account/my-account-omx-orderhistory" with model=model.omxOrderHistory %}
         </div>
     
+        {% if themeSettings.autoReplenishmentEnable %}
         <a id="itemsubscriptions"></a>
         <div class="mz-l-stack-section mz-accountitemsubscriptions no-editing" id="account-omx-item-subscriptions">
             {% include "modules/my-account/my-account-omx-item-subscriptions" %}
         </div>
+        {% endif %}
 
         <a id="returnhistory"></a>
         <div class="mz-l-stack-section mz-accountreturnhistory no-editing" id="account-returnhistory">

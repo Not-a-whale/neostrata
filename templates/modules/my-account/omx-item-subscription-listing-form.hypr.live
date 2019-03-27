@@ -35,8 +35,8 @@
       <div class="mz-autoreplanish-item-actions col-xs-12 ">
         <div class="col-xs-6 col-sm-6 nopaddingleft"> 
           <span class="label-qty">{{ labels.subscriptionReplenishment }}</span>
-          <div class="mz-carttable-item-plan" data-mz-membership-id="{{model.membershipId}}">
-            <select class="mz-autoship-dropdown" id="mz_autoship_frequency_{{model.membershipId}}" data-mz-autoreplanish >
+          <div class="mz-carttable-item-plan custom-select-wrapper" data-mz-membership-id="{{model.membershipId}}">
+            <select class="mz-autoship-dropdown select selectpicker" id="mz_autoship_frequency_{{model.membershipId}}" data-mz-autoreplanish style="display:none;">
 
               {% for splitValue in model.monthIntervalsProp|split(',') %}
                   {% if splitValue %}
@@ -53,8 +53,8 @@
         </div>
         <div class="col-xs-3 col-sm-3 nopaddingleft"> 
           <span class="label-nextOrderDate">{{ labels.subscriptionActionType }}</span>
-          <div class="mz-carttable-item-plan" data-mz-membership-id="{{model.membershipId}}">
-            <select class="mz-autoreplanish-action-type" id="mz_autoship_action_{{model.membershipId}}" >
+          <div class="mz-carttable-item-plan custom-select-wrapper" data-mz-membership-id="{{model.membershipId}}">
+            <select class="mz-autoreplanish-action-type select selectpicker" id="mz_autoship_action_{{model.membershipId}}" style="display:none;">
               <option value="mz-autoreplanish-action-type-ship-now" > {{labels.subscriptionActionTypeShipNow }} </option>                    
               <option value="mz-autoreplanish-action-type-delay-ship" > {{labels.subscriptionActionTypeDelayShip }} </option>                    
               <option value="mz-autoreplanish-action-type-update-frequency" selected > {{labels.subscriptionActionTypeUpdateFrequency }} </option>                    

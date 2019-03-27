@@ -459,6 +459,8 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext',
         render: function() {
             var self = this;
             Backbone.MozuView.prototype.render.apply(this, arguments);
+
+            $('.mz-autoreplanish-item-actions .selectpicker').selectpicker();
         }, 
 
         viewOMXItemSubscription: function (event) {
@@ -1175,6 +1177,8 @@ function getQueryVariable(variable)
         var accountModel = window.accountModel = CustomerModels.EditableCustomer.fromCurrent();
 
         $('#account-panels .selectpicker').selectpicker();
+        $('.mz-autoreplanish-item-actions .selectpicker').selectpicker();
+       
 
         var $accountSettingsEl = $('#account-settings'),
             $passwordEl = $('#password-section'),
