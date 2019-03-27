@@ -104,7 +104,7 @@
                     </div> 
                     <div class="col-xs-10 offset-xs-2 mz-autoship-infomsg">{{labels.autoShipDeliveryDiscount}} </div>
                     <div id="autoshipDropDown" class="col-xs-10 offset-xs-2 custom-select-wrapper" data-mz-product-code="{{ item.product.productCode }}" data-mz-item-id="{{ item.id }}">
-                        <select class="mz-autoship-dropdown select selectpicker" id="mz_pdp_autoship_code_{{item.product.productCode}}" data-mz-autoreplanish style="display:none;">
+                        <select class="mz-autoship-dropdown select selectpicker" id="mz_pdp_autoship_code_{{item.product.productCode}}" data-mz-autoreplanish style="display:none;" data-mz-item-id="{{ item.id }}">
                         {% with item.product|get_product_attribute(themeSettings.autoReplanishmentRecomendedInterval) as recommendedIntervals %}
                             {% if recommendedIntervals %}
                             {% with recommendedIntervals.values|first as recommendedIntervalValue %}

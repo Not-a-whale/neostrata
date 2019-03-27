@@ -91,7 +91,7 @@ define(['modules/api',
           var self = this;
           var $target = $(e.currentTarget);
 
-          var item = this.model.get("items").get($target.parent().data('mzItemId'));
+          var item = this.model.get("items").get($target.data('mzItemId'));
           var autoReplanishCode = $target.val(); 
           var dataValue = {
             autoreplanishmentCode : autoReplanishCode
