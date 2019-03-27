@@ -737,7 +737,7 @@
   "subscriptionActionType"        : "[fr-CA]Action[fr-CA]", 
   "subscriptionActionTypeShipNow"        : "[fr-CA]Ship Now[fr-CA]", 
   "subscriptionActionTypeDelayShip"      : "[fr-CA]Delay Ship[fr-CA]", 
-  "subscriptionActionTypeUpdateFrequency": "[fr-CA]Update Plan[fr-CA]", 
+  "subscriptionActionTypeUpdateFrequency": "[fr-CA]Select an Action[fr-CA]", 
   "subscriptionsViewInfo"       : "[fr-CA]Track, Return or Buy Again[fr-CA]",
   "subscriptionsCount": "[fr-CA]Items[fr-CA]",
   "subscriptionsViewSubTitle": "[fr-CA]Get the products you love delivered automatically and save 10%.[fr-CA]",

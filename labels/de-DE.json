@@ -622,7 +622,7 @@
     "subscriptionActionType"        : "Action", 
     "subscriptionActionTypeShipNow"        : "Ship Now", 
     "subscriptionActionTypeDelayShip"      : "Delay Ship", 
-    "subscriptionActionTypeUpdateFrequency": "Update Plan", 
+    "subscriptionActionTypeUpdateFrequency": "Select an Action", 
     "subscriptionsViewInfo"       : "Track, Return or Buy Again",
     "subscriptionsCount": "Items",
     "subscriptionsViewSubTitle": "Get the products you love delivered automatically and save 10%.",
