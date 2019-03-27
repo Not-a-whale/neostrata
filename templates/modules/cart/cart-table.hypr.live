@@ -94,7 +94,7 @@
         </div>
         {% if themeSettings.autoReplenishmentEnable %}
             {% if  item.product|get_product_attribute(themeSettings.autoReplanishmentMonthInterval) %}
-            <div class="mz-autoShip-wrapper col-xs-8 nopaddingleft">
+            <div class="mz-autoShip-wrapper col-xs-12 nopaddingleft">
                 <div class="mz-autoship-content col-xs-12 pull-left nopaddingleft">
                     <div class="mz-autoship-radio form-row" data-mz-product-code="{{item.product.productCode}}" data-mz-item-id="{{ item.id }}" >
                       <input data-mz-autoreplanish-radio type="radio" name="{{item.product.productCode}}_autoShipRadio" id="{{item.product.productCode}}_autoShipRadio_1"  value="1" {% if item.data && item.data.autoreplanishmentCode %} checked {% endif %} /> 
@@ -103,8 +103,8 @@
                       </label>  
                     </div> 
                     <div class="col-xs-10 offset-xs-2 mz-autoship-infomsg">{{labels.autoShipDeliveryDiscount}} </div>
-                    <div id="autoshipDropDown" class="col-xs-10 offset-xs-2 " data-mz-product-code="{{ item.product.productCode }}" data-mz-item-id="{{ item.id }}">
-                        <select class="mz-autoship-dropdown" id="mz_pdp_autoship_code_{{item.product.productCode}}" data-mz-autoreplanish >
+                    <div id="autoshipDropDown" class="col-xs-10 offset-xs-2 custom-select-wrapper" data-mz-product-code="{{ item.product.productCode }}" data-mz-item-id="{{ item.id }}">
+                        <select class="mz-autoship-dropdown select selectpicker" id="mz_pdp_autoship_code_{{item.product.productCode}}" data-mz-autoreplanish style="display:none;">
                         {% with item.product|get_product_attribute(themeSettings.autoReplanishmentRecomendedInterval) as recommendedIntervals %}
                             {% if recommendedIntervals %}
                             {% with recommendedIntervals.values|first as recommendedIntervalValue %}

@@ -9,7 +9,8 @@ define(['modules/api',
         'modules/preserve-element-through-render',
         'modules/modal-dialog',
         'modules/xpress-paypal',
-        "modules/metrics"
+        "modules/metrics",
+        'vendor/bootstrap-select/dist/js/bootstrap-select'
     ], function (api, Backbone, _, $, CartModels, CartMonitor, HyprLiveContext, Hypr, preserveElement, modalDialog, paypal, MetricsEngine) {
 
 
@@ -103,6 +104,7 @@ define(['modules/api',
         render: function() {
             preserveElement(this, ['.v-button', '.p-button'], function() {
                 Backbone.MozuView.prototype.render.call(this);
+                $('.selectpicker').selectpicker();   
             });
         },
         updateQuantity: _.debounce(function (e) {

@@ -13,7 +13,8 @@
     "hyprlivecontext",
     "pages/family",
     "modules/api",
-    "async"
+    "async", 
+    'vendor/bootstrap-select/dist/js/bootstrap-select'
 ], function($, _, bxslider, elevatezoom, blockUiLoader, Hypr, Backbone, CartMonitor, ProductModels, ProductImageViews, MetricsEngine, HyprLiveContext, FamilyItemView, api, async) {
     var sitecontext = HyprLiveContext.locals.siteContext;
     var cdn = sitecontext.cdnPrefix;
@@ -140,6 +141,9 @@
                 oneSizeOption.set('value', onlyEnabledOneSizeOption.value);
             }
             Backbone.MozuView.prototype.render.apply(this);
+
+            $('.selectpicker').selectpicker();
+
             this.$('[data-mz-is-datepicker]').each(function(ix, dp) {
                 $(dp).dateinput().css('color', Hypr.getThemeSetting('textColor')).on('change  blur', _.bind(me.onOptionChangeAttribute, me));
             });
