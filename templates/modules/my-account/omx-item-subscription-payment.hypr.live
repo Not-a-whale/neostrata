@@ -1,7 +1,7 @@
 <div class="row">
     {% if editing.nextOrderPayment %}
         <div class="col-xs-2">
-            <input type="radio" name="payment_{{model.id}}" data-mz-autoreplanish-radio data-mz-autoreplanish-id={{model.id}} {% if not model.id %} checked {% endif %} /> 
+            <input type="radio" name="nextOrderPayment" data-mz-autoreplanish-radio data-mz-autoreplanish-id="{{model.id}}" {% if not model.id %} checked {% endif %} /> 
         </div>
     {% endif %}
 

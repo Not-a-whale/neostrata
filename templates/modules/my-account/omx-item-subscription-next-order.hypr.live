@@ -36,9 +36,9 @@
     </div>
   {% endif %}
 </div>
-<div class="omx-next-order-payment-list ">
+<div class="omx-next-order-payment-list "> {{model.omxItemSubscriptions.hasMoreThanOneCard}}
   <h3 class="mz-l-stack-sectiontitle">{{ labels.nextOrderPaymentInfo }}
-    {% if not editing.nextOrderPayment && model.omxItemSubscriptions.hasMoreThanOneCard %}<a  href="javascript:;"  class="dl-link-edit mz-link-edit-subscription-payment" data-mz-membership-id="{{model.omxItemSubscriptions.nextOrder.membershipId}}" data-mz-action="editOMXItemSubscriptionPayment">{{ labels.edit }}</a>{% endif %}
+    {% if not editing.nextOrderPayment && model.hasMoreThanOneCard %}<a  href="javascript:;"  class="dl-link-edit mz-link-edit-subscription-payment" data-mz-membership-id="{{model.omxItemSubscriptions.nextOrder.membershipId}}" data-mz-action="editOMXItemSubscriptionPayment">{{ labels.edit }}</a>{% endif %}
   </h3>
   {% if not editing.nextOrderPayment && model.omxItemSubscriptions.nextOrder.paymentInfo %}
     {% include "modules/my-account/omx-item-subscription-payment" with model=model.omxItemSubscriptions.nextOrder.paymentInfo %}
@@ -46,8 +46,12 @@
 
   {% if editing.nextOrderPayment %}
     <div class="mz-nextorder-payment">
+      {% include "modules/my-account/omx-item-subscription-payment" with model=model.omxItemSubscriptions.nextOrder.paymentInfo %}
+
       {% for card in model.cards %}
-        {% include "modules/my-account/omx-item-subscription-payment" with model=card %}
+        {% if editing.sameAsNextOrder != card.id %}
+          {% include "modules/my-account/omx-item-subscription-payment" with model=card %}
+        {% endif %}
       {% endfor %}
 
       <div class="mz-contact-actions"> 
