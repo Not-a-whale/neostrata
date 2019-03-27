@@ -501,34 +501,35 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext',
             $('.mz-accountitemsubscriptions .dl-view-wrapper').removeClass('hidden'); 
             $('.mz-accountitemsubscriptions .mz-subscription-section-wrapper').addClass('hidden'); 
             $('.mz-accountitemsubscriptions .dl-link-edit.mz-link-edit-subscription').removeClass('hidden'); 
-
             this.render(); 
-
         }, 
-
-        
         editOMXItemSubscriptionPayment: function () {
             this.editing.nextOrdershipTo = false; 
             this.editing.nextOrderPayment = true; 
             this.editing.allSubscription = false; 
+
+            var paymentMethod = this.model.get('omxItemSubscriptions.nextOrder').paymentInfo; 
+            this.editing.sameAsNextOrder = this.getCardSameId(paymentMethod); 
             this.render(); 
         }, 
         finishEditNextOrderPayment: function () {
-            var selectedPayId = $("input[name*='shipToAddress']:checked").data('mzAutoreplanishId'), 
-                contact = this.model.get('contacts').findWhere({
+            var selectedPayId = $("input[name*='nextOrderPayment']:checked").data('mzAutoreplanishId'), 
+                card = this.model.get('cards').findWhere({
                     id: selectedPayId
                 }), 
                 membershipId = this.model.get('omxItemSubscriptions').get('nextOrder').membershipId;
 
-            if (contact) {
-           
-                this.model.get('omxItemSubscriptions').updateNextOrderShipTo(contact,membershipId).done(function(data){
+            if (card) {
+                this.model.get('omxItemSubscriptions').updateNextOrderShipTo(card,membershipId).done(function(data){
                     console.log('update success : ', data); 
-                    this.editing.nextOrdershipTo = true; 
+                    this.editing.nextOrderPayment = false; 
                     this.render(); 
                 }).fail(function(err){
                     console.log('update error : ', err); 
                 }); 
+            } else {
+                this.editing.nextOrderPayment = false; 
+                this.render(); 
             }
         }, 
         cancelEditNextOrderPayment: function () {
@@ -545,6 +546,19 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext',
             console.log('contactOnAccount --> ', contactOnAccount); 
             if (contactOnAccount) {
                 return contactOnAccount.id; 
+            }
+            return ''; 
+        },
+        getCardSameId: function(thisPayment) {
+
+            var cards = this.model.get('cards'); 
+            var cardOnAccount = cards.toJSON().find(function(c){
+                return( c.cardNumberPart.split("*").join('') ==  thisPayment.cardNumberPart.split("*").join('') && c.cardType.toLowerCase() == thisPayment.cardType.toLowerCase() && c.expireMonth == thisPayment.expireMonth && c.expireYear == thisPayment.expireYear  ); 
+            });
+
+            console.log('cardOnAccount --> ', cardOnAccount); 
+            if (cardOnAccount) {
+                return cardOnAccount.id; 
             }
             return ''; 
         },
