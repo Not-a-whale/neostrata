@@ -673,13 +673,6 @@ require(["modules/jquery-mozu",
     };
 
     $(document).ready(function () {
-      setTimeout(function(){
-        $('#nextBtn').click(function() {
-          if(!$('#nextBtn').hasClass('disabled')){
-            $('[data-mz-action="next"]').trigger( "click" );
-          }
-        });
-      }, 1000);
         var $checkoutView = $('#checkout-form'),
             checkoutData = require.mozuData('checkout');
 
