@@ -740,7 +740,7 @@
   "subscriptionActionTypeUpdateFrequency": "[fr-CA]Select an Action[fr-CA]", 
   "subscriptionsViewInfo"       : "[fr-CA]Track, Return or Buy Again[fr-CA]",
   "subscriptionsCount": "[fr-CA]Items[fr-CA]",
-  "subscriptionsViewSubTitle": "[fr-CA]Get the products you love delivered automatically and save 10%.[fr-CA]",
+  "subscriptionsViewSubTitle": "[fr-CA]Subscription changes must be made at least one day prior to the next shipment date. If you would like to update your credit card information click here. If you would like to remove a product from Auto Replenishment, please contact Customer Service at 1-800-225-9411.[fr-CA]",
   "accountNoSubscriptions"      : "[fr-CA]You have not placed any subscription.[fr-CA]",
   "subscriptionInfo": "[fr-CA]Review all subscription items placed with us using this account[fr-CA]"
 
