@@ -1,4 +1,7 @@
 <div class="row">
+    {% if not editing.nextOrderPayment %}
+        <div class="mz-payment-total"><span class="ms-payment-total-summary">{{ labels.orderStatusPaymentTotal|string_format(model.totalAmount) }} </span><span class="mz-payment-summary-name">{{model.nameOnCard}}</span></div>
+    {% endif %}
     {% if editing.nextOrderPayment %}
         <div class="col-xs-2">
             <input type="radio" name="nextOrderPayment" data-mz-autoreplanish-radio data-mz-autoreplanish-id="{{model.id}}" {% if not model.id %} checked {% endif %} /> 
@@ -15,4 +18,11 @@
         <div class="mz-paymentmethod-cardnumber">{{ labels.endingIn }} {{ model.cardNumberPart|replace("*") }}</div>
         <div class="mz-paymentmethod-cardexp">{{ labels.expires }} {{ model.expireMonth }}/{{model.expireYear }}</div>
     </div>
+
+     {% if not editing.nextOrderPayment && model.sameAddress %}
+        <div class="mz-billTo-wrapper-same-shipping">
+            <span class="mz-billTo-wrapper-same-shipping-title"><b>{{ labels.orderStatusBillingAddress }}: </b></span>
+            <span>{{ labels.orderStatusSameBillingAddress }}</span>
+        </div>                            
+    {% endif %}
 </div>
