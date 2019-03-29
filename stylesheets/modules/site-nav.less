@@ -1644,4 +1644,154 @@
             }
         }
     }
+    #account-omx-item-subscriptions .mz-subscription-section-wrapper {
+        .mz-l-paginatedlist-list {
+            margin-top: 2rem;
+            margin-bottom: 5rem;
+            min-height: 20rem;
+        
+            ul.nav-tabs {
+              font-size: 1.5rem;
+              letter-spacing: .05em;
+              border-bottom: none;
+        
+              li {
+                text-transform: uppercase;
+        
+                a {
+                  text-decoration: none;
+                  outline: none;
+                  padding: 0 2.5rem;
+                  border-radius: 0;
+        
+                    &:after {
+                        content: ' ';
+                        width: 0.125rem;
+                        height: 2rem;
+                        background: @midGray;
+                        display: inline-block;
+                        right: 0;
+                        position: absolute;
+                        top: .265rem;
+                    }
+
+                    &:hover {
+                        background: transparent;
+                        border: none;
+                    }
+        
+                  span {
+                    height: 2em;
+                    display: inline-block;
+                  }
+                }
+        
+                &.active {
+        
+                  a {
+                    border: none;
+                    font-style: italic;
+                    font-weight: bold;
+        
+                    span {
+                      border-bottom: .1875rem solid @mutedBlue;
+                    }
+                  }
+                }
+        
+                &:first-child a {
+                  padding-left: 0;
+                }
+                &:last-child a {
+                  &:after {
+                    content: none;
+                  }
+                }
+        
+              }
+            }
+
+            .tab-content {
+                margin-top: 2rem;
+                min-height: 6rem;
+                .tab-content-2, .tab-content-3 {
+                    display: flex;
+                    flex-direction: column;
+                    .mz-header-basket-md-sm {
+                        border-bottom: 2px solid #e1e1e1;
+                        text-transform: capitalize;
+                        text-align: left;
+                        padding-left: 0;
+                        font-size: 1.8rem;
+                        padding-bottom: 15px;
+                        display: block;
+                        font-weight: 700;
+                    }
+                }
+            }
+
+            .mz-row-carttable-item {
+                padding: 0;
+                
+                .mz-carttable-item {
+                    font-size: 1.62rem;
+                    padding: 2.5rem 0;
+                    .media-object {
+                        float: left;
+                        max-width: 53px;
+                        margin: 0 15px 6.25px 0;
+                    }
+                    .dl-cart-col {
+                        text-align: center;
+                        &.dl-cart-total {
+                            text-align: right;
+                        }
+                    
+                        .dl-cart-header {
+                            padding-bottom: 2.5rem;
+                            display: inline-block;
+                            align-content: center;
+                            &.label-qty {
+                                text-transform: uppercase;
+                            }
+                        }
+                        .dl-cart-value {
+                            font-weight: 500;
+                        }
+                    }
+                    .mz-autoreplanish-item-info {
+                        margin-left: -15px;
+                        margin-right: -15px;
+                        margin-top: 2.5rem;
+                        .dl-manage-subscriptions {
+                            a {
+                                margin: 2rem auto;
+                                background: none;
+                                height: 3.75rem !important;
+                                line-height: 3.75rem !important;
+                                border: 2px solid #4e5458;
+                                border-radius: 0;
+                                padding: 0;
+                                text-transform: uppercase;
+                                text-align: center;
+                                max-width: 300px;
+                                position: relative;
+                                transform: none;
+                                width: auto;
+                                text-decoration: none;
+                                display: block;
+                            }
+                        }
+                        .label-nextOrderDate {
+                            font-weight: 500;
+                            text-transform: uppercase;
+                            .fa-calendar {
+                                padding-left: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+          }
+    }
 }
