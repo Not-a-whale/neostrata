@@ -1,8 +1,8 @@
     <div class="mz-addresssummary">
         {% if editing.nextOrdershipTo %}
             <div class="col-xs-1  nopaddingleft mz-address-radio form-row">
-                <input type="radio" name="shipToAddress" data-mz-autoreplanish-radio data-mz-autoreplanish-id="{{model.id}}" {%if not model.id %} checked {% endif %} /> 
-                <label class="icon-dot form-element" for="shipToAddress"></label>
+                <input type="radio" id="shipToAddress_{{model.id}}"  name="shipToAddress" data-mz-autoreplanish-radio data-mz-autoreplanish-id="{{model.id}}" {%if not model.id %} checked {% endif %} /> 
+                <label class="icon-dot form-element" for="shipToAddress_{{model.id}}"></label>
             </div> 
         {% endif %}
         <div class="nopaddingleft {% if editing.nextOrdershipTo %} col-xs-11 {% else %} col-xs-12 {% endif %}">
@@ -27,7 +27,7 @@
              <div>{{ model.email }}</div>
 
             {% if not editing.nextOrdershipTo %}
-                <div class="address-customer-name">{{ model.shippingMethod }}</div>
+                <div class="address-customer-name">{{ model.method }}</div>
             {% endif %}
         </div>
     </div>        
