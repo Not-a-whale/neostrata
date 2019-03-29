@@ -1,6 +1,6 @@
 <div class="col-xs-12 mz-row-carttable-item">
     <div class="mz-carttable-item">
-        <div class="mz-carttable-item-product col-xs-6 col-sm-6 nopaddingleft"> 
+        <div class="mz-carttable-item-product col-xs-5 col-sm-6 nopaddingleft"> 
           {% if model.image %}
             <img class="media-object" src="https:{{model.image}}?maxWidth=105&as_parameters&_mzcb=undefined" />   
           {% else %}
@@ -13,27 +13,27 @@
               <a class="dl-cart-value" href="{{model.url}}">{{ model.name|safe }}</a>
           </div>
         </div>
-        <div class="col-xs-2 col-sm-2 cart-item-qty">  
-          <span class="label-qty">{{ labels.qty }}</span>
-          <div class="mz-carttable-item-qty">
+        <div class="col-xs-2 col-sm-2 cart-item-qty dl-cart-col">  
+          <span class="label-qty dl-cart-header">{{ labels.qty }}</span>
+          <div class="mz-carttable-item-qty dl-cart-value">
             {{model.qty}}
           </div>
         </div>
-        <div class="col-xs-2 col-sm-2 ">  
-          <span class="label-discount">{{ labels.subscriptionPriceEach }}</span>
-          <div class="mz-carttable-item-qty">
-            {{model.priceEach}}
+        <div class="col-xs-2 col-sm-2 dl-cart-col">  
+          <span class="label-discount dl-cart-header">{{ labels.subscriptionPriceEach }}</span>
+          <div class="mz-carttable-item-qty dl-cart-value">
+            {{model.priceEach|currency }}
           </div>
         </div>
-        <div class="col-xs-2 col-sm-2 ">  
-          <span class="label-priceEach">{{ labels.subscriptionDiscount }}</span>
-          <div class="mz-carttable-item-discount">
-            {{model.discount}}
+        <div class="col-xs-3 col-sm-2 dl-cart-col dl-cart-total">  
+          <span class="label-priceEach dl-cart-header">{{ labels.subscriptionDiscount }}</span>
+          <div class="mz-carttable-item-discount dl-cart-value">
+            {{model.discount|currency }}
           </div>
         </div>
       
-        <div class="mz-autoreplanish-item-actions col-xs-12 ">
-          <div class="col-xs-6 col-sm-6 nopaddingleft"> 
+        <div class="mz-autoreplanish-item-actions col-xs-12 nopaddingright nopaddingleft">
+          <div class="col-xs-12 col-sm-6 nopaddingleft"> 
             <span class="label-qty">{{ labels.subscriptionReplenishment }}</span>
             <div class="mz-carttable-item-plan custom-select-wrapper" data-mz-membership-id="{{model.membershipId}}">
               <select class="mz-autoship-dropdown select selectpicker" id="mz_autoship_frequency_{{model.membershipId}}" data-mz-autoreplanish style="display:none;">
@@ -51,7 +51,7 @@
               </select>
             </div>
           </div>
-          <div class="col-xs-6 col-sm-6 nopaddingleft"> 
+          <div class="col-xs-12 col-sm-6 nopaddingleft"> 
             <span class="label-nextOrderDate">{{ labels.subscriptionActionType }}</span>
             <div class="mz-carttable-item-plan custom-select-wrapper" data-mz-membership-id="{{model.membershipId}}">
               <select class="mz-autoreplanish-action-type select selectpicker" id="mz_autoship_action_{{model.membershipId}}" style="display:none;">
