@@ -1717,6 +1717,7 @@
                 .tab-content-2, .tab-content-1 {
                     display: flex;
                     flex-direction: column;
+                    font-size: unset;
                     .mz-header-basket-md-sm {
                         border-bottom: 2px solid #e1e1e1;
                         text-transform: capitalize;
@@ -1732,6 +1733,29 @@
 
             .mz-row-carttable-item {
                 padding: 0;
+                .mz-contact-actions {
+                    display: flex;
+                    justify-content: space-evenly;
+                    margin: 2rem 0;
+                    padding: 0;
+                    button {
+                        display: inline-block;
+                        background: none;
+                        height: 3.75rem !important;
+                        line-height: 3.75rem !important;
+                        border: 2px solid #4e5458;
+                        border-radius: 0;
+                        padding: 0 2rem;
+                        text-transform: uppercase;
+                        text-align: center;
+                        max-width: 300px;
+                        position: relative;
+                        transform: none;
+                        width: auto;
+                        text-decoration: none;
+                        font-size: 1rem;
+                    }
+                }
                 
                 .mz-carttable-item {
                     font-size: 1.62rem;

@@ -51,7 +51,7 @@
             </select>
           </div>
         </div>
-        <div class="col-xs-3 col-sm-3 nopaddingleft"> 
+        <div class="col-xs-6 col-sm-6 nopaddingleft"> 
           <span class="label-nextOrderDate">{{ labels.subscriptionActionType }}</span>
           <div class="mz-carttable-item-plan custom-select-wrapper" data-mz-membership-id="{{model.membershipId}}">
             <select class="mz-autoreplanish-action-type select selectpicker" id="mz_autoship_action_{{model.membershipId}}" style="display:none;">
@@ -61,8 +61,7 @@
             </select>
           </div>
         </div>
-        <div class="col-xs-6 col-sm-6 nopaddingright mz-contact-actions"> 
-          
+        <div class="col-xs-12 col-sm-12 nopaddingright mz-contact-actions"> 
           <button class="mz-button mz-contact-save" data-mz-membership-id="{{model.membershipId}}" data-mz-line-number="{{model.lineNumber}}" data-mz-order-number="{{model.orderNumber}}" data-mz-action="finishEditAuotreplanishItem">{{labels.nextOrderSave}}</button>
           <button class="mz-button mz-contact-cancel" data-mz-membership-id="{{model.membershipId}}" data-mz-action="cancelEditAuotreplanishItem">{{labels.nextOrderCancel}}</button>
         </div>
