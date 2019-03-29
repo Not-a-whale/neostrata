@@ -1,6 +1,6 @@
     <div class="mz-addresssummary">
         {% if editing.nextOrdershipTo %}
-            <div class="col-xs-1  nopaddingleft">
+            <div class="col-xs-1  nopaddingleft mz-address-radio form-row">
                 <input type="radio" name="shipToAddress" data-mz-autoreplanish-radio data-mz-autoreplanish-id="{{model.id}}" {%if not model.id %} checked {% endif %} /> 
             </div> 
         {% endif %}
