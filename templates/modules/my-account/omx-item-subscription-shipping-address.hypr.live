@@ -24,5 +24,10 @@
             {% if model.phoneNumbers.home %}
                 <span>{{ model.phoneNumbers.home }}</span>
             {% endif %}
+             <div>{{ model.email }}</div>
+
+            {% if not editing.nextOrdershipTo %}
+                <div class="address-customer-name">{{ model.shippingMethod }}</div>
+            {% endif %}
         </div>
     </div>        

@@ -1856,25 +1856,24 @@
                 line-height: 1.5;
                 font-size: 1.875rem;
             }  
-            
             .mz-addresssummary {
                 padding: 2rem 0;
                 float: none;
                 border-bottom: 2px solid #e1e1e1;
-
                 width: 100%;
                 float: left;
 
+                .address-customer-name {
+                    font-weight: 700;
+                }
                 .mz-address-radio.form-row {
-                    padding: 0;
+                    padding: 15px;
 
-                    input[type="text"] {
+                    input[type="radio"] {
                         left: -9999rem;
                         opacity: 0;
-
                         position: absolute;
                         top: -0.1rem;
-
                         &:not(:checked)+label:before {
                             content: '' !important;
                         }
@@ -1884,7 +1883,6 @@
                         font-family: "Gotham A","Gotham B",sans-serif !important;
                         font-size: 1.5rem;
                         padding-left: 2.5rem;
-
                         &:before {
                             font-family: 'icomoon' !important;
                             top: -0.39rem;
@@ -1897,7 +1895,33 @@
                     }
                 }
             }
+            .mz-contact-actions {
+                display: flex;
+                justify-content: center; 
+                width: 100%; 
+                margin: 2rem 0;
+                padding: 0;
+                button {
+                    display: inline-block;
+                    background: none;
+                    height: 3.75rem !important;
+                    line-height: 3.75rem !important;
+                    border: 2px solid #4e5458;
+                    border-radius: 0;
+                    padding: 0 2rem;
+                    text-transform: uppercase;
+                    text-align: center;
+                    max-width: 300px;
+                    position: relative;
+                    transform: none;
+                    width: auto;
+                    text-decoration: none;
+                    font-size: 1rem;
+
+                    margin: 2rem 1rem; 
+                }
+            }
+
         }
-        
     }
 }
