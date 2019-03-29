@@ -1867,7 +1867,7 @@
                     font-weight: 700;
                 }
                 .mz-address-radio.form-row {
-                    padding: 15px;
+                   /* padding: 15px; */
 
                     input[type="radio"] {
                         left: -9999rem;
@@ -1896,29 +1896,53 @@
                 }
             }
             .mz-contact-actions {
-                display: flex;
-                justify-content: center; 
-                width: 100%; 
-                margin: 2rem 0;
-                padding: 0;
-                button {
-                    display: inline-block;
+                padding-top: 1rem; 
+
+                @media (min-width: 992px) {
+                    margin: 0 auto;
+                    text-align: center;
+                }
+                .mz-button { 
+                    @media (min-width: 992px) {
+
+                        margin: 0 auto;
+                        left: unset;
+                        transform: none;
+                        width: auto;
+                        font-size: 1rem;
+                    }
+
+
                     background: none;
-                    height: 3.75rem !important;
-                    line-height: 3.75rem !important;
-                    border: 2px solid #4e5458;
+                    height: 5.875rem !important;
+                    line-height: 5.875rem !important;
+                    border-width: 2px !important;
                     border-radius: 0;
-                    padding: 0 2rem;
+                    font-size: 1rem;
+                    padding: 0 3rem;
                     text-transform: uppercase;
                     text-align: center;
-                    max-width: 300px;
+                    margin: 3rem auto;
+                    left: 50%;
+                    transform: translate(-50%,0);
+                    width: 100%;
+                    max-width: 420px;
                     position: relative;
-                    transform: none;
-                    width: auto;
-                    text-decoration: none;
-                    font-size: 1rem;
+                    font-size: 1.8rem;
 
-                    margin: 2rem 1rem; 
+                   
+                    @media (min-width: 992px) {
+                        margin: 0 auto;
+                        left: unset;
+                        transform: none;
+                        width: auto;
+                        font-size: 1rem;
+                    }
+                }
+
+                .mz-contact-cancel {
+                    border: none;
+                    text-transform: none !important;
                 }
             }
 
