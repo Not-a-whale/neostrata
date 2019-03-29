@@ -1863,9 +1863,35 @@
                 float: left;
 
                 .mz-address-radio.form-row {
-                    padding: 0
+                    padding: 0;
 
-                   
+                    input[type="text"] {
+                        left: -9999rem;
+                        opacity: 0;
+
+                        position: absolute;
+                        top: -0.1rem;
+
+                        &:not(:checked)+label:before {
+                            content: '' !important;
+                        }
+                    }
+
+                    label {
+                        font-family: "Gotham A","Gotham B",sans-serif !important;
+                        font-size: 1.5rem;
+                        padding-left: 2.5rem;
+
+                        &:before {
+                            font-family: 'icomoon' !important;
+                            top: -0.39rem;
+                            left: -0.45rem;
+                        }
+                        &:after {
+                            width: 1.8rem;
+                            height: 1.8rem;
+                        }
+                    }
                 }
             }
         }
