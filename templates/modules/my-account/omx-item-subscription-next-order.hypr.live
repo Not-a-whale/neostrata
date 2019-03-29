@@ -1,6 +1,4 @@
-<div class="mz-header-basket-md-sm">
-    <div class="col-xs-12">{{ labels.itemsInOrder }}</div>
-</div>
+
 
 <div class="omx-next-order-item-list ">
   {% for orderItem in model.omxItemSubscriptions.nextOrder.items %}
