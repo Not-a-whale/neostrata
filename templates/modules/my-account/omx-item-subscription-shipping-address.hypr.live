@@ -1,23 +1,27 @@
-    
-    {% if editing.nextOrdershipTo %}
-        <input type="radio" name="shipToAddress" data-mz-autoreplanish-radio data-mz-autoreplanish-id="{{model.id}}" {%if not model.id %} checked {% endif %} /> 
-    {% endif %}
-    <div class="address-customer-name">{{ model.firstName }} {{ model.lastNameOrSurname }}</div>
-    <div>{{ model.address.address1 }}</div>
-    {% if model.address.address2 %}
-        <div>{{ model.address.address2 }}</div>
-    {% endif %}
-    {% if model.address.address3 %}
-        <div>{{ model.address.address3 }}</div>
-    {% endif %}
-    {% if model.address.address4 %}
-        <div>{{ model.address.address4 }}</div>
-    {% endif %}
-    <div>{{ model.address.cityOrTown }} {{ model.address.stateOrProvince }} {{ model.address.postalOrZipCode }}</div>
-    {% comment %}
-    <div>{{ model.address.countryCode }}</div>
-    {% endcomment %}
-    {% if model.phoneNumbers.home %}
-        <span>{{ model.phoneNumbers.home }}</span>
-    {% endif %}
-    
+    <div class="mz-addresssummary">
+        {% if editing.nextOrdershipTo %}
+            <div class="col-xs-1  nopaddingleft">
+                <input type="radio" name="shipToAddress" data-mz-autoreplanish-radio data-mz-autoreplanish-id="{{model.id}}" {%if not model.id %} checked {% endif %} /> 
+            </div> 
+        {% endif %}
+        <div class="nopaddingleft {% if editing.nextOrdershipTo %} col-xs-11 {% else %} col-xs-12 {% endif %}">
+            <div class="address-customer-name">{{ model.firstName }} {{ model.lastNameOrSurname }}</div>
+            <div>{{ model.address.address1 }}</div>
+            {% if model.address.address2 %}
+                <div>{{ model.address.address2 }}</div>
+            {% endif %}
+            {% if model.address.address3 %}
+                <div>{{ model.address.address3 }}</div>
+            {% endif %}
+            {% if model.address.address4 %}
+                <div>{{ model.address.address4 }}</div>
+            {% endif %}
+            <div>{{ model.address.cityOrTown }} {{ model.address.stateOrProvince }} {{ model.address.postalOrZipCode }}</div>
+            {% comment %}
+            <div>{{ model.address.countryCode }}</div>
+            {% endcomment %}
+            {% if model.phoneNumbers.home %}
+                <span>{{ model.phoneNumbers.home }}</span>
+            {% endif %}
+        </div>
+    </div>        
