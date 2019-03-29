@@ -9,8 +9,8 @@
             </div>
           {% endif %}
           <div class="mz-carttable-item-info-wrap ">
-              <span class="label-qty">{{ labels.subscriptionProductName }}</span>
-              <a class="mz-carttable-item-title" href="{{model.url}}">{{ model.name|safe }}</a>
+              <span class="dl-cart-header">{{ labels.subscriptionProductName }}</span>
+              <a class="dl-cart-value" href="{{model.url}}">{{ model.name|safe }}</a>
           </div>
         </div>
         <div class="col-xs-2 col-sm-2 cart-item-qty dl-cart-col">
@@ -32,7 +32,7 @@
           </div>
         </div>
 
-        <div class="mz-autoreplanish-item-info col-xs-12 ">
+        <div class="mz-autoreplanish-item-info col-xs-12 nopaddingright nopaddingleft">
           <div class="col-xs-6 col-sm-5 nopaddingleft"> 
                 <span class="label-qty">{{ labels.subscriptionReplenishment }}</span>
                 <div class="mz-carttable-item-plan">{{ model.configurationName|safe }}</div>

@@ -9,8 +9,8 @@
             </div>
           {% endif %}
           <div class="mz-carttable-item-info-wrap ">
-              <span class="label-qty">{{ labels.subscriptionProductName }}</span>
-              <a class="mz-carttable-item-title" href="{{model.url}}">{{ model.name|safe }}</a>
+              <span class="dl-cart-header">{{ labels.subscriptionProductName }}</span>
+              <a class="dl-cart-value" href="{{model.url}}">{{ model.name|safe }}</a>
           </div>
         </div>
         <div class="col-xs-2 col-sm-2 cart-item-qty">  
