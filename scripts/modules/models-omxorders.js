@@ -5,10 +5,8 @@ define(["modules/api", 'underscore', "modules/backbone-mozu", "hyprlive", 'modul
           idAttribute: 'orderId'
       }),
       OmxItemSubscription = Backbone.MozuModel.extend({
-        idAttribute: 'membershipId',
-        relations: {
-          product: ProductModels.Product
-        }
+        idAttribute: 'membershipId'
+        
       }),
       OmxOrderHistoryList = Backbone.Collection.extend({
         helpers: ['hasItems'],
@@ -42,7 +40,7 @@ define(["modules/api", 'underscore', "modules/backbone-mozu", "hyprlive", 'modul
         beginEditOrderItem: function (id) {
           var toEdit = this.get('items').get(id);
           if (toEdit)
-              this.get('editingOrderItem').set(toEdit.toJSON({ helpers: true, ensureCopy: true }), { silent: true });
+              this.get('editingOrderItem').set(toEdit.toJSON({helpers: false}));
         },
 
         endEditOrderItem: function() {
@@ -130,7 +128,7 @@ define(["modules/api", 'underscore', "modules/backbone-mozu", "hyprlive", 'modul
               editingOrderItem = this.get('editingOrderItem'); 
               editingOrderItem.set('frequencyCode', params.frequency); 
 //          this.syncApiModel();
-          _.extend(params, {orderItem:editingOrderItem.toJSON()});
+          _.extend(params, {orderItem:editingOrderItem.toJSON( {helpers: false})});
           return ApiAutoreplanish.OrderMotionApi.orderDetailUpdate(params).done(function(data){
             console.log('success :: ApiAutoreplanish.OrderMotionApi.updateLineItemFrequency(params)', data); 
             if (data && data.omxItemSubscriptions) {
