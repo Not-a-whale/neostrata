@@ -307,7 +307,7 @@ define(['modules/backbone-mozu', 'underscore', 'modules/models-address', 'module
 
     Customer = Backbone.MozuModel.extend({
         mozuType: 'customer',
-        helpers: ['hasSavedCards', 'hasSavedContacts'],
+        helpers: ['hasSavedCards', 'hasSavedContacts', 'hasMoreThanOneCard', 'hasMoreThanOneContact'],
         hasSavedCards: function() {
             var cards = this.get('cards');
             return cards && cards.length > 0;
@@ -316,6 +316,15 @@ define(['modules/backbone-mozu', 'underscore', 'modules/models-address', 'module
             var contacts = this.get('contacts');
             return contacts && contacts.length > 0;
         },
+        hasMoreThanOneCard: function() {
+            var cards = this.get('cards');
+            return cards && cards.length > 1;
+        },
+        hasMoreThanOneContact: function() {
+            var contacts = this.get('contacts');
+            return contacts && contacts.length > 1;
+        },
+       
         relations: {
             attributes: Backbone.Collection.extend({
                 model: CustomerAttribute
@@ -426,15 +435,16 @@ define(['modules/backbone-mozu', 'underscore', 'modules/models-address', 'module
     }),
 
     EditableCustomer = Customer.extend({
-
         handlesMessages: true,
-        relations: _.extend({
+        relations:  
+            _.extend({
             editingCard: CustomerCardWithContact,
             editingContact: CustomerContact,
             wishlist: Wishlist,
             orderHistory: OrderModels.OrderCollection,
             returnHistory: ReturnModels.RMACollection,
-            omxOrderHistory: OmxOrderHistoryModels.OmxOrderHistoryList
+            omxItemSubscriptions: OmxOrderHistoryModels.OmxItemSubscriptionList,
+            omxOrderHistory: OmxOrderHistoryModels.OmxOrderHistoryList 
         }, Customer.prototype.relations),
         validation: {
             password: {

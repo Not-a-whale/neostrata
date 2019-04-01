@@ -25,6 +25,68 @@
 </div>
 {% endif %}
 <section class="mz-l-stack-section mz-productdetail-conversion row">
+  {% if themeSettings.commerceEnabled && themeSettings.autoReplenishmentEnable && model.productType != themeSettings.familyProductType %}
+    {% if  model|get_product_attribute(themeSettings.autoReplanishmentMonthInterval) %}
+      <div class="mz-autoShip-wrapper">
+        <div class="mz-autoship-content col-xs-12 text-left row">
+            <div class="mz-autoship-radio form-row">
+              <input type="radio" name="{{model.productCode}}_autoShipRadio" id="{{model.productCode}}_autoShipRadio_1"  value="1" checked /> 
+              <label class="icon-dot form-element" for="{{model.productCode}}_autoShipRadio_1">
+                  {{labels.autoShipDelivery}}
+              </label>
+              <a class="dl-autoship-info" href="javascript:void(0);" onclick="jQuery('#autoShipDetails').show();"><i class="fa fa-question-circle"></i></a>
+            </div> 
+            <div class="col-xs-11 offset-xs-1 mz-autoship-infomsg">{{labels.autoShipDeliveryDiscount}} </div>
+            <div id="autoshipDropDown" class="col-xs-11 offset-xs-1 custom-select-wrapper">  
+                <select class="select selectpicker mz-autoship-dropdown" id="mz_pdp_autoship_code" style="display:none;">
+                {% with model|get_product_attribute(themeSettings.autoReplanishmentRecomendedInterval) as recommendedIntervals %}
+                    {% if recommendedIntervals %}
+                    {% with recommendedIntervals.values|first as recommendedIntervalValue %}
+                        {% with model|get_product_attribute(themeSettings.autoReplanishmentMonthInterval) as intervals %}
+                        {% if intervals %}
+                            {% for v in intervals.values %}
+                                {% if v.stringValue %}
+                                {% for splitValue in v.stringValue|split(',') %}
+                                    {% if splitValue %}
+                                    {% with "autoReplenishment_X"|replace("X", splitValue) as autoReplenishmentCode %}
+                                    {% with themeSettings|prop(autoReplenishmentCode) as evalValue %}
+                                        <option value="{{ splitValue|safe }}" {% if recommendedIntervalValue && splitValue == recommendedIntervalValue.stringValue %} selected {% endif %} > {{evalValue}}
+                                        {% if recommendedIntervalValue && splitValue == recommendedIntervalValue.stringValue %} {{labels.recommendedFrequently}} {% endif %}
+                                        </option>                    
+                                    {% endwith %}{% endwith %}
+                                    {% endif %}
+                                {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+                    {% endwith %}
+                    {% endif %}
+                {% endwith %}
+                </select>
+            </div>
+        </div>
+        <div class="mz-autoship-content col-xs-12 text-left row">
+            <div class="mz-autoship-radio form-row">
+              <input type="radio" name="{{model.productCode}}_autoShipRadio" id="{{model.productCode}}_autoShipRadio_0" value="0" /> 
+              <label class="icon-dot form-element" for="{{model.productCode}}_autoShipRadio_0">
+                  {{labels.oneTimePurchase}}
+              </label>              
+            </div>
+        </div>
+        <div class="ml-auto-ship " id="autoShipDetails" style="display: none;">
+            <a class="dl-autoship-close" href="javascript:void(0);" onclick="jQuery('#autoShipDetails').hide();"></a>
+            <span style="font-size: 18px; font-weight: bold;">{{labels.autoReplenishment}}</span><br><br>
+            {{labels.autoReplenishmentHowItWorks}}<br><br>
+            <ol> 
+                {{labels.autoReplenishmentContent|safe}}
+            </ol>
+        </div>
+    </div>
+    {% endif %}
+  {% endif %}
+
+
   {% if themeSettings.commerceEnabled and model.productType != themeSettings.familyProductType %}
   {% if model.purchasableState.isPurchasable %}  
   <div class="mz-productdetail-conversion-controls row">

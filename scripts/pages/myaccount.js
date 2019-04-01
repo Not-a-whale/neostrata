@@ -1,4 +1,8 @@
-define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', 'modules/jquery-mozu', 'underscore', 'modules/models-customer', 'modules/views-paging', 'modules/editable-view','modules/block-ui', 'vendor/bootstrap-select/dist/js/bootstrap-select','modules/models-omxorders'], function(Backbone, Api, Hypr, HyprLiveContext, $, _, CustomerModels, PagingViews, EditableView,blockUiLoader) {
+define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', 
+    'modules/jquery-mozu', 'underscore', 'modules/models-customer', 
+    'modules/views-paging', 'modules/editable-view','modules/block-ui', 
+    'vendor/bootstrap-select/dist/js/bootstrap-select','modules/models-omxorders'], function(Backbone, Api, Hypr, HyprLiveContext, $, _, CustomerModels, PagingViews, EditableView,blockUiLoader) {
+
     var AccountSettingsView = EditableView.extend({
         templateName: 'modules/my-account/my-account-settings',
         autoUpdate: [
@@ -437,6 +441,222 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
         }
         
     });
+    var OmxItemSubscriptionView = EditableView.extend({
+        templateName: "modules/my-account/my-account-omx-item-subscriptions",  
+        autoUpdate: [
+            'omxItemSubscriptions.editingOrderItem.frequency'
+        ],
+        
+        constructor: function() {
+            EditableView.apply(this, arguments);
+            this.editing.subscription = false; 
+            this.editing.allSubscription = true; 
+            this.editing.nextOrdershipTo  = false; 
+            this.editing.nextOrderPayment  = false; 
+            this.invalidFields = {};
+        },
+
+        render: function() {
+            var self = this;
+            Backbone.MozuView.prototype.render.apply(this, arguments);
+
+            $('.mz-autoreplanish-item-actions .selectpicker').selectpicker();
+        }, 
+
+        viewOMXItemSubscription: function (event) {
+            if(event)
+                event.preventDefault();
+            this.editing.subscription = true; 
+            this.editing.allSubscription = true; 
+            this.editing.nextOrdershipTo  = false; 
+            this.editing.nextOrderPayment  = false; 
+            this.editing.orderItem = 'view'; 
+            
+            this.startViewOMXItemSubscription(); 
+
+            this.render();
+            
+        },
+
+        startViewOMXItemSubscription: function () {
+            $('.dz-backtodashboard.mz-back-to-dash').show(); 
+            $('.mz-l-stack-section').hide();
+            $('.mz-l-stack-section.mz-accountitemsubscriptions').show();
+            $('.mz-l-stack-section.mz-accountitemsubscriptions').removeClass('no-editing').addClass('is-editing');
+            $('.dl-maintitle').hide();
+            $('.mz-scrollnav-item').removeClass('active');
+            $('.mz-scrollnav-item.dl-itemsubscriptions').addClass('active');
+            $('.mz-accountitemsubscriptions .dl-view-wrapper').addClass('hidden'); 
+            $('.mz-accountitemsubscriptions .dl-link-edit.mz-link-edit-suscription').addClass('hidden'); 
+            $('.mz-accountitemsubscriptions .mz-subscription-section-wrapper').removeClass('hidden'); 
+        },
+        cancelViewOMXItemSubscription: function () {
+            this.editing.subscription = false; 
+            this.editing.allSubscription = false; 
+            $('.dz-backtodashboard.mz-back-to-dash').hide(); 
+            
+            $('.mz-l-stack-section').removeClass('is-editing').addClass('no-editing');
+            $('.mz-l-stack-section').show();
+            $('.dl-maintitle').show();
+            $('.mz-scrollnav-item').removeClass('active');
+            $('.mz-scrollnav-item.dl-accountDashboard').addClass('active');
+            $('.mz-accountitemsubscriptions .dl-view-wrapper').removeClass('hidden'); 
+            $('.mz-accountitemsubscriptions .mz-subscription-section-wrapper').addClass('hidden'); 
+            $('.mz-accountitemsubscriptions .dl-link-edit.mz-link-edit-subscription').removeClass('hidden'); 
+            this.render(); 
+        }, 
+        editOMXItemSubscriptionPayment: function () {
+            this.editing.nextOrdershipTo = false; 
+            this.editing.nextOrderPayment = true; 
+            this.editing.allSubscription = false; 
+
+            var paymentMethod = this.model.get('omxItemSubscriptions.nextOrder').paymentInfo; 
+            this.editing.sameAsNextOrder = this.getCardSameId(paymentMethod); 
+            this.render(); 
+        }, 
+        finishEditNextOrderPayment: function () {
+            var selectedPayId = $("input[name*='nextOrderPayment']:checked").data('mzAutoreplanishId'), 
+                card = this.model.get('cards').findWhere({
+                    id: selectedPayId
+                }), 
+                membershipId = this.model.get('omxItemSubscriptions').get('nextOrder').membershipId;
+
+            if (card) {
+                this.model.get('omxItemSubscriptions').updateNextOrderShipTo(card,membershipId).done(function(data){
+                    console.log('update success : ', data); 
+                    this.editing.nextOrderPayment = false; 
+                    this.render(); 
+                }).fail(function(err){
+                    console.log('update error : ', err); 
+                }); 
+            } else {
+                this.editing.nextOrderPayment = false; 
+                this.render(); 
+            }
+        }, 
+        cancelEditNextOrderPayment: function () {
+            this.editing.nextOrderPayment = false; 
+            this.render(); 
+        }, 
+        getContactSameId: function(shipTothis) {
+            
+            var conctacts = this.model.get('contacts'); 
+            var contactOnAccount = conctacts.toJSON().find(function(c){
+                return( c.firstName ==  shipTothis.firstName && c.lastNameOrSurname == shipTothis.lastNameOrSurname && c.address.address1.toLowerCase() == shipTothis.address.address1.toLowerCase()  && c.address.address2.toLowerCase() == shipTothis.address.address2.toLowerCase()  && c.address.cityOrTown.toLowerCase() == shipTothis.address.cityOrTown.toLowerCase() && c.address.countryCode.toLowerCase() == shipTothis.address.countryCode.toLowerCase() && c.address.postalOrZipCode.toLowerCase() == shipTothis.address.postalOrZipCode.toLowerCase() && c.address.stateOrProvince.toLowerCase() == shipTothis.address.stateOrProvince.toLowerCase()); 
+            });
+
+            console.log('contactOnAccount --> ', contactOnAccount); 
+            if (contactOnAccount) {
+                return contactOnAccount.id; 
+            }
+            return ''; 
+        },
+        getCardSameId: function(thisPayment) {
+
+            var cards = this.model.get('cards'); 
+            var cardOnAccount = cards.toJSON().find(function(c){
+                return( c.cardNumberPart.split("*").join('') ==  thisPayment.cardNumberPart.split("*").join('') && c.cardType.toLowerCase() == thisPayment.cardType.toLowerCase() && c.expireMonth == thisPayment.expireMonth && c.expireYear == thisPayment.expireYear  ); 
+            });
+
+            console.log('cardOnAccount --> ', cardOnAccount); 
+            if (cardOnAccount) {
+                return cardOnAccount.id; 
+            }
+            return ''; 
+        },
+
+        editOMXItemSubscriptionShipTo: function () {
+            this.editing.nextOrdershipTo = true; 
+            this.editing.nextOrderPayment = false; 
+
+            this.editing.allSubscription = false; 
+            var shipTothis= this.model.get('omxItemSubscriptions.nextOrder').shippingInfo; 
+
+            this.editing.sameAsNextOrder = this.getContactSameId(shipTothis); 
+            this.render(); 
+        }, 
+        finishEditNextOrderShipTo: function () {
+            var selectedShipId = $("input[name*='shipToAddress']:checked").data('mzAutoreplanishId'), 
+                contact = this.model.get('contacts').findWhere({
+                    id: selectedShipId
+                }), 
+                membershipId = this.model.get('omxItemSubscriptions').get('nextOrder').membershipId;
+
+            if (contact) {
+           
+                this.model.get('omxItemSubscriptions').updateNextOrderShipTo(contact,membershipId).done(function(data){
+                    console.log('update success : ', data); 
+                    this.editing.nextOrdershipTo = false; 
+                    this.render(); 
+                }).fail(function(err){
+                    console.log('update error : ', err); 
+                }); 
+            } else {
+                this.editing.nextOrdershipTo = false; 
+                this.render(); 
+            }
+        }, 
+        cancelEditNextOrderShipTo: function () {
+            this.editing.nextOrdershipTo = false; 
+            this.render(); 
+        }, 
+
+        manageItem: function (event) {
+
+            this.editing.allSubscription = true;
+            var membershipId = this.editing.orderItem = $(event.currentTarget).data('mzItem');
+            this.model.get('omxItemSubscriptions').beginEditOrderItem(membershipId);
+            this.render();
+        },
+        cancelEditAuotreplanishItem : function (event) {
+            this.editing.allSubscription = true;
+            this.editing.orderItem = "view";
+            this.model.get('omxItemSubscriptions').endEditOrderItem();
+            this.render();
+        }, 
+        finishEditAuotreplanishItem : function(event) {
+            this.editing.allSubscription = true;
+            var me = this, 
+                membershipId = $(event.currentTarget).data('mzMembershipId'), 
+                frequency = $('#mz_autoship_frequency_'+membershipId).find(":selected").val(),
+                actionType = $('#mz_autoship_action_'+membershipId).find(":selected").val(),
+                orderNumber = $(event.currentTarget).data('mzOrderNumber'), 
+                lineItem = $(event.currentTarget).data('mzLineNumber'),
+                params = {
+                    frequency : frequency, 
+                    actionType : actionType
+                };
+            
+                if ('mz-autoreplanish-action-type-update-frequency' == actionType) {
+                this.model.get('omxItemSubscriptions').updateLineItemFrequency(params).done(function(data){
+                    console.log('update success : ', data); 
+                    me.editing.subscription = true; 
+                    me.editing.allSubscription = true; 
+                    me.editing.nextOrdershipTo  = false; 
+                    me.editing.nextOrderPayment  = false; 
+                    me.editing.orderItem = 'view'; 
+                    me.render();             
+                }).fail(function(err){
+                    console.log('update error : ', err); 
+                }); 
+
+            } else {
+                this.model.get('omxItemSubscriptions').orderWaitDateUpdate(params).done(function(data){
+                    console.log('update success : ', data); 
+                    me.editing.subscription = true; 
+                    me.editing.allSubscription = true; 
+                    me.editing.nextOrdershipTo  = false; 
+                    me.editing.nextOrderPayment  = false; 
+                    me.editing.orderItem = 'view'; 
+                    me.render();             
+                }).fail(function(err){
+                    console.log('update error : ', err); 
+                }); 
+            }
+        }
+        
+    }); 
+
 
     var OmxOrderHistoryListingView = Backbone.MozuView.extend({
         templateName: "modules/my-account/omx-order-history-listing",
@@ -971,11 +1191,14 @@ function getQueryVariable(variable)
         var accountModel = window.accountModel = CustomerModels.EditableCustomer.fromCurrent();
 
         $('#account-panels .selectpicker').selectpicker();
+        $('.mz-autoreplanish-item-actions .selectpicker').selectpicker();
+       
 
         var $accountSettingsEl = $('#account-settings'),
             $passwordEl = $('#password-section'),
             $orderHistoryEl = $('#account-orderhistory'),
             $omxOrderHistoryEl = $('#account-omx-orderhistory'),
+            $omxItemSusbcriptionsEl = $('#account-omx-item-subscriptions'),
             $returnHistoryEl = $('#account-returnhistory'),
             $paymentMethodsEl = $('#account-paymentmethods'),
             $addressBookEl = $('#account-addressbook'),
@@ -984,7 +1207,9 @@ function getQueryVariable(variable)
             $storeCreditEl = $('#account-storecredit'),
             orderHistory = accountModel.get('orderHistory'),
             returnHistory = accountModel.get('returnHistory'),
-            omxOrderHistoryModel = accountModel.get('omxOrderHistory');
+            omxOrderHistoryModel = accountModel.get('omxOrderHistory'),
+            omxItemSubscriptionsModel = accountModel.get('omxItemSubscriptions');
+            
             //$parentEl = $('.mz-myaccount .mz-l-container');
         var accountViews = window.accountViews = {
             /*
@@ -1007,7 +1232,12 @@ function getQueryVariable(variable)
               el: $omxOrderHistoryEl, //.find('[data-mz-omx-orderlist]'),
               model: omxOrderHistoryModel
             }),
-            /*orderHistory: new OrderHistoryView({
+            omxItemSubscriptions: new OmxItemSubscriptionView({
+                el: $omxItemSusbcriptionsEl, //.find('[data-mz-omx-orderlist]'),
+                //model: omxItemSubscriptionsModel
+                model: accountModel
+            }),  
+             /*orderHistory: new OrderHistoryView({
                 el: $orderHistoryEl.find('[data-mz-orderlist]'),
                 model: orderHistory
             }),
@@ -1065,6 +1295,7 @@ function getQueryVariable(variable)
             accountViews.addressBook.cancelViewContact();
             accountViews.paymentMethods.cancelViewCard();
             accountViews.wishList.cancelEditWishlist();
+            accountViews.omxItemSubscriptions.cancelViewOMXItemSubscription(); 
             accountViews.omxOrderHistory.cancelViewOMXOrder();
             
         });
@@ -1075,6 +1306,7 @@ function getQueryVariable(variable)
             accountViews.paymentMethods.cancelViewCard();
             accountViews.wishList.cancelEditWishlist();
             accountViews.omxOrderHistory.cancelViewOMXOrder();
+            accountViews.omxItemSubscriptions.cancelViewOMXItemSubscription(); 
             accountViews.settings.startEdit(e);});
         $('.mz-myaccount-nav .dl-addressbook').on('click', function (e) {
             e.preventDefault();
@@ -1083,6 +1315,7 @@ function getQueryVariable(variable)
             accountViews.paymentMethods.cancelViewCard();
             accountViews.wishList.cancelEditWishlist();
             accountViews.omxOrderHistory.cancelViewOMXOrder();
+            accountViews.omxItemSubscriptions.cancelViewOMXItemSubscription(); 
             accountViews.addressBook.viewAddressBook(e);});
         $('.mz-myaccount-nav .dl-paymentmethods').on('click', function (e) {
             e.preventDefault();
@@ -1091,13 +1324,25 @@ function getQueryVariable(variable)
             accountViews.paymentMethods.cancelViewCard();
             accountViews.wishList.cancelEditWishlist();
             accountViews.omxOrderHistory.cancelViewOMXOrder();
+            accountViews.omxItemSubscriptions.cancelViewOMXItemSubscription(); 
             accountViews.paymentMethods.viewPayments(e);});
+        $('.mz-myaccount-nav .dl-itemsubscriptions').on('click', function (e) {
+            e.preventDefault();
+            accountViews.settings.cancelEdit();
+            accountViews.addressBook.cancelViewContact();
+            accountViews.paymentMethods.cancelViewCard();
+            accountViews.wishList.cancelEditWishlist();
+            accountViews.omxOrderHistory.cancelViewOMXOrder();
+            accountViews.omxItemSubscriptions.viewOMXItemSubscription(e); 
+
+        });
         $('.mz-myaccount-nav .dl-orderhistory').on('click', function (e) {
             e.preventDefault();
             accountViews.settings.cancelEdit();
             accountViews.addressBook.cancelViewContact();
             accountViews.paymentMethods.cancelViewCard();
             accountViews.wishList.cancelEditWishlist();
+            accountViews.omxItemSubscriptions.cancelViewOMXItemSubscription(); 
             accountViews.omxOrderHistory.viewOMXOrderHistory(e);
         });
         $('.mz-myaccount-nav .dl-accountwishlist').on('click', function (e) {
@@ -1107,6 +1352,7 @@ function getQueryVariable(variable)
             accountViews.paymentMethods.cancelViewCard();
             accountViews.wishList.cancelEditWishlist();
             accountViews.omxOrderHistory.cancelViewOMXOrder();
+            accountViews.omxItemSubscriptions.cancelViewOMXItemSubscription(); 
             accountViews.wishList.startEditWishlist(e);
         });
         $('.mz-myaccount-nav .dl-returns').on('click', function (e) {
@@ -1119,6 +1365,47 @@ function getQueryVariable(variable)
             accountViews.wishList.cancelEditWishlist();
             accountViews.returnHistory.startReturn(e);
         });
+
+/*
+        var productIds = []; 
+
+        accountViews.omxItemSubscriptions.model.attributes.items.forEach( function(subscriptionItem) {
+            productIds.push(subscriptionItem.attributes.itemCode); 
+        }); 
+        
+        getMozuProducts(productIds).then(function (products) {
+            accountViews.omxItemSubscriptions.model.attributes.items.forEach( function(lineItem) {
+                var apiProduct = ''; 
+                if (lineItem.attributes.itemCode != 'MLCOUPON') {
+                    products.forEach( function(pInApi) {
+                        if (lineItem.attributes.itemCode === pInApi.productCode ){
+                            apiProduct = pInApi; 
+                        }
+                    });
+                    if (apiProduct) {
+                        lineItem.attributes.url = "/"+apiProduct.content.seoFriendlyUrl+"/p/"+apiProduct.productCode; 
+                        lineItem.attributes.image = apiProduct.content.productImages[0].imageUrl; 
+                        
+                    }
+                }
+            });
+            accountViews.omxItemSubscriptions.model.attributes.nextOrder.items.forEach( function(lineItem) {
+                var apiProduct = ''; 
+                if (lineItem.attributes.itemCode != 'MLCOUPON') {
+                    products.forEach( function(pInApi) {
+                        if (lineItem.attributes.itemCode === pInApi.productCode ){
+                            apiProduct = pInApi; 
+                        }
+                    });
+                    if (apiProduct) {
+                        lineItem.attributes.url = "/"+apiProduct.content.seoFriendlyUrl+"/p/"+apiProduct.productCode; 
+                        lineItem.attributes.image = apiProduct.content.productImages[0].imageUrl; 
+                        
+                    }
+                }
+            });  
+        });
+*/
 
         // TODO: upgrade server-side models enough that there's no delta between server output and this render,
         // thus making an up-front render unnecessary.
@@ -1140,6 +1427,7 @@ function getQueryVariable(variable)
                     accountViews.paymentMethods.cancelViewCard();
                     accountViews.wishList.cancelEditWishlist();
                     accountViews.omxOrderHistory.cancelViewOMXOrder();
+                    accountViews.omxItemSubscriptions.cancelViewOMXItemSubscription(); 
                     accountViews.settings.startEdit(null);
                     break;
                 case "wishlist":
@@ -1148,6 +1436,7 @@ function getQueryVariable(variable)
                     accountViews.paymentMethods.cancelViewCard();
                     accountViews.wishList.cancelEditWishlist();
                     accountViews.omxOrderHistory.cancelViewOMXOrder();
+                    accountViews.omxItemSubscriptions.cancelViewOMXItemSubscription(); 
                     accountViews.wishList.startEditWishlist(null);
                     break;
                 case "orderhistory":
@@ -1156,7 +1445,18 @@ function getQueryVariable(variable)
                     accountViews.paymentMethods.cancelViewCard();
                     accountViews.wishList.cancelEditWishlist();
                     accountViews.omxOrderHistory.cancelViewOMXOrder();
+                    accountViews.omxItemSubscriptions.cancelViewOMXItemSubscription(); 
                     accountViews.omxOrderHistory.viewOMXOrderHistory(null);
+                    break;
+                case "subscription":
+                    accountViews.settings.cancelEdit();
+                    accountViews.addressBook.cancelViewContact();
+                    accountViews.paymentMethods.cancelViewCard();
+                    accountViews.wishList.cancelEditWishlist();
+                    accountViews.omxOrderHistory.cancelViewOMXOrder();
+                    accountViews.omxItemSubscriptions.cancelViewOMXItemSubscription(); 
+
+                    accountViews.omxItemSubscriptions.viewOMXItemSubscription(null); 
                     break;
                 case "paymentmethods":
                     accountViews.settings.cancelEdit();
@@ -1164,6 +1464,7 @@ function getQueryVariable(variable)
                     accountViews.paymentMethods.cancelViewCard();
                     accountViews.wishList.cancelEditWishlist();
                     accountViews.omxOrderHistory.cancelViewOMXOrder();
+                    accountViews.omxItemSubscriptions.cancelViewOMXItemSubscription(); 
                     accountViews.paymentMethods.viewPayments(null);
                     break;
                 case "addressbook":
@@ -1172,6 +1473,7 @@ function getQueryVariable(variable)
                     accountViews.paymentMethods.cancelViewCard();
                     accountViews.wishList.cancelEditWishlist();
                     accountViews.omxOrderHistory.cancelViewOMXOrder();
+                    accountViews.omxItemSubscriptions.cancelViewOMXItemSubscription(); 
                     accountViews.addressBook.viewAddressBook(null);
                     break;
                 case "returns":
@@ -1185,6 +1487,5 @@ function getQueryVariable(variable)
                 default:
               } 
         }
-
     });
 });

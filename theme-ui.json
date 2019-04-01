@@ -787,6 +787,38 @@
                     "fieldLabel": "Google Tag Manager Key"
                 }
             ]
+        }, 
+        {
+            "xtype": "panel",
+            "title": "Auto Replanishment",
+            "collapsed": false,
+            "items": [
+                {
+                    "fieldLabel": "Enable AutoReplanishment",
+                    "xtype": "mz-input-checkbox",
+                    "name": "autoReplenishmentEnable"
+                }, 
+                {
+                    "fieldLabel": "Enable AutoReplanishment Key 1",
+                    "xtype": "mz-input-text",
+                    "name": "autoReplenishment_1"
+                }, 
+                {
+                    "fieldLabel": "Enable AutoReplanishment Key 2",
+                    "xtype": "mz-input-text",
+                    "name": "autoReplenishment_2"
+                }, 
+                {
+                    "fieldLabel": "Enable AutoReplanishment Key 3",
+                    "xtype": "mz-input-text",
+                    "name": "autoReplenishment_3"
+                }, 
+                {
+                    "fieldLabel": "Enable AutoReplanishment Key 4",
+                    "xtype": "mz-input-text",
+                    "name": "autoReplenishment_4"
+                }
+            ]
         }
     ]
 }
