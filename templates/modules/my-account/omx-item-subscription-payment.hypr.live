@@ -1,6 +1,6 @@
 <div class="mz-paymentsummary">
     {% if not editing.nextOrderPayment %}
-        <div class="mz-payment-total col-xs-12"><span class="mz-payment-total-summary">{{ labels.orderStatusPaymentTotal|string_format(model.totalAmount) }} </span><span class="mz-payment-summary-name">{{model.nameOnCard}}</span></div>
+        <div class="mz-payment-total col-xs-12 nopaddingleft"><span class="mz-payment-total-summary">{{ labels.orderStatusPaymentTotal|string_format(model.totalAmount) }} </span><span class="mz-payment-summary-name">{{model.nameOnCard}}</span></div>
     {% endif %}
     {% if editing.nextOrderPayment %}
         <div class="col-xs-2 nopaddingleft mz-address-radio form-row">
@@ -10,7 +10,7 @@
     {% endif %}
 
 
-    <div class="col-xs-4">
+    <div class="col-xs-4 nopaddingleft">
         <strong class="mz-paymentmethod-methodtype">
         <img src="/resources/images/icons/payment/CC-icons_{{model.cardType}}.png" alt="{{ model.cardType }}">
         </strong>
@@ -21,7 +21,7 @@
     </div>
 
      {% if not editing.nextOrderPayment && model.sameAddress %}
-        <div class="mz-billTo-wrapper-same-shipping col-xs-12">
+        <div class="mz-billTo-wrapper-same-shipping col-xs-12 nopaddingleft">
             <span class="mz-billTo-wrapper-same-shipping-title"><b>{{ labels.orderStatusBillingAddress }}: </b></span>
             <span>{{ labels.orderStatusSameBillingAddress }}</span>
         </div>                            

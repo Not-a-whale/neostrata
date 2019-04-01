@@ -1831,16 +1831,34 @@
             }
         }
 
+        .omx-next-order-shipping-list {
+            @media (max-width: 991px) {
+                .mz-addresssummary {
+                    text-align: center;
+                }
+            }
+        }
+
+        .omx-next-order-payment-list {
+            .mz-payment-total {
+                margin-bottom: 1.8rem;
+            }
+            .mz-billTo-wrapper-same-shipping {
+                margin-top: 1.8rem;
+            }
+            
+            .mz-paymentmethod-methodtype img {
+                max-width: 100%;
+            }
+        }
+
         /* Shipping Information  & Payment Information */
         .omx-next-order-shipping-list, .omx-next-order-payment-list {
             display: inline-block;
-            width: 100%;
             vertical-align: top;
-            /* padding: 0 0 4rem; */
             margin-left: 0;
             margin-right: auto;
             position: relative;
-            
             
             .mz-l-stack-sectiontitle {
                 font-size: 1.8rem;
@@ -1908,6 +1926,10 @@
                     text-align: center;
                 }
                 .mz-button { 
+                    &.mz-contact-cancel {
+                        text-transform: uppercase !important;
+                    }
+
                     @media (min-width: 992px) {
 
                         margin: 0 auto;
