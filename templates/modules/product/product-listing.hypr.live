@@ -47,18 +47,14 @@
     {% endif %}
 {% endblock product-extrainfo %}
         </div>
-        {% if model.purchasableState.isPurchasable %}
-        {% else %}
-        <div class="outOfStock">{{ labels.outOfStock }}</div>
-        {% endif %}
     </div>
     <div class="bottom-details">
         <div id="BVRRInlineRating-{{model.productCode}}" class="pdp5 bvr-inline-rating" data-mz-product-code="{{ model.productCode }}" data-bv-product-code="{{apicontext.headers.x-vol-locale}}-{{ model.productCode }}" data-mz-product-url="{{ model.url }}"></div>
         {% include "modules/product/listing-price-stack" %}
     </div>
 {% if themeSettings.commerceEnabled %}
-    {% if model.purchasableState.isPurchasable %}
     <div class="mz-productdetail-conversion-buttons col-xs-12">
+    {% if model.purchasableState.isPurchasable %}
         <div class="add-to-wishlist-container">
             {% if siteContext.generalSettings.isWishlistCreationEnabled %}
                 {% if model.purchasableState.isPurchasable and model.options.length < 1 %}
@@ -77,7 +73,10 @@
             <button id="add-to-cart-{{ model.productCode }}" class="primary-btn mz-productdetail-addtocart font-large button_primary pull-right {% if not model.purchasableState.isPurchasable %}button_disabled{% endif %}" data-mz-action="directoryAddToCart" data-mz-product-code="{{ model.productCode }}">{{ labels.addToCart }}</button>
         {% endif %}
         </div>
-    </div>
+    {% else %}
+        <div class="outOfStock">{{ labels.outOfStock }}</div>
+        <button id="email-me-{{ model.productCode }}" class="primary-btn mz-productdetail-emailme pull-center" data-mz-action="directoryEmailMe" data-mz-product-code="{{ model.productCode }}" data-mz-location-code="{{ model.productCode }}">{{ labels.notifyWidgetButton }}</button>
     {% endif %}
+    </div>`
 {% endif %}
 </div>

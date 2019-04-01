@@ -55,9 +55,12 @@ require([
                             });
                         } else if (isROIWidget) {
                             var order = OrderModels.Order.fromCurrent().attributes;
-
+                            var orderId = order.orderNumber;                          
+                            order.attributes.forEach(function(attribute){
+                                if (attribute.fullyQualifiedName == "tenant~omx_order_number" && attribute.values.length) orderId = attribute.values[0];
+                            });
                             var bvOrder = {};
-                            bvOrder.orderId = order.orderNumber;
+                            bvOrder.orderId = orderId;
                             bvOrder.tax = order.taxTotal;
                             bvOrder.shipping = order.shippingTotal;
                             bvOrder.total = order.total;

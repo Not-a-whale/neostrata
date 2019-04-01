@@ -86,6 +86,7 @@ require(["modules/jquery-mozu",
                 }
             }
             /*
+            $('.mz-formstep-next').data( "currentStepId", currentStepId );
             if(currentStepId == 'step-shipping-address' && $('#step-customer-info').hasClass('is-current')){ //we are on the last step but fist is-current? let's adjust all steps
                 this.$el.siblings().removeClass('is-current');
                 $('#step-customer-info').addClass('is-current');
@@ -181,7 +182,7 @@ require(["modules/jquery-mozu",
         ],
         initialize: function () {
             var freeShippingMethod = false;
-            var shippingDiscounts = this.model.get('shippingDiscounts');  
+            var shippingDiscounts = this.model.get('shippingDiscounts');
             this.model = this.model.get('fulfillmentInfo');
             if(shippingDiscounts && shippingDiscounts.length){
                 shippingDiscounts.forEach(function(discount){
@@ -200,7 +201,7 @@ require(["modules/jquery-mozu",
 
             if(!this.model.get('freeShippingMethod')){
                 var freeShippingMethod = false;
-                var shippingDiscounts = window.checkoutViews.parentView.model.get('shippingDiscounts');    
+                var shippingDiscounts = window.checkoutViews.parentView.model.get('shippingDiscounts');
                 if(shippingDiscounts && shippingDiscounts.length){
                 shippingDiscounts.forEach(function(discount){
                     if(discount.methodCode) freeShippingMethod = discount.methodCode;
@@ -208,7 +209,7 @@ require(["modules/jquery-mozu",
             }
             this.model.set('freeShippingMethod', freeShippingMethod);
             }
-            
+
             CheckoutStepView.prototype.render.apply(this, arguments);
             $('.selectpicker').selectpicker();
         }

@@ -221,6 +221,8 @@
     "emailOpening": "<p> Hallo {0} </ p>",
     "emailOpeningAlternative": "<p> Hallo! </ p>",
     "emailClosing": "<p> freundlichen Grüßen, <br /> <br /> Kundenservice </ br> {0} </ p>",
+    "instocknotificationsRequestedGuest": "You need to be logged to be notified.",
+    "instocknotificationsRequested": "We will email you when this product is back in stock.",
     "inStockBlob1": "<p> Danke für den Einkauf bei {0}! Wir haben gute Nachrichten für Sie - wir haben jetzt die folgenden Artikel (s) auf Lager   : </ p>",
     "inStockBlob2": "<p>, die Einzelteile in den Warenkorb legen   : <a href = \"",
     "orderShipped": "Ihre Bestellung versandt wurde",

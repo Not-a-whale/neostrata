@@ -186,6 +186,39 @@ define(["modules/jquery-mozu", "underscore", "modules/backbone-mozu", "hyprlive"
                 }
             });
         },
+        emailMe: function() {
+            var me = this;
+            this.whenReady(function() {
+                if (!me.validate()) {
+                    var productCode = me.get('productCode');
+                    var user = me.get('user');
+                    if(user && user.accountId !== ''){
+                        if(productCode && productCode !== ''){
+                           api.request('GET', '/api/commerce/instocknotifications/?filter=email+eq+'+user.email+'+and+productCode+eq+'+productCode).then(function(instocknotificationsItemsResponse) {
+                                if(instocknotificationsItemsResponse.totalCount){
+                                    $('#email-me-'+productCode).addClass('requested').html(Hypr.getLabel('instocknotificationsRequested')).attr("disabled", "disabled");
+                                }else{
+                                    api.create('instockrequest', {
+                                        email: user.email,
+                                        customerId: user.accountId,
+                                        userId: user.userId,
+                                        productCode: productCode,
+                                        locationCode: me.get('inventoryInfo').onlineLocationCode
+                                    }).then(function (response) {
+                                        $('#email-me-'+productCode).addClass('requested').html(Hypr.getLabel('instocknotificationsRequested')).attr("disabled", "disabled");
+                                    }, function (res) {
+                                        console.log(res.message);
+                                        console.log(Hypr.getLabel('notifyWidgetError'));
+                                    });
+                                }                    
+                           });                    
+                       }                   
+                    }else{
+                        $('#email-me-'+productCode).addClass('requested').html(Hypr.getLabel('instocknotificationsRequestedGuest')).attr("disabled", "disabled");
+                    }                    
+                }
+            });
+        },        
         addToCartForPickup: function(locationCode, locationName, quantity) {
             var me = this;
             this.whenReady(function() {
