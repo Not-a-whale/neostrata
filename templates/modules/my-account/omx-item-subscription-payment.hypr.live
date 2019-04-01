@@ -1,10 +1,11 @@
-<div class="row">
+<div class="mz-paymentsummary">
     {% if not editing.nextOrderPayment %}
-        <div class="mz-payment-total"><span class="ms-payment-total-summary">{{ labels.orderStatusPaymentTotal|string_format(model.totalAmount) }} </span><span class="mz-payment-summary-name">{{model.nameOnCard}}</span></div>
+        <div class="mz-payment-total col-xs-12"><span class="mz-payment-total-summary">{{ labels.orderStatusPaymentTotal|string_format(model.totalAmount) }} </span><span class="mz-payment-summary-name">{{model.nameOnCard}}</span></div>
     {% endif %}
     {% if editing.nextOrderPayment %}
-        <div class="col-xs-2">
-            <input type="radio" name="nextOrderPayment" data-mz-autoreplanish-radio data-mz-autoreplanish-id="{{model.id}}" {% if not model.id %} checked {% endif %} /> 
+        <div class="col-xs-2 nopaddingleft mz-address-radio form-row">
+            <input type="radio" id="paymentCartd_{{model.id}}" name="nextOrderPayment" data-mz-autoreplanish-radio data-mz-autoreplanish-id="{{model.id}}" {% if not model.id %} checked {% endif %} /> 
+            <label class="icon-dot form-element" for="paymentCartd_{{model.id}}"></label>
         </div>
     {% endif %}
 
@@ -15,12 +16,12 @@
         </strong>
     </div>
     <div class="col-xs-6">
-        <div class="mz-paymentmethod-cardnumber">{{ labels.endingIn }} {{ model.cardNumberPart|replace("*") }}</div>
+        <div class="mz-paymentmethod-cardnumber"><span class="mz-paymentmethod-cardnumber-label">{{ labels.endingIn }} </span> {{ model.cardNumberPart|replace("*") }}</div>
         <div class="mz-paymentmethod-cardexp">{{ labels.expires }} {{ model.expireMonth }}/{{model.expireYear }}</div>
     </div>
 
      {% if not editing.nextOrderPayment && model.sameAddress %}
-        <div class="mz-billTo-wrapper-same-shipping">
+        <div class="mz-billTo-wrapper-same-shipping col-xs-12">
             <span class="mz-billTo-wrapper-same-shipping-title"><b>{{ labels.orderStatusBillingAddress }}: </b></span>
             <span>{{ labels.orderStatusSameBillingAddress }}</span>
         </div>                            

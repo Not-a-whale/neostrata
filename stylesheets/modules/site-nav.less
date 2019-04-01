@@ -1831,12 +1831,12 @@
             }
         }
 
-        /* Shipping Information  */
-        .omx-next-order-shipping-list {
+        /* Shipping Information  & Payment Information */
+        .omx-next-order-shipping-list, .omx-next-order-payment-list {
             display: inline-block;
             width: 100%;
             vertical-align: top;
-            padding: 0 0 4rem;
+            /* padding: 0 0 4rem; */
             margin-left: 0;
             margin-right: auto;
             position: relative;
@@ -1856,12 +1856,16 @@
                 line-height: 1.5;
                 font-size: 1.875rem;
             }  
-            .mz-addresssummary {
+            .mz-addresssummary, .mz-paymentsummary {
                 padding: 2rem 0;
                 float: none;
                 border-bottom: 2px solid #e1e1e1;
                 width: 100%;
                 float: left;
+
+                .mz-paymentmethod-cardnumber-label, .mz-payment-total-summary {
+                    font-weight: 700;
+                }
 
                 .address-customer-name {
                     font-weight: 700;
@@ -1896,7 +1900,8 @@
                 }
             }
             .mz-contact-actions {
-                padding-top: 1rem; 
+                padding-top: 3rem;
+                clear: both;
 
                 @media (min-width: 992px) {
                     margin: 0 auto;
