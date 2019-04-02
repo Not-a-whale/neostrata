@@ -82,11 +82,11 @@ require([
                             bvOrder.state = address.stateOrProvince;
                             bvOrder.country = address.countryCode;
                             var items = [];
-                            var item = {};
-
+                            var skuPrefix = Api.context.locale+'-'; // {'en-US-', 'en-CA-', 'fr-CA-'}
                             for (var i = 0; i < order.items.models.length; i++) {
+                                var item = {};
                                 var lineItem = order.items.models[i].attributes;
-                                item.sku = lineItem.product.attributes.productCode;
+                                item.sku = skuPrefix+lineItem.product.attributes.productCode;
                                 item.name = lineItem.product.attributes.name;
                                 if (lineItem.product.attributes.categories.length > 0) {
                                     item.category = lineItem.product.attributes.categories[0].id;
