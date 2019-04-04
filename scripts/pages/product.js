@@ -130,8 +130,36 @@
             "click [data-mz-qty-plus]": "quantityPlus",
             "change .mz-productdetail-qty": "updateQty",
             'mouseenter .color-options': 'onMouseEnterChangeImage',
-            'mouseleave .color-options': 'onMouseLeaveResetImage'
+            'mouseleave .color-options': 'onMouseLeaveResetImage',
+            "change [data-mz-autoreplanish-radio]": "handleAutoshipOption", 
+            "change [data-mz-autoreplanish]": "handleAutoshipFrequency"
         },
+
+        handleAutoshipOption: function(e){
+            var self = this,
+                $target = $(e.currentTarget), 
+                selectedOption = $target.val(), 
+                dataValue = ''; 
+
+            if (selectedOption != "0") {
+                var autoReplanishCode = $('#mz_pdp_autoship_code_'+$target.parent().data('mzProductCode')).find(":selected").val(); 
+                dataValue = {
+                    autoReplanishCode : autoReplanishCode
+                }; 
+            }
+            this.model.set('data', dataValue);
+        },
+        handleAutoshipFrequency: function(e){
+            var self = this;
+            var $target = $(e.currentTarget);
+            var autoReplanishCode = $target.val(); 
+            var dataValue = {
+                autoReplanishCode : autoReplanishCode
+            }; 
+            this.model.set('data', dataValue );
+        },
+    
+        
         render: function() {
             var me = this;
             var id = Hypr.getThemeSetting('oneSizeAttributeName'),
@@ -574,8 +602,22 @@
             initslider_mobile();
         },
         initialize: function() {
-            // handle preset selects, etc
-            var me = this;
+           // handle preset selects, etc
+            var me = this,                 
+                autoReplahishPropName = Hypr.getThemeSetting('autoReplanishmentRecomendedInterval');            
+
+            var attributeValue = _.find(this.model.get('properties'), function (prop) { 
+                return prop.attributeFQN == autoReplahishPropName; 
+            });
+
+            var value; 
+            if (attributeValue) {
+                value = {            
+                    autoReplanishCode : attributeValue.values[0].stringValue
+                };
+                this.model.set('data', value); 
+            }
+
             //create div for family members
             if(this.model.get('family').models.length){
                 for(var i=0; i < this.model.get('family').models.length; i++){
