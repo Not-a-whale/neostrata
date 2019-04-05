@@ -1,12 +1,26 @@
 {% if model.config.linkTitle %}
-<div class="wishlist-item-count">
+<div class="wishlist-item-count-wrapper">
+<picture class="background-full-image">
+    <!-- IMAGE FOR LARGE VIEWPORTS -->
+    <source srcset="/cms/files/homepage_wishlist_background_desktop.jpg" media="(min-width: 769px)">
+    <!-- IMAGE FOR SMALL VIEWPORTS -->
+    <img src="/cms/files/homepage_wishlist_background_mobile.jpg" alt="{{model.config.title}}">
+</picture>
+<div class="wishlist-item-count home-main-content right">
   <div class="wishlist-item-count-title">{{model.config.title}}</div>
-  <div class="heart">
-    <div class="count-number"><span class="wishNumber">0</span><br />{{ labels.wishlistItems }}</div>
+  
+  <div class="heart-wrapper">
+      <div class="heart-icon">
+          <i class="glyphicon glyphicon-heart"></i>
+      </div>
+      <div class="count-number">
+        <span class="wishNumber">0</span>{{ labels.wishlistItems }}
+      </div>
   </div>
   <div class="link">
-    <a href="/myaccount?sec=wishlist">{{model.config.linkTitle}}</a>
+    <a class="primary-btn" href="/myaccount?sec=wishlist">{{model.config.linkTitle}}</a>
   </div>
+</div>
 </div>
 {% require_script "widgets/homepage/wishlist-item-count" %}
 {% endif %}
