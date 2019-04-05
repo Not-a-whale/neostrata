@@ -156,7 +156,14 @@
                           {% endwith %}
                         </div>
                         <div class="mz-carttable-item-info-wrap mz-reset-padding-right">
-                          <div class="mz-carttable-item-title" >{{ item.product.name |safe }}</div>
+                            <div class="mz-carttable-item-title" >{{ item.product.name |safe }}</div>
+                            {% if item.data && item.data.autoreplanishmentCode %}
+                                {% with "autoReplenishment_X"|replace("X", item.data.autoreplanishmentCode) as autoReplenishmentCode %}
+                                {% with themeSettings|prop(autoReplenishmentCode) as evalValue %}
+                                    <div class="mz-carttable-item-frequency" id="{{evalValue}}" >{{ evalValue }} </div>
+                                {% endwith %}
+                                {% endwith %}
+                            {% endif %}
                         </div>
                       </div>
                       <div class="clearfix visible-xs mz-print-hide"></div>
