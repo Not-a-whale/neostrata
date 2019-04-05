@@ -111,7 +111,8 @@ define([
                 // if an a product was added put it in the model so it can be shown in the Global Cart
                 var lastMessage = resp.data.changeMessages && resp.data.changeMessages.slice(-1)[0];
                 if (lastMessage && (lastMessage.subject == 'Item Added' ||
-                  (lastMessage.subject == 'Product Quantity Change' && lastMessage.verb == 'Increased'))) {
+                  (lastMessage.subject == 'Product Quantity Change' && lastMessage.verb == 'Increased') ||
+                  (lastMessage.subject == 'Item Updated' && lastMessage.verb == 'Updated'))) {
                     var lastProductAddedCode = lastMessage.metadata[0].productCode;
                     var lastProductAdded = resp.data.items.find( function(item) {
                       return (item.product.productCode == lastProductAddedCode);
