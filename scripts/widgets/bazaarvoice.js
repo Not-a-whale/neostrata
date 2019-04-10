@@ -90,11 +90,11 @@ require([
                                 item.name = lineItem.product.attributes.name;
                                 if (lineItem.product.attributes.categories.length > 0) {
                                     item.category = lineItem.product.attributes.categories[0].id;
-                                    item.price = (lineItem.total / lineItem.quantity);
+                                    item.price = lineItem.unitPrice.extendedAmount; // (lineItem.total / lineItem.quantity);
                                 }
                                 item.quantity = lineItem.quantity;
                                 if (lineItem.product.attributes.imageUrl !== null) {
-                                    item.imageURL = 'https:'+lineItem.product.attributes.imageUrl;
+                                    item.imageURL = window.location.protocol+lineItem.product.attributes.imageUrl;
                                 }
                                 items[i] = item;
                             }
