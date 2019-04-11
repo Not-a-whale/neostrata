@@ -142,12 +142,13 @@
                 dataValue = ''; 
 
             if (selectedOption != "0") {
-                var autoReplanishCode = $('#mz_pdp_autoship_code_'+$target.parent().data('mzProductCode')).find(":selected").val(); 
+                var autoReplanishCode = $('#mz_pdp_autoship_code').find(':selected').val(); //$('#mz_pdp_autoship_code_'+$target.parent().data('mzProductCode')).find(":selected").val(); 
                 dataValue = {
                     autoReplanishCode : autoReplanishCode
                 }; 
             }
             this.model.set('data', dataValue);
+            this.render(); 
         },
         handleAutoshipFrequency: function(e){
             var self = this;
@@ -610,10 +611,12 @@
                 return prop.attributeFQN == autoReplahishPropName; 
             });
 
+            /* Initialize the autoRep value to def */
             var value; 
             if (attributeValue) {
                 value = {            
-                    autoReplanishCode : attributeValue.values[0].stringValue
+                    autoReplanishCode : attributeValue.values[0].stringValue, 
+                    isFirst : true
                 };
                 this.model.set('data', value); 
             }
@@ -671,6 +674,8 @@
             $('.mz-product-detail-tabs').remove();
 
         var product = ProductModels.Product.fromCurrent();
+        product.set('data.isFirst', true); 
+
         product.on('addedtocart', function(cartitem) {
             var breadcrumbCategories = require.mozuData('breadcrumbCategories');
             var category = _.find(product.get('categories'), function (cat) { return cat.categoryId == breadcrumbCategories.slice(-1)[0] ; });

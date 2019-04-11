@@ -28,16 +28,25 @@
   {% if themeSettings.commerceEnabled && themeSettings.autoReplenishmentEnable && model.productType != themeSettings.familyProductType %}
     {% if  model|get_product_attribute(themeSettings.autoReplanishmentMonthInterval) %}
       <div class="mz-autoShip-wrapper">
-        <div class="mz-autoship-content col-xs-12 text-left row">
+          <div class="mz-autoship-content col-xs-12 text-left row">
+              <div class="mz-autoship-radio form-row">
+                <input data-mz-autoreplanish-radio type="radio" name="{{model.productCode}}_autoShipRadio" id="{{model.productCode}}_autoShipRadio_0" value="0"  {% if model.data.isFirst || not model.data.autoReplanishCode %} checked {% endif %}/> 
+                <label class="icon-dot form-element" for="{{model.productCode}}_autoShipRadio_0">
+                    {{labels.oneTimePurchase}}
+                </label>              
+              </div>
+          </div>
+  
+          <div class="mz-autoship-content col-xs-12 text-left row">
             <div class="mz-autoship-radio form-row">
-              <input data-mz-autoreplanish-radio type="radio" name="{{model.productCode}}_autoShipRadio" id="{{model.productCode}}_autoShipRadio_1"  value="1" {% if model.data %} checked {% endif %}/> 
+              <input data-mz-autoreplanish-radio type="radio" name="{{model.productCode}}_autoShipRadio" id="{{model.productCode}}_autoShipRadio_1"  value="1" {% if (model.data && model.data.autoReplanishCode && not model.data.isFirst) %} checked {% endif %}/> 
               <label class="icon-dot form-element" for="{{model.productCode}}_autoShipRadio_1">
                   {{labels.autoShipDelivery}}
               </label>
               <a class="dl-autoship-info" href="javascript:void(0);" onclick="jQuery('#autoShipDetails').show();"><i class="fa fa-question-circle"></i></a>
             </div> 
             <div class="col-xs-11 offset-xs-1 mz-autoship-infomsg">{{labels.autoShipDeliveryDiscount}} </div>
-            <div id="autoshipDropDown" class="col-xs-11 offset-xs-1 custom-select-wrapper">  
+            <div id="autoshipDropDown" class="col-xs-11 offset-xs-1 custom-select-wrapper   {% if model.data.isFirst || not model.data.autoReplanishCode %} hidden {% endif %}" >  
                 <select data-mz-autoreplanish class="select selectpicker mz-autoship-dropdown" id="mz_pdp_autoship_code" style="display:none;">
                 {% with model|get_product_attribute(themeSettings.autoReplanishmentRecomendedInterval) as recommendedIntervals %}
                     {% if recommendedIntervals %}
@@ -65,24 +74,16 @@
                 {% endwith %}
                 </select>
             </div>
-        </div>
-        <div class="mz-autoship-content col-xs-12 text-left row">
-            <div class="mz-autoship-radio form-row">
-              <input data-mz-autoreplanish-radio type="radio" name="{{model.productCode}}_autoShipRadio" id="{{model.productCode}}_autoShipRadio_0" value="0"  {% if not model.data %} checked {% endif %}/> 
-              <label class="icon-dot form-element" for="{{model.productCode}}_autoShipRadio_0">
-                  {{labels.oneTimePurchase}}
-              </label>              
-            </div>
-        </div>
-        <div class="ml-auto-ship " id="autoShipDetails" style="display: none;">
-            <a class="dl-autoship-close" href="javascript:void(0);" onclick="jQuery('#autoShipDetails').hide();"></a>
-            <span style="font-size: 18px; font-weight: bold;">{{labels.autoReplenishment}}</span><br><br>
-            {{labels.autoReplenishmentHowItWorks}}<br><br>
-            <ol> 
-                {{labels.autoReplenishmentContent|safe}}
-            </ol>
-        </div>
-    </div>
+          </div>
+          <div class="ml-auto-ship " id="autoShipDetails" style="display: none;">
+              <a class="dl-autoship-close" href="javascript:void(0);" onclick="jQuery('#autoShipDetails').hide();"></a>
+              <span style="font-size: 18px; font-weight: bold;">{{labels.autoReplenishment}}</span><br><br>
+              {{labels.autoReplenishmentHowItWorks}}<br><br>
+              <ol> 
+                  {{labels.autoReplenishmentContent|safe}}
+              </ol>
+          </div>
+      </div>
     {% endif %}
   {% endif %}
 

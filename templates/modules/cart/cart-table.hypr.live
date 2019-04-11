@@ -105,6 +105,15 @@
             {% if  item.product|get_product_attribute(themeSettings.autoReplanishmentMonthInterval) %}
             <div class="mz-autoShip-wrapper col-xs-12 nopaddingleft">
                 <div class="mz-autoship-content col-xs-12 pull-left nopaddingleft">
+                    <div class="mz-autoship-radio form-row" data-mz-product-code="{{ item.product.productCode }}" data-mz-item-id="{{ item.id }}">
+                      <input data-mz-autoreplanish-radio type="radio" name="{{item.product.productCode}}_autoShipRadio" id="{{item.product.productCode}}_autoShipRadio_0" value="0" {% if not item.data || item.data == "" %} checked {% endif %} /> 
+                      <label class="icon-dot form-element" for="{{item.product.productCode}}_autoShipRadio_0">
+                        {{labels.oneTimePurchase}}
+                      </label>  
+                    </div>
+                </div>
+
+                <div class="mz-autoship-content col-xs-12 pull-left nopaddingleft">
                     <div class="mz-autoship-radio form-row" data-mz-product-code="{{item.product.productCode}}" data-mz-item-id="{{ item.id }}" >
                       <input data-mz-autoreplanish-radio type="radio" name="{{item.product.productCode}}_autoShipRadio" id="{{item.product.productCode}}_autoShipRadio_1"  value="1" {% if item.data && item.data.autoreplanishmentCode %} checked {% endif %} /> 
                       <label class="icon-dot form-element" for="{{item.product.productCode}}_autoShipRadio_1">
@@ -139,14 +148,6 @@
                             {% endif %}
                         {% endwith %}
                         </select>
-                    </div>
-                </div>
-                <div class="mz-autoship-content col-xs-12 pull-left nopaddingleft">
-                    <div class="mz-autoship-radio form-row" data-mz-product-code="{{ item.product.productCode }}" data-mz-item-id="{{ item.id }}">
-                      <input data-mz-autoreplanish-radio type="radio" name="{{item.product.productCode}}_autoShipRadio" id="{{item.product.productCode}}_autoShipRadio_0" value="0" {% if not item.data || item.data == "" %} checked {% endif %} /> 
-                      <label class="icon-dot form-element" for="{{item.product.productCode}}_autoShipRadio_0">
-                        {{labels.oneTimePurchase}}
-                      </label>  
                     </div>
                 </div>
             </div>

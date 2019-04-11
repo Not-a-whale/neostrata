@@ -740,9 +740,9 @@
   "autoShipDeliveryDiscount" : "[fr-CA]Free Shipping, easily cancel online any time.[fr-CA]", 
   "deliveryEvery" : "[fr-CA]Delivery every {0} days[fr-CA]", 
   "recommendedFrequently" : "[fr-CA](most common)[fr-CA]",
-  "autoReplenishment": "[fr-CA]Auto Replenishment[fr-CA]",
+  "autoReplenishment": "[fr-CA]Subscribe and Save[fr-CA]",
   "autoReplenishmentHowItWorks": "[fr-CA]How it works:[fr-CA]",
-  "autoReplenishmentContent": "[fr-CA]<li>Shop your favorite products and select the Auto Replenishment option</li><li>Manage your delivery frequency by selecting how often you would like to receive your product</li><li>Save 10% &amp; receive free shipping on every Auto Replenishment order</li><li>Get an email reminder before each delivery ships from our warehouse</li><li>Adjust or cancel your next scheduled delivery in My Account. Changes must be made at least 3 days prior to your next scheduled order date.</li>[fr-CA]", 
+  "autoReplenishmentContent": "[fr-CA]<li>Shop your favorite products and select the subscribe and save option</li><li>Manage your delivery frequency by selecting how often you would like to receive your product</li><li>Save 10% &amp; receive free shipping on every subscribe and saves order</li><li>Get an email reminder before each delivery ships from our warehouse</li><li>Adjust or cancel your next scheduled delivery in My Account. Changes must be made at least 3 days prior to your next scheduled order date.</li>[fr-CA]", 
 
   "subscriptionNextOrders"        : "[fr-CA]Next Order[fr-CA]", 
   "subscriptionAllSubscriptions"  : "[fr-CA]All Subscriptions[fr-CA]", 
@@ -762,7 +762,7 @@
   "subscriptionActionTypeUpdateFrequency": "[fr-CA]Select an Action[fr-CA]", 
   "subscriptionsViewInfo"       : "[fr-CA]Track, Return or Buy Again[fr-CA]",
   "subscriptionsCount": "[fr-CA]Items[fr-CA]",
-  "subscriptionsViewSubTitle": "[fr-CA]Subscription changes must be made at least one day prior to the next shipment date. If you would like to update your credit card information click here. If you would like to remove a product from Auto Replenishment, please contact Customer Service at 1-800-225-9411.[fr-CA]",
+  "subscriptionsViewSubTitle": "[fr-CA]Subscription changes must be made at least one day prior to the next shipment date. If you would like to update your credit card information click here. If you would like to remove a product from subscribe and save, please contact Customer Service at 1-800-225-9411.[fr-CA]",
   "accountNoSubscriptions"      : "[fr-CA]You have not placed any subscription.[fr-CA]",
   "subscriptionInfo": "[fr-CA]Review all subscription items placed with us using this account[fr-CA]"
 
