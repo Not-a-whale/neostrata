@@ -46,7 +46,7 @@
               <a class="dl-autoship-info" href="javascript:void(0);" onclick="jQuery('#autoShipDetails').show();"><i class="fa fa-question-circle"></i></a>
             </div> 
             <div class="col-xs-11 offset-xs-1 mz-autoship-infomsg">{{labels.autoShipDeliveryDiscount}} </div>
-            <div id="autoshipDropDown" class="col-xs-11 offset-xs-1 custom-select-wrapper   {% if model.data.isFirst || not model.data.autoReplanishCode %} hidden {% endif %}" >  
+            <div id="autoshipDropDown" class="col-xs-11 offset-xs-1 custom-select-wrapper {% if model.data.isFirst || not model.data.autoReplanishCode %} hidden {% endif %}" >  
                 <select data-mz-autoreplanish class="select selectpicker mz-autoship-dropdown" id="mz_pdp_autoship_code" style="display:none;">
                 {% with model|get_product_attribute(themeSettings.autoReplanishmentRecomendedInterval) as recommendedIntervals %}
                     {% if recommendedIntervals %}
