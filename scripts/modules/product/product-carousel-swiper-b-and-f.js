@@ -1,6 +1,7 @@
 ﻿define(['shim!vendor/typeahead.js/typeahead.bundle[modules/jquery-mozu=jQuery]>jQuery', 'swiper'], function($, Swiper) {
     var swiper = new Swiper('#swiper-b-and-f', {
         slidesPerView: 2,
+        slidesPerGroup: 2,
         spaceBetween: 0,
         loop: false,
 		navigation: {
