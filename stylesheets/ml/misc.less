@@ -249,7 +249,15 @@
                 }
                 .popover{
                     left: 0px;
-                    .arrow{left: 50% !important;}
+                    .arrow{
+                        left: 44% !important;
+                        @media (max-width: 1250px) {
+                            left: 41% !important;
+                        }
+                        @media (max-width: 991px) {
+                            left: 49% !important;
+                        }
+                    }
                     .popover-content{
                         width: 17.5rem;
                         padding: 9px 10px;
