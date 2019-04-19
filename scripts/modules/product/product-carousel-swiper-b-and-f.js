@@ -12,7 +12,6 @@
             el: '.swiper-pagination',
             clickable: true,
         },
-        slidesPerGroup: 2,
         breakpoints: {
             1024: {
                 slidesPerView: 2
