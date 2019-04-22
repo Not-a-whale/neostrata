@@ -1629,8 +1629,8 @@ define([
 
                     else if (me.get('total') === 0) {
                         me.trigger('complete');
-                    } else {    
-                        var retText = '<div class="promoCodeApplied">' + Hypr.getLabel('promoCodeApplied', code, allDiscounts[0].discount.name) + '</div><div class="addNewCoupon"><span class="glyphicon-plus"></span>  '+ Hypr.getLabel('addNewPromoCode') +'</div>';
+                    } else {
+                        var retText = '<div class="promoCodeApplied">' + Hypr.getLabel('promoCodeApplied', code, allDiscounts[0].discount.name) + '<span class="pull-right" id="removeCoupon"><span class="glyphicon-minus"></span>' + Hypr.getLabel('remove') + '</span></div><div class="addNewCoupon"><span class="glyphicon-plus"></span>  '+ Hypr.getLabel('addNewPromoCode') +'</div>';
                         setTimeout(function() {
                             $('#coupon-code-wrapper').hide();
                             document.getElementById('addNewPromoCode').innerHTML = retText;
