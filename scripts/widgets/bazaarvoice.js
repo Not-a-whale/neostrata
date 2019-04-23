@@ -7,9 +7,10 @@ require([
         "modules/backbone-mozu",
         "modules/models-product",
         "modules/api",
-        'modules/models-orders'
+        'modules/models-orders',
+        "underscore"
     ],
-    function($, Hypr, Backbone, ProductModels, Api, OrderModels) {
+    function($, Hypr, Backbone, ProductModels, Api, OrderModels,_) {
 
         $(document).ready(function() {
 
@@ -104,14 +105,40 @@ require([
                             $BV.container('global', {});
                         }
 
-                        var hash = {};
+      
+                        var hash = {};                     
+                        var dupIdx=0;
                         $('.bvr-inline-rating').each(function() {
                                 var $this = $(this);
                                 var productCode = $this.data('bvProductCode');
-                                hash[productCode] = {
-                                    url: $this.data('mzProductUrl'),
-                                    containerId: $this.attr('id')
-                                };
+                                if (hash[productCode]){
+                                    console.log(productCode);
+                                    //update id
+                                    var newId=$this.attr('id').replace("BVRRInlineRating","BVRRInlineRating"+dupIdx)+'__'+dupIdx;
+                                    $this.attr('id',newId);
+
+                                    var hashDup={};
+                                    hashDup[productCode]={
+                                        url: $this.data('mzProductUrl'),
+                                        containerId: $this.attr('id')
+
+                                    };
+
+                                    var dupProducts = {};
+                                    dupProducts.productIds = hashDup;
+                                    dupProducts.containerPrefix = "BVRRInlineRating"+dupIdx;
+
+                                    $BV.ui('rr', 'inline_ratings', dupProducts);
+
+                                    dupIdx++;
+
+                                 }else{   
+                                    hash[productCode] = {
+                                        url: $this.data('mzProductUrl'),
+                                        containerId: $this.attr('id')
+                                    };
+                                }
+
                         });
 
                         if (!jQuery.isEmptyObject(hash)) {
@@ -120,6 +147,16 @@ require([
                             products.containerPrefix = "BVRRInlineRating";
                             $BV.ui('rr', 'inline_ratings', products);
                         }
+
+
+                        
+              
+
+                                   
+
+                                    
+
+
                     })
                     .fail(function(jqxhr, settings, exception) {
                         console.log(jqxhr);
