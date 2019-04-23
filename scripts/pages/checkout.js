@@ -193,14 +193,14 @@ require(["modules/jquery-mozu",
                 if(!isPrimaryShippingContact){
                     if(this.customer && this.customer.get('contacts') && this.customer.get('contacts').length){ //checks if selected checkout address from customer's contacts list is default address
                         this.customer.get('contacts').forEach(function(contact){
-                            if(contact && contact.id == this.model.get('id') && contact.attributes.isPrimaryShippingContact) isPrimaryShippingContact = true;     
+                            if(contact && contact.id == this.model.get('id') && contact.attributes.isPrimaryShippingContact) isPrimaryShippingContact = true;
                         }, this);
                     }else{ // if new customer or customer without address then suggest unique address to default
                         isPrimaryShippingContact = true;
-                    }     
+                    }
                 }
-                this.model.get('address').set('isPrimaryShippingContact', isPrimaryShippingContact);                
-                this.model.set('isPrimaryShippingContact', isPrimaryShippingContact);                
+                this.model.get('address').set('isPrimaryShippingContact', isPrimaryShippingContact);
+                this.model.set('isPrimaryShippingContact', isPrimaryShippingContact);
             }
             CheckoutStepView.prototype.render.apply(this );
             $('.selectpicker').selectpicker();
@@ -770,7 +770,14 @@ require(["modules/jquery-mozu",
         _.invoke(checkoutViews.steps, 'initStepView');
 
         $checkoutView.noFlickerFadeIn();
+        $('#removeCoupon').click(function() {
+          // var sUrl = 'api/commerce/checkouts/{checkoutId}/coupons';
+          // api.request('DELETE', sUrl).then(function(res) {});
+          // this.apiRemoveCoupon(code).then(function(response){
+          //     me.trigger('couponremoved', code);
+          // });
 
+        });
 
     });
 });
