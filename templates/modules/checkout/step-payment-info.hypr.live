@@ -217,6 +217,8 @@
         <button type="button" class="mz-button primary-btn" data-mz-action="next">{{ labels.useThisPaymentInfo }}</button>
     </div>
 
+    {% comment %}
+    Ticket #NEO-1256: Re-Enable Paypal on checkout
     <div class="mz-l-formfieldgroup-row mz-paymentselector-externalworkflows">
         <div class="mz-l-formfieldgroup-cell">
         </div>
@@ -224,6 +226,7 @@
                 <img id="btn_xpressPaypal" class="p-button" alt="Check out with PayPal" role="button" src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png"/>
         </div>
     </div>
+    {% endcomment %}
 
 
 {% comment%}
