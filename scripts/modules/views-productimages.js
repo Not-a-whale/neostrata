@@ -18,7 +18,7 @@
         events: {
             'mouseenter [data-mz-productimage-thumb]': 'onMouseEnterChangeThumbImage',
             'mouseleave [data-mz-productimage-thumb]': 'onMouseLeaveResetThumbImage',
-            'click [data-mz-productimage-thumb]': 'switchImage'
+            'mousedown [data-mz-productimage-thumb]': 'switchImage'
         },
         initialize: function() {
             // preload images

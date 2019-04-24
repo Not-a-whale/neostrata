@@ -24,7 +24,9 @@
                 {% if model.isDefaultPayMethod %}
                     <div class="is-primary">{{ labels.defaultPayment }}</div>
                 {% else %}
-                    <div class="make-primary">{{ labels.makeDefault }}</div>
+                    <div class="make-primary">
+                        <a class="mz-paymentmethod-make-primary" href="javascript:;" data-mz-action="makePrimary" data-mz-payment-id="{{ model.id }}">{{ labels.makeDefault }}</a>
+                    </div>
                 {% endif %}
                 <div class="row">
                     <div class="col-xs-4">

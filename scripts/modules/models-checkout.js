@@ -380,7 +380,25 @@ define([
                 this.isLoading(true);
                 var order = this.getOrder();
                 if (order) {
-                    order.apiModel.update({ fulfillmentInfo: me.toJSON() })
+                    var fulfillmentInfo = me.toJSON();
+                    var customer = order.get('customer');         
+                    if(customer.get('contacts').length){
+                        customer.get('contacts').each(function(contact) {
+                            if(fulfillmentInfo.fulfillmentContact.isPrimaryShippingContact === true){
+                                var isPrimaryShippingContact = (contact.id == fulfillmentInfo.fulfillmentContact.id)? true : false;
+                                contact.set('isPrimaryShippingContact', isPrimaryShippingContact);
+                                contact.set('isShippingContact', isPrimaryShippingContact);
+                            }else{
+                                if(contact.id == fulfillmentInfo.fulfillmentContact.id){
+                                    contact.set('isPrimaryShippingContact', false);
+                                    contact.set('isShippingContact', false);
+                                }   
+                            }
+                        }); 
+                        customer.save();
+                    }
+                    
+                    order.apiModel.update({ fulfillmentInfo: fulfillmentInfo })
                         .then(function (o) {
                             var billingInfo = me.parent.get('billingInfo');
                             if (billingInfo) {
@@ -1217,7 +1235,8 @@ define([
                             cardType: obj.card.paymentOrCardType || obj.card.cardType,
                             cardNumber: obj.card.cardNumberPartOrMask || obj.card.cardNumberPart || obj.card.cardNumber,
                             id: obj.card.paymentServiceCardId || obj.card.id,
-                            isCardInfoSaved: obj.card.isCardInfoSaved || false
+                            isCardInfoSaved: obj.card.isCardInfoSaved || false,
+                            isDefaultPayMethod: obj.card.isDefaultPayMethod || false
                         }) : {},
                         purchaseOrder: obj.purchaseOrder || {},
                         check: obj.check || {}

@@ -8,7 +8,7 @@
   {% if not model.address.candidateValidatedAddresses %}
       <div class="mz-formstep-summary mz-addresssummary mz-checkoutform">
         {% if model.stepStatus == "complete"  %}
-          {% include "modules/common/address-summary" with showShippingDisabled="true" %}
+          {% include "modules/checkout/address-summary" with showShippingDisabled="true" %}
         {% endif %}
       </div>
     {% if model.stepStatus != "complete" %}
@@ -16,7 +16,7 @@
         {% if model.contacts %}
           {% include "modules/checkout/checkout-shipping-contact-selector" with editingContact=model %}
         {% else %}
-          {% include "modules/common/address-form" with countries=pageContext.shippingCountries states=pageContext.shippingStates %}
+          {% include "modules/checkout/address-form" with countries=pageContext.shippingCountries states=pageContext.shippingStates %}
         {% endif %}
       </div>
     {% endif %}
