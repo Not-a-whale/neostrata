@@ -7,9 +7,10 @@ require([
         "modules/backbone-mozu",
         "modules/models-product",
         "modules/api",
-        'modules/models-orders'
+        'modules/models-orders',
+        "underscore"
     ],
-    function($, Hypr, Backbone, ProductModels, Api, OrderModels) {
+    function($, Hypr, Backbone, ProductModels, Api, OrderModels,_) {
 
         $(document).ready(function() {
 
@@ -82,19 +83,22 @@ require([
                             bvOrder.state = address.stateOrProvince;
                             bvOrder.country = address.countryCode;
                             var items = [];
-                            var item = {};
-
+                            var skuPrefix = Api.context.locale+'-'; // {'en-US-', 'en-CA-', 'fr-CA-'}
                             for (var i = 0; i < order.items.models.length; i++) {
                                 var lineItem = order.items.models[i].attributes;
-                                item.sku = lineItem.product.attributes.productCode;
-                                item.name = lineItem.product.attributes.name;
+                                if(lineItem.unitPrice.extendedAmount === 0){
+                                    continue;
+                                }
+                                var item = {};
+                                item.sku = skuPrefix+lineItem.product.attributes.productCode;
+                                item.name = lineItem.product.attributes.name.toUpperCase();
                                 if (lineItem.product.attributes.categories.length > 0) {
                                     item.category = lineItem.product.attributes.categories[0].id;
-                                    item.price = lineItem.total;
+                                    item.price = lineItem.unitPrice.extendedAmount; // (lineItem.total / lineItem.quantity);
                                 }
                                 item.quantity = lineItem.quantity;
                                 if (lineItem.product.attributes.imageUrl !== null) {
-                                    item.imageURL = lineItem.product.attributes.imageUrl;
+                                    item.imageURL = window.location.protocol+lineItem.product.attributes.imageUrl;
                                 }
                                 items[i] = item;
                             }
@@ -104,14 +108,40 @@ require([
                             $BV.container('global', {});
                         }
 
-                        var hash = {};
+      
+                        var hash = {};                     
+                        var dupIdx=0;
                         $('.bvr-inline-rating').each(function() {
                                 var $this = $(this);
                                 var productCode = $this.data('bvProductCode');
-                                hash[productCode] = {
-                                    url: $this.data('mzProductUrl'),
-                                    containerId: $this.attr('id')
-                                };
+                                if (hash[productCode]){
+                                    console.log(productCode);
+                                    //update id
+                                    var newId=$this.attr('id').replace("BVRRInlineRating","BVRRInlineRating"+dupIdx)+'__'+dupIdx;
+                                    $this.attr('id',newId);
+
+                                    var hashDup={};
+                                    hashDup[productCode]={
+                                        url: $this.data('mzProductUrl'),
+                                        containerId: $this.attr('id')
+
+                                    };
+
+                                    var dupProducts = {};
+                                    dupProducts.productIds = hashDup;
+                                    dupProducts.containerPrefix = "BVRRInlineRating"+dupIdx;
+
+                                    $BV.ui('rr', 'inline_ratings', dupProducts);
+
+                                    dupIdx++;
+
+                                 }else{   
+                                    hash[productCode] = {
+                                        url: $this.data('mzProductUrl'),
+                                        containerId: $this.attr('id')
+                                    };
+                                }
+
                         });
 
                         if (!jQuery.isEmptyObject(hash)) {
@@ -120,6 +150,16 @@ require([
                             products.containerPrefix = "BVRRInlineRating";
                             $BV.ui('rr', 'inline_ratings', products);
                         }
+
+
+                        
+              
+
+                                   
+
+                                    
+
+
                     })
                     .fail(function(jqxhr, settings, exception) {
                         console.log(jqxhr);

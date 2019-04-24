@@ -58,6 +58,9 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
         newdisplayApiMessage: function (xhr) {
             //console.log(current);
             var msg = xhr.message || (xhr && xhr.responseJSON && xhr.responseJSON.message) || Hypr.getLabel('unexpectedError');
+            if(msg === 'Missing or invalid parameter: EmailAddress EmailAddress already associated with a login'){
+                msg = 'EmailAddress already associated with a login';
+            }
             $(current).parents('.tab-pane').find('[data-mz-role="popover-message"]').html('<span class="mz-validationmessage">' + msg + '</span>');
             //this.newdisplayMessage(current, (xhr.message || (xhr && xhr.responseJSON && xhr.responseJSON.message) || Hypr.getLabel('unexpectedError')));
         },

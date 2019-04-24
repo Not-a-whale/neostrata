@@ -67,6 +67,9 @@ require(["modules/jquery-mozu",
             var nextStep = currentStep.next();
             if(currentStepId == 'step-customer-info'){ //let's initialize, at least first element is-current
                 currentStep.addClass('is-current');
+                if(!$('#nextBtn').hasClass('disabled')){
+                  $('#nextBtn').addClass('disabled');
+                }
             }
             else{ // checking for previous steps status
                 if(previousStep.hasClass('is-current') || previousStep.hasClass('is-incomplete')){ //prev elements not complete? then neither this
@@ -90,6 +93,9 @@ require(["modules/jquery-mozu",
             if(currentStepId == 'step-shipping-address' && $('#step-customer-info').hasClass('is-current')){ //we are on the last step but fist is-current? let's adjust all steps
                 this.$el.siblings().removeClass('is-current');
                 $('#step-customer-info').addClass('is-current');
+                if(!$('#nextBtn').hasClass('disabled')){
+                  $('#nextBtn').addClass('disabled');
+                }
             }
 
             if(this.lastStep && this.lastStep == 'step-shipping-address'){
@@ -153,12 +159,25 @@ require(["modules/jquery-mozu",
             'address.addressType',
             'phoneNumbers.home',
             'contactId',
-            'email'
+            'email',
+            'address.isPrimaryShippingContact'
         ],
         renderOnChange: [
             'address.countryCode',
             'contactId'
     ],
+        initialize: function () {
+            var isPrimaryShippingContact = false;
+            if(this.customer && this.customer.get('contacts') && this.customer.get('contacts').length){ //checks if selected checkout address from customer's contacts list is default address
+                this.customer.get('contacts').forEach(function(contact){
+                    if(contact && contact.id == this.model.get('id') && contact.attributes.isPrimaryShippingContact) isPrimaryShippingContact = true;
+                }, this);
+            }else{ // if new customer or customer without address then suggest unique address to default
+                isPrimaryShippingContact = true;
+            }
+            this.model.get('address').set('isPrimaryShippingContact', isPrimaryShippingContact);
+            this.model.set('isPrimaryShippingContact', isPrimaryShippingContact);
+        },
         beginAddContact: function () {
             this.model.set('contactId', 'new');
         },
@@ -169,9 +188,22 @@ require(["modules/jquery-mozu",
             e.target.value= e.target.value.replace(/[^\d]/g,'');
         },
         render: function() {
-          console.log('Calling render', this);
-          CheckoutStepView.prototype.render.apply(this );
-          $('.selectpicker').selectpicker();
+            var isPrimaryShippingContact = this.model.get('address').get('isPrimaryShippingContact');
+            if(isPrimaryShippingContact == 'undefined'){
+                if(!isPrimaryShippingContact){
+                    if(this.customer && this.customer.get('contacts') && this.customer.get('contacts').length){ //checks if selected checkout address from customer's contacts list is default address
+                        this.customer.get('contacts').forEach(function(contact){
+                            if(contact && contact.id == this.model.get('id') && contact.attributes.isPrimaryShippingContact) isPrimaryShippingContact = true;     
+                        }, this);
+                    }else{ // if new customer or customer without address then suggest unique address to default
+                        isPrimaryShippingContact = true;
+                    }     
+                }
+                this.model.get('address').set('isPrimaryShippingContact', isPrimaryShippingContact);                
+                this.model.set('isPrimaryShippingContact', isPrimaryShippingContact);                
+            }
+            CheckoutStepView.prototype.render.apply(this );
+            $('.selectpicker').selectpicker();
         }
     });
 
@@ -248,6 +280,7 @@ require(["modules/jquery-mozu",
             'card.expireYear',
             'card.cvv',
             'card.isCardInfoSaved',
+            'card.isDefaultPayMethod',
             'check.nameOnCheck',
             'check.routingNumber',
             'check.checkNumber',
@@ -285,6 +318,7 @@ require(["modules/jquery-mozu",
             "change [data-mz-digital-credit-amount]": "applyDigitalCredit",
             "change [data-mz-digital-add-remainder-to-customer]": "addRemainderToCustomer",
             "change [name='paymentType']": "resetPaymentData",
+            "change [name='save-card-info']": "showIsDefaultPayMethod",
             "input  [name='security-code'],[name='credit-card-number'],[name='shippingphone']": "allowDigit",
             "change [data-mz-purchase-order-payment-term]": "updatePurchaseOrderPaymentTerm"
         },
@@ -322,6 +356,9 @@ require(["modules/jquery-mozu",
             else{
                 this.model.set('card.paymentOrCardType',null);
             }
+        },
+        showIsDefaultPayMethod: function(e){
+            $('.mz-payment-credit-card-defaultflag-row').toggleClass( "hide" );
         },
         initialize: function (conf) {
             var me = this;
@@ -668,7 +705,6 @@ require(["modules/jquery-mozu",
     };
 
     $(document).ready(function () {
-
         var $checkoutView = $('#checkout-form'),
             checkoutData = require.mozuData('checkout');
 
@@ -686,7 +722,8 @@ require(["modules/jquery-mozu",
                     }),
                     shippingAddress: new ShippingAddressView({
                         el: $('#step-shipping-address'),
-                        model: checkoutModel.get('fulfillmentInfo').get('fulfillmentContact')
+                        model: checkoutModel.get('fulfillmentInfo').get('fulfillmentContact'),
+                        customer: checkoutModel.get('customer')
                     }),
                     shippingInfo: new ShippingInfoView({
                         el: $('#step-shipping-method'),

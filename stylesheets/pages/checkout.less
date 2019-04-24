@@ -409,8 +409,6 @@
     .checkout-leftcolumn {
         .mz-formstep.mz-checkoutform-paymentinfo {
             #btn_xpressPaypal {
-                display: none;
-
                 min-width:320px;
                 height:auto;
                 margin: 3rem auto;
@@ -1002,4 +1000,15 @@
     font-size: 1.5rem;
     color: @charcoal;
     cursor: pointer;
+}
+#nextBtn.disabled{
+  background-color: #b5b7b9;
+  &:hover{
+        background-color: #b5b7b9;
+        color: @charcoal;
+  }
+  &:focus{
+        background-color: #b5b7b9;
+        color: @charcoal;
+  }
 }

@@ -33,7 +33,7 @@
                         return ( sugg.suggestion && sugg.suggestion.productType !== 'Free Sample');
                     });
                 }
-                
+
                 return thisGroup.suggestions;
             };
         },
@@ -73,7 +73,7 @@
         {
             name: 'pages',
             displayKey: function(datum) {
-                return datum.suggestion.productCode;
+                return datum.suggestion.content.productName;
             },
             templates: {
                 suggestion: makeTemplateFn('modules/search/autocomplete-page-result')

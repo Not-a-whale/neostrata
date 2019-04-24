@@ -148,6 +148,7 @@ require([
                             if (apiProduct) {
                                 lineItem.url = apiProduct.attributes.url; 
                                 lineItem.image = apiProduct.attributes.content.attributes.productImages[0].imageUrl; 
+                                lineItem.productName = apiProduct.attributes.content.attributes.productName; 
                             }
                         }
                     }); 

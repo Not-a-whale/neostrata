@@ -61,5 +61,12 @@
             <div class="mz-formstep-next">
                 <button type="button" class="mz-button primary-btn" data-mz-action="submit">{{ labels.placeOrder }}</button>
             </div>
+            <script type="text/javascript">
+              jQuery('#nextBtn').html(jQuery('[data-mz-action="submit"]').html());
+              jQuery('#nextBtn').removeClass('disabled');
+              jQuery('#nextBtn').click(function() {
+                  jQuery('[data-mz-action="submit"]').trigger( "click" );
+              });
+            </script>
         {% endif %}
     </div>

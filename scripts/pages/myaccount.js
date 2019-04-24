@@ -788,6 +788,11 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext', '
             }
             $('.mz-l-stack-section.mz-accountpaymentmethods').removeClass('is-form').addClass('no-form');
         },
+        makePrimary: function (e) {
+            var id = e.currentTarget.getAttribute('data-mz-payment-id');
+            this.model.makePrimary(id);
+            location.reload();
+        },        
         cancelEditCard: function () {
             this.editing.card = "view";
             this.model.endEditCard();

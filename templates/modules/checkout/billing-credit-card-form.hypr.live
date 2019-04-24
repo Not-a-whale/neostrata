@@ -23,5 +23,12 @@
             <label class="mz-inline icon-check form-element" for="save-card-info">{{ labels.saveCard }}</label>
         </div>
     </div>	
+    <div class="mz-l-formfieldgroup-row mz-payment-credit-card-defaultflag-row form-row {% if not model.isCardInfoSaved %} hide {% endif %}">
+        <div class="mz-l-formfieldgroup-cell"></div>
+        <div class="mz-l-formfieldgroup-cell">
+            <input type="checkbox" id="editingcard-is-primary" name="editingcard-is-primary" data-mz-value="{{ cardcontext }}isDefaultPayMethod" {% if model.isDefaultPayMethod %}checked="true"{% endif %} />
+            <label class="mz-inline icon-check form-element" for="editingcard-is-primary">{{ labels.primary }}</label>
+        </div>
+    </div>
     {% endif %}
 {% endblock credit-card-form %}

@@ -511,6 +511,17 @@ define(['modules/backbone-mozu', 'underscore', 'modules/models-address', 'module
                 self.validatePassword = false;
             });
         },
+        makePrimary: function (id) {            
+            var toEdit = this.get('cards').get(id);
+            var contacts = this.get('contacts').toJSON();
+            var editingCardModel = {contacts: contacts,
+                                    hasSavedContacts: this.hasSavedContacts()};
+            if (toEdit) {
+                _.extend(editingCardModel, toEdit.toJSON({ helpers: true }), { isCvvOptional: true }, { isDefaultPayMethod: true });
+            }
+            this.get('editingCard').set(editingCardModel);         
+            return this.saveCard();
+        },
         beginEditCard: function(id) {
             var toEdit = this.get('cards').get(id),
                 contacts = this.get('contacts').toJSON(),
