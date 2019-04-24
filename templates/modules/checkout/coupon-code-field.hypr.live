@@ -5,7 +5,4 @@
             <button type="button" class="mz-button primary-btn" data-mz-action="addCoupon" {% if not model.couponCode %} {% endif %}>{{ labels.apply }}</button>
         </div>
         <div id="addNewPromoCode"></div>
-    {% for couponCode in model.couponCodes %}
-        <span class="btn-add-promo-code">{{ couponCode }}</span>        
-    {% endfor %}
     </div>

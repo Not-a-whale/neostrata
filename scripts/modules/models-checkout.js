@@ -1630,19 +1630,23 @@ define([
                     else if (me.get('total') === 0) {
                         me.trigger('complete');
                     } else {
-                        var retText = '<div class="promoCodeApplied">' + Hypr.getLabel('promoCodeApplied', code, allDiscounts[0].discount.name) + '<span class="pull-right" id="removeCoupon"><span class="glyphicon-minus"></span>' + Hypr.getLabel('remove') + '</span></div><div class="addNewCoupon"><span class="glyphicon-plus"></span>  '+ Hypr.getLabel('addNewPromoCode') +'</div>';
+                        var retText = '<div class="promoCodeApplied">' + Hypr.getLabel('promoCodeApplied', code, allDiscounts[0].discount.name) + '<span class="pull-right"><button type="button" id="removeCoupon" class="mz-button" data-mz-action="removeCoupon">' + Hypr.getLabel('remove') + ' <span class="glyphicon-minus"></span></button></span></div>';
                         setTimeout(function() {
                             $('#coupon-code-wrapper').hide();
                             document.getElementById('addNewPromoCode').innerHTML = retText;
-                            $('#addNewCoupon').click(function() {
-                                $('#addNewPromoCode').html('');
-                                $('#coupon-code-wrapper').show();
-                            });
                         }, 1000);
                     }
                     // only do this when there isn't a payment on the order...
                     me.get('billingInfo').updatePurchaseOrderAmount();
                     me.isLoading(false);
+                });
+            },
+            removeCoupon: function(code) {
+                var me = this;
+                return this.apiRemoveCoupon(code).then(function(response){
+                    me.trigger('couponremoved', code);
+                    $('#addNewPromoCode').html('');
+                    $('#coupon-code-wrapper').show();
                 });
             },
             onCheckoutSuccess: function () {

@@ -65,6 +65,17 @@ require(["modules/jquery-mozu",
             var currentStep = this.$el;
             var previousStep = currentStep.prev();
             var nextStep = currentStep.next();
+            if(currentStepId == 'step-payment-info'){ 
+                var code = this.model.parent.get('couponCodes');
+                if(code.length > 0){
+                    var codeName= this.model.parent.get('orderDiscounts');
+                    var retText = '<div class="promoCodeApplied">' + Hypr.getLabel('promoCodeApplied', code[0], codeName[0].discount.name) + '<span class="pull-right"><button type="button" id="removeCoupon" class="mz-button" data-mz-action="removeCoupon">' + Hypr.getLabel('remove') + ' <span class="glyphicon-minus"></span></button></span></div>';
+                    setTimeout(function() {
+                        $('#coupon-code-wrapper').hide();
+                        document.getElementById('addNewPromoCode').innerHTML = retText;
+                    }, 1000);
+                }
+            }
             if(currentStepId == 'step-customer-info'){ //let's initialize, at least first element is-current
                 currentStep.addClass('is-current');
                 if(!$('#nextBtn').hasClass('disabled')){
@@ -391,6 +402,9 @@ require(["modules/jquery-mozu",
                   return false;
                 }
             });
+            this.$el.on('click', '#removeCoupon', function (e) {
+                me.removeCoupon();
+              });
 
         },
         allowDigit:function(e){
@@ -599,6 +613,13 @@ require(["modules/jquery-mozu",
                 self.render();
             });
         },
+        removeCoupon: function (e) {
+            var self = this;
+            var couponCode = this.model.parent.get('couponCodes');
+            if(couponCode.length > 0){
+                this.model.parent.removeCoupon(couponCode[0]);
+            }
+        },
         onEnterCouponCode: function (model, code) {
             if (code && !this.couponCodeEntered) {
                 this.couponCodeEntered = true;
@@ -770,14 +791,6 @@ require(["modules/jquery-mozu",
         _.invoke(checkoutViews.steps, 'initStepView');
 
         $checkoutView.noFlickerFadeIn();
-        $('#removeCoupon').click(function() {
-          // var sUrl = 'api/commerce/checkouts/{checkoutId}/coupons';
-          // api.request('DELETE', sUrl).then(function(res) {});
-          // this.apiRemoveCoupon(code).then(function(response){
-          //     me.trigger('couponremoved', code);
-          // });
-
-        });
 
     });
 });
