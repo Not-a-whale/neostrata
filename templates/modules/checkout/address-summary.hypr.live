@@ -70,7 +70,7 @@
         </div>
         <div class="mz-addressform-isprimary form-row">
             <input type="checkbox" name="isprimary" {% if model.address.isPrimaryShippingContact %} checked="checked" {% endif %}  disabled="disabled">
-            <label class="mz-contacttype-isprimary" style="margin-left:21px;">{{ labels.primaryShippingContact }}</label>
+            <label class="mz-contacttype-isprimary" >{{ labels.primaryShippingContact }}</label>
         </div>
     </div>
 
