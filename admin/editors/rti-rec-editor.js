@@ -3,6 +3,8 @@ Ext.widget({
   itemId: 'rti-display-editor',
   initComponent: function(){
 
+    
+
     var me = this;
     var jsInjectPlaceholder = "//Use this space for any custom scripting (such as collecting custom cookies).";
     jsInjectPlaceholder += "\n//Append additional parameters to the 'inject' variable. For example:";
