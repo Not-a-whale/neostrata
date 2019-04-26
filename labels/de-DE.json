@@ -602,12 +602,12 @@
 
     "autoShipDelivery" : "Subscribe & save 10%", 
     "oneTimePurchase" : "One Time Purchase",
-    "autoShipDeliveryDiscount" : "Free Shipping, easily cancel online any time.", 
+    "autoShipDeliveryDiscount" : "Free Shipping on subscription orders", 
     "deliveryEvery" : "Delivery every {0} days", 
     "recommendedFrequently" : "(most common)",
     "autoReplenishment": "Subscribe and Save",
     "autoReplenishmentHowItWorks": "How it works:",
-    "autoReplenishmentContent": "<li>Shop your favorite products and select the subscribe and save option</li><li>Manage your delivery frequency by selecting how often you would like to receive your product</li><li>Save 10% &amp; receive free shipping on every subscribe and save order</li><li>Get an email reminder before each delivery ships from our warehouse</li><li>Adjust or cancel your next scheduled delivery in My Account. Changes must be made at least 3 days prior to your next scheduled order date.</li>",
+    "autoReplenishmentContent": "<li>Shop your favorite products and select the subscribe and save option</li><li>Manage your delivery frequency by selecting how often you would like to receive your product</li><li>Save 10% &amp; receive free shipping on every subscribe and save order</li><li>Adjust your next scheduled delivery in My Account. Changes must be made at least 3 days prior to your next scheduled order date.</li>",
   
     "subscriptionNextOrders"        : "Next Order", 
     "subscriptionAllSubscriptions"  : "All Subscriptions", 
@@ -627,7 +627,7 @@
     "subscriptionActionTypeUpdateFrequency": "Select an Action", 
     "subscriptionsViewInfo"       : "Track, Return or Buy Again",
     "subscriptionsCount": "Items",
-    "subscriptionsViewSubTitle": "Subscription changes must be made at least one day prior to the next shipment date. If you would like to update your credit card information click here. If you would like to remove a product from subscribe and save, please contact Customer Service at 1-800-225-9411",
+    "subscriptionsViewSubTitle": "Subscription changes must be made at least one day prior to the next shipment date. If you would like to update your credit card information click here. If you would like to remove a product from subscribe and save, please contact Customer Service at 1-800-628-9904",
     "accountNoSubscriptions"      : "You have not placed any subscription.",
     "subscriptionInfo": "Review all subscription items placed with us using this account"
   
