@@ -1,0 +1,67 @@
+
+
+<div class="omx-next-order-item-list col-xs-12 nopaddingleft nopaddingright">
+  {% for orderItem in model.omxItemSubscriptions.nextOrder.items %}
+      <div data-mz-membership-id="{{orderItem.membershipId}}" data-mz-omx-nextorder-item>
+          <div data-order-message-bar class="order-message-bar"></div>
+          {% include "modules/my-account/omx-item-subscription-listing" with model=orderItem %}
+      </div>
+  {% endfor %}
+</div>
+<div class="omx-next-order-shipping-list col-xs-12 col-md-6">
+
+  {% comment %}
+  <h3 class="mz-l-stack-sectiontitle">{{ labels.nextOrderShippingInfo }}
+    {% if not editing.nextOrdershipTo && model.hasMoreThanOneContact %}<a  href="javascript:;"  class="dl-link-edit mz-link-edit-subscription-shipto" data-mz-membership-id="{{model.omxItemSubscriptions.nextOrder.membershipId}}" data-mz-action="editOMXItemSubscriptionShipTo">{{ labels.edit }}</a>{% endif %}
+  </h3>
+  {% endcomment %}
+  {% if not editing.nextOrdershipTo && model.omxItemSubscriptions.nextOrder.shippingInfo %}
+    {% include "modules/my-account/omx-item-subscription-shipping-address" with model=model.omxItemSubscriptions.nextOrder.shippingInfo %}
+  {% endif %}
+
+  {% if editing.nextOrdershipTo %}
+    <div class="mz-nextorder-shipto-address">
+
+      {% include "modules/my-account/omx-item-subscription-shipping-address" with model=model.omxItemSubscriptions.nextOrder.shippingInfo %}
+
+      {% for contact in model.contacts %}
+        {% if contact.isShippingContact && editing.sameAsNextOrder != contact.id %}
+          {% include "modules/my-account/omx-item-subscription-shipping-address" with model=contact %}
+        {% endif %}
+      {% endfor %}
+
+      <div class="mz-contact-actions"> 
+          <button class="mz-button mz-contact-save" data-mz-action="finishEditNextOrderShipTo">{{labels.nextOrderSave}}</button>
+          <button class="mz-button mz-contact-cancel" data-mz-action="cancelEditNextOrderShipTo">{{labels.nextOrderCancel}}</button>
+      </div>
+    </div>
+  {% endif %}
+</div>
+<div class="omx-next-order-payment-list  col-xs-12 col-md-6"> {{model.omxItemSubscriptions.hasMoreThanOneCard}}
+  {% comment %}
+
+  <h3 class="mz-l-stack-sectiontitle">{{ labels.nextOrderPaymentInfo }}
+    {% if not editing.nextOrderPayment && model.hasMoreThanOneCard %}<a  href="javascript:;"  class="dl-link-edit mz-link-edit-subscription-payment" data-mz-membership-id="{{model.omxItemSubscriptions.nextOrder.membershipId}}" data-mz-action="editOMXItemSubscriptionPayment">{{ labels.edit }}</a>{% endif %}
+  </h3>
+  {% endcomment %}
+  {% if not editing.nextOrderPayment && model.omxItemSubscriptions.nextOrder.paymentInfo %}
+    {% include "modules/my-account/omx-item-subscription-payment" with model=model.omxItemSubscriptions.nextOrder.paymentInfo %}
+  {% endif %}
+
+  {% if editing.nextOrderPayment %}
+    <div class="mz-nextorder-payment">
+      {% include "modules/my-account/omx-item-subscription-payment" with model=model.omxItemSubscriptions.nextOrder.paymentInfo %}
+
+      {% for card in model.cards %}
+        {% if editing.sameAsNextOrder != card.id %}
+          {% include "modules/my-account/omx-item-subscription-payment" with model=card %}
+        {% endif %}
+      {% endfor %}
+
+      <div class="mz-contact-actions"> 
+          <button class="mz-button mz-contact-save" data-mz-action="finishEditNextOrderPayment">{{labels.nextOrderSave}}</button>
+          <button class="mz-button mz-contact-cancel" data-mz-action="cancelEditNextOrderPayment">{{labels.nextOrderCancel}}</button>
+      </div>
+    </div>
+  {% endif %}
+</div>

@@ -121,11 +121,25 @@ define(['underscore', 'modules/backbone-mozu', 'hyprlive', "modules/api", "modul
                 me.trigger('checkoutcreated', checkout);
             });
         },
-        removeItem: function (id) {
+        removeItem: function (id, couponName) {
+            console.log('remove item:: model'); 
             var me = this;
             return this.get('items').get(id).apiModel.del().then(function(){
                 var cartItem = me.get('items').get(id);
+
+                if(couponName) {
+                    me.removeCoupon(couponName).then(function() {
+                        console.log('success :: ');
+                        me.trigger('itemremoved', cartItem);
+                    }).catch(function(){
+                        console.log('issue on remov C'); 
+                    });  
+
+
+
+                }
                 me.trigger('itemremoved', cartItem);
+                
             });
         },
         addCoupon: function () {
@@ -168,6 +182,14 @@ define(['underscore', 'modules/backbone-mozu', 'hyprlive', "modules/api", "modul
                 me.set('tentativeCoupon', couponExists && couponIsNotApplied ? code : undefined);
 
                 me.isLoading(false);
+            });
+        },
+        removeCoupon: function(code) {
+            var me = this;
+            console.log('remove coupon'); 
+            return this.apiRemoveCoupon(code).then(function(response){
+                console.log('coupon removed', response); 
+                me.trigger('couponremoved', code);
             });
         },
         toJSON: function(options) {

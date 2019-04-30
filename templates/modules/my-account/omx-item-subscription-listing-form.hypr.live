@@ -1,0 +1,71 @@
+<div class="col-xs-12 mz-row-carttable-item">
+    <div class="mz-carttable-item">
+        <div class="mz-carttable-item-product col-xs-5 col-sm-6 nopaddingleft"> 
+          {% if model.image %}
+            <img class="media-object" src="https:{{model.image}}?maxWidth=105&as_parameters&_mzcb=undefined" />   
+          {% else %}
+            <div class="cart-noimage">
+              [{{ labels.noImages }}]
+            </div>
+          {% endif %}
+          <div class="mz-carttable-item-info-wrap ">
+              <span class="dl-cart-header">{{ labels.subscriptionProductName }}</span>
+              <a class="dl-cart-value" href="{{model.url}}">{{ model.name|safe }}</a>
+          </div>
+        </div>
+        <div class="col-xs-2 col-sm-2 cart-item-qty dl-cart-col">  
+          <span class="label-qty dl-cart-header">{{ labels.qty }}</span>
+          <div class="mz-carttable-item-qty dl-cart-value">
+            {{model.qty}}
+          </div>
+        </div>
+        <div class="col-xs-2 col-sm-2 dl-cart-col">  
+          <span class="label-discount dl-cart-header">{{ labels.subscriptionPriceEach }}</span>
+          <div class="mz-carttable-item-qty dl-cart-value">
+            {{model.priceEach|currency }}
+          </div>
+        </div>
+        <div class="col-xs-3 col-sm-2 dl-cart-col dl-cart-total">  
+          <span class="label-priceEach dl-cart-header">{{ labels.subscriptionDiscount }}</span>
+          <div class="mz-carttable-item-discount dl-cart-value">
+            {{model.discount|currency }}
+          </div>
+        </div>
+      
+        <div class="mz-autoreplanish-item-actions col-xs-12 nopaddingright nopaddingleft">
+          <div class="col-xs-12 col-sm-6 nopaddingleft"> 
+            <span class="label-qty">{{ labels.subscriptionReplenishment }}</span>
+            <div class="mz-carttable-item-plan custom-select-wrapper" data-mz-membership-id="{{model.membershipId}}">
+              <select class="mz-autoship-dropdown select selectpicker" id="mz_autoship_frequency_{{model.membershipId}}" data-mz-autoreplanish style="display:none;">
+
+                {% for splitValue in model.monthIntervalsProp|split(',') %}
+                    {% if splitValue %}
+                    {% with "autoReplenishment_X"|replace("X", splitValue) as autoReplenishmentCode %}
+                    {% with themeSettings|prop(autoReplenishmentCode) as evalValue %}
+                        <option value="{{ splitValue|safe }}" {% if model.frequencyCode && splitValue == model.frequencyCode %} selected {% endif %} > {{evalValue}}
+                        {% if model.recomendedIntervalProp && splitValue == model.recomendedIntervalProp %} {{labels.recommendedFrequently}} {% endif %}
+                        </option>                    
+                    {% endwith %}{% endwith %}
+                    {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 nopaddingleft"> 
+            <span class="label-nextOrderDate">{{ labels.subscriptionActionType }}</span>
+            <div class="mz-carttable-item-plan custom-select-wrapper" data-mz-membership-id="{{model.membershipId}}">
+              <select class="mz-autoreplanish-action-type select selectpicker" id="mz_autoship_action_{{model.membershipId}}" style="display:none;">
+                <option value="mz-autoreplanish-action-type-update-frequency" selected > {{labels.subscriptionActionTypeUpdateFrequency }} </option>                    
+                <option value="mz-autoreplanish-action-type-ship-now" > {{labels.subscriptionActionTypeShipNow }} </option>                    
+                <option value="mz-autoreplanish-action-type-delay-ship" > {{labels.subscriptionActionTypeDelayShip }} </option>                    
+              </select>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-12 mz-contact-actions"> 
+            <button class="mz-button mz-contact-save" data-mz-membership-id="{{model.membershipId}}" data-mz-line-number="{{model.lineNumber}}" data-mz-order-number="{{model.orderNumber}}" data-mz-action="finishEditAuotreplanishItem">{{labels.nextOrderSave}}</button>
+            <button class="mz-button mz-contact-cancel" data-mz-membership-id="{{model.membershipId}}" data-mz-action="cancelEditAuotreplanishItem">{{labels.nextOrderCancel}}</button>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

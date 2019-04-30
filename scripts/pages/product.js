@@ -13,7 +13,8 @@
     "hyprlivecontext",
     "pages/family",
     "modules/api",
-    "async"
+    "async", 
+    'vendor/bootstrap-select/dist/js/bootstrap-select'
 ], function($, _, bxslider, elevatezoom, blockUiLoader, Hypr, Backbone, CartMonitor, ProductModels, ProductImageViews, MetricsEngine, HyprLiveContext, FamilyItemView, api, async) {
     var sitecontext = HyprLiveContext.locals.siteContext;
     var cdn = sitecontext.cdnPrefix;
@@ -129,8 +130,37 @@
             "click [data-mz-qty-plus]": "quantityPlus",
             "change .mz-productdetail-qty": "updateQty",
             'mouseenter .color-options': 'onMouseEnterChangeImage',
-            'mouseleave .color-options': 'onMouseLeaveResetImage'
+            'mouseleave .color-options': 'onMouseLeaveResetImage',
+            "change [data-mz-autoreplanish-radio]": "handleAutoshipOption", 
+            "change [data-mz-autoreplanish]": "handleAutoshipFrequency"
         },
+
+        handleAutoshipOption: function(e){
+            var self = this,
+                $target = $(e.currentTarget), 
+                selectedOption = $target.val(), 
+                dataValue = ''; 
+
+            if (selectedOption != "0") {
+                var autoReplanishCode = $('#mz_pdp_autoship_code').find(':selected').val(); //$('#mz_pdp_autoship_code_'+$target.parent().data('mzProductCode')).find(":selected").val(); 
+                dataValue = {
+                    autoReplanishCode : autoReplanishCode
+                }; 
+            }
+            this.model.set('data', dataValue);
+            this.render(); 
+        },
+        handleAutoshipFrequency: function(e){
+            var self = this;
+            var $target = $(e.currentTarget);
+            var autoReplanishCode = $target.val(); 
+            var dataValue = {
+                autoReplanishCode : autoReplanishCode
+            }; 
+            this.model.set('data', dataValue );
+        },
+    
+        
         render: function() {
             var me = this;
             var id = Hypr.getThemeSetting('oneSizeAttributeName'),
@@ -140,6 +170,9 @@
                 oneSizeOption.set('value', onlyEnabledOneSizeOption.value);
             }
             Backbone.MozuView.prototype.render.apply(this);
+
+            $('.selectpicker').selectpicker();
+
             this.$('[data-mz-is-datepicker]').each(function(ix, dp) {
                 $(dp).dateinput().css('color', Hypr.getThemeSetting('textColor')).on('change  blur', _.bind(me.onOptionChangeAttribute, me));
             });
@@ -570,8 +603,24 @@
             initslider_mobile();
         },
         initialize: function() {
-            // handle preset selects, etc
-            var me = this;
+           // handle preset selects, etc
+            var me = this,                 
+                autoReplahishPropName = Hypr.getThemeSetting('autoReplanishmentRecomendedInterval');            
+
+            var attributeValue = _.find(this.model.get('properties'), function (prop) { 
+                return prop.attributeFQN == autoReplahishPropName; 
+            });
+
+            /* Initialize the autoRep value to def */
+            var value; 
+            if (attributeValue) {
+                value = {            
+                    autoReplanishCode : attributeValue.values[0].stringValue, 
+                    isFirst : true
+                };
+                this.model.set('data', value); 
+            }
+
             //create div for family members
             if(this.model.get('family').models.length){
                 for(var i=0; i < this.model.get('family').models.length; i++){
@@ -625,6 +674,8 @@
             $('.mz-product-detail-tabs').remove();
 
         var product = ProductModels.Product.fromCurrent();
+        product.set('data.isFirst', true); 
+
         product.on('addedtocart', function(cartitem) {
             var breadcrumbCategories = require.mozuData('breadcrumbCategories');
             var category = _.find(product.get('categories'), function (cat) { return cat.categoryId == breadcrumbCategories.slice(-1)[0] ; });
