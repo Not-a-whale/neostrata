@@ -11,10 +11,8 @@
         <div class="featured-product-image-container">
           {% if prod.mainImage.imageUrl %}
             <a href="{% make_url 'product' prod %}">
-              <div
-                class="featured-product-image"
-                style="background-image: url('{{prod.mainImage.imageUrl}}');"
-                >
+              <div class="featured-product-image" style="background-image: url('{{prod.mainImage.src}}');">
+                <span role="img" aria-label="{{ prod.productName }}"></span>
               </div>
             </a>
           {% else %}
