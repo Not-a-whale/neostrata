@@ -20,6 +20,7 @@ require(["modules/jquery-mozu",
             this.$el.addClass('is-current');
         /*sets which is current step for styling purposes*/
             $('.selectpicker').selectpicker();
+            this.checkerInput();
         },
         next: function () {
           // wait for blur validation to complete
@@ -31,6 +32,135 @@ require(["modules/jquery-mozu",
             _.defer(function () {
             me.model.next();
           });
+          this.checkerInput();
+        },
+        checkerInput: function(){
+            setTimeout(function(){
+            if($('#step-customer-info').hasClass('is-current')){
+                $('#step-customer-info [data-mz-value="firstName"]').trigger("input");
+                $('#step-customer-info [data-mz-value="firstName"]').on('input', function() {
+                    if($('#step-customer-info [data-mz-value="firstName"]').val().length > 0 && $('#step-customer-info [data-mz-value="lastNameOrSurname"]').val().length > 0 && $('#step-customer-info [data-mz-value="email"]').val().length > 0){
+                        $('#nextBtn').removeClass('disabled');
+                    }else{
+                        if(!$('#nextBtn').hasClass('disabled')){
+                            $('#nextBtn').addClass('disabled');
+                          }
+                    }
+                });
+                $('#step-customer-info [data-mz-value="lastNameOrSurname"]').on('input', function() {
+                    if($('#step-customer-info [data-mz-value="firstName"]').val().length > 0 && $('#step-customer-info [data-mz-value="lastNameOrSurname"]').val().length > 0 && $('#step-customer-info [data-mz-value="email"]').val().length > 0){
+                        $('#nextBtn').removeClass('disabled');
+                    }else{
+                        if(!$('#nextBtn').hasClass('disabled')){
+                            $('#nextBtn').addClass('disabled');
+                          }
+                    }
+                });
+                $('#step-customer-info [data-mz-value="email"]').on('input', function() {
+                    if($('#step-customer-info [data-mz-value="firstName"]').val().length > 0 && $('#step-customer-info [data-mz-value="lastNameOrSurname"]').val().length > 0 && $('#step-customer-info [data-mz-value="email"]').val().length > 0){
+                        $('#nextBtn').removeClass('disabled');
+                    }else{
+                        if(!$('#nextBtn').hasClass('disabled')){
+                            $('#nextBtn').addClass('disabled');
+                          }
+                    }
+                });
+            }
+            if($('#step-shipping-address').hasClass('is-current')){
+                $('#step-shipping-address [data-mz-value="firstName"]').trigger("input");
+                $('#step-shipping-address [data-mz-value="firstName"]').on('input', function() {
+                    if($('#step-shipping-address [data-mz-value="firstName"]').val().length > 0 && $('#step-shipping-address [data-mz-value="lastNameOrSurname"]').val().length > 0 && $('#step-shipping-address [data-mz-value="address.address1"]').val().length > 0 && $('#step-shipping-address [data-mz-value="address.cityOrTown"]').val().length > 0 && $('#step-shipping-address [data-mz-value="address.postalOrZipCode"]').val().length > 0 && $('#step-shipping-address [data-mz-value="phoneNumbers.home"]').val().length > 0){
+                        $('#nextBtn').removeClass('disabled');
+                    }else{
+                        if(!$('#nextBtn').hasClass('disabled')){
+                            $('#nextBtn').addClass('disabled');
+                        }
+                    }
+                });
+                $('#step-shipping-address [data-mz-value="lastNameOrSurname"]').on('input', function() {
+                    if($('#step-shipping-address [data-mz-value="firstName"]').val().length > 0 && $('#step-shipping-address [data-mz-value="lastNameOrSurname"]').val().length > 0 && $('#step-shipping-address [data-mz-value="address.address1"]').val().length > 0 && $('#step-shipping-address [data-mz-value="address.cityOrTown"]').val().length > 0 && $('#step-shipping-address [data-mz-value="address.postalOrZipCode"]').val().length > 0 && $('#step-shipping-address [data-mz-value="phoneNumbers.home"]').val().length > 0){
+                        $('#nextBtn').removeClass('disabled');
+                    }else{
+                        if(!$('#nextBtn').hasClass('disabled')){
+                            $('#nextBtn').addClass('disabled');
+                        }
+                    }
+                });
+                $('#step-shipping-address [data-mz-value="address.address1"]').on('input', function() {
+                    if($('#step-shipping-address [data-mz-value="firstName"]').val().length > 0 && $('#step-shipping-address [data-mz-value="lastNameOrSurname"]').val().length > 0 && $('#step-shipping-address [data-mz-value="address.address1"]').val().length > 0 && $('#step-shipping-address [data-mz-value="address.cityOrTown"]').val().length > 0 && $('#step-shipping-address [data-mz-value="address.postalOrZipCode"]').val().length > 0 && $('#step-shipping-address [data-mz-value="phoneNumbers.home"]').val().length > 0){
+                        $('#nextBtn').removeClass('disabled');
+                    }else{
+                        if(!$('#nextBtn').hasClass('disabled')){
+                            $('#nextBtn').addClass('disabled');
+                        }
+                    }
+                });
+                $('#step-shipping-address [data-mz-value="address.cityOrTown"]').on('input', function() {
+                    if($('#step-shipping-address [data-mz-value="firstName"]').val().length > 0 && $('#step-shipping-address [data-mz-value="lastNameOrSurname"]').val().length > 0 && $('#step-shipping-address [data-mz-value="address.address1"]').val().length > 0 && $('#step-shipping-address [data-mz-value="address.cityOrTown"]').val().length > 0 && $('#step-shipping-address [data-mz-value="address.postalOrZipCode"]').val().length > 0 && $('#step-shipping-address [data-mz-value="phoneNumbers.home"]').val().length > 0){
+                        $('#nextBtn').removeClass('disabled');
+                    }else{
+                        if(!$('#nextBtn').hasClass('disabled')){
+                            $('#nextBtn').addClass('disabled');
+                        }
+                    }
+                });
+                $('#step-shipping-address [data-mz-value="address.postalOrZipCode"]').on('input', function() {
+                    if($('#step-shipping-address [data-mz-value="firstName"]').val().length > 0 && $('#step-shipping-address [data-mz-value="lastNameOrSurname"]').val().length > 0 && $('#step-shipping-address [data-mz-value="address.address1"]').val().length > 0 && $('#step-shipping-address [data-mz-value="address.cityOrTown"]').val().length > 0 && $('#step-shipping-address [data-mz-value="address.postalOrZipCode"]').val().length > 0 && $('#step-shipping-address [data-mz-value="phoneNumbers.home"]').val().length > 0){
+                        $('#nextBtn').removeClass('disabled');
+                    }else{
+                        if(!$('#nextBtn').hasClass('disabled')){
+                            $('#nextBtn').addClass('disabled');
+                        }
+                    }
+                });
+                $('#step-shipping-address [data-mz-value="phoneNumbers.home"]').on('input', function() {
+                    if($('#step-shipping-address [data-mz-value="firstName"]').val().length > 0 && $('#step-shipping-address [data-mz-value="lastNameOrSurname"]').val().length > 0 && $('#step-shipping-address [data-mz-value="address.address1"]').val().length > 0 && $('#step-shipping-address [data-mz-value="address.cityOrTown"]').val().length > 0 && $('#step-shipping-address [data-mz-value="address.postalOrZipCode"]').val().length > 0 && $('#step-shipping-address [data-mz-value="phoneNumbers.home"]').val().length > 0){
+                        $('#nextBtn').removeClass('disabled');
+                    }else{
+                        if(!$('#nextBtn').hasClass('disabled')){
+                            $('#nextBtn').addClass('disabled');
+                        }
+                    }
+                });
+            }
+            if($('#step-shipping-method').hasClass('is-current')){
+                $('#nextBtn').removeClass('disabled');
+            }
+            
+            if($('#step-payment-info').hasClass('is-current')){
+                setTimeout( function(){
+                    $('#step-payment-info [data-mz-value="card.cardNumberPartOrMask"]').trigger("input");
+            $('#step-payment-info [data-mz-value="card.cardNumberPartOrMask"]').on('input', function() {
+                if($('#step-payment-info [data-mz-value="card.cardNumberPartOrMask"]').val().length > 0 && $('#step-payment-info [data-mz-value="card.nameOnCard"]').val().length > 0 && $('#step-payment-info [data-mz-value="card.cvv"]').val().length > 0){
+                    $('#nextBtn').removeClass('disabled');
+                }else{
+                    if(!$('#nextBtn').hasClass('disabled')){
+                        $('#nextBtn').addClass('disabled');
+                    }
+                }
+                
+            });
+            $('#step-payment-info [data-mz-value="card.nameOnCard"]').on('input', function() {
+                if($('#step-payment-info [data-mz-value="card.cardNumberPartOrMask"]').val().length > 0 && $('#step-payment-info [data-mz-value="card.nameOnCard"]').val().length > 0 && $('#step-payment-info [data-mz-value="card.cvv"]').val().length > 0){
+                    $('#nextBtn').removeClass('disabled');
+                }else{
+                    if(!$('#nextBtn').hasClass('disabled')){
+                        $('#nextBtn').addClass('disabled');
+                    }
+                }
+            });
+            $('#step-payment-info [data-mz-value="card.cvv"]').on('input', function() {
+                if($('#step-payment-info [data-mz-value="card.cardNumberPartOrMask"]').val().length > 0 && $('#step-payment-info [data-mz-value="card.nameOnCard"]').val().length > 0 && $('#step-payment-info [data-mz-value="card.cvv"]').val().length > 0){
+                    $('#nextBtn').removeClass('disabled');
+                }else{
+                    if(!$('#nextBtn').hasClass('disabled')){
+                        $('#nextBtn').addClass('disabled');
+                    }
+                }
+            });
+                }, 1500);
+            }
+         }, 1500);
         },
         choose: function () {
             var me = this;
@@ -65,6 +195,7 @@ require(["modules/jquery-mozu",
             var currentStep = this.$el;
             var previousStep = currentStep.prev();
             var nextStep = currentStep.next();
+            this.checkerInput();
             if(currentStepId == 'step-customer-info'){ //let's initialize, at least first element is-current
                 currentStep.addClass('is-current');
                 if(!$('#nextBtn').hasClass('disabled')){

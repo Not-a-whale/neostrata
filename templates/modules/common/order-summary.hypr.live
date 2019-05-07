@@ -160,11 +160,9 @@
           <div class="order-summary-promo">
             <p>30-day Money Back Guarantee. <br /> Order by 1:00pm EST for same-day shipping.</p>
           </div>
-          {% comment %}
           <div class="mz-formstep-next">
               <button id="nextBtn" class="mz-button primary-btn disabled" data-mz-action="next">{{ labels.useThisInfo }}</button>
           </div>
-          {% endcomment %}
           <div class="order-summary-privacyPolicy">
             <p>By placing your order you agree to the
                NEOSTRATA® <a href="/privacy-policy" target="_blank">Privacy Policy</a> and <a href="/terms-and-conditions" target="_blank">Terms of Use.</a></p>
