@@ -1,0 +1,24 @@
+﻿{% extends "page" %}
+
+{% block title-tag-content %}
+    {% firstof pageContext.metaTitle model.name %}  - {% parent %}
+{% endblock title-tag-content %}
+
+{% block body-tag-classes %} mz-blog-category neostrata-theme {% endblock body-tag-classes %}
+{% block body-content %}
+<div class="blog-category">
+    {% with navigation.tree|findwhere('originalID', pageModel.id) as blogCat %}
+    {% for blogItem in blogCat.items %}    
+            <div class="blog-category-entry">
+                    {{ blogItem.name|safe }}
+            </div>
+        {% endfor %}
+    {% endwith %}
+
+</div>
+{% dropzone "quiz-article" scope="page"%}
+{% dropzone "share-btn" scope="page"%}
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5cd07bbf2a9ffc20"></script>
+{% dropzone "view-all-products" scope="page"%}
+
+{% endblock body-content %}
