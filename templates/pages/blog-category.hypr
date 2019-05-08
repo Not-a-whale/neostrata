@@ -6,19 +6,20 @@
 
 {% block body-tag-classes %} mz-blog-category neostrata-theme {% endblock body-tag-classes %}
 {% block body-content %}
-<div class="blog-category">
+{% dropzone "blog-banner-img" scope="page"%}
+{% dropzone "blog-heading" scope="page"%}
+<div class="mz-blog-category-index">
     {% with navigation.tree|findwhere('originalID', pageModel.id) as blogCat %}
     {% for blogItem in blogCat.items %}    
-            <div class="blog-category-entry">
+            <div class="mz-blog-category-index-entry col-xs-10 col-md-8">
                     {{ blogItem.name|safe }}
             </div>
         {% endfor %}
-    {% endwith %}
-
+    {% endwith %}    
+    <div class="mz-blog-category-index-separator col-xs-8 col-md-6"></div>
+    {% dropzone "quiz-article" scope="page"%}
+    {% dropzone "share-btn" scope="page"%}
+    {% dropzone "view-all-products" scope="page"%}
 </div>
-{% dropzone "quiz-article" scope="page"%}
-{% dropzone "share-btn" scope="page"%}
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5cd07bbf2a9ffc20"></script>
-{% dropzone "view-all-products" scope="page"%}
 
 {% endblock body-content %}
