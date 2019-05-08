@@ -307,6 +307,11 @@
                     "hideTrigger": false,
                     "allowDecimal": false,
                     "minValue": 1
+                },
+                {
+                    "fieldLabel": "Press entity name (example: press@namespace)",
+                    "xtype": "mz-input-text",
+                    "name": "pressEntityName"
                 }
             ]
         },
