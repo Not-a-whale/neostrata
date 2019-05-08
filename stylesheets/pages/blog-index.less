@@ -2,11 +2,16 @@
     text-align: center;
 
     h2 {
-        margin: 30px auto;
+        margin: 7.5rem auto;
         text-align: center;
-        font-size: 2.7rem;
+        font-size: 1.75rem;
         font-weight: @fontWeightBook;
         text-transform: capitalize;
+
+        @media (max-width: 767px) {
+            margin: 2.10rem auto 0;
+            font-size: 2.10;
+        }
     }
 
     &-index {
@@ -18,14 +23,25 @@
         }
         
         &-separator {
-            margin: 25px auto;
+            margin: 2.625rem auto;
             border-top: 1px solid @midGray;
+
+            &.top-separator {
+                margin: 2.10rem auto;
+
+                @media (min-width: 767px) {
+                    display: none;
+                }
+            }
+            @media (max-width: 767px) {
+                margin: 1.4rem auto 2.625rem ;
+            }
         }
 
         &-entry,
         .blog-quiz-inner {
             display: flex;
-            margin: 30px auto;
+            margin: 0 auto 6.25rem;
             
             img {
                 width: 50%;
@@ -36,7 +52,7 @@
                 flex-direction: column;
                 justify-content: center;
                 width: 50%;
-                margin-left: 50px;
+                margin-left: 3.75rem;
                 text-align: left;
 
                 a {
@@ -45,14 +61,14 @@
                 }
                 
                 h3 {
-                    margin: 0 0 15px;
-                    font-size: 1.9rem;
+                    margin: 0;
+                    font-size: 1.5625rem;
                     font-weight: @fontWeightBold;
                 }
 
                 p {
-                    margin: 15px 0 0;
-                    font-size: 1.7rem;
+                    margin: 3.75rem 0 0;
+                    font-size: 1.5rem;
                     font-weight: @fontWeightBook;
                 }
             }
@@ -67,19 +83,29 @@
                 }
 
                 div {
-                    margin: 25px auto auto;
+                    margin: 4.68rem auto 0;
                     text-align: center;
+                    h3 {
+                      font-size: 2.11rem;
+                    }
+
+                    p {
+                      margin: 2.81rem 0 0;
+                      font-size: 1.875rem;
+                    }
                 }
             }
         }
 
         .blog-quiz-inner {
+            margin-top: 5.5rem;
+            margin-bottom: 15.625rem;
             
             div {
                 justify-content: space-evenly;
 
                 h3 {
-                    font-size: 2.1rem;
+                    font-size: 2.1875rem;
                     font-weight: @fontWeightMedium;
                     margin: 0;
                 }
@@ -101,20 +127,32 @@
                         text-decoration: none;
                     }
                 }
+        }
 
-                @media (max-width: 767px) {
-                    align-items: center;
+        @media (max-width: 767px) {
+            margin-top: 7.2rem;
+            margin-bottom: 16.8753rem;
+            align-items: center;
 
-                    h3, p {
-                        margin: 0 0 20px 0;
-                    }
+            div {
+              margin: 4.68rem auto 0;
+              text-align: center;
 
-                    span {
-                        margin: 15px auto;
-                    }
-                }
+              h3 {
+                font-size: 2.81rem;
+              }
+
+              p {
+                margin: 2.81rem 0 4.6876rem!important;
+                font-size: 1.875rem;
+              }
+
+              span {
+                margin: 0 auto;
+              }
             }
         }
+    }
 
         #mz-drop-zone-share-btn {
             .at-style-responsive .at-share-btn {
@@ -123,13 +161,17 @@
                 justify-content: center;
                 align-items: center;
                 width: 12.5%;
-                margin: 15px auto;
-                padding: 15px 20px;
+                height: 6rem;
+                margin: 0 auto 1.875rem;
+                padding: 1rem;
                 border-radius: 0px;
-                border: 2px solid @charcoal;
-                background-color: transparent;
+                border: 0.1875rem solid @charcoal;
+                background: none;
                 color: @charcoal;
                 text-align: center;
+                
+                text-transform: uppercase;
+                text-decoration: none;
 
                 .at-icon-wrapper {
                     position: relative;
@@ -157,18 +199,16 @@
                     display: block;
                     width: auto!important;
                     height: auto!important;
-                    padding-right: 10px;
+                    padding-right: 1.5625rem;
                     color: @charcoal!important;
-                    font-size: 1.7rem!important;
+                    font-size: 1.5625rem!important;
                     font-weight: @fontWeightBook;
-                    line-height: 0 !important;
+                    letter-spacing: 0.14em;
+                    line-height: 5.625rem !important;
                 }
 
                 svg {
                     display: none;
-                    width: 32px;
-                    height: 32px;
-                    fill: inherit;
                 }
 
                 span {
@@ -186,7 +226,7 @@
             }
             
             .blog-btn {
-              margin: 0 auto 50px;
+              margin: 0 auto 10.93rem;
               padding: 0;
               text-align: center;
     
@@ -207,6 +247,13 @@
             #mz-drop-zone-share-btn {
                 display: none;
             }
+        }
+    }
+    footer {
+        text-align: left;
+
+        .footer-column h2 {
+            text-align: left!important;
         }
     }
 }

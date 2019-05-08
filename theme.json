@@ -189,12 +189,11 @@
       "title": "BazaarVoice Container Page",
       "userCreatable": true
     }, {
-      "documentType": "web_page",
-      "entityType": "webpage",
-      "id": "blog-category",
-      "template": "blog-category",
-      "title": "Blog category page",
-      "userCreatable": true
+      "entityType": "category",
+      "id": "blog-index",
+      "template": "blog-index",
+      "title": "Blog Index Page",
+      "userCreatable": false
     }, {
       "documentType": "web_page",
       "entityType": "webpage",

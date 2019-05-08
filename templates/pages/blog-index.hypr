@@ -9,10 +9,19 @@
 {% dropzone "blog-banner-img" scope="page"%}
 {% dropzone "blog-heading" scope="page"%}
 <div class="mz-blog-category-index">
-    {% with navigation.tree|findwhere('originalID', pageModel.id) as blogCat %}
-    {% for blogItem in blogCat.items %}    
+    <div class="mz-blog-category-index-separator top-separator col-xs-8 col-md-6"></div>
+    {% with categories|find(pageModel.categoryId) as blogCat %}
+        {% for blogItem in blogCat.childrenCategories %}
             <div class="mz-blog-category-index-entry col-xs-10 col-md-8">
-                    {{ blogItem.name|safe }}
+                {% with blogItem.content.categoryImages|first as firstImg %}
+                <img src="{{ firstImg.imageUrl }}" alt="{{ firstImg.altText }}">
+                {% endwith %}
+                <div>
+                  <a href="{{ blogItem.url }}">
+                    <h3>{{ blogItem.content.name }}</h3>
+                  </a>
+                  <p>{{ blogItem.content.description }}</p>
+                </div>
             </div>
         {% endfor %}
     {% endwith %}    
@@ -21,5 +30,7 @@
     {% dropzone "share-btn" scope="page"%}
     {% dropzone "view-all-products" scope="page"%}
 </div>
+
+{% require_script "pages/blog-index-page" %}
 
 {% endblock body-content %}
