@@ -905,6 +905,7 @@
     "searchBannerXS": null,
     "enableProductCarousel": true,
     "homePageCategoryWidgetAltText": "home_cat_widget_img",
+    "pressItemsPerPage": 10,
     "usStates": [
       {
         "abbreviation": "AL",

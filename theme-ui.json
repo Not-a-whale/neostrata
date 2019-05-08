@@ -297,6 +297,21 @@
         },
         {
             "xtype": "panel",
+            "title": "Press page",
+            "collapsed": false,
+            "items": [
+                {
+                    "fieldLabel": "Press items per page",
+                    "xtype": "mz-input-number",
+                    "name": "pressItemsPerPage",
+                    "hideTrigger": false,
+                    "allowDecimal": false,
+                    "minValue": 1
+                }
+            ]
+        },
+        {
+            "xtype": "panel",
             "title": "Navigation",
             "collapsed": false,
             "items": [

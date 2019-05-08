@@ -1,9 +1,9 @@
-require(["modules/jquery-mozu", "hyprlive", "modules/backbone-mozu", "modules/api"], function($, Hypr, Backbone, api) {
+require(["modules/jquery-mozu", "hyprlive", "modules/backbone-mozu", "hyprlivecontext", "modules/api"], function($, Hypr, Backbone, HyprLiveContext, api) {
     var PressView = Backbone.MozuView.extend({
         templateName: 'modules/common/press-render',
         initialize : function(){
             var self = this;
-            var pageSize = 2;
+            var pageSize = HyprLiveContext.locals.themeSettings.pressItemsPerPage || 2;
             var startFrom = self.model.attributes.initPage || 0;
             var currentPage = self.model.attributes.currentPage || 0;
             var endWith = pageSize - 1;
@@ -64,6 +64,8 @@ require(["modules/jquery-mozu", "hyprlive", "modules/backbone-mozu", "modules/ap
                         navigation.append('<div class="navigation-element"><a class="page-'+nextPage+' img">Next</a></div>');
                         navigation.append('<div class="navigation-element"><a class="page-'+parseInt(pageCount-1)+' img"><img src="/resources/images/last-page.png"></a></div>');
                         $('.page-'+currentPage).addClass('active');
+                    } else {
+                        $('.navigation').hide();
                     }
 
                     $('.press-container').html(endHtml);
