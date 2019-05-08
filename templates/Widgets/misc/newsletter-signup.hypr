@@ -1,5 +1,5 @@
 <div class="newsletter-header">
-    <h2>{{ labels.newsletterTitle }}</h2>
+    <h1>{{ labels.newsletterTitle }}</h1>
     <p>{{ labels.newsletterSubtitle }}</p>
 </div>
 <div class="newsletter-confirmation">

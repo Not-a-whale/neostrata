@@ -11,9 +11,9 @@
     </div>
     <div class="flex-swing match-block-1">
       <div class="flex-fill match-col-1">
-        <div class="text-align-center match-content-1">
+        <h1 class="text-align-center match-content-1">
           {{ labels.matchContent1|safe }}
-        </div>
+        </h1>
         <div class="text-align-center match-content-2">
           {{ labels.matchContent2|safe }}
         </div>
