@@ -898,12 +898,14 @@
     "facetMoreColorCount": 3,
     "enableQuickView": true,
     "categoryEntityName": "categoryAttributes@ng",
+    "pressEntityName": "press@neost",
     "globalPageHeaderLogoSM": null,
     "globalPageHeaderLogoXS": null,
     "searchBannerSM": null,
     "searchBannerXS": null,
     "enableProductCarousel": true,
     "homePageCategoryWidgetAltText": "home_cat_widget_img",
+    "pressItemsPerPage": 10,
     "usStates": [
       {
         "abbreviation": "AL",
@@ -1298,6 +1300,19 @@
     }
   ],
   "widgets": [
+    {
+      "defaultConfig": {
+        "catalog": "[]"
+      },
+      "displayName": "Press",
+      "displayTemplate": "misc/press",
+      "editViewFields": [],
+      "icon": "/resources/admin/widgets/03_heading_p.png",
+      "id": "press",
+      "validPageTypes": [
+        "*"
+      ]
+    },
     {
     	"defaultConfig": {
         "catalog": "[]"
