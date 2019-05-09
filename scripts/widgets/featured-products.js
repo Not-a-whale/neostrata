@@ -1,5 +1,5 @@
-﻿define(['modules/jquery-mozu', "modules/api", 'modules/models-product', 'underscore', "modules/cart-monitor"],
-    function ($, api, ProductModels, _, CartMonitor) {
+﻿define(['modules/jquery-mozu', 'HyprLiveContext', "hyprlive","modules/api", 'modules/models-product', 'underscore', "modules/cart-monitor"],
+    function ($, HyprLiveContext, Hypr, api, ProductModels, _, CartMonitor) {
         function showAddToWishListM(){
             if($('#addToWishListPopUp').length === 1){
                 $('#addToWishListPopUp').remove();
@@ -115,8 +115,11 @@
                     }
                 });
                 setTimeout(function() {
+                    var regimenBundleInfo =  count + ' PRODUCTS - ' + Hypr.engine.render("{{price|currency}}",{ locals: { price: totalPrice }});
+                    var commerceEnabled = HyprLiveContext.locals.themeSettings.commerceEnabled;
+                    if(!commerceEnabled) regimenBundleInfo += " "+Hypr.getLabel("msrp");
                     $('[data-control="add-to-cart-regimen"]').data('mzProductCode', JSON.stringify(productRegimenCollection));
-                    $('[data-role="regimen-bundle-info"]').html( count + ' PRODUCTS - $' + totalPrice.toFixed(2));
+                    $('[data-role="regimen-bundle-info"]').html(regimenBundleInfo);
                 }, 1000);
             }
             $('[data-control="add-to-cart"]').click(function(){

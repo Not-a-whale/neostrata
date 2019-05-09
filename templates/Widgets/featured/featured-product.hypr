@@ -1,6 +1,6 @@
 {% if model.items %}
   {% for prod in model.items %}
-    <div class="featured-product-container" data-mz-product="{{prod.productCode}}">
+    <div class="featured-product-container {% with prod|get_product_attribute("tenant~skin-care-system") as skinCareSystem %}{% for scs in skinCareSystem.values %}{% if scs.stringValue %}{{ scs.stringValue|slugify }}{% if not forloop.last %},{% endif %}{% endif %}{% endfor %}{% endwith %}" data-mz-product="{{prod.productCode}}">
       <div class="featured-product-callout mobile-only">
         <div class="callout-text">
           FEATURED PRODUCT
