@@ -188,8 +188,13 @@
       "template": "bazaarvoice",
       "title": "BazaarVoice Container Page",
       "userCreatable": true
-    },
-    {
+    }, {
+      "entityType": "category",
+      "id": "blog-index",
+      "template": "blog-index",
+      "title": "Blog Index Page",
+      "userCreatable": false
+    }, {
       "documentType": "web_page",
       "entityType": "webpage",
       "id": "about-us",

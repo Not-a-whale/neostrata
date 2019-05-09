@@ -1,0 +1,36 @@
+﻿{% extends "page" %}
+
+{% block title-tag-content %}
+    {% firstof pageContext.metaTitle model.name %}  - {% parent %}
+{% endblock title-tag-content %}
+
+{% block body-tag-classes %} mz-blog-category neostrata-theme {% endblock body-tag-classes %}
+{% block body-content %}
+{% dropzone "blog-banner-img" scope="page"%}
+{% dropzone "blog-heading" scope="page"%}
+<div class="mz-blog-category-index">
+    <div class="mz-blog-category-index-separator top-separator col-xs-8 col-md-6"></div>
+    {% with categories|find(pageModel.categoryId) as blogCat %}
+        {% for blogItem in blogCat.childrenCategories %}
+            <div class="mz-blog-category-index-entry col-xs-10 col-md-8">
+                {% with blogItem.content.categoryImages|first as firstImg %}
+                <img src="{{ firstImg.imageUrl }}" alt="{{ firstImg.altText }}">
+                {% endwith %}
+                <div>
+                  <a href="{{ blogItem.url }}">
+                    <h3>{{ blogItem.content.name }}</h3>
+                  </a>
+                  <p>{{ blogItem.content.description }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    {% endwith %}    
+    <div class="mz-blog-category-index-separator col-xs-8 col-md-6"></div>
+    {% dropzone "quiz-article" scope="page"%}
+    {% dropzone "share-btn" scope="page"%}
+    {% dropzone "view-all-products" scope="page"%}
+</div>
+
+{% require_script "pages/blog-index-page" %}
+
+{% endblock body-content %}
