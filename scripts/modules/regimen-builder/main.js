@@ -386,7 +386,7 @@ require([
         return acc;
       }, {});
 
-      if (productIds && productIds.length > 0) {
+      if (productIds) {
         $BV.ui( 'rr', 'inline_ratings', {
           productIds: productIds,
           containerPrefix: 'BVRRInlineRating'
