@@ -195,7 +195,17 @@ require(["modules/jquery-mozu",
             var currentStep = this.$el;
             var previousStep = currentStep.prev();
             var nextStep = currentStep.next();
-            this.checkerInput();
+            if(currentStepId == 'step-payment-info'){ 
+                var code = this.model.parent.get('couponCodes');
+                if(code.length > 0){
+                    var codeName= this.model.parent.get('orderDiscounts');
+                    var retText = '<div class="promoCodeApplied">' + Hypr.getLabel('promoCodeApplied', code[0], codeName[0].discount.name) + '</div><button type="button" id="removeCoupon" class="mz-button primary-btn" data-mz-action="removeCoupon">' + Hypr.getLabel('remove') + '</button>';
+                    setTimeout(function() {
+                        $('#coupon-code-wrapper').hide();
+                        document.getElementById('addNewPromoCode').innerHTML = retText;
+                    }, 1000);
+                }
+            }
             if(currentStepId == 'step-customer-info'){ //let's initialize, at least first element is-current
                 currentStep.addClass('is-current');
                 if(!$('#nextBtn').hasClass('disabled')){
@@ -324,14 +334,14 @@ require(["modules/jquery-mozu",
                 if(!isPrimaryShippingContact){
                     if(this.customer && this.customer.get('contacts') && this.customer.get('contacts').length){ //checks if selected checkout address from customer's contacts list is default address
                         this.customer.get('contacts').forEach(function(contact){
-                            if(contact && contact.id == this.model.get('id') && contact.attributes.isPrimaryShippingContact) isPrimaryShippingContact = true;     
+                            if(contact && contact.id == this.model.get('id') && contact.attributes.isPrimaryShippingContact) isPrimaryShippingContact = true;
                         }, this);
                     }else{ // if new customer or customer without address then suggest unique address to default
                         isPrimaryShippingContact = true;
-                    }     
+                    }
                 }
-                this.model.get('address').set('isPrimaryShippingContact', isPrimaryShippingContact);                
-                this.model.set('isPrimaryShippingContact', isPrimaryShippingContact);                
+                this.model.get('address').set('isPrimaryShippingContact', isPrimaryShippingContact);
+                this.model.set('isPrimaryShippingContact', isPrimaryShippingContact);
             }
             CheckoutStepView.prototype.render.apply(this );
             $('.selectpicker').selectpicker();
@@ -522,6 +532,9 @@ require(["modules/jquery-mozu",
                   return false;
                 }
             });
+            this.$el.on('click', '#removeCoupon', function (e) {
+                me.removeCoupon();
+              });
 
         },
         allowDigit:function(e){
@@ -730,6 +743,13 @@ require(["modules/jquery-mozu",
                 self.render();
             });
         },
+        removeCoupon: function (e) {
+            var self = this;
+            var couponCode = this.model.parent.get('couponCodes');
+            if(couponCode.length > 0){
+                this.model.parent.removeCoupon(couponCode[0]);
+            }
+        },
         onEnterCouponCode: function (model, code) {
             if (code && !this.couponCodeEntered) {
                 this.couponCodeEntered = true;
@@ -901,7 +921,6 @@ require(["modules/jquery-mozu",
         _.invoke(checkoutViews.steps, 'initStepView');
 
         $checkoutView.noFlickerFadeIn();
-
 
     });
 });
