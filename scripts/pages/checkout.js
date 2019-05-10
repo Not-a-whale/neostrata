@@ -160,6 +160,9 @@ require(["modules/jquery-mozu",
             });
                 }, 1500);
             }
+            $("#nextBtn").on('click', function() {
+                $('[data-mz-action="next"]').trigger( "click" );
+            });
          }, 1500);
         },
         choose: function () {
@@ -208,9 +211,6 @@ require(["modules/jquery-mozu",
             }
             if(currentStepId == 'step-customer-info'){ //let's initialize, at least first element is-current
                 currentStep.addClass('is-current');
-                if(!$('#nextBtn').hasClass('disabled')){
-                  $('#nextBtn').addClass('disabled');
-                }
             }
             else{ // checking for previous steps status
                 if(previousStep.hasClass('is-current') || previousStep.hasClass('is-incomplete')){ //prev elements not complete? then neither this
