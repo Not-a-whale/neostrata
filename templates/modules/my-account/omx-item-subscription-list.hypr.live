@@ -1,0 +1,40 @@
+<ul class="nav nav-tabs">
+    <li {% if not editing.allSubscription %} class="active" {% endif %}><a data-toggle="tab" href="#tab1"><span>{{ labels.subscriptionNextOrders }}</span></a></li>
+    <li {% if editing.allSubscription %} class="active" {% endif %}><a data-toggle="tab" href="#tab2"><span>{{ labels.subscriptionAllSubscriptions }}</span></a></li>
+</ul>
+
+<div class="tab-content">
+    
+    <div id="tab1" class="tab-pane fade {% if not editing.allSubscription %}  active in  {% endif %}">
+        <div class="tab-content-1">
+            <div class="mz-header-basket-md-sm">
+                <div class="col-xs-12">{{ labels.itemsInOrder }}</div>
+            </div>
+            <div class="omx-next-order">
+                {% include "modules/my-account/omx-item-subscription-next-order" %}
+            </div>
+        </div>
+    </div>
+    <div id="tab2" class="tab-pane fade {% if editing.allSubscription %} active in {% endif %}">
+        <div class="tab-content-2">
+            <div class="mz-header-basket-md-sm">
+                <div class="col-xs-12">{{ labels.itemsInOrder }}</div>
+            </div>
+            <div class="omx-orderhistory-list ">
+                {% for orderItem in model.omxItemSubscriptions.items %}
+                    {% if editing.orderItem == orderItem.membershipId %}
+                        <div data-mz-membership-id="{orderItem.membershipId}}" data-mz-omx-item-subscription-listing>
+                            <div data-order-message-bar class="order-message-bar"></div>
+                            {% include "modules/my-account/omx-item-subscription-listing-form" with model=model.omxItemSubscriptions.editingOrderItem %}
+                        </div>
+                    {% else %}
+                        <div data-mz-membership-id="{orderItem.membershipId}}" data-mz-omx-item-subscription-listing>
+                            <div data-order-message-bar class="order-message-bar"></div>
+                            {% include "modules/my-account/omx-item-subscription-listing" with model=orderItem %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

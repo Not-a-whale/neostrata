@@ -63,15 +63,6 @@
                 <input type="tel" class="input" name="shippingphone" value="{{ model.phoneNumbers.home }}" disabled="disabled">
             </div>
         </div>
-        <div class="mz-addressform-phone form-row">
-            <div class="mz-l-formfieldgroup-cell">
-                <input type="tel" class="input" name="shippingphone" value="{{ model.phoneNumbers.home }}" disabled="disabled">
-            </div>
-        </div>
-        <div class="mz-addressform-isprimary form-row">
-            <input type="checkbox" name="isprimary" {% if model.address.isPrimaryShippingContact %} checked="checked" {% endif %}  disabled="disabled">
-            <label class="mz-contacttype-isprimary" >{{ labels.primaryShippingContact }}</label>
-        </div>
     </div>
 
     {% if model.regularHours %}
@@ -150,9 +141,7 @@
     {% if model.phoneNumbers.home %}
         <span>{{ model.phoneNumbers.home }}</span>
     {% endif %}
-    {% if model.address.isPrimaryShippingContact %}
-        <span>Is Primary</span>
-    {% endif %}    
+    
 
     {% if model.regularHours %}
         <br>
