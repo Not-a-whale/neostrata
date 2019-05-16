@@ -2649,6 +2649,29 @@
       ]
     },
     {
+      "defaultConfig": {
+        "body": "<h2>Insert Carousel</h2>"
+      },
+      "displayName": "Owl Carousel",
+      "displayTemplate": "cms/owl-carousel",
+      "editViewFields": [
+        {
+          "fieldLabel": "Enter HTML",
+          "fieldStyle": "resize:both;font-family:Monaco, Menlo, Consolas, 'Droid Sans Mono', Inconsolata, 'Courier New', monospace;height:100%",
+          "height": 400,
+          "name": "body",
+          "width": "100%",
+          "mode": "html",
+          "xtype": "mz-input-code"
+        }
+      ],
+      "icon": "/resources/admin/widgets/07_code.png",
+      "id": "owl-carousel",
+      "validPageTypes": [
+        "*"
+      ]
+    },
+    {
       "category": "social",
       "defaultConfig": {
         "style": "1"

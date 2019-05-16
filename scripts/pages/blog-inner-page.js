@@ -1,0 +1,22 @@
+define([
+      'modules/jquery-mozu'
+    ], function ($) {
+        $(document).ready(function(){
+            $('.owl-carousel-widget').owlCarousel({
+                items:1,
+                merge:true,
+                loop:true,
+                margin:10,
+                video:true,
+                center:true,
+                responsive:{
+                    480:{
+                        items:2
+                    },
+                    600:{
+                        items:3
+                    }
+                }
+            });
+        });
+    });
