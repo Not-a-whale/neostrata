@@ -14,7 +14,9 @@
         {% for blogItem in blogCat.childrenCategories %}
             <div class="mz-blog-category-index-entry col-xs-10 col-md-8">
                 {% with blogItem.content.categoryImages|first as firstImg %}
-                <img src="{{ firstImg.imageUrl }}" alt="{{ firstImg.altText }}">
+                <div class="mz-blog-category-index-entry-image-container">
+                    <img src="{{ firstImg.imageUrl }}" alt="{{ firstImg.altText }}">
+                </div>
                 {% endwith %}
                 <div>
                   <a href="{{ blogItem.url }}">

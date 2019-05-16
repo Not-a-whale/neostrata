@@ -45,8 +45,16 @@
             display: flex;
             margin: 0 auto 6.25rem;
 
-            img {
+            .mz-blog-category-index-entry-image-container {
                 width: 50%;
+                object-fit: cover;
+                margin: 0;
+            }
+
+            img {
+                max-width: 100%;
+                object-fit: contain;
+                height: auto;
             }
 
             div {
@@ -80,6 +88,7 @@
                 align-items: center;
                 width: 90%;
 
+                .mz-blog-category-index-entry-image-container,
                 img,
                 div {
                     width: 100%;
@@ -205,11 +214,12 @@
                     width: auto !important;
                     height: auto !important;
                     padding-right: 1.5625rem;
-                    color: @charcoal !important;
-                    font-size: 1.5625rem !important;
+                    color: @charcoal  !important;
+                    font-size: 1.3rem !important;
                     font-weight: @fontWeightBook;
                     letter-spacing: 0.14em;
                     line-height: 5.625rem !important;
+                    font-family: "Gotham A", "Gotham B", sans-serif !important;
                 }
 
                 svg {
