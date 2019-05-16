@@ -38,15 +38,9 @@
           </a>
         </div>
         <div class="add-to-cart-container add-to-cart-control">
-          {% if commerceEnabled %}
             <button class="button primary-btn mz-productdetail-addtocart font-large button_primary" data-control="add-to-cart-regimen">
               ADD ALL TO CART
             </button>
-          {% else %} 
-            <a class="button primary-btn mz-productdetail-addtocart font-large button_primary" href="/where-to-buy">  
-              {{ labels.findARetailer }}
-            </a>
-          {% endif %}
         </div>
       </div>
     </div>
