@@ -1,6 +1,6 @@
 {% if model.config.category %}
   {% with navigation|find:model.config.category as cat %}
-    <div class="featured-regimen-container" data-role="regimen-products" data-mz-category-regimen="{{model.config.category}}">
+    <div class="featured-regimen-container {{ cat.name|slugify }}" data-role="regimen-products" data-mz-category-regimen="{{model.config.category}}">
       <div class="featured-regimen-callout mobile-only">
         <div class="callout-text">
           RECOMMENDED REGIMEN
@@ -38,9 +38,9 @@
           </a>
         </div>
         <div class="add-to-cart-container add-to-cart-control">
-          <button class="button primary-btn mz-productdetail-addtocart font-large button_primary" data-control="add-to-cart-regimen">
-            ADD ALL TO CART
-          </button>
+            <button class="button primary-btn mz-productdetail-addtocart font-large button_primary" data-control="add-to-cart-regimen">
+              ADD ALL TO CART
+            </button>
         </div>
       </div>
     </div>

@@ -4,6 +4,7 @@ require([
   'underscore',
   "async",
   'modules/backbone-mozu',
+  "hyprlivecontext",
   'modules/api',
   'modules/models-product',
   'modules/cart-monitor',
@@ -13,6 +14,7 @@ require([
   _,
   async,
   Backbone,
+  HyprLiveContext,
   API,
   ProductModels,
   CartMonitor,
@@ -386,7 +388,7 @@ require([
         return acc;
       }, {});
 
-      if (productIds && productIds.length > 0) {
+      if (productIds) {
         $BV.ui( 'rr', 'inline_ratings', {
           productIds: productIds,
           containerPrefix: 'BVRRInlineRating'
@@ -522,6 +524,7 @@ require([
       this.updateFromCart();
 
       this.selector.on( 'change', function( conf ) {
+        if(!conf) conf = { selectedRegimen: this.calculateRegimen(this.skinTypeSelected, this.skinConcernSelected), regimenType: this.regimenType };
         var newRegimen = _.find( REGIMENS, function( item ) {
           return item[0] === conf.selectedRegimen;
         });
@@ -538,6 +541,7 @@ require([
           regimenType: conf.regimenType
         });
       });
+      this.selector.trigger( 'change');
     },
     updateFromCart: function() {
       var self = this;
@@ -560,12 +564,14 @@ require([
         var code = CONFIG[key];
 
         var product = PRODUCTS[code];
+
+        var commerceEnabled = HyprLiveContext.locals.themeSettings.commerceEnabled;
         return _.extend({}, step, {
           product: code && product,
           productContent: code && product && product.content,
           productCode: code,
           price: product && product.price,
-          included: product && (!product.purchasableState || product.purchasableState.isPurchasable)
+          included: (product && !commerceEnabled) || (product && commerceEnabled && (!product.purchasableState || product.purchasableState.isPurchasable))
         });
       })
       .filter( function( step ) {

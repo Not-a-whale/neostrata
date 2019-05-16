@@ -297,6 +297,26 @@
         },
         {
             "xtype": "panel",
+            "title": "Press page",
+            "collapsed": false,
+            "items": [
+                {
+                    "fieldLabel": "Press items per page",
+                    "xtype": "mz-input-number",
+                    "name": "pressItemsPerPage",
+                    "hideTrigger": false,
+                    "allowDecimal": false,
+                    "minValue": 1
+                },
+                {
+                    "fieldLabel": "Press entity name (example: press@namespace)",
+                    "xtype": "mz-input-text",
+                    "name": "pressEntityName"
+                }
+            ]
+        },
+        {
+            "xtype": "panel",
             "title": "Navigation",
             "collapsed": false,
             "items": [

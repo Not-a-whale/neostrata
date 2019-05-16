@@ -1,0 +1,6 @@
+{%if SiteContext.IsEditMode %}
+<span>Press</span>
+{% else %}
+	{% include model.config.template|default:"modules/common/press"  %}
+	{% require_script "widgets/press" %}
+{% endif %}
