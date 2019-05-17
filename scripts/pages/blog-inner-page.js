@@ -1,22 +1,12 @@
 define([
-      'modules/jquery-mozu'
-    ], function ($) {
-        $(document).ready(function(){
+    'modules/jquery-mozu',
+    "vendor/jquery/owl.carousel.min"], function($, owlCarousel) {
+        $(document).ready(function() {
             $('.owl-carousel-widget').owlCarousel({
                 items:1,
-                merge:true,
-                loop:true,
                 margin:10,
                 video:true,
-                center:true,
-                responsive:{
-                    480:{
-                        items:2
-                    },
-                    600:{
-                        items:3
-                    }
-                }
+                loop: $('.owl-carousel-widget .item-video').length > 1 ? true : false
             });
         });
-    });
+});

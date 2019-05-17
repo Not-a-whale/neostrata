@@ -1,15 +1,15 @@
 ﻿<div class="mz-content-widget-wrap" >
     <div class="mz-content-widget-inner-wrap" >
-        <div class="owl-carousel owl-theme owl-carousel-widget">
-            {% if Model.config.body %}
-                {{Model.config.body|default_edit:'add content here'|safe}}
-            {% else %}
-            {% endif %}
+        <div class="page-section">
+            <h2 class="owl-carousel-widget-title">Learn how to use our products</h2>
+            <div class="owl-carousel owl-theme owl-carousel-widget">
+                {% if Model.config.body %}
+                    {{Model.config.body|default_edit:'add content here'|safe}}
+                {% else %}
+                {% endif %}
+            </div>
         </div>
     </div>
 </div>
-
-
-{% require_script "vendor/jquery/owl.carousel.min" %}
 
 {% require_script "pages/blog-inner-page" %}
