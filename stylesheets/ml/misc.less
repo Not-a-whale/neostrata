@@ -4937,6 +4937,7 @@ body.mz-product {
                     font-size: @fontSizeFourty;
                     color: @charcoal;
                     padding-bottom: 1rem;
+                    font-weight: @fontWeightMedium;
                 }
                 .subtitle {
                     font-size: @fontSizeThirty;
@@ -4946,7 +4947,7 @@ body.mz-product {
                     font-size: @fontSizeThirty;
                     color: @charcoal;
                     position: relative;
-                    top: -7px;
+                    top: -0.4375rem;
                 }
                 .detail-url {
                     a {
@@ -4972,13 +4973,15 @@ body.mz-product {
                         @media @mobile {
                             margin: @fontSizeThirty auto;
                             height: 6rem;
-                            line-height: 65px;
+                            line-height: 6rem;
                             padding: 0 5rem;
                             border: 0.1875rem solid @charcoal;
                             letter-spacing: 0.14rem;
                             width: auto;
                             display: inline-block;
-                            font-weight: normal;
+                            font-size: 1.75rem;
+                            font-weight: lighter;
+                            text-transform: uppercase;
                             &:after {
                                 display: none;
                             }
@@ -4990,7 +4993,14 @@ body.mz-product {
                     }
                 }
                 @media @mobile {
-                    padding: 2.5rem;
+                    padding: 4.5rem 2.5rem 2.5rem 2.5rem;
+                    .title {
+                        padding-bottom: 5rem;
+                        font-weight: @fontWeightMedium;
+                    }
+                    .subtitle {
+                        padding-bottom: 1rem;
+                    }
                 }
             }
         }
