@@ -3,7 +3,7 @@
     height: 524px;
     position: relative;
     padding: 0 30px;
-    margin: 3rem 0;
+    margin: 3rem 0 10rem;
 
     .owl-video-tn {
         background-size: cover !important;
@@ -62,5 +62,71 @@
     }
     @media (max-width: 400px) {
         height: 135px;
+    }
+    
+    #mz-drop-zone-share-btn {
+        .at-style-responsive .at-share-btn {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: center;
+            align-items: center;
+            width: 12.5%;
+            height: 6rem;
+            margin: 0 auto 1.875rem;
+            padding: 1rem;
+            border-radius: 0px;
+            border: 0.1875rem solid @charcoal;
+            background: none;
+            color: @charcoal;
+            text-align: center;
+
+            text-transform: uppercase;
+            text-decoration: none;
+
+            .at-icon-wrapper {
+                position: relative;
+                display: flex;
+                align-items: center;
+                width: 23px !important;
+                height: 23px !important;
+                line-height: 0 !important;
+
+                &::before {
+                    content: "";
+                    background-image: url("../resources/images/icons/share-icon.png");
+                    height: 100%;
+                    width: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: contain;
+                }
+            }
+
+            .at-label {
+                display: block;
+                width: auto !important;
+                height: auto !important;
+                padding-right: 1.5625rem;
+                color: @charcoal  !important;
+                font-size: 1.3rem !important;
+                font-weight: @fontWeightBook;
+                letter-spacing: 0.14em;
+                line-height: 5.625rem !important;
+                font-family: "Gotham A", "Gotham B", sans-serif !important;
+            }
+
+            svg {
+                display: none;
+            }
+
+            span {
+                color: inherit;
+                text-transform: uppercase;
+            }
+        }
+
     }
 }
