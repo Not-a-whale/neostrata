@@ -120,6 +120,8 @@ define([
                     if (!newContactId || newContactId === 'new') {
                         model.get('address').clear();
                         model.get('phoneNumbers').clear();
+                        model.set('address.countryCode','US');
+                        model.set('address.addressType','Residential');
                         model.unset('id');
                         model.unset('firstName');
                         model.unset('lastNameOrSurname');
