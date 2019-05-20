@@ -1,0 +1,16 @@
+﻿{% extends "page" %}
+
+{% block title-tag-content %}
+    {% firstof pageContext.metaTitle model.name %}  - {% parent %}
+{% endblock title-tag-content %}
+
+{% block body-tag-classes %} mz-blog-category-inner neostrata-theme {% endblock body-tag-classes %}
+{% block body-content %}
+
+{% dropzone "blog-inner-content-top" scope="page"%}
+{% dropzone "blog-product-carousel" scope="page"%}
+{% dropzone "view-all-collections" scope="page"%}
+{% dropzone "video-carousel" scope="page"%}
+{% dropzone "share-btn-viewall-products" scope="page"%}
+
+{% endblock body-content %}

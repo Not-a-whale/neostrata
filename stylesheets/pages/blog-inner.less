@@ -1,0 +1,327 @@
+﻿.mz-blog-category-inner {
+    .single-page-main-image {
+        position: relative;
+        margin-bottom: 8.5rem;
+    }
+    .banner-text {
+        position: absolute;
+        top: 50%;
+        left: 80%;
+        transform: translate(-50%, -50%);
+        width: 23%;
+
+        h1 {
+            margin: 0;
+            text-align: left;
+            max-width: 100%;
+            font-size: 3.125rem;
+            font-weight: 500;
+        }
+    }
+    .page-section {
+        width: 940px;
+        margin: 0 auto;
+        
+        h2,
+        h3 {
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        
+        p,
+        h2,
+        h3 {
+            font-size: 1.5rem;
+            line-height: 1.583em;
+            margin: 0 0 3.125rem;
+        }
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            margin: 0 0 5.375rem;
+            padding: 0;
+        }
+
+        .bullet-list li {
+            display: inline-flex;
+            align-items: flex-start;
+            font-size: 1.5rem;
+            line-height: 1.583em;
+
+            .bullet-img {
+                width: 17px;
+                margin-right: 2rem;
+                margin-top: 0.75rem;
+            }
+        }
+
+        .causes-us-list {
+            li {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                font-size: 1.5rem;
+                line-height: 1.583em;
+
+                &:before {
+                    display: block;
+                    content: '';
+                    background: url("../resources/images/icons/single-page-ico01.png") no-repeat;
+                    width: 51px;
+                    height: 36px;
+                    margin-left: 4.5rem;
+                }
+            }
+            div {
+                width: 85%;
+            }
+        }
+    }
+
+    .page-section .causes-us-list h3,
+    .page-section .page-section-list-text h3 {
+        margin-bottom: 0;
+    }
+
+    .page-product-list {
+        li {
+            display: flex;
+        }
+        .image-holder {
+            display: flex;
+            flex-direction: column;
+            margin-right: 2rem;
+        }
+        .image-holder img {
+            display: block;
+            margin-top: 10px;
+        }
+    } 
+    
+    .page-section-image {
+        width: 100%;
+        display: block;
+        margin-bottom: 10.25rem;
+    }
+    
+    .product-carousel-listing,
+    .single-page-title {
+        display: none;
+        font-size: 1.5rem;
+    }
+
+    .mz-cms-editing .product-carousel-listing,
+    .mz-cms-editing .single-page-title {
+        display: block;
+    }
+
+    .page-section .primary-btn {
+        display: block;
+        width: 42.5rem;
+        text-align: center;
+        margin: 0 auto;
+    }
+    .page-section-collections {
+        margin-bottom: 5.375rem;
+
+        p {
+            margin-bottom: 10.9375rem;
+        }
+        .primary-btn {
+            margin-bottom: 3.125rem;
+        }
+    }
+    .btns-page-section {
+        border: solid #e0e0e0;
+        border-width: 2px 0;
+        width: 890px;
+        margin: 0 auto;
+        padding: 9.75rem 0;
+        text-align: center;
+    }
+    .references-section {
+        padding: 8.5rem 0 5rem;
+        letter-spacing: 0.25px;
+        
+        h4,
+        p {
+            font-size: 1rem;
+            line-height: 1.125em;
+            margin: 0 0 10px;
+            text-transform: uppercase;
+        }
+        li {
+            padding-left: 2.25rem;
+        }
+        p {
+            text-transform: none;
+            text-indent: -2.25rem;
+            
+            a {
+                white-space: nowrap;
+            }
+        }
+    }
+    @media (max-width: 992px) {
+        .page-section {
+            width: 85%;
+            text-align: center;
+        }
+        .single-page-main-image {
+            margin-bottom: 4rem;
+        }
+        .banner-text {
+            position: static;
+            transform: none;
+            width: 100%;
+            margin-top: 4.5rem;
+
+            h1 {
+                text-align: center;
+            }
+        }
+        .product-carousel-listing,
+        .single-page-title {
+            display: block;
+            text-align: left;
+            font-size: 1.4rem;
+        }
+        .page-section {
+            .bullet-list li {
+                align-items: flex-start;
+                justify-content: center;
+
+                .bullet-img {
+                    width: 10px;
+                    margin-top: 4px;
+                    margin-right: 3px;
+                }
+            }
+            .causes-us-list li div {
+                width: 100%;
+            }
+            .causes-us-list li:before {
+                display: none;
+            }
+            p,
+            h2,
+            h3 {
+                line-height: 1.583em;
+                margin: 0 0 2.125rem;
+            }
+            p {
+                font-size: 1.4rem;
+            }
+        }
+        .page-product-list {
+            margin-bottom: 0;
+            
+            .image-holder {
+                display: none;
+            }
+        }
+        .page-section .primary-btn {
+            width: auto;
+            display: inline-flex;
+        }
+        .page-section-collections {
+            margin-bottom: 2.375rem;
+            p {
+                margin-bottom: 5rem;
+            }
+        }
+        .references-section {
+            li {
+                text-align: left;
+                padding-left: 1.25rem;
+            }
+            p {
+                text-indent: -1.25rem;
+            }
+            h4 {
+                font-size: 1.4rem;
+            }
+            p a {
+                white-space: normal;
+            }
+        }
+        #mz-drop-zone-share-btn .at-style-responsive .at-share-btn {
+            width: 12.5%;
+        }
+    }
+    #mz-drop-zone-share-btn {
+        .at-style-responsive .at-share-btn {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: center;
+            align-items: center;
+            width: 260px;
+            height: 6rem;
+            margin: 0 auto 1.875rem;
+            padding: 1rem;
+            border-radius: 0px;
+            border: 0.1875rem solid @charcoal;
+            background: none;
+            color: @charcoal;
+            text-align: center;
+
+            text-transform: uppercase;
+            text-decoration: none;
+
+            .at-icon-wrapper {
+                position: relative;
+                display: flex;
+                align-items: center;
+                width: 23px !important;
+                height: 23px !important;
+                line-height: 0 !important;
+
+                &::before {
+                    content: "";
+                    background-image: url("../resources/images/icons/share-icon.png");
+                    height: 100%;
+                    width: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: contain;
+                }
+            }
+
+            .at-label {
+                display: block;
+                width: auto !important;
+                height: auto !important;
+                padding-right: 1.5625rem;
+                color: @charcoal  !important;
+                font-size: 1.3rem !important;
+                font-weight: @fontWeightBook;
+                letter-spacing: 0.14em;
+                line-height: 5.625rem !important;
+                font-family: "Gotham A", "Gotham B", sans-serif !important;
+                position: relative;
+
+                &:after {
+                    content: 'Share';
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    background: #fff;
+                    height: 95%;
+                }
+            }
+
+            svg {
+                display: none;
+            }
+
+            span {
+                color: inherit;
+                text-transform: uppercase;
+            }
+        }
+    }
+}

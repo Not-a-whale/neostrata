@@ -195,6 +195,12 @@
       "title": "Blog Index Page",
       "userCreatable": false
     }, {
+      "entityType": "category",
+      "id": "blog-inner",
+      "template": "blog-inner",
+      "title": "Blog Inner Page",
+      "userCreatable": false
+    }, {
       "documentType": "web_page",
       "entityType": "webpage",
       "id": "about-us",
@@ -2629,6 +2635,29 @@
       ],
       "icon": "/resources/admin/widgets/07_code.png",
       "id": "html",
+      "validPageTypes": [
+        "*"
+      ]
+    },
+    {
+      "defaultConfig": {
+        "body": "<div class='item-video'><a class='owl-video' href='!!! PLEASE INSERT VIDEO LINK HERE !!!'></a></div>"
+      },
+      "displayName": "Owl Carousel",
+      "displayTemplate": "cms/owl-carousel",
+      "editViewFields": [
+        {
+          "fieldLabel": "Enter HTML",
+          "fieldStyle": "resize:both;font-family:Monaco, Menlo, Consolas, 'Droid Sans Mono', Inconsolata, 'Courier New', monospace;height:100%",
+          "height": 400,
+          "name": "body",
+          "width": "100%",
+          "mode": "html",
+          "xtype": "mz-input-code"
+        }
+      ],
+      "icon": "/resources/admin/widgets/07_code.png",
+      "id": "owl-carousel",
       "validPageTypes": [
         "*"
       ]
