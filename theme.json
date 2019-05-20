@@ -195,6 +195,12 @@
       "title": "Blog Index Page",
       "userCreatable": false
     }, {
+      "entityType": "category",
+      "id": "blog-inner",
+      "template": "blog-inner",
+      "title": "Blog Inner Page",
+      "userCreatable": false
+    }, {
       "documentType": "web_page",
       "entityType": "webpage",
       "id": "about-us",
@@ -2650,7 +2656,7 @@
     },
     {
       "defaultConfig": {
-        "body": "<h2>Insert Carousel</h2>"
+        "body": "<div class='item-video'><a class='owl-video' href='!!! PLEASE INSERT VIDEO LINK HERE !!!'></a></div>"
       },
       "displayName": "Owl Carousel",
       "displayTemplate": "cms/owl-carousel",
