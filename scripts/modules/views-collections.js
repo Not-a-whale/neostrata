@@ -340,7 +340,7 @@ define([
             var self = this;
             blockUiLoader.globalLoader();
             var user = require.mozuData('user');
-            if(user && user.accountId !== ''){
+            if(user && user.email !== "" && user.accountId && user.userId){
                 var productCode = $(_e.currentTarget).data("mz-product-code");    
                 if(productCode && productCode !== ''){
                    api.request('GET', '/api/commerce/instocknotifications/?filter=email+eq+'+user.email+'+and+productCode+eq+'+productCode).then(function(instocknotificationsItemsResponse) {

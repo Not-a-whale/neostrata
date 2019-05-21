@@ -244,7 +244,7 @@ define(["modules/jquery-mozu", "underscore", "modules/backbone-mozu", "hyprlive"
                 if (!me.validate()) {
                     var productCode = me.get('productCode');
                     var user = me.get('user');
-                    if(user && user.accountId !== ''){
+                    if(user && user.email !== "" && user.accountId && user.userId){
                         if(productCode && productCode !== ''){
                            api.request('GET', '/api/commerce/instocknotifications/?filter=email+eq+'+user.email+'+and+productCode+eq+'+productCode).then(function(instocknotificationsItemsResponse) {
                                 if(instocknotificationsItemsResponse.totalCount){
