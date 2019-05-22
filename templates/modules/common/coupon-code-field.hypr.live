@@ -1,10 +1,12 @@
-﻿        <div class="mz-l-formfieldgroup-cell">
-            <label for="coupon-code">{{ labels.couponCode }}: </label>
+﻿        <div class="mz-l-formfieldgroup-cell coupon-form-labels col-xs-12">
+            <div class="coupon-code col-xs-8 col-sm-10 text-left">{{ labels.couponCode }}: </div>
+            <div class="cancel-coupon-code-form col-xs-4 col-sm-2 pull-right" onclick="jQuery('.mz-coupon-code-button').toggle('slow');jQuery('.mz-coupon-code-area').toggle('slow');">{{ labels.cancelCouponCode }}</div>
         </div>
         <div class="mz-l-formfieldgroup-cell">
             <input type="text" id="coupon-code" name="coupon-code" value="{{ model.couponCode }}" data-mz-value="couponCode" maxlength="{{themeSettings.couponCodeLength}}">
-            <button type="button" id="cart-coupon-code" class="mz-button" data-mz-action="addCoupon" {% if not model.couponCode %} disabled="disabled" {% endif %}>{{ labels.apply }}</button>
+            <button type="button" id="cart-coupon-code" class="mz-button primary-btn" data-mz-action="addCoupon" {% if not model.couponCode %} disabled="disabled" {% endif %}>{{ labels.apply }}</button>
         </div>
+        <div class="mz-l-formfieldgroup-cell coupon-form-error col-xs-12" id="coupon-form-error"></div>
         {% if model.tentativeCoupon %}
         <div>
             <span>{{labels.couponDisclaimer|string_format(model.tentativeCoupon)|safe}}</span>

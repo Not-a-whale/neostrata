@@ -1,6 +1,6 @@
-define(['underscore', 'modules/backbone-mozu', 'hyprlive', "modules/api", "modules/models-product",
+define(['modules/jquery-mozu', 'underscore', 'modules/backbone-mozu', 'hyprlive', "modules/api", "modules/models-product",
     "hyprlivecontext", 'modules/models-location'
-  ], function (_, Backbone, Hypr, api, ProductModels,
+  ], function ($, _, Backbone, Hypr, api, ProductModels,
         HyprLiveContext, LocationModels) {
 
     var CartItemProduct = ProductModels.Product.extend({
@@ -151,9 +151,10 @@ define(['underscore', 'modules/backbone-mozu', 'hyprlive', "modules/api", "modul
                 var deferred = api.defer();
                 deferred.reject();
                 deferred.promise.otherwise(function () {
-                    me.trigger('error', {
-                        message: Hypr.getLabel('promoCodeAlreadyUsed', code)
-                    });
+                    $('#coupon-form-error').addClass('error-present').html(Hypr.getLabel('promoCodeAlreadyUsed', code));
+//                    me.trigger('error', {
+//                        message: Hypr.getLabel('promoCodeAlreadyUsed', code)
+//                    });
                 });
                 return deferred.promise;
             }
@@ -171,17 +172,17 @@ define(['underscore', 'modules/backbone-mozu', 'hyprlive', "modules/api", "modul
                     return couponCode.toLowerCase() === lowerCode;
                 });
                 if (!couponExists) {
-                    me.trigger('error', {
-                        message: Hypr.getLabel('promoCodeError', code)
-                    });
+                    $('#coupon-form-error').addClass('error-present').html(Hypr.getLabel('promoCodeError', code));
+//                    me.trigger('error', {
+//                        message: Hypr.getLabel('promoCodeError', code)
+//                    });
+                }else{
+                    var couponIsNotApplied = (!allDiscounts || !_.find(allDiscounts, function(d) {
+                        return d.couponCode && d.couponCode.toLowerCase() === lowerCode;
+                    }));
+                    me.set('tentativeCoupon', couponExists && couponIsNotApplied ? code : undefined);
                 }
-
-                var couponIsNotApplied = (!allDiscounts || !_.find(allDiscounts, function(d) {
-                    return d.couponCode && d.couponCode.toLowerCase() === lowerCode;
-                }));
-                me.set('tentativeCoupon', couponExists && couponIsNotApplied ? code : undefined);
-
-                me.isLoading(false);
+                me.isLoading(false);   
             });
         },
         removeCoupon: function(code) {

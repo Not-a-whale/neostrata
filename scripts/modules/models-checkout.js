@@ -120,6 +120,8 @@ define([
                     if (!newContactId || newContactId === 'new') {
                         model.get('address').clear();
                         model.get('phoneNumbers').clear();
+                        model.set('address.countryCode','US');
+                        model.set('address.addressType','Residential');
                         model.unset('id');
                         model.unset('firstName');
                         model.unset('lastNameOrSurname');
@@ -200,6 +202,8 @@ define([
                     order.syncApiModel();
                     me.isLoading(true);
                     me.stepStatus('complete');
+                    
+                    me.updatePrimaryShippingAddress(me);
 
                     order.apiModel.getShippingMethodsFromContact().then(function (methods) {
                         return parent.refreshShippingMethods(methods);
@@ -250,6 +254,39 @@ define([
                         completeStep();
                     }
                 }
+            },
+            updatePrimaryShippingAddress: function(me){
+                
+                var order = me.getOrder();
+                if (order) {   
+                    var customer = order.get('customer');         
+                    if(customer.get('contacts').length){
+                        var updatedContacts = [];
+                        var fulfillmentInfo = me.toJSON();
+                        customer.get('contacts').each(function(contact) {
+                            var billingInfo = contact.toJSON();
+                            if(fulfillmentInfo.isPrimaryShippingContact === true){
+                                var isPrimaryShippingContact = (billingInfo.id === fulfillmentInfo.id)? true : false;
+                                billingInfo.isPrimaryShippingContact = isPrimaryShippingContact;
+                                billingInfo.types =  [{"name": "Shipping",
+                                                       "isPrimary": isPrimaryShippingContact}];
+                            }else{
+                                if(billingInfo.id === fulfillmentInfo.id){
+                                    billingInfo.isPrimaryShippingContact = false;
+                                    billingInfo.types =  [{"name": "Shipping",
+                                                           "isPrimary": false}];
+                                }   
+                            }
+                            if(billingInfo.isPrimaryShippingContact) me.set('types', billingInfo.types);
+                            updatedContacts.push(billingInfo);
+                        }); 
+                        customer.apiModel.updateCustomerContacts({id: customer.id, 
+                                                                  postdata:updatedContacts}).then(function(contactResult) {
+                            return contactResult;
+                        });
+                    }       
+                }
+                return false;
             }
         }),
 
@@ -379,26 +416,8 @@ define([
                 var me = this;
                 this.isLoading(true);
                 var order = this.getOrder();
-                if (order) {
-                    var fulfillmentInfo = me.toJSON();
-                    var customer = order.get('customer');         
-                    if(customer.get('contacts').length){
-                        customer.get('contacts').each(function(contact) {
-                            if(fulfillmentInfo.fulfillmentContact.isPrimaryShippingContact === true){
-                                var isPrimaryShippingContact = (contact.id == fulfillmentInfo.fulfillmentContact.id)? true : false;
-                                contact.set('isPrimaryShippingContact', isPrimaryShippingContact);
-                                contact.set('isShippingContact', isPrimaryShippingContact);
-                            }else{
-                                if(contact.id == fulfillmentInfo.fulfillmentContact.id){
-                                    contact.set('isPrimaryShippingContact', false);
-                                    contact.set('isShippingContact', false);
-                                }   
-                            }
-                        }); 
-                        customer.save();
-                    }
-                    
-                    order.apiModel.update({ fulfillmentInfo: fulfillmentInfo })
+                if (order) {                    
+                    order.apiModel.update({ fulfillmentInfo: me.toJSON() })
                         .then(function (o) {
                             var billingInfo = me.parent.get('billingInfo');
                             if (billingInfo) {

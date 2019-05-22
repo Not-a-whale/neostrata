@@ -201,7 +201,7 @@
             </div>
             <div></div>
         </div-->
-        <div class="row mz-carttable-total-row row">
+        <div class="mz-carttable-total-row row">
             <div class="col-xs-12 mz-carttable-total-wrap mz-padding-xs">
                 <div class="col-xs-7 col-sm-9">{{ labels.subtotal }}:</div>
                 <div id="mz-carttable-total" class="mz-carttable-total col-xs-5 col-sm-3 pull-right">
@@ -212,12 +212,13 @@
         </div>
     {% for discount in model.orderDiscounts %}
         {% if not discount.excluded %}
-        <div class="mz-carttable-total-row row mz-discount-row">
-            <div class="col-xs-7 col-sm-9 text-left">{{ discount.discount.name }}</div>
-            <div class="mz-carttable-total-wrap col-xs-5 col-sm-3 pull-right">
-                <span class="mz-carttable-rowtotal">- {{ discount.impact|currency }}</span>
+        <div class="mz-carttable-total-row mz-discount-row row">
+            <div class="col-xs-12 mz-carttable-discount-wrap mz-padding-xs">
+                <div class="col-xs-7 col-sm-9 text-left">{{ discount.discount.name }}</div>
+                <div class="mz-carttable-total col-xs-5 col-sm-3 pull-right">
+                    <strong class="mz-carttable-rowtotal">-{{ discount.impact|currency }}</strong>
+                </div>
             </div>
-            <div></div>
         </div>
         {% endif %}
     {% endfor %}
@@ -232,10 +233,15 @@
         </div>
         <div class="mz-carttable-checkout-row row">
             <div class="col-xs-12 mz-padding-xs">
-            {% if  themeSettings.showcouponCodeBasket %}
-                <div class="mz-carttable-checkout-couponcode col-sm-4 col-xs-12" id="coupon-code-field" >
-                    {% include "modules/common/coupon-code-field" %}
+            {% if  themeSettings.showcouponCodeBasket or true %}
+                <div class="mz-carttable-checkout-couponcode col-xs-12 {% with model.orderDiscounts|first as discountData %}{% if  model.orderDiscounts.length > 0 and discountData.couponCode %} discounts-applied {% endif %}{% endwith %}" id="coupon-code-field" >
+                    <div class="mz-coupon-code-button" onclick="jQuery('.mz-coupon-code-area').toggle('slow');jQuery(this).toggle('slow');">
+                        <span class="add-new-coupon-code">{{ labels.addNewCouponPromoCode }}</span>
+                        <span class="add-coupon-code">{{ labels.addCouponPromoCode }}</span>
+                    </div>
+                    <div class="mz-coupon-code-area" style="display:none;">{% include "modules/common/coupon-code-field" %}</div>
                 </div>
+                {% include "modules/cart/coupon-detail" %}
             {% endif %}
                 <div class="col-xs-12 col-sm-8 pull-right mz-button-bottom-cart">
             {% if  themeSettings.showemptyBasket %}
@@ -253,8 +259,6 @@
             </div>
         {% endif %}
         </div>
-        <div>{% include "modules/cart/coupon-detail" %}</div>
-        <div></div>
     </div>
     <div class="money-back-msg hidden-xs">
         <span>{{ labels.moneyBackMsg|safe }}</span>
