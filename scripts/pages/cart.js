@@ -132,6 +132,7 @@
                         item.set('quantity', parseInt($qField.val(), 10));
                         item.saveQuantity();
                     }
+                    $qField.attr('disabled', false);
                 }else{
                     self.updateQuantity(e);
                 }

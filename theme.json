@@ -829,6 +829,7 @@
     "bannerImageEnabled": false,
     "bannerImageRepeat": "repeat-x",
     "bodyBackgroundColor": "#FFFFFF",
+    "maxQuantityProductPerCart": "15",
     "minimumQuantityForInStockQuantityMessage": 5,
     "cmsTextStyles": [
       {

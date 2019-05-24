@@ -46,12 +46,28 @@ define(['modules/jquery-mozu', 'underscore', 'modules/backbone-mozu', 'hyprlive'
             var self = this;
             var oldQuantity = this.previous("quantity");
             if (this.hasChanged("quantity")) {
-                this.apiUpdateQuantity(this.get("quantity"))
-                    .then(null, function() {
-                        // Quantity update failed, e.g. due to limited quantity or min. quantity not met. Roll back.
+                api.get('cartitem').then(function(cartitem) {
+                    var sku = self.get('product').id;
+                    var itemId = false;
+                    if(cartitem.data.totalCount){
+                        _.each(cartitem.data.items, function(v, key) {
+                            if(v.product.productCode == sku) itemId = v.id;
+                        });
+                    }
+
+                    if(self.get("quantity") > Hypr.getThemeSetting('maxQuantityProductPerCart')){
+                        self.trigger('error', { message: Hypr.getLabel('productOutOfStockError')});
+                        if(itemId) $('[data-mz-cart-item="'+itemId+'"]').val(oldQuantity).removeAttr("disabled");
                         self.set("quantity", oldQuantity);
-                        self.trigger("quantityupdatefailed", self, oldQuantity);
-                    });
+                    }else{
+                        self.apiUpdateQuantity(self.get("quantity"))
+                                .then(null, function() {
+                                    // Quantity update failed, e.g. due to limited quantity or min. quantity not met. Roll back.
+                                    self.set("quantity", oldQuantity);
+                                    self.trigger("quantityupdatefailed", self, oldQuantity);
+                                });
+                    }  
+                });
             }
         },
         storeLocation : function(){
