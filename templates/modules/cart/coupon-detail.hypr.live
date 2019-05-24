@@ -1,20 +1,11 @@
 {% with model.orderDiscounts|first as discountData %}
-{% if  model.orderDiscounts.length > 0 and discountData.couponCode %}
-<div id="coupon-detail">
-	<div class="mz-carttable-checkout-couponcode col-sm-4 col-xs-12 coupon-code-cart">
-		<div><strong>Code Applied</strong></div>
-		<div>
-			<p class="col-xs-6 mz-reset-padding">
-				{{ discountData.couponCode}}
-			</p>
-			<p class="col-xs-6">
-				<span class="mz-link-span hide">View Detail</span>
-				<span  class="mz-remove-coupon mz-link-span"  data-mz-action="removeCoupon">
-					Remove
-				</span>
-			</p>
-		</div>
+    {% if  model.orderDiscounts.length > 0 and discountData.couponCode %}
+	<div class="mz-carttable-checkout-couponcode col-xs-12 coupon-code-cart">
+            <div  id="coupon-detail">
+                <p class="col-xs-5 mz-reset-padding">{{ labels.couponCodeApplied }}</p>
+                <p class="col-xs-6 coupon-code-details">{{ discountData.discount.name}} - {{ discountData.couponCode}}</p>
+                <p class="col-xs-1"><span class="mz-remove-coupon mz-link-span" data-mz-couponcode="{{ discountData.couponCode}}" data-mz-action="removeCoupon">X</span></p>
+            </div>
 	</div>
-</div>
-{% endif %} 
+    {% endif %} 
 {% endwith %}

@@ -63,8 +63,14 @@
         additionalEvents: {
           "change [data-mz-autoreplanish-radio]": "handleAutoshipOption", 
           "change [data-mz-autoreplanish]": "handleAutoshipFrequency", 
+          "click [data-mz-action='removeCoupon']": "removeCoupon",
         },
-
+        removeCoupon: function(e) {
+            var self = this;
+            var $target = $(e.currentTarget);
+            var couponName = $target.attr('data-mz-couponcode');
+            self.model.removeCoupon(couponName);
+        },
         handleAutoshipOption: function(e){
           var self = this;
           var $target = $(e.currentTarget);
@@ -126,6 +132,7 @@
                         item.set('quantity', parseInt($qField.val(), 10));
                         item.saveQuantity();
                     }
+                    $qField.attr('disabled', false);
                 }else{
                     self.updateQuantity(e);
                 }
@@ -474,7 +481,11 @@
             var self = this;
             this.model.addCoupon().ensure(function () {
                 self.model.unset('couponCode');
-                self.render();
+                if(self.$el.find('.error-present').length){
+                    self.$el.find('.mz-coupon-code-button').hide();
+                    self.$el.find('.mz-coupon-code-area').show();    
+                }
+                //self.render();
             });
         },
         onEnterCouponCode: function (model, code) {

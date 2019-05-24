@@ -33,7 +33,7 @@
       <% } %>
     </div>
     <div class="inline anchor align-left cursor-pointer" data-role="wrapperSkinConcern">
-      <div class="height-fixed border-strong uppercase pointer icon-right" data-control="toggleSkinConcern">
+      <div class="height-fixed border-strong uppercase pointer icon-right min-width" data-control="toggleSkinConcern">
         <div class="chevron-down"></div>
         <%= skinConcernSelected ? skinConcernSelected[1] : ('{{labels.select}} Skin Concern') %>
       </div>

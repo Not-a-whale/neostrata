@@ -379,8 +379,10 @@ require([
           );
       }
 
+      var apiConfig = require.mozuData('apicontext');
       var productIds = _.reduce( regimen[productsColumn], function( acc, step ) {
-        acc[step.product.productCode] = {
+        var ids = apiConfig.headers['x-vol-locale']+'-'+ step.product.productCode; 
+        acc[ids] = {
             url: step.product.url,
             containerId: 'BVRRInlineRating-' + step.product.productCode
         };
