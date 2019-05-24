@@ -69,7 +69,7 @@ require(["modules/jquery-mozu",
                 var code = this.model.parent.get('couponCodes');
                 if(code.length > 0){
                     var codeName= this.model.parent.get('orderDiscounts');
-                    if(codeName){
+                    if(codeName && codeName.length > 0) {
                         var retText = '<div class="promoCodeApplied">' + Hypr.getLabel('promoCodeApplied', code[0], codeName[0].discount.name) + '</div><button type="button" id="removeCoupon" class="mz-button primary-btn" data-mz-action="removeCoupon">' + Hypr.getLabel('remove') + '</button>';
                         setTimeout(function() {
                             $('#coupon-code-wrapper').hide();
