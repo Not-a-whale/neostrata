@@ -69,11 +69,13 @@ require(["modules/jquery-mozu",
                 var code = this.model.parent.get('couponCodes');
                 if(code.length > 0){
                     var codeName= this.model.parent.get('orderDiscounts');
-                    var retText = '<div class="promoCodeApplied">' + Hypr.getLabel('promoCodeApplied', code[0], codeName[0].discount.name) + '</div><button type="button" id="removeCoupon" class="mz-button primary-btn" data-mz-action="removeCoupon">' + Hypr.getLabel('remove') + '</button>';
-                    setTimeout(function() {
-                        $('#coupon-code-wrapper').hide();
-                        document.getElementById('addNewPromoCode').innerHTML = retText;
-                    }, 1000);
+                    if(codeName && codeName.length > 0) {
+                        var retText = '<div class="promoCodeApplied">' + Hypr.getLabel('promoCodeApplied', code[0], codeName[0].discount.name) + '</div><button type="button" id="removeCoupon" class="mz-button primary-btn" data-mz-action="removeCoupon">' + Hypr.getLabel('remove') + '</button>';
+                        setTimeout(function() {
+                            $('#coupon-code-wrapper').hide();
+                            document.getElementById('addNewPromoCode').innerHTML = retText;
+                        }, 1000);
+                    }
                 }
             }
             if(currentStepId == 'step-customer-info'){ //let's initialize, at least first element is-current

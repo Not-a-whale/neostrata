@@ -386,7 +386,6 @@ require([
             url: step.product.url,
             containerId: 'BVRRInlineRating-' + step.product.productCode
         };
-
         return acc;
       }, {});
 
