@@ -2,7 +2,13 @@
  * Adds a login popover to all login links on a page.
  */
 
-define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modules/jquery-mozu=jQuery]>jQuery=jQuery]>jQuery', 'modules/api', 'hyprlive', 'underscore', 'hyprlivecontext', 'vendor/jquery-placeholder/jquery.placeholder','modules/backbone-mozu'], function ($, api, Hypr, _, HyprLiveContext,backbone) {
+define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modules/jquery-mozu=jQuery]>jQuery=jQuery]>jQuery', 
+    'modules/api', 
+    'hyprlive', 
+    'underscore', 
+    'hyprlivecontext', 
+    'modules/backbone-mozu', 
+    'modules/api-features'], function ($, api, Hypr, _, HyprLiveContext, backbone, ApiFeature) {
     var current = "";
     var usePopovers = function() {
         return !Modernizr.mq('(max-width: 480px)');
@@ -495,6 +501,19 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
                     email: $(this).parents('#login').find('[data-mz-login-email]').val(),
                     password: $(this).parents('#login').find('[data-mz-login-password]').val()
                 }).then(function () {
+                    var user = require.mozuData('user');
+                    if(user.isAuthenticated && user.accountId){
+                        var quizInfo = JSON.parse($.cookie('quiz-info'));
+                        if(quizInfo){
+                            var params = {customerId : user.accountId,
+                                          customerPreferences : quizInfo};
+                          ApiFeature.NeostrataFeatureApi.updateCustomerPreferences(params).done(function(data){ 
+  console.log('success :: ApiFeature.NeostrataFeatureApi.updateCustomerPreferences(params)', data); 
+                          }).fail(function(err){ 
+  console.log('updateCustomerPreferences --> error', err); 
+                          });
+                        }
+                    }
                     if ( returnUrl ){
                         window.location.href= returnUrl;
                     }else{

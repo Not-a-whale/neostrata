@@ -7,7 +7,8 @@ define([
   'modules/models-product',
   'modules/cart-monitor',
   'hyprlive',
-  'swiper'
+  'swiper',
+  'modules/api-features',
 ], function(
   $,
   _,
@@ -16,7 +17,8 @@ define([
   ProductModel,
   CartMonitor,
   Hypr,
-  Swiper
+  Swiper, 
+  ApiFeature
 ) {
   var DEBUG = false;
 
@@ -550,6 +552,27 @@ define([
 
         this.model.set('currentSection', this.nextSection);
         pushState({ currentSection: this.nextSection }, '', this.nextSection);
+        
+        var quizInfo = ($.cookie('quiz-info'))? JSON.parse($.cookie('quiz-info')) : {};
+        var inputs = this.model.attributes.inputs;
+        if(inputs.expertise) quizInfo['quiz-skincare-knowledge'] = inputs.expertise;
+        if(inputs.concern) quizInfo['quiz-primary-skin-concern'] = inputs.concern;
+        if(inputs.type) quizInfo['quiz-skin-type'] = inputs.type;
+        if(inputs.products) quizInfo['quiz-products-currently-used'] = inputs.products.toString();
+        if(inputs.routine) quizInfo['quiz-routine-product-number'] = inputs.routine;
+        if(inputs.gender) quizInfo['quiz-gender'] = inputs.gender;
+        if(inputs.age) quizInfo['quiz-age'] = inputs.age;
+        
+        var user = require.mozuData('user');
+        if(user.isAuthenticated && user.accountId){
+            ApiFeature.NeostrataFeatureApi.updateCustomerPreferences({customerId : user.accountId,
+                                                                      customerPreferences : quizInfo}).done(function(data){ 
+console.log('success :: ApiFeature.NeostrataFeatureApi.updateCustomerPreferences(params)', data); 
+            }).fail(function(err){ 
+console.log('updateCustomerPreferences --> error', err); 
+            });
+        }
+        $.cookie('quiz-info', JSON.stringify(quizInfo));
       },
 
       'click [data-role="anchor"]': function(evt) {
@@ -1034,6 +1057,12 @@ define([
       // Per requirements, if there isn't a match between the users "current products,"
       // return the "cleanser" included in the matched regimen.
       var recommendation = matchedProducts[0] || regimen.products.cleanser;
+      if(recommendation){
+        var quizInfo = ($.cookie('quiz-info'))? JSON.parse($.cookie('quiz-info')) : {};
+        if(recommendation.productCode) quizInfo['quiz-recommended-product'] = recommendation.productCode;
+        if(regimen.name) quizInfo['quiz-recommended-product'] = regimen.name;
+        $.cookie('quiz-info', JSON.stringify(quizInfo));
+      }
 
       if (DEBUG) {
         console.log('Recommendation:', recommendation);
