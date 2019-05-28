@@ -199,6 +199,11 @@
             display: block;
         }
     }
+    .mz-addressform-isprimary {
+        .mz-contacttype-isprimary {
+            padding-left: 3rem; 
+        }
+    }
     .mz-l-formfieldgroup-row {
         display: block;
     }
@@ -409,6 +414,8 @@
     .checkout-leftcolumn {
         .mz-formstep.mz-checkoutform-paymentinfo {
             #btn_xpressPaypal {
+                display: none; 
+
                 min-width:320px;
                 height:auto;
                 margin: 3rem auto;
@@ -993,6 +1000,13 @@
     padding: 1rem;
     font-size: 1.5rem;
     color: @charcoal;
+    width: 58%;
+    float: left;
+    margin-right: 1%;
+    @media (max-width: 991px) {
+        float: none;
+        width: 100%;
+    }
 }
 .addNewCoupon{
     padding: 2rem 0;
@@ -1000,6 +1014,14 @@
     font-size: 1.5rem;
     color: @charcoal;
     cursor: pointer;
+}
+#removeCoupon{
+    height: 4.5rem;
+    line-height: 4.5rem;
+    @media (max-width: 991px) {
+        margin-top: 1rem;
+        width: 100%;
+    }
 }
 #nextBtn.disabled{
   background-color: #b5b7b9;

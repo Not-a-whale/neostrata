@@ -200,7 +200,7 @@
 </div>
 <div class="mz-addressform-isprimary form-row">
     <input type="checkbox" data-mz-value="{{ addresscontext }}address.isPrimaryShippingContact" value="true" style="left: 0;z-index: 3;"{% if model.address.isPrimaryShippingContact %} checked="checked" {% endif %}>
-    <label class="mz-contacttype-isprimary" style="margin-left:21px;">{{ labels.primaryShippingContact }}</label>
+    <label class="mz-contacttype-isprimary" >{{ labels.primaryShippingContact }}</label>
 </div>
 {% endif %}
 {% endif %}
@@ -418,7 +418,7 @@
         </div>
         <div class="mz-addressform-isprimary form-row">
         <input type="checkbox" data-mz-value="{{ addresscontext }}.isPrimaryShippingContact" value="true" style="left: 0;z-index: 3;"{% if model.address.isPrimaryShippingContact %} checked="checked" {% endif %}>
-            <label class="mz-contacttype-isprimary" style="margin-left:21px;">{{ labels.primaryShippingContact }}</label>
+            <label class="mz-contacttype-isprimary" >{{ labels.primaryShippingContact }}</label>
         </div>
       {% endif %}
     {% endif %}

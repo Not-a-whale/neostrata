@@ -3,7 +3,10 @@
 		<span class="mz-item-rowtotal is-crossedout" {% block crossedout-inline-style %}{% endblock crossedout-inline-style %}>	{{ item.subtotal|currency }}</span>
 		{% for productDiscount in item.productDiscounts %}
 			<div class="mz-item-discount">
-			<span class="mz-item-discountname">{{ productDiscount.discount.name }}</span>
+			
+			{% if not item.data || not item.data.autoreplanishmentCode %}
+				<span class="mz-item-discountname">{{ productDiscount.discount.name }}</span>
+			{% endif %}		
 			{% if productDiscount.discount.freeShipping %}
 				<span class="mz-item-discountamt">{{ labels.freeShipping }}</span>
 			{% else %}

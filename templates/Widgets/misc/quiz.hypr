@@ -76,6 +76,9 @@
       <div class="quiz-product-description">
         <%= content.productShortDescription %>
       </div>
+      <div class="quiz-product-rating">
+        <div class="bvr-inline-rating" id="BVRRInlineRating-<%= productCode %>" data-mz-product-code="<%= productCode %>" data-bv-product-code="{{apicontext.headers.x-vol-locale}}-<%= productCode %>"></div>
+      </div>
       <div class="quiz-product-price">
         <div class="quiz-product-price-amount">
           $<%= price.price %>

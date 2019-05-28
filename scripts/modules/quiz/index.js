@@ -984,13 +984,14 @@ define([
         var productIds = {};
 
         $('[data-widget="quiz"] [data-bv-product-code]').each(function(el) {
-          var code = $(el).attr('data-bv-product-code');
-
+          //var code = $(el).attr('data-bv-product-code');
+          var code = $(this).data('mzProductCode'); 
           productIds[code] = {
             url: '/p/' + code,
             containerId: 'BVRRInlineRating-' + code
           };
         });
+		
 
         if ( typeof $BV !== 'undefined' ) {
           $BV.ui( 'rr', 'inline_ratings', {

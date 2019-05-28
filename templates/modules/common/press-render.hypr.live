@@ -1,0 +1,12 @@
+<div class="press-container"></div>
+
+<div class="template">
+	<div class="title"></div>
+	<div class="subtitle"></div>
+	<div class="location-and-date"></div>
+	<div class="detail-url">
+		<a href="#">
+			{{labels.readMore}}
+		</a>
+	</div>
+</div>

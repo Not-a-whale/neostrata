@@ -297,6 +297,26 @@
         },
         {
             "xtype": "panel",
+            "title": "Press page",
+            "collapsed": false,
+            "items": [
+                {
+                    "fieldLabel": "Press items per page",
+                    "xtype": "mz-input-number",
+                    "name": "pressItemsPerPage",
+                    "hideTrigger": false,
+                    "allowDecimal": false,
+                    "minValue": 1
+                },
+                {
+                    "fieldLabel": "Press entity name (example: press@namespace)",
+                    "xtype": "mz-input-text",
+                    "name": "pressEntityName"
+                }
+            ]
+        },
+        {
+            "xtype": "panel",
             "title": "Navigation",
             "collapsed": false,
             "items": [
@@ -785,6 +805,38 @@
                     "xtype": "mz-input-text",
                     "name": "googleTagManagerKey",
                     "fieldLabel": "Google Tag Manager Key"
+                }
+            ]
+        }, 
+        {
+            "xtype": "panel",
+            "title": "Auto Replanishment",
+            "collapsed": false,
+            "items": [
+                {
+                    "fieldLabel": "Enable AutoReplanishment",
+                    "xtype": "mz-input-checkbox",
+                    "name": "autoReplenishmentEnable"
+                }, 
+                {
+                    "fieldLabel": "Enable AutoReplanishment Key 1",
+                    "xtype": "mz-input-text",
+                    "name": "autoReplenishment_1"
+                }, 
+                {
+                    "fieldLabel": "Enable AutoReplanishment Key 2",
+                    "xtype": "mz-input-text",
+                    "name": "autoReplenishment_2"
+                }, 
+                {
+                    "fieldLabel": "Enable AutoReplanishment Key 3",
+                    "xtype": "mz-input-text",
+                    "name": "autoReplenishment_3"
+                }, 
+                {
+                    "fieldLabel": "Enable AutoReplanishment Key 4",
+                    "xtype": "mz-input-text",
+                    "name": "autoReplenishment_4"
                 }
             ]
         }

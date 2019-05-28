@@ -35,6 +35,14 @@
           </a>
           <br><span class="items-short-description">{{ items.product.description }}</span>
         </h5>
+				{% if model.lastProductAdded.data && model.lastProductAdded.data.autoreplanishmentCode %}
+						{% with "autoReplenishment_X"|replace("X", model.lastProductAdded.data.autoreplanishmentCode) as autoReplenishmentCode %}
+						{% with themeSettings|prop(autoReplenishmentCode) as evalValue %}
+								<div class="mz-carttable-item-frequency" id="{{evalValue}}" >{{ evalValue }} </div>
+						{% endwith %}
+						{% endwith %}
+				{% endif %}
+
         {% if items.product.options %}
           {% for option in items.product.options %}
           <div><b>{{ option.name }}</b>  <span>{% if option.stringname %}{{ option.stringname }}{% else %}{{ option.value }}{% endif %}</span></div>
@@ -54,7 +62,7 @@
 {% endwith %}
 {% endif %}
 
-{% if model.items.length>0 %}
+{% if model.items.length > 0 %}
 	<div class="row total-amount-row">
 	    <div class="col-xs-12 cart-subtotal">
 	    	<b>{{ labels.cartSubtotal }} </b>

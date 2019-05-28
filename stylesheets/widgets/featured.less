@@ -46,6 +46,115 @@
   }
 }
 
+.featured-product-and-regimen-widget .featured-product-container,
+.featured-product-and-regimen-widget .featured-regimen-container {
+    &.neostrata-derm-actif,
+    &.neostrata-skin-active{
+        .callout-feather {
+            &::after {
+                background-image: linear-gradient(45deg,
+                                                #efefef,
+                                                #efefef 2.697rem,
+                                                #ffffff 2.697rem,
+                                                #ffffff 3.492rem,
+                                                @mutedBlue 3.492rem,
+                                                @mutedBlue 4.508rem,
+                                                transparent 4.508rem);
+            }
+        }
+    } 
+    &.retablir,
+    &.restore{
+        .callout-feather {
+            &::after {
+                background-image: linear-gradient(45deg,
+                                                #efefef,
+                                                #efefef 2.697rem,
+                                                #ffffff 2.697rem,
+                                                #ffffff 3.492rem,
+                                                @teal 3.492rem,
+                                                @teal 4.508rem,
+                                                transparent 4.508rem);
+            }
+        }
+    } 
+    &.clarifier,
+    &.clarify{
+        .callout-feather {
+            &::after {
+                background-image: linear-gradient(45deg,
+                                                #efefef,
+                                                #efefef 2.697rem,
+                                                #ffffff 2.697rem,
+                                                #ffffff 3.492rem,
+                                                @lightBlue 3.492rem,
+                                                @lightBlue 4.508rem,
+                                                transparent 4.508rem);
+            }
+        }
+    } 
+    &.corriger,
+    &.correct{
+        .callout-feather {
+            &::after {
+                background-image: linear-gradient(45deg,
+                                                #efefef,
+                                                #efefef 2.697rem,
+                                                #ffffff 2.697rem,
+                                                #ffffff 3.492rem,
+                                                @purple 3.492rem,
+                                                @purple 4.508rem,
+                                                transparent 4.508rem);
+            }
+        }
+    } 
+    &.eclaircir,
+    &.enlighten{
+        .callout-feather {
+            &::after {
+                background-image: linear-gradient(45deg,
+                                                #efefef,
+                                                #efefef 2.697rem,
+                                                #ffffff 2.697rem,
+                                                #ffffff 3.492rem,
+                                                @yellowOrange 3.492rem,
+                                                @yellowOrange 4.508rem,
+                                                transparent 4.508rem);
+            }
+        }
+    } 
+    &.lisser,
+    &.resurface{
+        .callout-feather {
+            &::after {
+                background-image: linear-gradient(45deg,
+                                                #efefef,
+                                                #efefef 2.697rem,
+                                                #ffffff 2.697rem,
+                                                #ffffff 3.492rem,
+                                                @darkBlue 3.492rem,
+                                                @darkBlue 4.508rem,
+                                                transparent 4.508rem);
+            }
+        }
+    }     
+    &.proteger,
+    &.defend{
+        .callout-feather {
+            &::after {
+                background-image: linear-gradient(45deg,
+                                                #efefef,
+                                                #efefef 2.697rem,
+                                                #ffffff 2.697rem,
+                                                #ffffff 3.492rem,
+                                                @redOrange 3.492rem,
+                                                @redOrange 4.508rem,
+                                                transparent 4.508rem);
+            }
+        }
+    }         
+}
+
 .featured-product-and-regimen-widget .featured-product-image-container {
   @media (min-width: 992px) {
     flex-basis: 36%;
@@ -134,17 +243,6 @@
       left: 0;
       top: 0;
       z-index: 3;
-
-      background-image: linear-gradient(
-          45deg,
-          #efefef,
-          #efefef 2.697rem,
-          #ffffff 2.697rem,
-          #ffffff 3.492rem,
-          #8fabcc 3.492rem,
-          #8fabcc 4.508rem,
-          transparent 4.508rem
-      );
     }
 
     &::before {

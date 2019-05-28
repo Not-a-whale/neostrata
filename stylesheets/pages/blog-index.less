@@ -1,0 +1,266 @@
+﻿.mz-blog-category {
+    text-align: center;
+
+    h2 {
+        margin: 7.5rem auto;
+        text-align: center;
+        font-size: 1.75rem;
+        font-weight: @fontWeightBook;
+        text-transform: capitalize;
+
+        @media (max-width: 767px) {
+            margin: 2.10rem auto;
+            padding: 0 10rem;
+            font-size: 2.10;
+        }
+    }
+
+    &-index {
+        display: flex;
+        flex-direction: column;
+
+        .blog-quiz-wrapper {
+            display: flex;
+        }
+
+        &-separator {
+            margin: 2.625rem auto;
+            border-top: 1px solid @midGray;
+
+            &.top-separator {
+                margin: 2.10rem auto;
+
+                @media (min-width: 767px) {
+                    display: none;
+                }
+            }
+
+            @media (max-width: 767px) {
+                margin: 1.4rem auto 2.625rem;
+            }
+        }
+
+        &-entry,
+        .blog-quiz-inner {
+            display: flex;
+            margin: 0 auto 6.25rem;
+
+            img {
+                width: 50%;
+            }
+
+            div {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                width: 50%;
+                margin-left: 3.75rem;
+                text-align: left;
+
+                a {
+                    text-decoration: none;
+                    text-transform: uppercase;
+                }
+
+                h3 {
+                    margin: 0;
+                    font-size: 1.5625rem;
+                    font-weight: @fontWeightBold;
+                }
+
+                p {
+                    margin: 3.75rem 0 0;
+                    font-size: 1.5rem;
+                    font-weight: @fontWeightBook;
+                }
+            }
+
+            @media (max-width: 767px) {
+                flex-direction: column;
+                align-items: center;
+                width: 90%;
+
+                img,
+                div {
+                    width: 100%;
+                }
+
+                div {
+                    margin: 4.68rem auto 0;
+                    text-align: center;
+
+                    h3 {
+                        font-size: 2.11rem;
+                    }
+
+                    p {
+                        margin: 2.81rem 0 0;
+                        font-size: 1.875rem;
+                    }
+                }
+            }
+        }
+
+        .blog-quiz-inner {
+            margin-top: 5.5rem;
+            margin-bottom: 15.625rem;
+
+            div {
+                justify-content: space-evenly;
+
+                h3 {
+                    font-size: 2.1875rem;
+                    font-weight: @fontWeightMedium;
+                    margin: 0;
+                }
+
+                p {
+                    margin: 0;
+                }
+
+                .blog-btn {
+                    padding: 0;
+                    text-align: center;
+
+                    a {
+                        text-decoration: none;
+                        text-transform: uppercase;
+                    }
+
+                    &:hover a {
+                        color: #fff;
+                        text-decoration: none;
+                    }
+                }
+            }
+
+            @media (max-width: 767px) {
+                margin-top: 7.2rem;
+                margin-bottom: 16.8753rem;
+                align-items: center;
+
+                div {
+                    margin: 4.68rem auto 0;
+                    text-align: center;
+
+                    h3 {
+                        font-size: 2.81rem;
+                    }
+
+                    p {
+                        margin: 2.81rem 0 4.6876rem !important;
+                        font-size: 1.875rem;
+                    }
+
+                    span {
+                        margin: 0 auto;
+                    }
+                }
+            }
+        }
+
+        #mz-drop-zone-share-btn {
+            .at-style-responsive .at-share-btn {
+                display: flex;
+                flex-direction: row-reverse;
+                justify-content: center;
+                align-items: center;
+                width: 12.5%;
+                height: 6rem;
+                margin: 0 auto 1.875rem;
+                padding: 1rem;
+                border-radius: 0px;
+                border: 0.1875rem solid @charcoal;
+                background: none;
+                color: @charcoal;
+                text-align: center;
+
+                text-transform: uppercase;
+                text-decoration: none;
+
+                .at-icon-wrapper {
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    width: 23px !important;
+                    height: 23px !important;
+                    line-height: 0 !important;
+
+                    &::before {
+                        content: "";
+                        background-image: url("../resources/images/icons/share-icon.png");
+                        height: 100%;
+                        width: 100%;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        background-size: contain;
+                    }
+                }
+
+                .at-label {
+                    display: block;
+                    width: auto !important;
+                    height: auto !important;
+                    padding-right: 1.5625rem;
+                    color: @charcoal !important;
+                    font-size: 1.5625rem !important;
+                    font-weight: @fontWeightBook;
+                    letter-spacing: 0.14em;
+                    line-height: 5.625rem !important;
+                }
+
+                svg {
+                    display: none;
+                }
+
+                span {
+                    color: inherit;
+                    text-transform: uppercase;
+                }
+            }
+
+        }
+
+        #mz-drop-zone-view-all-products {
+
+            .view-all-wrapper {
+                display: flex;
+            }
+
+            .blog-btn {
+                margin: 0 auto 10.93rem;
+                padding: 0;
+                text-align: center;
+
+                a {
+                    text-decoration: none;
+                    text-transform: uppercase;
+                }
+
+                &:hover a {
+                    color: #fff;
+                    text-decoration: none;
+                }
+            }
+        }
+
+        @media (max-width: 767px) {
+
+            #mz-drop-zone-view-all-products,
+            #mz-drop-zone-share-btn {
+                display: none;
+            }
+        }
+    }
+
+    footer {
+        text-align: left;
+
+        .footer-column h2 {
+            text-align: left !important;
+        }
+    }
+}
