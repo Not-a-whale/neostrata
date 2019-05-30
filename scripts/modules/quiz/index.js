@@ -1060,7 +1060,7 @@ console.log('updateCustomerPreferences --> error', err);
       if(recommendation){
         var quizInfo = ($.cookie('quiz-info'))? JSON.parse($.cookie('quiz-info')) : {};
         if(recommendation.productCode) quizInfo['quiz-recommended-product'] = recommendation.productCode;
-        if(regimen.name) quizInfo['quiz-recommended-product'] = regimen.name;
+        if(regimen.name) quizInfo['quiz-recommended-regimen'] = regimen.name;
         $.cookie('quiz-info', JSON.stringify(quizInfo));
       }
 
