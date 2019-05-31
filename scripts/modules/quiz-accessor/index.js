@@ -31,7 +31,7 @@ function (api, Backbone, _, $){
         },
         isQuizTaken: function(){
           var quizInfo = ($.cookie('quiz-info'))? JSON.parse($.cookie('quiz-info')) : {};
-          if (quizInfo && quizInfo.customerPreferences && quizInfo.customerPreferences['quiz-recommended-regimen']){
+          if (quizInfo && quizInfo['quiz-recommended-regimen']){
             console.log('quiz completed');
             return true;
           }else{
