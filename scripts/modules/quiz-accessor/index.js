@@ -30,8 +30,6 @@ function (api, Backbone, _, $){
 
         },
         isQuizTaken: function(){
-          //$.cookie('quiz-info','{"accountId":1136,"customerPreferences": {"quiz-skincare-knowledge":"intermediate", "quiz-recommended-regimen":"ALGO"}}');
-        $.cookie('quiz-info','');
           var quizInfo = ($.cookie('quiz-info'))? JSON.parse($.cookie('quiz-info')) : {};
           if (quizInfo && quizInfo.customerPreferences && quizInfo.customerPreferences['quiz-recommended-regimen']){
             console.log('quiz completed');
