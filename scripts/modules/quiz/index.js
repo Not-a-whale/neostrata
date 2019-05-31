@@ -566,9 +566,7 @@ define([
         var user = require.mozuData('user');
         if(user.isAuthenticated && user.accountId){
             ApiFeature.NeostrataFeatureApi.updateCustomerPreferences({customerId : user.accountId,
-                                                                      customerPreferences : quizInfo}).done(function(data){ 
-console.log('success :: ApiFeature.NeostrataFeatureApi.updateCustomerPreferences(params)', data); 
-            }).fail(function(err){ 
+                                                                      customerPreferences : quizInfo}).fail(function(err){ 
 console.log('updateCustomerPreferences --> error', err); 
             });
         }
