@@ -1,0 +1,343 @@
+<style>
+    .specialItalic {
+        font-style: italic;
+        text-transform: uppercase;
+        font-size: 1.25rem;
+        line-height: 1.5em;
+        margin: 1.25rem 0 0;
+    }
+    .special {
+        font-size: 1.25rem;
+        line-height: 1.5em;
+        margin: 2.25rem 0 2.25rem;
+        text-align: center;
+    }    
+    .icon-images-container {
+        display:flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+    }
+    .icon-image-slot {
+        display: flex;
+        flex:0;
+        flex-direction:column;
+        margin: 2.0625rem 2.8125rem;
+    }
+    .constant-img {
+        width: 13.4375rem;
+        height: auto;
+    }
+
+    .multiple{
+      margin-left: 1rem;
+      margin-right: 1rem;
+    }
+    .buttons-container{
+        display: flex;
+        width: 90%;
+        justify-content: space-around;
+
+    }
+
+  .home-main-content-container.left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    left: 25%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 40%;
+    width: 50%;
+  }
+  .home-main-content-container.right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    left: 75%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    width: 44.375rem;
+  }
+    #module3modal.home-main-module .half-content .home-main-content-container.right {
+        top: 25%;
+    }
+  
+    /* IE11 Styles */
+  _:-ms-fullscreen, :root #module3modal .icon-images-container {
+        display: table;
+    }
+    
+    _:-ms-fullscreen, :root #module3modal .icon-image-slot {
+        display: table-cell;
+        padding: 2.0625rem 2.8125rem;
+        margin: 0;
+        width: 33%
+    }
+  _:-ms-fullscreen, :root #module3modal  h3.lineheight{
+      display:table;
+  }
+
+
+  _:-ms-fullscreen, :root #module3modal.home-main-module .module-right .background-full-image {
+        display: none;
+    }   
+  _:-ms-fullscreen, :root #module3modal.home-main-module .module-right {
+    width:50vw;
+        height: 56vw;
+        background: url('/cms/files/homepage_models_d1.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    @media only screen and (min-width:1200px) {
+        .half-content .background-full-image img {
+            width: 50vw;
+        }
+    }
+  
+    @media only screen and (min-width: 992px) {
+        .half-content .background-full-image img {
+            max-width: 50vw;
+        }
+    #module3modal.home-main-module .half-content .home-main-content-container.left h3.lineheight{
+      width:70%;
+    }
+    #module3modal.home-main-module .half-content .home-main-content-container.left{
+      top:31.9rem;
+    }
+    }
+    @media screen and (max-width: 767px) {
+    #module3modal.home-main-module .half-content #unique-skin.home-main-content-container.right h3,
+    #module3modal.home-main-module .half-content #skin-proof.home-main-content-container.left h3.lineheight{
+      margin-top:5%;
+    }
+    #module3modal.home-main-module .home-main-content-container.left{
+      width:auto;
+    }
+  }
+    @media only screen and (max-width:991px) {
+        .half-content{
+            display:flex;
+            position:relative;
+        }
+        #module3modal.home-main-module {
+            display: block;
+        }
+        #module3modal.home-main-module .half-content .home-main-content-container.left {
+            margin: 0 auto;
+      top:0;
+        }
+        #module3modal.home-main-module .half-content .home-main-content-container.right {
+            margin: 0 auto;
+            left: 50%;
+            top: 48%;
+        }
+        #middle-content-full {width: 66%;}
+        #module3modal.home-main-module .half-content .home-main-content-container.left h3.lineheight
+        {
+      width:65%;
+      font-size: 4rem;
+    }
+        #module3modal.home-main-module .half-content #unique-skin.home-main-content-container.right h3
+        {
+      width:55%;
+      font-size: 4rem;
+      margin-top:15%;
+    }
+    .mission-help{
+      width:80vw;
+    }
+
+        #module3modal div#unique-skin {
+          position: absolute;
+      width:100%;
+          left: 0;
+          top: 0;
+        }
+        #module3modal.home-main-module .half-content .home-main-content-container.left {
+            flex: 0 0 auto;
+            position: relative;
+            margin: 5% auto auto;
+            transform: none;
+      left:0;
+      width:85%;
+        }
+        #module3modal.home-main-module .half-content .icon-images-container{
+            display:block;
+        }
+
+        #module3modal.home-main-module .half-content .home-main-content-container.right {
+            flex: 0 0 auto;
+            position: static;
+            margin: auto;
+      padding: 3rem 0;
+      transform: none;
+        }
+
+        #module3modal #skin-proof picture.background-full-image img {
+            height: 200vw;
+        }
+        #module3modal .three-column-wrapper p.specialItalic {
+            width: auto;
+            flex-direction: column;
+            padding: 0;
+        }
+        #module3modal p.specialItalic {
+      margin:15px 0;
+      letter-spacing:0.1rem;
+        }
+        #module3modal p.special {
+      margin:15px 0;
+      letter-spacing:0.1rem;
+        }
+        #module3modal .half-content {
+          display: block;
+        }
+        .icon-images-container {
+          flex-wrap: wrap;
+        }
+        .icon-image-slot {
+            flex-direction:row;
+            height: 15vw;
+            flex: 1;
+        }
+        .specialItalic {
+      font-size:2rem;
+            width:auto;
+            text-align:left;
+            padding-left: 2rem;
+            height:auto;
+            display:flex;
+            align-items:center;
+        }
+        .special {
+      font-size:2rem;
+            width:auto;
+            text-align:left;
+            padding-left: 2rem;
+            height:auto;
+            display:flex;
+            align-items:center;
+        }        
+        .constant-img {
+            width: 15vw;
+            height: 15vw;
+        }
+         #module3modal .half-content:nth-child(2) picture.background-full-image img {
+            width: 100%;
+        }
+        #module3modal .half-content:nth-child(2) picture.background-full-image {
+      position:relative;
+        }
+    #module3modal .half-content:nth-child(1) .background-full-image {
+      position: absolute;
+      width: 100%;
+    }
+}
+    @media screen and (max-width: 767px) {
+        #module3modal.home-main-module .half-content .home-main-content-container.left {
+      width:90%;
+        }
+    #module3modal.home-main-module .half-content .home-main-content-container.left h3.lineheight
+        {
+      width:85%;
+      font-size: 6vw;
+    }
+        #module3modal.home-main-module .half-content #unique-skin.home-main-content-container.right h3
+        {
+      width:80%;
+      font-size: 6vw;
+      margin-top:2rem;
+    }
+
+        #module3modal.home-main-module .half-content .specialItalic{
+            font-size:2.4vw;
+        }
+        #module3modal.home-main-module .half-content .special{
+            font-size:2.4vw;
+        }        
+    }
+
+    @media screen and (max-width: 421px) {
+    #module3modal.home-main-module .half-content #unique-skin.home-main-content-container.right h3,
+        #module3modal.home-main-module .half-content #skin-proof.home-main-content-container.left h3.lineheight
+        {
+      width:75vw;
+      font-size:2.85rem !important;
+      margin-top:0;
+    }
+        #module3modal.home-main-module .half-content .home-main-content-container.left{
+      width:90%;
+    }
+    #module3modal .home-main-content-container.left .specialItalic{
+        width: 70vw;
+      letter-spacing: 0.1rem;
+            font-size:1.4rem;
+    }
+        #module3modal .home-main-content-container.left h3.lineheight{
+      letter-spacing: 0.1rem;
+      margin: 1.08rem 3.08rem;
+    }
+  }
+    @media screen and (max-width: 321px) {
+    #module3modal.home-main-module .half-content #unique-skin.home-main-content-container.right h3,
+        #module3modal.home-main-module .half-content #skin-proof.home-main-content-container.left h3.lineheight
+        {
+      width:75vw;
+      font-size:2.2rem !important;
+      margin-top:0;
+    }
+
+        #module3modal .home-main-content-container.right h3.lineheight{
+      font-size:2.5rem;
+    }
+    }
+
+</style>
+
+<div id="module3modal" class="home-main-module">
+    <div class="half-content">
+        <picture class="background-full-image">
+            <!-- IMAGE FOR LARGE VIEWPORTS -->
+            <source srcset="/cms/files/homepage_modules_bg.png" media="(min-width: 993px)">
+            <!-- IMAGE FOR SMALL VIEWPORTS -->
+            <img src="/cms/files/homepage_modules_bg.png" alt="">
+        </picture>
+    <div class="home-main-content-container left">
+      <h3 class="lineheight">We’re on a mission to help people by renewing their skin.</h3>
+      <div class="icon-images-container">
+        <div class="icon-image-slot">
+          <img class="constant-img" alt="petri dish with blue ingredients" src="/cms/files/phys-icon.png"> 
+          <p class="specialItalic">OUR PRODUCTS EXFOLIATE THE SURFACE LAYERS OF YOUR SKIN, REVEALING SMOOTH, NEW LAYERS.</p>
+        </div>
+        <div class="icon-image-slot">
+          <img class="constant-img" alt="petri dish with yellow ingredients" src="/cms/files/patent-icon.png"> 
+          <p class="specialItalic">WE DEVELOP OUR PRODUCTS AT THE OPTIMAL pH LEVEL TO ENHANCE DELIVERY AND TOLERABILITY.</p>
+        </div>
+        <div class="icon-image-slot">
+          <img class="constant-img" alt="petri dish with white ingredients" src="/cms/files/balance-icon.png">
+          <p class="specialItalic">WE TARGET THE BUILDING BLOCKS OF SKIN TO VOLUMIZE APPEARANCE FOR LONG-TERM RESULTS
+          </p>
+        </div>
+
+      </div>
+      <a href="/our-story" class="primary-btn">see our story</a>
+    </div>
+
+    </div>
+    <div  id="quiz-accessor-container" class="half-content module-right">
+
+
+
+
+
+  </div>
+</div>
+
+
+
+{% require_script "modules/quiz-accessor/index" %}

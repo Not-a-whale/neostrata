@@ -3348,6 +3348,19 @@
       "validPageTypes": [
         "*"
       ]
+    },
+    {
+      "defaultConfig": {
+
+      },
+      "displayTemplate": "misc/quiz-accessor",
+      "displayName": "Quiz Accessor",
+      "editViewFields": [],
+      "icon": "/resources/admin/widgets/26_related_products.png",
+      "id": "quiz_accessor",
+      "validPageTypes": [
+        "*"
+      ]
     }
   ]
 }
