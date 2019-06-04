@@ -40,6 +40,11 @@
             </div>
         </div>
         {% endif %}
+        <div class="form-row address-no-pobox-label">
+            <div class="mz-l-formfieldgroup-cell">
+                <label for="address-no-pobox-label">{{ labels.addressNoPoBoxlabel }}</label>
+            </div>
+        </div>
         <div class="checkout-twocolumn-row form-row">
             <div class="mz-l-formfieldgroup-row mz-addressform-city">
                 <div class="mz-l-formfieldgroup-cell">

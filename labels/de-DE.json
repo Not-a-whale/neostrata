@@ -118,6 +118,7 @@
     "lastName": "Nachname",
     "address": "Adresse",
     "addressType": "Adresstyp",
+    "addressNoPoBoxlabel"  : "wir können nicht an P.O. Kästen. Eine physikalische Adresse ist erforderlich",
     "residential": "Wohn",
     "commercial": "Handels-",
     "city": "City",

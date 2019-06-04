@@ -143,6 +143,7 @@
   "lastName"             : "Last Name",
   "address"              : "Address",
   "addressType"          : "Address Type",
+  "addressNoPoBoxlabel"  : "we are unable to ship to P.O. Boxes. A physical street address is required",
   "residential"          : "Residential",
   "commercial"           : "Commercial",
   "city"                 : "City",
