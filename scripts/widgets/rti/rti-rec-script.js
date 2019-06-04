@@ -1,3 +1,4 @@
+
 require([
         'modules/jquery-mozu',
         'hyprlive',
@@ -13,6 +14,27 @@ require([
         //'vendor/jquery/jquery-ui'
     ],
     function($, Hypr, HyprLiveContext, _, api, Backbone, ProductModels, RecommendedProducts, bxslider, CartMonitor, MetricsEngine ) {
+
+        var req = api.get( 'entityList', {
+            listName: 'bvsettings@mzint',
+            id: api.context.site
+        }).then( function( res ) {
+          var data = res.data.items[0];
+          var staging = data.environment != 'Staging' ? '' : '-stg';
+          var locale = api.context.locale.replace( "-", "_" );
+          var script = "//display" + staging + ".ugc.bazaarvoice.com/static/" + data.clientName + "/"+ data.deploymentZone +"/" + locale + "/bvapi.js";
+      
+          $.getScript( script )
+            .done( function() {
+                console.log("BV success");
+            })
+            .fail(function( jqxhr, settings, exception ) {
+              console.error( 'BazaarVoice failed to load.', exception );
+            });
+        }).catch( function( err ) {
+          console.warn( err );
+          console.log( 'Initializing match-tool without BazaarVoice.' );
+        });
 
         // rtiOptions will contain variables used by the
         //whole page. They can be set in every widget editor, but only the first
@@ -310,115 +332,44 @@ require([
                     });
                 }
             });
+
+            var productIds = [];
+
+            $('.rti-recommended-products [data-bv-product-code]').each(function(el) {
+                var code = $(this).data('mzProductCode'); 
+                productIds[code] = {
+                  url: '/p/' + code,
+                  containerId: 'BVRRInlineRating-' + code
+                };
+              });
+
+/*
+            var apiConfig = require.mozuData('apicontext');
+            var productIds = _.reduce( regimen[productsColumn], function( acc, step ) {
+              var ids = apiConfig.headers['x-vol-locale']+'-'+ step.product.productCode; 
+              acc[ids] = {
+                  url: step.product.url,
+                  containerId: 'BVRRInlineRating-' + step.product.productCode
+              };
+              return acc;
+            }, {});
+      */
+      /*
+            if (productIds && typeof $BV !== 'undefined') {
+              $BV.ui( 'rr', 'inline_ratings', {
+                productIds: productIds,
+                containerPrefix: 'BVRRInlineRating'
+              });
+            }
+            */
         };
 
         try {
+        
             var productInstance = RecommendedProducts.getInstance(rtiOptions);
             productInstance.getProductData(function(data) {
                 renderData(data);
             });
-
-
-            var user = require.mozuData('user');
-            setTimeout(function(){
-                api.createSync('wishlist').getOrCreate(user.accountId).then(function(wishlist) {
-                    return wishlist.data;
-                }).then(function(wishlistItems) {
-                    for (var i = 0; i < wishlistItems.items.length; i++) {
-                        if($('[data-mz-product-code="'+wishlistItems.items[i].product.productCode+'"]')){
-                            $('[data-mz-product-code="'+wishlistItems.items[i].product.productCode+'"]').data('mz-item-id', wishlistItems.items[i].id);
-                            $('[data-mz-product-code="'+wishlistItems.items[i].product.productCode+'"]').data('mz-wishlist-id', wishlistItems.id);
-                            $('[data-mz-product-code="'+wishlistItems.items[i].product.productCode+'"]').data('mz-action', "directoryRemoveFromWishlist");
-                            $('[data-mz-product-code="'+wishlistItems.items[i].product.productCode+'"] span').removeClass("blank-heart").addClass("filled-heart");
-                        }
-                    }
-                });
-                $('.rti-recommended-products .mz-productdetail-addtocart').click(function(){
-                    var productCode = $(this).data('mzProductCode');
-                    if(productCode && productCode !== ''){
-                        api.get('product', productCode).then(function(productResponse){
-                            var product = new ProductModels.Product(productResponse.data);
-                            product.addToCart();
-                            product.on('addedtocart', function(cartitem) {
-                                MetricsEngine.trackDirectoryAddToCart(product, product.get('categories')[0], false, 1);
-                            });
-                            setTimeout(function(){
-                                CartMonitor.update('showGlobalCart');
-                                $('html, body').animate({ scrollTop: 0 }, 'normal');
-                            }, 1000);
-                        });
-                    }
-                });
-                $('.rti-recommended-products .mz-productdetail-addtowishlist').click(function(){
-                    var productCode = $(this).data('mzProductCode');
-                    var _e = this;
-                    if(productCode && productCode !== ''){
-                        var user = require.mozuData('user');
-                        if(user.accountId){
-                            var action = $(_e).data("mz-action");
-                            if(action == 'directoryAddToWishlist'){
-                                api.get('product', productCode).then(function(productResponse){
-                                    var product = new ProductModels.Product(productResponse.data);
-                                    product.addToWishlist();
-                                    setTimeout(function(){
-                                        api.createSync('wishlist').getOrCreate(user.accountId).then(function(wishlist) {
-                                            return wishlist.data;
-                                        }).then(function(wishlistItems) {
-                                            for (var i = 0; i < wishlistItems.items.length; i++) {
-                                                if(wishlistItems.items[i].product.productCode === productCode){
-                                                    $(_e).data('mz-item-id', wishlistItems.items[i].id);
-                                                }
-                                            }
-                                            $(_e).data('mz-wishlist-id', wishlistItems.id);
-                                            $(_e).data("mz-action", "directoryRemoveFromWishlist");
-                                            if($('#addToWishListPopUp').length === 1){
-                                                $('#addToWishListPopUp').remove();
-                                            }
-                                            $( '<div id="addToWishListPopUp" class="row alert" role="alert"><div class="col-xs-6 text-right">Item added to wishlist.</div><div class="col-xs-6 text-left"><a href="/myaccount#wishlist">View Wishlist</a></div></div>' ).insertAfter('#nav-header-container > #ml-nav');
-                                            setTimeout(function(){
-                                                $('#addToWishListPopUp').fadeOut(function(){$(this).remove();});
-                                            }, 5000);
-                                            return $('#wishlist-'+productCode+' span').removeClass("blank-heart").addClass("filled-heart");
-                                        });
-                                    }, 1000);
-    
-                                });
-                            }else if(action == 'directoryRemoveFromWishlist'){
-                                var finishRemoveItemId = $(_e).data('mz-item-id');
-                                var wishlistId = $(_e).data('mz-wishlist-id');
-                                var serviceurl = '/api/commerce/wishlists/'+ wishlistId +'/items/' + finishRemoveItemId;
-                                api.request('DELETE', serviceurl).then(function(res) {
-                                    $(_e).data("mz-action", "directoryAddToWishlist");
-                                    if($('#addToWishListPopUp').length === 1){
-                                        $('#addToWishListPopUp').remove();
-                                    }
-                                    $( '<div id="addToWishListPopUp" class="row alert" role="alert"><div class="col-xs-6 text-right">Item removed from wishlist.</div><div class="col-xs-6 text-left"><a href="/myaccount#wishlist">View Wishlist</a></div></div>' ).insertAfter('#nav-header-container > #ml-nav');
-                                    setTimeout(function(){
-                                        $('#addToWishListPopUp').fadeOut(function(){$(this).remove();});
-                                    }, 5000);
-                                    return $('#wishlist-'+productCode+' span').removeClass("filled-heart").addClass("blank-heart");
-                                });
-                            }
-                        }else{
-                            var savedProdToWish = [];
-                            if(sessionStorage.getItem('addToWishlistArr')){
-                                savedProdToWish = JSON.parse(sessionStorage.getItem('addToWishlistArr'));
-                            }
-                            if(!savedProdToWish.includes(productCode)){
-                                savedProdToWish.push(productCode);
-                                sessionStorage.setItem('addToWishlistArr', JSON.stringify(savedProdToWish));
-                                return $('#wishlist-'+productCode+' span').removeClass("blank-heart").addClass("filled-heart");
-                            }else{
-                                savedProdToWish = savedProdToWish.filter(function(item) { 
-                                    return item !== productCode;
-                                });
-                                sessionStorage.setItem('addToWishlistArr', JSON.stringify(savedProdToWish));
-                                return $('#wishlist-'+productCode+' span').removeClass("filled-heart").addClass("blank-heart");
-                            }
-                        }
-                    }
-                });
-            }, 1000);
 
         } catch (err) {
             //console.log(err);
