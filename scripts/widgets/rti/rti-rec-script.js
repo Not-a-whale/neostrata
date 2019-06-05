@@ -11,9 +11,10 @@ require([
         'bxslider',
         "modules/cart-monitor",
         "modules/metrics",
+        'swiper'
         //'vendor/jquery/jquery-ui'
     ],
-    function($, Hypr, HyprLiveContext, _, api, Backbone, ProductModels, RecommendedProducts, bxslider, CartMonitor, MetricsEngine ) {
+    function($, Hypr, HyprLiveContext, _, api, Backbone, ProductModels, RecommendedProducts, bxslider, CartMonitor, MetricsEngine, Swiper ) {
 
         var req = api.get( 'entityList', {
             listName: 'bvsettings@mzint',
@@ -343,25 +344,6 @@ require([
                 };
               });
 
-/*
-            var apiConfig = require.mozuData('apicontext');
-            var productIds = _.reduce( regimen[productsColumn], function( acc, step ) {
-              var ids = apiConfig.headers['x-vol-locale']+'-'+ step.product.productCode; 
-              acc[ids] = {
-                  url: step.product.url,
-                  containerId: 'BVRRInlineRating-' + step.product.productCode
-              };
-              return acc;
-            }, {});
-      */
-      /*
-            if (productIds && typeof $BV !== 'undefined') {
-              $BV.ui( 'rr', 'inline_ratings', {
-                productIds: productIds,
-                containerPrefix: 'BVRRInlineRating'
-              });
-            }
-            */
         };
 
         try {
@@ -369,6 +351,36 @@ require([
             var productInstance = RecommendedProducts.getInstance(rtiOptions);
             productInstance.getProductData(function(data) {
                 renderData(data);
+            });
+
+            
+            var swiper = new Swiper('.rti-recommended-products.homeBuyItAgain .swiper-container', {
+                slidesPerView: 3,
+                spaceBetween: 0,
+                loop: false,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev'
+                },
+                preventClicks: false,
+                preventClicksPropagation: false,
+                breakpoints: {
+                    1024: {
+                        slidesPerView: 3
+                    },
+                    992: {
+                        slidesPerView: 2
+                    },
+                    768: {
+                        slidesPerView: '1'
+                    },
+                    640: {
+                        slidesPerView: '1'
+                    },
+                    320: {
+                        slidesPerView: '1'
+                    }
+                }
             });
 
         } catch (err) {

@@ -1,91 +1,97 @@
-<div class="mz-productlist {% block module-classes %}{% endblock module-classes %}">
+
+<div class="product-carousel-listing mz-productlist {% block module-classes %}{% endblock module-classes %}">
     {% if model.items %}
-        {% for prod in model.items %}
-        	{% if forloop.first && model.items.length >= 1%} 
-    			<ul class="bxslider {% block list-classes %}{% endblock list-classes %}">
-    		{% endif %}
-            <div class="product-code product-item swiper-slide" data-mz-product="{{ prod.productCode }}" style="width: 32%;float: left;">	
-                <div class="product-listing-container">
-                    <div class="mz-productlisting">
-                        {% block product-image %}
-                        <div class="mz-productlisting-image">
-                            <div class="zoom-container-listing">
-                                <a href="{% make_url "product" prod %}"  data-baynote-slot="{{prod.slot}}"  data-baynote-widget="{{prod.widgetId}}" data-baynote-pid="{{prod.productCode}}" data-baynote-href="{{prod.href}}">
-                                    {% if prod.mainImage.imageUrl %}
-                                        <img class="image" src="{% make_url "image" prod.mainImage with maxWidth=themeSettings.ProductDetailImageWidth as_parameter %}" {% if prod.mainImage.altText %}alt="{{ prod.mainImage.altText }}"{% endif %} onerror="this.setAttribute('src','{% make_url "image" prod.mainImage with maxWidth=themeSettings.ProductDetailImageWidth as_parameters %}')"/>
-                                    {% else %}
-                                        <span class="mz-productlisting-imageplaceholder"><span class="mz-productlisting-imageplaceholdertext">{{ labels.productImagePlaceholder }}</span></span>
-                                    {% endif %}
-                                </a>
-                            </div>
-                        </div> 
-                        {% endblock product-image %}
+    <!-- Swiper -->
+    <div class="swiper-container">
+            {% for prod in model.items %}
+                {% if forloop.first && model.items.length >= 1%} 
+                    <div class="swiper-wrapper {% block list-classes %}{% endblock list-classes %}">
+                {% endif %}
+                <div class="swiper-slide product-code product-item" data-mz-product="{{ prod.productCode }}" style="width: 32%;float: left;">	
+                    <div class="product-listing-container">
+                        <div class="mz-productlisting">
+                            {% block product-image %}
+                            <div class="mz-productlisting-image">
+                                <div class="zoom-container-listing">
+                                    <a href="{% make_url "product" prod %}"  data-baynote-slot="{{prod.slot}}"  data-baynote-widget="{{prod.widgetId}}" data-baynote-pid="{{prod.productCode}}" data-baynote-href="{{prod.href}}">
+                                        {% if prod.mainImage.imageUrl %}
+                                            <img class="image" src="{% make_url "image" prod.mainImage with maxWidth=themeSettings.ProductDetailImageWidth as_parameter %}" {% if prod.mainImage.altText %}alt="{{ prod.mainImage.altText }}"{% endif %} onerror="this.setAttribute('src','{% make_url "image" prod.mainImage with maxWidth=themeSettings.ProductDetailImageWidth as_parameters %}')"/>
+                                        {% else %}
+                                            <span class="mz-productlisting-imageplaceholder"><span class="mz-productlisting-imageplaceholdertext">{{ labels.productImagePlaceholder }}</span></span>
+                                        {% endif %}
+                                    </a>
+                                </div>
+                            </div> 
+                            {% endblock product-image %}
 
-                        <div class="mz-productlisting-info">  
-                            <div class="pdp1">
-                                    &nbsp;
-                                    {{ prod|get_product_attribute_value('tenant~Brands')|default('')|safe }}
-                            </div>
-                            <a class="mz-productlisting-title pdp2" href="{% make_url "product" prod %} "  data-baynote-slot="{{prod.slot}}"  data-baynote-widget="{{prod.widgetId}}" data-baynote-pid="{{prod.productCode}}" data-baynote-href="{{prod.href}}">{{prod.content.productName|safe}}</a> 
-                            {% if prod.content.productShortDescription %}
-                                <div class="mz-productlisting-shortdesc pdp3">{{prod.content.productShortDescription|safe}}</div>
-                            {% endif %}
-                        </div>
-                        
-                        <div class="bottom-details">
-                            <div id="BVRRInlineRating-{{prod.productCode}}" class="pdp5 bvr-inline-rating" data-mz-product-code="{{ prod.productCode }}" data-bv-product-code="{{ prod.productCode }}" data-mz-product-url="{{ prod.href }}"></div>
-                            {% include "modules/product/price-stack" with model=prod %}
-                        </div>
-                        
-                        {% if prod.properties and prod|get_product_attribute_value("tenant~isExclusive") %}
-                            <p class="exclusive-text">{{ labels.exclusive }}</p>
-                        {% endif %}                 
-                        
-                        {% comment %}
-                        {% for option in prod.options %}
-                            {% if option.attributeFQN==='tenant~COLOR' && option.values && option.values.length > 1 %}
-                                <ul class="image-swatches text-center mz-reset-padding-left"> 
-                                    {% for imageSwatch in option.availableColors %}
-                                    <a data-mz-product-code='{{imageSwatch.productCode}}' data-mz-swatch-color='{{imageSwatch.color}}'><img onmouseleave="jQuery(this).parents('.product-code').find('.image').attr('src','{% make_url "image" prod.mainImage with maxWidth=themeSettings.ProductDetailImageWidth as_parameters %}')" src="{{imageSwatch.swatchIconPath}}" /></a> 
-                                    {% endfor %}
-                                </ul>
-                            {% endif %}
-                        {% endfor %}
-                        {% endcomment %}
-
-                        <div class="mz-productdetail-conversion-buttons col-xs-12">
-                        {% if prod.isPurchasable %}
-                            <div class="add-to-wishlist-container">
-                                {% if siteContext.generalSettings.isWishlistCreationEnabled %}
-                                    {% if prod.isPurchasable and prod.options.length < 1 %}
-                                        <a id="wishlist-{{ prod.productCode }}" class="mz-productdetail-addtowishlist wishlistHeart" data-mz-action="directoryAddToWishlist" data-mz-product-code="{{ prod.productCode }}">
-                                            <span class="blank-heart"></span>
-                                        </a>
-                                    {% endif %}
+                            <div class="mz-productlisting-info">  
+                                <div class="pdp1">
+                                        &nbsp;
+                                        {{ prod|get_product_attribute_value('tenant~Brands')|default('')|safe }}
+                                </div>
+                                <a class="mz-productlisting-title pdp2" href="{% make_url "product" prod %} "  data-baynote-slot="{{prod.slot}}"  data-baynote-widget="{{prod.widgetId}}" data-baynote-pid="{{prod.productCode}}" data-baynote-href="{{prod.href}}">{{prod.content.productName|safe}}</a> 
+                                {% if prod.content.productShortDescription %}
+                                    <div class="mz-productlisting-shortdesc pdp3">{{prod.content.productShortDescription|safe}}</div>
                                 {% endif %}
                             </div>
-                            <div class="add-to-cart-container">
-                            {% if prod.quantity == 0%}
-                                {% if not user.isAnonymous %}
-                                    <button id="email-me-{{ prod.productCode }}" class="primary-btn mz-productdetail-emailme pull-right" data-mz-action="directoryEmailMe" data-mz-product-code="{{ prod.productCode }}" data-mz-location-code="{{ prod.productCode }}">{{ labels.notifyWidgetButton }}</button>
+                            
+                            <div class="bottom-details">
+                                <div id="BVRRInlineRating-{{prod.productCode}}" class="pdp5 bvr-inline-rating" data-mz-product-code="{{ prod.productCode }}" data-bv-product-code="{{ prod.productCode }}" data-mz-product-url="{{ prod.href }}"></div>
+                                {% include "modules/product/price-stack" with model=prod %}
+                            </div>
+                            
+                            {% if prod.properties and prod|get_product_attribute_value("tenant~isExclusive") %}
+                                <p class="exclusive-text">{{ labels.exclusive }}</p>
+                            {% endif %}                 
+                            
+                            {% comment %}
+                            {% for option in prod.options %}
+                                {% if option.attributeFQN==='tenant~COLOR' && option.values && option.values.length > 1 %}
+                                    <ul class="image-swatches text-center mz-reset-padding-left"> 
+                                        {% for imageSwatch in option.availableColors %}
+                                        <a data-mz-product-code='{{imageSwatch.productCode}}' data-mz-swatch-color='{{imageSwatch.color}}'><img onmouseleave="jQuery(this).parents('.product-code').find('.image').attr('src','{% make_url "image" prod.mainImage with maxWidth=themeSettings.ProductDetailImageWidth as_parameters %}')" src="{{imageSwatch.swatchIconPath}}" /></a> 
+                                        {% endfor %}
+                                    </ul>
                                 {% endif %}
+                            {% endfor %}
+                            {% endcomment %}
+
+                            <div class="mz-productdetail-conversion-buttons col-xs-12">
+                            {% if prod.isPurchasable %}
+                                <div class="add-to-wishlist-container">
+                                    {% if siteContext.generalSettings.isWishlistCreationEnabled %}
+                                        {% if prod.isPurchasable and prod.options.length < 1 %}
+                                            <a id="wishlist-{{ prod.productCode }}" class="mz-productdetail-addtowishlist wishlistHeart" data-mz-action="directoryAddToWishlist" data-mz-product-code="{{ prod.productCode }}">
+                                                <span class="blank-heart"></span>
+                                            </a>
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+                                <div class="add-to-cart-container">
+                                {% if prod.quantity == 0%}
+                                    {% if not user.isAnonymous %}
+                                        <button id="email-me-{{ prod.productCode }}" class="primary-btn mz-productdetail-emailme pull-right" data-mz-action="directoryEmailMe" data-mz-product-code="{{ prod.productCode }}" data-mz-location-code="{{ prod.productCode }}">{{ labels.notifyWidgetButton }}</button>
+                                    {% endif %}
+                                {% else %}
+                                    <button id="add-to-cart-{{ prod.productCode }}" class="primary-btn mz-productdetail-addtocart font-large button_primary pull-right {% if not prod.isPurchasable %}button_disabled{% endif %}" data-mz-action="directoryAddToCart" data-mz-product-code="{{ prod.productCode }}">{{ labels.addToCart }}</button>
+                                {% endif %}
+                                </div>
                             {% else %}
-                                <button id="add-to-cart-{{ prod.productCode }}" class="primary-btn mz-productdetail-addtocart font-large button_primary pull-right {% if not prod.isPurchasable %}button_disabled{% endif %}" data-mz-action="directoryAddToCart" data-mz-product-code="{{ prod.productCode }}">{{ labels.addToCart }}</button>
+                                <div class="outOfStock">{{ labels.outOfStock }}</div>
+                                <button id="email-me-{{ prod.productCode }}" class="primary-btn mz-productdetail-emailme pull-center" data-mz-action="directoryEmailMe" data-mz-product-code="{{ prod.productCode }}" data-mz-location-code="{{ prod.productCode }}">{{ labels.notifyWidgetButton }}</button>
                             {% endif %}
-                            </div>
-                        {% else %}
-                            <div class="outOfStock">{{ labels.outOfStock }}</div>
-                            <button id="email-me-{{ prod.productCode }}" class="primary-btn mz-productdetail-emailme pull-center" data-mz-action="directoryEmailMe" data-mz-product-code="{{ prod.productCode }}" data-mz-location-code="{{ prod.productCode }}">{{ labels.notifyWidgetButton }}</button>
-                        {% endif %}
-                        </div>`
+                            </div>`
 
+                        </div>
                     </div>
                 </div>
-            </div>
-    		{% if forloop.last && model.items.length >= 1 %} 
-    			</ul>
-    		{% endif %}
-        {% endfor %}
+                {% if forloop.last && model.items.length >= 1 %} 
+                </div>
+                {% endif %}
+            {% endfor %}
+    </div>
+    <div class="swiper-button-next" id="swiper_meta_name_next"></div>
+    <div class="swiper-button-prev" id="swiper_meta_name_prev"></div>
     {% endif %}
 </div>
 <script type="text/javascript">
