@@ -2,6 +2,12 @@
   {% require_script "modules/product/product-carousel" %}
 {% endif %}
 {% require_script "pages/product" %}
+{% set_var isFreeSample=false %}  
+{% with model.categories as categories %}
+  {% for category in categories %}
+      {% if category.categoryId == themeSettings.freeSampleCategoryId %}{% set_var isFreeSample=true %}{% endif %}
+  {% endfor %}
+{% endwith %}
 {% with model|get_product_attribute_value("tenant~skin-care-system") as skinCareSystem %}
 <div itemscope itemtype="http://schema.org/Product" class="mz-l-container container {{model|get_product_attribute("tenant~skin-care-system")|prop("values")|first|prop("value")|lower}}">
    <meta itemprop="brand" content="NEOSTRATA" />
@@ -20,6 +26,7 @@
         <h2 class="mz-pagesubtitle center-mobile" >
           <span itemscope itemprop="description">{{ model.content.productShortDescription|safe }}</span>
         </h2>
+        {% if isFreeSample == false %}
         <div class="center-mobile reviews-and-price">
             <div class="mz-all-review-container add-to-wishlist-container">
               <button class="mz-productdetail-addToWishlist-Action mz-favorites" data-mz-action="addToWishlist" data-mz-product-code="{{ model.productCode }}">
@@ -37,6 +44,7 @@
               {% include "modules/product/price-stack" %}
             </div>
         </div>
+        {% endif %}
       </div>
       <div data-mz-productimages class="mz-productimages mz-product-left-container margin-top-15">
           {% include "modules/product/product-images" %}
@@ -65,6 +73,7 @@
               </div>
             {% endif %}
           {% endwith %}
+          {% if isFreeSample == false %}
           <div class="mz-productdetail-wrap">
             {% if model.quantity == 0 %}
               <div class="mz-productdetail-conversion-buttons col-xs-12">
@@ -85,6 +94,7 @@
               </div>
             {% endif %}
           </div>
+          {% endif %}
           {% with model|get_product_attribute("tenant~ingredient-highlights") as highlights %}
             {% with model|get_product_attribute("tenant~features-benefits") as featuresBenefits %}
               {% if highlights and highlights.values.length > 0 or featuresBenefits and featuresBenefits.values.length > 0 %}
@@ -121,10 +131,10 @@
       </div>
     </div>
   </div>
+{% if isFreeSample == false %}
   <div class="social-sharing col-md-9 col-xs-12 mz-reset-padding-left{% if model.content.productImages.length <=1 %} mz-share-with-container-other{% endif %}">
     {% dropzone "social-sharing" scope="template" %}
   </div>
-
   {% if model.productType == themeSettings.familyProductType %}
     {% include "modules/common/message-bar" %}
     <hr />
@@ -139,15 +149,17 @@
         </div>
     </div>
   {% endif %}
-
+{% endif %}
   <div class="clearfix"></div>
   <div class="product-info-tabs-container">
     {% include "modules/product/product-info-tabs" %}
   </div>
   <div class="clearfix"></div>
+{% if isFreeSample == false %}
   <div class="mz-middle-breakpoint">
       {% dropzone "product-middle-breakpoint" scope="template" %}
   </div>
+{% endif %}
   <div class="col-md-12 col-xs-12">
       {% dropzone "carousel-block" scope="template" %}
   </div>
