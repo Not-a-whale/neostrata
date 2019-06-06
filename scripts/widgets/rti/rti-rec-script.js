@@ -1,40 +1,40 @@
 
 require([
-        'modules/jquery-mozu',
-        'hyprlive',
-        "hyprlivecontext",
-        'underscore',
-        'modules/api',
-        'modules/backbone-mozu',
-        'modules/models-product',
-        'widgets/rti/recommended-products',
-        'bxslider',
-        "modules/cart-monitor",
-        "modules/metrics",
-        'swiper'
-        //'vendor/jquery/jquery-ui'
-    ],
-    function($, Hypr, HyprLiveContext, _, api, Backbone, ProductModels, RecommendedProducts, bxslider, CartMonitor, MetricsEngine, Swiper ) {
+    'modules/jquery-mozu',
+    'hyprlive',
+    "hyprlivecontext",
+    'underscore',
+    'modules/api',
+    'modules/backbone-mozu',
+    'modules/models-product',
+    'widgets/rti/recommended-products',
+    'bxslider',
+    "modules/cart-monitor",
+    "modules/metrics",
+    'swiper'
+    //'vendor/jquery/jquery-ui'
+],
+    function ($, Hypr, HyprLiveContext, _, api, Backbone, ProductModels, RecommendedProducts, bxslider, CartMonitor, MetricsEngine, Swiper) {
 
-        var req = api.get( 'entityList', {
+        var req = api.get('entityList', {
             listName: 'bvsettings@mzint',
             id: api.context.site
-        }).then( function( res ) {
-          var data = res.data.items[0];
-          var staging = data.environment != 'Staging' ? '' : '-stg';
-          var locale = api.context.locale.replace( "-", "_" );
-          var script = "//display" + staging + ".ugc.bazaarvoice.com/static/" + data.clientName + "/"+ data.deploymentZone +"/" + locale + "/bvapi.js";
-      
-          $.getScript( script )
-            .done( function() {
-                console.log("BV success");
-            })
-            .fail(function( jqxhr, settings, exception ) {
-              console.error( 'BazaarVoice failed to load.', exception );
-            });
-        }).catch( function( err ) {
-          console.warn( err );
-          console.log( 'Initializing match-tool without BazaarVoice.' );
+        }).then(function (res) {
+            var data = res.data.items[0];
+            var staging = data.environment != 'Staging' ? '' : '-stg';
+            var locale = api.context.locale.replace("-", "_");
+            var script = "//display" + staging + ".ugc.bazaarvoice.com/static/" + data.clientName + "/" + data.deploymentZone + "/" + locale + "/bvapi.js";
+
+            $.getScript(script)
+                .done(function () {
+                    console.log("BV success");
+                })
+                .fail(function (jqxhr, settings, exception) {
+                    console.error('BazaarVoice failed to load.', exception);
+                });
+        }).catch(function (err) {
+            console.warn(err);
+            console.log('Initializing match-tool without BazaarVoice.');
         });
 
         // rtiOptions will contain variables used by the
@@ -65,7 +65,7 @@ require([
         The following loop acts as cleanup; it populates containerList with the needed data,
         ignoring and delegitimizing any divs on the page with duplicate placeholder names.
         */
-        $('.recommended-product-container').each(function() {
+        $('.recommended-product-container').each(function () {
             if (!$(this).hasClass('ignore')) {
                 var configData = $(this).data('mzRtiRecommendedProducts');
                 //displayOptions are individual to each container.
@@ -79,7 +79,7 @@ require([
                 var selector = '.recommended-product-container.' + configData.placeholder;
 
                 if ($(selector).length > 1) {
-                    $(selector).each(function(index, element) {
+                    $(selector).each(function (index, element) {
                         if (index > 0) {
                             /*
                             We don't want to add the data from accidental duplicates to
@@ -131,42 +131,42 @@ require([
         });
         //End Carousel view def***
 
-        var getMozuProducts = function(rtiProductList) {
+        var getMozuProducts = function (rtiProductList) {
 
-                var deferred = api.defer();
-                var numReqs = rtiProductList.length;
-                var productList = [];
-                var filter = "";
-                _.each(rtiProductList, function(attrs) {
-                    if (filter !== "") filter += " or ";
-                    filter += "productCode eq "+ attrs.ProductId;    
-                });
-                var op = api.get('products', filter);                
-                op.then(function(data) {
-                    _.each(data.data.items, function(product){
-                         
-                       var rtiProduct = _.findWhere(rtiProductList, {ProductId: product.productCode});
-                       product.rtiRank = rtiProduct.rank||'';
-                       product.slot = rtiProduct.slot||'';
-                       product.widgetId = rtiProduct.widgetId||'';
-                       product.href = rtiProduct.url||'';      
-                       productList.push(product);
-                       _.defer(function() {
-                           deferred.resolve(productList);
-                       });
-                    });
+            var deferred = api.defer();
+            var numReqs = rtiProductList.length;
+            var productList = [];
+            var filter = "";
+            _.each(rtiProductList, function (attrs) {
+                if (filter !== "") filter += " or ";
+                filter += "productCode eq " + attrs.ProductId;
+            });
+            var op = api.get('products', filter);
+            op.then(function (data) {
+                _.each(data.data.items, function (product) {
 
-                }, function(reason){
-                    _.defer(function() {
+                    var rtiProduct = _.findWhere(rtiProductList, { ProductId: product.productCode });
+                    product.rtiRank = rtiProduct.rank || '';
+                    product.slot = rtiProduct.slot || '';
+                    product.widgetId = rtiProduct.widgetId || '';
+                    product.href = rtiProduct.url || '';
+                    productList.push(product);
+                    _.defer(function () {
                         deferred.resolve(productList);
-                    });                    
+                    });
                 });
+
+            }, function (reason) {
+                _.defer(function () {
+                    deferred.resolve(productList);
+                });
+            });
             return deferred.promise;
         };
 
-        var renderData = function(data) {
+        var renderData = function (data) {
 
-            _.each(containerList, function(container) {
+            _.each(containerList, function (container) {
 
                 var placeholder = container.config.placeholder;
                 var numberOfItems = container.config.quantity;
@@ -175,13 +175,14 @@ require([
                 if (pageContext.isEditMode) {
                     $('.recommended-product-container.' + placeholder).text('<b>Here Goes your RTI Recommended items</b>');
                     return;
-                } 
+                }
                 /*
                 Our data will contain information about lots of different possible widgets.
                 First we want to reduce that data to only the placeholderName we're dealing with.
                 */
-                var currentProducts = $.grep(data, function(e) {
-                    return e.placeholderName == placeholder; });
+                var currentProducts = $.grep(data, function (e) {
+                    return e.placeholderName == placeholder;
+                });
                 /*
                 We should at this point have a list of results with the correct placeholderName,
                 and that last should only be 1 item long.
@@ -332,60 +333,86 @@ require([
                         }
                     });
                 }
+
+
             });
 
             var productIds = [];
 
-            $('.rti-recommended-products [data-bv-product-code]').each(function(el) {
-                var code = $(this).data('mzProductCode'); 
-                productIds[code] = {
-                  url: '/p/' + code,
-                  containerId: 'BVRRInlineRating-' + code
-                };
-              });
+            var config = {
+                attributes: true,
+                childList: true,
+                characterData: true
+            };
 
-        };
-
-        try {
-        
-            var productInstance = RecommendedProducts.getInstance(rtiOptions);
-            productInstance.getProductData(function(data) {
-                renderData(data);
-            });
-
-            
-            var swiper = new Swiper('.rti-recommended-products.homeBuyItAgain .swiper-container', {
-                slidesPerView: 3,
-                spaceBetween: 0,
-                loop: false,
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev'
-                },
-                preventClicks: false,
-                preventClicksPropagation: false,
-                breakpoints: {
-                    1024: {
-                        slidesPerView: 3
-                    },
-                    992: {
-                        slidesPerView: 2
-                    },
-                    768: {
-                        slidesPerView: '1'
-                    },
-                    640: {
-                        slidesPerView: '1'
-                    },
-                    320: {
-                        slidesPerView: '1'
-                    }
+            var observer = new MutationObserver(function (mutations) {
+                if ($(".rti-recommended-products.carousel-parent").has($('.product-listing-container')).length) {
+                    initOnce();
                 }
+
             });
 
-        } catch (err) {
-            //console.log(err);
-        }
-        /*Recommended Product Code Ends*/
+            observer.observe(document.body, config);
 
-    });
+            var didInit = false;
+            function initOnce() {
+                if (!didInit) {
+
+                    $('.rti-recommended-products [data-bv-product-code]').each(function (el) {
+                        var code = $(this).data('mzProductCode');
+                        productIds[code] = {
+                            url: '/p/' + code,
+                            containerId: 'BVRRInlineRating-' + code
+                        };
+                    });
+
+                    var swiper = new Swiper('.rti-recommended-products.homeBuyItAgain .swiper-container', {
+                        slidesPerView: 3,
+                        spaceBetween: 0,
+                        loop: false,
+                        navigation: {
+                            nextEl: '.swiper-button-next',
+                            prevEl: '.swiper-button-prev'
+                        },
+                        preventClicks: false,
+                        preventClicksPropagation: false,
+                        breakpoints: {
+                            1024: {
+                                slidesPerView: 3
+                            },
+                            992: {
+                                slidesPerView: 2
+                            },
+                            768: {
+                                slidesPerView: '1'
+                            },
+                            640: {
+                                slidesPerView: '1'
+                            },
+                            320: {
+                                slidesPerView: '1'
+                            }
+                        }
+                    });
+
+                    didInit = true;
+                }
+            }
+
+            };
+
+            try {
+
+                var productInstance = RecommendedProducts.getInstance(rtiOptions);
+                productInstance.getProductData(function (data) {
+                    renderData(data);
+                });
+
+
+
+            } catch (err) {
+                //console.log(err);
+            }
+            /*Recommended Product Code Ends*/
+
+        });

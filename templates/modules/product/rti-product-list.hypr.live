@@ -80,7 +80,7 @@
                                 <div class="outOfStock">{{ labels.outOfStock }}</div>
                                 <button id="email-me-{{ prod.productCode }}" class="primary-btn mz-productdetail-emailme pull-center" data-mz-action="directoryEmailMe" data-mz-product-code="{{ prod.productCode }}" data-mz-location-code="{{ prod.productCode }}">{{ labels.notifyWidgetButton }}</button>
                             {% endif %}
-                            </div>`
+                            </div>
 
                         </div>
                     </div>
