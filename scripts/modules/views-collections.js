@@ -230,8 +230,7 @@ define([
         /*directory Add-To-Cart action */
         var directoryAddToCart = IntentEmitter(_$body,
                                                ['click #product-list-ul .mz-productdetail-addtocart',
-                                                'click #more-list-ul .mz-productdetail-addtocart',
-                                                'click .rti-recommended-products .mz-productdetail-addtocart'],
+                                                'click #more-list-ul .mz-productdetail-addtocart'],
                                                directoryAddToCartAction);
         function directoryAddToCartAction(_e){
             var productCode = $(_e.currentTarget).data("mz-product-code");
@@ -260,8 +259,7 @@ define([
         /*directory Add-To-Wishlist action */
         var directoryAddToWishlist = IntentEmitter(_$body,
                                                    ['click #product-list-ul .mz-productdetail-addtowishlist',
-                                                    'click #more-list-ul .mz-productdetail-addtowishlist',
-                                                    'click .rti-recommended-products .mz-productdetail-addtowishlist'],
+                                                    'click #more-list-ul .mz-productdetail-addtowishlist'],
                                                     directoryAddToWishlistAction);
         function directoryAddToWishlistAction(_e){
             var productCode = $(_e.currentTarget).data("mz-product-code");
