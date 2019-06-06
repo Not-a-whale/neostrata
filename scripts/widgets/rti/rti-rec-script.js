@@ -169,13 +169,35 @@ require([
             _.each(containerList, function (container) {
 
                 var placeholder = container.config.placeholder;
+                /*
+                New priority setup: first Buy it again, then Recently Viewed, then default.
+                ref: https://jira.deplabs.com/browse/NEOSUP-1294
+                 */
+               var buyItAgain = false,
+                   recentlyViewed = false,
+                   displayName = false;
+               data.forEach(function(col){
+                   if(col.productList.length > 4){
+                       if(col.placeholderName == 'homeBuyItAgain') buyItAgain = 'homeBuyItAgain';
+                       if(col.placeholderName == 'homeRecenltyViewed') recentlyViewed = 'homeRecenltyViewed';
+                   }
+               });
+               if(buyItAgain){
+                   placeholder = buyItAgain;
+                   displayName = "Buy It Again";
+               }else if(recentlyViewed){
+                   placeholder = recentlyViewed;
+                   displayName = "Recently Viewed";
+               }else{
+                   displayName = "Our Bestsellers";
+               }
                 var numberOfItems = container.config.quantity;
                 var configTitle = container.config.title;
                 var format = container.config.format;
                 if (pageContext.isEditMode) {
                     $('.recommended-product-container.' + placeholder).text('<b>Here Goes your RTI Recommended items</b>');
                     return;
-                }
+                }  
                 /*
                 Our data will contain information about lots of different possible widgets.
                 First we want to reduce that data to only the placeholderName we're dealing with.
@@ -198,17 +220,19 @@ require([
                     }
                 } else {
                     //We have the data for our widget now. Time to fill it up.
-                    var displayName;
+//                    var displayName;
                     //if configTitle has a value, the user entered a title to
                     //override the title set in RTI.
-                    if (configTitle) {
-                        displayName = configTitle;
-                    } else {
-                        //if configTitle has no value, we get the title from the
-                        //product results call
-                        displayName = currentProducts[0].displayName;
+                    if(!displayName){
+                        if (configTitle) {
+                            displayName = configTitle;
+                        } else {
+                            //if configTitle has no value, we get the title from the
+                            //product results call
+                            displayName = currentProducts[0].displayName;
+                        }
                     }
-
+                    
                     //We slice the productList we received according to the limit set
                     //in the editor
                     var productList;
@@ -217,6 +241,7 @@ require([
                     } else {
                         productList = currentProducts[0].productList;
                     }
+                    $('.slider-title.rti-recommended-products-title.' + placeholder).text(displayName);
                     //Turns list of product IDs into a product collection
                     getMozuProducts(productList).then(function (products) {
                         if (products.length !== 0) {
