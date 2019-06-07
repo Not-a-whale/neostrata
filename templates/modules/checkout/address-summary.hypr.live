@@ -42,7 +42,7 @@
         {% endif %}
         <div class="form-row address-no-pobox-label">
             <div class="mz-l-formfieldgroup-cell">
-                <label for="address-no-pobox-label">{{ labels.addressNoPoBoxlabel }}</label>
+                <label for="address-no-pobox-label">{{ labels.infoAddress }}</label>
             </div>
         </div>
         <div class="checkout-twocolumn-row form-row">

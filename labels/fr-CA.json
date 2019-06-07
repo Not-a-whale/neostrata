@@ -142,7 +142,6 @@
   "lastName"             : "Nom",
   "address"              : "[fr-CA]Address[fr-CA]",
   "addressType"          : "[fr-CA]Address Type[fr-CA]",
-  "addressNoPoBoxlabel"  : "[fr-CA]we are unable to ship to P.O. Boxes. A physical street address is required[fr-CA]",
   "residential"          : "[fr-CA]Residential[fr-CA]",
   "commercial"           : "[fr-CA]Commercial[fr-CA]",
   "city"                 : "[fr-CA]City[fr-CA]",
