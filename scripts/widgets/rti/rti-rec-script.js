@@ -168,198 +168,231 @@ require([
 
             _.each(containerList, function (container) {
 
+                /**New priority setup: first Buy it again, then Recently Viewed, then default. ref: https://jira.deplabs.com/browse/NEOSUP-1294 **/
                 var placeholder = container.config.placeholder;
-                /*
-                New priority setup: first Buy it again, then Recently Viewed, then default.
-                ref: https://jira.deplabs.com/browse/NEOSUP-1294
-                 */
-               var buyItAgain = false,
-                   recentlyViewed = false,
-                   displayName = false;
-               data.forEach(function(col){
-                   if(col.productList.length > 4){
-                       if(col.placeholderName == 'homeBuyItAgain') buyItAgain = 'homeBuyItAgain';
-                       if(col.placeholderName == 'homeRecenltyViewed') recentlyViewed = 'homeRecenltyViewed';
-                   }
-               });
-               if(buyItAgain){
-                   placeholder = buyItAgain;
-                   displayName = "Buy It Again";
-               }else if(recentlyViewed){
-                   placeholder = recentlyViewed;
-                   displayName = "Recently Viewed";
-               }else{
-                   displayName = "Our Bestsellers";
-               }
                 var numberOfItems = container.config.quantity;
                 var configTitle = container.config.title;
                 var format = container.config.format;
-                if (pageContext.isEditMode) {
-                    $('.recommended-product-container.' + placeholder).text('<b>Here Goes your RTI Recommended items</b>');
-                    return;
-                }  
-                /*
-                Our data will contain information about lots of different possible widgets.
-                First we want to reduce that data to only the placeholderName we're dealing with.
-                */
-                var currentProducts = $.grep(data, function (e) {
-                    return e.placeholderName == placeholder;
+
+                var displayName = false;
+                    
+                var placeholderBuyItAgain = 'homeBuyItAgain';
+                var placeholderRecenltyViewed = 'homeRecenltyViewed';
+                var placeholderOurBestsellers = 'homeBestSellers';
+                var placeholderConditionQuiz = 'homeConditionQuiz';
+                var placeHolders = [placeholderBuyItAgain, placeholderRecenltyViewed, placeholderOurBestsellers, placeholderConditionQuiz];
+                
+                var fullProductList = [];
+                var productListByPlaceholder = [];
+                var existingProductsByPlaceholder = [];
+                placeHolders.forEach(function(placeHoldersItem){ 
+                    existingProductsByPlaceholder[placeHoldersItem] = []; 
+                    productListByPlaceholder[placeHoldersItem] = []; 
+                    
                 });
-                /*
-                We should at this point have a list of results with the correct placeholderName,
-                and that last should only be 1 item long.
-                If that first item doesn't exist, there was a problem.
-                */
-                if (!currentProducts[0]) {
-                    if (pageContext.isEditMode) {
-                        /*
-                        If we reach this point, it means there wasn't a placeholderName in the
-                        data that was returned that matches the one we selected.
-                        */
-                        $('.recommended-product-container.' + placeholder).text("Placeholder not found.");
-                    }
-                } else {
-                    //We have the data for our widget now. Time to fill it up.
-//                    var displayName;
-                    //if configTitle has a value, the user entered a title to
-                    //override the title set in RTI.
-                    if(!displayName){
-                        if (configTitle) {
-                            displayName = configTitle;
-                        } else {
-                            //if configTitle has no value, we get the title from the
-                            //product results call
-                            displayName = currentProducts[0].displayName;
+                
+                data.forEach(function(col){ //rti returns on single call all placeholders products, let's sort and verify all at once.
+                    col.productList.forEach(function(prodList){ productListByPlaceholder[col.placeholderName].push(prodList.ProductId); });
+                    fullProductList = fullProductList.concat(col.productList);
+                });
+                if(!fullProductList.length) return ;
+                    
+                getMozuProducts(fullProductList).then(function (products) { //async calls, all needs to be inside this..                
+                    products.forEach(function(product){
+                        if(product.productType !== "Free Sample"){
+                            placeHolders.forEach(function(placeholderItem){
+                                var aux = productListByPlaceholder[placeholderItem];
+                                if(aux.indexOf(product.productCode) !== -1) existingProductsByPlaceholder[placeholderItem].push(product);    
+                            });
                         }
+                    });
+                    //requires to be at least 5 products length as per ticket request, ref: https://jira.deplabs.com/browse/NEOSUP-1294
+                    if(existingProductsByPlaceholder[placeholderBuyItAgain] && existingProductsByPlaceholder[placeholderBuyItAgain].length > 4){
+                        placeholder = placeholderBuyItAgain;
+                        displayName = Hypr.getLabel(placeholderBuyItAgain);
+                        products = existingProductsByPlaceholder[placeholderBuyItAgain];
+                    }else if(existingProductsByPlaceholder[placeholderRecenltyViewed] && existingProductsByPlaceholder[placeholderRecenltyViewed].length > 4){
+                        placeholder = placeholderRecenltyViewed;
+                        displayName = Hypr.getLabel(placeholderRecenltyViewed);
+                        products = existingProductsByPlaceholder[placeholderRecenltyViewed];
+                    }else{
+                        displayName = Hypr.getLabel(placeholderOurBestsellers);
+                        products = existingProductsByPlaceholder[placeholderOurBestsellers];
                     }
                     
-                    //We slice the productList we received according to the limit set
-                    //in the editor
-                    var productList;
-                    if (currentProducts[0].productList.length > numberOfItems) {
-                        productList = currentProducts[0].productList.slice(0, numberOfItems);
+                    $('.recommended-product-container').addClass(placeholder);
+                    $('.rti-recommended-products-title').addClass(placeholder);
+                    $('.rti-recommended-products').addClass(placeholder);
+                    
+                    
+                    if (pageContext.isEditMode) {
+                        $('.recommended-product-container.' + placeholder).text('<b>Here Goes your RTI Recommended items</b>');
+                        return;
+                    }  
+                    /*
+                    Our data will contain information about lots of different possible widgets.
+                    First we want to reduce that data to only the placeholderName we're dealing with.
+                    */
+                    var currentProducts = $.grep(data, function (e) {
+                        return e.placeholderName == placeholder;
+                    });
+                    /*
+                    We should at this point have a list of results with the correct placeholderName,
+                    and that last should only be 1 item long.
+                    If that first item doesn't exist, there was a problem.
+                    */
+                    if (!currentProducts[0]) {
+                        if (pageContext.isEditMode) {
+                            /*
+                            If we reach this point, it means there wasn't a placeholderName in the
+                            data that was returned that matches the one we selected.
+                            */
+                            $('.recommended-product-container.' + placeholder).text("Placeholder not found.");
+                        }
                     } else {
-                        productList = currentProducts[0].productList;
-                    }
-                    $('.slider-title.rti-recommended-products-title.' + placeholder).text(displayName);
-                    //Turns list of product IDs into a product collection
-                    getMozuProducts(productList).then(function (products) {
-                        if (products.length !== 0) {
-                            var productsByRank = _.sortBy(products, 'rtiRank');
-                            productList = productsByRank;
-                            var prodColl = new ProductModels.ProductCollection();
-                            prodColl.set('items', productList);
-                            prodColl.set('bnData', data.bnData);
-                            prodColl.set('config', container.config);
-                            //BNData for multiple widgets
-                            if (productList.length) {
-                                var firstItem = productList[0];
-                                window.BNData = window.BNData || '';
-                                window.BNWidgetId = window.BNWidgetId || '';
-                                if (window.BNData) {
-                                    if (window.BNData.widgetCount) {
-                                        window.BNData.widgetCount += 1;
-                                        window.BNData.widget[firstItem.widgetId] = data.bnData;
+                        //We have the data for our widget now. Time to fill it up.
+                        //var displayName;
+                        //if configTitle has a value, the user entered a title to
+                        //override the title set in RTI.
+                        if(!displayName){
+                            if (configTitle) {
+                                displayName = configTitle;
+                            } else {
+                                //if configTitle has no value, we get the title from the
+                                //product results call
+                                displayName = currentProducts[0].displayName;
+                            }
+                        }
+                        $('.slider-title.rti-recommended-products-title.' + placeholder).text(displayName);
+
+                        //We slice the productList we received according to the limit set
+                        //in the editor
+                        var productList;
+                        if (currentProducts[0].productList.length > numberOfItems) {
+                            productList = currentProducts[0].productList.slice(0, numberOfItems);
+                        } else {
+                            productList = currentProducts[0].productList;
+                        }
+                        if (products > numberOfItems) products = products.slice(0, numberOfItems);
+                        
+                        //Turns list of product IDs into a product collection
+                        //getMozuProducts(productList).then(function (products) {
+                            if (products.length !== 0) {
+                                var productsByRank = _.sortBy(products, 'rtiRank');
+                                productList = productsByRank;
+                                var prodColl = new ProductModels.ProductCollection();
+                                prodColl.set('items', productList);
+                                prodColl.set('bnData', data.bnData);
+                                prodColl.set('config', container.config);
+                                //BNData for multiple widgets
+                                if (productList.length) {
+                                    var firstItem = productList[0];
+                                    window.BNData = window.BNData || '';
+                                    window.BNWidgetId = window.BNWidgetId || '';
+                                    if (window.BNData) {
+                                        if (window.BNData.widgetCount) {
+                                            window.BNData.widgetCount += 1;
+                                            window.BNData.widget[firstItem.widgetId] = data.bnData;
+                                        }
+                                        else {
+                                            var oldBNData = window.BNData;
+                                            window.BNData = {
+                                                widgetCount: 2,
+                                                widget: {}
+                                            };
+                                            window.BNData.widget[firstItem.widgetId] = data.bnData;
+                                            window.BNData.widget[window.BNWidgetId] = oldBNData;
+                                        }
                                     }
                                     else {
-                                        var oldBNData = window.BNData;
-                                        window.BNData = {
-                                            widgetCount: 2,
-                                            widget: {}
-                                        };
-                                        window.BNData.widget[firstItem.widgetId] = data.bnData;
-                                        window.BNData.widget[window.BNWidgetId] = oldBNData;
+                                        window.BNData = data.bnData;
+                                        window.BNWidgetId = firstItem.widgetId;
                                     }
                                 }
                                 else {
                                     window.BNData = data.bnData;
-                                    window.BNWidgetId = firstItem.widgetId;
                                 }
-                            }
-                            else {
-                                window.BNData = data.bnData;
-                            }
-                            //Time to actually render
-                            if (currentProducts[0].editModeMessage) {
-                                if (pageContext.isEditMode) {
-                                    $('.recommended-product-container.' + placeholder).text(currentProducts[0].editModeMessage);
+                                //Time to actually render
+                                if (currentProducts[0].editModeMessage) {
+                                    if (pageContext.isEditMode) {
+                                        $('.recommended-product-container.' + placeholder).text(currentProducts[0].editModeMessage);
+                                    }
+                                } else {
+                                    $('.recommended-product-container.' + placeholder + ' .mz-related-products.hidden-print').html('<h3 class="' + placeholder + ' slider-title"><span>' + displayName + '</span></h3>');
+                                    if (!format) {
+                                        format = "carousel";
+                                    }
+                                    if (format == "carousel") {
+                                        var productListView = new ProductListView({
+                                            el: $("." + placeholder + '.rti-recommended-products'),
+                                            model: prodColl
+                                        });
+                                        productListView.render();
+                                        var getPage = pageContext.cmsContext.template.path;
+                                        var getSliderParams = { slideWidth: 257, homePageRtiImages: 3, slideMargin: 2 };
+                                        var queryMobile = Modernizr.mq('(min-width: 767px)');
+                                        if (getPage == 'home') {
+                                            getSliderParams.slideWidth = HyprLiveContext.locals.themeSettings.homePageRtiImageWidth;
+                                            getSliderParams.homePageRtiImages = HyprLiveContext.locals.themeSettings.homePageRtiImages;
+                                        }
+                                        if (Modernizr.mq('(min-width: 768px)') && Modernizr.mq('(max-width: 1024px)')) {
+                                            getSliderParams.slideWidth = 225;
+                                        }
+                                        if (Modernizr.mq('(min-width: 320px)') && Modernizr.mq('(max-width: 767px)')) {
+                                            getSliderParams.slideWidth = HyprLiveContext.locals.themeSettings.mobileSlideWidth;
+                                            getSliderParams.slideMargin = HyprLiveContext.locals.themeSettings.mobileSlideMargin;
+                                            getSliderParams.homePageRtiImages = HyprLiveContext.locals.themeSettings.mobileSlideMaxImages;
+                                        }
+                                        if (productList.length > 1) {
+                                            $("." + placeholder + '.rti-recommended-products').slick({
+                                                slidesToShow: 4,
+                                                slidesToScroll: 1,
+                                                infinite: false,
+                                                prevArrow: '<i class="fa fa-caret-left" aria-hidden="true"></i>',
+                                                nextArrow: '<i class="fa fa-caret-right" aria-hidden="true"></i>',
+                                                responsive: [{
+                                                    breakpoint: 992,
+                                                    settings: {
+                                                        arrows: true,
+                                                        slidesToShow: 3
+                                                    }
+                                                },
+                                                {
+                                                    breakpoint: 768,
+                                                    settings: {
+                                                        arrows: true,
+                                                        slidesToShow: 1
+                                                    }
+                                                }
+                                                ]
+                                            });
+                                        } else if (productList.length === 1) {
+                                            $("[data-mz-product]").find('img').addClass('single-img-width');
+                                        }
+                                        if (productList.length === 0) {
+                                            $("." + placeholder + '.recommended-product-container').hide();
+                                        }
+                                        return;
+
+                                    }
+                                    else if (format == "grid") {
+                                        var gridListView = new GridView({
+                                            el: $('[data-rti-recommended-products=' + placeholder + ']'),
+                                            model: prodColl
+                                        });
+                                        gridListView.render(placeholder);
+                                        return;
+                                    }
                                 }
                             } else {
-                                $('.recommended-product-container.' + placeholder + ' .mz-related-products.hidden-print').html('<h3 class="' + placeholder + ' slider-title"><span>' + displayName + '</span></h3>');
-                                if (!format) {
-                                    format = "carousel";
-                                }
-                                if (format == "carousel") {
-                                    var productListView = new ProductListView({
-                                        el: $("." + placeholder + '.rti-recommended-products'),
-                                        model: prodColl
-                                    });
-                                    productListView.render();
-                                    var getPage = pageContext.cmsContext.template.path;
-                                    var getSliderParams = { slideWidth: 257, homePageRtiImages: 3, slideMargin: 2 };
-                                    var queryMobile = Modernizr.mq('(min-width: 767px)');
-                                    if (getPage == 'home') {
-                                        getSliderParams.slideWidth = HyprLiveContext.locals.themeSettings.homePageRtiImageWidth;
-                                        getSliderParams.homePageRtiImages = HyprLiveContext.locals.themeSettings.homePageRtiImages;
-                                    }
-                                    if (Modernizr.mq('(min-width: 768px)') && Modernizr.mq('(max-width: 1024px)')) {
-                                        getSliderParams.slideWidth = 225;
-                                    }
-                                    if (Modernizr.mq('(min-width: 320px)') && Modernizr.mq('(max-width: 767px)')) {
-                                        getSliderParams.slideWidth = HyprLiveContext.locals.themeSettings.mobileSlideWidth;
-                                        getSliderParams.slideMargin = HyprLiveContext.locals.themeSettings.mobileSlideMargin;
-                                        getSliderParams.homePageRtiImages = HyprLiveContext.locals.themeSettings.mobileSlideMaxImages;
-                                    }
-                                    if (productList.length > 1) {
-                                        $("." + placeholder + '.rti-recommended-products .bxslider').slick({
-                                            slidesToShow: 4,
-                                            slidesToScroll: 1,
-                                            infinite: false,
-                                            prevArrow: '<i class="fa fa-caret-left" aria-hidden="true"></i>',
-                                            nextArrow: '<i class="fa fa-caret-right" aria-hidden="true"></i>',
-                                            responsive: [{
-                                                breakpoint: 992,
-                                                settings: {
-                                                    arrows: true,
-                                                    slidesToShow: 3
-                                                }
-                                            },
-                                            {
-                                                breakpoint: 768,
-                                                settings: {
-                                                    arrows: true,
-                                                    slidesToShow: 1
-                                                }
-                                            }
-                                            ]
-                                        });
-                                    } else if (productList.length === 1) {
-                                        $("[data-mz-product]").find('img').addClass('single-img-width');
-                                    }
-                                    if (productList.length === 0) {
-                                        $("." + placeholder + '.recommended-product-container').hide();
-                                    }
-                                    return;
-
-                                }
-                                else if (format == "grid") {
-                                    var gridListView = new GridView({
-                                        el: $('[data-rti-recommended-products=' + placeholder + ']'),
-                                        model: prodColl
-                                    });
-                                    gridListView.render(placeholder);
-                                    return;
+                                if (pageContext.isEditMode) {
+                                    $('.recommended-product-container.' + placeholder).text("There was a problem retrieving products from your catalog that match the products received from RTI.");
                                 }
                             }
-                        } else {
-                            if (pageContext.isEditMode) {
-                                $('.recommended-product-container.' + placeholder).text("There was a problem retrieving products from your catalog that match the products received from RTI.");
-                            }
-                        }
-                    });
-                }
-
-
+                        //});
+                    } 
+                    
+                });
             });
 
             var productIds = [];
@@ -391,7 +424,7 @@ require([
                         };
                     });
 
-                    var swiper = new Swiper('.rti-recommended-products.homeBuyItAgain .swiper-container', {
+                    var swiper = new Swiper('.rti-recommended-products .swiper-container', {
                         slidesPerView: 3,
                         spaceBetween: 0,
                         loop: false,

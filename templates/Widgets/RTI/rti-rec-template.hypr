@@ -1,6 +1,6 @@
-<div class="recommended-product-container {{ model.config.placeholder }}" data-mz-rti-recommended-products="{% json_attribute Model.config%}">
-	<p class="rti-recommended-products-title {{ model.config.placeholder }} slider-title"></p>
-	<div class="rti-recommended-products {{ model.config.placeholder }} carousel-parent">
+<div class="recommended-product-container" data-mz-rti-recommended-products="{% json_attribute Model.config%}">
+	<p class="rti-recommended-products-title slider-title"></p>
+	<div class="rti-recommended-products carousel-parent">
 		<div data-rti-recommended-products={{model.config.placeholder }} >
 		</div>
 	</div>
