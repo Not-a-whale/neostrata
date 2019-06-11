@@ -84,9 +84,11 @@ function($, Hypr, HyprLiveContext, _, api,Backbone, ProductModels) {
       //Right now the only difference configured is thatif pageType is cart,
       //We add productIds to the query.
 
+      var visitstrail = "";
       var pageDependentSection = "";
       if (getRTIOptions().pageType=="Home"){
-
+        var visitstrailInfo = getCookie('bn_vp');
+        if(visitstrailInfo) visitstrail = "&visitstrail="+visitstrailInfo;
       } else if (getRTIOptions().pageType=="ProductDetail") {
           var product = require.mozuData('product');
           bnProductId = product.productCode; // jshint ignore:line
@@ -131,7 +133,8 @@ function($, Hypr, HyprLiveContext, _, api,Backbone, ProductModels) {
              tenantIdQuery + //From checkbox
               siteIdQuery + //From checkbox
                inject + //From javascript field in config editor
-               "&format=json";
+               "&format=json"+
+                 visitstrail; // https://jira.deplabs.com/browse/NEONGM-1294
         return url;
 		},
 
