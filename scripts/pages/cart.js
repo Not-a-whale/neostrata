@@ -124,7 +124,14 @@
             var $qField = $(e.currentTarget),
                 newQuantity = parseInt($qField.val(), 10),
                 id = $qField.data('mz-cart-item'),
-                item = this.model.get("items").get(id);
+                item = this.model.get("items").get(id),
+                categories = item.get('product').get('categories'),
+                freeSampleCategoryId = Hypr.getThemeSetting('freeSampleCategoryId'),
+                isFreeSample=false;
+            categories.forEach(function(cat){
+               if(cat.id === freeSampleCategoryId) isFreeSample = true;
+            });
+            if(isFreeSample) return ;
             setTimeout(function () {
                 if(newQuantity == parseInt($qField.val(), 10)){
                     $qField.attr('disabled', true);
