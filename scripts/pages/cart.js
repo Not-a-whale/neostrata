@@ -614,6 +614,7 @@
             }
         });
 
+        cartModel.checkBOGA();
         window.cartView = cartViews;
 
         CartMonitor.setCount(cartModel.count());
