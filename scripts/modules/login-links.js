@@ -2,7 +2,14 @@
  * Adds a login popover to all login links on a page.
  */
 
-define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modules/jquery-mozu=jQuery]>jQuery=jQuery]>jQuery', 'modules/api', 'hyprlive', 'underscore', 'hyprlivecontext', 'vendor/jquery-placeholder/jquery.placeholder','modules/backbone-mozu'], function ($, api, Hypr, _, HyprLiveContext,backbone) {
+define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modules/jquery-mozu=jQuery]>jQuery=jQuery]>jQuery', 
+    'modules/api', 
+    'hyprlive', 
+    'underscore', 
+    'hyprlivecontext', 
+    'modules/backbone-mozu', 
+    'modules/models-customer',
+    'modules/api-features'], function ($, api, Hypr, _, HyprLiveContext, backbone, CustomerModels, ApiFeature) {
     var current = "";
     var usePopovers = function() {
         return !Modernizr.mq('(max-width: 480px)');
@@ -495,6 +502,43 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
                     email: $(this).parents('#login').find('[data-mz-login-email]').val(),
                     password: $(this).parents('#login').find('[data-mz-login-password]').val()
                 }).then(function () {
+                    var user = require.mozuData('user');
+                    if(user.isAuthenticated && user.accountId){
+                        var quizInfo = $.cookie('quiz-info');
+                        if(quizInfo){
+                            quizInfo = JSON.parse($.cookie('quiz-info'));
+                            ApiFeature.NeostrataFeatureApi.updateCustomerPreferences({customerId : user.accountId,
+                                                                                      customerPreferences : quizInfo}).fail(function(err){ 
+                              console.log('updateCustomerPreferences --> error', err); 
+                            });
+                        }else{
+                            quizInfo = {};
+                            var apiData = require.mozuData('apicontext');                            
+                            $.ajax({
+                                url: '/api/commerce/customer/accounts/'+user.accountId+'/attributes',
+                                headers: apiData.headers,
+                                method: 'GET',
+                                success: function(data) {
+                                    if(data.totalCount){
+                                        var customerAttributes = data.items;
+                                        customerAttributes.forEach(function(attribute) {
+                                            var quizValue = attribute.values[0];
+                                            if(attribute.fullyQualifiedName == 'tenant~quiz-recommended-regimen') quizInfo['quiz-recommended-regimen'] = quizValue;
+                                            if(attribute.fullyQualifiedName == 'tenant~quiz-recommended-product') quizInfo['quiz-recommended-product'] = quizValue;
+                                            if(attribute.fullyQualifiedName == 'tenant~quiz-skincare-knowledge') quizInfo['quiz-skincare-knowledge'] = quizValue;
+                                            if(attribute.fullyQualifiedName == 'tenant~quiz-primary-skin-concern') quizInfo['quiz-primary-skin-concern'] = quizValue;
+                                            if(attribute.fullyQualifiedName == 'tenant~quiz-skin-type') quizInfo['quiz-skin-type'] = quizValue;
+                                            if(attribute.fullyQualifiedName == 'tenant~quiz-products-currently-used') quizInfo['quiz-products-currently-used'] = quizValue;
+                                            if(attribute.fullyQualifiedName == 'tenant~quiz-routine-product-number') quizInfo['quiz-routine-product-number'] = quizValue;
+                                            if(attribute.fullyQualifiedName == 'tenant~quiz-gender') quizInfo['quiz-gender'] = quizValue;
+                                            if(attribute.fullyQualifiedName == 'tenant~quiz-age') quizInfo['quiz-age'] = quizValue;
+                                        });
+                                        if(quizInfo) $.cookie('quiz-info', JSON.stringify(quizInfo));
+                                    }
+                                }
+                            });    
+                        }
+                    }
                     if ( returnUrl ){
                         window.location.href= returnUrl;
                     }else{

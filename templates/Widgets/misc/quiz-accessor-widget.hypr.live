@@ -1,0 +1,32 @@
+{% if model.isQuizTaken %}
+        <picture class="background-full-image">
+            <!-- IMAGE FOR LARGE VIEWPORTS -->
+            <source srcset="/cms/files/Homepage-wishlist-bkgrd-desktop.jpg" media="(min-width: 993px)">
+            <!-- IMAGE FOR SMALL VIEWPORTS -->
+            <img src="/cms/files/Homepage-wishlist-bkgrd-mobile.jpg" alt="">
+        </picture>
+            <div id="unique-skin" class="home-main-content-container right">
+                <h3 class="lineheight">A personalized skin care regimen, just for you{{model.userName}}</h3>
+                <p class="special">Your online consultation results are in.<br/>These products were selected just for you and your unique skin.</p>
+                <div class="buttons-container">
+                  <a href="/skincare-quiz" class="primary-btn multiple">RETAKE QUIZ</a>
+                  <a href="/skincare-quiz#results" class="primary-btn multiple">VIEW RESULTS</a>
+                </div>
+            </div>
+{% else %}
+   
+
+
+        <picture class="background-full-image">
+            <!-- IMAGE FOR LARGE VIEWPORTS -->
+            <source srcset="/cms/files/homepage_models_d1.jpg" media="(min-width: 993px)">
+            <!-- IMAGE FOR SMALL VIEWPORTS -->
+            <img src="/cms/files/homepage_models_m1.jpg" alt="">
+        </picture>
+      <div id="unique-skin" class="home-main-content-container right">
+        <h3 class="lineheight">You’re unique. So your skin care regimen should be too.</h3>
+        <p class="special">Find a product that's right for you.</p>
+        <a href="/skincare-quiz" class="primary-btn">TAKE THE QUIZ</a>
+      </div>
+
+{% endif %}

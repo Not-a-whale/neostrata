@@ -17,7 +17,7 @@ function($, HyprLiveContext, _, api,Backbone, ProductModels, CartModels, CartMon
 
     if (context.pageType == "product") {
       bnProductId = context.productCode; // jshint ignore:line
-    }    
+    }
 
     //Search term on search pages:
     if(context.pageType == "searchresult" || context.pageType == "search"){

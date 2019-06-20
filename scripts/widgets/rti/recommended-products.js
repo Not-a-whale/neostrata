@@ -64,7 +64,7 @@ function($, Hypr, HyprLiveContext, _, api,Backbone, ProductModels) {
 
 
       var source = window.location.href;
-      if (source.indexOf("http://") === 0) {
+      if (source.startsWith("http://")){
         source = "https://" + source.slice(7);
       }
       var sourceQuery = "&source="+source;
@@ -84,24 +84,23 @@ function($, Hypr, HyprLiveContext, _, api,Backbone, ProductModels) {
       //Right now the only difference configured is thatif pageType is cart,
       //We add productIds to the query.
 
+      var visitstrail = "";
       var pageDependentSection = "";
       if (getRTIOptions().pageType=="Home"){
-
+        var visitstrailInfo = getCookie('bn_vp');
+        if(visitstrailInfo) visitstrail = "&visitstrail="+visitstrailInfo;
       } else if (getRTIOptions().pageType=="ProductDetail") {
-        var product = require.mozuData('product');
-        bnProductId = product.productCode; // jshint ignore:line
-        pageDependentSection +=  "&productId="+bnProductId; // jshint ignore:line
+          var product = require.mozuData('product');
+          bnProductId = product.productCode; // jshint ignore:line
+          pageDependentSection +=  "&productId="+bnProductId; // jshint ignore:line
       } else if (getRTIOptions().pageType=="Cart"){
         var cart = require.mozuData('cart');
-        if (cart && !cart.isEmpty){
+        if (!cart.isEmpty){
           for(var i=0; i<cart.items.length; i++){
             var productId = cart.items[i].product.productCode;
             var productQuery = "&productId="+productId;
             pageDependentSection += productQuery;
           }
-        }
-        else {
-          $('.cartRelated.recommended-product-container').not("#global-cart-rti .cartRelated.recommended-product-container").hide();
         }
       }
 
@@ -118,8 +117,8 @@ function($, Hypr, HyprLiveContext, _, api,Backbone, ProductModels) {
         try {
           eval(getRTIOptions().jsInject); // jshint ignore:line
         } catch(e) {
-          //console.log("There was a problem with your javascript injection.");
-          //console.log(e);
+          console.log("There was a problem with your javascript injection.");
+          console.log(e);
         }
       } else {
         inject = "&query=&Override=&Product.Override=";
@@ -134,7 +133,8 @@ function($, Hypr, HyprLiveContext, _, api,Backbone, ProductModels) {
              tenantIdQuery + //From checkbox
               siteIdQuery + //From checkbox
                inject + //From javascript field in config editor
-               "&format=json";
+               "&format=json"+
+                 visitstrail; // https://jira.deplabs.com/browse/NEONGM-1294
         return url;
 		},
 
@@ -167,7 +167,7 @@ function($, Hypr, HyprLiveContext, _, api,Backbone, ProductModels) {
             });
             attrs.rank = prod.rank;
             attrs.slot = prod.slot||'';
-            attrs.widgetId = results.id||'';
+            attrs.widgetId = results.id||'';            
             productIdList.push(attrs);
         });
 
@@ -181,8 +181,8 @@ function($, Hypr, HyprLiveContext, _, api,Backbone, ProductModels) {
           editModeMessage: editModeMessage
         });
       });
-      var bnData = data.trackingData;
-      dataList.bnData = bnData;
+      var bnData = data.trackingData||'';
+      dataList.bnData = bnData;      
       return dataList;
     };
 
