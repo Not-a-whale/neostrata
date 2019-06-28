@@ -1086,8 +1086,8 @@ console.log('updateCustomerPreferences --> error', err);
         }
       });
       
-      if (typeof $BV !== 'undefined') {
-        var productIds = [];
+      if (typeof $BV !== 'undefined' && $('[data-widget="quiz"] [data-bv-product-code]').length) {
+        var productIds = {};
         $('[data-widget="quiz"] [data-bv-product-code]').each(function(el) {
               var code = $(this).data('mzProductCode'); 
               productIds[code] = {
@@ -1095,12 +1095,10 @@ console.log('updateCustomerPreferences --> error', err);
                 containerId: 'BVRRInlineRating-' + code
               };
         });    
-        if(productIds.lenght){
-            $BV.ui( 'rr', 'inline_ratings', {
+        $BV.ui( 'rr', 'inline_ratings', {
             productIds: productIds,
             containerPrefix: 'BVRRInlineRating'
-          });
-        }
+        });
       }
       
     },
