@@ -88,7 +88,9 @@ function($, Hypr, HyprLiveContext, _, api,Backbone, ProductModels) {
       var pageDependentSection = "";
       if (getRTIOptions().pageType=="Home"){
         var visitstrailInfo = getCookie('bn_vp');
-        if(visitstrailInfo) visitstrail = "&visitstrail="+visitstrailInfo;
+        if(visitstrailInfo){
+            visitstrail = "&visitstrail="+visitstrailInfo.replace("[","").replace("]","").replace(/"/g,""); //&visitstrail=url1,url2,urls3…
+        }
       } else if (getRTIOptions().pageType=="ProductDetail") {
           var product = require.mozuData('product');
           bnProductId = product.productCode; // jshint ignore:line

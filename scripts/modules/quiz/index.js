@@ -626,6 +626,7 @@ console.log('updateCustomerPreferences --> error', err);
       this.nextSection = '#skin-concerns';
 
       this.model.on('change:currentSection', this.updateActiveState, this);
+      this.model.on('change:showResults', this.render, this);
 
       this.render();
     },
@@ -664,6 +665,7 @@ console.log('updateCustomerPreferences --> error', err);
       this.nextSection = '#skin-type';
 
       this.model.on('change:currentSection', this.updateActiveState, this);
+      this.model.on('change:showResults', this.render, this);
 
       this.render();
     },
@@ -703,7 +705,8 @@ console.log('updateCustomerPreferences --> error', err);
       this.nextSection = '#current-products';
 
       this.model.on('change:currentSection', this.updateActiveState, this);
-
+      this.model.on('change:showResults', this.render, this);
+      
       this.render();
     },
 
@@ -776,6 +779,7 @@ console.log('updateCustomerPreferences --> error', err);
       this.focus = null;
 
       this.model.on('change:currentSection', this.updateActiveState, this);
+      this.model.on('change:showResults', this.render, this);
 
       this.render();
     },
@@ -832,7 +836,8 @@ console.log('updateCustomerPreferences --> error', err);
       this.nextSection = '#results';
 
       this.model.on('change:currentSection', this.updateActiveState, this);
-
+      this.model.on('change:showResults', this.render, this);
+      
       this.render();
     },
 
@@ -998,29 +1003,7 @@ console.log('updateCustomerPreferences --> error', err);
       this.$el.toggleClass('active', active);
       this.visited = this.visited || active;
 
-      if (active) {
-        this.$AdditionalProducts.render();
-
-        // <div class="flex-fixed bvr-inline-rating" id="BVRRInlineRating-<%= code %>" data-mz-product-code="<%= code %>" data-bv-product-code="{{apicontext.headers.x-vol-locale}}-<%= code %>"></div>
-        var productIds = {};
-
-        $('[data-widget="quiz"] [data-bv-product-code]').each(function(el) {
-          //var code = $(el).attr('data-bv-product-code');
-          var code = $(this).data('mzProductCode'); 
-          productIds[code] = {
-            url: '/p/' + code,
-            containerId: 'BVRRInlineRating-' + code
-          };
-        });
-		
-
-        if ( typeof $BV !== 'undefined' ) {
-          $BV.ui( 'rr', 'inline_ratings', {
-            productIds: productIds,
-            containerPrefix: 'BVRRInlineRating'
-          });
-        }
-      }
+      if (active) this.$AdditionalProducts.render();
     },
 
     selectRegimen: function() {
@@ -1102,6 +1085,24 @@ console.log('updateCustomerPreferences --> error', err);
             }
         }
       });
+      
+      if (typeof $BV !== 'undefined') {
+        var productIds = [];
+        $('[data-widget="quiz"] [data-bv-product-code]').each(function(el) {
+              var code = $(this).data('mzProductCode'); 
+              productIds[code] = {
+                url: '/p/' + code,
+                containerId: 'BVRRInlineRating-' + code
+              };
+        });    
+        if(productIds.lenght){
+            $BV.ui( 'rr', 'inline_ratings', {
+            productIds: productIds,
+            containerPrefix: 'BVRRInlineRating'
+          });
+        }
+      }
+      
     },
 
     update: function(regimen) {
@@ -1195,6 +1196,64 @@ console.log('updateCustomerPreferences --> error', err);
       });
 
       state.set('currentSection', '#intro');
+      this.processDirectResults();
+    },
+    
+    processDirectResults: function() {
+        
+        var self = this;
+      
+        var quizInfo = ($.cookie('quiz-info'))? JSON.parse($.cookie('quiz-info')) : {};
+        if(!quizInfo) return; 
+        
+        var currentHash = window.location.hash;
+        if(currentHash !== '#results') return;
+                
+        var inputs = this.model.attributes.inputs;
+        if(!inputs) return;
+
+        if(quizInfo['quiz-skincare-knowledge'] !== undefined){
+            inputs.expertise = quizInfo['quiz-skincare-knowledge'];
+            this.model.set('currentSection', '#expertise');
+            pushState({ currentSection: '#expertise' }, '', '#expertise');   
+            this.model.trigger('change:currentSection');                                                              
+            this.model.trigger('change:showResults');
+        }                            
+        if(quizInfo['quiz-primary-skin-concern'] !== undefined){
+            inputs.concern = quizInfo['quiz-primary-skin-concern'];
+            this.model.set('currentSection', '#skin-concerns');
+            pushState({ currentSection: '#skin-concerns' }, '', '#skin-concerns');   
+            this.model.trigger('change:currentSection'); 
+            this.model.trigger('change:showResults');
+        }            
+        if(quizInfo['quiz-skin-type'] !== undefined){
+            inputs.type = quizInfo['quiz-skin-type'];
+            this.model.set('currentSection', '#skin-type');
+            pushState({ currentSection: '#skin-type' }, '', '#skin-type');   
+            this.model.trigger('change:currentSection');                                                                                       
+            this.model.trigger('change:showResults');
+        }
+        if(quizInfo['quiz-products-currently-used'] !== undefined){
+            inputs.products = quizInfo['quiz-products-currently-used'].split(",");
+            this.model.set('currentSection', '#current-products');
+            pushState({ currentSection: '#current-products' }, '', '#current-products');   
+            this.model.trigger('change:currentSection');        
+            this.model.trigger('change:showResults');
+        }
+        if(quizInfo['quiz-routine-product-number'] !== undefined) inputs.routine = quizInfo['quiz-routine-product-number'];          
+        if(quizInfo['quiz-gender'] !== undefined) inputs.gender = quizInfo['quiz-gender'];       
+        if(quizInfo['quiz-age'] !== undefined) inputs.age = quizInfo['quiz-age'];     
+        if(inputs.routine && inputs.gender && inputs.age){
+            this.model.set('currentSection', '#about-you');
+            pushState({ currentSection: '#about-you' }, '', '#about-you');   
+            this.model.trigger('change:currentSection');        
+            this.model.trigger('change:showResults');                                                             
+        }
+
+        this.model.set('currentSection', currentHash);
+        pushState({ currentSection: currentHash }, '', currentHash);   
+        this.model.trigger('change:currentSection');
+        this.model.trigger('change:inputs');
     }
   });
 
