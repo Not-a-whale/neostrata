@@ -937,6 +937,9 @@ console.log('updateCustomerPreferences --> error', err);
     template: _.template($('#template-results-section').html()),
 
     events: {
+      'click [data-action="save-quiz-results"]': function(evt) {
+          $('[data-mz-action="lite-registration"]').trigger( "click" );
+      },
       'click [data-action="add-to-cart"]': function(evt) {
         var productCode = $(evt.currentTarget).data('product-code');
 
@@ -963,12 +966,36 @@ console.log('updateCustomerPreferences --> error', err);
       this.sectionLabel = 'RESULTS';
       this.sectionHash = '#results';
 
+      var user = require.mozuData('user');
+      this.saveQuizResults = (!user.isAuthenticated || !user.accountId)? true : false;
+      this.quizUrl = window.location.origin + window.location.pathname;
+      this.mailtoSubject = Hypr.getLabel('mailtoSubject');
+      this.mailtoBody = Hypr.getLabel('mailtoBody') + this.quizUrl + "?result="+this.generateUrlHashCookie()+"#results";
+
       this.model.on('change:currentSection', this.updateActiveState, this);
       this.model.on('change:inputs', this.render, this);
 
       this.$AdditionalProducts = new AdditionalProducts({ el: this.$el });
 
       this.render();
+    },
+
+    generateUrlHashCookie: function(){
+      
+        // ordered content:
+        // quiz-age 
+        // quiz-gender 
+        // quiz-primary-skin-concern 
+        // quiz-products-currently-used 
+        // quiz-recommended-product 
+        // quiz-recommended-regimen
+        // quiz-routine-product-number 
+        // quiz-skin-type
+        // quiz-skincare-knowledge
+        var urlHash = [];
+        var quizInfo = ($.cookie('quiz-info'))? JSON.parse($.cookie('quiz-info')) : {};
+        Object.keys(quizInfo).sort().forEach(function(key) { urlHash.push(quizInfo[key]); });
+        return btoa(urlHash.join('|'));
     },
 
     render: function() {
@@ -983,6 +1010,10 @@ console.log('updateCustomerPreferences --> error', err);
         },
         product: this.generateRecommendation(),
         regimen: regimen,
+        saveQuizResults: this.saveQuizResults,
+        mailtoSubject: this.mailtoSubject,
+        mailtoBody: this.mailtoBody,
+        retakeQuizUrl: this.quizUrl,
         ingredients: regimen && regimen.ingredients && regimen.ingredients.slice(0, 2).map(function(ingredient) {
           return {
             name: ingredient,
@@ -1196,17 +1227,44 @@ console.log('updateCustomerPreferences --> error', err);
       state.set('currentSection', '#intro');
       this.processDirectResults();
     },
-    
+       
+    decodeUrlHashCookie: function(){
+        
+        var paramsURL = window.location.search.substring(1);
+        if(!paramsURL) return ;
+        
+        var paramsVariables = paramsURL.split('&');
+        if(!paramsVariables) return ;
+        
+        var result = paramsVariables[0].split('=');    
+        if(result[0] !== 'result') return ;
+        
+        var dataToShow = atob(result[1]).split('|');
+        if(dataToShow.length !== 9) return ;
+        var quizInfo = {'quiz-age':dataToShow[0],
+                        'quiz-gender':dataToShow[1],
+                        'quiz-primary-skin-concern':dataToShow[2],
+                        'quiz-products-currently-used':dataToShow[3],
+                        'quiz-recommended-product':dataToShow[4],
+                        'quiz-recommended-regimen':dataToShow[5],
+                        'quiz-routine-product-number':dataToShow[6],
+                        'quiz-skin-type':dataToShow[7],
+                        'quiz-skincare-knowledge':dataToShow[8]};        
+        $.cookie('quiz-info', JSON.stringify(quizInfo));        
+    },       
+       
     processDirectResults: function() {
         
         var self = this;
-      
-        var quizInfo = ($.cookie('quiz-info'))? JSON.parse($.cookie('quiz-info')) : {};
-        if(!quizInfo) return; 
+        
+        this.decodeUrlHashCookie();
         
         var currentHash = window.location.hash;
         if(currentHash !== '#results') return;
-                
+      
+        var quizInfo = ($.cookie('quiz-info'))? JSON.parse($.cookie('quiz-info')) : {};
+        if(!quizInfo) return;         
+        
         var inputs = this.model.attributes.inputs;
         if(!inputs) return;
 
