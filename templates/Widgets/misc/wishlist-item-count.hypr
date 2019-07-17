@@ -1,5 +1,5 @@
 {% if model.config.linkTitle %}
-<div class="wishlist-item-count-wrapper">
+<div class="wishlist-item-count-wrapper" style="display:none;">
 <picture class="background-full-image">
     <!-- IMAGE FOR LARGE VIEWPORTS -->
     <source srcset="/cms/files/homepage_wishlist_background_desktop.jpg" media="(min-width: 769px)">

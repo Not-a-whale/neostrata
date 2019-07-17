@@ -862,7 +862,7 @@
     "maxProductSummaryWords": 40,
     "maxTopLevelNavItems": 8,
     "maxTopLevelNavItemsCommerceEnabled": 10,
-    "maxTopLevelNavLabelLength": 20,
+    "maxTopLevelNavLabelLength": 21,
     "productCarouselSize": 8,
     "pageSizeOptions": [
       100
@@ -2104,10 +2104,8 @@
       "displayTemplate": "RTI/rti-observation.hypr",
       "icon": "/resources/admin/widgets/rti-observation.png",
       "id": "rti-observation-tag",
-      "validPageTypes": [
-        "*"
-      ]
-    },
+      "validPageTypes":[ "*" ]
+    }, 
     {
       "displayName": "Featured Regimen",
       "displayTemplate": "featured/products",
@@ -3377,6 +3375,19 @@
       ],
       "icon": "/resources/admin/widgets/new_arrival.png",
       "id": "new_arrivals_product",
+      "validPageTypes": [
+        "*"
+      ]
+    },
+    {
+      "defaultConfig": {
+
+      },
+      "displayTemplate": "misc/quiz-accessor",
+      "displayName": "Quiz Accessor",
+      "editViewFields": [],
+      "icon": "/resources/admin/widgets/26_related_products.png",
+      "id": "quiz_accessor",
       "validPageTypes": [
         "*"
       ]

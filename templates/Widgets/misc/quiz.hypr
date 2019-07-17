@@ -327,29 +327,31 @@
     </div>
   </div>
 
-  <div class="quiz-section" data-section-sub="regimen">
-    <%= _sectionBulletPart({ label: 'FOR THE MOST LASTING RESULTS' }) %>
-    <div class="quiz-section-main">
-      <div class="quiz-section-body">
-        <div class="quiz-content">
-          A regimen of the right products for your skin type is the first part of revealing your best skin. The second part is sticking with it; results build and get better with time.
-        </div>
-        <% if (regimen) { %>
-          <div class="quiz-regimen-description">
-            <div class="regimen-image-container">
-              <img src="<%= regimen.hero %>" />
+    <div class="quiz-section" data-section-sub="regimen">
+        <%= _sectionBulletPart({ label: 'FOR THE MOST LASTING RESULTS' }) %>
+        <div class="quiz-section-main">
+            <div class="quiz-section-body">
+                <div class="quiz-content">A regimen of the right products for your skin type is the first part of revealing your best skin. The second part is sticking with it; results build and get better with time.</div>
+                <% if (regimen) { %>
+                    <div class="quiz-regimen-description">
+                        <div class="regimen-image-container"><img src="<%= regimen.hero %>" /></div>
+                        <div class="quiz-content"><%= regimen.description %></div>
+                    </div>
+                    <a class="quiz-link-button" target="_blank" href="<%= regimen.url %>">{{ labels.viewMyRegimen }}</a>
+                <% } %>
             </div>
-            <div class="quiz-content">
-              <%= regimen.description %>
-            </div>
-          </div>
-          <a class="quiz-link-button" target="_blank" href="<%= regimen.url %>">
-            VIEW MY REGIMEN
-          </a>
         </div>
-        <% } %>
     </div>
-  </div>
+    <div class="quiz-section actions" data-section-sub="actions">
+        <%= _sectionBulletPart({ label: '' }) %>
+        <div class="quiz-section-main">
+            <div class="quiz-section-body">
+                <% if (saveQuizResults) { %><span class="quiz-link-button" data-action="save-quiz-results">{{ labels.saveQuizResults }}</span><% } %>
+                <a class="quiz-link" target="_self" href="mailto:?subject=<%= mailtoSubject %>&body=<%= mailtoBody %>">{{ labels.emailResults }}</a>
+                <a class="quiz-link" target="_self" href="<%= retakeQuizUrl %>">{{ labels.retakeQuiz }}</a>
+            </div>
+        </div>    
+    </div>
 </script>
 
 <script type="text/json" id="quiz-config">

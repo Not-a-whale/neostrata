@@ -7,7 +7,8 @@ define([
   'modules/models-product',
   'modules/cart-monitor',
   'hyprlive',
-  'swiper'
+  'swiper',
+  'modules/api-features',
 ], function(
   $,
   _,
@@ -16,7 +17,8 @@ define([
   ProductModel,
   CartMonitor,
   Hypr,
-  Swiper
+  Swiper, 
+  ApiFeature
 ) {
   var DEBUG = false;
 
@@ -550,6 +552,25 @@ define([
 
         this.model.set('currentSection', this.nextSection);
         pushState({ currentSection: this.nextSection }, '', this.nextSection);
+        
+        var quizInfo = ($.cookie('quiz-info'))? JSON.parse($.cookie('quiz-info')) : {};
+        var inputs = this.model.attributes.inputs;
+        if(inputs.expertise) quizInfo['quiz-skincare-knowledge'] = inputs.expertise;
+        if(inputs.concern) quizInfo['quiz-primary-skin-concern'] = inputs.concern;
+        if(inputs.type) quizInfo['quiz-skin-type'] = inputs.type;
+        if(inputs.products) quizInfo['quiz-products-currently-used'] = inputs.products.toString();
+        if(inputs.routine) quizInfo['quiz-routine-product-number'] = inputs.routine;
+        if(inputs.gender) quizInfo['quiz-gender'] = inputs.gender;
+        if(inputs.age) quizInfo['quiz-age'] = inputs.age;
+        
+        var user = require.mozuData('user');
+        if(user.isAuthenticated && user.accountId){
+            ApiFeature.NeostrataFeatureApi.updateCustomerPreferences({customerId : user.accountId,
+                                                                      customerPreferences : quizInfo}).fail(function(err){ 
+console.log('updateCustomerPreferences --> error', err); 
+            });
+        }
+        $.cookie('quiz-info', JSON.stringify(quizInfo));
       },
 
       'click [data-role="anchor"]': function(evt) {
@@ -605,6 +626,7 @@ define([
       this.nextSection = '#skin-concerns';
 
       this.model.on('change:currentSection', this.updateActiveState, this);
+      this.model.on('change:showResults', this.render, this);
 
       this.render();
     },
@@ -643,6 +665,7 @@ define([
       this.nextSection = '#skin-type';
 
       this.model.on('change:currentSection', this.updateActiveState, this);
+      this.model.on('change:showResults', this.render, this);
 
       this.render();
     },
@@ -682,7 +705,8 @@ define([
       this.nextSection = '#current-products';
 
       this.model.on('change:currentSection', this.updateActiveState, this);
-
+      this.model.on('change:showResults', this.render, this);
+      
       this.render();
     },
 
@@ -755,6 +779,7 @@ define([
       this.focus = null;
 
       this.model.on('change:currentSection', this.updateActiveState, this);
+      this.model.on('change:showResults', this.render, this);
 
       this.render();
     },
@@ -811,7 +836,8 @@ define([
       this.nextSection = '#results';
 
       this.model.on('change:currentSection', this.updateActiveState, this);
-
+      this.model.on('change:showResults', this.render, this);
+      
       this.render();
     },
 
@@ -911,6 +937,9 @@ define([
     template: _.template($('#template-results-section').html()),
 
     events: {
+      'click [data-action="save-quiz-results"]': function(evt) {
+          $('[data-mz-action="lite-registration"]').trigger( "click" );
+      },
       'click [data-action="add-to-cart"]': function(evt) {
         var productCode = $(evt.currentTarget).data('product-code');
 
@@ -937,12 +966,36 @@ define([
       this.sectionLabel = 'RESULTS';
       this.sectionHash = '#results';
 
+      var user = require.mozuData('user');
+      this.saveQuizResults = (!user.isAuthenticated || !user.accountId)? true : false;
+      this.quizUrl = window.location.origin + window.location.pathname;
+      this.mailtoSubject = Hypr.getLabel('mailtoSubject');
+      this.mailtoBody = Hypr.getLabel('mailtoBody') + this.quizUrl + "?result="+this.generateUrlHashCookie()+"#results";
+
       this.model.on('change:currentSection', this.updateActiveState, this);
       this.model.on('change:inputs', this.render, this);
 
       this.$AdditionalProducts = new AdditionalProducts({ el: this.$el });
 
       this.render();
+    },
+
+    generateUrlHashCookie: function(){
+      
+        // ordered content:
+        // quiz-age 
+        // quiz-gender 
+        // quiz-primary-skin-concern 
+        // quiz-products-currently-used 
+        // quiz-recommended-product 
+        // quiz-recommended-regimen
+        // quiz-routine-product-number 
+        // quiz-skin-type
+        // quiz-skincare-knowledge
+        var urlHash = [];
+        var quizInfo = ($.cookie('quiz-info'))? JSON.parse($.cookie('quiz-info')) : {};
+        Object.keys(quizInfo).sort().forEach(function(key) { urlHash.push(quizInfo[key]); });
+        return btoa(urlHash.join('|'));
     },
 
     render: function() {
@@ -957,6 +1010,10 @@ define([
         },
         product: this.generateRecommendation(),
         regimen: regimen,
+        saveQuizResults: this.saveQuizResults,
+        mailtoSubject: this.mailtoSubject,
+        mailtoBody: this.mailtoBody,
+        retakeQuizUrl: this.quizUrl,
         ingredients: regimen && regimen.ingredients && regimen.ingredients.slice(0, 2).map(function(ingredient) {
           return {
             name: ingredient,
@@ -977,29 +1034,7 @@ define([
       this.$el.toggleClass('active', active);
       this.visited = this.visited || active;
 
-      if (active) {
-        this.$AdditionalProducts.render();
-
-        // <div class="flex-fixed bvr-inline-rating" id="BVRRInlineRating-<%= code %>" data-mz-product-code="<%= code %>" data-bv-product-code="{{apicontext.headers.x-vol-locale}}-<%= code %>"></div>
-        var productIds = {};
-
-        $('[data-widget="quiz"] [data-bv-product-code]').each(function(el) {
-          //var code = $(el).attr('data-bv-product-code');
-          var code = $(this).data('mzProductCode'); 
-          productIds[code] = {
-            url: '/p/' + code,
-            containerId: 'BVRRInlineRating-' + code
-          };
-        });
-		
-
-        if ( typeof $BV !== 'undefined' ) {
-          $BV.ui( 'rr', 'inline_ratings', {
-            productIds: productIds,
-            containerPrefix: 'BVRRInlineRating'
-          });
-        }
-      }
+      if (active) this.$AdditionalProducts.render();
     },
 
     selectRegimen: function() {
@@ -1034,6 +1069,12 @@ define([
       // Per requirements, if there isn't a match between the users "current products,"
       // return the "cleanser" included in the matched regimen.
       var recommendation = matchedProducts[0] || regimen.products.cleanser;
+      if(recommendation){
+        var quizInfo = ($.cookie('quiz-info'))? JSON.parse($.cookie('quiz-info')) : {};
+        if(recommendation.productCode) quizInfo['quiz-recommended-product'] = recommendation.productCode;
+        if(regimen.name) quizInfo['quiz-recommended-regimen'] = regimen.name;
+        $.cookie('quiz-info', JSON.stringify(quizInfo));
+      }
 
       if (DEBUG) {
         console.log('Recommendation:', recommendation);
@@ -1075,6 +1116,22 @@ define([
             }
         }
       });
+      
+      if (typeof $BV !== 'undefined' && $('[data-widget="quiz"] [data-bv-product-code]').length) {
+        var productIds = {};
+        $('[data-widget="quiz"] [data-bv-product-code]').each(function(el) {
+              var code = $(this).data('mzProductCode'); 
+              productIds[code] = {
+                url: '/p/' + code,
+                containerId: 'BVRRInlineRating-' + code
+              };
+        });    
+        $BV.ui( 'rr', 'inline_ratings', {
+            productIds: productIds,
+            containerPrefix: 'BVRRInlineRating'
+        });
+      }
+      
     },
 
     update: function(regimen) {
@@ -1168,6 +1225,91 @@ define([
       });
 
       state.set('currentSection', '#intro');
+      this.processDirectResults();
+    },
+       
+    decodeUrlHashCookie: function(){
+        
+        var paramsURL = window.location.search.substring(1);
+        if(!paramsURL) return ;
+        
+        var paramsVariables = paramsURL.split('&');
+        if(!paramsVariables) return ;
+        
+        var result = paramsVariables[0].split('=');    
+        if(result[0] !== 'result') return ;
+        
+        var dataToShow = atob(result[1]).split('|');
+        if(dataToShow.length !== 9) return ;
+        var quizInfo = {'quiz-age':dataToShow[0],
+                        'quiz-gender':dataToShow[1],
+                        'quiz-primary-skin-concern':dataToShow[2],
+                        'quiz-products-currently-used':dataToShow[3],
+                        'quiz-recommended-product':dataToShow[4],
+                        'quiz-recommended-regimen':dataToShow[5],
+                        'quiz-routine-product-number':dataToShow[6],
+                        'quiz-skin-type':dataToShow[7],
+                        'quiz-skincare-knowledge':dataToShow[8]};        
+        $.cookie('quiz-info', JSON.stringify(quizInfo));        
+    },       
+       
+    processDirectResults: function() {
+        
+        var self = this;
+        
+        this.decodeUrlHashCookie();
+        
+        var currentHash = window.location.hash;
+        if(currentHash !== '#results') return;
+      
+        var quizInfo = ($.cookie('quiz-info'))? JSON.parse($.cookie('quiz-info')) : {};
+        if(!quizInfo) return;         
+        
+        var inputs = this.model.attributes.inputs;
+        if(!inputs) return;
+
+        if(quizInfo['quiz-skincare-knowledge'] !== undefined){
+            inputs.expertise = quizInfo['quiz-skincare-knowledge'];
+            this.model.set('currentSection', '#expertise');
+            pushState({ currentSection: '#expertise' }, '', '#expertise');   
+            this.model.trigger('change:currentSection');                                                              
+            this.model.trigger('change:showResults');
+        }                            
+        if(quizInfo['quiz-primary-skin-concern'] !== undefined){
+            inputs.concern = quizInfo['quiz-primary-skin-concern'];
+            this.model.set('currentSection', '#skin-concerns');
+            pushState({ currentSection: '#skin-concerns' }, '', '#skin-concerns');   
+            this.model.trigger('change:currentSection'); 
+            this.model.trigger('change:showResults');
+        }            
+        if(quizInfo['quiz-skin-type'] !== undefined){
+            inputs.type = quizInfo['quiz-skin-type'];
+            this.model.set('currentSection', '#skin-type');
+            pushState({ currentSection: '#skin-type' }, '', '#skin-type');   
+            this.model.trigger('change:currentSection');                                                                                       
+            this.model.trigger('change:showResults');
+        }
+        if(quizInfo['quiz-products-currently-used'] !== undefined){
+            inputs.products = quizInfo['quiz-products-currently-used'].split(",");
+            this.model.set('currentSection', '#current-products');
+            pushState({ currentSection: '#current-products' }, '', '#current-products');   
+            this.model.trigger('change:currentSection');        
+            this.model.trigger('change:showResults');
+        }
+        if(quizInfo['quiz-routine-product-number'] !== undefined) inputs.routine = quizInfo['quiz-routine-product-number'];          
+        if(quizInfo['quiz-gender'] !== undefined) inputs.gender = quizInfo['quiz-gender'];       
+        if(quizInfo['quiz-age'] !== undefined) inputs.age = quizInfo['quiz-age'];     
+        if(inputs.routine && inputs.gender && inputs.age){
+            this.model.set('currentSection', '#about-you');
+            pushState({ currentSection: '#about-you' }, '', '#about-you');   
+            this.model.trigger('change:currentSection');        
+            this.model.trigger('change:showResults');                                                             
+        }
+
+        this.model.set('currentSection', currentHash);
+        pushState({ currentSection: currentHash }, '', currentHash);   
+        this.model.trigger('change:currentSection');
+        this.model.trigger('change:inputs');
     }
   });
 

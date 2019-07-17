@@ -109,10 +109,10 @@
                         <div>{{ model.regularHours.wednesday.label }}</div>
                     </div>
                 {% endif %}
-                {% if model.regularHours.thusday.label !== ""%}
+                {% if model.regularHours.thursday.label !== ""%}
                     <div>
-                        <div class="store-hours-desc">{{ labels.thusday }}</div>
-                        <div>{{ model.regularHours.thusday.label }}</div>
+                        <div class="store-hours-desc">{{ labels.thursday }}</div>
+                        <div>{{ model.regularHours.thursday.label }}</div>
                     </div>
                 {% endif %}
                 {% if model.regularHours.friday.label !== ""%}
@@ -189,10 +189,10 @@
                         <div>{{ model.regularHours.wednesday.label }}</div>
                     </div>
                 {% endif %}
-                {% if model.regularHours.thusday.label !== ""%}
+                {% if model.regularHours.thursday.label !== ""%}
                     <div>
-                        <div class="store-hours-desc">{{ labels.thusday }}</div>
-                        <div>{{ model.regularHours.thusday.label }}</div>
+                        <div class="store-hours-desc">{{ labels.thursday }}</div>
+                        <div>{{ model.regularHours.thursday.label }}</div>
                     </div>
                 {% endif %}
                 {% if model.regularHours.friday.label !== ""%}
