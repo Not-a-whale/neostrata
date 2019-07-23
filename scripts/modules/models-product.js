@@ -189,8 +189,8 @@ define(["modules/jquery-mozu", "underscore", "modules/backbone-mozu", "hyprlive"
                                     var isAutoReplanishProduct = _.contains(_.flatten(_.pluck(item.data.product.properties, 'attributeFQN')), autoReplahishPropName);
 
                                     if (isAutoReplanishProduct) {
-                                        var isAutoReplahish = $("input[name*='_autoShipRadio']:checked")[0].value;
-                                        if (isAutoReplahish == "1") {
+                                        var isAutoReplahish = $("input[name*='_autoShipRadio']:checked");
+                                        if (isAutoReplahish.length >0 && isAutoReplahish[0].value == "1") {
                                             var autoReplanishCode = $('#mz_pdp_autoship_code').find(":selected").val();
                                             item.data.data = { autoreplanishmentCode: autoReplanishCode };
                                         }
