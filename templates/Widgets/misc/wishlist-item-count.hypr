@@ -1,26 +1,51 @@
-{% if model.config.linkTitle %}
-<div class="wishlist-item-count-wrapper" style="display:none;">
-<picture class="background-full-image">
-    <!-- IMAGE FOR LARGE VIEWPORTS -->
-    <source srcset="/cms/files/homepage_wishlist_background_desktop.jpg" media="(min-width: 769px)">
-    <!-- IMAGE FOR SMALL VIEWPORTS -->
-    <img src="/cms/files/homepage_wishlist_background_mobile.jpg" alt="{{model.config.title}}">
-</picture>
-<div class="wishlist-item-count home-main-content right">
-  <div class="wishlist-item-count-title">{{model.config.title}}</div>
-  
-  <div class="heart-wrapper">
-      <div class="heart-icon">
-          <i class="glyphicon glyphicon-heart"></i>
-      </div>
-      <div class="count-number">
-        <span class="wishNumber">0</span>{{ labels.wishlistItems }}
-      </div>
-  </div>
-  <div class="link">
-    <a class="primary-btn" href="/myaccount?sec=wishlist">{{model.config.linkTitle}}</a>
-  </div>
-</div>
-</div>
+<div class="wishlist-box-wrapper-container" data-section="wishlist-box-wrapper"></div>
+
+<script type="text/json" id="wishlistbox-config">
+    {{ model.config|safe }}
+</script>
+
+<script type="text/x-template" id="wishlist-box-wrapper">
+    <div class="wishlist-item-count-wrapper">
+        <div class="half-content">
+            <picture class="background-full-image">
+                <!-- IMAGE FOR LARGE VIEWPORTS -->
+                <source srcset="<%= regimenBigBackground %>" media="(min-width: 769px)">
+                <!-- IMAGE FOR SMALL VIEWPORTS -->
+                <img src="<%= regimenSmallBackground %>" alt="<%= regimenTitle %>" >
+            </picture>
+            <div class="recommended-regimen home-main-content left">
+                <div class="recommended-regimen-title"><%= regimenTitle %></div>
+                <div class="regimen-wrapper">
+                    <div class="regimen-name" id="regimen-name"><%= regimenName %></div>
+                    <div class="regimen-desc" id="regimen-desc">
+                        <p><%= regimenDescription %></p>
+                        <p id="regimen-items-and-price"></p>
+                    </div>
+                </div>
+                <div class="link">
+                    <a class="primary-btn" href="<%= regimenLink %>" id="view-regimen"><%= regimenButton %></a>
+                    <button class="primary-btn" data-control="add-to-cart-regimen">ADD ALL TO CART</button>
+                </div>
+            </div>
+        </div>
+        <div class="half-content module-right">
+            <picture class="background-full-image">
+                <!-- IMAGE FOR LARGE VIEWPORTS -->
+                <source srcset="/cms/files/homepage_wishlist_background_desktop.jpg" media="(min-width: 769px)">
+                <!-- IMAGE FOR SMALL VIEWPORTS -->
+                <img src="/cms/files/homepage_wishlist_background_mobile.jpg" alt="<%= wishlistTitle %>">
+            </picture>
+            <div class="wishlist-item-count home-main-content right">
+                <div class="wishlist-item-count-title"><%= wishlistTitle %></div>
+                <div class="heart-wrapper">
+                    <div class="heart-icon"><i class="glyphicon glyphicon-heart"></i></div>
+                    <div class="count-number"><span class="wishNumber"><%= wishlistItems %></span>{{ labels.wishlistItems }}</div>
+                </div>
+                <div class="link">
+                    <a class="primary-btn" href="/myaccount?sec=wishlist" mzProductCode=""><%= wishlistButtonTitle %></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
 {% require_script "widgets/homepage/wishlist-item-count" %}
-{% endif %}

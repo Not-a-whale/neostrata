@@ -598,6 +598,7 @@ require([
             $("#map").on("click", ".mz-locationlisting-name,.mz-store-hours", function (e) {
                 e.preventDefault();
                 var storeURL = $(this).attr("data-store-url");
+                if($('#searchTermView').val()) storeURL += "&searchTermView="+$('#searchTermView').val();
                 window.location.href = storeURL;
             });
             $("#searchTermView,#searchTermEmpty").keyup(function (e) {
