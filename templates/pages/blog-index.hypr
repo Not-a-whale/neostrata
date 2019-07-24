@@ -15,14 +15,18 @@
             <div class="mz-blog-category-index-entry col-xs-10 col-md-8">
                 {% with blogItem.content.categoryImages|first as firstImg %}
                 <div class="mz-blog-category-index-entry-image-container">
-                    <img src="{{ firstImg.imageUrl }}" alt="{{ firstImg.altText }}">
+                    <a href="{{ blogItem.url }}">
+                        <img src="{{ firstImg.imageUrl }}" alt="{{ firstImg.altText }}">
+                    </a>
                 </div>
                 {% endwith %}
                 <div>
                   <a href="{{ blogItem.url }}">
                     <h3>{{ blogItem.content.name }}</h3>
                   </a>
-                  <p>{{ blogItem.content.description }}</p>
+                  <a href="{{ blogItem.url }}">
+                      <p>{{ blogItem.content.description }}</p>
+                  </a>
                 </div>
             </div>
         {% endfor %}
