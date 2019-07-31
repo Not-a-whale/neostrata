@@ -135,8 +135,8 @@ require([
       'uneven': 'enlighten',
       'lax': 'skinActive',
       'blotchy': 'restore',
-      'keratosis-pilaris': 'restore',
-      'dull': 'skinActive',
+      'keratosis-pilaris': 'resurface',
+      'dull': 'resurface',
       'psoriasis': 'psorent'
     },
     'sensitive': {
