@@ -1627,6 +1627,13 @@ define([
                     me.get('billingInfo').trigger('sync');
                     me.set('couponCode', '');
 
+                    var autoAddSuggestedDiscount = me.get('suggestedDiscounts').some(function(discount){
+                        return discount.autoAdd;
+                      });
+                      if (me.get('suggestedDiscounts').length && autoAddSuggestedDiscount){
+                        window.location =  (HyprLiveContext.locals.siteContext.siteSubdirectory||'') + "/cart";
+                    }  
+
                     var productDiscounts = _.flatten(_.pluck(me.get('items'), 'productDiscounts'));
                     var shippingDiscounts = _.flatten(_.pluck(_.flatten(_.pluck(me.get('items'), 'shippingDiscounts')), 'discount'));
                     var orderShippingDiscounts = _.flatten(_.pluck(me.get('shippingDiscounts'), 'discount'));
