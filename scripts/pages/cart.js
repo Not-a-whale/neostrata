@@ -611,6 +611,7 @@
                 window.location.reload();
             else {
                 CartMonitor.update();
+                freeSamplesModel.update();
             }
         });
 

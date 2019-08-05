@@ -452,7 +452,7 @@ require([
                             }
                         }
                     });
-
+                    if(window.bazaarvoiceEngine) window.bazaarvoiceEngine.processBazaarVoice();
                     var user = require.mozuData('user');
                     api.createSync('wishlist').getOrCreate(user.accountId).then(function (wishlist) {
                         return wishlist.data;
