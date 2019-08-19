@@ -80,11 +80,23 @@ define([
         var me = this;
         var cart = me.get( 'cartModel' );
         var cartItems = cart.get('items');
+        var cartTotal = cart.attributes.subtotal;
+
         me.set('freeSamplesCount', 0);
+
         cartItems.forEach( function(item) {
-          var cartProductCode = item.get('product').get('productCode');
-          me.setInCart(cartProductCode, true);
+
+          if (cartTotal < FREE_SAMPLE_THRESHOLD && item.get('product').get('productType') === 'Free Sample') {
+
+            cart.removeItem(item.get('id'));
+          } else {
+
+            var cartProductCode = item.get('product').get('productCode');
+
+            me.setInCart(cartProductCode, true);
+          }
         });
+
         me.setMessaging();
         me.trigger('updated', me);
       },
