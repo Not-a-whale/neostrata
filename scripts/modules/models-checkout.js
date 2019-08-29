@@ -291,13 +291,34 @@ define([
         }),
 
         CustomerInfo = CheckoutStep.extend({
-            initialize: function (data) {
-              	console.log('Inializing customer info', data);
-                //sessionStorage updated with customer data
-                var user = require.mozuData('user');
-                sessionStorage.setItem('checkoutEmail', user.email);
-                sessionStorage.setItem('checkoutName', user.firstName);
-                sessionStorage.setItem('checkoutLastname', user.lastName);
+            initialize: function (data) {                
+                this.setStepDefaultFieldData('checkoutEmail');
+                this.setStepDefaultFieldData('checkoutName');
+                this.setStepDefaultFieldData('checkoutLastname');
+                this.setStepDefaultFieldData('acceptsMarketing');
+            },
+            setStepDefaultFieldData: function (field) {
+                
+                var value = sessionStorage.getItem(field);
+                if(!value){
+                    var order = this.getOrder();
+                    if (order && order.get('customerInfo')) {
+                        var customerInfo = order.get('customerInfo');
+                        value = customerInfo.get(field);
+                    }
+                    
+                    if(!value){    
+                        value = (field == 'acceptsMarketing')? false : "";
+                        var user = require.mozuData('user');    
+                        if(user.isAuthenticated && user.userId){
+                            if(field == 'checkoutEmail') value = user.email;
+                            if(field == 'checkoutName') value = user.firstName;
+                            if(field == 'checkoutLastname') value = user.lastName;
+                            if(field == 'acceptsMarketing') value = false;
+                        }
+                    }
+                }
+                sessionStorage.setItem(field, value);
             },
             validation: {
                 firstName: {
@@ -319,7 +340,7 @@ define([
                     firstName: sessionStorage.getItem('checkoutName'),
                     lastNameOrSurname: sessionStorage.getItem('checkoutLastname'),
                     email: sessionStorage.getItem('checkoutEmail'),
-                    acceptsMarketing: false
+                    acceptsMarketing: sessionStorage.getItem('acceptsMarketing')
                 };
             },
             calculateStepStatus: function () {
@@ -336,6 +357,7 @@ define([
                 sessionStorage.setItem('checkoutEmail', this.get('email'));
                 sessionStorage.setItem('checkoutName', this.get('firstName'));
                 sessionStorage.setItem('checkoutLastname', this.get('lastNameOrSurname'));
+                sessionStorage.setItem('acceptsMarketing', this.get('acceptsMarketing'));  
                 this.stepStatus('complete');
             }
         }),
@@ -390,7 +412,18 @@ define([
                 // Incomplete status for shipping is basically only used to show the Shipping Method's Next button,
                 // which does nothing but show the Payment Info step.
                 var billingInfo = this.parent.get('billingInfo');
-
+                
+                // If payment method is paypal then it refresh page on callback and force reset of selected shipping method
+                var savedShippingMethod = $.cookie('savedShippingMethod');
+                if(savedShippingMethod){
+                    if(billingInfo.get('paymentType') === "PayPalExpress2"){
+                        if(savedShippingMethod !== this.get('shippingMethodCode')){
+                            $.removeCookie('savedShippingMethod');
+                            this.updateShippingMethod(savedShippingMethod);       
+                        }
+                        return this.stepStatus('complete');
+                    }
+                }
                 /*
                 if (!billingInfo || billingInfo.stepStatus() === 'new') return this.stepStatus('incomplete');
 
@@ -399,6 +432,15 @@ define([
                 return this.stepStatus('incomplete');
             },
             updateShippingMethod: function (code, resetMessage) {
+                
+                var savedShippingMethod = $.cookie('savedShippingMethod');
+                if(savedShippingMethod){
+                    var billingInfo = this.parent.get('billingInfo');
+                    if(billingInfo.get('paymentType') === "PayPalExpress2") code = savedShippingMethod;    
+                }
+                $.cookie('savedShippingMethod', code);    
+                
+                
                 var available = this.get('availableShippingMethods'),
                     newMethod = _.findWhere(available, { shippingMethodCode: code }),
                     lowestValue = _.min(available, function(ob) { return ob.price; }); // Returns Infinity if no items in collection.
@@ -1469,7 +1511,6 @@ define([
                 amountRemainingForPayment: Backbone.MozuModel.DataTypes.Float
             },
             initialize: function (data) {
-                console.log('Initializing with data', data);
                 var self = this,
                     user = require.mozuData('user');
 
@@ -1536,7 +1577,6 @@ define([
                 });
                 if (user.isAuthenticated) {
                     this.set('customer', { id: user.accountId });
-                    console.log('The user is ', user);
                     this.set('customerInfo', {
                       firstName: user.firstName,
                       lastNameOrSurname: user.lastName,
@@ -1679,6 +1719,7 @@ define([
                 sessionStorage.setItem('checkoutEmail', '');
                 sessionStorage.setItem('checkoutName', '');
                 sessionStorage.setItem('checkoutLastname', '');
+                sessionStorage.setItem('acceptsMarketing', '');  
                 this.isLoading(true);
                 this.trigger('complete');
             },
