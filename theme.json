@@ -781,6 +781,9 @@
         "value": "Wyoming"
       }
     ],
+    "affiliateEmail": "RA-CPCUS-NeoStrata@ITS.JNJ.com",
+    "customerServiceEmail": "custsvc@NEOSTRATA.com",
+    "internationalInquiryEmail": "neointl@NEOSTRATA.com",
     "fullNameLength": 80,
     "firstNameLength": 40,
     "middleNameInitialsLength": 1,
@@ -3099,6 +3102,78 @@
         }
       ],
       "icon": "/resources/admin/widgets/image_video_slider.png",
+      "validPageTypes": [
+        "*"
+      ]
+    }, {
+      "defaultConfig": {
+        "catalog": "[]"
+      },
+      "displayName": "Email Form",
+      "displayTemplate": "sendEmail/sendemail",
+      "editViewFields": [{
+          "name": "subject",
+          "fieldLabel": "Email Subject",
+          "xtype": "mz-input-text"
+        },
+        {
+          "name": "email_from",
+          "fieldLabel": "Email From",
+          "xtype": "mz-input-text"
+        },
+        {
+          "name": "email_cc",
+          "fieldLabel": "Email CC (use comma to separate few)",
+          "xtype": "mz-input-text"
+        },
+        {
+          "name": "hidden_form",
+          "fieldLabel": "Hide form from public part",
+          "xtype": "mz-input-checkbox"
+        },
+        {
+          "name": "form_html",
+          "fieldLabel": "Form HTML",
+          "xtype": "mz-input-code",
+          "width": "500px"
+        },
+        {
+          "name": "form_email_template",
+          "fieldLabel": "Form Email Template",
+          "xtype": "textareafield",
+          "width": "500px"
+        },
+        {
+          "name": "customClass",
+          "fieldLabel": "Custom Form Class",
+          "xtype": "mz-input-text"
+        },
+        {
+          "name": "customId",
+          "fieldLabel": "Custom Form ID",
+          "xtype": "mz-input-text"
+        },
+        {
+          "name": "form_success_message",
+          "fieldLabel": "Form Success Message",
+          "xtype": "textareafield",
+          "width": "500px"
+        },
+        {
+          "name": "form_error_message",
+          "fieldLabel": "Form Error Message",
+          "xtype": "textareafield",
+          "width": "500px"
+        },
+        {
+          "name": "customButtonValue",
+          "fieldLabel": "Custom Button Label",
+          "xtype": "mz-input-text"
+        }
+
+      ],
+      "icon": "/resources/admin/widgets/03_heading_p.png",
+      "id": "sendemail",
       "validPageTypes": [
         "*"
       ]

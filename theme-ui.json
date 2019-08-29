@@ -348,7 +348,27 @@
                     "fieldLabel": "Maximum number of Recently Viewed Items supported"
                 }
             ]
-        },{
+        }, {
+          "xtype": "panel",
+          "title": "Contact form emails",
+          "collapsed": false,
+          "items": [{
+                "fieldLabel": "Affiliate email",
+                "xtype": "mz-input-text",
+                "name": "affiliateEmail"
+              },
+              {
+                "fieldLabel": "Customer service email",
+                "xtype": "mz-input-text",
+                "name": "customerServiceEmail"
+              },
+              {
+                "fieldLabel": "International inquiry email",
+                "xtype": "mz-input-text",
+                "name": "internationalInquiryEmail"
+              } 
+            ]
+        }, {
             "xtype": "panel",
             "title": "Form Validations",
             "collapsed": false,
