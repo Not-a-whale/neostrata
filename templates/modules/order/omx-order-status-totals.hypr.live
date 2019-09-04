@@ -30,7 +30,7 @@
     {% if headerSection.Tax|first  > 0 %}
       <div class="mz-ordersummary-tax">
           <div class="mz-checkout-total-row  row">
-              <span class="mz-ordersummary-totalname col-xs-5 col-md-3">{{ labels.tax }}</span>
+              <span class="mz-ordersummary-totalname col-xs-5 col-md-3">{{ labels.estimatedTax }}</span>
               <span class="mz-ordersummary-totalvalue col-xs-5 col-md-3 text-right">{{ headerSection.Tax|first|currency }}</span>
           </div>
       </div>

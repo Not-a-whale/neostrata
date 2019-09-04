@@ -28,7 +28,7 @@
         {% if model.taxTotal %}
         <tr class="mz-ordersummary-tax">
             <td align="right" colspan="4">
-                <span class="mz-ordersummary-totalname">{{ labels.tax }}:</span>
+                <span class="mz-ordersummary-totalname">{{ labels.estimatedTax }}:</span>
                 <span class="mz-ordersummary-totalvalue">{{ model.taxTotal|currency }}</span>
             </td>
         </tr>
