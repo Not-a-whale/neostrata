@@ -3135,13 +3135,13 @@
           "name": "form_html",
           "fieldLabel": "Form HTML",
           "xtype": "mz-input-code",
-          "width": "500px"
+          "width": "100%"
         },
         {
           "name": "form_email_template",
           "fieldLabel": "Form Email Template",
           "xtype": "textareafield",
-          "width": "500px"
+          "width": "100%"
         },
         {
           "name": "customClass",
@@ -3157,13 +3157,23 @@
           "name": "form_success_message",
           "fieldLabel": "Form Success Message",
           "xtype": "textareafield",
-          "width": "500px"
+          "width": "100%"
         },
         {
           "name": "form_error_message",
           "fieldLabel": "Form Error Message",
           "xtype": "textareafield",
-          "width": "500px"
+          "width": "100%"
+        }, 
+        {
+          "name": "msg_popup",
+          "fieldLabel": "Show message in popup",
+          "xtype": "mz-input-checkbox"
+        },
+        {
+          "name": "msg_selector",
+          "fieldLabel": "Message jQuery selector",
+          "xtype": "mz-input-text"
         },
         {
           "name": "customButtonValue",
