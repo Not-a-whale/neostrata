@@ -1206,7 +1206,8 @@
     "autoReplenishmentCode_3" :"3", 
     "autoReplenishmentCode_4" :"4", 
     "autoReplenishmentCode_5" :"5", 
-    "autoReplenishmentCode_6" :"6"
+    "autoReplenishmentCode_6" :"6", 
+    "emptyCartContinueShoppingURL" : "/"
   },
   "layoutWidgets": [
     {

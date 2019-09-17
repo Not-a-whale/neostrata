@@ -859,6 +859,18 @@
                     "name": "autoReplenishment_4"
                 }
             ]
+        }, 
+        {
+            "xtype": "panel",
+            "title": "Empty Cart",
+            "collapsed": false,
+            "items": [
+                {
+                    "fieldLabel": "Continue Shopping URL",
+                    "xtype": "mz-input-text",
+                    "name": "emptyCartContinueShoppingURL"
+                }
+            ]
         }
     ]
 }
