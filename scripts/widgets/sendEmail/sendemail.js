@@ -16,7 +16,8 @@ require(["modules/jquery-mozu", "hyprlive", "hyprlivecontext"],
         successMessage = config.form_success_message ? config.form_success_message : "Mail sent successfully",
         errorMessage = config.form_error_message ? config.form_error_message : "Error sending email",
         msgPopup = (config.msg_popup && config.msg_popup !== 'False') ? true : false,
-        msgSelector = config.msg_selector ? config.msg_selector : '';
+        msgSelector = config.msg_selector ? config.msg_selector : '',
+        replyTo = config.reply_to ? config.reply_to : '';
 
       // this will look for a `data-custom-attribute` as name and get #id
       // element values and substitute to the form
@@ -64,6 +65,10 @@ require(["modules/jquery-mozu", "hyprlive", "hyprlivecontext"],
           if ($('#' + formId).attr('data-ccEmailAddresses') === "") {
             ccEmailAddresses = [];
           }
+          replyTo = $('#' + formId).attr('data-replyTo').split(',');
+          if ($('#' + formId).attr('data-replyTo') === "") {
+            replyTo = [];
+          }
           if ($('#' + formId).attr('data-subjectdata') !== '') subjectdata = $('#' + formId).attr('data-subjectdata');
           if ($('#' + formId).attr('data-emailTemplate') !== '') emailTemplate = $('#' + formId).attr('data-emailTemplate');
           if ($('#' + formId).attr('data-successMessage') !== '') successMessage = $('#' + formId).attr('data-successMessage');
@@ -100,7 +105,7 @@ require(["modules/jquery-mozu", "hyprlive", "hyprlivecontext"],
           "subjectdata": replaceSubject ? replaceSubject : subjectdata,
           "subjectCharset": "UTF-8",
           "sourceEmail": sourceEmail,
-          "replyToAddresses": [sourceEmail]
+          "replyToAddresses": replyTo
         };
 
         $.ajax({

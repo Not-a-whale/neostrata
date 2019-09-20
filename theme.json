@@ -3123,6 +3123,11 @@
           "xtype": "mz-input-text"
         },
         {
+          "name": "reply_to",
+          "fieldLabel": "Reply To",
+          "xtype": "mz-input-text"
+        },
+        {
           "name": "email_cc",
           "fieldLabel": "Email CC (use comma to separate few)",
           "xtype": "mz-input-text"

@@ -6,7 +6,9 @@
         data-successMessage="{{model.config.form_success_message}}"
         data-errorMessage="{{model.config.form_error_message}}"
         data-msgPopup="{{model.config.msg_popup}}"
-        data-msgSelector="{{model.config.msg_selector}}">
+        data-msgSelector="{{model.config.msg_selector}}"
+        data-replyTo="{{model.config.reply_to}}"
+        >
 
         {{model.config.form_html|safe}}
         <input type="submit" class="submit-form {%if model.config.customId %}{{model.config.customId}}{% else %}{{model.definitionId}}{% endif %}" name="submit-email-form"
