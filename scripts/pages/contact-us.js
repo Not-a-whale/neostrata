@@ -1,9 +1,9 @@
 define(['modules/jquery-mozu', 'hyprlive', 'hyprlivecontext'], function ($, hypr, hyprlivecontext) {
   $(document).ready(function () {
     var isExu = hyprlivecontext.locals.themeSettings.themeSelector === 'exuviance' ? true : false;
-
+    console.log(window.location.pathname.indexOf('contact-us'));
     if (isExu) {
-      if (window.location.pathname === '/contact-us') {
+      if (window.location.pathname.indexOf('contact-us') !== 0) {
 
         var select = $('select#Field4'),
           option = select.val();
@@ -22,7 +22,7 @@ define(['modules/jquery-mozu', 'hyprlive', 'hyprlivecontext'], function ($, hypr
 
         });
 
-      } else if (window.location.pathname === '/affiliate') {
+      } else if (window.location.pathname.indexOf('affiliate') !== 0) {
         $('[name="form-email"]').val(hypr.getThemeSetting('affiliateEmailEXU'));
         handlePhoneInput();
       }
@@ -32,7 +32,7 @@ define(['modules/jquery-mozu', 'hyprlive', 'hyprlivecontext'], function ($, hypr
         $('[name="submit-email-form"]').trigger('click');
       });
     } else {
-      if (window.location.pathname === '/contact-us') {
+      if (window.location.pathname.indexOf('contact-us') !== 0) {
         var dropdown = $('.wufoo-dropdown'),
           dropdownLabel = $('.wufoo-dropdown-control span.text'),
           dropdownControl = $('.wufoo-dropdown-control'),
@@ -52,7 +52,7 @@ define(['modules/jquery-mozu', 'hyprlive', 'hyprlivecontext'], function ($, hypr
             dropdownControl.removeClass('open');
           }
         });
-      } else if (window.location.pathname === '/affiliate') {
+      } else if (window.location.pathname.indexOf('affiliate') !== 0) {
         $('[name="form-email"]').val(hypr.getThemeSetting('affiliateEmail'));
         handlePhoneInput();
       }
