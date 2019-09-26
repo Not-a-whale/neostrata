@@ -288,12 +288,14 @@ require([
       this.render();
     },
     calculateRegimen: function( skinType, skinConcern ) {
-      console.log('Look for regimen for: ' + skinType[0] + '/' + skinConcern[0]);
-      var regimenKey = REGIMEN_LOOKUP[skinType[0]] ? REGIMEN_LOOKUP[skinType[0]][skinConcern[0]] : REGIMEN_DEFAULT;
-      if (!regimenKey) {
-        regimenKey = REGIMEN_DEFAULT;
+      if (skinType && skinConcern && skinType.length > 0 && skinConcern.length > 0) {
+        console.log('Look for regimen for: ' + skinType[0] + '/' + skinConcern[0]);
+        var regimenKey = REGIMEN_LOOKUP[skinType[0]] ? REGIMEN_LOOKUP[skinType[0]][skinConcern[0]] : REGIMEN_DEFAULT;
+        if (!regimenKey) {
+          regimenKey = REGIMEN_DEFAULT;
+        }
+        return regimenKey;
       }
-      return regimenKey;
     },
     toggleSkinType: function( value ) {
       this.skinTypeToggled = value;
@@ -531,16 +533,17 @@ require([
         });
         if (!newRegimen) {
           console.log('Regimen not found: ' + conf.selectedRegimen);
-        }
-        else {
+        } else {
           console.log('Setting regimen to:' + conf.selectedRegimen);
         }
 
-        self.state.set({
-          current: newRegimen,
-          selection: summarizeSelection( newRegimen, conf.regimenType),
-          regimenType: conf.regimenType
-        });
+        if (newRegimen) {
+          self.state.set({
+            current: newRegimen,
+            selection: summarizeSelection( newRegimen, conf.regimenType),
+            regimenType: conf.regimenType
+          });
+        }
       });
       this.selector.trigger( 'change');
     },
@@ -587,20 +590,29 @@ require([
   }
 
   function summarizeSelection( regimen, regimenType ) {
-    var isBasic = (regimenType == 'basic');
-    var productColumn = isBasic ? 3 : 2;
-    var included = _.filter( regimen[productColumn], function( step ) {
-      return step.included;
-    });
+    if (regimen && regimenType ) {
+      var isBasic = (regimenType == 'basic');
+      var productColumn = isBasic ? 3 : 2;
+      var included = _.filter( regimen[productColumn], function( step ) {
+        return step.included;
+      });
+  
+      var cost = _.reduce( included, function( memo, step ) {
+        return memo + step.product.price.price;
+      }, 0 );
+  
+      return {
+        cost: cost,
+        count: included.length,
+        items: included
+      };
+    } else {
+      return {
+        cost: 0,
+        count: 0,
+        items: []
+      };
 
-    var cost = _.reduce( included, function( memo, step ) {
-      return memo + step.product.price.price;
-    }, 0 );
-
-    return {
-      cost: cost,
-      count: included.length,
-      items: included
-    };
+    }
   }
 });

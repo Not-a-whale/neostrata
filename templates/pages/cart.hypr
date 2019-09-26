@@ -43,7 +43,7 @@
         {% else %}
             <div class="cart-div">Your bag is empty - continue shopping!</div>
             <div class="cart-div">
-                <a href="/" class="btn">
+                <a href="{{themeSettings.emptyCartContinueShoppingURL}}" class="btn">
                     <div class="cart-btn-continue primary-btn"> Continue Shopping</div>
                 </a>
             </div>

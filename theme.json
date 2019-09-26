@@ -1206,7 +1206,8 @@
     "autoReplenishmentCode_3" :"3", 
     "autoReplenishmentCode_4" :"4", 
     "autoReplenishmentCode_5" :"5", 
-    "autoReplenishmentCode_6" :"6"
+    "autoReplenishmentCode_6" :"6", 
+    "emptyCartContinueShoppingURL" : "/"
   },
   "layoutWidgets": [
     {
@@ -3122,6 +3123,11 @@
           "xtype": "mz-input-text"
         },
         {
+          "name": "reply_to",
+          "fieldLabel": "Reply To",
+          "xtype": "mz-input-text"
+        },
+        {
           "name": "email_cc",
           "fieldLabel": "Email CC (use comma to separate few)",
           "xtype": "mz-input-text"
@@ -3135,13 +3141,13 @@
           "name": "form_html",
           "fieldLabel": "Form HTML",
           "xtype": "mz-input-code",
-          "width": "500px"
+          "width": "100%"
         },
         {
           "name": "form_email_template",
           "fieldLabel": "Form Email Template",
           "xtype": "textareafield",
-          "width": "500px"
+          "width": "100%"
         },
         {
           "name": "customClass",
@@ -3157,13 +3163,23 @@
           "name": "form_success_message",
           "fieldLabel": "Form Success Message",
           "xtype": "textareafield",
-          "width": "500px"
+          "width": "100%"
         },
         {
           "name": "form_error_message",
           "fieldLabel": "Form Error Message",
           "xtype": "textareafield",
-          "width": "500px"
+          "width": "100%"
+        }, 
+        {
+          "name": "msg_popup",
+          "fieldLabel": "Show message in popup",
+          "xtype": "mz-input-checkbox"
+        },
+        {
+          "name": "msg_selector",
+          "fieldLabel": "Message jQuery selector",
+          "xtype": "mz-input-text"
         },
         {
           "name": "customButtonValue",

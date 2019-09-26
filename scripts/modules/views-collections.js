@@ -203,6 +203,11 @@ define([
             } else {
                 $("#gridView").trigger("click");
             }
+
+            if (window.bazaarvoiceEngine){
+                window.bazaarvoiceEngine.processBazaarVoice();
+            }
+            
             blockUiLoader.unblockUi();
         }
          //Toggle View GRID/LIST

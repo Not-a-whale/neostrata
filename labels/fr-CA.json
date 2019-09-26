@@ -52,6 +52,7 @@
   "total"                : "[fr-CA]Total[fr-CA]",
   "subtotal"             : "[fr-CA]Subtotal[fr-CA]",
   "tax"                  : "[fr-CA]Tax[fr-CA]",
+  "estimatedTax"         : "[fr-CA]Estimated Tax[fr-CA]",
   "taxDuty"               : "[fr-CA]Duties and Taxes[fr-CA]",
   "shippingHandling"     : "[fr-CA]Shipping & Handling[fr-CA]",
   "additionalHandling"   : "[fr-CA]Additional Handling[fr-CA]",

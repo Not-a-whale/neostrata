@@ -24,7 +24,7 @@
  {% if model.salesTaxTotal %}
  <div class="mz-ordersummary-tax">
      <div class="mz-checkout-total-row">
-         <span class="mz-ordersummary-totalname col-sm-4 text-right">{{ labels.tax }}:</span>
+         <span class="mz-ordersummary-totalname col-sm-4 text-right">{{ labels.estimatedTax }}:</span>
          <span class="mz-ordersummary-totalvalue col-sm-4">{{ model.salesTaxTotal|divide(100)|floatformat(2)|currency }}</span>
      </div>
  </div>
