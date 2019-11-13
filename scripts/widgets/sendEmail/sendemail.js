@@ -164,6 +164,9 @@ require(["modules/jquery-mozu", "hyprlive", "hyprlivecontext"],
           }
         });
         if (isFilled) {
+          if (!isExu) {
+            $('#' + customId).find('[type="checkbox"]:not(:checked)').val('');
+          }
           e.preventDefault();
           sendEmail(customId);
         } else {
