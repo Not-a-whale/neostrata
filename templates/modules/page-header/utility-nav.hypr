@@ -93,7 +93,7 @@
                         <option value="Sensitive Skin">{{ labels.sensitiveSkin }}</option>
                     </select>
                   </div>
-                  <div class="input-group">
+                  <!-- <div class="input-group">
                     <select name="signup_input_dob_month" title="Birth Month" id="signup_input_dob_month" class="signup_input_dob_month input_age" data-mz-signup-birthmonth>
                         <option value="">{{ labels.registerBirthMonth }} *</option>
                         <option value="January">January</option>
@@ -146,7 +146,7 @@
                     <select name="signup_input_dob_year" title="Birth Year" id="signup_input_dob_year" class="signup_input_dob_year input_age" data-mz-signup-birthyear>
                         <option value="">{{ labels.registerBirthYear }} *</option>
                     </select>
-                  </div>
+                  </div> -->
                   <div class="input-group">
                     <span class="input-group-addon glyphicon glyphicon-lock"></span>
                     <input type="password" title="Password" class="form-control" data-mz-signup-password placeholder="{{ labels.password }} *" maxlength="{{themeSettings.passwordMaxLength}}">
