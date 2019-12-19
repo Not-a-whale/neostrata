@@ -464,13 +464,13 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
             if($(this).context.attributes["data-mz-param"].value == "signup"){
                 $('.nav-tabs > li.second-tab').addClass('active');
                 $('.tab-content #newshopper').addClass('active');
-                if ($.cookie('mozu-signup-age') ) {
-                    console.log('mozu-signup-age is true'); 
-                    $('#signup_input_dob_month').prop('disabled', 'disabled');
-                    $('#signup_input_dob_day').prop('disabled', 'disabled');
-                    $('#signup_input_dob_year').prop('disabled', 'disabled');
-                    console.log('mozu-signup-age disable'); 
-                }
+                // if ($.cookie('mozu-signup-age') ) {
+                //     console.log('mozu-signup-age is true'); 
+                //     $('#signup_input_dob_month').prop('disabled', 'disabled');
+                //     $('#signup_input_dob_day').prop('disabled', 'disabled');
+                //     $('#signup_input_dob_year').prop('disabled', 'disabled');
+                //     console.log('mozu-signup-age disable'); 
+                // }
             }
             else {
                 $('.nav-tabs > li.first-tab').addClass('active');
@@ -560,9 +560,9 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
             var firstName = $(this).parents('#newshopper').find('[data-mz-signup-firstname]').val().trim();
             var lastName = $(this).parents('#newshopper').find('[data-mz-signup-lastname]').val().trim();
             var skinType = $(this).parents('#newshopper').find('[data-mz-signup-skintype]').val().trim();
-            var birthMonth = $(this).parents('#newshopper').find('[data-mz-signup-birthmonth]').val().trim();
-            var birthDay = $(this).parents('#newshopper').find('[data-mz-signup-birthday]').val().trim();
-            var birthYear = $(this).parents('#newshopper').find('[data-mz-signup-birthyear]').val().trim();
+            // var birthMonth = $(this).parents('#newshopper').find('[data-mz-signup-birthmonth]').val().trim();
+            // var birthDay = $(this).parents('#newshopper').find('[data-mz-signup-birthday]').val().trim();
+            // var birthYear = $(this).parents('#newshopper').find('[data-mz-signup-birthyear]').val().trim();
             //var recoveryquestion = $(this).parents('#newshopper').find('[data-mz-signup-recoveryquestion]').val();
             //var recoveryanswer = $(this).parents('#newshopper').find('[data-mz-signup-recoveryanswer]').val().trim();
             var payload = {
@@ -571,15 +571,17 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
                     userName: email,
                     firstName: firstName,
                     lastName: lastName,
-                    birthMonth: birthMonth,
-                    birthDay: birthDay,
-                    birthYear: birthYear,
+                    // birthMonth: birthMonth,
+                    // birthDay: birthDay,
+                    // birthYear: birthYear,
                     acceptsMarketing: accMarketing,
                     contacts: [{email: email}],
                     attributes: [{"fullyQualifiedName": "tenant~skintype",
-                                  "values": [skinType]},
-                                 {"fullyQualifiedName": "tenant~dob",
-                                  "values": [birthMonth+"/"+birthDay+"/"+birthYear]}]
+                                  "values": [skinType]}
+                                  /*,
+                                  {"fullyQualifiedName": "tenant~dob",
+                                  "values": [birthMonth+"/"+birthDay+"/"+birthYear]}*/
+                                ]
                     /* ,
                     attributes: [
                       {
@@ -639,13 +641,13 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
             if (!payload.account.emailAddress) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('emailMissing')), false;
             if (!payload.account.firstName) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('firstNameMissing')), false;
             if (!payload.account.lastName) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('lastNameMissing')), false;            
-            if ((!payload.account.birthMonth || !payload.account.birthDay || !payload.account.birthYear) && !self.isDOBDisable()) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('birthMissing')), false;
-            if ((!payload.account.birthMonth || !payload.account.birthDay || !payload.account.birthYear) && self.isDOBDisable()) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('thirteenPreviousError')), false;
-            if (self.checkDate(payload.account.birthMonth, payload.account.birthDay, payload.account.birthYear)) {
+            // if ((!payload.account.birthMonth || !payload.account.birthDay || !payload.account.birthYear) && !self.isDOBDisable()) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('birthMissing')), false;
+            // if ((!payload.account.birthMonth || !payload.account.birthDay || !payload.account.birthYear) && self.isDOBDisable()) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('thirteenPreviousError')), false;
+            // if (self.checkDate(payload.account.birthMonth, payload.account.birthDay, payload.account.birthYear)) {
 
-                self.setDateErrorCookie(); 
-                return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('thirteenError')), false;
-            }
+            //     self.setDateErrorCookie(); 
+            //     return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('thirteenError')), false;
+            // }
             
             if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(payload.account.emailAddress))) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('emailwrongpattern')), false;
             if (payload.password !== $(el).parents('#newshopper').find('[data-mz-signup-confirmpassword]').val()) return (LoginPopover.prototype).newdisplayMessage(el, Hypr.getLabel('passwordsDoNotMatch')), false;
@@ -655,30 +657,30 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
             return true;
         };
 
-        this.isDOBDisable = function () {
-            return $.cookie('mozu-signup-age'); 
-        }; 
+        // this.isDOBDisable = function () {
+        //     return $.cookie('mozu-signup-age'); 
+        // }; 
 
-        this.setDateErrorCookie = function () {
-            $.cookie('mozu-signup-age', true); //, { path: '/', expires: 1 });
-            $('#signup_input_dob_month').prop('disabled', 'disabled');
-            $('#signup_input_dob_day').prop('disabled', 'disabled');
-            $('#signup_input_dob_year').prop('disabled', 'disabled');
-        }; 
+        // this.setDateErrorCookie = function () {
+        //     $.cookie('mozu-signup-age', true); //, { path: '/', expires: 1 });
+        //     $('#signup_input_dob_month').prop('disabled', 'disabled');
+        //     $('#signup_input_dob_day').prop('disabled', 'disabled');
+        //     $('#signup_input_dob_year').prop('disabled', 'disabled');
+        // }; 
 
-        this.checkDate = function (month, day, year) {                  
-            var input = Date.parse( month + '/' + day + '/' + year );
-            var today = new Date();
+        // this.checkDate = function (month, day, year) {                  
+        //     var input = Date.parse( month + '/' + day + '/' + year );
+        //     var today = new Date();
             
-            if ( today <= input ) {
-              return true;
-            }
-            var diff = ( today - input ) / ( 1000 * 60 * 60 * 24 * 365 );
-            if( diff < 13 ) {
-              return true;
-            }
-            return false;
-        };
+        //     if ( today <= input ) {
+        //       return true;
+        //     }
+        //     var diff = ( today - input ) / ( 1000 * 60 * 60 * 24 * 365 );
+        //     if( diff < 13 ) {
+        //       return true;
+        //     }
+        //     return false;
+        // };
     };
 
     $( window ).resize(function() {
@@ -688,11 +690,11 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
     $(document).ready(function() {
         $docBody = $(document.body);
 
-        var year = (new Date()).getFullYear()-13;
-        var endYear = year-90;
-        for (year; year>endYear; year--){
-            $('<option/>').val(year).html(year).appendTo('#signup_input_dob_year');
-        }
+        // var year = (new Date()).getFullYear()-13;
+        // var endYear = year-90;
+        // for (year; year>endYear; year--){
+        //     $('<option/>').val(year).html(year).appendTo('#signup_input_dob_year');
+        // }
 
        new LoginRegistrationModal().init($('[data-mz-action="lite-registration"]').first()); 
        new LoginRegistrationModal().init($('.thankyou-order-block [data-mz-action="lite-registration"]').first());
