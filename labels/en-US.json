@@ -779,7 +779,7 @@
   "recommendedFrequently" : "(most common)",
   "autoReplenishment": "Subscribe and Save",
   "autoReplenishmentHowItWorks": "How it works:",
-  "autoReplenishmentContent": "<li><li>Shop your favorite products and select the subscribe and save option.</li><li>Manage your delivery frequency by selecting how often you would like to receive your product.</li><li>Enjoy 10% off &amp; free shipping on your first Subscribe &amp; Save order.</li><li>Adjust your next scheduled delivery in My Account. Changes must be made at least 3 days prior to your next scheduled order date.</li>",
+  "autoReplenishmentContent": "<li>Shop your favorite products and select the subscribe and save option.</li><li>Manage your delivery frequency by selecting how often you would like to receive your product.</li><li>Enjoy 10% off &amp; free shipping on your first Subscribe &amp; Save order.</li><li>Adjust your next scheduled delivery in My Account. Changes must be made at least 3 days prior to your next scheduled order date.</li>",
 
   "subscriptionNextOrders"        : "Next Order", 
   "subscriptionAllSubscriptions"  : "All Subscriptions", 
