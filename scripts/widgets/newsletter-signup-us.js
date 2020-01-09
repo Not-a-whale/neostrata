@@ -37,16 +37,16 @@ require(['modules/jquery-mozu', 'underscore', 'hyprlive'], function($,  _,  Hypr
       $( '#custom_field_string_custom_field_1_field_'+getFormId() ).append( $( '#template-newsletter-skintype' ).html() );
 
       // Customize brith-date field.
-      $('#custom_field_string_custom_field_2_'+getFormId() ).prop( 'type', 'hidden' );
-      $('#custom_field_string_custom_field_2_label_'+getFormId()).html( Hypr.getLabel('newsletterBirthday'));
-      $('#custom_field_string_custom_field_2_field_'+getFormId() ).append( $( '#template-newsletter-dob' ).html() );
-      var year = (new Date()).getFullYear()-13;
-      var endYear = year-90;
-      for (year; year>endYear; year--){
-        $('<option/>').val(year).html(year).appendTo('#input_dob_year');
-      }
+      //$('#custom_field_string_custom_field_2_'+getFormId() ).prop( 'type', 'hidden' );
+      //$('#custom_field_string_custom_field_2_label_'+getFormId()).html( Hypr.getLabel('newsletterBirthday'));
+      //$('#custom_field_string_custom_field_2_field_'+getFormId() ).append( $( '#template-newsletter-dob' ).html() );
+      //var year = (new Date()).getFullYear()-13;
+      //var endYear = year-90;
+      //for (year; year>endYear; year--){
+      //  $('<option/>').val(year).html(year).appendTo('#input_dob_year');
+     // }
 
-      $( '#custom_field_string_custom_field_2_field_'+getFormId()  ).after(
+      $( '#custom_field_string_custom_field_1_field_'+getFormId()  ).after(
         '<div style="clear:both">You must be over 13 years of age to sign up for our newsletter.<br />Please see our <a href=\"/privacy-policy\">Privacy Policy</a> for details.</div>'
       );
 
@@ -58,25 +58,25 @@ require(['modules/jquery-mozu', 'underscore', 'hyprlive'], function($,  _,  Hypr
           $( '#custom_field_string_custom_field_1_'+getFormId() ).prop( 'value', $( '#input_skintype' ).prop( 'value' ) );
       });
 
-      $( '#input_dob_month' ).change( function() {
-        updateDoB();
-      });
-      $( '#input_dob_day' ).change( function() {
-        updateDoB();
-      });
-      $( '#input_dob_year' ).change( function() {
-        updateDoB();
-      });
+      //$( '#input_dob_month' ).change( function() {
+      //  updateDoB();
+      //});
+      //$( '#input_dob_day' ).change( function() {
+      //  updateDoB();
+      //});
+      //$( '#input_dob_year' ).change( function() {
+      //  updateDoB();
+      //});
 
       //verified if the age_error cookie was set
-      if ($.cookie('mozu-newsletter-age') ) {
-        console.log('mozu-newsletter-age is true'); 
-        $('#input_dob_month').prop('disabled', 'disabled');
-        $('#input_dob_day').prop('disabled', 'disabled');
-        $('#input_dob_year').prop('disabled', 'disabled');
-        console.log('mozu-newsletter-age disable'); 
+      //if ($.cookie('mozu-newsletter-age') ) {
+      //  console.log('mozu-newsletter-age is true'); 
+      //  $('#input_dob_month').prop('disabled', 'disabled');
+      //  $('#input_dob_day').prop('disabled', 'disabled');
+      //  $('#input_dob_year').prop('disabled', 'disabled');
+      //  console.log('mozu-newsletter-age disable'); 
         
-      }
+      //}
       
       var $submit = $( '.ctct-form-button' );
 
