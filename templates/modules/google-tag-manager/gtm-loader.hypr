@@ -5,31 +5,40 @@
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
         "event": "DEPLabs",
-          "depData": {
-            "purchase": {
-              "actionField": {
-                "id": "{% for attribute in model.attributes %}{% if attribute.fullyQualifiedName == themeSettings.omxOrderNumberAttribute %}{% with attribute.values|first as omxOrderNumber %}{{omxOrderNumber}}{% set_var isOMXOrderNumber=true %}{% endwith %}{% endif %}{% endfor %}{% if not isOMXOrderNumber %}{{ model.orderNumber }}{% endif %}",                        
-                "affiliation": "{{siteContext.generalSettings.websiteName}}",
-                "subtotalRevenue": "{{model.total | subtract(model.shippingTotal) | subtract(model.taxTotal)}}",
-                "revenue": "{{model.total}}",                    
-                "tax":"{{model.taxTotal}}",
-                "shipping": "{{model.shippingTotal}}",
-                "coupon": "{% for coupon in model.couponCodes %}{{coupon|safe}}{% if not forloop.last %}|{% endif %}{% endfor %}"
-              },
+         "depData": {
+          "purchase": {
+           "actionField": {
+            "id": "{% for attribute in model.attributes %}{% if attribute.fullyQualifiedName == themeSettings.omxOrderNumberAttribute %}{% with attribute.values|first as omxOrderNumber %}{{omxOrderNumber}}{% set_var isOMXOrderNumber=true %}{% endwith %}{% endif %}{% endfor %}{% if not isOMXOrderNumber %}{{ model.orderNumber }}{% endif %}",            
+            "affiliation": "{{siteContext.generalSettings.websiteName}}",
+            "subtotalRevenue": "{{model.subtotal}}",
+            "revenue": "{{model.total}}",          
+            "tax":"{{model.taxTotal}}",
+            "shipping": "{{model.shippingTotal}}",
+            "coupon": "{% for orderDiscount in model.orderDiscounts %}{{orderDiscount.couponCode}}{% if not forloop.last %},{% endif %}{% endfor %}",
+            "discountTotal": "{{model.discountTotal}}"
+           },
             "products": [
             {% for orderItem in model.items %}
                 {
-                    "name": "{{orderItem.product.name|safe}}",
+                    "name": "{{orderItem.product.name|replace('\"','&rdquo;')|escape|safe}}",
                     "id": "{{orderItem.product.productCode}}",
-                    "sku": "{{orderItem.product.variationProductCode}}",
-                    "price": "{{orderItem.unitPrice.saleAmount}}",
+                    "sku": "{{orderItem.product.mfgPartNumber}}",
+                    "price": "{{orderItem.taxableTotal}}",
                     "originalPrice": "{{orderItem.unitPrice.listAmount}}",
-                    "brand": "",
-                    "category": "{% with categories|find(orderItem.product.categories.0.id) as category %}{{category.content.name|safe}}{% endwith %}",
-                    "variant": "{% for option in orderItem.product.options %}{{option.value}}{% if not forloop.last %},{% endif %}{% endfor %}",
+                    "brand": "{% for property in orderItem.product.properties %}{% if property.attributeFQN == "tenant~brand-name" %}{{property.values.0.stringValue|replace('\"','&rdquo;')|escape|safe}}{% endif %}{% endfor %}",
+                    "category": "{% with categories|find(orderItem.product.categories.0.id) as category %}{{category.content.name|replace('\"','&rdquo;')|escape|safe}}{% endwith %}/{{orderItem.product.name|replace('\"','&rdquo;')|escape|safe}}",
+                    "variant": "{% for option in orderItem.product.options %}{{option.value|replace('\"','&rdquo;')|escape|safe}}{% if not forloop.last %},{% endif %}{% endfor %}",
                     "quantity": {{orderItem.quantity}},
                     "list": "Directory: ",
-                    "coupon": ""
+                {% if  orderItem.data.autoreplanishmentCode %}                                 
+                    {% with "autoReplenishment_X"|replace("X", orderItem.data.autoreplanishmentCode) as autoReplenishmentCode %}
+                    {% with themeSettings|prop(autoReplenishmentCode) as evalValue %}
+                          "subscription": "{{evalValue|replace('\"','&rdquo;')|escape|safe}}",
+                    {% endwith %}
+                    {% endwith %}
+                {% else %}
+                  "subscription": "{{labels.oneTimePurchase|replace('\"','&rdquo;')|escape|safe}}",
+                {% endif %} 
                 }{% if not forloop.last %},{% endif %}
             {% endfor %}
             ]
@@ -44,39 +53,46 @@
   window.dataLayer = window.dataLayer || [];
   dataLayer.push({
   "event": "DEPLabs",
-  "depData": {
-    "detail": {
-      "actionField": {"list": "Directory: {% for crumb in navigation.breadcrumbs %}{% if not crumb.isHidden %}{% if not forloop.last %}{{crumb.name|safe}}/{% else %}{{ crumb.name|safe }}{% endif %}{% endif %}{% endfor %}"},    
-      "products": [{
-        "name": "{{ model.content.productName }}",        
-        "id": "{{ model.productCode }}",
-        "price": "{% if model.priceRange %}{{model.priceRange.lower.salePrice}} - {{model.priceRange.upper.salePrice}}{% else %}{% if model.price.salePrice %}{{model.price.salePrice}}{% else %}{{model.price.price}}{% endif %}{% endif %}",
-        "originalPrice" : "{% if model.priceRange %}{{model.priceRange.lower.price}} - {{model.priceRange.upper.price}}{% else %}{% if model.price.price %}{{model.price.price}}{% else %}"{% endif %}{% endif %}",
-        "brand": "",
-        "category": "{% if breadcrumbCategories %}{% for catId in breadcrumbCategories %}{% with catId|multiply(1) as catIdNumber %}{% with categories|find(catIdNumber) as category %}{% if category %}{% if not forloop.last %}{{category.content.name|safe}}/{% else %}{{category.content.name|safe}}{% endif %}{% endif %}{% endwith %}{% endwith %}{% endfor %}{% else %}{% for crumb in navigation.breadcrumbs %}{% if not forloop.last %}{{crumb.name|safe}}/{% else %}{{ crumb.name|safe }}{% endif %}{% endfor %}{% endif %}",
-        "variant": ""
-       }]
-     }{% if globalCart.items.length > 0 %},
+ "depData": {
+  "detail": {
+   "actionField": {"list": "directory"},  
+   "products": [{
+    "name": "{{ model.content.productName|replace('\"','&rdquo;')|escape|safe }}",    
+    "id": "{{ model.productCode }}",
+    "price": "{{model.price.catalogListPrice}}",
+    "originalPrice" : "{% if model.priceRange %}{{model.priceRange.lower.price}} - {{model.priceRange.upper.price}}{% else %}{% if model.price.price %}{{model.price.price}}{% else %}"{% endif %}{% endif %}",
+    "brand": "{% for property in model.properties %}{% if property.attributeFQN == "tenant~brand-name" %}{{property.values.0.stringValue|replace('\"','&rdquo;')|escape|safe}}{% endif %}{% endfor %}",
+    "category": "{% if breadcrumbCategories %}{% for catId in breadcrumbCategories %}{% with catId|multiply(1) as catIdNumber %}{% with categories|find(catIdNumber) as category %}{% if category %}{% if not forloop.last %}{{category.content.name|replace('\"','&rdquo;')|escape|safe}}/{% else %}{{category.content.name|replace('\"','&rdquo;')|escape|safe}}{% endif %}{% endif %}{% endwith %}{% endwith %}{% endfor %}{% else %}{% for crumb in navigation.breadcrumbs %}{% if not forloop.last %}{{crumb.name|replace('\"','&rdquo;')|escape|safe}}/{% else %}{{ crumb.name|replace('\"','&rdquo;')|escape|safe }}{% endif %}{% endfor %}{% endif %}",
+    "variant": ""
+   }]
+  }{% if globalCart.items.length > 0 %},
     "cart": {
-      "coupon": "{% for coupon in globalCart.couponCodes %}{{coupon}}{% if not forloop.last %},{% endif %}{% endfor %}",
+      "coupon": "{% for orderDiscount in globalCart.orderDiscounts %}{{orderDiscount.couponCode}}{% if not forloop.last %},{% endif %}{% endfor %}",
       "products": [
       {% for orderItem in globalCart.items %}
           {
-              "name": "{{orderItem.product.name|safe}}",
+              "name": "{{orderItem.product.name|replace('\"','&rdquo;')|escape|safe }}",
               "id": "{{orderItem.product.productCode}}",
-              "sku": "{{orderItem.product.variationProductCode}}",
-              "price": "{{orderItem.unitPrice.extendedAmount}}",
+              "sku": "{{orderItem.product.mfgPartNumber}}",
+              "price": "{{orderItem.taxableTotal}}",
               "originalPrice": "{{orderItem.unitPrice.listAmount}}",
-              "brand": "",
-              "category": "{% with categories|find(orderItem.product.categories.0.id) as category %}{{category.content.name|safe}}{% endwith %}",
-              "variant": "{% for option in orderItem.product.options %}{{option.value}}{% if not forloop.last %},{% endif %}{% endfor %}",
+              "brand": "{% for property in orderItem.product.properties %}{% if property.attributeFQN == "tenant~brand-name" %}{{property.values.0.stringValue|replace('\"','&rdquo;')|escape|safe}}{% endif %}{% endfor %}",
+              "category": "{% with categories|find(orderItem.product.categories.0.id) as category %}{{category.content.name|replace('\"','&rdquo;')|escape|safe}}{% endwith %}/{{orderItem.product.name|replace('\"','&rdquo;')|escape|safe}}",
+              "variant": "{% for option in orderItem.product.options %}{{option.value}}{% if not forloop.last %},{% endif %}{% endfor %}",
+{% if  orderItem.data.autoreplanishmentCode %}                                 
+        {% with "autoReplenishment_X"|replace("X", orderItem.data.autoreplanishmentCode) as autoReplenishmentCode %}
+              "subscription": "{{ themeSettings|prop(autoReplenishmentCode)|replace('\"','&rdquo;')|escape|safe }}",
+        {% endwith %}
+    {% else %}
+              "subscription": "{{labels.oneTimePurchase|replace('\"','&rdquo;')|escape|safe}}",
+    {% endif %} 
               "quantity": {{orderItem.quantity}}
           }{% if not forloop.last %},{% endif %}
       {% endfor %}
       ]
     }
     {% endif %}
-   }
+ }
 });
 </script>
 {% endif %}
@@ -86,26 +102,33 @@
   window.dataLayer = window.dataLayer || [];
   dataLayer.push({
   "event": "DEPLabs",
-  "depData": {
+ "depData": {
     "cart": {
-      "coupon": "{% for coupon in globalCart.couponCodes %}{{coupon}}{% if not forloop.last %},{% endif %}{% endfor %}",
+      "coupon": "{% for orderDiscount in globalCart.orderDiscounts %}{{orderDiscount.couponCode}}{% if not forloop.last %},{% endif %}{% endfor %}",
       "products": [
       {% for orderItem in globalCart.items %}
           {
-              "name": "{{orderItem.product.name|safe}}",
+              "name": "{{orderItem.product.name|replace('\"','&rdquo;')|escape|safe }}",
               "id": "{{orderItem.product.productCode}}",
-              "sku": "{{orderItem.product.variationProductCode}}",
-              "price": "{{orderItem.unitPrice.saleAmount}}",
+              "sku": "{{orderItem.product.mfgPartNumber}}",
+              "price": "{{orderItem.taxableTotal}}",
               "originalPrice": "{{orderItem.unitPrice.listAmount}}",
-              "brand": "",
-              "category": "{% with categories|find(orderItem.product.categories.0.id) as category %}{{category.content.name|safe}}{% endwith %}",
-              "variant": "{% for option in orderItem.product.options %}{{option.value}}{% if not forloop.last %},{% endif %}{% endfor %}",
+              "brand": "{% for property in orderItem.product.properties %}{% if property.attributeFQN == "tenant~brand-name" %}{{property.values.0.stringValue|replace('\"','&rdquo;')|escape|safe}}{% endif %}{% endfor %}",
+              "category": "{% with categories|find(orderItem.product.categories.0.id) as category %}{{category.content.name|replace('\"','&rdquo;')|escape|safe}}{% endwith %}/{{orderItem.product.name|replace('\"','&rdquo;')|escape|safe}}",
+              "variant": "{% for option in orderItem.product.options %}{{option.value|replace('\"','&rdquo;')|escape|safe}}{% if not forloop.last %},{% endif %}{% endfor %}",
+    {% if  orderItem.data.autoreplanishmentCode %}                                 
+        {% with "autoReplenishment_X"|replace("X", orderItem.data.autoreplanishmentCode) as autoReplenishmentCode %}
+              "subscription": "{{ themeSettings|prop(autoReplenishmentCode)|replace('\"','&rdquo;')|escape|safe }}",
+        {% endwith %}
+    {% else %}
+              "subscription": "{{labels.oneTimePurchase|replace('\"','&rdquo;')|escape|safe}}",
+    {% endif %} 
               "quantity": {{orderItem.quantity}}
           }{% if not forloop.last %},{% endif %}
       {% endfor %}
       ]
     }
-   }
+ }
 });
 </script>
 {% endif %}

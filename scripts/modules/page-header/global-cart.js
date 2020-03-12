@@ -68,9 +68,6 @@ define([
                             Api.get('product', productCode).then(function(productResponse){
                                 var product = new ProductModels.Product(productResponse.data);
                                 product.addToCart();
-                                product.on('addedtocart', function(cartitem) {
-                                	MetricsEngine.trackDirectoryAddToCart(product, product.get('categories')[0], false, 1);
-                                });
                                 setTimeout(function(){
                                     Api.get("cart").then(function(resp) {
                                         $('.ml-header-global-cart-count .mz-cartmonitor').html(resp.data.items.length);

@@ -602,7 +602,6 @@
         });
 
         cartModel.on('itemremoved', function (cartItem) {
-            MetricsEngine.trackRemovedFromCart(cartItem);
             freeSamplesModel.itemRemoved(cartItem.get('product').get('productCode'));
         });
 

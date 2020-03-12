@@ -177,7 +177,6 @@ define([
                       me.model.itemAdded(productCode);
                       me.model.get('cartModel').fetch();
                       // CartMonitor.addToCount( product.get('quantity'), true);
-                      // MetricsEngine.trackDirectoryAddToCart(product, product.get('categories')[0], false, 1);
                   }
                   else {
                       product.trigger("error", { message: Hypr.getLabel('unexpectedError') });

@@ -59,9 +59,6 @@
                     api.get('product', productCode).then(function(productResponse){
                         var product = new ProductModels.Product(productResponse.data);
                         product.addToCart();
-                        product.on('addedtocart', function(cartitem) {
-                            MetricsEngine.trackDirectoryAddToCart(product, product.get('categories')[0], false, 1);
-                        });
                         setTimeout(function(){
                             CartMonitor.update('showGlobalCart');
                             $('html, body').animate({ scrollTop: 0 }, 'normal');

@@ -247,7 +247,6 @@ define([
 
                             //product.isLoading(true);
                             CartMonitor.addToCount( product.get('quantity'), true);
-                            MetricsEngine.trackDirectoryAddToCart(product, product.get('categories')[0], false, 1);
                             $('html,body').animate({
                                 scrollTop: $('header').offset().top
                             }, 1000);
