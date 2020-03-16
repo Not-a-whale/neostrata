@@ -10,12 +10,12 @@
            "actionField": {
             "id": "{% for attribute in model.attributes %}{% if attribute.fullyQualifiedName == themeSettings.omxOrderNumberAttribute %}{% with attribute.values|first as omxOrderNumber %}{{omxOrderNumber}}{% set_var isOMXOrderNumber=true %}{% endwith %}{% endif %}{% endfor %}{% if not isOMXOrderNumber %}{{ model.orderNumber }}{% endif %}",            
             "affiliation": "{{siteContext.generalSettings.websiteName}}",
-            "subtotalRevenue": "{{model.subtotal}}",
+            "subtotalRevenue": "{{model.discountedSubtotal}}",
             "revenue": "{{model.total}}",          
             "tax":"{{model.taxTotal}}",
             "shipping": "{{model.shippingTotal}}",
             "coupon": "{% for orderDiscount in model.orderDiscounts %}{{orderDiscount.couponCode}}{% if not forloop.last %},{% endif %}{% endfor %}",
-            "discountTotal": "{{model.discountTotal}}"
+            "discountTotal": "{% for orderDiscount in model.orderDiscounts %}{{orderDiscount.impact}}{% if not forloop.last %},{% endif %}{% endfor %}"
            },
             "products": [
             {% for orderItem in model.items %}
@@ -23,7 +23,7 @@
                     "name": "{{orderItem.product.name|replace('\"','&rdquo;')|escape|safe}}",
                     "id": "{{orderItem.product.productCode}}",
                     "sku": "{{orderItem.product.mfgPartNumber}}",
-                    "price": "{{orderItem.taxableTotal}}",
+                    "price": "{{orderItem.discountedTotal}}",
                     "originalPrice": "{{orderItem.unitPrice.listAmount}}",
                     "brand": "{% for property in orderItem.product.properties %}{% if property.attributeFQN == "tenant~brand-name" %}{{property.values.0.stringValue|replace('\"','&rdquo;')|escape|safe}}{% endif %}{% endfor %}",
                     "category": "{% with categories|find(orderItem.product.categories.0.id) as category %}{{category.content.name|replace('\"','&rdquo;')|escape|safe}}{% endwith %}/{{orderItem.product.name|replace('\"','&rdquo;')|escape|safe}}",
