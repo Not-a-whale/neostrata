@@ -1,0 +1,174 @@
+<div class="newsletter-header">
+    <h1>{{ labels.newsletterTitle }}</h1>
+    <p>{{ labels.newsletterSubtitle }}</p>
+</div>
+<div class="newsletter-confirmation">
+{% if themeSettings.commerceEnabled %}
+    <input class="input-newsletter-confirmation" name="input_newsletter_confirmation" type="checkbox" id="input_newsletter_confirmation" value="true" style="display:none;">
+{% endif %}
+{% comment %}
+    <label for="input_newsletter_confirmation">{{ labels.newsletterConfirmation }}</label>
+{% endcomment %}
+<p>{{ labels.newsletterConfirmation|safe }}</p>
+</div>
+<div id="newsletter-form" class="newsletter-form" style="display: none;">
+    <form class="form-custom" id="ctct_form_2" autocomplete="on" data-qe-id="form-data">
+
+        <div id="first_name_field_2" class="form-field">
+            <label data-qe-id="form-label-first-name" id="first_name_label_2" for="first_name_2"
+                class="form-label  form-required">First Name</label>
+            <div class="form-errorMessage" data-qe-id="form-error-first-name" style="display: none;"></div>
+            <input class="form-element" data-qe-id="form-input-first-name" id="first_name_2" type="text"
+                name="first_name" value="" maxlength="50" placeholder="First Name *">
+        </div>
+        <div id="last_name_field_2" class="form-field">
+            <label data-qe-id="form-label-last-name" id="last_name_label_2" for="last_name_2"
+                class="form-label  form-required">Last Name</label>
+            <div class="form-errorMessage" data-qe-id="form-error-last-name" style="display: none;"></div>
+            <input class="form-element" data-qe-id="form-input-last-name" id="last_name_2" type="text" name="last_name"
+                value="" maxlength="50" placeholder="Last Name *">
+        </div>
+        <div id="email_address_field_2" class="form-field">
+            <label data-qe-id="form-label-email" id="email_address_label_2" for="email_address_2"
+                class="form-label form-required">Email</label>
+            <div class="form-errorMessage" data-qe-id="form-error-email" style="display: none;"></div>
+            <input class="form-element" data-qe-id="form-input-email" id="email_address_2" type="email"
+                name="email_address" value="" maxlength="80" placeholder="Email Address *">
+        </div>
+        <div id="custom_field_string_custom_field_1_field_2" class="form-field">
+            <label data-qe-id="form-label-custom-field-Custom Field 1" id="custom_field_string_custom_field_1_label_2"
+                for="custom_field_string_custom_field_1_2" class="form-label form-label ">Skin Type</label>
+            <div class="form-errorMessage" data-qe-id="form-error-custom-field-Custom Field 1" style="display: none;">
+            </div>
+            <input class="form-element" data-qe-id="form-input-custom-field-Custom Field 1"
+                id="custom_field_string_custom_field_1_2" type="hidden" name="custom_field_string_custom_field_1" value=""
+                maxlength="255">
+                <select id="skintype"> 
+                    <option value="">{{ labels.newsletterSelectSkinType }}</option>
+                    <option value="Normal Skin">{{ labels.normalSkin }}</option>
+                    <option value="Dry Skin">{{ labels.drySkin }}</option>
+                    <option value="Oily Skin">{{ labels.oilySkin }}</option>
+                    <option value="Sensitive Skin">{{ labels.sensitiveSkin }}</option>
+                </select> 
+        </div>
+        
+        <div id="network_error_message_2" class="form-error" style="display:none;">
+            <p class="form-errorMessage">Operation timed out, please try again.</p>
+        </div>
+        <div id="gdpr_text">
+            <p class="gdpr-text" data-qe-id="form-gdpr-text">
+                By submitting this form, you are consenting to receive null from: Neostrata, 307 College Road East,
+                Princeton, NJ, 08540, US. You can revoke your consent to receive emails at any time by using the
+                SafeUnsubscribe® link, found at the bottom of every email.
+            </p>
+        </div>
+        <button data-qe-id="form-button" type="submit" class="form-button" data-mz-action="signUpEmail">Sign Up</button>
+    </form>
+    <div id="success_message_2" class="form-success" data-qe-id="success-message" style="display: none;">
+        <h2 class="form-header">Thanks for signing up!</h2>
+        <p class="form-text">You can unsubscribe at any time using the Unsubscribe link at the bottom of every email.</p>
+    </div>
+    <div id="error_message_2" class="form-error" style="display:none;">
+        <p class="form-errorMessage">Sorry, we could not complete your sign-up. Please contact us to resolve this.
+        </p>
+    </div>
+    <label class="required-fields"><span>*</span>- {{ labels.requiredField }}</label>
+    <div id="thirteenError" style="display: none;">{{ labels.thirteenError|safe }}</div>
+</div>
+
+<script type="text/template" id="template-newsletter-usertype">
+  <input class="input_usertype" name="input_usertype" type="checkbox" id="type_advisor" value="{{ labels.newsletterAdvisor }}">
+  <label for="type_advisor">{{ labels.newsletterAdvisor }}</label>
+  <input class="input_usertype" name="input_usertype" type="checkbox" id="type_consumer" value="{{ labels.newsletterConsumer }}">
+  <label for="type_consumer">{{ labels.newsletterConsumer }}</label></div>
+</script>
+
+<script type="text/template" id="template-newsletter-skintype">
+  <select name="input_skintype" id="input_skintype" class="input_skintype">
+    <option value="">{{ labels.newsletterSelectSkinType }}</option>
+    <option value="Normal Skin">{{ labels.normalSkin }}</option>
+    <option value="Dry Skin">{{ labels.drySkin }}</option>
+    <option value="Oily Skin">{{ labels.oilySkin }}</option>
+    <option value="Sensitive Skin">{{ labels.sensitiveSkin }}</option>
+  </select>
+</script>
+
+<script type="text/template" id="template-newsletter-dob">
+    <select name="input_dob_month" id="input_dob_month" class="input_dob_month input_age" >
+        <option value="">{{ labels.newsletterSelectMonth }}</option>
+        <option value="January">{{ labels.newsletterJanuary }}</option>
+        <option value="February">{{ labels.newsletterFebruary }}</option>
+        <option value="March">{{ labels.newsletterMarch }}</option>
+        <option value="April">{{ labels.newsletterApril }}</option>
+        <option value="May">{{ labels.newsletterMay }}</option>
+        <option value="June">{{ labels.newsletterJune }}</option>
+        <option value="July">{{ labels.newsletterJuly }}</option>
+        <option value="August">{{ labels.newsletterAugust }}</option>
+        <option value="September">{{ labels.newsletterSeptember }}</option>
+        <option value="October">{{ labels.newsletterOctober }}</option>
+        <option value="November">{{ labels.newsletterNovember }}</option>
+        <option value="December">{{ labels.newsletterDecember }}</option>
+    </select>
+    <select name="input_dob_day" id="input_dob_day" class="input_dob_day input_age" >
+      <option value="">{{ labels.newsletterSelectDay }}</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+      <option value="13">13</option>
+      <option value="14">14</option>
+      <option value="15">15</option>
+      <option value="16">16</option>
+      <option value="17">17</option>
+      <option value="18">18</option>
+      <option value="19">19</option>
+      <option value="20">20</option>
+      <option value="21">21</option>
+      <option value="22">22</option>
+      <option value="23">23</option>
+      <option value="24">24</option>
+      <option value="25">25</option>
+      <option value="26">26</option>
+      <option value="27">27</option>
+      <option value="28">28</option>
+      <option value="29">29</option>
+      <option value="30">30</option>
+      <option value="31">31</option>
+  </select>
+    <select name="input_dob_year" id="input_dob_year" class="input_dob_year input_age" >
+        <option value="">{{ labels.newsletterSelectYear }}</option>
+    </select>
+</script>
+
+<script type="text/template" id="template-newsletter-consumer-group">
+  <div id="consumer-field" class="consumer-field"></div>
+</script>
+
+<script type="text/template" id="template-newsletter-disclaimer">
+  <div id="newsletter-disclaimer">
+    <p>
+      {{ labels.newsletterDisclaimer|safe }}
+    </p>
+  </div>
+</script>
+
+{% if not themeSettings.commerceEnabled %}
+<script type="text/template" id="template-newsletter-submit">
+  <button type="button" class="form-button" data-role="submit-override" >{{ labels.signUp }}</button>
+</script>
+{% endif %}
+
+{% if themeSettings.commerceEnabled %}
+    {% require_script "widgets/pardot/newsletter-signup-us" %}
+{% else %}
+pardot
+    {% require_script "widgets/pardot/newsletter-signup" %}
+{% endif %}

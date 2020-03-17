@@ -2044,7 +2044,7 @@
         "catalog": "[]"
     	},
     	"displayName": "Newsletter Sign-Up",
-    	"displayTemplate": "misc/newsletter-signup",
+    	"displayTemplate": "pardot/newsletter-signup",
       "editViewFields": [
         {
           "fieldLabel": "Form Id.",

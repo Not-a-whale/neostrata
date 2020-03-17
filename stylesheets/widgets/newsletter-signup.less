@@ -90,8 +90,8 @@ label#custom_field_string_skin_type_label_1 {
     input[type="checkbox"] + label::after{
         top:1rem;
     }    
-    .ctct-form-field{
-        margin-bottom: 1rem;
+    .form-field{
+        margin-bottom: 24px;
     }
     #first_name_field_1,
     #last_name_field_1{
@@ -248,7 +248,7 @@ label#custom_field_string_skin_type_label_1 {
     #custom_field_string_custom_field_2_field_2{
         height: 8rem;
     }
-    .ctct-form-errorMessage,
+    .form-errorMessage,
     #first_name_label_0,
     #last_name_label_0,
     #email_address_label_0,
@@ -274,24 +274,24 @@ input#custom_field_date_b-day_year_1 {
     margin-left: 2.2rem;
     padding-left: 4rem;
 }
-.ctct-form-defaults{
+.form-defaults{
     padding-left:0 !important;
     padding-right:0 !important;
 }
-.ctct-form-custom .ctct-form-required::after {
+.form-custom .form-required::after {
     content: "\2217";
     position: absolute;
     top: -0.35em;
     font-size: 1em;
 }
-.ctct-form-required::before,
-.ctct-gdpr-text,
-.ctct-form-date-slash,
-.ctct-form-footer,
+.form-required::before,
+.gdpr-text,
+.form-date-slash,
+.form-footer,
 .consumer-field{
     display:none;
 }
-.ctct-form-button{
+.form-button{
     font-family: "Gotham A","Gotham B",sans-serif;
     font-weight: 400;
     font-size: 1.6rem !important;
@@ -310,7 +310,7 @@ input#custom_field_date_b-day_year_1 {
     -webkit-appearance: none;
     -webkit-font-smoothing: auto;
 }
-.ctct-form-button:hover{
+.form-button:hover{
     color: #ffffff !important;
     background: #4e5458 !important;
     text-decoration: none !important;
@@ -327,27 +327,27 @@ input#custom_field_date_b-day_year_1 {
         margin-right: 0.3125rem;
     }
 }
-div.ctct-form-embed{
-    form.ctct-form-custom{
-        button.ctct-form-button:disabled:before {
+div.form-embed{
+    form.form-custom{
+        button.form-button:disabled:before {
             content: "Please complete all required (*) fields";
             position: absolute;
             transform: translate(-39%, -64px);
         }   
-        button.ctct-form-button[disabled="disabled"]:before {
+        button.form-button[disabled="disabled"]:before {
             content: " ";
         }            
-        button.ctct-form-button[disabled="disabled"] {
+        button.form-button[disabled="disabled"] {
             opacity: 1 !important;
             background: transparent !Important;
             margin-top: 50.4px !important;
             text-transform: uppercase !important;
             letter-spacing: 2.016px !important;
         } 
-        button.ctct-form-button:disabled:hover {
+        button.form-button:disabled:hover {
             color: #4e5458 !important;
         }            
-        button.ctct-form-button:disabled{
+        button.form-button:disabled{
             cursor: auto !important;
             background: #F5D7D7 !important;
             color: #4e5458 !important;
@@ -367,7 +367,7 @@ div#success_message_2{
     border: 0.1875rem solid #4e5458 !important;
     padding: 4rem 4rem 2rem;
     margin-bottom:8rem;
-    h2.ctct-form-header {
+    h2.form-header {
         font-size: 3rem !important;
         font-weight: 500 !important;
         font-family: "Gotham A","Gotham B",sans-serif !important;
@@ -375,7 +375,7 @@ div#success_message_2{
         color:#4e5458 !important;
         -webkit-font-smoothing: auto !important;
     }        
-    p.ctct-form-text {
+    p.form-text {
         font-family: "Gotham A","Gotham B",sans-serif !important;
         font-size: 1.7rem;
         line-height: 2.6rem;
@@ -394,7 +394,7 @@ div#success_message_2{
     }
 }
 @media only screen and (max-width:768px) {
-    div.ctct-form-embed form.ctct-form-custom button.ctct-form-button:disabled:before{
+    div.form-embed form.form-custom button.form-button:disabled:before{
         min-width: 75%;
     }
     .newsletter-form{
@@ -413,3 +413,6 @@ div#success_message_2{
         }
     } 
 }
+.form-custom {
+    padding: 24px 0;
+  }
