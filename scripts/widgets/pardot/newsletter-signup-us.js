@@ -89,7 +89,7 @@ require(['modules/jquery-mozu', 'underscore', 'hyprlive', 'modules/api'], functi
         var emailAddress = $('input[name="email_address"]').first().val();
         var lastName = $('input[name="last_name"]').first().val();
         var skinType = $('#skintype option:selected').val();
-        var params = { EmailAddress: emailAddress, firstName: firstName, lastName: lastName, skinType: skinType };
+        var params = { EmailAddress: emailAddress, firstName: firstName, lastName: lastName, skinType: skinType, source: 'signup'};
 
         e.preventDefault();
         $('#error_message_2').hide();
