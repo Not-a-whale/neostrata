@@ -13,4 +13,7 @@
         {% endfor %}
     </ul>
 </div>
+{% if themeSettings.googleTagManagerEnabled and not pageContext.isEditMode %}
+    {% include "modules/google-tag-manager/gtm-product-list" %}
+{% endif %}
 {% endif %}
