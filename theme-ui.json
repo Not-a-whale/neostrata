@@ -871,6 +871,22 @@
                     "name": "emptyCartContinueShoppingURL"
                 }
             ]
+        },{
+            "xtype": "panel",
+            "title": "Padort Forms/Forms Handler",
+            "collapsed": false,
+            "items": [
+                {
+                    "fieldLabel": "Enable Pardot",
+                    "xtype": "mz-input-checkbox",
+                    "name": "pardotEnabled"
+                },
+                {
+                    "fieldLabel": "Email Signup Form Handler",
+                    "xtype": "mz-input-text",
+                    "name": "pardotEmailSignupFormHandler"
+                }
+            ]
         }
     ]
 }

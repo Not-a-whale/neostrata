@@ -84,6 +84,22 @@ define(['modules/backbone-mozu', "modules/api", 'hyprlive', 'hyprlivecontext',
 
             this.doModelAction('apiUpdate').then(function() {
                 self.editing = false;
+                var source = self.model.get('acceptsMarketing') ? 'myaccount' : '';
+                var pardotPayload = {
+                    emailAddress: self.model.get('emailAddress'),
+                    firstName: self.model.get('firstName'),
+                    lastName: self.model.get('lastName'),
+                    opted_out: self.model.get('acceptsMarketing') ? 0 : 1,
+                    source: source
+                };
+
+                var uriEncodedParams = $.param(pardotPayload);
+                var targetUrl = Hypr.getThemeSetting('pardotEmailSignupFormHandler') + '?' + uriEncodedParams;
+                var call = $.ajax({
+                    url: targetUrl,
+                    dataType: 'jsonp',
+                    jsonpCallback: 'pardotCallback',
+                });
             }).otherwise(function() {
                 self.editing = true;
             }).ensure(function() {

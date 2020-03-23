@@ -604,6 +604,23 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
                 (LoginPopover.prototype).newsetLoading(true);
 
                 return api.action('customer', 'createStorefront', payload).then(function () {
+                    if (accMarketing && Hypr.getThemeSetting('pardotEnabled')) {
+                        var pardotPayload = {
+                            emailAddress: email,
+                            firstName: firstName,
+                            lastName: lastName,
+                            skinType: skinType,
+                            source: 'signup'
+                        };
+                        
+                        var uriEncodedParams = $.param(pardotPayload);
+                        var targetUrl = Hypr.getThemeSetting('pardotEmailSignupFormHandler') + '?' + uriEncodedParams;
+                        var call = $.ajax({
+                            url: targetUrl,
+                            dataType: 'jsonp',
+                            jsonpCallback: 'pardotCallback',
+                        });
+                    }
                     if(returnUrl){
                         window.location.href = returnUrl;
                     }else if (redirectTemplate) {

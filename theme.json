@@ -1207,7 +1207,9 @@
     "autoReplenishmentCode_4" :"4", 
     "autoReplenishmentCode_5" :"5", 
     "autoReplenishmentCode_6" :"6", 
-    "emptyCartContinueShoppingURL" : "/"
+    "emptyCartContinueShoppingURL" : "/",
+    "pardotEnabled": true,
+    "pardotEmailSignupFormHandler": "https://go.pardot.com/l/107552/2020-03-05/4ds4r9"
   },
   "layoutWidgets": [
     {
