@@ -358,6 +358,27 @@ define([
                 sessionStorage.setItem('checkoutName', this.get('firstName'));
                 sessionStorage.setItem('checkoutLastname', this.get('lastNameOrSurname'));
                 sessionStorage.setItem('acceptsMarketing', this.get('acceptsMarketing'));  
+                
+                var accMarketing = this.get('acceptsMarketing') ? 0 : 1;
+
+                if ( !accMarketing && Hypr.getThemeSetting('pardotEnabled')) {
+
+                    var pardotPayload = {
+                        emailAddress : this.get('email'),
+                        firstName : this.get('firstName'),
+                        lastName : this.get('lastNameOrSurname'),
+                        opted_out : accMarketing,
+                        source: 'Checkout'
+                    };
+                    var uriEncodedParams = $.param(pardotPayload);
+                    var targetUrl = Hypr.getThemeSetting('pardotEmailSignupFormHandler') + '?' + uriEncodedParams;
+                    var call = $.ajax({
+                        url : targetUrl,
+                        dataType : 'jsonp',
+                        jsonpCallback : 'pardotCallback',
+                    });
+                }
+                
                 this.stepStatus('complete');
             }
         }),
