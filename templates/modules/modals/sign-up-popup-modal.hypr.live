@@ -1,0 +1,37 @@
+{% if pageContext.cookies.modal && pageContext.cookies.modal.value !== 'closed' %}
+    <div class="modal fade signup-popup-modal" id="signUpPopUp">
+        <div class="modal-dialog" role="document" id="singUpPopUpDialog">
+            <div class="modal-content">
+                <div class="modal__close" id="modalClose">
+                    <i class="fas fa-times"></i>
+                </div>
+                <div class="modal-body">
+                    <div class="body__discount-block">
+                        <div class="discount-block__discount">
+                            <p>
+                                Subscribe to our emails &
+                            </p>
+                            <span>Get 15% off</span>
+                            <p>
+                                Your first order
+                            </p>
+                        </div>
+                        <div class="discount-block__email">
+                            <input id="signUp" type="email" name="signUp" placeholder="Input your email">
+                            <label id="signUpLabel" for="signUp">Sign Up</label>
+                        </div>
+                        <div class="discount-block__text">
+                            <p>
+                                Plus you'll always be the first to know about exclusive offers and the latest trends.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="body__privacy">
+                        <a href="#">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% require_script "modules/modals/sign-up-popup-modal" %}
+{% endif %} 

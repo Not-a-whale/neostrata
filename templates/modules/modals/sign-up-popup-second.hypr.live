@@ -1,0 +1,31 @@
+{% if pageContext.cookies.modal && pageContext.cookies.modal.value !== 'closed' %}
+    <div class="modal fade second-popup-modal" id="secondModalPopUp">
+        <div class="modal-dialog" role="document" id="secondModalDialog">
+            <div class="modal-content">
+                <div class="modal__close" id="modalClose">
+                    <i class="fas fa-times"></i>
+                </div>
+                <div class="modal-body">
+                    <form class="modal-body__form">
+                        <div class="form__discount">
+                            <div class="discount__description">
+                                <p>Discover our X factor</p>
+                                <span>Get 15% off</span>
+                                <p>Your first order</p>
+                            </div>
+                            <div class="discount__latest">
+                                <p>Plus latest from the exuviance</p>
+                            </div>
+                        </div>
+                        <div class="form__email">
+                            <input id="secondPopupEmail" type="email" name="email" placeholder="Email">
+                            <button class="email__button" id="secondPopupEmail">Sign up</button>
+                        </div>
+                        <div class="form__privacy"><a href="#">Privacy Policy</a></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% require_script "modules/modals/sign-up-popup-modal" %}
+{% endif %} 

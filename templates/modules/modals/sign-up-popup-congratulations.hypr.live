@@ -1,0 +1,28 @@
+{% if pageContext.cookies.modal && pageContext.cookies.modal.value == 'closed' %}
+    <div class="modal fade signup-popup-congratulations-modal" id="congratulationsPopUp">
+        <div class="modal-dialog" role="document" id="congratulationsDialog">
+            <div class="modal-content">
+                <div class="modal__close" id="congratulationsModalClose">
+                    <i class="fas fa-times"></i>
+                </div>
+                <div class="modal-body">
+                    <form class="modal-body__form">
+                        <h3>You're on the list.</h3>
+                        <div class="form__text-block">
+                            <p>Thank you for joining us. Tell us more about yourself.</p>
+                            <p>Use code: <span>welcome15</span> for 15% off your next purchase.</p>
+                        </div>
+                        <div class="form__credentials">
+                            <input id="popupFirstName" type="text" name="firstName">
+                            <input id="popupLastName" type="lastName">
+                            <button class="credentials__button--save" id="popupCredentialsButton" type="submit">Save</button>
+                            <button class="credentials__button--dismiss" id="popupCredentialsButtonClose">No thanks</button>
+                        </div>
+                        <div class="form__privacy"><a href="#">Privacy Policy</a></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% require_script "modules/modals/sign-up-popup-modal" %}
+{% endif %} 

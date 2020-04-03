@@ -1,0 +1,232 @@
+.signup-popup-modal {
+  height: 100vh;
+  width: 100vw;
+  z-index: 2500;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
+  .modal-dialog {
+    width: 690px;
+    height: 325px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2400;
+
+    .modal-content {
+      background-image: url("../resources/images/Email_Pop_Up_image.jpg");
+      background-size: 100%;
+      background-repeat: no-repeat;
+      width: 100%;
+      height: 100%;
+      border-radius: 5px;
+      position: relative;
+
+      @media screen and (max-width: 767px) {
+        background-image: none;
+        background-color: #dcdcdc;
+        width: 90%;
+        margin: 0 auto;
+      }
+
+      .modal__close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50px;
+        transform: translate(50%, -50%);
+        background-color: @black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+          font-size: 2rem;
+          color: @white;
+        }
+
+        &:hover {
+          cursor: pointer;
+
+          svg {
+            color: @secondaryBtnColor;
+          }
+        }
+      }
+
+      .modal-body {
+        width: 70%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        @media screen and (max-width: 767px) {
+          width: 100%;
+        }
+
+        .body__discount-block {
+          height: 80%;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: space-between;
+
+          @media screen and (max-width: 767px) {
+            padding-left: 0 !important;
+            margin-bottom: 1rem;
+            align-items: center;
+          }
+
+          .discount-block__discount {
+            width: 80%;
+            text-transform: uppercase;
+            text-align: center;
+            font-weight: bold;
+
+            @media screen and (max-width: 767px) {
+              display: flex;
+              width: 100%;
+              flex-direction: column;
+              justify-content: space-between;
+            }
+
+            p {
+              color: @black;
+              margin: 0;
+              font-size: 2.5rem;
+
+              @media screen and (max-width: 767px) {
+                text-align: center;
+                font-size: 1.5rem;
+              }
+
+              @media screen and (min-width: 1250px) {
+                  font-size: 1.5rem;
+              }
+            }
+
+            span {
+              color: @charcoal;
+              display: block;
+              font-size: 5.5rem;
+
+              @media screen and (max-width: 767px) {
+                text-align: center;
+                font-size: 3rem;
+              }
+
+              @media screen and (min-width: 1250px) {
+                font-size: 3rem;
+              }
+            }
+          }
+
+          .discount-block__email {
+            width: 75%;
+            height: 3.5rem;
+            border: 2px solid @charcoal;
+            display: inline-block;
+
+            @media screen and (max-width: 767px) {
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              align-items: center;
+              width: 100%;
+              height: 7rem;
+              border: none;
+            }
+
+            input {
+              display: inline-block;
+              height: 100%;
+              width: 70%;
+              margin: 0;
+              padding-top: 0;
+              padding-bottom: 0;
+              padding-left: .5rem;
+              padding-right: 0;
+              float: left;
+              border: 0;
+              outline: none;
+              font-size: 1.2rem;
+
+              @media screen and (max-width: 767px) {
+                height: 45%;
+                width: 100%;
+                float: none;
+                border: 1px solid @charcoal;
+              }
+            }
+
+            label {
+              display: inline-block;
+              height: 100%;
+              width: 30%;
+              margin: 0;
+              padding: 0;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              background-color: @charcoal;
+              float: left;
+              color: @lightGray;
+              text-align: center;
+              text-transform: uppercase;
+
+              &:hover {
+                color: @secondaryBtnColor;
+              }
+
+              @media screen and (max-width: 767px) {
+                height: 45%;
+                width: 100%;
+                margin-top: 1rem;
+                float: none;
+              }
+            }
+          }
+
+          .discount-block__text {
+            width: 70%;
+            font-size: 1.2rem;
+            p {
+            margin: 0 auto;
+            width: 90%;
+            text-align: center;
+            }
+
+            @media screen and (max-width: 767px) {
+                width: 100%;
+                font-size: 1.5rem;
+                margin-top: 1rem;
+            }
+          }
+        }
+      }
+
+      .body__privacy {
+        height: 20%;
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: @charcoal;
+        @media screen and (max-width: 767px) {
+            width: 100%;
+            height: 5%;
+        }
+      }
+    }
+  }
+}

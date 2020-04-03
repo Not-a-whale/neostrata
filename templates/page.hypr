@@ -86,6 +86,7 @@
         <link rel="stylesheet" href="{% make_url "stylesheet" "/stylesheets/storefront.less" %}" title="default" />
         <link rel="stylesheet" type="text/css" href="{% make_url "stylesheet" "/stylesheets/vendor/font-awesome/css/font-awesome.min.css" %}" media="all">
         <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/7074216/7126592/css/fonts.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
         {% endblock stylesheets %}
 
         {% block head-tag-scripts %}
@@ -157,7 +158,17 @@
           {% include "modules/page-footer" %}
         {% endblock page-footer %}
       </div>
+      {% block modals %}
+        {% include "modules/modals/sign-up-popup-modal" %}
+      {% endblock modals %}
 
+      {% block modals %}
+        {% include "modules/modals/sign-up-popup-congratulations" %}
+      {% endblock modals %}
+      {% block modals %}
+        {% include "modules/modals/sign-up-popup-congratulations" %}
+      {% endblock modals %}
+      
       {% block trailing-scripts %}
         {% include "modules/trailing-scripts" %}
       {% endblock trailing-scripts %}
